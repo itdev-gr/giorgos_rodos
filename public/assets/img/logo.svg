@@ -6,6 +6,6 @@
     <path d="M8 38 C14 32 20 36 24 36 C28 36 34 32 40 38" stroke="#1CA8CB" stroke-width="2" fill="none" stroke-linecap="round"/>
     <path d="M4 44 C10 38 16 42 20 42 C24 42 30 38 36 44" stroke="#1CA8CB" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
   </g>
-  <text x="48" y="24" font-family="Manrope, sans-serif" font-weight="700" font-size="20" fill="#113D48">Rodos</text>
+  <text x="48" y="24" font-family="Manrope, sans-serif" font-weight="700" font-size="20" fill="#113D48">Rhodos</text>
   <text x="48" y="42" font-family="Cormorant Garamond, Georgia, serif" font-weight="400" font-style="italic" font-size="14" fill="#1CA8CB" letter-spacing="2">YACHTS</text>
 </svg>

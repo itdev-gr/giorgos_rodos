@@ -36,12 +36,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         { label: 'All Services', href: '/service' },
         { label: 'Rent Boats - With Skipper', href: '/service/rodos-rent-boats-with-skipper' },
         { label: 'Rent Boats - License Free', href: '/service/rodos-rent-boats-license-free' },
-        { label: 'Rodos Boat Tours', href: '/service/rodos-boat-tours' },
+        { label: 'Rhodos Boat Tours', href: '/service/rodos-boat-tours' },
         { label: 'Private Boat Tours', href: '/service/private-boat-tours' },
-        { label: 'Rodos Boat Cruises', href: '/service/rodos-boat-cruises' },
-        { label: 'Rodos Charter', href: '/service/rodos-charter' },
-        { label: 'Rodos Mise', href: '/service/rodos-mise' },
-        { label: 'Rodos Tender Boat', href: '/service/rodos-tender-boat' },
+        { label: 'Rhodos Boat Cruises', href: '/service/rodos-boat-cruises' },
+        { label: 'Rhodos Charter', href: '/service/rodos-charter' },
+        { label: 'Rhodos Mise', href: '/service/rodos-mise' },
+        { label: 'Rhodos Tender Boat', href: '/service/rodos-tender-boat' },
       ],
     },
     { id: 5, label: 'Gallery', href: '/gallery' },
@@ -69,7 +69,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         <div className="mobile-logo">
           <a href="/">
-            <img src="/assets/img/logo2.svg" alt="Rodos Yachts" />
+            <img src="/assets/img/logo2.svg" alt="Rhodos Yachts" />
           </a>
         </div>
 
