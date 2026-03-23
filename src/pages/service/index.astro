@@ -1,0 +1,520 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import ScrollToTop from '../../components/interactive/ScrollToTop';
+import services from '../../data/data-service.json';
+
+const featured = services.filter((s: any) => ['rodos-charter', 'rodos-boat-cruises', 'private-boat-tours'].includes(s.slug));
+const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises', 'private-boat-tours'].includes(s.slug));
+---
+
+<BaseLayout title="Our Services — Luxury Yacht Experiences">
+  <Header />
+
+  <!-- Hero header -->
+  <section class="services-hero">
+    <div class="services-hero__bg">
+      <img src="/assets/img/gallery/yacht/yacht-luxury-1.jpg" alt="" />
+      <div class="services-hero__overlay"></div>
+    </div>
+    <video class="services-hero__video" autoplay muted loop playsinline preload="metadata">
+      <source src="/assets/img/hero/services/charter.mp4" type="video/mp4" />
+    </video>
+    <div class="services-hero__content">
+      <span class="services-hero__accent" data-ani="fadein">Our Services</span>
+      <h1 class="services-hero__title" data-ani="slideinup" data-ani-delay="0.1">Luxury Yacht Experiences</h1>
+      <p class="services-hero__subtitle" data-ani="slideinup" data-ani-delay="0.2">From private charters to guided island tours — every voyage tailored to you</p>
+    </div>
+  </section>
+
+  <!-- Featured services — large cards -->
+  <section class="services-featured">
+    <div class="services-featured__grid">
+      {featured.map((data: any, i: number) => (
+        <a
+          href={`/service/${data.slug}`}
+          class="services-card services-card--featured"
+          data-ani="slideinup"
+          data-ani-delay={String(i * 0.15)}
+        >
+          <img src={data.image} alt={data.title} loading="lazy" />
+          <div class="services-card__overlay"></div>
+          <div class="services-card__content">
+            <h2 class="services-card__title">{data.title}</h2>
+            <p class="services-card__desc">{data.item}</p>
+            <span class="services-card__link">Explore <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- All other services -->
+  <section class="services-more">
+    <div class="services-more__header" data-ani="fadein">
+      <h2 class="services-more__title">More Experiences</h2>
+      <p class="services-more__subtitle">Discover the full range of our maritime services</p>
+    </div>
+    <div class="charter-grid">
+      {rest.map((data: any, i: number) => (
+        <a
+          href={`/service/${data.slug}`}
+          class={`charter-card ${i === 0 ? 'charter-card--full' : 'charter-card--half'}`}
+          data-ani="slideinup"
+          data-ani-delay={String(i * 0.1)}
+        >
+          <img src={data.image} alt={data.title} loading="lazy" />
+          <div class="charter-card__content">
+            <h2>{data.title}</h2>
+            <p>{data.item}</p>
+            <span class="charter-card__btn">Learn More</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA banner -->
+  <section class="services-cta" data-ani="fadein">
+    <div class="services-cta__inner">
+      <h2 class="services-cta__title">Ready to Set Sail?</h2>
+      <p class="services-cta__text">Contact us to plan your bespoke voyage around the Greek Islands</p>
+      <a href="/contact" class="services-cta__btn">Get in Touch</a>
+    </div>
+  </section>
+
+  <FooterFour />
+  <ScrollToTop client:load />
+</BaseLayout>
+
+<style>
+  /* ===== Hero ===== */
+  .services-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    max-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .services-hero__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .services-hero__bg video,
+  .services-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .services-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 100%);
+  }
+
+  /* Video hero — mobile only */
+  .services-hero__video {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    .services-hero__video {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .services-hero:has(.services-hero__video) .services-hero__bg {
+      display: none;
+    }
+
+    .services-hero__overlay {
+      z-index: 1;
+    }
+
+    .services-hero__content {
+      z-index: 2;
+    }
+  }
+
+  .services-hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 720px;
+  }
+
+  .services-hero__accent {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1rem;
+  }
+
+  .services-hero__title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+  }
+
+  .services-hero__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== Featured cards ===== */
+  .services-featured {
+    padding: 0 16px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .services-featured__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .services-card--featured {
+    position: relative;
+    display: block;
+    height: 420px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .services-card--featured img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .services-card--featured:hover img {
+    transform: scale(1.06);
+  }
+
+  .services-card--featured .services-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.05) 55%);
+    transition: background 0.5s ease;
+  }
+
+  .services-card--featured:hover .services-card__overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%);
+  }
+
+  .services-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px;
+    z-index: 2;
+  }
+
+  .services-card__title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 8px;
+    line-height: 1.25;
+  }
+
+  .services-card__desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 16px;
+    line-height: 1.5;
+  }
+
+  .services-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .services-card:hover .services-card__link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== More Experiences (charter-card grid) ===== */
+  .services-more {
+    padding: 80px 0 0;
+  }
+
+  .services-more__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .services-more__title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 12px;
+  }
+
+  .services-more__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #6E7070;
+    margin: 0;
+  }
+
+  .charter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .charter-card {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .charter-card--full {
+    grid-column: 1 / -1;
+    height: 500px;
+  }
+
+  .charter-card--half {
+    height: 480px;
+  }
+
+  .charter-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .charter-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .charter-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .charter-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 35px;
+    z-index: 1;
+  }
+
+  .charter-card__content h2 {
+    font-family: var(--title-font, 'Manrope', sans-serif);
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .charter-card--half .charter-card__content h2 {
+    font-size: 30px;
+  }
+
+  .charter-card__content p {
+    font-family: var(--body-font, 'Inter', sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #fff;
+    margin: 0 0 20px;
+    max-width: 520px;
+  }
+
+  .charter-card__btn {
+    display: inline-block;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    color: #fff;
+    background: transparent;
+    padding: 14px 32px;
+    font-family: var(--body-font, 'Inter', sans-serif);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .charter-card:hover .charter-card__btn {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* ===== CTA ===== */
+  .services-cta {
+    padding: 0 16px 100px;
+    margin-top: 80px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .services-cta__inner {
+    background: #113D48;
+    padding: 64px 48px;
+    text-align: center;
+  }
+
+  .services-cta__title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 12px;
+  }
+
+  .services-cta__text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    margin: 0 0 32px;
+  }
+
+  .services-cta__btn {
+    display: inline-block;
+    padding: 16px 44px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: all 0.4s ease;
+  }
+
+  .services-cta__btn:hover {
+    background: #fff;
+    color: #113D48;
+    border-color: #fff;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 991px) {
+    .services-featured__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-featured {
+      margin-top: -40px;
+    }
+
+    .services-card--featured {
+      height: 340px;
+    }
+
+    .services-more {
+      padding: 60px 0 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-hero {
+      height: 50vh;
+      min-height: 320px;
+    }
+
+    .services-card--featured {
+      height: 280px;
+    }
+
+    .services-card__content {
+      padding: 24px;
+    }
+
+    .services-card__title {
+      font-size: 1.35rem;
+    }
+
+    .charter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .charter-card--full,
+    .charter-card--half {
+      height: 400px;
+    }
+
+    .charter-card__content h2 {
+      font-size: 26px;
+    }
+
+    .charter-card--half .charter-card__content h2 {
+      font-size: 24px;
+    }
+
+    .charter-card__content {
+      padding: 25px;
+    }
+
+    .services-cta__inner {
+      padding: 48px 24px;
+    }
+
+    .services-more__header {
+      margin-bottom: 28px;
+    }
+  }
+</style>

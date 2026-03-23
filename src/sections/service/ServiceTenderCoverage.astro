@@ -1,0 +1,124 @@
+---
+interface Zone {
+  name: string;
+  description: string;
+  responseTime: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  mapImage: string;
+  zones: Zone[];
+}
+
+const {
+  title,
+  subtitle = 'Service Area',
+  mapImage,
+  zones,
+} = Astro.props;
+---
+
+<div class="space overflow-hidden">
+  <div class="container">
+    <div class="title-area text-center mb-50">
+      <span class="sub-title style1" data-ani="slideinup">{subtitle}</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">{title}</h2>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-xl-7">
+        <div class="coverage-map position-relative" data-ani="fadein">
+          <img src={mapImage} alt="Coverage Area" class="w-100" style="border-radius: 16px; object-fit: cover;" loading="lazy" />
+          <!-- Pulsing dots on map -->
+          <div class="coverage-dot" style="top: 30%; left: 45%;"></div>
+          <div class="coverage-dot" style="top: 50%; left: 55%;"></div>
+          <div class="coverage-dot" style="top: 40%; left: 35%;"></div>
+          <div class="coverage-dot" style="top: 65%; left: 50%;"></div>
+        </div>
+      </div>
+      <div class="col-xl-5">
+        <div class="ps-xl-4">
+          <div class="coverage-zones">
+            {zones.map((zone, i) => (
+              <div class="coverage-zone-card" data-ani="slideinright" data-ani-delay={`${i * 0.12}`}>
+                <h5 class="coverage-zone-name">{zone.name}</h5>
+                <p class="coverage-zone-desc">{zone.description}</p>
+                <span class="coverage-zone-badge">
+                  <i class="fas fa-clock me-1"></i> {zone.responseTime}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .coverage-map {
+    margin-bottom: 30px;
+  }
+  @media (min-width: 1200px) {
+    .coverage-map {
+      margin-bottom: 0;
+    }
+  }
+  .coverage-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--theme-color, #1CA8CB);
+    border-radius: 50%;
+    z-index: 2;
+  }
+  .coverage-dot::before,
+  .coverage-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--theme-color, #1CA8CB);
+    transform: translate(-50%, -50%);
+    animation: coveragePulse 2s ease-out infinite;
+  }
+  .coverage-dot::after {
+    animation-delay: 0.8s;
+  }
+  @keyframes coveragePulse {
+    0% { width: 14px; height: 14px; opacity: 1; }
+    100% { width: 50px; height: 50px; opacity: 0; }
+  }
+  .coverage-zones {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .coverage-zone-card {
+    padding: 24px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--theme-color, #1CA8CB);
+  }
+  .coverage-zone-name {
+    margin-bottom: 6px;
+  }
+  .coverage-zone-desc {
+    font-size: 0.93rem;
+    margin-bottom: 10px;
+  }
+  .coverage-zone-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--theme-color, #1CA8CB);
+    background: rgba(28, 168, 203, 0.1);
+    border-radius: 20px;
+  }
+</style>

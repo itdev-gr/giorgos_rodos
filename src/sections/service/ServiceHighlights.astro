@@ -1,0 +1,71 @@
+---
+interface Highlight {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  highlights: Highlight[];
+  included: string[];
+  excluded: string[];
+}
+
+const { title, subtitle, highlights, included, excluded } = Astro.props;
+
+const leftHighlights = highlights.slice(0, Math.ceil(highlights.length / 2));
+const rightHighlights = highlights.slice(Math.ceil(highlights.length / 2));
+---
+
+<section
+  class="position-relative bg-smoke overflow-hidden space"
+  style="background-image: url('/assets/img/bg/shape_bg_1.png');"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="title-area text-center">
+          <span class="sub-title">{subtitle}</span>
+          <h2 class="sec-title">{title}</h2>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="box-title mb-20">Service Details</h4>
+    <div class="destination-checklist mb-50">
+      <div class="checklist style2">
+        <ul>
+          {leftHighlights.map((h) => (
+            <li>{h.label}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="checklist style2">
+        <ul>
+          {rightHighlights.map((h) => (
+            <li>{h.value}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <h4 class="box-title mb-20">Included and Excluded</h4>
+    <div class="destination-checklist">
+      <div class="checklist style2 style4">
+        <ul>
+          {included.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="checklist style5">
+        <ul>
+          {excluded.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

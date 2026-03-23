@@ -1,0 +1,132 @@
+---
+interface Destination {
+  name: string;
+  description: string;
+  image: string;
+  link?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  destinations: Destination[];
+}
+
+const {
+  title,
+  subtitle = 'Where to Go',
+  destinations,
+} = Astro.props;
+
+const swiperId = `dest-carousel-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="space overflow-hidden">
+  <div class="container">
+    <div class="title-area text-center mb-50">
+      <span class="sub-title style1" data-ani="slideinup">{subtitle}</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">{title}</h2>
+    </div>
+    <div class="slider-area">
+      <div class="swiper th-slider" id={swiperId}>
+        <div class="swiper-wrapper">
+          {destinations.map((dest) => (
+            <div class="swiper-slide">
+              <a href={dest.link || '/contact'} class="dest-card" data-ani="zoomIn">
+                <div class="dest-card_img">
+                  <img src={dest.image} alt={dest.name} loading="lazy" />
+                  <div class="dest-card_overlay"></div>
+                </div>
+                <div class="dest-card_content">
+                  <h5 class="dest-card_name">{dest.name}</h5>
+                  <p class="dest-card_desc">{dest.description}</p>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dest-card {
+    display: block;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 400px;
+    text-decoration: none;
+  }
+  .dest-card_img {
+    position: absolute;
+    inset: 0;
+  }
+  .dest-card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .dest-card:hover .dest-card_img img {
+    transform: scale(1.08);
+  }
+  .dest-card_overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.05) 50%);
+  }
+  .dest-card_content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px;
+    z-index: 1;
+  }
+  .dest-card_name {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+  }
+  .dest-card_desc {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0;
+    font-size: 0.88rem;
+  }
+</style>
+
+<script define:vars={{ swiperId }}>
+  function initDestCarousel() {
+    if (typeof Swiper === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+      script.onload = () => createDestSwiper();
+      document.head.appendChild(script);
+    } else {
+      createDestSwiper();
+    }
+  }
+
+  function createDestSwiper() {
+    const el = document.getElementById(swiperId);
+    if (!el || el.dataset.initialized) return;
+    el.dataset.initialized = 'true';
+    new Swiper('#' + swiperId, {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        576: { slidesPerView: 2 },
+        992: { slidesPerView: 3 },
+        1200: { slidesPerView: 3 },
+      },
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initDestCarousel);
+  document.addEventListener('astro:page-load', initDestCarousel);
+</script>

@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import ScrollToTop from '../../components/interactive/ScrollToTop';
+import posts from '../../data/data-post.json';
+---
+
+<BaseLayout title="News & Blog - Rodos Yachts">
+  <Header />
+
+  <!-- Hero Header -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h1 class="blog-hero_title">News & Blog</h1>
+          <p class="blog-hero_subtitle">ALL THE LATEST NEWS AND EVENTS FROM THE WORLD OF YACHTING</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-grid space-bottom">
+    <div class="container">
+      <div class="row gy-30">
+        {posts.map((post, index) => (
+          <div class="col-lg-4 col-md-6" data-ani="slideinup" data-ani-delay={`0.${index % 3 + 1}s`}>
+            <div class="blog-card">
+              <div class="blog-card_img">
+                <a href={`/blog/${post.id}`}>
+                  <img src={`/assets/img/blog/${post.image}`} alt={post.title} />
+                </a>
+              </div>
+              <div class="blog-card_content">
+                <h3 class="blog-card_title">
+                  <a href={`/blog/${post.id}`}>{post.title}</a>
+                </h3>
+                <p class="blog-card_meta">
+                  By: {post.author} &bull; {post.date}
+                </p>
+                <div class="blog-card_tags">
+                  {post.tags.map((tag: string) => (
+                    <span class="blog-card_tag">{tag.toUpperCase()}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FooterFour />
+  <ScrollToTop client:load />
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    padding: 80px 0 50px;
+    background: var(--white-color, #fff);
+  }
+
+  .blog-hero_title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--title-color, #1a1a2e);
+    margin-bottom: 12px;
+  }
+
+  .blog-hero_subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--body-color, #737887);
+    margin-bottom: 0;
+  }
+
+  .blog-grid {
+    padding-top: 20px;
+  }
+
+  .blog-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-card_img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .blog-card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .blog-card:hover .blog-card_img img {
+    transform: scale(1.05);
+  }
+
+  .blog-card_content {
+    padding: 20px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .blog-card_title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .blog-card_title a {
+    color: var(--title-color, #1a1a2e);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .blog-card_title a:hover {
+    color: var(--theme-color, #3b71fe);
+  }
+
+  .blog-card_meta {
+    font-size: 13px;
+    color: var(--body-color, #737887);
+    margin-bottom: 16px;
+  }
+
+  .blog-card_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .blog-card_tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border: 1.5px solid var(--theme-color, #3b71fe);
+    color: var(--theme-color, #3b71fe);
+    border-radius: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .blog-card_tag:hover {
+    background: var(--theme-color, #3b71fe);
+    color: #fff;
+  }
+</style>

@@ -1,0 +1,100 @@
+---
+interface Stat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  stats: Stat[];
+}
+
+const { title, description, stats } = Astro.props;
+---
+
+<div
+  class="bg-top-center space-top overflow-hidden"
+  style="background-image: url(/assets/img/bg/contact_bg_2.jpg); background-repeat: no-repeat;"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-5 col-xxl-6">
+        <div class="pe-xxl-5 me-xxl-5">
+          <div class="title-area">
+            <span class="sub-title text-white">Book Your Experience</span>
+            <h2 class="sec-title text-white">{title}</h2>
+            <p class="text-white">{description}</p>
+          </div>
+          <div class="mt-25 mb-50">
+            <a href="/contact" class="th-btn white-btn th-icon">Book Now</a>
+          </div>
+          <div class="contact-info mb-50">
+            <p class="contact-info_link">
+              <a href="tel:+306940000000" class="text-white">+30 694 000 0000</a>
+            </p>
+            <div class="contact-info_icon">
+              <a href="tel:+306940000000">
+                <img src="/assets/img/icon/call.svg" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-7 col-xxl-6">
+        <div class="row gy-50">
+          {stats.map((stat) => (
+            <div class="col-md-6 col-xl-6 counter-card_wrapp">
+              <div class="counter-card style2">
+                <div class="counter-shape"><span></span></div>
+                <div class="media-body">
+                  <h3 class="box-number" data-countup={stat.value}>
+                    <span class="counter-number">0</span>{stat.suffix}
+                  </h3>
+                  <h6 class="counter-title">{stat.label}</h6>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initServiceCounters() {
+    const counterEls = document.querySelectorAll('[data-countup]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.getAttribute('data-countup') || '0');
+          const numEl = el.querySelector('.counter-number');
+          if (numEl && !el.dataset.counted) {
+            el.dataset.counted = 'true';
+            let current = 0;
+            const duration = 2000;
+            const step = target / (duration / 16);
+            const tick = () => {
+              current += step;
+              if (current >= target) {
+                numEl.textContent = target.toString();
+              } else {
+                numEl.textContent = Math.floor(current).toString();
+                requestAnimationFrame(tick);
+              }
+            };
+            tick();
+          }
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counterEls.forEach((el) => observer.observe(el));
+  }
+
+  document.addEventListener('DOMContentLoaded', initServiceCounters);
+  document.addEventListener('astro:page-load', initServiceCounters);
+</script>

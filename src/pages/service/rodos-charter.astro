@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import ScrollToTop from '../../components/interactive/ScrollToTop';
+import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceWhySection from '../../sections/service/ServiceWhySection.astro';
+import ServiceSeasonInfo from '../../sections/service/ServiceSeasonInfo.astro';
+import ServiceBucketList from '../../sections/service/ServiceBucketList.astro';
+import ServiceDiscoveryCTA from '../../sections/service/ServiceDiscoveryCTA.astro';
+import ServicePlanningCTA from '../../sections/service/ServicePlanningCTA.astro';
+import ServiceDestinationsCarousel from '../../sections/service/ServiceDestinationsCarousel.astro';
+import ServiceVesselsShowcase from '../../sections/service/ServiceVesselsShowcase.astro';
+import ServiceOverview from '../../sections/service/ServiceOverview.astro';
+import ServiceRelatedServices from '../../sections/service/ServiceRelatedServices.astro';
+
+/* ───────── Fleet Data ───────── */
+const sailingYachts = [
+  // Beneteau Oceanis
+  { name: 'Oceanis 46.1 – Nailah', image: '/assets/img/fleet/oceanis-461-nailah.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2024', 'Rhodes'] },
+  { name: 'Oceanis 46.1 – Julia', image: '/assets/img/fleet/oceanis-461-julia.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2023', 'Rhodes'] },
+  { name: 'Oceanis 46.1 – Serenity', image: '/assets/img/fleet/oceanis-461-serenity.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2019', 'Rhodes'] },
+  { name: 'Oceanis 46.1 – Lena', image: '/assets/img/fleet/oceanis-461-lena.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2020', 'Kos'] },
+  { name: 'Oceanis 46.1 – Ilia', image: '/assets/img/fleet/oceanis-461-ilia.jpg', specs: ['Sailing Yacht', '14.0 m', '5 Cabins · 10 Guests', '3 Bathrooms', '2022'] },
+  { name: 'Oceanis 46.1 – Luna Maris', image: '/assets/img/fleet/oceanis-461-nailah.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2019'] },
+  { name: 'Oceanis 45 – Aurora', image: '/assets/img/fleet/oceanis-45-aurora.jpg', specs: ['Sailing Yacht', '13.9 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2015', 'Rhodes'] },
+  { name: 'Oceanis 45 – Callidora', image: '/assets/img/fleet/oceanis-45-callidora.jpg', specs: ['Sailing Yacht', '13.9 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2013', 'Rhodes'] },
+  { name: 'Oceanis 45 – Stella', image: '/assets/img/fleet/oceanis-45-stella.jpg', specs: ['Sailing Yacht', '13.9 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2015', 'Kos'] },
+  { name: 'Oceanis 45 – Familia L', image: '/assets/img/fleet/oceanis-45-familia-l.jpg', specs: ['Sailing Yacht', '13.9 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2015'] },
+  { name: 'Oceanis 51.1 – Polis', image: '/assets/img/fleet/oceanis-511-polis.jpg', specs: ['Sailing Yacht', '15.9 m', '4 Cabins · 8 Guests', '2022'] },
+  { name: 'Oceanis 51.1 – Lupo Di Mare', image: '/assets/img/fleet/oceanis-511-lupo-di-mare.jpg', specs: ['Sailing Yacht', '15.9 m', '6 Cabins · 12 Guests', '4 Bathrooms', '2020'] },
+  { name: 'Oceanis 51.1 – Amelie', image: '/assets/img/fleet/oceanis-511-amelie.jpg', specs: ['Sailing Yacht', '15.9 m', '6 Cabins · 12 Guests', '2024'] },
+  { name: 'Oceanis 48 – Melina', image: '/assets/img/fleet/oceanis-48-melina.jpg', specs: ['Sailing Yacht', '14.6 m', '5 Cabins · 12 Guests', '2014'] },
+  { name: 'Oceanis 40.1 – Little Antonis', image: '/assets/img/fleet/oceanis-401-little-antonis.jpg', specs: ['Sailing Yacht', '11.9 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2023'] },
+  { name: 'Oceanis 40.1 – Little Spiros', image: '/assets/img/fleet/oceanis-401-little-spiros.jpg', specs: ['Sailing Yacht', '11.9 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2023'] },
+  { name: 'Oceanis 41 – Fata Morgana', image: '/assets/img/fleet/oceanis-41-fata-morgana.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2013'] },
+  { name: 'Oceanis 41.1 – Ocyrhoe', image: '/assets/img/fleet/oceanis-411-ocyrhoe.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2017'] },
+  { name: 'Oceanis 41.1 – Tureis', image: '/assets/img/fleet/oceanis-411-tureis.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2018'] },
+  { name: 'Oceanis 41.1 – Salt Shaker', image: '/assets/img/fleet/oceanis-411-salt-shaker.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2020'] },
+  { name: 'Oceanis 41.1 – Kalypso', image: '/assets/img/fleet/oceanis-411-kalypso.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2020'] },
+  { name: 'Oceanis 41.1 – Nafsika', image: '/assets/img/fleet/oceanis-411-nafsika.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2020'] },
+  { name: 'Oceanis 46 – Stavros Tou Notou', image: '/assets/img/fleet/oceanis-46-stavros-tou-notou.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 8 Guests', '2 Bathrooms', '2010'] },
+  { name: 'Oceanis 46 – Anegada', image: '/assets/img/fleet/oceanis-46-anegada.jpg', specs: ['Sailing Yacht', '14.0 m', '3 Cabins · 6 Guests', '2 Bathrooms', '2012'] },
+  // Jeanneau Sun Odyssey
+  { name: 'Sun Odyssey 36i – Sunny', image: '/assets/img/fleet/so-36i-sunny.jpg', specs: ['Sailing Yacht', '10.9 m', '2 Cabins · 5 Guests', '1 Bathroom', '2009'] },
+  { name: 'Sun Odyssey 379 – Oyster Shell', image: '/assets/img/fleet/so-379-oyster-shell.jpg', specs: ['Sailing Yacht', '11.3 m', '3 Cabins · 6 Guests', '1 Bathroom', '2013'] },
+  { name: 'Sun Odyssey 380 – Albion', image: '/assets/img/fleet/so-380-albion.jpg', specs: ['Sailing Yacht', '11.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2023'] },
+  { name: 'Sun Odyssey 380 – Orion', image: '/assets/img/fleet/so-380-orion.jpg', specs: ['Sailing Yacht', '11.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2022'] },
+  { name: 'Sun Odyssey 410 – Evelina', image: '/assets/img/fleet/so-410-evelina.jpg', specs: ['Sailing Yacht', '12.3 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2019'] },
+  { name: 'Sun Odyssey 419 – Blueberry', image: '/assets/img/fleet/so-419-blueberry.jpg', specs: ['Sailing Yacht', '12.3 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2019'] },
+  { name: 'Sun Odyssey 42i – Imagine', image: '/assets/img/fleet/so-42i-imagine.jpg', specs: ['Sailing Yacht', '12.7 m', '3 Cabins · 7 Guests', '2 Bathrooms', '2008'] },
+  { name: 'Sun Odyssey 440 – Gojiberry', image: '/assets/img/fleet/so-440-gojiberry.jpg', specs: ['Sailing Yacht', '13.4 m', '4 Cabins · 8 Guests', '2018'] },
+  { name: 'Sun Odyssey 449 – Canne Bleue', image: '/assets/img/fleet/so-449-canne-bleue.jpg', specs: ['Sailing Yacht', '13.7 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2016'] },
+  { name: 'Sun Odyssey 469 – Xadi', image: '/assets/img/fleet/so-469-xadi.jpg', specs: ['Sailing Yacht', '14.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2016'] },
+  { name: 'Sun Odyssey 479 – Iraklia', image: '/assets/img/fleet/so-479-iraklia.jpg', specs: ['Sailing Yacht', '14.4 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2018'] },
+  { name: 'Sun Odyssey 490 – Konstantinos', image: '/assets/img/fleet/so-490-konstantinos.jpg', specs: ['Sailing Yacht', '14.7 m', '6 Cabins · 12 Guests', '2020'] },
+  { name: 'Sun Odyssey 509 – Alessandra', image: '/assets/img/fleet/so-509-alessandra.jpg', specs: ['Sailing Yacht', '15.4 m', '5 Cabins · 12 Guests', '3 Bathrooms', '2012'] },
+  { name: 'Sun Odyssey 519 – Marina', image: '/assets/img/fleet/so-519-marina.jpg', specs: ['Sailing Yacht', '15.7 m', '5 Cabins · 12 Guests', '3 Bathrooms', '2017'] },
+  { name: 'Sun Loft 47 – Sun Rise II', image: '/assets/img/fleet/so-519-marina.jpg', specs: ['Sailing Yacht', '14.1 m', '7 Cabins · 14 Guests', '5 Bathrooms', '2021'] },
+  // Hanse
+  { name: 'Hanse 418 – Polynoe', image: '/assets/img/fleet/hanse-418-polynoe.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2021'] },
+  { name: 'Hanse 418 – Themisto', image: '/assets/img/fleet/hanse-418-themisto.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2021'] },
+  { name: 'Hanse 418 – Pasithea', image: '/assets/img/fleet/hanse-418-pasithea.jpg', specs: ['Sailing Yacht', '12.4 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2020'] },
+  { name: 'Hanse 458 – Sea Pearl', image: '/assets/img/fleet/hanse-458-sea-pearl.jpg', specs: ['Sailing Yacht', '13.8 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2021'] },
+  { name: 'Hanse 508 – Aktea', image: '/assets/img/fleet/hanse-508-aktea.jpg', specs: ['Sailing Yacht', '15.4 m', '6 Cabins · 12 Guests', '2019'] },
+  { name: 'Hanse 510 – Sea Emerald', image: '/assets/img/fleet/hanse-510-sea-emerald.jpg', specs: ['Sailing Yacht', '15.6 m', '4 Cabins · 7 Guests', '2024'] },
+  // Dufour
+  { name: 'Dufour 34 – Nefeli', image: '/assets/img/fleet/dufour-34-nefeli.jpg', specs: ['Sailing Yacht', '10.3 m', '2 Cabins · 5 Guests', '1 Bathroom', '2004'] },
+  { name: 'Dufour 382 GL – Wanderlust', image: '/assets/img/fleet/dufour-382-wanderlust.jpg', specs: ['Sailing Yacht', '11.5 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2015'] },
+  { name: 'Dufour 390 GL – Ino', image: '/assets/img/fleet/dufour-390-ino.jpg', specs: ['Sailing Yacht', '11.9 m', '3 Cabins · 8 Guests', '2 Bathrooms', '2020'] },
+  { name: 'Dufour 560 GL – Jeronimo', image: '/assets/img/fleet/dufour-560-jeronimo.jpg', specs: ['Sailing Yacht', '17.2 m', '4 Cabins', '4 Bathrooms', '2016'] },
+  // Bavaria
+  { name: 'Bavaria 42 – Toisjo', image: '/assets/img/fleet/bavaria-42-toisjo.jpg', specs: ['Sailing Yacht', '12.8 m', '3 Cabins · 7 Guests', '2 Bathrooms', '2006'] },
+  { name: 'Bavaria C42 – Blackberry', image: '/assets/img/fleet/bavaria-c42-blackberry.jpg', specs: ['Sailing Yacht', '12.8 m', '3 Cabins · 8 Guests', '2025'] },
+  { name: 'Bavaria Cruiser 46 – Alexaster', image: '/assets/img/fleet/bavaria-c46-alexaster.jpg', specs: ['Sailing Yacht', '14.3 m', '4 Cabins · 9 Guests', '3 Bathrooms', '2015'] },
+  { name: 'Bavaria Cruiser 46 – Astro', image: '/assets/img/fleet/bavaria-c46-astro.jpg', specs: ['Sailing Yacht', '14.3 m', '4 Cabins · 9 Guests', '3 Bathrooms', '2016'] },
+  { name: 'Bavaria Cruiser 46 – Volantis 9', image: '/assets/img/fleet/bavaria-c46-volantis-9.jpg', specs: ['Sailing Yacht', '14.3 m', '4 Cabins · 9 Guests', '3 Bathrooms', '2016'] },
+  { name: 'Bavaria Cruiser 46 – Michael', image: '/assets/img/fleet/bavaria-c46-alexaster.jpg', specs: ['Sailing Yacht', '14.3 m', '4 Cabins · 9 Guests', '3 Bathrooms', '2020'] },
+  { name: 'Bavaria C46 – Captain Melianos', image: '/assets/img/fleet/bavaria-c46-captain-melianos.jpg', specs: ['Sailing Yacht', '14.3 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2024'] },
+  { name: 'Bavaria 51 Cruiser – Guarda Che Luna', image: '/assets/img/fleet/bavaria-51-guarda-che-luna.jpg', specs: ['Sailing Yacht', '15.4 m', '5 Cabins · 10 Guests', '3 Bathrooms', '2017'] },
+  { name: 'Bavaria 55 Cruiser – Vega', image: '/assets/img/fleet/bavaria-55-vega.jpg', specs: ['Sailing Yacht', '16.8 m', '5 Cabins · 10 Guests', '2010'] },
+];
+
+const catamarans = [
+  // Lagoon
+  { name: 'Lagoon 380 S2 – Astra', image: '/assets/img/fleet/lagoon-380-astra.jpg', specs: ['Catamaran', '11.6 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2015'] },
+  { name: 'Lagoon 380 S2 – Beluga', image: '/assets/img/fleet/lagoon-380-beluga.jpg', specs: ['Catamaran', '11.6 m', '4 Cabins · 10 Guests', '2 Bathrooms', '2016'] },
+  { name: 'Lagoon 40 – Ocean King', image: '/assets/img/fleet/lagoon-40-ocean-king.jpg', specs: ['Catamaran', '12.0 m', '6 Cabins · 10 Guests', '4 Bathrooms', '2018'] },
+  { name: 'Lagoon 40 – Ioli II', image: '/assets/img/fleet/lagoon-40-ioli-ii.jpg', specs: ['Catamaran', '12.0 m', '6 Cabins · 10 Guests', '2023'] },
+  { name: 'Lagoon 40 – Destiny', image: '/assets/img/fleet/lagoon-40-destiny.jpg', specs: ['Catamaran', '12.0 m', '6 Cabins · 10 Guests', '4 Bathrooms', '2020'] },
+  { name: 'Lagoon 400 S2 – Utopia', image: '/assets/img/fleet/lagoon-400-utopia.jpg', specs: ['Catamaran', '12.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2015'] },
+  { name: 'Lagoon 400 S2 – Cata Loca', image: '/assets/img/fleet/lagoon-400-cata-loca.jpg', specs: ['Catamaran', '12.0 m', '4 Cabins · 10 Guests', '4 Bathrooms', '2018'] },
+  { name: 'Lagoon 42 – Aenaos', image: '/assets/img/fleet/lagoon-42-aenaos.jpg', specs: ['Catamaran', '12.8 m', '6 Cabins · 12 Guests', '5 Bathrooms', '2020'] },
+  { name: 'Lagoon 42 – Blade', image: '/assets/img/fleet/lagoon-42-blade.jpg', specs: ['Catamaran', '12.8 m', '6 Cabins · 12 Guests', '2020'] },
+  { name: 'Lagoon 42 – Eleni', image: '/assets/img/fleet/lagoon-42-eleni.jpg', specs: ['Catamaran', '12.8 m', '6 Cabins · 12 Guests', '2023'] },
+  { name: 'Lagoon 42 – Nyami-Nyami', image: '/assets/img/fleet/lagoon-42-nyami-nyami.jpg', specs: ['Catamaran', '12.8 m', '6 Cabins', '4 Bathrooms', '2017'] },
+  { name: 'Lagoon 42 – Petalida', image: '/assets/img/fleet/lagoon-42-petalida.jpg', specs: ['Catamaran', '12.8 m', '6 Cabins · 12 Guests', '4 Bathrooms', '2017'] },
+  { name: 'Lagoon 450 Fly – Cinzia', image: '/assets/img/fleet/lagoon-450-cinzia.jpg', specs: ['Catamaran', '13.6 m', '6 Cabins · 12 Guests', '2014'] },
+  { name: 'Lagoon 450 Fly – Greis', image: '/assets/img/fleet/lagoon-450-greis.jpg', specs: ['Catamaran', '13.6 m', '6 Cabins · 12 Guests', '2019'] },
+  { name: 'Lagoon 46 – Hydra XIV', image: '/assets/img/fleet/lagoon-46-hydra-xiv.jpg', specs: ['Catamaran', '13.9 m', '6 Cabins · 12 Guests', '5 Bathrooms', '2022'] },
+  { name: 'Lagoon 46 – Krista', image: '/assets/img/fleet/lagoon-46-krista.jpg', specs: ['Catamaran', '13.9 m', '5 Cabins · 10 Guests', '5 Bathrooms', '2024'] },
+  { name: 'Lagoon 46 – Si Mi Amor', image: '/assets/img/fleet/lagoon-46-si-mi-amor.jpg', specs: ['Catamaran', '13.9 m', '6 Cabins · 12 Guests', '2024'] },
+  { name: 'Lagoon 46 – Xhenia', image: '/assets/img/fleet/lagoon-46-xhenia.jpg', specs: ['Catamaran', '13.9 m', '6 Cabins · 12 Guests', '2024'] },
+  { name: 'Lagoon 50 – Ioli', image: '/assets/img/fleet/lagoon-50-ioli.jpg', specs: ['Catamaran', '14.8 m', '6 Cabins', '6 Bathrooms', '2019'] },
+  { name: 'Lagoon 50 – Rio', image: '/assets/img/fleet/lagoon-50-rio.jpg', specs: ['Catamaran', '14.8 m', '8 Cabins', '6 Bathrooms', '2021'] },
+  { name: 'Lagoon 55 – Utopia', image: '/assets/img/fleet/lagoon-55-utopia.jpg', specs: ['Catamaran', '16.5 m', '4 Cabins', '4 Bathrooms', '2024'] },
+  // Excess
+  { name: 'Excess 11 – Starfish', image: '/assets/img/fleet/excess-11-starfish.jpg', specs: ['Catamaran', '11.4 m', '5 Cabins · 10 Guests', '2 Bathrooms', '2021'] },
+  // Fountaine Pajot
+  { name: 'FP Aura 51 – Amante', image: '/assets/img/fleet/fp-aura-51-amante.jpg', specs: ['Catamaran', '15.1 m', '5 Cabins', '5 Bathrooms', '2023'] },
+];
+
+const motorYachts = [
+  { name: 'Gianetti 65 – Shooting Star', image: '/assets/img/fleet/gianetti-65-shooting-star.jpg', specs: ['Motor Yacht', '20.0 m', '3 Cabins', '4 Bathrooms', '2008'] },
+  { name: 'Gulet – Royal Viking', image: '/assets/img/fleet/gianetti-65-shooting-star.jpg', specs: ['Gulet', 'Traditional wooden yacht', 'Crewed charter'] },
+];
+---
+
+<BaseLayout title="Premium Yacht Charter in Rhodes - Rodos Yachts">
+  <Header />
+
+  <ServiceHeroFullwidth
+    title="Premium Yacht Charter in Rhodes"
+    subtitle="Discover the Dodecanese islands aboard luxury vessels with expert crews. From half-day escapes to week-long odysseys, every voyage is tailor-made."
+    backgroundImage="/assets/img/fleet/oceanis-511-lupo-di-mare.jpg"
+    heroVideo="/assets/img/hero/services/charter.mp4"
+    cta1Text="Book a Charter"
+    cta2Text="View Fleet"
+  />
+
+  <ServiceWhySection
+    layout="left"
+    title="Why Charter in Rhodes"
+    subtitle="The Perfect Starting Point"
+    description="Rhodes sits at the crossroads of the Aegean and Mediterranean, offering sheltered bays, crystal-clear waters, and ancient harbors just hours apart. The Dodecanese archipelago is one of the best-kept sailing secrets in Europe — uncrowded, unspoiled, and endlessly diverse."
+    image="/assets/img/fleet/lagoon-42-aenaos.jpg"
+    features={[
+      { icon: '/assets/img/icon/about_1_1.svg', title: '300+ Days of Sunshine', text: 'Ideal sailing conditions from April through November with calm seas and steady breezes.' },
+      { icon: '/assets/img/icon/about_1_2.svg', title: 'Island-Hopping Paradise', text: 'Over 15 islands within easy reach — from cosmopolitan Symi to untouched Tilos.' },
+      { icon: '/assets/img/icon/about_1_3.svg', title: 'Expert Local Crews', text: 'Our captains know every hidden cove, sunset anchorage, and waterfront taverna.' },
+    ]}
+  />
+
+  <ServiceSeasonInfo
+    title="When to Charter"
+    subtitle="Sailing Seasons"
+    image="/assets/img/fleet/lagoon-46-krista.jpg"
+    seasons={[
+      { name: 'Spring', months: 'April – May', description: 'Mild temps, empty anchorages, wildflowers on every island. Perfect for couples and explorers.', recommended: false },
+      { name: 'High Summer', months: 'June – August', description: 'Warm waters, vibrant nightlife, peak conditions for swimming and water sports.', recommended: true },
+      { name: 'Golden Autumn', months: 'September – October', description: 'Warm sea, fewer crowds, golden light — the insider favorite season.', recommended: true },
+      { name: 'Winter', months: 'November – March', description: 'Limited availability. Special requests for experienced sailors and coastal exploration.', recommended: false },
+    ]}
+  />
+
+  <ServiceBucketList
+    title="Things to Do on Your Charter"
+    subtitle="Bucket List"
+    items={[
+      { title: 'Swim in Tsambika Bay', description: 'Anchor off one of the most beautiful sandy beaches in the Mediterranean with turquoise shallows.' },
+      { title: 'Explore Symi Harbor', description: 'Cruise into the iconic pastel-painted harbor and dine on fresh seafood at waterfront tavernas.' },
+      { title: 'Snorkel at Lindos', description: 'Discover underwater caves and crystal-clear waters beneath the ancient Acropolis.' },
+      { title: 'Sunset at Halki', description: 'Watch the golden sunset from a remote anchorage off this car-free island paradise.' },
+      { title: 'Dive in Charaki', description: 'Explore submerged rock formations and marine life in one of the best dive spots in Rhodes.' },
+      { title: 'Private Beach BBQ', description: 'Your crew sets up a gourmet barbecue on a secluded beach accessible only by sea.' },
+    ]}
+  />
+
+  <ServiceDiscoveryCTA
+    title="Discover the Dodecanese"
+    description="From the medieval walls of Rhodes Town to the volcanic shores of Nisyros — a thousand stories await on the water."
+    backgroundImage="/assets/img/fleet/lagoon-55-utopia.jpg"
+    ctaText="Plan Your Route"
+  />
+
+  <ServicePlanningCTA
+    title="Let Us Craft Your Perfect Experience"
+    description="Every charter is bespoke. Tell us your dream — island-hopping adventure, romantic getaway, corporate event, or family celebration — and our team will design a voyage to remember. From vessel selection to custom itinerary and onboard catering, we handle every detail."
+    image1="/assets/img/fleet/hanse-510-sea-emerald.jpg"
+    image2="/assets/img/fleet/so-479-iraklia.jpg"
+    image3="/assets/img/fleet/lagoon-50-rio.jpg"
+  />
+
+  <ServiceDestinationsCarousel
+    title="Charter Destinations"
+    subtitle="Where to Go"
+    destinations={[
+      { name: 'Symi', description: 'Neoclassical harbor and pristine bays', image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?w=600&h=400&fit=crop' },
+      { name: 'Halki', description: 'Car-free tranquility and turquoise waters', image: 'https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=600&h=400&fit=crop' },
+      { name: 'Tilos', description: 'Untouched nature and hiking trails', image: 'https://images.unsplash.com/photo-1504512485720-7d83a16ee930?w=600&h=400&fit=crop' },
+      { name: 'Nisyros', description: 'Volcanic landscapes and thermal springs', image: 'https://images.unsplash.com/photo-1515859005217-8a1f08870f59?w=600&h=400&fit=crop' },
+      { name: 'Kastellorizo', description: 'The easternmost gem of Greece with Blue Cave', image: 'https://images.unsplash.com/photo-1580502304784-8985b7eb7260?w=600&h=400&fit=crop' },
+      { name: 'Lindos Bay', description: 'Ancient acropolis meets azure waters', image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=400&fit=crop' },
+    ]}
+  />
+
+  <ServiceVesselsShowcase
+    title="Sailing Yachts"
+    subtitle="Our Fleet"
+    vessels={sailingYachts}
+  />
+
+  <ServiceVesselsShowcase
+    title="Catamarans"
+    subtitle="Our Fleet"
+    vessels={catamarans}
+  />
+
+  <ServiceVesselsShowcase
+    title="Motor Yachts & Special"
+    subtitle="Our Fleet"
+    vessels={motorYachts}
+  />
+
+  <ServiceOverview
+    title="One Company, Complete Service"
+    subtitle="Why Rodos Yachts"
+    description="From the moment you inquire to the moment you step off the boat, our team manages everything. Charter, provisioning, transfers — all under one roof."
+    features={[
+      { icon: '/assets/img/icon/about_1_1.svg', title: 'Bespoke Itineraries', text: 'Every trip is custom-designed around your preferences, pace, and interests.' },
+      { icon: '/assets/img/icon/about_1_2.svg', title: 'Turnkey Experience', text: 'Crew, catering, water toys, transfers — we handle every detail.' },
+      { icon: '/assets/img/icon/about_1_3.svg', title: 'Local Expertise', text: '15+ years of operating in the Dodecanese. We know every island intimately.' },
+    ]}
+    stats={[
+      { value: 15, suffix: '+', label: 'Years Experience' },
+      { value: 2000, suffix: '+', label: 'Charter Trips' },
+      { value: 80, suffix: '+', label: 'Vessels' },
+      { value: 5, suffix: '★', label: 'Rating' },
+    ]}
+  />
+
+  <ServiceRelatedServices currentPage="charter" />
+
+  <FooterFour />
+  <ScrollToTop client:load />
+</BaseLayout>

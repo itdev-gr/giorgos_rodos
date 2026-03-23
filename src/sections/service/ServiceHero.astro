@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  backgroundImage: string;
+}
+
+const { title, subtitle, backgroundImage } = Astro.props;
+---
+
+<div
+  class="th-hero-wrapper bg-bottom-center hero-4"
+  style={`background-image: url(${backgroundImage}); background-repeat: no-repeat;`}
+>
+  <div class="container shape-mockup-wrap">
+    <div class="hero-style4 text-center">
+      <span class="sub-title style1">{subtitle}</span>
+      <h1 class="hero-title">{title}</h1>
+      <div class="btn-group">
+        <a href="/contact" class="th-btn th-icon">Book Now</a>
+        <a href="/contact" class="th-btn style3 th-icon">Contact Us</a>
+      </div>
+    </div>
+    <div class="shape-mockup spin d-none d-lg-block" style="top: 30%; right: -16%;">
+      <img src="/assets/img/shape/shape_10.png" alt="shape" />
+    </div>
+    <div class="shape-mockup d-none d-xl-block" style="bottom: -12%; right: -20%;">
+      <img src="/assets/img/shape/shape_11.png" alt="shape" />
+    </div>
+    <div class="shape-mockup spin d-none d-lg-block" style="bottom: 10%; right: 10%;">
+      <img src="/assets/img/shape/shape_12.png" alt="shape" />
+    </div>
+  </div>
+</div>

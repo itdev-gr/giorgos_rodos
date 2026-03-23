@@ -1,0 +1,37 @@
+---
+import ServiceVesselsShowcase from '../service/ServiceVesselsShowcase.astro';
+
+const vessels = [
+  {
+    name: 'Bavaria 39',
+    image: '/assets/img/fleet/bavaria-39.jpg',
+    specs: ['39 ft', '6 Guests', '3 Cabins'],
+  },
+  {
+    name: 'Bavaria 44',
+    image: '/assets/img/fleet/bavaria-44.jpg',
+    specs: ['44 ft', '8 Guests', '4 Cabins'],
+  },
+  {
+    name: 'Bavaria 46',
+    image: '/assets/img/fleet/bavaria-46.jpg',
+    specs: ['46 ft', '8 Guests', '4 Cabins'],
+  },
+  {
+    name: 'Bavaria 49',
+    image: '/assets/img/fleet/bavaria-49.jpg',
+    specs: ['49 ft', '10 Guests', '5 Cabins'],
+  },
+  {
+    name: 'Bavaria 50',
+    image: '/assets/img/fleet/bavaria-50.jpg',
+    specs: ['50 ft', '10 Guests', '5 Cabins'],
+  },
+];
+---
+
+<ServiceVesselsShowcase
+  title="Handpicked Vessels"
+  subtitle="The Fleet"
+  vessels={vessels}
+/>

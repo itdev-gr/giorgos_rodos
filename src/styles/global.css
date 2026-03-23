@@ -1,0 +1,35 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .space {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .space-top {
+    padding-top: 120px;
+  }
+  .space-bottom {
+    padding-bottom: 120px;
+  }
+  .space-extra {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  @media (max-width: 991px) {
+    .space {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    .space-top {
+      padding-top: 80px;
+    }
+    .space-bottom {
+      padding-bottom: 80px;
+    }
+    .space-extra {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+}

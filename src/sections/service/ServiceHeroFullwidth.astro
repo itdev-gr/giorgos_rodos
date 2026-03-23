@@ -1,0 +1,168 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  backgroundImage: string;
+  heroVideo?: string;
+  cta1Text?: string;
+  cta1Link?: string;
+  cta2Text?: string;
+  cta2Link?: string;
+}
+
+const {
+  title,
+  subtitle,
+  backgroundImage,
+  heroVideo = '',
+  cta1Text = 'Book Now',
+  cta1Link = '/contact',
+  cta2Text = 'Contact Us',
+  cta2Link = '/contact',
+} = Astro.props;
+---
+
+<div class="service-hero-fullwidth position-relative overflow-hidden" id="service-hero">
+  <div class="service-hero-bg" style={`background-image: url(${backgroundImage});`}></div>
+  {heroVideo && (
+    <video class="service-hero-video" autoplay muted loop playsinline preload="metadata">
+      <source src={heroVideo} type="video/mp4" />
+    </video>
+  )}
+  <div class="service-hero-overlay"></div>
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="service-hero-content text-center">
+      <h1 class="service-hero-title" data-ani="slideinup">{title}</h1>
+      <p class="service-hero-subtitle" data-ani="fadein" data-ani-delay="0.3">{subtitle}</p>
+      <div class="btn-group justify-content-center" data-ani="slideinup" data-ani-delay="0.5">
+        <a href={cta1Link} class="th-btn th-icon">{cta1Text}</a>
+        <a href={cta2Link} class="th-btn style3 th-icon">{cta2Text}</a>
+      </div>
+      <div class="scroll-indicator" data-ani="fadein" data-ani-delay="0.8">
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <div class="shape-mockup spin d-none d-lg-block" style="top: 20%; right: 5%;">
+    <img src="/assets/img/shape/shape_10.png" alt="shape" />
+  </div>
+  <div class="shape-mockup jump d-none d-xl-block" style="bottom: 15%; left: 5%;">
+    <img src="/assets/img/shape/shape_12.png" alt="shape" />
+  </div>
+</div>
+
+<style>
+  .service-hero-fullwidth {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .service-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+  }
+  @supports (-webkit-touch-callout: none) {
+    .service-hero-bg {
+      background-attachment: scroll !important;
+    }
+  }
+  .service-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+  }
+  .service-hero-content {
+    padding: 160px 0 120px;
+  }
+  .service-hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: #fff;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+  .service-hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: rgba(255,255,255,0.85);
+    max-width: 650px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .scroll-indicator {
+    margin-top: 50px;
+  }
+  .scroll-indicator span {
+    display: block;
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 12px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .scroll-indicator span::after {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollBounce 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    50% { transform: translateX(-50%) translateY(12px); opacity: 0.3; }
+  }
+
+  /* Video hero — mobile only */
+  .service-hero-video {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    .service-hero-video {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .service-hero-fullwidth:has(.service-hero-video) .service-hero-bg {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  function initHeroParallax() {
+    if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') return;
+    const bg = document.querySelector('.service-hero-bg');
+    if (!bg || bg.dataset.parallaxInit) return;
+    bg.dataset.parallaxInit = 'true';
+    window.gsap.to(bg, {
+      yPercent: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#service-hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initHeroParallax);
+  document.addEventListener('astro:page-load', initHeroParallax);
+</script>

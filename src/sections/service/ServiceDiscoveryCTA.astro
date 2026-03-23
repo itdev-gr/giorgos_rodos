@@ -1,0 +1,88 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  backgroundImage: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  title,
+  description,
+  backgroundImage,
+  ctaText = 'Get Started',
+  ctaLink = '/contact',
+} = Astro.props;
+---
+
+<div class="discovery-cta position-relative overflow-hidden" id="discovery-cta">
+  <div class="discovery-cta-bg" style={`background-image: url(${backgroundImage});`}></div>
+  <div class="discovery-cta-overlay"></div>
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="text-center" style="padding: 120px 0;">
+      <h2 class="discovery-cta-title" data-ani="fadein">{title}</h2>
+      <p class="discovery-cta-text" data-ani="fadein" data-ani-delay="0.2">{description}</p>
+      <a href={ctaLink} class="th-btn th-icon" data-ani="slideinup" data-ani-delay="0.4">{ctaText}</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .discovery-cta {
+    position: relative;
+  }
+  .discovery-cta-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    will-change: transform;
+  }
+  @supports (-webkit-touch-callout: none) {
+    .discovery-cta-bg {
+      background-attachment: scroll !important;
+    }
+  }
+  .discovery-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 61, 72, 0.8);
+    z-index: 1;
+  }
+  .discovery-cta-title {
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
+  .discovery-cta-text {
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem;
+  }
+</style>
+
+<script>
+  function initDiscoveryParallax() {
+    if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') return;
+    const bg = document.querySelector('.discovery-cta-bg');
+    if (!bg || bg.dataset.parallaxInit) return;
+    bg.dataset.parallaxInit = 'true';
+    window.gsap.to(bg, {
+      yPercent: 20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#discovery-cta',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initDiscoveryParallax);
+  document.addEventListener('astro:page-load', initDiscoveryParallax);
+</script>

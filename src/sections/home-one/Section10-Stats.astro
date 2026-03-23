@@ -1,0 +1,46 @@
+---
+import CountUpSection from '../../components/interactive/CountUpSection';
+
+const counters = [
+  { value: 15, suffix: '', title: 'Years of Seamanship' },
+  { value: 97, suffix: '%', title: 'Guests Who Return' },
+  { value: 500, suffix: '+', title: 'Voyages Completed' },
+  { value: 30, suffix: '+', title: 'Islands in Our Waters' },
+];
+---
+
+<section class="bg-smoke stats-bar overflow-hidden">
+  <div class="container">
+    <CountUpSection client:visible counters={counters} />
+  </div>
+</section>
+
+<style>
+  .stats-bar {
+    padding: 60px 0;
+  }
+
+  .stats-bar :global(.row) {
+    position: relative;
+  }
+
+  .stats-bar :global(.counter-card-wrap) {
+    position: relative;
+  }
+
+  .stats-bar :global(.counter-card-wrap + .counter-card-wrap::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 575px) {
+    .stats-bar :global(.counter-card-wrap + .counter-card-wrap::before) {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,129 @@
+<section class="cta-area position-relative overflow-hidden">
+  <div class="cta-bg" style="background-image: url('/assets/img/hero/hero_bg_1_1.jpg');">
+    <div class="cta-overlay"></div>
+    <div class="container position-relative" style="z-index: 2;">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <p class="cta-accent">Your journey begins with a single conversation</p>
+          <h2 class="cta-heading">Begin Planning Your Charter</h2>
+          <p class="cta-subtext">Tell us your vision, and we will craft the voyage.</p>
+          <div class="cta-buttons">
+            <a href="/contact" class="th-btn style2 th-icon">Enquire Now</a>
+            <a href="/service" class="th-btn cta-ghost-btn">Browse Our Fleet</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-area {
+    margin: 0;
+    padding: 0;
+  }
+
+  .cta-bg {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 120px 0;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+
+  .cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 61, 72, 0.75);
+    z-index: 1;
+  }
+
+  .cta-accent {
+    font-family: var(--style-font);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-heading {
+    font-family: var(--title-font);
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-subtext {
+    font-family: var(--body-font);
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 991px) {
+    .cta-bg {
+      padding: 80px 0;
+      min-height: 400px;
+      background-attachment: scroll;
+    }
+
+    .cta-accent {
+      font-size: 1.25rem;
+    }
+
+    .cta-heading {
+      font-size: 2.25rem;
+    }
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-ghost-btn {
+    display: inline-block;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    color: #fff !important;
+    background: transparent;
+    padding: 15px 32px;
+    font-family: var(--body-font);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: border-color 0.3s, background 0.3s;
+    text-decoration: none;
+  }
+
+  .cta-ghost-btn:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 575px) {
+    .cta-bg {
+      padding: 60px 0;
+      min-height: 350px;
+    }
+
+    .cta-heading {
+      font-size: 1.75rem;
+    }
+
+    .cta-accent {
+      font-size: 1.1rem;
+    }
+  }
+</style>

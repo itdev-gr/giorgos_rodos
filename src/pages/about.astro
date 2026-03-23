@@ -1,0 +1,493 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../sections/home-one/Section1-Header.astro';
+import FooterFour from '../sections/shared/FooterFour.astro';
+import ScrollToTop from '../components/interactive/ScrollToTop';
+---
+
+<BaseLayout title="About - Rodos Yachts">
+  <Header />
+
+  <!-- ============== Section 1: Full-Bleed Hero ============== -->
+  <div class="about-hero">
+    <div class="about-hero__overlay"></div>
+    <div class="container about-hero__content">
+      <span class="about-hero__breadcrumb">Rodos Yachts &nbsp;|&nbsp; About Us</span>
+      <h1 class="about-hero__title" data-ani="slideinup">Your Premier Yacht Charter</h1>
+      <p class="about-hero__desc" data-ani="slideinup" data-ani-delay="0.15">
+        Discover the beauty of the Greek islands with Rodos Yachts — Rhodes' most trusted name in luxury yacht charters and unforgettable sea experiences.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============== Section 2: Centered Intro ============== -->
+  <section class="about-intro space">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="title-area mb-20" data-ani="slideinup">
+            <h2 class="sec-title">A Passion for the Sea</h2>
+          </div>
+          <p class="about-intro__text" data-ani="slideinup" data-ani-delay="0.1">
+            At Rodos Yachts, we believe the Aegean Sea holds some of the world's most captivating destinations.
+            From the sun-drenched shores of Rhodes to the hidden coves of the Dodecanese, our team of experienced
+            captains and hospitality professionals craft bespoke charter experiences that transform a simple voyage
+            into an unforgettable journey. Whether you seek a romantic sunset cruise or an adventurous island-hopping
+            expedition, we are here to make it happen.
+          </p>
+          <div class="about-intro__buttons" data-ani="slideinup" data-ani-delay="0.2">
+            <a href="/service" class="th-btn style3 th-icon">Our Services</a>
+            <a href="/contact" class="th-btn style-outline th-icon">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 3: Our Story (Image Left + Text Right) ============== -->
+  <section class="about-split space">
+    <div class="container">
+      <div class="row align-items-center gy-40">
+        <div class="col-lg-6" data-ani="slideinleft">
+          <div class="about-split__img">
+            <img class="global-img" src="/assets/img/gallery/yacht/greek-island-1.jpg" alt="Greek island coastline" />
+          </div>
+        </div>
+        <div class="col-lg-6" data-ani="slideinright">
+          <div class="about-split__text ps-lg-4">
+            <span class="about-split__accent"></span>
+            <div class="title-area mb-20">
+              <h2 class="sec-title">Our Story</h2>
+            </div>
+            <p class="about-split__subtitle"><em>Born from a love of the Aegean</em></p>
+            <p>
+              Rodos Yachts was founded with a simple vision: to share the magic of the Greek seas with travellers
+              from around the world. What started as a family-run boat excursion service in Rhodes harbour
+              has grown into one of the island's most respected yacht charter companies. Over the years,
+              we've welcomed thousands of guests aboard our fleet — each one leaving with memories of
+              crystal-clear waters, breathtaking sunsets, and the warm hospitality that defines Greece.
+            </p>
+            <p>
+              Our deep roots in the local maritime community mean we know every hidden bay, every
+              secluded beach, and every charming seaside taverna worth visiting.
+            </p>
+            <a href="/service" class="th-btn style3 th-icon mt-25">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 4: Our Commitment (Text Left + Image Right — Reversed) ============== -->
+  <section class="about-split bg-smoke space">
+    <div class="container">
+      <div class="row align-items-center flex-lg-row-reverse gy-40">
+        <div class="col-lg-6" data-ani="slideinright">
+          <div class="about-split__img">
+            <img class="global-img" src="/assets/img/gallery/yacht/yacht-interior-1.jpg" alt="Luxury yacht interior" />
+          </div>
+        </div>
+        <div class="col-lg-6" data-ani="slideinleft">
+          <div class="about-split__text pe-lg-4">
+            <span class="about-split__accent"></span>
+            <div class="title-area mb-20">
+              <h2 class="sec-title">Our Commitment</h2>
+            </div>
+            <p class="about-split__subtitle"><em>Excellence in every detail</em></p>
+            <p>
+              From the moment you step aboard, every detail is curated for your comfort and delight.
+              Our vessels are meticulously maintained to the highest safety and luxury standards.
+              Each crew member is hand-selected for their expertise, warmth, and dedication to
+              creating exceptional experiences.
+            </p>
+            <p>
+              We are committed to sustainable tourism practices that protect the pristine marine
+              environments we call home, ensuring these waters remain as beautiful for future
+              generations as they are today.
+            </p>
+            <a href="/contact" class="th-btn style3 th-icon mt-25">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 5: The Rodos Yachts Difference (Image Left + Text Right) ============== -->
+  <section class="about-split space">
+    <div class="container">
+      <div class="row align-items-center gy-40">
+        <div class="col-lg-6" data-ani="slideinleft">
+          <div class="about-split__img">
+            <img class="global-img" src="/assets/img/gallery/yacht/yacht-deck-1.jpg" alt="Yacht deck view" />
+          </div>
+        </div>
+        <div class="col-lg-6" data-ani="slideinright">
+          <div class="about-split__text ps-lg-4">
+            <span class="about-split__accent"></span>
+            <div class="title-area mb-20">
+              <h2 class="sec-title">The Rodos Yachts Difference</h2>
+            </div>
+            <p class="about-split__subtitle"><em>More than a charter — an experience</em></p>
+            <p>
+              What sets Rodos Yachts apart is our intimate knowledge of the Dodecanese islands combined
+              with a relentless focus on personalised service. We don't offer cookie-cutter itineraries —
+              every voyage is tailored to your preferences, whether that means anchoring at a secluded
+              beach for a private swim, arranging a seaside dining experience, or discovering ancient
+              ruins accessible only by sea.
+            </p>
+            <p>
+              Our captains are not just skilled navigators — they are storytellers, local experts, and
+              passionate hosts who take pride in revealing the best-kept secrets of the Greek islands.
+            </p>
+            <a href="/service" class="th-btn style3 th-icon mt-25">Explore Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 6: Featured Experiences ============== -->
+  <section class="about-experiences bg-smoke space">
+    <div class="container">
+      <div class="title-area text-center" data-ani="slideinup">
+        <span class="sub-title">What We Offer</span>
+        <h2 class="sec-title">Featured Experiences</h2>
+      </div>
+      <div class="row gy-30">
+        {[
+          {
+            img: 'sunset-cruise-1.jpg',
+            title: 'Sunset Cruises',
+            desc: 'Watch the Aegean sky transform into a canvas of colour aboard our luxury evening voyages.',
+          },
+          {
+            img: 'crystal-water-1.jpg',
+            title: 'Island Hopping',
+            desc: 'Explore the hidden gems of the Dodecanese with curated multi-stop itineraries.',
+          },
+          {
+            img: 'aerial-yacht-1.jpg',
+            title: 'Private Charters',
+            desc: 'Enjoy complete privacy and bespoke service with a yacht exclusively reserved for you.',
+          },
+          {
+            img: 'ocean-view-1.jpg',
+            title: 'Sea Adventures',
+            desc: 'Dive into crystal-clear waters, snorkel vibrant reefs, and discover coastal caves.',
+          },
+        ].map((item, i) => (
+          <div class="col-xl-3 col-lg-6 col-md-6" data-ani="slideinup" data-ani-delay={`${i * 0.1}`}>
+            <div class="about-exp-card">
+              <div class="about-exp-card__img global-img">
+                <img src={`/assets/img/gallery/yacht/${item.img}`} alt={item.title} />
+              </div>
+              <div class="about-exp-card__body">
+                <h3 class="box-title">{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 7: Two Large CTA Cards ============== -->
+  <section class="about-cta">
+    <div class="container-fluid p-0">
+      <div class="row g-0">
+        <div class="col-lg-6" data-ani="slideinleft">
+          <a href="/service/rodos-charter" class="about-cta__card">
+            <img class="about-cta__bg" src="/assets/img/gallery/yacht/yacht-luxury-1.jpg" alt="Private Charters" />
+            <div class="about-cta__overlay"></div>
+            <div class="about-cta__content">
+              <h2 class="about-cta__title">Private Charters</h2>
+              <p class="about-cta__desc">Bespoke luxury experiences crafted around your desires</p>
+              <span class="th-btn style2 th-icon">Discover More</span>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-6" data-ani="slideinright">
+          <a href="/service/rodos-boat-tours" class="about-cta__card">
+            <img class="about-cta__bg" src="/assets/img/gallery/yacht/greek-coast-1.jpg" alt="Boat Tours" />
+            <div class="about-cta__overlay"></div>
+            <div class="about-cta__content">
+              <h2 class="about-cta__title">Boat Tours</h2>
+              <p class="about-cta__desc">Explore the stunning coastline of Rhodes and beyond</p>
+              <span class="th-btn style2 th-icon">Discover More</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FooterFour />
+  <ScrollToTop client:load />
+</BaseLayout>
+
+<script>
+  function initAboutHero() {
+    document.getElementById('header-one')?.classList.add('header-transparent');
+  }
+  document.addEventListener('DOMContentLoaded', initAboutHero);
+  document.addEventListener('astro:page-load', initAboutHero);
+</script>
+
+<style>
+  /* ===== Section 1: Hero ===== */
+  .about-hero {
+    position: relative;
+    min-height: 75vh;
+    display: flex;
+    align-items: flex-end;
+    background: url('/assets/img/gallery/yacht/sailing-sunset-1.jpg') center/cover no-repeat;
+    overflow: hidden;
+  }
+
+  .about-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(17, 61, 72, 0.7) 100%
+    );
+    z-index: 1;
+  }
+
+  .about-hero__content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 80px;
+    color: var(--white-color);
+  }
+
+  .about-hero__breadcrumb {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    opacity: 0.85;
+  }
+
+  .about-hero__title {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    max-width: 650px;
+    color: var(--white-color);
+  }
+
+  .about-hero__desc {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 550px;
+    opacity: 0.9;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 991px) {
+    .about-hero {
+      min-height: 60vh;
+    }
+    .about-hero__title {
+      font-size: 38px;
+    }
+    .about-hero__content {
+      padding-bottom: 50px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .about-hero {
+      min-height: 55vh;
+    }
+    .about-hero__title {
+      font-size: 30px;
+    }
+    .about-hero__desc {
+      font-size: 16px;
+    }
+  }
+
+  /* ===== Section 2: Intro ===== */
+  .about-intro__text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--body-color);
+    margin-bottom: 30px;
+  }
+
+  .about-intro__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .about-intro :global(.th-btn.style-outline) {
+    background: transparent;
+    color: var(--title-color);
+    border: 1px solid var(--title-color);
+    box-shadow: none;
+  }
+
+  .about-intro :global(.th-btn.style-outline::before) {
+    background-color: var(--theme-color);
+  }
+
+  .about-intro :global(.th-btn.style-outline:hover) {
+    color: var(--white-color);
+    border-color: var(--theme-color);
+  }
+
+  /* ===== Sections 3-5: Split Sections ===== */
+  .about-split__img {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .about-split__img :global(img) {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    width: 100%;
+    display: block;
+  }
+
+  .about-split__accent {
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: var(--theme-color);
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+
+  .about-split__subtitle {
+    color: var(--theme-color);
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+
+  /* ===== Section 6: Featured Experiences ===== */
+  .about-exp-card {
+    background: var(--white-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .about-exp-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .about-exp-card__img {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .about-exp-card__img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .about-exp-card:hover .about-exp-card__img :global(img) {
+    transform: scale(1.07);
+  }
+
+  .about-exp-card__body {
+    padding: 24px;
+  }
+
+  .about-exp-card__body :global(.box-title) {
+    margin-bottom: 10px;
+  }
+
+  .about-exp-card__body p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* ===== Section 7: CTA Cards ===== */
+  .about-cta__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    min-height: 450px;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .about-cta__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .about-cta__card:hover .about-cta__bg {
+    transform: scale(1.05);
+  }
+
+  .about-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 61, 72, 0.65);
+    transition: background 0.3s ease;
+  }
+
+  .about-cta__card:hover .about-cta__overlay {
+    background: rgba(17, 61, 72, 0.75);
+  }
+
+  .about-cta__content {
+    position: relative;
+    z-index: 2;
+    color: var(--white-color);
+    padding: 40px 20px;
+  }
+
+  .about-cta__title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white-color);
+  }
+
+  .about-cta__desc {
+    font-size: 17px;
+    opacity: 0.9;
+    margin-bottom: 28px;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 991px) {
+    .about-cta__card {
+      min-height: 350px;
+    }
+    .about-cta__title {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .about-cta__card {
+      min-height: 300px;
+    }
+  }
+</style>

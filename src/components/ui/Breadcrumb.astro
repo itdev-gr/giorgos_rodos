@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  bgImage?: string;
+}
+const { title, bgImage = '/assets/img/bg/breadcumb-bg.jpg' } = Astro.props;
+---
+
+<div
+  class="breadcumb-wrapper"
+  style={`background-image: url(${bgImage}); background-repeat: no-repeat; background-size: cover;`}
+>
+  <div class="container">
+    <div class="breadcumb-content">
+      <h1 class="breadcumb-title">{title}</h1>
+      <ul class="breadcumb-menu">
+        <li><a href="/">Home</a></li>
+        <li>{title}</li>
+      </ul>
+    </div>
+  </div>
+</div>

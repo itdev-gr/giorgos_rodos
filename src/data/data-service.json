@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "slug": "rodos-rent-boats-with-skipper",
+        "image": "/assets/img/gallery/yacht/yacht-sailing-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/yacht-sailing-1.jpg",
+        "title": "Rent Boats - With Skipper",
+        "category": "Rodos Rent Boats",
+        "item": "Professional skipper included"
+    },
+    {
+        "id": 2,
+        "slug": "rodos-rent-boats-license-free",
+        "image": "/assets/img/gallery/yacht/crystal-water-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/crystal-water-1.jpg",
+        "title": "Rent Boats - License Free",
+        "category": "Rodos Rent Boats",
+        "item": "No license required"
+    },
+    {
+        "id": 3,
+        "slug": "rodos-boat-tours",
+        "image": "/assets/img/gallery/yacht/greek-island-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/greek-island-1.jpg",
+        "title": "Rodos Boat Tours",
+        "category": null,
+        "item": "Guided boat tours around Rhodes"
+    },
+    {
+        "id": 4,
+        "slug": "private-boat-tours",
+        "image": "/assets/img/gallery/yacht/sunset-cruise-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/sunset-cruise-1.jpg",
+        "title": "Private Boat Tours",
+        "category": null,
+        "item": "Exclusive private boat experiences"
+    },
+    {
+        "id": 5,
+        "slug": "rodos-boat-cruises",
+        "image": "/assets/img/gallery/yacht/ocean-view-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/ocean-view-1.jpg",
+        "title": "Rodos Boat Cruises",
+        "category": null,
+        "item": "Scenic cruises around the island"
+    },
+    {
+        "id": 6,
+        "slug": "rodos-charter",
+        "image": "/assets/img/charter/mediterranean.jpg",
+        "bannerImg": "/assets/img/charter/mediterranean.jpg",
+        "title": "Rodos Charter",
+        "category": null,
+        "item": "Charter a luxury yacht for your group"
+    },
+    {
+        "id": 7,
+        "slug": "rodos-mise",
+        "image": "/assets/img/gallery/yacht/yacht-deck-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/yacht-deck-1.jpg",
+        "title": "Rodos Mise",
+        "category": null,
+        "item": "Professional marine support services"
+    },
+    {
+        "id": 8,
+        "slug": "rodos-tender-boat",
+        "image": "/assets/img/gallery/yacht/yacht-exterior-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/yacht-exterior-1.jpg",
+        "title": "Rodos Tender Boat",
+        "category": null,
+        "item": "Swift tender boat transfers"
+    }
+]

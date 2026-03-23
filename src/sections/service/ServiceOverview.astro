@@ -1,0 +1,152 @@
+---
+interface Feature {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+interface Stat {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  features: Feature[];
+  stats?: Stat[];
+}
+
+const {
+  title,
+  subtitle = 'Overview',
+  description,
+  features,
+  stats,
+} = Astro.props;
+---
+
+<div class="space overflow-hidden">
+  <div class="container">
+    <div class="title-area text-center mb-50">
+      <span class="sub-title style1" data-ani="slideinup">{subtitle}</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">{title}</h2>
+      <p class="sec-text" data-ani="fadein" data-ani-delay="0.2" style="max-width: 700px; margin: 0 auto;">{description}</p>
+    </div>
+
+    <div class="row gy-30 justify-content-center">
+      {features.map((feature, i) => (
+        <div class="col-lg-4 col-md-6">
+          <div class="service-overview-card text-center" data-ani="slideinup" data-ani-delay={`${i * 0.1}`}>
+            <div class="service-overview-card_icon">
+              <img src={feature.icon} alt="" />
+            </div>
+            <h5 class="service-overview-card_title">{feature.title}</h5>
+            <p class="service-overview-card_text">{feature.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {stats && stats.length > 0 && (
+      <div class="row gy-30 mt-50 justify-content-center">
+        {stats.map((stat) => (
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="service-stat-card text-center" data-ani="zoomIn">
+              <h3 class="service-stat-number" data-countup={stat.value}>
+                <span class="counter-number">0</span>{stat.suffix}
+              </h3>
+              <p class="service-stat-label">{stat.label}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .service-overview-card {
+    padding: 40px 30px;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+  }
+  .service-overview-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  }
+  .service-overview-card_icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .service-overview-card_icon img {
+    max-width: 50px;
+  }
+  .service-overview-card_title {
+    margin-bottom: 10px;
+  }
+  .service-overview-card_text {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+  .service-stat-card {
+    padding: 30px 15px;
+  }
+  .service-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--theme-color, #1CA8CB);
+    margin-bottom: 5px;
+  }
+  .service-stat-label {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+
+<script>
+  function initOverviewCounters() {
+    const counterEls = document.querySelectorAll('.service-stat-number[data-countup]');
+    if (!counterEls.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.getAttribute('data-countup') || '0');
+          const numEl = el.querySelector('.counter-number');
+          if (numEl && !el.dataset.counted) {
+            el.dataset.counted = 'true';
+            let current = 0;
+            const duration = 2000;
+            const step = target / (duration / 16);
+            const tick = () => {
+              current += step;
+              if (current >= target) {
+                numEl.textContent = target.toString();
+              } else {
+                numEl.textContent = Math.floor(current).toString();
+                requestAnimationFrame(tick);
+              }
+            };
+            tick();
+          }
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counterEls.forEach((el) => observer.observe(el));
+  }
+  document.addEventListener('DOMContentLoaded', initOverviewCounters);
+  document.addEventListener('astro:page-load', initOverviewCounters);
+</script>

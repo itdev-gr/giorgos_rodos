@@ -1,0 +1,202 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Rodos Yachts', description = 'Luxury yacht charters and boat rentals in Rhodes, Greece. Explore the Dodecanese islands with bespoke sailing experiences.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+    <title>{title}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
+    <!-- Swiper -->
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+    <!-- Theme CSS (must be AFTER Bootstrap) -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+  <body>
+    <slot />
+
+    <!-- GSAP -->
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Make gsap available globally for components
+      window.gsap = gsap;
+      window.ScrollTrigger = ScrollTrigger;
+
+      // Initialize scroll animations for elements with data-animate attribute
+      function initAnimations() {
+        // Slide in up animations
+        gsap.utils.toArray('[data-ani="slideinup"]').forEach((el) => {
+          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
+          gsap.from(el, {
+            y: 60,
+            opacity: 0,
+            duration: 0.8,
+            delay: delay,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Fade in left
+        gsap.utils.toArray('[data-ani="slideinleft"]').forEach((el) => {
+          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
+          gsap.from(el, {
+            x: -60,
+            opacity: 0,
+            duration: 0.8,
+            delay: delay,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Fade in right
+        gsap.utils.toArray('[data-ani="slideinright"]').forEach((el) => {
+          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
+          gsap.from(el, {
+            x: 60,
+            opacity: 0,
+            duration: 0.8,
+            delay: delay,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Fade in down
+        gsap.utils.toArray('[data-ani="slideindown"]').forEach((el) => {
+          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
+          gsap.from(el, {
+            y: -60,
+            opacity: 0,
+            duration: 0.8,
+            delay: delay,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Fade in
+        gsap.utils.toArray('[data-ani="fadein"]').forEach((el) => {
+          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
+          gsap.from(el, {
+            opacity: 0,
+            duration: 0.8,
+            delay: delay,
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Zoom in
+        gsap.utils.toArray('[data-ani="zoomIn"]').forEach((el) => {
+          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
+          gsap.from(el, {
+            scale: 0.5,
+            opacity: 0,
+            duration: 0.8,
+            delay: delay,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Floating/decorative animations
+        gsap.utils.toArray('.jump, .jumpAni').forEach((el) => {
+          gsap.to(el, {
+            y: -15,
+            repeat: -1,
+            yoyo: true,
+            duration: 2,
+            ease: 'sine.inOut',
+          });
+        });
+
+        gsap.utils.toArray('.movingX').forEach((el) => {
+          gsap.to(el, {
+            x: 20,
+            repeat: -1,
+            yoyo: true,
+            duration: 3,
+            ease: 'sine.inOut',
+          });
+        });
+
+        gsap.utils.toArray('.moving').forEach((el) => {
+          gsap.to(el, {
+            y: 15,
+            x: 10,
+            repeat: -1,
+            yoyo: true,
+            duration: 4,
+            ease: 'sine.inOut',
+          });
+        });
+
+        gsap.utils.toArray('.spin').forEach((el) => {
+          gsap.to(el, {
+            rotation: 360,
+            repeat: -1,
+            duration: 10,
+            ease: 'none',
+          });
+        });
+      }
+
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', initAnimations);
+      // Also run on Astro page transitions
+      document.addEventListener('astro:page-load', initAnimations);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+---
+const features = [
+  {
+    icon: '/assets/img/icon/map3.svg',
+    title: 'Bespoke Itineraries',
+    description: 'Every route is designed around your preferences, pace, and curiosities.',
+  },
+  {
+    icon: '/assets/img/icon/guide.svg',
+    title: 'Dedicated Crew',
+    description: 'Experienced captains and crew who know every cove and harbour by heart.',
+  },
+  {
+    icon: '/assets/img/icon/about_1_3.svg',
+    title: 'Concierge Service',
+    description: 'From provisioning to reservations, every detail is handled before you ask.',
+  },
+];
+---
+
+<section class="bg-smoke space overflow-hidden">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left: Image Composition -->
+      <div class="col-xl-6 mb-40 mb-xl-0" data-ani="slideinleft">
+        <div class="brand-story-images position-relative">
+          <div class="brand-story-img-primary">
+            <img src="/assets/img/gallery/yacht/yacht-luxury-1.jpg" alt="Luxury yacht charter" loading="lazy" />
+          </div>
+          <div class="brand-story-img-accent">
+            <img src="/assets/img/normal/about_1_2.jpg" alt="Charter experience" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="col-xl-6 ps-xl-5">
+        <span class="sub-title style1" data-ani="slideinup">Excellence in Every Detail</span>
+        <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">The Art of Private Chartering</h2>
+        <p class="brand-story-body" data-ani="slideinup" data-ani-delay="0.2">
+          For over fifteen years, we have been guiding discerning travellers through the Greek islands aboard
+          handpicked sailing yachts. Our philosophy is simple: the sea should feel like home, and every voyage
+          should tell a story worth remembering.
+        </p>
+
+        <div class="brand-story-features" data-ani="slideinup" data-ani-delay="0.3">
+          {features.map((feature) => (
+            <div class="brand-story-feature">
+              <div class="brand-story-feature-icon">
+                <img src={feature.icon} alt={feature.title} />
+              </div>
+              <div class="brand-story-feature-content">
+                <h6 class="brand-story-feature-title">{feature.title}</h6>
+                <p class="brand-story-feature-desc">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <a href="/about" class="th-btn style3 th-icon" data-ani="slideinup" data-ani-delay="0.4">
+          Discover Our Approach
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .brand-story-images {
+    min-height: 480px;
+  }
+
+  .brand-story-img-primary {
+    width: 85%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .brand-story-img-primary img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brand-story-img-accent {
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    width: 55%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 6px solid #fff;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .brand-story-img-accent img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brand-story-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #6e7070;
+    margin-bottom: 30px;
+  }
+
+  .brand-story-features {
+    margin-bottom: 35px;
+  }
+
+  .brand-story-feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .brand-story-feature-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .brand-story-feature-icon img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .brand-story-feature-title {
+    margin-bottom: 4px;
+    font-size: 1rem;
+  }
+
+  .brand-story-feature-desc {
+    font-size: 0.9rem;
+    color: #6e7070;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1199px) {
+    .brand-story-img-accent {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      width: 60%;
+      margin-top: 16px;
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .brand-story-img-primary img {
+      height: 300px;
+    }
+
+    .brand-story-img-accent img {
+      height: 180px;
+    }
+  }
+</style>

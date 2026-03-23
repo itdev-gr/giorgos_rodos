@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "image": "blog-s-1-1.jpg",
+    "bannerImg": "blog-s-1-1.jpg",
+    "title": "Exploring the Hidden Gems of the Greek Islands",
+    "author": "Captain Nikos",
+    "date": "2 days ago",
+    "tags": ["Charter", "Lifestyle"],
+    "excerpt": "Discover secluded bays, crystal-clear waters, and charming villages that most tourists never see on a private yacht charter."
+  },
+  {
+    "id": 2,
+    "image": "blog-s-1-2.jpg",
+    "bannerImg": "blog-s-1-2.jpg",
+    "title": "Your Complete Guide to Mediterranean Yacht Charters",
+    "author": "Maria Papadaki",
+    "date": "5 days ago",
+    "tags": ["Charter", "Brokerage"],
+    "excerpt": "Everything you need to know about planning the perfect Mediterranean yacht charter, from choosing the right vessel to the best routes."
+  },
+  {
+    "id": 3,
+    "image": "blog-s-1-3.jpg",
+    "bannerImg": "blog-s-1-3.jpg",
+    "title": "Top 10 Anchorages in the Cyclades for Summer 2026",
+    "author": "Giorgos Andreadis",
+    "date": "1 week ago",
+    "tags": ["Charter", "Crew"],
+    "excerpt": "Our experienced crew shares their favorite anchorages across the Cyclades, from Milos to Koufonisia and beyond."
+  },
+  {
+    "id": 4,
+    "image": "blog-s-1-4.jpg",
+    "bannerImg": "blog-s-1-4.jpg",
+    "title": "Sustainable Yachting: Protecting Our Seas for Future Generations",
+    "author": "Elena Stavrou",
+    "date": "2 weeks ago",
+    "tags": ["Management", "Lifestyle"],
+    "excerpt": "How the yachting industry is embracing eco-friendly practices and what you can do to minimize your environmental impact while cruising."
+  },
+  {
+    "id": 5,
+    "image": "blog_1_1.jpg",
+    "bannerImg": "blog_1_1.jpg",
+    "title": "A First-Timer's Guide to Bareboat Chartering in Greece",
+    "author": "Dimitris Kostas",
+    "date": "2 weeks ago",
+    "tags": ["Charter", "Management"],
+    "excerpt": "New to bareboat chartering? Here's everything you need to know before setting sail on your first independent voyage through the Aegean."
+  },
+  {
+    "id": 6,
+    "image": "blog_2_1.jpg",
+    "bannerImg": "blog_2_1.jpg",
+    "title": "The Art of Onboard Dining: Greek Cuisine at Sea",
+    "author": "Chef Katerina",
+    "date": "3 weeks ago",
+    "tags": ["Lifestyle", "Crew"],
+    "excerpt": "From freshly caught seafood to traditional Greek recipes, discover how our onboard chefs create unforgettable culinary experiences."
+  },
+  {
+    "id": 7,
+    "image": "blog_3_1.jpg",
+    "bannerImg": "blog_3_1.jpg",
+    "title": "Yacht Maintenance: Essential Tips for the Off-Season",
+    "author": "Thanasis Raptis",
+    "date": "1 month ago",
+    "tags": ["Management", "Brokerage"],
+    "excerpt": "Keep your vessel in peak condition year-round with our comprehensive guide to off-season yacht maintenance and winterization."
+  },
+  {
+    "id": 8,
+    "image": "blog_4_1.jpg",
+    "bannerImg": "blog_4_1.jpg",
+    "title": "Navigating the Ionian Sea: Routes Less Traveled",
+    "author": "Captain Nikos",
+    "date": "1 month ago",
+    "tags": ["Charter", "Lifestyle"],
+    "excerpt": "Venture beyond Corfu and Zakynthos to discover the Ionian's quieter islands, hidden coves, and authentic Greek fishing villages."
+  },
+  {
+    "id": 9,
+    "image": "blog_5_1.jpg",
+    "bannerImg": "blog_5_1.jpg",
+    "title": "Buying Your First Yacht: A Comprehensive Brokerage Guide",
+    "author": "Maria Papadaki",
+    "date": "1 month ago",
+    "tags": ["Brokerage", "Management"],
+    "excerpt": "From surveys to sea trials, our brokerage experts walk you through every step of purchasing your dream yacht."
+  }
+]

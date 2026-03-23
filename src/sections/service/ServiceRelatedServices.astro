@@ -1,0 +1,106 @@
+---
+interface Props {
+  currentPage: 'charter' | 'mise' | 'tender';
+}
+
+const { currentPage } = Astro.props;
+
+const services = [
+  {
+    id: 'charter',
+    title: 'Yacht Charter',
+    description: 'Premium yacht charters for unforgettable voyages across the Dodecanese islands.',
+    image: 'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&h=600&fit=crop',
+    link: '/service/rodos-charter',
+  },
+  {
+    id: 'mise',
+    title: 'Mise Services',
+    description: 'Comprehensive marine support — provisioning, logistics, and crew coordination.',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop',
+    link: '/service/rodos-mise',
+  },
+  {
+    id: 'tender',
+    title: 'Tender Service',
+    description: 'Fast and reliable shore-to-ship transfers across Rhodes harbors.',
+    image: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=800&h=600&fit=crop',
+    link: '/service/rodos-tender-boat',
+  },
+];
+
+const otherServices = services.filter(s => s.id !== currentPage);
+---
+
+<div class="bg-smoke space overflow-hidden">
+  <div class="container">
+    <div class="title-area text-center mb-50">
+      <span class="sub-title style1" data-ani="slideinup">Explore More</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Our Other Services</h2>
+    </div>
+    <div class="row gy-30 justify-content-center">
+      {otherServices.map((service, i) => (
+        <div class="col-lg-6">
+          <a href={service.link} class="related-service-card" data-ani="slideinup" data-ani-delay={`${i * 0.15}`}>
+            <div class="related-service-card_img">
+              <img src={service.image} alt={service.title} loading="lazy" />
+              <div class="related-service-card_overlay"></div>
+            </div>
+            <div class="related-service-card_content">
+              <h4 class="related-service-card_title">{service.title}</h4>
+              <p class="related-service-card_text">{service.description}</p>
+              <span class="th-btn style3 th-icon">Explore <i class="fas fa-arrow-right ms-2"></i></span>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .related-service-card {
+    display: block;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 350px;
+    text-decoration: none;
+  }
+  .related-service-card_img {
+    position: absolute;
+    inset: 0;
+  }
+  .related-service-card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .related-service-card:hover .related-service-card_img img {
+    transform: scale(1.05);
+  }
+  .related-service-card_overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%);
+  }
+  .related-service-card_content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    z-index: 1;
+  }
+  .related-service-card_title {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+  }
+  .related-service-card_text {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+  }
+</style>

@@ -1,0 +1,216 @@
+---
+interface Vessel {
+  name: string;
+  image: string;
+  specs: string[];
+  price?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  vessels: Vessel[];
+}
+
+const {
+  title,
+  subtitle = 'Our Fleet',
+  vessels,
+} = Astro.props;
+
+const swiperId = `vessels-carousel-${Math.random().toString(36).slice(2, 8)}`;
+const navPrevId = `${swiperId}-prev`;
+const navNextId = `${swiperId}-next`;
+const pagId = `${swiperId}-pag`;
+---
+
+<div class="bg-smoke space overflow-hidden">
+  <div class="container">
+    <div class="title-area text-center mb-50">
+      <span class="sub-title style1" data-ani="slideinup">{subtitle}</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">{title}</h2>
+    </div>
+    <div class="slider-area vessels-slider-area">
+      <div class="swiper th-slider" id={swiperId}>
+        <div class="swiper-wrapper">
+          {vessels.map((vessel) => (
+            <div class="swiper-slide">
+              <div class="vessel-card" data-ani="zoomIn">
+                <div class="vessel-card_img">
+                  <img src={vessel.image} alt={vessel.name} loading="lazy" />
+                </div>
+                <div class="vessel-card_body">
+                  <h5 class="vessel-card_name">{vessel.name}</h5>
+                  <ul class="vessel-card_specs">
+                    {vessel.specs.map((spec) => (
+                      <li><i class="fas fa-check-circle me-2" style="color: var(--theme-color, #1CA8CB);"></i>{spec}</li>
+                    ))}
+                  </ul>
+                  {vessel.price && (
+                    <p class="vessel-card_price">{vessel.price}</p>
+                  )}
+                  <a href="/contact" class="th-btn style3 th-icon" style="padding: 10px 24px; font-size: 0.85rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="slider-arrow style3 prev-btn" id={navPrevId} aria-label="Previous">
+        <i class="far fa-arrow-left"></i>
+      </button>
+      <button class="slider-arrow style3 next-btn" id={navNextId} aria-label="Next">
+        <i class="far fa-arrow-right"></i>
+      </button>
+      <div class="swiper-pagination vessels-pagination" id={pagId}></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .vessels-slider-area {
+    position: relative;
+    padding: 0 50px;
+  }
+  @media (max-width: 767px) {
+    .vessels-slider-area {
+      padding: 0 10px;
+    }
+  }
+  .slider-arrow.style3 {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--theme-color, #1CA8CB);
+    background: #fff;
+    color: var(--theme-color, #1CA8CB);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+  }
+  .slider-arrow.style3:hover {
+    background: var(--theme-color, #1CA8CB);
+    color: #fff;
+  }
+  .slider-arrow.prev-btn {
+    left: 0;
+  }
+  .slider-arrow.next-btn {
+    right: 0;
+  }
+  @media (max-width: 767px) {
+    .slider-arrow.style3 {
+      width: 36px;
+      height: 36px;
+      font-size: 0.85rem;
+    }
+    .slider-arrow.prev-btn { left: -5px; }
+    .slider-arrow.next-btn { right: -5px; }
+  }
+  .vessels-pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .vessels-pagination :global(.swiper-pagination-bullet) {
+    width: 10px;
+    height: 10px;
+    background: var(--theme-color, #1CA8CB);
+    opacity: 0.3;
+    margin: 0 4px;
+  }
+  .vessels-pagination :global(.swiper-pagination-bullet-active) {
+    opacity: 1;
+  }
+  .vessel-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+  }
+  .vessel-card:hover {
+    transform: translateY(-5px);
+  }
+  .vessel-card_img {
+    height: 250px;
+    overflow: hidden;
+  }
+  .vessel-card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .vessel-card:hover .vessel-card_img img {
+    transform: scale(1.05);
+  }
+  .vessel-card_body {
+    padding: 24px;
+  }
+  .vessel-card_name {
+    margin-bottom: 12px;
+  }
+  .vessel-card_specs {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  .vessel-card_specs li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  .vessel-card_price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--theme-color, #1CA8CB);
+    margin-bottom: 12px;
+  }
+</style>
+
+<script define:vars={{ swiperId, navPrevId, navNextId, pagId }}>
+  function initVesselsCarousel() {
+    if (typeof Swiper === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+      script.onload = () => createVesselsSwiper();
+      document.head.appendChild(script);
+    } else {
+      createVesselsSwiper();
+    }
+  }
+
+  function createVesselsSwiper() {
+    const el = document.getElementById(swiperId);
+    if (!el || el.dataset.initialized) return;
+    el.dataset.initialized = 'true';
+    new Swiper('#' + swiperId, {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: { delay: 4500, disableOnInteraction: true },
+      navigation: {
+        prevEl: '#' + navPrevId,
+        nextEl: '#' + navNextId,
+      },
+      pagination: {
+        el: '#' + pagId,
+        clickable: true,
+      },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        576: { slidesPerView: 2 },
+        992: { slidesPerView: 3 },
+      },
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initVesselsCarousel);
+  document.addEventListener('astro:page-load', initVesselsCarousel);
+</script>

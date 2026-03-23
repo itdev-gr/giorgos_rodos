@@ -1,0 +1,128 @@
+---
+const services = [
+  { title: 'Private Yacht Charter', image: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', href: '/service/rodos-charter' },
+  { title: 'Boat Tours', image: '/assets/img/gallery/yacht/ocean-view-1.jpg', href: '/service/rodos-boat-tours' },
+  { title: 'Boat Cruises', image: '/assets/img/gallery/yacht/sunset-cruise-1.jpg', href: '/service/rodos-boat-cruises' },
+  { title: 'Private Boat Tours', image: '/assets/img/gallery/yacht/crystal-water-1.jpg', href: '/service/private-boat-tours' },
+  { title: 'Rent with Skipper', image: '/assets/img/gallery/yacht/yacht-deck-1.jpg', href: '/service/rodos-rent-boats-with-skipper' },
+  { title: 'License-Free Boats', image: '/assets/img/gallery/yacht/greek-island-1.jpg', href: '/service/rodos-rent-boats-license-free' },
+  { title: 'Tender Service', image: '/assets/img/gallery/yacht/yacht-exterior-1.jpg', href: '/service/rodos-tender-boat' },
+  { title: 'MISE Provisioning', image: '/assets/img/gallery/yacht/greek-coast-1.jpg', href: '/service/rodos-mise' },
+];
+---
+
+<section class="space overflow-hidden">
+  <div class="container">
+    <div class="title-area text-center mb-50">
+      <span class="sub-title style1" data-ani="slideinup">Tailored to Every Journey</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Our Services</h2>
+    </div>
+    <div class="row gy-30">
+      {services.map((service, i) => (
+        <div class="col-lg-3 col-md-6">
+          <a href={service.href} class="service-grid-card" data-ani="slideinup" data-ani-delay={String(i * 0.08)}>
+            <img src={service.image} alt={service.title} loading="lazy" />
+            <div class="service-grid-overlay"></div>
+            <div class="service-grid-content">
+              <h5 class="service-grid-title">{service.title}</h5>
+              <span class="service-grid-arrow">
+                <i class="fas fa-arrow-right"></i>
+              </span>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-grid-card {
+    position: relative;
+    display: block;
+    height: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .service-grid-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .service-grid-card:hover img {
+    transform: scale(1.08);
+  }
+
+  .service-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+    pointer-events: none;
+    transition: background 0.3s;
+  }
+
+  .service-grid-card:hover .service-grid-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+  }
+
+  .service-grid-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+  }
+
+  .service-grid-title {
+    font-family: var(--title-font, 'Manrope', sans-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .service-grid-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #fff;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s, transform 0.3s, border-color 0.3s;
+  }
+
+  .service-grid-card:hover .service-grid-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    border-color: #fff;
+  }
+
+  @media (max-width: 991px) {
+    .service-grid-card {
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .service-grid-card {
+      height: 240px;
+    }
+  }
+</style>

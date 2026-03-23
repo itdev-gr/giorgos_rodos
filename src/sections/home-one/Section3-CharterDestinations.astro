@@ -1,0 +1,177 @@
+---
+const destinations = [
+  {
+    title: 'Mediterranean Yacht Charter',
+    description:
+      'Experience the rich culture, stunning coastlines, and crystal-clear waters of the Mediterranean aboard a luxury superyacht.',
+    image: '/assets/img/charter/mediterranean.jpg',
+    href: '/service/rodos-charter',
+    size: 'full',
+  },
+  {
+    title: 'Greece Yacht Charter',
+    description:
+      'A superyacht charter in Greece offers ancient history, turquoise coves, and world-class island hopping.',
+    image: '/assets/img/charter/greece.jpg',
+    href: '/service/rodos-boat-cruises',
+    size: 'half',
+  },
+  {
+    title: 'Balearic Islands Yacht Charter',
+    description:
+      'These golden Spanish isles blend vibrant nightlife with secluded anchorages and pristine beaches.',
+    image: '/assets/img/charter/balearic.jpg',
+    href: '/service/rodos-boat-tours',
+    size: 'half',
+  },
+];
+---
+
+<section class="charter-destinations">
+  <div class="container">
+    <div class="title-area text-center mb-50" style="padding-top: 30px;">
+      <span class="sub-title style1" data-ani="slideinup">Explore</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Premier Destinations</h2>
+    </div>
+  </div>
+  <div class="charter-grid">
+    {destinations.map((dest, i) => (
+      <a
+        href={dest.href}
+        class={`charter-card charter-card--${dest.size}`}
+        data-ani="slideinup"
+        data-ani-delay={String(i * 0.15)}
+      >
+        <img src={dest.image} alt={dest.title} loading="lazy" />
+        <div class="charter-card__content">
+          <h2>{dest.title}</h2>
+          <p>{dest.description}</p>
+          <span class="charter-card__btn">Learn More</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .charter-destinations {
+    width: 100%;
+  }
+
+  .charter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px 16px 16px;
+  }
+
+  .charter-card {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .charter-card--full {
+    grid-column: 1 / -1;
+    height: 500px;
+  }
+
+  .charter-card--half {
+    height: 480px;
+  }
+
+  .charter-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .charter-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .charter-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .charter-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 35px;
+    z-index: 1;
+  }
+
+  .charter-card__content h2 {
+    font-family: var(--title-font, 'Manrope', sans-serif);
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+
+  .charter-card--half .charter-card__content h2 {
+    font-size: 30px;
+  }
+
+  .charter-card__content p {
+    font-family: var(--body-font, 'Inter', sans-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #fff;
+    margin: 0 0 20px;
+    max-width: 520px;
+  }
+
+  .charter-card__btn {
+    display: inline-block;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    color: #fff;
+    background: transparent;
+    padding: 14px 32px;
+    font-family: var(--body-font, 'Inter', sans-serif);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .charter-card:hover .charter-card__btn {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .charter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .charter-card--full,
+    .charter-card--half {
+      height: 400px;
+    }
+
+    .charter-card__content h2 {
+      font-size: 26px;
+    }
+
+    .charter-card--half .charter-card__content h2 {
+      font-size: 24px;
+    }
+
+    .charter-card__content {
+      padding: 25px;
+    }
+  }
+</style>
