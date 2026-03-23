@@ -63,7 +63,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       style={{ visibility: isOpen ? 'visible' : 'hidden' }}
     >
       <div className="th-menu-area text-center">
-        <button className="th-menu-toggle" onClick={onClose} aria-label="Close">
+        <button className="th-menu-toggle" onClick={() => {
+          const wrapper = document.querySelector('.th-menu-wrapper');
+          if (wrapper) {
+            wrapper.classList.remove('th-body-visible');
+            (wrapper as HTMLElement).style.visibility = 'hidden';
+          }
+          if (typeof onClose === 'function') onClose();
+        }} aria-label="Close">
           <i className="fal fa-times" />
         </button>
 
