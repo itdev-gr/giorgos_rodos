@@ -12,7 +12,6 @@
           <span class="hero-accent">Private Yacht Charters</span>
           <h1 class="hero-heading">Discover the Greek Islands</h1>
           <p class="hero-subtitle">Bespoke voyages crafted around your desires</p>
-          <a href="/service/rodos-charter" class="hero-cta">Explore Our Fleet</a>
         </div>
         <div class="scroll-indicator">
           <span class="scroll-text">Scroll</span>
@@ -54,6 +53,12 @@
       rgba(0, 0, 0, 0.3) 100%
     );
     z-index: 1;
+  }
+
+  @media (max-width: 991px) {
+    .hero-overlay {
+      background: none;
+    }
   }
 
   .hero-fullscreen .container {
