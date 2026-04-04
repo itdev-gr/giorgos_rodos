@@ -26,6 +26,13 @@ const galleryImages = [
   <Header />
   <Breadcrumb title="Gallery" />
 
+  <section class="gallery-intro">
+    <div class="container text-center">
+      <h2 class="sec-title">Moments from the Water</h2>
+      <p class="gallery-intro__text">A glimpse of what a day with Rhodos Yachts looks like — the coastlines, the boats, the light, and the sea.</p>
+    </div>
+  </section>
+
   <section class="gallery-section">
     <div class="gallery-wide-container">
       <GalleryGrid images={galleryImages} client:load />
@@ -37,6 +44,18 @@ const galleryImages = [
 </BaseLayout>
 
 <style>
+  .gallery-intro {
+    padding: 60px 0 20px;
+  }
+
+  .gallery-intro__text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--body-color, #6e7070);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
   .gallery-section {
     padding: 20px 0 100px;
     background: #fff;

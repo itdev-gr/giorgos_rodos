@@ -8,16 +8,13 @@ import BrandStory from '../sections/home-one/Section5-BrandStory.astro';
 import ServicesGrid from '../sections/home-one/Section6-ServicesGrid.astro';
 import FleetShowcase from '../sections/home-one/Section7-FleetShowcase.astro';
 import ServiceBucketList from '../sections/service/ServiceBucketList.astro';
-import ServiceGalleryCarousel from '../sections/service/ServiceGalleryCarousel.astro';
-import Stats from '../sections/home-one/Section10-Stats.astro';
 import ServiceMiseChecklist from '../sections/service/ServiceMiseChecklist.astro';
-import TestimonialOne from '../components/interactive/TestimonialOne';
 import CTA from '../sections/home-one/Section-CTA.astro';
-import Footer from '../sections/home-one/Section14-Footer.astro';
+import Footer from '../sections/shared/FooterFour.astro';
 import ScrollToTop from '../components/interactive/ScrollToTop';
 ---
 
-<BaseLayout title="Private Yacht Charters | Greek Islands">
+<BaseLayout title="Rhodos Yachts — Boat Experiences in Rhodes, Greece">
   <Header />
   <HeroBanner />
   <IntroStatement />
@@ -26,46 +23,27 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
   <ServicesGrid />
   <FleetShowcase />
   <ServiceBucketList
-    title="Experiences That Define a Voyage"
-    subtitle="Your Bucket List"
+    title="Things You Can Do with Us"
+    subtitle="Ideas to Inspire You"
     items={[
-      { title: 'Island Hopping the Cyclades', description: 'Drift between Santorini, Mykonos, Paros, and lesser-known gems at your own pace.' },
-      { title: 'Sunset Dining at Secret Coves', description: 'Anchor in hidden bays where your crew prepares a candlelit dinner under the stars.' },
-      { title: 'Snorkelling in Volcanic Waters', description: 'Explore the underwater world around volcanic islands with crystal-clear visibility.' },
-      { title: 'Stargazing from the Open Sea', description: 'Far from city lights, the Aegean sky reveals a canopy of stars like nowhere else.' },
-      { title: 'Private Beach Landings', description: 'Step ashore on secluded beaches accessible only by boat — your own slice of paradise.' },
-      { title: 'Historic Harbour Walks', description: 'Wander through ancient ports, medieval towns, and timeless fishing villages.' },
+      { title: 'Swim in Bays Only Boats Can Reach', description: 'Crystal-clear water, no roads in sight — just you, the sea, and a cove that most visitors never find.' },
+      { title: 'Watch the Sunset from the Water', description: 'There is nothing quite like seeing the sky turn amber from the deck of a boat, drink in hand, somewhere off the Rhodes coast.' },
+      { title: 'Snorkel Over Hidden Reefs', description: 'The waters around Rhodes are full of life. Grab a mask and discover a world just beneath the surface.' },
+      { title: 'Cruise Past the Acropolis of Lindos', description: 'See one of the most iconic sights in Greece from a perspective most visitors never get — from the sea below.' },
+      { title: 'Anchor at a Secluded Beach', description: 'Some of the finest beaches in Rhodes have no road access. The only way in is by boat — and that is exactly what we do.' },
+      { title: 'Explore the Nearby Islands', description: 'Symi, Halki, Tilos, Nisyros — the Dodecanese archipelago is right at our doorstep, waiting to be discovered.' },
     ]}
   />
-  <ServiceGalleryCarousel
-    title="A Glimpse of the Journey"
-    images={[
-      '/assets/img/gallery/yacht/yacht-sailing-1.jpg',
-      '/assets/img/gallery/yacht/ocean-view-1.jpg',
-      '/assets/img/gallery/yacht/sunset-cruise-1.jpg',
-      '/assets/img/gallery/yacht/crystal-water-1.jpg',
-      '/assets/img/gallery/yacht/yacht-deck-1.jpg',
-      '/assets/img/gallery/yacht/greek-island-1.jpg',
-      '/assets/img/gallery/yacht/yacht-exterior-1.jpg',
-      '/assets/img/gallery/yacht/greek-coast-1.jpg',
-      '/assets/img/gallery/yacht/aerial-yacht-1.jpg',
-      '/assets/img/gallery/yacht/yacht-luxury-1.jpg',
-      '/assets/img/gallery/yacht/yacht-interior-1.jpg',
-      '/assets/img/gallery/yacht/sailing-sunset-1.jpg',
-    ]}
-  />
-  <Stats />
   <ServiceMiseChecklist
-    title="Your Journey in Four Steps"
-    subtitle="How It Works"
+    title="How It Works"
+    subtitle="Simple as That"
     steps={[
-      { title: 'Consultation', description: 'Share your vision — dates, destinations, and the pace of your ideal voyage.', icon: 'fas fa-comments' },
-      { title: 'Itinerary Design', description: 'Our team crafts a bespoke route, selects the ideal vessel, and arranges every detail.', icon: 'fas fa-route' },
-      { title: 'Embark', description: 'Step aboard, meet your crew, and set sail into the Aegean.', icon: 'fas fa-anchor' },
-      { title: 'Experience', description: 'Each day unfolds at your rhythm — new islands, hidden coves, and memories that endure.', icon: 'fas fa-heart' },
+      { title: 'Tell Us What You Like', description: 'A quick message or call is all it takes. Share your dates, your group, and what sounds fun — no commitment needed.', icon: 'fas fa-comments' },
+      { title: 'We Suggest the Best Fit', description: 'Based on what you told us, we will recommend the right boat, the right tour, or the right experience for your group.', icon: 'fas fa-route' },
+      { title: 'Confirm and Relax', description: 'Once you are happy, we lock everything in. From that moment, we handle all the details.', icon: 'fas fa-anchor' },
+      { title: 'Step Aboard', description: 'Show up at the harbour, meet your skipper, and let the sea do the rest. That is it.', icon: 'fas fa-heart' },
     ]}
   />
-  <TestimonialOne client:visible />
   <CTA />
   <Footer />
   <ScrollToTop client:load />

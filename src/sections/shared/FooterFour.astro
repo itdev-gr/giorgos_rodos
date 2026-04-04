@@ -1,96 +1,155 @@
 ---
-// FooterFour - Dark footer used on inner pages
+// FooterFour - Unified dark footer for all pages
 ---
 
-<footer class="footer-wrapper bg-title footer-layout2 shape-mockup-wrap">
+<footer class="footer-wrapper bg-title footer-layout2">
+  <!-- Newsletter Banner -->
   <div class="widget-area">
     <div class="container">
+      <div class="newsletter-area" data-ani="fadein">
+        <div class="newsletter-top">
+          <div class="row gy-4 align-items-center">
+            <div class="col-lg-5">
+              <h2 class="newsletter-title text-white text-capitalize mb-0">Stay Inspired</h2>
+              <p class="newsletter-subtitle mt-2 mb-0">
+                Seasonal updates, new routes, and local tips from our team
+              </p>
+            </div>
+            <div class="col-lg-7">
+              <form class="newsletter-form style2">
+                <input class="form-control" type="email" placeholder="Your email address" required />
+                <button type="submit" class="th-btn style1">
+                  Subscribe <img src="/assets/img/icon/plane2.svg" alt="" />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Footer Columns -->
       <div class="row justify-content-between">
-        <div class="col-md-6 col-xl-3">
+        <!-- Column 1: Logo + About + Social -->
+        <div class="col-md-6 col-xl-3" data-ani="slideinup">
           <div class="widget footer-widget">
             <div class="th-widget-about">
               <div class="about-logo">
                 <a href="/"><img src="/assets/img/logo-white.svg" alt="Rhodos Yachts" /></a>
               </div>
               <p class="about-text">
-                Luxury yacht charters across the Greek islands. From Rhodes to the Dodecanese, we craft bespoke voyages tailored to your every desire.
+                Locally owned and operated in Rhodes since 2009. Yacht charters, day cruises, speedboat tours, and license-free boat rentals — all with people who know the sea by heart.
               </p>
               <div class="th-social">
-                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.whatsapp.com/" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-auto">
+
+        <!-- Column 2: Quick Links -->
+        <div class="col-md-6 col-xl-2" data-ani="slideinup" data-ani-delay="0.1">
           <div class="widget widget_nav_menu footer-widget">
             <h3 class="widget_title">Quick Links</h3>
             <div class="menu-all-pages-container">
               <ul class="menu">
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">About us</a></li>
-                <li><a href="/service">Our Service</a></li>
-                <li><a href="/contact">Terms of Service</a></li>
-                <li><a href="/contact">Tour Booking Now</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/destination">Destinations</a></li>
+                <li><a href="/gallery">Gallery</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-auto">
+
+        <!-- Column 3: Our Services -->
+        <div class="col-md-6 col-xl-2" data-ani="slideinup" data-ani-delay="0.2">
+          <div class="widget widget_nav_menu footer-widget">
+            <h3 class="widget_title">Our Services</h3>
+            <div class="menu-all-pages-container">
+              <ul class="menu">
+                <li><a href="/service/rodos-charter">Charter</a></li>
+                <li><a href="/service/rodos-boat-tours">Boat Tours</a></li>
+                <li><a href="/service/rodos-boat-cruises">Boat Cruises</a></li>
+                <li><a href="/service/private-boat-tours">Private Tours</a></li>
+                <li><a href="/service/rodos-rent-boats-with-skipper">Rent with Skipper</a></li>
+                <li><a href="/service/rodos-rent-boats-license-free">License-Free Rental</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 4: Get In Touch -->
+        <div class="col-md-6 col-xl-3" data-ani="slideinup" data-ani-delay="0.3">
           <div class="widget footer-widget">
             <h3 class="widget_title">Get In Touch</h3>
             <div class="th-widget-contact">
               <div class="info-box_text">
-                <div class="icon"><img src="/assets/img/icon/phone.svg" alt="img" /></div>
+                <div class="icon"><img src="/assets/img/icon/phone.svg" alt="Phone" /></div>
                 <div class="details">
                   <p><a href="tel:+302241012345" class="info-box_link">+30 22410 12345</a></p>
                 </div>
               </div>
               <div class="info-box_text">
-                <div class="icon"><img src="/assets/img/icon/envelope.svg" alt="img" /></div>
+                <div class="icon"><img src="/assets/img/icon/envelope.svg" alt="Email" /></div>
                 <div class="details">
                   <p><a href="mailto:info@rodosyachts.gr" class="info-box_link">info@rodosyachts.gr</a></p>
+                  <p><a href="mailto:bookings@rodosyachts.gr" class="info-box_link">bookings@rodosyachts.gr</a></p>
                 </div>
               </div>
               <div class="info-box_text">
-                <div class="icon"><img src="/assets/img/icon/location-dot.svg" alt="img" /></div>
+                <div class="icon"><img src="/assets/img/icon/location-dot.svg" alt="Location" /></div>
                 <div class="details">
-                  <p>Mandraki Harbour, Rhodes, Greece</p>
+                  <p>Mandraki Harbour<br />Rhodes 851 00, Greece</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xl-auto">
-          <div class="widget footer-widget">
-            <h3 class="widget_title">Newsletter</h3>
-            <p class="footer-newsletter-text text-white mb-20">Get updated with the latest news and offers.</p>
-            <form class="newsletter-form style2">
-              <input class="form-control" type="email" placeholder="Enter Email" required />
-              <button type="submit" class="th-btn style1">
-                Subscribe Now <img src="/assets/img/icon/plane2.svg" alt="" />
-              </button>
-            </form>
-          </div>
-        </div>
       </div>
     </div>
   </div>
+
+  <!-- Copyright Bar -->
   <div class="copyright-wrap">
     <div class="container">
       <div class="row justify-content-between align-items-center">
         <div class="col-md-6">
-          <p class="copyright-text">Copyright 2025 <a href="/">Rhodos Yachts</a>. All Rights Reserved.</p>
+          <p class="copyright-text">
+            &copy; 2026 <a href="/">Rhodos Yachts</a>. All Rights Reserved.
+          </p>
         </div>
         <div class="col-md-6 text-end d-none d-md-block">
-          <div class="footer-card">
-            <span class="title">We Accept</span>
-            <img src="/assets/img/shape/cards.png" alt="" />
+          <div class="footer-links">
+            <a href="/contact">Privacy Policy</a>
+            <span class="mx-2">|</span>
+            <a href="/contact">Terms of Service</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .newsletter-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(233, 246, 249, 0.7);
+  }
+  .footer-links a {
+    color: rgba(233, 246, 249, 0.7);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-links a:hover {
+    color: var(--theme-color);
+  }
+  .footer-links span {
+    color: rgba(233, 246, 249, 0.3);
+  }
+</style>
