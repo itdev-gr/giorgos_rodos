@@ -5,40 +5,40 @@ import 'swiper/css/pagination';
 
 const testimonials = [
   {
-    name: 'Elena & Marco V.',
-    designation: 'Charter Guest, Cyclades',
+    name: 'Sarah & Tom W.',
+    designation: 'Boat Tour, Rhodes',
     image: '/assets/img/testimonial/testi_1_1.jpg',
-    text: 'From the moment we stepped aboard, every detail had been considered. Our captain knew exactly where to anchor for the most spectacular sunset, and the chef prepared meals that rivalled anything we have had ashore. It was the most effortless holiday we have ever taken.',
+    text: 'We contacted Rhodes Boat Tours before our trip and they helped us pick the perfect boat tour for our family. The advice was honest, the captain was fantastic, and the hidden bays we visited were absolutely stunning. Best day of our holiday.',
   },
   {
-    name: 'James & Catherine H.',
-    designation: 'Charter Guest, Saronic Gulf',
+    name: 'Marco & Giulia B.',
+    designation: 'Yacht Charter, Dodecanese',
     image: '/assets/img/testimonial/testi_1_2.jpg',
-    text: 'We asked for privacy, authenticity, and a pace that let us truly unwind. The crew delivered on every count. Hidden tavernas, empty beaches, mornings spent diving off the bow — this was Greece as we had always imagined it.',
+    text: 'We chartered a sailing yacht for a week around the Dodecanese. The team arranged everything — from provisioning to the route. Symi, Halki, Tilos — every island was a new discovery. Truly a local team that knows these waters.',
   },
   {
-    name: 'The Fontaine Family',
-    designation: 'Charter Guest, Dodecanese',
+    name: 'The Peterson Family',
+    designation: 'Day Cruise, Rhodes',
     image: '/assets/img/testimonial/testi_1_1.jpg',
-    text: 'Travelling with three children, we were unsure a yacht charter would work for us. The crew made it magical for the whole family — snorkelling excursions, stargazing from the deck, and a flexibility that no resort could match.',
+    text: 'Travelling with three kids, we were not sure which cruise to choose. The team recommended the all-inclusive day cruise and it was perfect. The children loved swimming in Anthony Quinn Bay and the food onboard was delicious.',
   },
   {
-    name: 'Elena & Marco V.',
-    designation: 'Charter Guest, Cyclades',
-    image: '/assets/img/testimonial/testi_1_1.jpg',
-    text: 'From the moment we stepped aboard, every detail had been considered. Our captain knew exactly where to anchor for the most spectacular sunset, and the chef prepared meals that rivalled anything we have had ashore. It was the most effortless holiday we have ever taken.',
-  },
-  {
-    name: 'James & Catherine H.',
-    designation: 'Charter Guest, Saronic Gulf',
+    name: 'Anna & David K.',
+    designation: 'Speedboat Tour, Rhodes',
     image: '/assets/img/testimonial/testi_1_2.jpg',
-    text: 'We asked for privacy, authenticity, and a pace that let us truly unwind. The crew delivered on every count. Hidden tavernas, empty beaches, mornings spent diving off the bow — this was Greece as we had always imagined it.',
+    text: 'The speedboat trip with skipper was the highlight of our Rhodes holiday. We visited beaches that are impossible to reach by car. The skipper knew every hidden spot along the coastline. Cannot recommend this enough.',
   },
   {
-    name: 'The Fontaine Family',
-    designation: 'Charter Guest, Dodecanese',
+    name: 'Christine L.',
+    designation: 'Rent a Boat, Charaki',
     image: '/assets/img/testimonial/testi_1_1.jpg',
-    text: 'Travelling with three children, we were unsure a yacht charter would work for us. The crew made it magical for the whole family — snorkelling excursions, stargazing from the deck, and a flexibility that no resort could match.',
+    text: 'Renting a license-free boat was so easy. The team explained everything clearly and gave us a map with the best spots. We spent the whole day exploring the southeast coast on our own. Pure freedom.',
+  },
+  {
+    name: 'Michael & Petra S.',
+    designation: 'Sunset Cruise, Rhodes',
+    image: '/assets/img/testimonial/testi_1_2.jpg',
+    text: 'The sunset cruise was magical. Watching the sun go down from the water with a glass of wine, surrounded by the Rhodes coastline — it was one of those moments you never forget. Thank you for making it so special.',
   },
 ];
 
@@ -91,9 +91,6 @@ export default function TestimonialOne() {
             ))}
           </Swiper>
         </div>
-      </div>
-      <div className="shape-mockup d-none d-xl-block" style={{ bottom: '-2%', right: '0%' }}>
-        <img src="/assets/img/shape/line2.png" alt="shape" />
       </div>
     </section>
   );

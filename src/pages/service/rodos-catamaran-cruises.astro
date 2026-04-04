@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+---
+
+<BaseLayout title="Rhodes Catamaran Cruises - Rhodes Boat Tours">
+  <Header />
+
+  <ServiceHeroFullwidth
+    title="Catamaran Cruises in Rhodes"
+    subtitle="Spacious catamarans for group cruises, events, and island-hopping adventures across the Dodecanese."
+    backgroundImage="/assets/img/fleet/lagoon-42-aenaos.jpg"
+  />
+
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="sec-title" style="margin-bottom: 20px;">Coming Soon</h2>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #5a6a72; margin-bottom: 30px;">
+            We are putting the finishing touches on our catamaran cruise experiences. In the meantime, get in touch and we will personally help you find the perfect catamaran for your group.
+          </p>
+          <a href="/contact" class="th-btn style3 th-icon">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FooterFour />
+</BaseLayout>
+
+<script>
+  document.getElementById('header-one')?.classList.add('header-transparent');
+</script>

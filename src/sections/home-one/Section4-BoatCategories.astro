@@ -1,0 +1,133 @@
+---
+const categories = [
+  { title: 'Rhodes Boat Tours', description: 'Guided sailing tours along the stunning Rhodes coastline and nearby islands.', image: '/assets/img/cruises/greco_sunset3.jpg', href: '/service/rodos-boat-tours' },
+  { title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/destinations/private-sailing.jpg', href: '/service/rhodes-boat-trips' },
+  { title: 'Rhodes Boat Cruises', description: 'All-inclusive day and sunset cruises with swimming, dining, and music.', image: '/assets/img/cruises/greco_home1.jpg', href: '/service/rodos-boat-cruises' },
+  { title: 'Rhodes Rent a Boat', description: 'Drive your own boat along the coast — no licence needed, full freedom.', image: '/assets/img/destinations/tsambika-beach.jpg', href: '/service/rodos-rent-boats-license-free' },
+  { title: 'Rhodes Catamaran Cruises', description: 'Spacious catamarans for group cruises, events, and island-hopping adventures.', image: '/assets/img/fleet/lagoon-42-aenaos.jpg', href: '/service/rodos-catamaran-cruises' },
+  { title: 'Rhodes Yacht Charter', description: 'Over 80 sailing yachts and catamarans. Bareboat or crewed, the Dodecanese is yours.', image: '/assets/img/fleet/oceanis-461-nailah.jpg', href: '/service/rodos-charter' },
+  { title: 'Rhodes Tender Boat Services', description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.', image: '/assets/img/tender/tender-service.jpg', href: '/service/rodos-tender-boat' },
+  { title: 'Rhodes MICE & Incentive Events', description: 'Corporate events, incentive trips, and team-building experiences on the water.', image: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', href: '/service/rodos-mise' },
+];
+---
+
+<section style="padding: 80px 0; overflow: hidden;">
+  <div class="container">
+    <div class="title-area text-center" style="margin-bottom: 50px;">
+      <span class="sub-title style1" data-ani="slideinup">Our Services</span>
+      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Boat Trips in Rhodes</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;" class="cat-grid">
+      {categories.map((cat, i) => (
+        <a href={cat.href} class="cat-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.05}`}>
+          <div class="cat-card__img">
+            <img src={cat.image} alt={cat.title} loading="lazy" />
+          </div>
+          <div class="cat-card__overlay"></div>
+          <div class="cat-card__content">
+            <h3 class="cat-card__title">{cat.title}</h3>
+            <p class="cat-card__desc">{cat.description}</p>
+            <span class="cat-card__btn">View More</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cat-card {
+    position: relative;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 340px;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .cat-card__img {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cat-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .cat-card:hover .cat-card__img img {
+    transform: scale(1.08);
+  }
+
+  .cat-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%);
+    transition: background 0.3s ease;
+  }
+
+  .cat-card:hover .cat-card__overlay {
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%);
+  }
+
+  .cat-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    z-index: 1;
+  }
+
+  .cat-card__title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .cat-card__desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 12px;
+  }
+
+  .cat-card__btn {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .cat-card:hover .cat-card__btn {
+    background: rgba(255,255,255,0.15);
+    border-color: #fff;
+  }
+
+  @media (max-width: 991px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cat-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .cat-card {
+      height: 280px;
+    }
+  }
+</style>

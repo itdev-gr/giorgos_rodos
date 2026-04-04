@@ -2,46 +2,70 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import HeroBanner from '../sections/home-one/Section2-HeroBanner.astro';
-import IntroStatement from '../sections/home-one/Section3-IntroStatement.astro';
-import CharterDestinations from '../sections/home-one/Section3-CharterDestinations.astro';
-import BrandStory from '../sections/home-one/Section5-BrandStory.astro';
-import ServicesGrid from '../sections/home-one/Section6-ServicesGrid.astro';
-import ServiceBucketList from '../sections/service/ServiceBucketList.astro';
-import ServiceMiseChecklist from '../sections/service/ServiceMiseChecklist.astro';
-import CTA from '../sections/home-one/Section-CTA.astro';
+import Intro from '../sections/home-one/Section3-Intro.astro';
+import BoatCategories from '../sections/home-one/Section4-BoatCategories.astro';
+import GoogleMap from '../sections/home-one/Section5-GoogleMap.astro';
+import WhyChooseUs from '../sections/home-one/Section6-WhyChooseUs.astro';
+import Reviews from '../sections/home-one/Section7-Reviews.astro';
+import BlogPreview from '../sections/home-one/Section8-BlogPreview.astro';
+import Contact from '../sections/home-one/Section9-Contact.astro';
 import Footer from '../sections/shared/FooterFour.astro';
 ---
 
-<BaseLayout title="Rhodos Yachts — Boat Experiences in Rhodes, Greece">
+<BaseLayout title="Rhodes Boat Tours | Boat Trips, Cruises & Rentals | Rhodes Boat Tours" description="Book boat tours in Rhodes with local experts. Handpicked boat trips, cruises, yacht charters, rent-a-boat and catamaran experiences. Based in Mandraki Harbour since 2009.">
+
+  <!-- JSON-LD Schema: LocalBusiness + TouristTrip -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Rhodes Boat Tours",
+    "description": "Local boat tour experts in Rhodes, Greece. Handpicked boat trips, cruises, yacht charters, and rent-a-boat experiences since 2009.",
+    "url": "https://rhodosboattours.com",
+    "telephone": "+302241012345",
+    "email": "info@rodosyachts.gr",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Mandraki Harbour",
+      "addressLocality": "Rhodes",
+      "postalCode": "851 00",
+      "addressCountry": "GR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.4475,
+      "longitude": 28.4275
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    "sameAs": [
+      "https://www.instagram.com/rhodos_yachts",
+      "https://www.facebook.com/rhodosyachts"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Boat Experiences in Rhodes",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Boat Tours", "description": "Guided sailing tours along the Rhodes coastline" }},
+        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Boat Cruises", "description": "All-inclusive day and sunset cruises" }},
+        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Yacht Charter", "description": "Bareboat and crewed yacht charters in the Dodecanese" }},
+        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Rent a Boat", "description": "License-free boat rentals along the Rhodes coast" }}
+      ]
+    }
+  })} />
+
   <Header />
   <HeroBanner />
-  <IntroStatement />
-  <CharterDestinations />
-  <BrandStory />
-  <ServicesGrid />
-  <ServiceBucketList
-    title="Things You Can Do with Us"
-    subtitle="Ideas to Inspire You"
-    items={[
-      { title: 'Swim in Bays Only Boats Can Reach', description: 'Crystal-clear water, no roads in sight — just you, the sea, and a cove that most visitors never find.' },
-      { title: 'Watch the Sunset from the Water', description: 'There is nothing quite like seeing the sky turn amber from the deck of a boat, drink in hand, somewhere off the Rhodes coast.' },
-      { title: 'Snorkel Over Hidden Reefs', description: 'The waters around Rhodes are full of life. Grab a mask and discover a world just beneath the surface.' },
-      { title: 'Cruise Past the Acropolis of Lindos', description: 'See one of the most iconic sights in Greece from a perspective most visitors never get — from the sea below.' },
-      { title: 'Anchor at a Secluded Beach', description: 'Some of the finest beaches in Rhodes have no road access. The only way in is by boat — and that is exactly what we do.' },
-      { title: 'Explore the Nearby Islands', description: 'Symi, Halki, Tilos, Nisyros — the Dodecanese archipelago is right at our doorstep, waiting to be discovered.' },
-    ]}
-  />
-  <ServiceMiseChecklist
-    title="How It Works"
-    subtitle="Simple as That"
-    steps={[
-      { title: 'Tell Us What You Like', description: 'A quick message or call is all it takes. Share your dates, your group, and what sounds fun — no commitment needed.', icon: 'fas fa-comments' },
-      { title: 'We Suggest the Best Fit', description: 'Based on what you told us, we will recommend the right boat, the right tour, or the right experience for your group.', icon: 'fas fa-route' },
-      { title: 'Confirm and Relax', description: 'Once you are happy, we lock everything in. From that moment, we handle all the details.', icon: 'fas fa-anchor' },
-      { title: 'Step Aboard', description: 'Show up at the harbour, meet your skipper, and let the sea do the rest. That is it.', icon: 'fas fa-heart' },
-    ]}
-  />
-  <CTA />
+  <Intro />
+  <BoatCategories />
+  <WhyChooseUs />
+  <Reviews />
+  <BlogPreview />
+  <Contact />
+  <GoogleMap />
   <Footer />
 
   <!-- Homepage-only: enable transparent header over hero -->

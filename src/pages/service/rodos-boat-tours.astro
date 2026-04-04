@@ -3,367 +3,231 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
-import ServiceOverview from '../../sections/service/ServiceOverview.astro';
-import ServiceVesselsShowcase from '../../sections/service/ServiceVesselsShowcase.astro';
-import ServiceWhySection from '../../sections/service/ServiceWhySection.astro';
-import ServiceBucketList from '../../sections/service/ServiceBucketList.astro';
-import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.astro';
+
+const tours = [
+  {
+    title: 'East Coast Sailing Tour',
+    description: 'A full day sailing along the east coast of Rhodes with swimming stops in hidden bays, lunch on board and time to relax at sea.',
+    image: '/assets/img/destinations/private-sailing.jpg',
+    duration: 'Full Day',
+    guests: '20–30 Guests',
+    boat: 'Sailing Yacht',
+    price: '€55/person',
+  },
+  {
+    title: 'Catamaran All-Inclusive Cruise',
+    description: 'Spacious catamaran cruise with all-inclusive food, drinks, music and multiple swimming stops along the coastline.',
+    image: '/assets/img/fleet/lagoon-42-aenaos.jpg',
+    duration: 'Full Day',
+    guests: '40–50 Guests',
+    boat: 'Catamaran',
+    price: '€65/person',
+  },
+  {
+    title: 'Sunset Catamaran Cruise',
+    description: 'An evening cruise along the Rhodes coast as the sun goes down — drinks, music and unforgettable views from the water.',
+    image: '/assets/img/cruises/greco_sunset3.jpg',
+    duration: 'Evening',
+    guests: '30–40 Guests',
+    boat: 'Catamaran',
+    price: '€55/person',
+  },
+  {
+    title: 'Semi-Private Boat Tour',
+    description: 'A smaller group experience with more personal attention, flexible stops and a relaxed pace along the coast.',
+    image: '/assets/img/skipper/mako-boat-1.jpg',
+    duration: 'Full Day',
+    guests: '8–12 Guests',
+    boat: 'Motorboat',
+    price: '€85/person',
+  },
+  {
+    title: 'Traditional Wooden Boat Tour',
+    description: 'A classic Greek boat experience — authentic, unhurried and full of local character. Lunch and swimming included.',
+    image: '/assets/img/cruises/greco_home1.jpg',
+    duration: 'Full Day',
+    guests: '20–30 Guests',
+    boat: 'Traditional Boat',
+    price: '€45/person',
+  },
+  {
+    title: 'Private Sailing Experience',
+    description: 'Your own sailing yacht, your own route, your own pace. Ideal for couples, families or small groups who want privacy.',
+    image: '/assets/img/destinations/symi-island.jpg',
+    duration: 'Full Day',
+    guests: 'Up to 10 Guests',
+    boat: 'Sailing Yacht',
+    price: 'From €400',
+  },
+  {
+    title: 'Lindos Coast Explorer',
+    description: 'A half-day speedboat trip along the dramatic Lindos coastline with swimming stops at secluded beaches and caves.',
+    image: '/assets/img/destinations/lindos-bay.jpg',
+    duration: 'Half Day',
+    guests: '15–20 Guests',
+    boat: 'Speedboat',
+    price: '€50/person',
+  },
+  {
+    title: 'Bay to Bay Cruise',
+    description: 'Hop between the best bays on the east coast — crystal-clear water, snorkeling gear provided, food and drinks on board.',
+    image: '/assets/img/destinations/anthony-quinn-bay.jpg',
+    duration: 'Half Day',
+    guests: '30–40 Guests',
+    boat: 'Catamaran',
+    price: '€45/person',
+  },
+  {
+    title: 'VIP Sunset Private Tour',
+    description: 'An exclusive evening on the water for your group — premium drinks, canapés and the most beautiful sunset in Rhodes.',
+    image: '/assets/img/cruises/greco_sunset3.jpg',
+    duration: 'Evening',
+    guests: 'Up to 8 Guests',
+    boat: 'Luxury Boat',
+    price: 'From €350',
+  },
+];
 ---
 
-<BaseLayout title="Boat Tours in Rhodes — Yacht Charters & Catamaran Cruises - Rhodos Yachts">
+<BaseLayout title="Rhodes Boat Tours — Organized Boat Tours in Rhodes" description="Find the best boat tours in Rhodes with local guidance. Sailing tours, catamaran cruises, semi-private trips and sunset tours — handpicked by local experts.">
   <Header />
 
   <!-- 1. Hero -->
   <ServiceHeroFullwidth
-    title="Boat Tours in Rhodes"
-    subtitle="Whether you want the exclusivity of a sailing yacht or a fun, social catamaran day cruise — we connect you with the best operators on the island."
+    title="Rhodes Boat Tours"
+    subtitle="Organized Boat Tours in Rhodes"
     backgroundImage="/assets/img/tours/hero-rhodes-coast.jpg"
     heroVideo="/assets/img/hero/services/boat-tours.mp4"
-    cta1Text="Explore Our Tours"
-    cta2Text="Contact Us"
   />
 
-  <!-- 2. Overview -->
-  <ServiceOverview
-    title="Two Ways to Explore Rhodes by Sea"
-    subtitle="Overview"
-    description="Whether you want the exclusivity of a sailing yacht or the social energy of a catamaran day cruise, we connect you with the finest operators on the island."
-    features={[
-      { icon: '/assets/img/icon/about_1_1.svg', title: 'Yacht Charters', text: 'Five Bavaria sailing yachts available for day trips and multi-day charters across the Dodecanese.' },
-      { icon: '/assets/img/icon/about_1_2.svg', title: 'Catamaran Day Cruises', text: 'Spacious, stable catamarans for social day cruises and magical sunset voyages along the coast.' },
-      { icon: '/assets/img/icon/about_1_3.svg', title: 'Fully Supported', text: 'From booking to boarding, our concierge team handles every detail so you can focus on enjoying the sea.' },
-    ]}
-    stats={[
-      { value: 2, suffix: '', label: 'Tour Experiences' },
-      { value: 5, suffix: '', label: 'Sailing Yachts' },
-      { value: 15, suffix: '+', label: 'Years Experience' },
-      { value: 14, suffix: '', label: 'Islands' },
-    ]}
-  />
-
-  <!-- 3. Yacht Tours — Image Left, Text Right -->
-  <section class="about-split space">
+  <!-- 2. Intro -->
+  <section style="padding: 60px 0 40px;">
     <div class="container">
-      <div class="row align-items-center gy-40">
-        <div class="col-lg-6" data-ani="slideinleft">
-          <div class="about-split__img">
-            <img class="global-img" src="/assets/img/tours/sailing-rhodes.jpg" alt="Sailing yacht near the Rhodes coastline" />
+      <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein">
+          Not all boat tours are the same. The boat, the crew and the atmosphere make the difference.
+        </p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="bt-intro-grid" data-ani="slideinup" data-ani-delay="0.1">
+        <div style="text-align: center; padding: 32px 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
+            <i class="fas fa-water"></i>
           </div>
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Daily Boat Cruises</h3>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Organized cruises along the east coast with swimming stops, lunch on board and time to relax at sea. Each tour is unique.</p>
         </div>
-        <div class="col-lg-6" data-ani="slideinright">
-          <div class="about-split__text ps-lg-4">
-            <span class="about-split__accent"></span>
-            <div class="title-area mb-20">
-              <h2 class="sec-title">Yacht Tours in Rhodes</h2>
-            </div>
-            <p class="about-split__subtitle"><em>Premium sailing since 2009</em></p>
-            <p>
-              Our Rhodes-based yacht charter fleet features five meticulously maintained Bavaria sailing
-              yachts — ranging from 39 to 50 feet — accommodating groups of six to ten guests in comfort
-              and style.
-            </p>
-            <p>
-              Whether you are planning a day sail along the east coast, a week-long island adventure, or a bareboat charter for experienced skippers, you deal directly with us — no brokers, no middlemen, just straightforward communication and honest pricing.
-            </p>
-            <a href="#fleet" class="th-btn style3 th-icon mt-25">View the Fleet</a>
+        <div style="text-align: center; padding: 32px 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
+            <i class="fas fa-check-circle"></i>
           </div>
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Handpicked Tours</h3>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">From all the tours available in Rhodes, we have selected those that offer a great overall experience — quality boats, good crews, fair prices.</p>
         </div>
+        <div style="text-align: center; padding: 32px 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We are not a booking platform. We are local advisors who help you understand the differences and choose the right tour for you.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
+        <p style="font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
+          There are many boat tours in Rhodes. The difference is choosing the right one — this is where we help.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 4. Fourteen Islands, One Fleet — Text Left, Image Right (reversed) -->
-  <section class="about-split bg-smoke space">
+  <!-- 3. Tours Grid -->
+  <section style="padding: 80px 0; background: #f8fafb;">
     <div class="container">
-      <div class="row align-items-center flex-lg-row-reverse gy-40">
-        <div class="col-lg-6" data-ani="slideinright">
-          <div class="about-split__img">
-            <img class="global-img" src="/assets/img/tours/yacht-deck-lifestyle.jpg" alt="Guests relaxing on yacht deck" />
-          </div>
-        </div>
-        <div class="col-lg-6" data-ani="slideinleft">
-          <div class="about-split__text pe-lg-4">
-            <span class="about-split__accent"></span>
-            <div class="title-area mb-20">
-              <h2 class="sec-title">Fourteen Islands, One Fleet</h2>
-            </div>
-            <p class="about-split__subtitle"><em>The entire Dodecanese at your fingertips</em></p>
-            <p>
-              From the medieval streets of Rhodes to the volcanic crater of Nisyros, the pastel harbor
-              of Symi to the legendary Blue Cave of Kastellorizo — the Dodecanese archipelago spans
-              fourteen distinct islands, each with its own character and charm.
-            </p>
-            <p>
-              Every charter itinerary is fully customizable. Choose bareboat if you hold a valid
-              sailing licence, or add a professional skipper and let us plan the perfect route based
-              on your pace, interests, and the season's best conditions.
-            </p>
-            <a href="/contact" class="th-btn style3 th-icon mt-25">Plan Your Charter</a>
-          </div>
-        </div>
+      <div class="title-area text-center" style="margin-bottom: 50px;">
+        <h2 class="sec-title" data-ani="slideinup">Explore Our Boat Tours in Rhodes</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- 5. Yachts Fleet -->
-  <div id="fleet">
-    <ServiceVesselsShowcase
-      title="Yachts Fleet"
-      subtitle="Five Bavaria Sailing Yachts"
-      vessels={[
-        {
-          name: 'Bavaria 39 Cruiser',
-          image: '/assets/img/fleet/bavaria-39.jpg',
-          specs: ['11.93m Length', '3 Cabins', '6 Guests', 'Ideal for couples & small groups'],
-          price: 'From €1,200/week',
-        },
-        {
-          name: 'Bavaria 44',
-          image: '/assets/img/fleet/bavaria-44.jpg',
-          specs: ['13.60m Length', '4 Cabins', '10 Guests', 'Spacious family cruiser'],
-          price: 'From €1,800/week',
-        },
-        {
-          name: 'Bavaria 46 Cruiser',
-          image: '/assets/img/fleet/bavaria-46.jpg',
-          specs: ['13.99m Length', '4 Cabins', '8 Guests', 'Performance & comfort'],
-          price: 'From €2,200/week',
-        },
-        {
-          name: 'Bavaria 49',
-          image: '/assets/img/fleet/bavaria-49.jpg',
-          specs: ['14.90m Length', '5 Cabins', '10 Guests', 'Premium long-range cruiser'],
-          price: 'From €2,800/week',
-        },
-        {
-          name: 'Bavaria 50 Cruiser',
-          image: '/assets/img/fleet/bavaria-50.jpg',
-          specs: ['14.63m Length', '5 Cabins', '10 Guests', 'Our flagship yacht'],
-          price: 'From €3,500/week',
-        },
-      ]}
-    />
-  </div>
-
-  <!-- 6. Catamaran Day Cruises — Image Left, Text Right -->
-  <section class="about-split space">
-    <div class="container">
-      <div class="row align-items-center gy-40">
-        <div class="col-lg-6" data-ani="slideinleft">
-          <div class="about-split__img">
-            <img class="global-img" src="/assets/img/tours/catamaran-cruise.jpg" alt="Catamaran cruise on a sunny day" />
-          </div>
-        </div>
-        <div class="col-lg-6" data-ani="slideinright">
-          <div class="about-split__text ps-lg-4">
-            <span class="about-split__accent"></span>
-            <div class="title-area mb-20">
-              <h2 class="sec-title">Catamaran Day Cruises</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bt-tours-grid">
+        {tours.map((tour, i) => (
+          <a href="/contact" class="bt-tour-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div style="height: 220px; overflow: hidden; position: relative;">
+              <img src={tour.image} alt={tour.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{tour.boat}</span>
             </div>
-            <p class="about-split__subtitle"><em>Spacious, stable, and perfect for groups</em></p>
-            <p>
-              For those who prefer a social, all-inclusive day on the water, our catamaran cruises offer
-              the perfect blend of comfort and adventure. The wide, stable deck provides plenty of room
-              to spread out — whether you're sunbathing, swimming, or enjoying a freshly prepared meal.
-            </p>
-            <p>
-              Multiple swimming stops in crystal-clear bays, snorkeling gear provided, and a friendly
-              crew that makes every guest feel at home. Ideal for families, friend groups, and anyone
-              who loves the energy of a shared sea experience.
-            </p>
-            <a href="/contact" class="th-btn style3 th-icon mt-25">Book a Catamaran Cruise</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. Sunset Magic on the Water — Text Left, Image Right (reversed) -->
-  <section class="about-split bg-smoke space">
-    <div class="container">
-      <div class="row align-items-center flex-lg-row-reverse gy-40">
-        <div class="col-lg-6" data-ani="slideinright">
-          <div class="about-split__img">
-            <img class="global-img" src="/assets/img/tours/catamaran-sunset.jpg" alt="Catamaran sunset cruise" />
-          </div>
-        </div>
-        <div class="col-lg-6" data-ani="slideinleft">
-          <div class="about-split__text pe-lg-4">
-            <span class="about-split__accent"></span>
-            <div class="title-area mb-20">
-              <h2 class="sec-title">Sunset Magic on the Water</h2>
-            </div>
-            <p class="about-split__subtitle"><em>The golden hour, experienced from the sea</em></p>
-            <p>
-              As the afternoon light turns amber, step aboard for one of the most memorable evenings
-              Rhodes has to offer. Our sunset catamaran cruises glide along the coastline as the sky
-              transforms — drinks in hand, canapés on deck, and the Aegean stretching to the horizon.
-            </p>
-            <p>
-              Perfect for celebrations, romantic evenings, or corporate groups looking for something
-              beyond the ordinary. The crew handles everything so you can simply be present for one
-              of nature's finest shows.
-            </p>
-            <a href="/contact" class="th-btn style3 th-icon mt-25">Reserve Your Sunset</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Why Book Through Rhodos Yachts -->
-  <ServiceWhySection
-    layout="right"
-    title="Why Book Through Rhodos Yachts"
-    subtitle="The Rhodos Yachts Advantage"
-    description="We partner directly with the best boat operators in Rhodes — no middlemen, no markups. Our team personally vets every vessel and captain, so you get a safe, premium experience every time."
-    image="/assets/img/tours/why-rhodes-sailing.jpg"
-    features={[
-      { icon: '/assets/img/icon/about_1_1.svg', title: 'Vetted Local Operators', text: 'Every partner is hand-selected and regularly reviewed — we only work with operators we trust personally.' },
-      { icon: '/assets/img/icon/about_1_2.svg', title: 'Direct Partnerships', text: 'We work directly with trusted local operators — no middlemen, just seamless communication and a premium experience.' },
-      { icon: '/assets/img/icon/about_1_3.svg', title: 'Concierge Support', text: 'From choosing the right tour to arranging transfers and special requests — we handle everything.' },
-    ]}
-  />
-
-  <!-- 9. Bucket List -->
-  <ServiceBucketList
-    title="Boat Tour Experiences You'll Never Forget"
-    subtitle="Bucket List"
-    items={[
-      { title: 'Swim in a Bay Only Boats Can Reach', description: 'Dive into crystal-clear water at hidden coves along the Rhodes coastline — no roads, no crowds, just the sea.' },
-      { title: 'Sail Past the Walls of the Old Town', description: 'See the medieval fortifications of Rhodes from the water — a perspective few visitors ever experience.' },
-      { title: 'Watch the Sunset from a Catamaran Deck', description: 'Drinks in hand, the sky turning gold — a sunset cruise is the most unforgettable evening in Rhodes.' },
-      { title: 'Island-Hop Through the Dodecanese', description: 'Wake up on a different island every morning as you sail through fourteen unique destinations.' },
-      { title: 'Snorkel over Ancient Amphora Fields', description: 'Explore underwater history at sites where ancient cargo still rests on the seabed.' },
-      { title: 'Anchor in Lindos Bay Under the Acropolis', description: 'Drop anchor beneath the ancient Acropolis of Lindos and swim in one of Greece\'s most iconic bays.' },
-    ]}
-  />
-
-  <!-- 10. How It Works -->
-  <ServiceMiseChecklist
-    title="Book Your Boat Tour in Four Steps"
-    subtitle="How It Works"
-    steps={[
-      { title: 'Tell Us What You Want', description: 'Share your dates, group size, and preferences — yacht charter, catamaran cruise, or not sure yet.', icon: 'fa-regular fa-envelope' },
-      { title: 'Get a Tailored Recommendation', description: 'We match you with the right operator and experience based on your needs and budget.', icon: 'fa-solid fa-compass' },
-      { title: 'Confirm & Prepare', description: 'Lock in your booking, and we handle all the details — from transfers to special requests.', icon: 'fa-solid fa-clipboard-check' },
-      { title: 'Step Aboard', description: 'Arrive at the harbor, meet your captain, and set off into the Aegean. Your adventure begins.', icon: 'fa-solid fa-anchor' },
-    ]}
-  />
-
-  <!-- 11. Related Services -->
-  <div class="bg-smoke space overflow-hidden">
-    <div class="container">
-      <div class="title-area text-center mb-50">
-        <span class="sub-title style1" data-ani="slideinup">Explore More</span>
-        <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Our Other Services</h2>
-      </div>
-      <div class="row gy-30 justify-content-center">
-        <div class="col-lg-6">
-          <a href="/service/private-boat-tours" class="related-service-card" data-ani="slideinup">
-            <div class="related-service-card_img">
-              <img src="/assets/img/fleet/bavaria-50.jpg" alt="Private Boat Tours" loading="lazy" />
-              <div class="related-service-card_overlay"></div>
-            </div>
-            <div class="related-service-card_content">
-              <h4 class="related-service-card_title">Private Boat Tours</h4>
-              <p class="related-service-card_text">Luxury sailing yacht charters across the Dodecanese islands with tailor-made itineraries.</p>
-              <span class="th-btn style3 th-icon">Explore <i class="fas fa-arrow-right ms-2"></i></span>
+            <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
+              <h3 style="font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;">{tour.title}</h3>
+              <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;">{tour.description}</p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;"></i> {tour.duration}</span>
+                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;"></i> {tour.guests}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;">
+                <span style="font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;">{tour.price}</span>
+                <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;">Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;"></i></span>
+              </div>
             </div>
           </a>
-        </div>
-        <div class="col-lg-6">
-          <a href="/service/rodos-boat-cruises" class="related-service-card" data-ani="slideinup" data-ani-delay="0.15">
-            <div class="related-service-card_img">
-              <img src="/assets/img/cruises/greco_home1.jpg" alt="Rhodos Boat Cruises" loading="lazy" />
-              <div class="related-service-card_overlay"></div>
-            </div>
-            <div class="related-service-card_content">
-              <h4 class="related-service-card_title">Rhodos Boat Cruises</h4>
-              <p class="related-service-card_text">All-inclusive day and sunset cruises with swimming, dining, and unforgettable Aegean views.</p>
-              <span class="th-btn style3 th-icon">Explore <i class="fas fa-arrow-right ms-2"></i></span>
-            </div>
-          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Contact Section -->
+  <section style="padding: 80px 0; background: #113D48;">
+    <div class="container">
+      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+        <h2 style="font-family: 'Manrope', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup">Need Help Choosing the Right Boat Tour?</h2>
+        <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1">
+          If you are not sure which boat tour to choose, contact us and we will help you decide whether a boat tour, a private boat trip or a rent a boat experience is the best option for you. We are based in Rhodes and we are always happy to help visitors plan their day at sea.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2">
+          <a href="/contact" class="th-btn style3 th-icon">Send Us a Message</a>
+          <a href="https://wa.me/302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="tel:+302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fas fa-phone"></i> +30 22410 12345</a>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <FooterFour />
 </BaseLayout>
 
+<script>
+  document.getElementById('header-one')?.classList.add('header-transparent');
+</script>
+
 <style>
-  /* ===== About-style Split Sections ===== */
-  .about-split__img {
-    border-radius: 8px;
-    overflow: hidden;
+  .bt-flow {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #4a5568;
   }
 
-  .about-split__img :global(img) {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    width: 100%;
-    display: block;
-  }
-
-  .about-split__accent {
-    display: block;
-    width: 30px;
-    height: 4px;
-    background: var(--theme-color);
+  .bt-flow p {
     margin-bottom: 20px;
-    border-radius: 2px;
   }
 
-  .about-split__subtitle {
-    color: var(--theme-color);
-    font-size: 17px;
-    margin-bottom: 15px;
+  .bt-tour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
   }
 
-  /* ===== Related Services Cards ===== */
-  .related-service-card {
-    display: block;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 350px;
-    text-decoration: none;
-  }
-  .related-service-card_img {
-    position: absolute;
-    inset: 0;
-  }
-  .related-service-card_img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .related-service-card:hover .related-service-card_img img {
+  .bt-tour-card:hover img {
     transform: scale(1.05);
   }
-  .related-service-card_overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%);
+
+  @media (max-width: 991px) {
+    .bt-intro-grid {
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+    .bt-tours-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
-  .related-service-card_content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    z-index: 1;
-  }
-  .related-service-card_title {
-    color: #fff;
-    margin-bottom: 8px;
-    font-size: 1.5rem;
-  }
-  .related-service-card_text {
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 15px;
-    font-size: 0.95rem;
+
+  @media (max-width: 575px) {
+    .bt-tours-grid {
+      grid-template-columns: 1fr !important;
+    }
   }
 </style>

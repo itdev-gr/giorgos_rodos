@@ -4,35 +4,66 @@ import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
 ---
 
-<BaseLayout title="About - Rhodos Yachts">
+<BaseLayout title="About - Rhodes Boat Tours">
   <Header />
 
   <!-- ============== Section 1: Full-Bleed Hero ============== -->
   <div class="about-hero">
     <div class="about-hero__overlay"></div>
     <div class="container about-hero__content">
-      <span class="about-hero__breadcrumb">Rhodos Yachts &nbsp;|&nbsp; About Us</span>
-      <h1 class="about-hero__title" data-ani="slideinup">We Are Rhodos Yachts</h1>
+      <span class="about-hero__breadcrumb">Rhodes Boat Tours &nbsp;|&nbsp; About Us</span>
+      <h1 class="about-hero__title" data-ani="slideinup">We Are Rhodes Boat Tours</h1>
       <p class="about-hero__desc" data-ani="slideinup" data-ani-delay="0.15">
         A family of sailors, local guides, and sea lovers. We have been sharing the waters around Rhodes with visitors since 2009 — always directly, always personally.
       </p>
     </div>
   </div>
 
-  <!-- ============== Section 2: Centered Intro ============== -->
-  <section class="about-intro space">
+  <!-- ============== Section 2: Our Philosophy ============== -->
+  <section style="padding: 80px 0;">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <div class="title-area mb-20" data-ani="slideinup">
-            <h2 class="sec-title">The Kind of Company We Are</h2>
+        <div class="col-lg-8">
+          <div class="title-area text-center mb-20" data-ani="slideinup">
+            <h2 class="sec-title">Our Philosophy</h2>
           </div>
-          <p class="about-intro__text" data-ani="slideinup" data-ani-delay="0.1">
-            We are not a marketplace and we are not a corporate charter company. We are a small, locally rooted team that runs its own fleet and works hand-in-hand with trusted partners across the island. When you call us, you reach the same people who fuel the boats, brief the skippers, and check the weather forecast each morning. That personal connection is what makes the difference between a good day on the water and a great one.
-          </p>
-          <div class="about-intro__buttons" data-ani="slideinup" data-ani-delay="0.2">
+          <div class="about-philosophy" data-ani="fadein" data-ani-delay="0.1">
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; line-height: 1.8; color: #1CA8CB; text-align: center; margin-bottom: 32px;">
+              Rhodes is not a place you experience through a booking platform.<br />
+              Rhodes is a place you experience through people.
+            </p>
+            <p>This website was created by local professionals who have spent many years working at sea and in tourism on the island. We know the boats, the routes, the crews and the people behind each experience.</p>
+            <p>Our goal is not to become a large booking platform. Our goal is to help visitors understand their options and connect directly with the right local providers.</p>
+            <p>We believe that small local businesses, family boats and experienced crews offer some of the best experiences on the island. For this reason, we carefully select the experiences and partners that appear on this website.</p>
+            <p>This platform is not based on algorithms, advertisements or sponsored listings. It is based on local knowledge, real experience and personal recommendations.</p>
+            <p style="font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 1.1rem; color: #113D48; text-align: center; margin-top: 32px; line-height: 1.7;">
+              We don't try to sell you the most expensive tour.<br />
+              We try to help you choose the right experience for you.
+            </p>
+          </div>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 36px;" data-ani="slideinup" data-ani-delay="0.2">
             <a href="/service" class="th-btn style3 th-icon">Our Services</a>
             <a href="/contact" class="th-btn style-outline th-icon">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 2b: Our Story Text ============== -->
+  <section style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="about-philosophy" data-ani="fadein">
+            <p>This website was created by people who live and work in Rhodes and spend most of their lives at sea.</p>
+            <p>After many years working in tourism and boating on the island, we realized that many visitors find it difficult to understand the difference between the many boat tours, boat trips and sea experiences available in Rhodes. Many experiences look similar online, but in reality they can be very different.</p>
+            <p>For this reason, we decided to create a website where visitors can find clear information about sea experiences in Rhodes and discover selected boats, tours and local businesses that we believe offer a very good overall experience.</p>
+            <p style="font-family: 'Manrope', sans-serif; font-weight: 600; color: #113D48;">This is not a large booking platform and not a marketplace.</p>
+            <p>Our goal is not to sell as many tours as possible. Our goal is to help visitors find the right experience for them and connect directly with local people who love what they do.</p>
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: #1CA8CB; text-align: center; margin-top: 28px; line-height: 1.7;">
+              Rhodes is a place that you experience from the sea, and we hope this website helps you discover that side of the island.
+            </p>
           </div>
         </div>
       </div>
@@ -97,7 +128,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
     </div>
   </section>
 
-  <!-- ============== Section 5: The Rhodos Yachts Difference (Image Left + Text Right) ============== -->
+  <!-- ============== Section 5: The Rhodes Boat Tours Difference (Image Left + Text Right) ============== -->
   <section class="about-split space">
     <div class="container">
       <div class="row align-items-center gy-40">
@@ -293,33 +324,30 @@ import FooterFour from '../sections/shared/FooterFour.astro';
     }
   }
 
-  /* ===== Section 2: Intro ===== */
-  .about-intro__text {
-    font-size: 17px;
-    line-height: 1.8;
-    color: var(--body-color);
-    margin-bottom: 30px;
+  /* ===== Section 2: Philosophy ===== */
+  .about-philosophy {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #4a5568;
   }
 
-  .about-intro__buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
+  .about-philosophy p {
+    margin-bottom: 18px;
   }
 
-  .about-intro :global(.th-btn.style-outline) {
+  :global(.th-btn.style-outline) {
     background: transparent;
     color: var(--title-color);
     border: 1px solid var(--title-color);
     box-shadow: none;
   }
 
-  .about-intro :global(.th-btn.style-outline::before) {
+  :global(.th-btn.style-outline::before) {
     background-color: var(--theme-color);
   }
 
-  .about-intro :global(.th-btn.style-outline:hover) {
+  :global(.th-btn.style-outline:hover) {
     color: var(--white-color);
     border-color: var(--theme-color);
   }
