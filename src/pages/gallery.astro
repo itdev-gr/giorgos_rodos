@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
-import ScrollToTop from '../components/interactive/ScrollToTop';
 import GalleryGrid from '../components/interactive/GalleryGrid';
 
 const galleryImages = [
@@ -11,13 +10,13 @@ const galleryImages = [
   { src: '/assets/img/gallery/yacht/yacht-interior-1.jpg', alt: 'Elegant yacht interior' },
   { src: '/assets/img/gallery/yacht/sailing-sunset-1.jpg', alt: 'Sailing at sunset' },
   { src: '/assets/img/gallery/yacht/greek-island-1.jpg', alt: 'Greek island coastline' },
-  { src: '/assets/img/gallery/yacht/aerial-yacht-1.jpg', alt: 'Aerial view of yacht' },
+  { src: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', alt: 'Luxury yacht in Rhodes' },
   { src: '/assets/img/gallery/yacht/crystal-water-1.jpg', alt: 'Crystal clear waters' },
   { src: '/assets/img/gallery/yacht/yacht-deck-1.jpg', alt: 'Yacht deck view' },
   { src: '/assets/img/gallery/yacht/sunset-cruise-1.jpg', alt: 'Sunset cruise' },
   { src: '/assets/img/gallery/yacht/greek-coast-1.jpg', alt: 'Greek coastline' },
   { src: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', alt: 'Yacht under sail' },
-  { src: '/assets/img/gallery/yacht/ocean-view-1.jpg', alt: 'Ocean panoramic view' },
+  { src: '/assets/img/cruises/greco_sunset3.jpg', alt: 'Sunset cruise in Rhodes' },
   { src: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', alt: 'Luxury yacht experience' },
 ];
 ---
@@ -40,7 +39,6 @@ const galleryImages = [
   </section>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>
 
 <style>

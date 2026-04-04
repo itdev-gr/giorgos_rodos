@@ -128,12 +128,18 @@ const pagId = `${swiperId}-pag`;
   .vessels-pagination :global(.swiper-pagination-bullet-active) {
     opacity: 1;
   }
+  :global(.swiper-slide) {
+    height: auto;
+  }
   .vessel-card {
     border-radius: 16px;
     overflow: hidden;
     background: #fff;
     box-shadow: 0 4px 30px rgba(0,0,0,0.06);
     transition: transform 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   .vessel-card:hover {
     transform: translateY(-5px);
@@ -153,6 +159,14 @@ const pagId = `${swiperId}-pag`;
   }
   .vessel-card_body {
     padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .vessel-card_body .th-btn {
+    margin-top: auto;
   }
   .vessel-card_name {
     margin-bottom: 12px;

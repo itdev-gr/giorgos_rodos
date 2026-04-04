@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ScrollToTop from '../../components/interactive/ScrollToTop';
 import destinations from '../../data/data-destination.json';
 
 export function getStaticPaths() {
@@ -396,5 +395,4 @@ const { destination } = Astro.props;
   </section>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>

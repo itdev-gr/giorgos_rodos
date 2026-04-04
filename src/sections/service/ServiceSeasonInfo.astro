@@ -19,90 +19,173 @@ const {
   image,
   seasons,
 } = Astro.props;
+
 ---
 
-<div class="space overflow-hidden">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-xl-6">
-        <div class="title-area mb-25">
-          <span class="sub-title style1" data-ani="slideinup">{subtitle}</span>
-          <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">{title}</h2>
+<section class="szn-section" style={`background-image: url(${image});`}>
+  <div class="szn-overlay"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="szn-header">
+      <span class="szn-label" data-ani="fadein">{subtitle}</span>
+      <h2 class="szn-title" data-ani="slideinup" data-ani-delay="0.1">{title}</h2>
+    </div>
+    <div class="szn-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+      {seasons.map((season, i) => (
+        <div class={`szn-card ${season.recommended ? 'szn-card--rec' : ''}`} style={`padding: 36px 28px; background: ${season.recommended ? 'rgba(28,168,203,0.2)' : 'rgba(255,255,255,0.08)'}; border: 1px solid ${season.recommended ? 'rgba(28,168,203,0.4)' : 'rgba(255,255,255,0.12)'}; border-radius: 16px; text-align: center; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);`} data-ani="slideinup" data-ani-delay={`${0.15 + i * 0.1}`}>
+          {season.recommended && <div class="szn-badge">Best Time</div>}
+          <h4 class="szn-name">{season.name}</h4>
+          <span class="szn-months">{season.months}</span>
+          <p class="szn-desc">{season.description}</p>
         </div>
-        <div class="season-cards">
-          {seasons.map((season, i) => (
-            <div class="season-card" data-ani="slideinleft" data-ani-delay={`${0.1 + i * 0.1}`}>
-              <div class="season-card_header">
-                <h5 class="season-card_name">{season.name}</h5>
-                {season.recommended && (
-                  <span class="season-card_badge">Recommended</span>
-                )}
-              </div>
-              <p class="season-card_months">{season.months}</p>
-              <p class="season-card_desc">{season.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="col-xl-6">
-        <div class="season-img" data-ani="slideinright">
-          <img src={image} alt={title} class="w-100" style="border-radius: 16px; object-fit: cover; max-height: 600px;" loading="lazy" />
-        </div>
-      </div>
+      ))}
     </div>
   </div>
-</div>
+</section>
 
 <style>
-  .season-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 30px;
+  .szn-section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
   }
-  .season-card {
-    padding: 24px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-    border-left: 4px solid var(--theme-color, #1CA8CB);
+
+  .szn-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(17, 61, 72, 0.92) 0%,
+      rgba(17, 61, 72, 0.85) 100%
+    );
+    z-index: 1;
   }
-  .season-card_header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 6px;
+
+  .szn-header {
+    text-align: center;
+    margin-bottom: 56px;
   }
-  .season-card_name {
+
+  .szn-label {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+  }
+
+  .szn-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: #fff;
     margin-bottom: 0;
   }
-  .season-card_badge {
-    display: inline-block;
-    padding: 3px 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
+
+  .szn-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .szn-card {
+    position: relative;
+    padding: 36px 28px;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .szn-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.12);
+  }
+
+  .szn-card--rec {
+    background: rgba(28, 168, 203, 0.15);
+    border-color: rgba(28, 168, 203, 0.35);
+  }
+
+  .szn-card--rec:hover {
+    background: rgba(28, 168, 203, 0.22);
+  }
+
+  .szn-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     color: #fff;
     background: var(--theme-color, #1CA8CB);
     border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    white-space: nowrap;
   }
-  .season-card_months {
-    font-size: 0.9rem;
-    color: var(--theme-color, #1CA8CB);
-    font-weight: 600;
+
+  .szn-icon {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .szn-name {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
     margin-bottom: 6px;
   }
-  .season-card_desc {
+
+  .szn-months {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--theme-color, #1CA8CB);
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .szn-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.7);
     margin-bottom: 0;
-    font-size: 0.93rem;
   }
-  .season-img {
-    margin-top: 30px;
+
+  @media (max-width: 991px) {
+    .szn-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
-  @media (min-width: 1200px) {
-    .season-img {
-      margin-top: 0;
+
+  @media (max-width: 575px) {
+    .szn-section {
+      padding: 60px 0;
+    }
+
+    .szn-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .szn-card {
+      padding: 24px 18px;
     }
   }
 </style>

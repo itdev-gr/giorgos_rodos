@@ -6,12 +6,10 @@ import IntroStatement from '../sections/home-one/Section3-IntroStatement.astro';
 import CharterDestinations from '../sections/home-one/Section3-CharterDestinations.astro';
 import BrandStory from '../sections/home-one/Section5-BrandStory.astro';
 import ServicesGrid from '../sections/home-one/Section6-ServicesGrid.astro';
-import FleetShowcase from '../sections/home-one/Section7-FleetShowcase.astro';
 import ServiceBucketList from '../sections/service/ServiceBucketList.astro';
 import ServiceMiseChecklist from '../sections/service/ServiceMiseChecklist.astro';
 import CTA from '../sections/home-one/Section-CTA.astro';
 import Footer from '../sections/shared/FooterFour.astro';
-import ScrollToTop from '../components/interactive/ScrollToTop';
 ---
 
 <BaseLayout title="Rhodos Yachts — Boat Experiences in Rhodes, Greece">
@@ -21,7 +19,6 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
   <CharterDestinations />
   <BrandStory />
   <ServicesGrid />
-  <FleetShowcase />
   <ServiceBucketList
     title="Things You Can Do with Us"
     subtitle="Ideas to Inspire You"
@@ -46,7 +43,6 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
   />
   <CTA />
   <Footer />
-  <ScrollToTop client:load />
 
   <!-- Homepage-only: enable transparent header over hero -->
   <script>

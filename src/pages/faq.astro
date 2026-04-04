@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
-import ScrollToTop from '../components/interactive/ScrollToTop';
 
 const faqs = [
   { question: 'Do I need a boat licence to rent a boat in Rhodes?', answer: 'Not necessarily. We offer license-free boats that anyone can drive — no experience required. You get a full safety briefing before departure, and GPS tracking means our team can assist you at any time. If you want a larger vessel or prefer to relax while someone else drives, we also offer boats with a professional skipper included.' },
@@ -129,5 +128,4 @@ const faqs = [
   </div>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>

@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ScrollToTop from '../../components/interactive/ScrollToTop';
 import services from '../../data/data-service.json';
 
 const featured = services.filter((s: any) => ['rodos-charter', 'rodos-boat-cruises', 'private-boat-tours'].includes(s.slug));
@@ -24,7 +23,6 @@ const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises'
     <div class="services-hero__content">
       <span class="services-hero__accent" data-ani="fadein">Our Services</span>
       <h1 class="services-hero__title" data-ani="slideinup" data-ani-delay="0.1">Every Way to Enjoy the Sea in Rhodes</h1>
-      <p class="services-hero__subtitle" data-ani="slideinup" data-ani-delay="0.2">From sailing yachts to license-free boats, day cruises to private speedboat tours — whatever your idea of a perfect day on the water looks like, we can make it happen</p>
     </div>
   </section>
 
@@ -85,7 +83,6 @@ const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises'
   </section>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>
 
 <style>

@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ScrollToTop from '../../components/interactive/ScrollToTop';
 
 const images = [
   "/assets/img/tour/tour_inner_1.jpg",
@@ -392,7 +391,6 @@ const tabContent: Record<string, string[]> = {
   </section>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>
 
 <script>

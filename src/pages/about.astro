@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
-import ScrollToTop from '../components/interactive/ScrollToTop';
 ---
 
 <BaseLayout title="About - Rhodos Yachts">
@@ -147,12 +146,12 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
             desc: 'Sail from Rhodes to Symi, Halki, or Tilos. Each island has its own character, and we know them all by heart.',
           },
           {
-            img: 'aerial-yacht-1.jpg',
+            img: 'yacht-sailing-1.jpg',
             title: 'Private Charters',
             desc: 'Your own yacht, your own skipper, your own schedule. The most personal way to experience the Dodecanese.',
           },
           {
-            img: 'ocean-view-1.jpg',
+            img: 'yacht-luxury-1.jpg',
             title: 'Sea Adventures',
             desc: 'Snorkel over hidden reefs, swim in bays with no road access, or simply float in water so clear it does not look real.',
           },
@@ -204,7 +203,6 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
   </section>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>
 
 <script>
@@ -247,7 +245,7 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
   .about-hero__breadcrumb {
     display: inline-block;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 18px;
     letter-spacing: 3px;
     margin-bottom: 20px;
     opacity: 0.85;
@@ -268,6 +266,7 @@ import ScrollToTop from '../components/interactive/ScrollToTop';
     max-width: 550px;
     opacity: 0.9;
     margin-bottom: 0;
+    color: #fff;
   }
 
   @media (max-width: 991px) {

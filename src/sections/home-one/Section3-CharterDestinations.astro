@@ -1,27 +1,35 @@
 ---
 const destinations = [
   {
-    title: 'Full-Day & Multi-Day Charters',
+    title: 'Lindos Bay',
     description:
-      'Set your own pace aboard a sailing yacht and explore the islands, anchorages, and coastlines that make the Dodecanese unforgettable.',
-    image: '/assets/img/charter/mediterranean.jpg',
-    href: '/service/rodos-charter',
-    size: 'full',
+      'Anchor beneath the ancient Acropolis and swim in turquoise waters surrounded by dramatic cliffs.',
+    image: '/assets/img/destinations/lindos-bay.jpg',
+    href: '/service/rodos-boat-tours',
+    size: 'half',
   },
   {
-    title: 'Coastline Cruises & Day Trips',
+    title: 'Symi Island',
     description:
-      'Swim in crystal-clear bays, snorkel over hidden reefs, and enjoy all-inclusive dining aboard spacious catamarans and cruisers.',
-    image: '/assets/img/charter/greece.jpg',
+      'Cruise into the iconic pastel-painted harbour and discover the most photogenic island in the Dodecanese.',
+    image: '/assets/img/destinations/symi-island.jpg',
+    href: '/service/rodos-charter',
+    size: 'half',
+  },
+  {
+    title: 'Tsambika Beach',
+    description:
+      'Drop anchor at one of the finest sandy beaches in the Mediterranean with crystal-clear shallows.',
+    image: '/assets/img/destinations/tsambika-beach.jpg',
     href: '/service/rodos-boat-cruises',
     size: 'half',
   },
   {
-    title: 'Self-Drive Boat Adventures',
+    title: 'Anthony Quinn Bay',
     description:
-      'Take the helm yourself — no licence required. Explore the dramatic southeast coast of Rhodes at your own rhythm.',
-    image: '/assets/img/charter/balearic.jpg',
-    href: '/service/rodos-rent-boats-license-free',
+      'A sheltered emerald cove surrounded by pine-covered rocks — perfect for swimming and snorkelling.',
+    image: '/assets/img/destinations/anthony-quinn-bay.jpg',
+    href: '/service/rodos-rent-boats-with-skipper',
     size: 'half',
   },
 ];
@@ -71,11 +79,6 @@ const destinations = [
     display: block;
     text-decoration: none;
     color: #fff;
-  }
-
-  .charter-card--full {
-    grid-column: 1 / -1;
-    height: 500px;
   }
 
   .charter-card--half {
@@ -157,7 +160,6 @@ const destinations = [
       grid-template-columns: 1fr;
     }
 
-    .charter-card--full,
     .charter-card--half {
       height: 400px;
     }

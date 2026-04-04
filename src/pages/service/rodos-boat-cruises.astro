@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ScrollToTop from '../../components/interactive/ScrollToTop';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceOverview from '../../sections/service/ServiceOverview.astro';
 import ServiceVesselsShowcase from '../../sections/service/ServiceVesselsShowcase.astro';
@@ -11,7 +10,7 @@ import ServiceBucketList from '../../sections/service/ServiceBucketList.astro';
 import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.astro';
 ---
 
-<BaseLayout title="Rhodos Boat Cruises — El Greco Cruises - Rhodos Yachts">
+<BaseLayout title="Rhodos Boat Cruises - Rhodos Yachts">
   <Header />
 
   <!-- 1. Hero -->
@@ -28,7 +27,7 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
   <ServiceOverview
     title="Your Perfect Day at Sea"
     subtitle="Overview"
-    description="El Greco Cruises offers three signature all-inclusive experiences along the stunning Rhodes coastline — from sun-drenched bay-hopping adventures to magical sunset voyages. Every cruise includes food, drinks, music, and multiple swimming stops in crystal-clear waters."
+    description="Three signature all-inclusive experiences along the stunning Rhodes coastline — from sun-drenched bay-hopping adventures to magical sunset voyages. Every cruise includes food, drinks, music, and multiple swimming stops in crystal-clear waters."
     features={[
       { icon: '/assets/img/icon/about_1_1.svg', title: 'All-Inclusive Experience', text: 'Food, drinks, music, and snorkeling gear — everything is included in the price. No hidden extras.' },
       { icon: '/assets/img/icon/about_1_2.svg', title: 'Stunning Swim Stops', text: 'Crystal-clear bays and secret coves along the Rhodes coastline, accessible only by boat.' },
@@ -48,7 +47,7 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
       <div class="row align-items-center gy-40">
         <div class="col-lg-6" data-ani="slideinleft">
           <div class="about-split__img">
-            <img class="global-img" src="/assets/img/cruises/greco_sunset3.jpg" alt="El Greco cruise along the Rhodes coastline" />
+            <img class="global-img" src="/assets/img/cruises/greco_sunset3.jpg" alt="cruise along the Rhodes coastline" />
           </div>
         </div>
         <div class="col-lg-6" data-ani="slideinright">
@@ -82,7 +81,7 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
       <div class="row align-items-center flex-lg-row-reverse gy-40">
         <div class="col-lg-6" data-ani="slideinright">
           <div class="about-split__img">
-            <img class="global-img" src="/assets/img/cruises/onboard1.jpg" alt="Onboard dining and drinks on El Greco cruise" />
+            <img class="global-img" src="/assets/img/cruises/onboard1.jpg" alt="Onboard dining and drinks on cruise" />
           </div>
         </div>
         <div class="col-lg-6" data-ani="slideinleft">
@@ -94,7 +93,7 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
             <p class="about-split__subtitle"><em>Everything you need for a perfect day at sea</em></p>
             <p>
               When we say all-inclusive, we mean it. Fresh Mediterranean food, cold drinks, local wine,
-              and music are all part of every El Greco cruise. There are no surprise extras or hidden
+              and music are all part of every cruise. There are no surprise extras or hidden
               charges — just step aboard and enjoy.
             </p>
             <p>
@@ -116,7 +115,7 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
     subtitle="Three Signature Experiences"
     vessels={[
       {
-        name: 'Fun In The Sun with El Greco!',
+        name: 'Fun In The Sun Cruise',
         image: '/assets/img/cruises/greco_fun1.jpg',
         specs: ['Full Day Cruise', 'Swimming & Snorkeling', 'All-Inclusive Food & Drinks', 'Music & Entertainment', 'Up to 50 Guests'],
         price: 'From \u20AC55/person',
@@ -139,9 +138,9 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
   <!-- 6. Why Cruise with El Greco -->
   <ServiceWhySection
     layout="right"
-    title="Why Cruise with El Greco"
-    subtitle="The El Greco Difference"
-    description="El Greco Cruises has been the name locals recommend for over fifteen years. With all-inclusive pricing, expert local knowledge, and a crew that treats every guest like family, your day on the water will be the highlight of your Rhodes holiday."
+    title="Why Cruise with Us"
+    subtitle="The Rhodos Yachts Difference"
+    description="Our cruises have been the ones locals recommend for over fifteen years. With all-inclusive pricing, expert local knowledge, and a crew that treats every guest like family, your day on the water will be the highlight of your Rhodes holiday."
     image="/assets/img/cruises/greco_home3.jpg"
     features={[
       { icon: '/assets/img/icon/about_1_1.svg', title: 'All-Inclusive Pricing', text: 'One price covers everything — food, drinks, music, and snorkeling gear. No hidden costs.' },
@@ -214,9 +213,7 @@ import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.as
     </div>
   </div>
 
-  <!-- 11. Footer + ScrollToTop -->
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>
 
 <style>

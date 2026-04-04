@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ScrollToTop from '../../components/interactive/ScrollToTop';
 import Sidebar from '../../sections/shared/Sidebar.astro';
 import posts from '../../data/data-post.json';
 
@@ -190,5 +189,4 @@ const { item } = Astro.props;
   </section>
 
   <FooterFour />
-  <ScrollToTop client:load />
 </BaseLayout>

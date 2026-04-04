@@ -11,15 +11,6 @@
         <div class="hero-content">
           <span class="hero-accent">Boat Experiences in Rhodes</span>
           <h1 class="hero-heading">Your Day on the Water Starts Here</h1>
-          <p class="hero-subtitle">From license-free boats to private yacht charters — we are local people who know this sea by heart</p>
-        </div>
-        <div class="scroll-indicator">
-          <span class="scroll-text">Scroll</span>
-          <div class="scroll-arrow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 5v14M5 12l7 7 7-7" />
-            </svg>
-          </div>
         </div>
       </div>
     </div>
@@ -71,8 +62,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-end;
-    padding-bottom: 15vh;
+    justify-content: center;
     position: relative;
     z-index: 2;
   }
@@ -88,7 +78,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.25rem;
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -178,8 +168,13 @@
 
   @media (max-width: 767px) {
     .hero-fullscreen .hero-style1 {
-      justify-content: flex-start;
-      padding-top: 30vh;
+      justify-content: flex-end;
+      padding-bottom: 5vh;
+      align-items: center;
+    }
+
+    .hero-content {
+      text-align: center;
     }
 
     .hero-accent {
