@@ -3,291 +3,220 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
-import ServiceOverview from '../../sections/service/ServiceOverview.astro';
-import ServiceVesselsShowcase from '../../sections/service/ServiceVesselsShowcase.astro';
-import ServiceWhySection from '../../sections/service/ServiceWhySection.astro';
-import ServiceBucketList from '../../sections/service/ServiceBucketList.astro';
-import ServiceMiseChecklist from '../../sections/service/ServiceMiseChecklist.astro';
+
+const cruises = [
+  {
+    title: 'East Coast Day Cruise',
+    description: 'A full day cruise along the east coast of Rhodes with swimming stops at famous bays, lunch and drinks on board.',
+    image: '/assets/img/cruises/greco_fun1.jpg',
+    duration: 'Full Day',
+    guests: '40–60 Guests',
+    departure: 'Mandraki Harbour',
+    price: '€45/person',
+  },
+  {
+    title: 'Anthony Quinn Bay Cruise',
+    description: 'A half day cruise to one of the most famous bays in the Mediterranean with swimming and snorkeling stops.',
+    image: '/assets/img/destinations/anthony-quinn-bay.jpg',
+    duration: 'Half Day',
+    guests: '30–50 Guests',
+    departure: 'Faliraki',
+    price: '€35/person',
+  },
+  {
+    title: 'Symi Island Day Cruise',
+    description: 'A full day cruise to the colourful island of Symi with time to explore the harbour, swim and enjoy the village.',
+    image: '/assets/img/destinations/symi-island.jpg',
+    duration: 'Full Day',
+    guests: '50–80 Guests',
+    departure: 'Mandraki Harbour',
+    price: '€55/person',
+  },
+  {
+    title: 'Lindos Boat Cruise',
+    description: 'Cruise along the coastline to Lindos with swimming stops, views of the Acropolis from the sea and time in the village.',
+    image: '/assets/img/destinations/lindos-bay.jpg',
+    duration: 'Full Day',
+    guests: '40–60 Guests',
+    departure: 'Mandraki Harbour',
+    price: '€50/person',
+  },
+  {
+    title: 'Sunset Cruise Rhodes',
+    description: 'An evening cruise along the coastline as the sun goes down — drinks, music and golden light over the Aegean.',
+    image: '/assets/img/cruises/greco_sunset3.jpg',
+    duration: 'Evening',
+    guests: '30–40 Guests',
+    departure: 'Mandraki Harbour',
+    price: '€45/person',
+  },
+  {
+    title: 'Kallithea Springs Cruise',
+    description: 'A half day cruise to the famous Kallithea Springs with swimming in crystal-clear waters and time to explore.',
+    image: '/assets/img/cruises/greco_home1.jpg',
+    duration: 'Half Day',
+    guests: '30–50 Guests',
+    departure: 'Faliraki',
+    price: '€30/person',
+  },
+  {
+    title: 'Three Bays Cruise',
+    description: 'Visit three beautiful bays along the east coast with swimming, snorkeling and a relaxed day on the water.',
+    image: '/assets/img/cruises/bay1.jpg',
+    duration: 'Half Day',
+    guests: '30–50 Guests',
+    departure: 'Kolymbia',
+    price: '€35/person',
+  },
+  {
+    title: 'Rhodes to Lindos Cruise',
+    description: 'A scenic full day cruise from Rhodes Town to Lindos following the dramatic east coast with multiple stops.',
+    image: '/assets/img/gallery/yacht/greek-coast-1.jpg',
+    duration: 'Full Day',
+    guests: '40–60 Guests',
+    departure: 'Mandraki Harbour',
+    price: '€50/person',
+  },
+  {
+    title: 'Faliraki Coast Cruise',
+    description: 'A half day cruise from Faliraki exploring nearby bays, hidden caves and swimming spots along the coast.',
+    image: '/assets/img/destinations/tsambika-beach.jpg',
+    duration: 'Half Day',
+    guests: '30–50 Guests',
+    departure: 'Faliraki',
+    price: '€35/person',
+  },
+];
 ---
 
-<BaseLayout title="Rhodes Boat Cruises - Rhodes Boat Tours">
+<BaseLayout title="Rhodes Boat Cruises — Day Cruises in Rhodes | Rhodes Boat Tours" description="Organized boat cruises in Rhodes. East coast cruises, Symi day cruises, Lindos cruises and sunset cruises from Mandraki, Faliraki and Kolymbia. Handpicked by local experts.">
   <Header />
 
   <!-- 1. Hero -->
   <ServiceHeroFullwidth
-    title="Cruise the Rhodes Coastline"
-    subtitle="All-inclusive day and sunset cruises. Swimming, dining, and unforgettable Aegean views."
+    title="Rhodes Boat Cruises"
+    subtitle="Organized Day Cruises in Rhodes"
     backgroundImage="/assets/img/cruises/greco_home1.jpg"
     heroVideo="/assets/img/hero/services/boat-cruises.mp4"
-    cta1Text="Book a Cruise"
-    cta2Text="View Our Cruises"
   />
 
-  <!-- 2. Overview -->
-  <ServiceOverview
-    title="Your Perfect Day at Sea"
-    subtitle="Overview"
-    description="Three signature all-inclusive experiences along the stunning Rhodes coastline — from sun-drenched bay-hopping adventures to magical sunset voyages. Every cruise includes food, drinks, music, and multiple swimming stops in crystal-clear waters."
-    features={[
-      { icon: '/assets/img/icon/about_1_1.svg', title: 'All-Inclusive Experience', text: 'Food, drinks, music, and snorkeling gear — everything is included in the price. No hidden extras.' },
-      { icon: '/assets/img/icon/about_1_2.svg', title: 'Stunning Swim Stops', text: 'Crystal-clear bays and secret coves along the Rhodes coastline, accessible only by boat.' },
-      { icon: '/assets/img/icon/about_1_3.svg', title: 'Professional Crew', text: 'Experienced, multilingual crew dedicated to your safety, comfort, and enjoyment.' },
-    ]}
-    stats={[
-      { value: 3, suffix: '', label: 'Cruise Experiences' },
-      { value: 7, suffix: '', label: 'Days a Week' },
-      { value: 15, suffix: '+', label: 'Years Experience' },
-      { value: 5, suffix: '★', label: 'Guest Rating' },
-    ]}
-  />
-
-  <!-- 3. Born on the Water — Image Left, Text Right -->
-  <section class="about-split space">
+  <!-- 2. Intro -->
+  <section style="padding: 60px 0 40px;">
     <div class="container">
-      <div class="row align-items-center gy-40">
-        <div class="col-lg-6" data-ani="slideinleft">
-          <div class="about-split__img">
-            <img class="global-img" src="/assets/img/cruises/greco_sunset3.jpg" alt="cruise along the Rhodes coastline" />
+      <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein">
+          Boat cruises are one of the best ways to explore the coastline, visit famous bays and spend the day on the sea.
+        </p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="bc-intro-grid" data-ani="slideinup" data-ani-delay="0.1">
+        <div style="text-align: center; padding: 32px 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
+            <i class="fas fa-anchor"></i>
           </div>
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Organized Day Cruises</h3>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Larger boats with fixed routes along the east coast, to Symi Island or Lindos. Swimming stops, lunch and drinks included.</p>
         </div>
-        <div class="col-lg-6" data-ani="slideinright">
-          <div class="about-split__text ps-lg-4">
-            <span class="about-split__accent"></span>
-            <div class="title-area mb-20">
-              <h2 class="sec-title">Born on the Water</h2>
-            </div>
-            <p class="about-split__subtitle"><em>Over fifteen years of cruising the Rhodes coastline</em></p>
-            <p>
-              These cruises were born from a simple love of the sea and the stunning Rhodes coastline.
-              For more than fifteen years, the crew has been sharing the island's hidden bays, dramatic
-              cliffs, and turquoise waters with visitors from around the world — always with warmth,
-              always with a personal touch.
-            </p>
-            <p>
-              Every route is designed with intimate knowledge of the coast — knowing exactly when to
-              round a headland for the best view, which coves offer the calmest water for swimming,
-              and where the sunset paints the sea gold. This isn't a tour; it's a tradition.
-            </p>
-            <a href="/contact" class="th-btn style3 th-icon mt-25">Get in Touch</a>
+        <div style="text-align: center; padding: 32px 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
+            <i class="fas fa-map-signs"></i>
           </div>
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Multiple Departure Points</h3>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Cruises depart from Mandraki Harbour, Faliraki, Kolymbia and Lindos depending on the route and destination.</p>
         </div>
+        <div style="text-align: center; padding: 32px 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We are not a booking platform. We help you understand the differences and choose the right cruise for your holiday.</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
+        <p style="font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
+          We don't sell cruises. We help you choose the right sea experience in Rhodes.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 4. All-Inclusive, All the Time — Text Left, Image Right (reversed) -->
-  <section class="about-split bg-smoke space">
+  <!-- 3. Cruises Grid -->
+  <section style="padding: 80px 0; background: #f8fafb;">
     <div class="container">
-      <div class="row align-items-center flex-lg-row-reverse gy-40">
-        <div class="col-lg-6" data-ani="slideinright">
-          <div class="about-split__img">
-            <img class="global-img" src="/assets/img/cruises/onboard1.jpg" alt="Onboard dining and drinks on cruise" />
-          </div>
-        </div>
-        <div class="col-lg-6" data-ani="slideinleft">
-          <div class="about-split__text pe-lg-4">
-            <span class="about-split__accent"></span>
-            <div class="title-area mb-20">
-              <h2 class="sec-title">All-Inclusive, All the Time</h2>
+      <div class="title-area text-center" style="margin-bottom: 50px;">
+        <h2 class="sec-title" data-ani="slideinup">Explore Our Boat Cruises in Rhodes</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bc-cruises-grid">
+        {cruises.map((cruise, i) => (
+          <a href="/contact" class="bc-cruise-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div style="height: 220px; overflow: hidden; position: relative;">
+              <img src={cruise.image} alt={cruise.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{cruise.departure}</span>
             </div>
-            <p class="about-split__subtitle"><em>Everything you need for a perfect day at sea</em></p>
-            <p>
-              When we say all-inclusive, we mean it. Fresh Mediterranean food, cold drinks, local wine,
-              and music are all part of every cruise. There are no surprise extras or hidden
-              charges — just step aboard and enjoy.
-            </p>
-            <p>
-              The crew takes care of everything: comfortable spots on deck, snorkeling gear at each
-              swimming stop, music and good company. Whether you want to dance, sunbathe on the bow,
-              or simply watch the coastline drift by with a cold drink in hand — you choose. There is
-              no schedule to follow.
-            </p>
-            <a href="/contact" class="th-btn style3 th-icon mt-25">Book Your Cruise</a>
-          </div>
-        </div>
+            <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
+              <h3 style="font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;">{cruise.title}</h3>
+              <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;">{cruise.description}</p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;"></i> {cruise.duration}</span>
+                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;"></i> {cruise.guests}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;">
+                <span style="font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;">{cruise.price}</span>
+                <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;">Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;"></i></span>
+              </div>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- 5. Cruise Showcase -->
-  <ServiceVesselsShowcase
-    title="Our Cruises"
-    subtitle="Three Signature Experiences"
-    vessels={[
-      {
-        name: 'Fun In The Sun Cruise',
-        image: '/assets/img/cruises/greco_fun1.jpg',
-        specs: ['Full Day Cruise', 'Swimming & Snorkeling', 'All-Inclusive Food & Drinks', 'Music & Entertainment', 'Up to 50 Guests'],
-        price: 'From \u20AC55/person',
-      },
-      {
-        name: 'All Inclusive Sunset Cruise',
-        image: '/assets/img/cruises/greco_sunset1.jpg',
-        specs: ['Evening Cruise', 'Sunset Views', 'All-Inclusive Drinks & Canap\u00E9s', 'Live Music', 'Up to 40 Guests'],
-        price: 'From \u20AC65/person',
-      },
-      {
-        name: 'All Inclusive Bay to Bay Cruise',
-        image: '/assets/img/cruises/bay1.jpg',
-        specs: ['Half Day Cruise', '3\u20134 Bay Stops', 'All-Inclusive Food & Drinks', 'Snorkeling Gear Provided', 'Up to 50 Guests'],
-        price: 'From \u20AC45/person',
-      },
-    ]}
-  />
-
-  <!-- 6. Why Cruise with El Greco -->
-  <ServiceWhySection
-    layout="right"
-    title="Why Cruise with Us"
-    subtitle="The Rhodes Boat Tours Difference"
-    description="Our cruises have been the ones locals recommend for over fifteen years. With all-inclusive pricing, expert local knowledge, and a crew that treats every guest like family, your day on the water will be the highlight of your Rhodes holiday."
-    image="/assets/img/cruises/greco_home3.jpg"
-    features={[
-      { icon: '/assets/img/icon/about_1_1.svg', title: 'All-Inclusive Pricing', text: 'One price covers everything — food, drinks, music, and snorkeling gear. No hidden costs.' },
-      { icon: '/assets/img/icon/about_1_2.svg', title: 'Local Expertise', text: '15+ years cruising the Rhodes coast — we know every bay, cove, and sunset spot.' },
-      { icon: '/assets/img/icon/about_1_3.svg', title: 'Premium Comfort', text: 'Spacious vessels with shaded areas, comfortable seating, and onboard facilities.' },
-    ]}
-  />
-
-  <!-- 7. Bucket List -->
-  <ServiceBucketList
-    title="Cruise Experiences You'll Never Forget"
-    subtitle="Bucket List"
-    items={[
-      { title: 'Swim in Anthony Quinn Bay', description: 'Dive into the crystal-clear emerald waters of one of the most famous bays in the Mediterranean, surrounded by dramatic rocky cliffs.' },
-      { title: 'Watch the Sunset from the Open Sea', description: 'See the sky turn amber and gold as the sun dips below the horizon — an unobstructed view only possible from the water.' },
-      { title: 'Snorkel over Hidden Reefs', description: 'Explore vibrant underwater worlds at secret spots along the coastline, with snorkeling gear provided on every cruise.' },
-      { title: 'Feast on Fresh Mediterranean Cuisine Onboard', description: 'Enjoy freshly prepared local dishes and seasonal fruits while anchored in a tranquil bay.' },
-      { title: 'Dance to Live Music on Deck', description: 'Let the rhythm carry you as the crew plays music and the coastline provides the backdrop for an unforgettable party.' },
-      { title: 'Discover Secret Coves Only Reachable by Boat', description: 'Visit hidden beaches and secluded swimming spots that no road can reach — exclusive access from the sea.' },
-    ]}
-  />
-
-  <!-- 8. How It Works -->
-  <ServiceMiseChecklist
-    title="Book Your Cruise in Four Steps"
-    subtitle="How It Works"
-    steps={[
-      { title: 'Choose Your Cruise', description: 'Pick from three signature experiences \u2014 full-day fun, sunset magic, or bay-to-bay adventure.', icon: 'fa-solid fa-ship' },
-      { title: 'Pick Your Date', description: 'Daily departures from May through October. Choose the day that fits your holiday schedule.', icon: 'fa-regular fa-calendar' },
-      { title: 'Book Online or Call', description: 'Reserve your spot instantly online or contact us directly. We confirm within hours.', icon: 'fa-solid fa-phone' },
-      { title: 'Board & Enjoy', description: 'Meet at Mandraki Harbor, step aboard, and let the crew handle everything from there.', icon: 'fa-solid fa-anchor' },
-    ]}
-  />
-
-  <!-- 10. Related Services -->
-  <div class="bg-smoke space overflow-hidden">
+  <!-- 5. Contact -->
+  <section style="padding: 80px 0; background: #113D48;">
     <div class="container">
-      <div class="title-area text-center mb-50">
-        <span class="sub-title style1" data-ani="slideinup">Explore More</span>
-        <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Our Other Services</h2>
-      </div>
-      <div class="row gy-30 justify-content-center">
-        <div class="col-lg-6">
-          <a href="/service/rhodes-boat-trips" class="related-service-card" data-ani="slideinup">
-            <div class="related-service-card_img">
-              <img src="/assets/img/cruises/boat1.jpg" alt="Private Boat Tours" loading="lazy" />
-              <div class="related-service-card_overlay"></div>
-            </div>
-            <div class="related-service-card_content">
-              <h4 class="related-service-card_title">Private Boat Tours</h4>
-              <p class="related-service-card_text">Luxury sailing yacht charters across the Dodecanese islands with tailor-made itineraries.</p>
-              <span class="th-btn style3 th-icon">Explore <i class="fas fa-arrow-right ms-2"></i></span>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-6">
-          <a href="/service/rodos-boat-tours" class="related-service-card" data-ani="slideinup" data-ani-delay="0.15">
-            <div class="related-service-card_img">
-              <img src="/assets/img/cruises/greco_gallery2.jpg" alt="Rhodes Boat Tours" loading="lazy" />
-              <div class="related-service-card_overlay"></div>
-            </div>
-            <div class="related-service-card_content">
-              <h4 class="related-service-card_title">Rhodes Boat Tours</h4>
-              <p class="related-service-card_text">Guided day trips along the stunning Rhodes coastline and nearby islands.</p>
-              <span class="th-btn style3 th-icon">Explore <i class="fas fa-arrow-right ms-2"></i></span>
-            </div>
-          </a>
+      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+        <h2 style="font-family: 'Manrope', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup">Need Help Choosing the Right Boat Cruise?</h2>
+        <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1">
+          If you are not sure which boat cruise to choose, contact us and we will help you decide whether a day cruise, a boat tour or a boat trip is the best option for your holiday in Rhodes.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2">
+          <a href="/contact" class="th-btn style3 th-icon">Send Us a Message</a>
+          <a href="https://wa.me/302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="tel:+302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fas fa-phone"></i> +30 22410 12345</a>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <FooterFour />
 </BaseLayout>
 
+<script>
+  document.getElementById('header-one')?.classList.add('header-transparent');
+</script>
+
 <style>
-  /* ===== About-style Split Sections ===== */
-  .about-split__img {
-    border-radius: 8px;
-    overflow: hidden;
+  .bc-cruise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
   }
 
-  .about-split__img :global(img) {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    width: 100%;
-    display: block;
-  }
-
-  .about-split__accent {
-    display: block;
-    width: 30px;
-    height: 4px;
-    background: var(--theme-color);
-    margin-bottom: 20px;
-    border-radius: 2px;
-  }
-
-  .about-split__subtitle {
-    color: var(--theme-color);
-    font-size: 17px;
-    margin-bottom: 15px;
-  }
-
-  /* ===== Related Services Cards ===== */
-  .related-service-card {
-    display: block;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 350px;
-    text-decoration: none;
-  }
-  .related-service-card_img {
-    position: absolute;
-    inset: 0;
-  }
-  .related-service-card_img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .related-service-card:hover .related-service-card_img img {
+  .bc-cruise-card:hover img {
     transform: scale(1.05);
   }
-  .related-service-card_overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%);
+
+  @media (max-width: 991px) {
+    .bc-intro-grid {
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+    .bc-cruises-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
-  .related-service-card_content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    z-index: 1;
-  }
-  .related-service-card_title {
-    color: #fff;
-    margin-bottom: 8px;
-    font-size: 1.5rem;
-  }
-  .related-service-card_text {
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 15px;
-    font-size: 0.95rem;
+
+  @media (max-width: 575px) {
+    .bc-cruises-grid {
+      grid-template-columns: 1fr !important;
+    }
   }
 </style>
