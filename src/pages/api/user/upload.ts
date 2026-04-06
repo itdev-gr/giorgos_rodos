@@ -1,9 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../../lib/supabase';
+
 
 export const POST: APIRoute = async ({ request, locals }) => {
+  const { createAdminClient } = await import('../../lib/supabase');
   const userId = locals.user?.id;
   if (!userId) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
 

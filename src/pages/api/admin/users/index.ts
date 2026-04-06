@@ -1,9 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../../../lib/supabase';
+
 
 export const POST: APIRoute = async ({ request }) => {
+  const { createAdminClient } = await import('../../../lib/supabase');
   const body = await request.json();
   const { email, password, full_name, company_name, phone, role } = body;
 

@@ -1,9 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../../../lib/supabase';
+
 
 export const GET: APIRoute = async ({ locals }) => {
+  const { createAdminClient } = await import('../../../lib/supabase');
   const userId = locals.user?.id;
   const supabase = createAdminClient();
 
