@@ -33,6 +33,14 @@ export function createServerClient(accessToken?: string) {
   });
 }
 
+// Public client with anon key (respects RLS, used for public page queries)
+export function createPublicClient() {
+  const url = getUrl();
+  const key = getAnonKey();
+  if (!url || !key) return null as any;
+  return createClient(url, key);
+}
+
 // Admin client with service role (bypasses RLS, used for admin operations)
 export function createAdminClient() {
   const url = getUrl();

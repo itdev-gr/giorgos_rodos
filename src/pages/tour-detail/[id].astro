@@ -4,14 +4,14 @@ export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import { createAdminClient } from '../../lib/supabase';
+import { createPublicClient } from '../../lib/supabase';
 
 const { id } = Astro.params;
 let tour: any = null;
 let isPublished = false;
 
 try {
-  const supabase = createAdminClient();
+  const supabase = createPublicClient();
   if (supabase) {
     const { data } = await supabase
       .from('tours')

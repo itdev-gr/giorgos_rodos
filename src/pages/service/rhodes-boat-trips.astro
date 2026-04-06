@@ -5,12 +5,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
-import { createAdminClient } from '../../lib/supabase';
+import { createPublicClient } from '../../lib/supabase';
 
 // Fetch approved tours from Supabase
 let dbCards: any[] = [];
 try {
-  const supabase = createAdminClient();
+  const supabase = createPublicClient();
   if (supabase) {
     const { data } = await supabase
       .from('tours')
