@@ -2,9 +2,9 @@
 export const prerender = false;
 
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import { createAdminClient } from '../../../lib/supabase';
+import { createAdminClient, createPublicClient } from '../../../lib/supabase';
 
-const supabase = createAdminClient();
+const supabase = createAdminClient() || createPublicClient();
 
 // Get users with tour counts
 const { data: users } = await supabase
