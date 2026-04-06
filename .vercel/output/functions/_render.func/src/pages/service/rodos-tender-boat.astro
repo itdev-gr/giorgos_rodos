@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceWhySection from '../../sections/service/ServiceWhySection.astro';
+import ServiceTenderCoverage from '../../sections/service/ServiceTenderCoverage.astro';
+import ServiceSeasonInfo from '../../sections/service/ServiceSeasonInfo.astro';
+import ServiceDiscoveryCTA from '../../sections/service/ServiceDiscoveryCTA.astro';
+import ServiceGalleryCarousel from '../../sections/service/ServiceGalleryCarousel.astro';
+import ServicePlanningCTA from '../../sections/service/ServicePlanningCTA.astro';
+import ServiceOverview from '../../sections/service/ServiceOverview.astro';
+import ServiceRelatedServices from '../../sections/service/ServiceRelatedServices.astro';
+---
+
+<BaseLayout title="Tender Boat Service in Rhodes - Rhodes Boat Tours">
+  <Header />
+
+  <ServiceHeroFullwidth
+    title="Fast & Reliable Tender Service"
+    subtitle="Professional shore-to-ship transfers across Rhodes harbours and bays. Reliable, punctual, and available around the clock during sailing season."
+    backgroundImage="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1920&h=1080&fit=crop"
+    heroVideo="/assets/img/hero/services/tender.mp4"
+    cta1Text="Schedule Transfer"
+    cta2Text="Contact Us"
+  />
+
+  <ServiceWhySection
+    layout="left"
+    title="Professional Shore-to-Ship Transfers"
+    subtitle="Why Choose Our Tenders"
+    description="When your yacht is at anchor and you need reliable transfers — for guests, crew, supplies, or luggage — our tender service is built for exactly that. We operate purpose-built boats with experienced operators who know the harbours and anchorages of Rhodes better than anyone."
+    image="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+    features={[
+      { icon: '/assets/img/icon/about_1_1.svg', title: 'Rapid Response', text: 'On-demand transfers with typical response times under 15 minutes in peak zones.' },
+      { icon: '/assets/img/icon/about_1_2.svg', title: 'Safe & Comfortable', text: 'Well-maintained tenders with professional operators trained for all conditions.' },
+      { icon: '/assets/img/icon/about_1_3.svg', title: 'Scheduled or On-Demand', text: 'Pre-arrange regular transfers or call us anytime for immediate dispatch.' },
+    ]}
+  />
+
+  <ServiceTenderCoverage
+    title="Our Coverage Area"
+    subtitle="Service Zones"
+    mapImage="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=600&fit=crop"
+    zones={[
+      { name: 'Mandraki Harbor', description: 'Central Rhodes Town — the main commercial harbor and superyacht berths.', responseTime: '10 min response' },
+      { name: 'Elli Beach & North Coast', description: 'Covering anchorages along the northern coastline to Ixia Bay.', responseTime: '15 min response' },
+      { name: 'Lindos Bay', description: 'Transfers to vessels anchored in the scenic Lindos anchorage zone.', responseTime: '25 min response' },
+      { name: 'South Coast & Prasonisi', description: 'Extended coverage for vessels exploring the southern shores.', responseTime: '35 min response' },
+    ]}
+  />
+
+  <ServiceSeasonInfo
+    title="Operating Season"
+    subtitle="When We Operate"
+    image="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?w=800&h=600&fit=crop"
+    seasons={[
+      { name: 'Full Service', months: 'May – October', description: '24/7 tender operations with multiple boats on standby. Peak-season guarantee of rapid response.', recommended: true },
+      { name: 'Extended Season', months: 'April & November', description: 'Daytime operations with on-call evening availability. Advance booking recommended.', recommended: false },
+      { name: 'Off Season', months: 'December – March', description: 'By special arrangement only. Weather-dependent operations for visiting vessels.', recommended: false },
+    ]}
+  />
+
+  <ServiceDiscoveryCTA
+    title="Your Transfer, Our Priority"
+    description="Whether it's a VIP guest arrival, a late-night crew change, or a supply run — we make it seamless."
+    backgroundImage="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&h=1080&fit=crop"
+    ctaText="Book a Transfer"
+  />
+
+  <ServiceGalleryCarousel
+    title="Tender Operations"
+    images={[
+      'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?w=600&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop',
+    ]}
+  />
+
+  <ServicePlanningCTA
+    title="Schedule Your Transfers"
+    description="Planning a multi-day stay in Rhodes? Set up a regular transfer schedule with our team. We'll coordinate timing with your itinerary, ensuring guests and crew move seamlessly between shore and vessel."
+    image1="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=800&h=600&fit=crop"
+    image2="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+    cta1Text="Schedule Transfers"
+    cta2Text="Call Us"
+  />
+
+  <ServiceOverview
+    title="Professional Transfers"
+    subtitle="By the Numbers"
+    description="Our tender fleet and experienced operators deliver safe, timely transfers across all of Rhodes' harbors and anchorages."
+    features={[
+      { icon: '/assets/img/icon/about_1_1.svg', title: 'Purpose-Built Fleet', text: 'Modern tenders designed for comfort and safety in all sea conditions.' },
+      { icon: '/assets/img/icon/about_1_2.svg', title: 'Licensed Operators', text: 'All operators hold commercial maritime licenses and safety certifications.' },
+      { icon: '/assets/img/icon/about_1_3.svg', title: 'Full Insurance', text: 'Complete passenger insurance coverage for every transfer.' },
+    ]}
+    stats={[
+      { value: 5000, suffix: '+', label: 'Transfers/Year' },
+      { value: 10, suffix: 'min', label: 'Avg Response' },
+      { value: 4, suffix: '', label: 'Tender Boats' },
+      { value: 0, suffix: '', label: 'Incidents' },
+    ]}
+  />
+
+  <ServiceRelatedServices currentPage="tender" />
+
+  <FooterFour />
+</BaseLayout>

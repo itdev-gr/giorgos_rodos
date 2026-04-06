@@ -1,0 +1,121 @@
+const posts = [
+	{
+		id: 1,
+		image: "blog-s-1-1.jpg",
+		bannerImg: "blog-s-1-1.jpg",
+		title: "Best Boat Trips in Rhodes — A Complete Guide",
+		author: "Rhodes Boat Tours",
+		date: "March 2026",
+		tags: [
+			"Boat Trips",
+			"Rhodes"
+		],
+		excerpt: "From private sailing tours to all-inclusive cruises, discover the best ways to explore the Rhodes coastline and nearby islands by boat."
+	},
+	{
+		id: 2,
+		image: "blog-s-1-2.jpg",
+		bannerImg: "blog-s-1-2.jpg",
+		title: "Boat Trip to Symi from Rhodes — Everything You Need to Know",
+		author: "Rhodes Boat Tours",
+		date: "March 2026",
+		tags: [
+			"Symi",
+			"Day Trips"
+		],
+		excerpt: "How to get to Symi by boat, what to see, where to eat, and why this colourful island is the most popular day trip from Rhodes."
+	},
+	{
+		id: 3,
+		image: "blog-s-1-3.jpg",
+		bannerImg: "blog-s-1-3.jpg",
+		title: "Boat Trip to Lindos — Visiting the Acropolis from the Sea",
+		author: "Rhodes Boat Tours",
+		date: "February 2026",
+		tags: [
+			"Lindos",
+			"Boat Tours"
+		],
+		excerpt: "See Lindos from a completely different perspective. A guide to reaching the ancient Acropolis by boat and swimming in the bay below."
+	},
+	{
+		id: 4,
+		image: "blog-s-1-4.jpg",
+		bannerImg: "blog-s-1-4.jpg",
+		title: "Anthony Quinn Bay — The Best Way to Visit by Boat",
+		author: "Rhodes Boat Tours",
+		date: "February 2026",
+		tags: [
+			"Beaches",
+			"Rhodes"
+		],
+		excerpt: "Anthony Quinn Bay is one of the most famous beaches in Rhodes. Here is why visiting by boat is the best way to experience it."
+	},
+	{
+		id: 5,
+		image: "blog_1_1.jpg",
+		bannerImg: "blog_1_1.jpg",
+		title: "Rent a Boat in Rhodes — A First-Timer's Guide",
+		author: "Rhodes Boat Tours",
+		date: "January 2026",
+		tags: [
+			"Rent a Boat",
+			"Guide"
+		],
+		excerpt: "Everything you need to know about renting a boat in Rhodes without a licence — where to go, what to expect, and how to stay safe."
+	},
+	{
+		id: 6,
+		image: "blog_2_1.jpg",
+		bannerImg: "blog_2_1.jpg",
+		title: "Private Boat Trip in Rhodes — Is It Worth It?",
+		author: "Rhodes Boat Tours",
+		date: "January 2026",
+		tags: [
+			"Private Tours",
+			"Rhodes"
+		],
+		excerpt: "A private boat trip offers something group tours cannot. Here is what to expect, how much it costs, and why visitors keep coming back."
+	},
+	{
+		id: 7,
+		image: "blog_3_1.jpg",
+		bannerImg: "blog_3_1.jpg",
+		title: "Best Beaches in Rhodes You Can Only Reach by Boat",
+		author: "Rhodes Boat Tours",
+		date: "December 2025",
+		tags: [
+			"Beaches",
+			"Hidden Gems"
+		],
+		excerpt: "Some of the finest beaches in Rhodes have no road access. Here are the secret spots only reachable by boat — and how to get there."
+	},
+	{
+		id: 8,
+		image: "blog_4_1.jpg",
+		bannerImg: "blog_4_1.jpg",
+		title: "Sunset Cruise in Rhodes — What to Expect",
+		author: "Rhodes Boat Tours",
+		date: "December 2025",
+		tags: [
+			"Cruises",
+			"Sunset"
+		],
+		excerpt: "A sunset cruise along the Rhodes coastline is one of the most magical experiences on the island. Here is everything you need to know."
+	},
+	{
+		id: 9,
+		image: "blog_5_1.jpg",
+		bannerImg: "blog_5_1.jpg",
+		title: "Things to Do in Rhodes — A Water Lover's Guide",
+		author: "Rhodes Boat Tours",
+		date: "November 2025",
+		tags: [
+			"Rhodes",
+			"Activities"
+		],
+		excerpt: "From boat tours to snorkelling, kayaking to yacht charters — the best water-based activities and experiences in Rhodes."
+	}
+];
+
+export { posts as p };

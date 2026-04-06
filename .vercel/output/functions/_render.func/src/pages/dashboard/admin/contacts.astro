@@ -1,0 +1,53 @@
+---
+export const prerender = false;
+
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import { createAdminClient } from '../../../lib/supabase';
+
+const supabase = createAdminClient();
+const { data: contacts } = await supabase
+  .from('contact_submissions')
+  .select('*')
+  .order('created_at', { ascending: false });
+---
+
+<DashboardLayout title="Contact Submissions">
+  <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+    {contacts && contacts.length > 0 ? (
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map((c: any) => (
+              <tr style={{ opacity: c.is_read ? 0.6 : 1 }}>
+                <td style={{ fontWeight: c.is_read ? 400 : 600 }}>{c.name}</td>
+                <td><a href={`mailto:${c.email}`} style="color: #1CA8CB;">{c.email}</a></td>
+                <td>{c.subject || '—'}</td>
+                <td style="white-space: nowrap;">{new Date(c.created_at).toLocaleDateString()}</td>
+                <td>
+                  <span style={{
+                    padding: '3px 10px', borderRadius: 20, fontSize: '0.72rem', fontWeight: 600,
+                    background: c.is_read ? '#E5E7EB' : '#DBEAFE', color: c.is_read ? '#374151' : '#1E40AF',
+                  }}>{c.is_read ? 'Read' : 'New'}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <div style="padding: 60px; text-align: center; color: #6b7c85;">
+        <i class="fas fa-envelope-open" style="font-size: 2.5rem; margin-bottom: 16px; opacity: 0.2;"></i>
+        <p>No contact submissions yet</p>
+      </div>
+    )}
+  </div>
+</DashboardLayout>

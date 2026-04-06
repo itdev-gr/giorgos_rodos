@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { createServerClient, createAdminClient } from '../../../lib/supabase';
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
@@ -10,8 +11,6 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     if (!email || !password) {
       return new Response(JSON.stringify({ error: 'Email and password are required' }), { status: 400 });
     }
-
-    const { createServerClient, createAdminClient } = await import('../../../lib/supabase');
 
     const supabase = createServerClient();
     if (!supabase) {

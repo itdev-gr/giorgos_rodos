@@ -1,0 +1,137 @@
+import { c as createComponent } from './astro-component_-9CNuOV1.mjs';
+import 'piccolore';
+import { L as renderTemplate, x as maybeRenderHead, a2 as addAttribute } from './sequence_DctpTcVe.mjs';
+import { r as renderComponent } from './entrypoint_CT6FpEDr.mjs';
+import { r as renderScript } from './script_BFPKfW-S.mjs';
+import { $ as $$BaseLayout, a as $$Section1Header, b as $$FooterFour } from './FooterFour_Cjp_m9da.mjs';
+import { $ as $$ServiceHeroFullwidth } from './ServiceHeroFullwidth_CfQc_AeQ.mjs';
+import { createAdminClient } from './supabase_CmOsxOS2.mjs';
+
+const prerender = false;
+const $$RhodesRentABoat = createComponent(async ($$result, $$props, $$slots) => {
+  let dbCards = [];
+  try {
+    const supabase = createAdminClient();
+    if (supabase) {
+      const { data } = await supabase.from("tours").select("*").eq("service_page", "rhodes-rent-a-boat").eq("status", "approved").order("created_at", { ascending: false });
+      dbCards = (data || []).map((t) => ({
+        title: t.title,
+        description: t.description,
+        image: t.images?.[0] || t.image_url || "/assets/img/gallery/yacht/crystal-water-1.jpg",
+        duration: t.duration || "",
+        guests: t.guests || "",
+        type: t.badge_label || "",
+        price: t.price || "",
+        href: `/tour-detail/${t.id}`
+      }));
+    }
+  } catch (e) {
+    console.error("Supabase error:", e);
+  }
+  const demo_boats = [
+    {
+      title: "License Free Boat – 2 Hours",
+      description: "A short adventure on a small motorboat — no license needed. Explore nearby bays and swim at your own pace.",
+      image: "/assets/img/destinations/tsambika-beach.jpg",
+      duration: "2 Hours",
+      guests: "Up to 5 Guests",
+      type: "License Free",
+      price: "€60"
+    },
+    {
+      title: "License Free Boat – 4 Hours",
+      description: "Half day on the water with your own boat. Visit multiple bays, stop for swimming and enjoy the coastline.",
+      image: "/assets/img/destinations/anthony-quinn-bay.jpg",
+      duration: "4 Hours",
+      guests: "Up to 5 Guests",
+      type: "License Free",
+      price: "€100"
+    },
+    {
+      title: "License Free Boat – Full Day",
+      description: "A full day exploring the east coast with your own boat. Maximum freedom, maximum flexibility.",
+      image: "/assets/img/gallery/yacht/crystal-water-1.jpg",
+      duration: "Full Day",
+      guests: "Up to 5 Guests",
+      type: "License Free",
+      price: "€160"
+    },
+    {
+      title: "Small Boat with Skipper – 3 Hours",
+      description: "A short trip with an experienced skipper who knows the best spots. Relax while someone else drives.",
+      image: "/assets/img/skipper/mako-boat-1.jpg",
+      duration: "3 Hours",
+      guests: "Up to 8 Guests",
+      type: "With Skipper",
+      price: "€200"
+    },
+    {
+      title: "Small Boat with Skipper – Half Day",
+      description: "Half day with a local skipper exploring hidden bays, caves and swimming spots along the coast.",
+      image: "/assets/img/skipper/mako-swimming.jpg",
+      duration: "4 Hours",
+      guests: "Up to 8 Guests",
+      type: "With Skipper",
+      price: "€350"
+    },
+    {
+      title: "Small Boat with Skipper – Full Day",
+      description: "A full day with skipper covering more coastline, more stops and a more complete experience on the water.",
+      image: "/assets/img/skipper/mako-anthony-quinn.jpg",
+      duration: "7 Hours",
+      guests: "Up to 8 Guests",
+      type: "With Skipper",
+      price: "€550"
+    },
+    {
+      title: "Faliraki License Free Boat",
+      description: "Rent a small boat from Faliraki and explore the nearby bays and beaches at your own pace.",
+      image: "/assets/img/destinations/lindos-bay.jpg",
+      duration: "2–4 Hours",
+      guests: "Up to 5 Guests",
+      type: "License Free",
+      price: "From €60"
+    },
+    {
+      title: "Kolymbia License Free Boat",
+      description: "Explore the calm waters around Kolymbia with a small motorboat — ideal for families and beginners.",
+      image: "/assets/img/cruises/bay1.jpg",
+      duration: "2–4 Hours",
+      guests: "Up to 5 Guests",
+      type: "License Free",
+      price: "From €60"
+    },
+    {
+      title: "Sunset Boat with Skipper",
+      description: "An evening boat trip with skipper along the coast as the sun goes down. Drinks and relaxation included.",
+      image: "/assets/img/cruises/greco_sunset3.jpg",
+      duration: "3 Hours",
+      guests: "Up to 8 Guests",
+      type: "With Skipper",
+      price: "€250"
+    }
+  ];
+  const boats = [...dbCards, ...demo_boats];
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "Rhodes Rent a Boat — License Free & With Skipper | Rhodes Boat Tours", "description": "Rent a boat in Rhodes. License free boats and small boats with skipper along the east coast. Explore bays, swim and enjoy the sea at your own pace.", "data-astro-cid-uz43c2jf": true }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Section1Header, { "data-astro-cid-uz43c2jf": true })}  ${renderComponent($$result2, "ServiceHeroFullwidth", $$ServiceHeroFullwidth, { "title": "Rhodes Rent a Boat", "subtitle": "License Free Boats and Boats with Skipper", "backgroundImage": "/assets/img/gallery/yacht/crystal-water-1.jpg", "heroVideo": "/assets/img/hero/services/license-free.mp4", "data-astro-cid-uz43c2jf": true })}  ${maybeRenderHead()}<section style="padding: 60px 0 40px;" data-astro-cid-uz43c2jf> <div class="container" data-astro-cid-uz43c2jf> <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;" data-astro-cid-uz43c2jf> <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein" data-astro-cid-uz43c2jf>
+Renting a boat is the most independent way to explore the Rhodes coastline at your own pace.
+</p> </div> <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="rb-intro-grid" data-ani="slideinup" data-ani-delay="0.1" data-astro-cid-uz43c2jf> <div style="text-align: center; padding: 32px 24px;" data-astro-cid-uz43c2jf> <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;" data-astro-cid-uz43c2jf> <i class="fas fa-key" data-astro-cid-uz43c2jf></i> </div> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;" data-astro-cid-uz43c2jf>License Free Boats</h3> <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;" data-astro-cid-uz43c2jf>Small motorboats you can drive yourself — no license needed. Easy to operate, safe and ideal for a few hours on the water.</p> </div> <div style="text-align: center; padding: 32px 24px;" data-astro-cid-uz43c2jf> <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;" data-astro-cid-uz43c2jf> <i class="fas fa-user-shield" data-astro-cid-uz43c2jf></i> </div> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;" data-astro-cid-uz43c2jf>Rent with Skipper</h3> <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;" data-astro-cid-uz43c2jf>Prefer someone else to drive? Rent a small boat with an experienced local skipper who knows the best spots.</p> </div> <div style="text-align: center; padding: 32px 24px;" data-astro-cid-uz43c2jf> <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;" data-astro-cid-uz43c2jf> <i class="fas fa-map-marked-alt" data-astro-cid-uz43c2jf></i> </div> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;" data-astro-cid-uz43c2jf>Local Guidance</h3> <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;" data-astro-cid-uz43c2jf>We help you choose the right boat and the right experience. Not a booking platform — real, personal advice from locals.</p> </div> </div> <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2" data-astro-cid-uz43c2jf> <p style="font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;" data-astro-cid-uz43c2jf>
+We don't rent boats. We help you choose the right sea experience in Rhodes.
+</p> </div> </div> </section>  <section style="padding: 80px 0; background: #f8fafb;" data-astro-cid-uz43c2jf> <div class="container" data-astro-cid-uz43c2jf> <div class="title-area text-center" style="margin-bottom: 50px;" data-astro-cid-uz43c2jf> <h2 class="sec-title" data-ani="slideinup" data-astro-cid-uz43c2jf>Explore Rent a Boat Options in Rhodes</h2> </div> <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="rb-boats-grid" data-astro-cid-uz43c2jf> ${boats.map((boat, i) => renderTemplate`<a${addAttribute(boat.href || "/contact", "href")} class="rb-boat-card" data-ani="slideinup"${addAttribute(`${0.1 + i * 0.06}`, "data-ani-delay")} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;" data-astro-cid-uz43c2jf> <div style="height: 220px; overflow: hidden; position: relative;" data-astro-cid-uz43c2jf> <img${addAttribute(boat.image, "src")}${addAttribute(boat.title, "alt")} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" data-astro-cid-uz43c2jf> <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);" data-astro-cid-uz43c2jf>${boat.type}</span> </div> <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;" data-astro-cid-uz43c2jf> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;" data-astro-cid-uz43c2jf>${boat.title}</h3> <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;" data-astro-cid-uz43c2jf>${boat.description}</p> <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;" data-astro-cid-uz43c2jf> <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;" data-astro-cid-uz43c2jf><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;" data-astro-cid-uz43c2jf></i> ${boat.duration}</span> <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;" data-astro-cid-uz43c2jf><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;" data-astro-cid-uz43c2jf></i> ${boat.guests}</span> </div> <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;" data-astro-cid-uz43c2jf> <span style="font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;" data-astro-cid-uz43c2jf>${boat.price}</span> <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;" data-astro-cid-uz43c2jf>Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;" data-astro-cid-uz43c2jf></i></span> </div> </div> </a>`)} </div> </div> </section>  <section style="padding: 80px 0; background: #113D48;" data-astro-cid-uz43c2jf> <div class="container" data-astro-cid-uz43c2jf> <div style="max-width: 700px; margin: 0 auto; text-align: center;" data-astro-cid-uz43c2jf> <h2 style="font-family: 'Manrope', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup" data-astro-cid-uz43c2jf>Need Help Choosing Between Boat Tour, Boat Trip or Rent a Boat?</h2> <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1" data-astro-cid-uz43c2jf>
+If you are not sure which option is the best for you, contact us and we will help you choose the right sea experience depending on your group, how many hours you want and what type of experience you prefer.
+</p> <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2" data-astro-cid-uz43c2jf> <a href="/contact" class="th-btn style3 th-icon" data-astro-cid-uz43c2jf>Send Us a Message</a> <a href="https://wa.me/302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;" data-astro-cid-uz43c2jf><i class="fab fa-whatsapp" data-astro-cid-uz43c2jf></i> WhatsApp</a> <a href="tel:+302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;" data-astro-cid-uz43c2jf><i class="fas fa-phone" data-astro-cid-uz43c2jf></i> +30 22410 12345</a> </div> </div> </div> </section> ${renderComponent($$result2, "FooterFour", $$FooterFour, { "data-astro-cid-uz43c2jf": true })} ` })} ${renderScript($$result, "/Users/marios/Desktop/Cursor/giorgos/tourm-astro/src/pages/service/rhodes-rent-a-boat.astro?astro&type=script&index=0&lang.ts")}`;
+}, "/Users/marios/Desktop/Cursor/giorgos/tourm-astro/src/pages/service/rhodes-rent-a-boat.astro", void 0);
+
+const $$file = "/Users/marios/Desktop/Cursor/giorgos/tourm-astro/src/pages/service/rhodes-rent-a-boat.astro";
+const $$url = "/service/rhodes-rent-a-boat";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$RhodesRentABoat,
+  file: $$file,
+  prerender,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

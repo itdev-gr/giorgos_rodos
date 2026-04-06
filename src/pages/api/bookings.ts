@@ -1,10 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { createAdminClient } from '../../lib/supabase';
 
 
 export const POST: APIRoute = async ({ request }) => {
-  const { createAdminClient } = await import('../lib/supabase');
   const body = await request.json();
   const { tour_id, customer_name, customer_email, customer_phone, booking_date, guests } = body;
 

@@ -1,0 +1,33 @@
+---
+export const prerender = false;
+
+import LoginForm from '../components/auth/LoginForm';
+
+// If already logged in, redirect to dashboard
+const accessToken = Astro.cookies.get('sb-access-token')?.value;
+if (accessToken) {
+  return Astro.redirect('/dashboard');
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — Rhodes Boat Tours Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: 'Inter', sans-serif; background: #f8fafb; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+      input:focus { border-color: #1CA8CB !important; box-shadow: 0 0 0 3px rgba(28,168,203,0.1); }
+      button:hover:not(:disabled) { background: #178da8 !important; }
+    </style>
+  </head>
+  <body>
+    <LoginForm client:load />
+  </body>
+</html>

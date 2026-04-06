@@ -1,0 +1,137 @@
+import { c as createComponent } from './astro-component_-9CNuOV1.mjs';
+import 'piccolore';
+import { L as renderTemplate, x as maybeRenderHead, a2 as addAttribute } from './sequence_DctpTcVe.mjs';
+import { r as renderComponent } from './entrypoint_CT6FpEDr.mjs';
+import { r as renderScript } from './script_BFPKfW-S.mjs';
+import { $ as $$BaseLayout, a as $$Section1Header, b as $$FooterFour } from './FooterFour_Cjp_m9da.mjs';
+import { $ as $$ServiceHeroFullwidth } from './ServiceHeroFullwidth_CfQc_AeQ.mjs';
+import { createAdminClient } from './supabase_CmOsxOS2.mjs';
+
+const prerender = false;
+const $$RodosBoatCruises = createComponent(async ($$result, $$props, $$slots) => {
+  let dbCards = [];
+  try {
+    const supabase = createAdminClient();
+    if (supabase) {
+      const { data } = await supabase.from("tours").select("*").eq("service_page", "rodos-boat-cruises").eq("status", "approved").order("created_at", { ascending: false });
+      dbCards = (data || []).map((t) => ({
+        title: t.title,
+        description: t.description,
+        image: t.images?.[0] || t.image_url || "/assets/img/gallery/yacht/crystal-water-1.jpg",
+        duration: t.duration || "",
+        guests: t.guests || "",
+        departure: t.badge_label || "",
+        price: t.price || "",
+        href: `/tour-detail/${t.id}`
+      }));
+    }
+  } catch (e) {
+    console.error("Supabase error:", e);
+  }
+  const demo_cruises = [
+    {
+      title: "East Coast Day Cruise",
+      description: "A full day cruise along the east coast of Rhodes with swimming stops at famous bays, lunch and drinks on board.",
+      image: "/assets/img/cruises/greco_fun1.jpg",
+      duration: "Full Day",
+      guests: "40–60 Guests",
+      departure: "Mandraki Harbour",
+      price: "€45/person"
+    },
+    {
+      title: "Anthony Quinn Bay Cruise",
+      description: "A half day cruise to one of the most famous bays in the Mediterranean with swimming and snorkeling stops.",
+      image: "/assets/img/destinations/anthony-quinn-bay.jpg",
+      duration: "Half Day",
+      guests: "30–50 Guests",
+      departure: "Faliraki",
+      price: "€35/person"
+    },
+    {
+      title: "Symi Island Day Cruise",
+      description: "A full day cruise to the colourful island of Symi with time to explore the harbour, swim and enjoy the village.",
+      image: "/assets/img/destinations/symi-island.jpg",
+      duration: "Full Day",
+      guests: "50–80 Guests",
+      departure: "Mandraki Harbour",
+      price: "€55/person"
+    },
+    {
+      title: "Lindos Boat Cruise",
+      description: "Cruise along the coastline to Lindos with swimming stops, views of the Acropolis from the sea and time in the village.",
+      image: "/assets/img/destinations/lindos-bay.jpg",
+      duration: "Full Day",
+      guests: "40–60 Guests",
+      departure: "Mandraki Harbour",
+      price: "€50/person"
+    },
+    {
+      title: "Sunset Cruise Rhodes",
+      description: "An evening cruise along the coastline as the sun goes down — drinks, music and golden light over the Aegean.",
+      image: "/assets/img/cruises/greco_sunset3.jpg",
+      duration: "Evening",
+      guests: "30–40 Guests",
+      departure: "Mandraki Harbour",
+      price: "€45/person"
+    },
+    {
+      title: "Kallithea Springs Cruise",
+      description: "A half day cruise to the famous Kallithea Springs with swimming in crystal-clear waters and time to explore.",
+      image: "/assets/img/cruises/greco_home1.jpg",
+      duration: "Half Day",
+      guests: "30–50 Guests",
+      departure: "Faliraki",
+      price: "€30/person"
+    },
+    {
+      title: "Three Bays Cruise",
+      description: "Visit three beautiful bays along the east coast with swimming, snorkeling and a relaxed day on the water.",
+      image: "/assets/img/cruises/bay1.jpg",
+      duration: "Half Day",
+      guests: "30–50 Guests",
+      departure: "Kolymbia",
+      price: "€35/person"
+    },
+    {
+      title: "Rhodes to Lindos Cruise",
+      description: "A scenic full day cruise from Rhodes Town to Lindos following the dramatic east coast with multiple stops.",
+      image: "/assets/img/gallery/yacht/greek-coast-1.jpg",
+      duration: "Full Day",
+      guests: "40–60 Guests",
+      departure: "Mandraki Harbour",
+      price: "€50/person"
+    },
+    {
+      title: "Faliraki Coast Cruise",
+      description: "A half day cruise from Faliraki exploring nearby bays, hidden caves and swimming spots along the coast.",
+      image: "/assets/img/destinations/tsambika-beach.jpg",
+      duration: "Half Day",
+      guests: "30–50 Guests",
+      departure: "Faliraki",
+      price: "€35/person"
+    }
+  ];
+  const cruises = [...dbCards, ...demo_cruises];
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "Rhodes Boat Cruises — Day Cruises in Rhodes | Rhodes Boat Tours", "description": "Organized boat cruises in Rhodes. East coast cruises, Symi day cruises, Lindos cruises and sunset cruises from Mandraki, Faliraki and Kolymbia. Handpicked by local experts.", "data-astro-cid-iax5blk6": true }, { "default": async ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Section1Header, { "data-astro-cid-iax5blk6": true })}  ${renderComponent($$result2, "ServiceHeroFullwidth", $$ServiceHeroFullwidth, { "title": "Rhodes Boat Cruises", "subtitle": "Organized Day Cruises in Rhodes", "backgroundImage": "/assets/img/cruises/greco_home1.jpg", "heroVideo": "/assets/img/hero/services/boat-cruises.mp4", "data-astro-cid-iax5blk6": true })}  ${maybeRenderHead()}<section style="padding: 60px 0 40px;" data-astro-cid-iax5blk6> <div class="container" data-astro-cid-iax5blk6> <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;" data-astro-cid-iax5blk6> <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein" data-astro-cid-iax5blk6>
+Boat cruises are one of the best ways to explore the coastline, visit famous bays and spend the day on the sea.
+</p> </div> <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="bc-intro-grid" data-ani="slideinup" data-ani-delay="0.1" data-astro-cid-iax5blk6> <div style="text-align: center; padding: 32px 24px;" data-astro-cid-iax5blk6> <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;" data-astro-cid-iax5blk6> <i class="fas fa-anchor" data-astro-cid-iax5blk6></i> </div> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;" data-astro-cid-iax5blk6>Organized Day Cruises</h3> <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;" data-astro-cid-iax5blk6>Larger boats with fixed routes along the east coast, to Symi Island or Lindos. Swimming stops, lunch and drinks included.</p> </div> <div style="text-align: center; padding: 32px 24px;" data-astro-cid-iax5blk6> <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;" data-astro-cid-iax5blk6> <i class="fas fa-map-signs" data-astro-cid-iax5blk6></i> </div> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;" data-astro-cid-iax5blk6>Multiple Departure Points</h3> <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;" data-astro-cid-iax5blk6>Cruises depart from Mandraki Harbour, Faliraki, Kolymbia and Lindos depending on the route and destination.</p> </div> <div style="text-align: center; padding: 32px 24px;" data-astro-cid-iax5blk6> <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;" data-astro-cid-iax5blk6> <i class="fas fa-map-marked-alt" data-astro-cid-iax5blk6></i> </div> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;" data-astro-cid-iax5blk6>Local Guidance</h3> <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;" data-astro-cid-iax5blk6>We are not a booking platform. We help you understand the differences and choose the right cruise for your holiday.</p> </div> </div> <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2" data-astro-cid-iax5blk6> <p style="font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;" data-astro-cid-iax5blk6>
+We don't sell cruises. We help you choose the right sea experience in Rhodes.
+</p> </div> </div> </section>  <section style="padding: 80px 0; background: #f8fafb;" data-astro-cid-iax5blk6> <div class="container" data-astro-cid-iax5blk6> <div class="title-area text-center" style="margin-bottom: 50px;" data-astro-cid-iax5blk6> <h2 class="sec-title" data-ani="slideinup" data-astro-cid-iax5blk6>Explore Our Boat Cruises in Rhodes</h2> </div> <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bc-cruises-grid" data-astro-cid-iax5blk6> ${cruises.map((cruise, i) => renderTemplate`<a${addAttribute(cruise.href || "/contact", "href")} class="bc-cruise-card" data-ani="slideinup"${addAttribute(`${0.1 + i * 0.06}`, "data-ani-delay")} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;" data-astro-cid-iax5blk6> <div style="height: 220px; overflow: hidden; position: relative;" data-astro-cid-iax5blk6> <img${addAttribute(cruise.image, "src")}${addAttribute(cruise.title, "alt")} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" data-astro-cid-iax5blk6> <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);" data-astro-cid-iax5blk6>${cruise.departure}</span> </div> <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;" data-astro-cid-iax5blk6> <h3 style="font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;" data-astro-cid-iax5blk6>${cruise.title}</h3> <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;" data-astro-cid-iax5blk6>${cruise.description}</p> <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;" data-astro-cid-iax5blk6> <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;" data-astro-cid-iax5blk6><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;" data-astro-cid-iax5blk6></i> ${cruise.duration}</span> <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;" data-astro-cid-iax5blk6><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;" data-astro-cid-iax5blk6></i> ${cruise.guests}</span> </div> <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;" data-astro-cid-iax5blk6> <span style="font-family: 'Manrope', sans-serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;" data-astro-cid-iax5blk6>${cruise.price}</span> <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;" data-astro-cid-iax5blk6>Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;" data-astro-cid-iax5blk6></i></span> </div> </div> </a>`)} </div> </div> </section>  <section style="padding: 80px 0; background: #113D48;" data-astro-cid-iax5blk6> <div class="container" data-astro-cid-iax5blk6> <div style="max-width: 700px; margin: 0 auto; text-align: center;" data-astro-cid-iax5blk6> <h2 style="font-family: 'Manrope', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup" data-astro-cid-iax5blk6>Need Help Choosing the Right Boat Cruise?</h2> <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1" data-astro-cid-iax5blk6>
+If you are not sure which boat cruise to choose, contact us and we will help you decide whether a day cruise, a boat tour or a boat trip is the best option for your holiday in Rhodes.
+</p> <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2" data-astro-cid-iax5blk6> <a href="/contact" class="th-btn style3 th-icon" data-astro-cid-iax5blk6>Send Us a Message</a> <a href="https://wa.me/302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;" data-astro-cid-iax5blk6><i class="fab fa-whatsapp" data-astro-cid-iax5blk6></i> WhatsApp</a> <a href="tel:+302241012345" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;" data-astro-cid-iax5blk6><i class="fas fa-phone" data-astro-cid-iax5blk6></i> +30 22410 12345</a> </div> </div> </div> </section> ${renderComponent($$result2, "FooterFour", $$FooterFour, { "data-astro-cid-iax5blk6": true })} ` })} ${renderScript($$result, "/Users/marios/Desktop/Cursor/giorgos/tourm-astro/src/pages/service/rodos-boat-cruises.astro?astro&type=script&index=0&lang.ts")}`;
+}, "/Users/marios/Desktop/Cursor/giorgos/tourm-astro/src/pages/service/rodos-boat-cruises.astro", void 0);
+
+const $$file = "/Users/marios/Desktop/Cursor/giorgos/tourm-astro/src/pages/service/rodos-boat-cruises.astro";
+const $$url = "/service/rodos-boat-cruises";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$RodosBoatCruises,
+  file: $$file,
+  prerender,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
