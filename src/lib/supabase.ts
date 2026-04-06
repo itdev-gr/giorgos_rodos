@@ -1,15 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
 
 function getUrl() {
-  return import.meta.env.PUBLIC_SUPABASE_URL || '';
+  return import.meta.env.PUBLIC_SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
 }
 
 function getAnonKey() {
-  return import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
+  return import.meta.env.PUBLIC_SUPABASE_ANON_KEY || process.env.PUBLIC_SUPABASE_ANON_KEY || '';
 }
 
 function getServiceKey() {
-  return import.meta.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  // Non-PUBLIC env vars: use process.env on server (Vercel SSR)
+  return import.meta.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 }
 
 // Browser client (used in React components) — lazy singleton
