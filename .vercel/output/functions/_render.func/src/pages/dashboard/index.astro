@@ -1,8 +1,0 @@
----
-export const prerender = false;
-
-const profile = Astro.locals.profile;
-const role = profile?.role || 'user';
-
-return Astro.redirect(role === 'admin' ? '/dashboard/admin' : '/dashboard/user');
----
