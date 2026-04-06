@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createServerClient, createAdminClient } from '../../../lib/supabase';
+import { createServerClient, createAdminClient, createPublicClient } from '../../../lib/supabase';
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     });
 
     // Get user role for redirect
-    const adminClient = createAdminClient();
+    const adminClient = createAdminClient() || createPublicClient();
     let redirect = '/dashboard/user';
     if (adminClient) {
       const { data: profile } = await adminClient.from('profiles').select('role').eq('id', data.user.id).single();

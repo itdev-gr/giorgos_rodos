@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../lib/supabase';
+import { createAdminClient, createPublicClient } from '../../lib/supabase';
 
 
 export const POST: APIRoute = async ({ request }) => {
@@ -12,7 +12,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'Tour, name, email and date are required' }), { status: 400 });
   }
 
-  const supabase = createAdminClient();
+  const supabase = createAdminClient() || createPublicClient();
   const { error } = await supabase.from('bookings').insert({
     tour_id,
     customer_name,

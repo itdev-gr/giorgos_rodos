@@ -1,13 +1,13 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../../../lib/supabase';
+import { createAdminClient, createPublicClient } from '../../../../lib/supabase';
 
 
 export const PUT: APIRoute = async ({ params, request }) => {
   const { id } = params;
   const body = await request.json();
-  const supabase = createAdminClient();
+  const supabase = createAdminClient() || createPublicClient();
 
   const { error } = await supabase.from('profiles').update(body).eq('id', id);
   if (error) return new Response(JSON.stringify({ error: error.message }), { status: 400 });
@@ -16,7 +16,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
 
 export const DELETE: APIRoute = async ({ params }) => {
   const { id } = params;
-  const supabase = createAdminClient();
+  const supabase = createAdminClient() || createPublicClient();
 
   // Delete profile first (cascade will handle), then auth user
   const { error: profileError } = await supabase.from('profiles').delete().eq('id', id);

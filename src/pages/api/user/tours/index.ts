@@ -1,11 +1,11 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../../../lib/supabase';
+import { createAdminClient, createPublicClient } from '../../../../lib/supabase';
 
 
 export const GET: APIRoute = async ({ locals }) => {
-  const supabase = createAdminClient();
+  const supabase = createAdminClient() || createPublicClient();
   const userId = locals.user?.id;
 
   const { data, error } = await supabase
@@ -21,7 +21,7 @@ export const GET: APIRoute = async ({ locals }) => {
 export const POST: APIRoute = async ({ request, locals }) => {
   const body = await request.json();
   const userId = locals.user?.id;
-  const supabase = createAdminClient();
+  const supabase = createAdminClient() || createPublicClient();
 
   const { error } = await supabase.from('tours').insert({
     owner_id: userId,

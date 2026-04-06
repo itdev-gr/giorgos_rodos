@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { createAdminClient } from '../../../lib/supabase';
+import { createAdminClient, createPublicClient } from '../../../lib/supabase';
 
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -24,7 +24,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return new Response(JSON.stringify({ error: 'Image must be under 5MB' }), { status: 400 });
   }
 
-  const supabase = createAdminClient();
+  const supabase = createAdminClient() || createPublicClient();
   const ext = file.name.split('.').pop();
   const fileName = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
