@@ -207,6 +207,43 @@ const { title = 'Rhodes Boat Tours', description = 'Luxury yacht charters and bo
       document.addEventListener('DOMContentLoaded', initAnimations);
       // Also run on Astro page transitions
       document.addEventListener('astro:page-load', initAnimations);
+
+      // Global contact form handler
+      function initContactForms() {
+        document.querySelectorAll('.ajax-contact').forEach(form => {
+          if ((form as HTMLElement).dataset.wired) return;
+          (form as HTMLElement).dataset.wired = 'true';
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            const orig = btn.innerHTML;
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            const fd = new FormData(form as HTMLFormElement);
+            try {
+              const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(fd)),
+              });
+              if (res.ok) {
+                btn.textContent = 'Message Sent!';
+                btn.style.background = '#10B981';
+                (form as HTMLFormElement).reset();
+                setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
+              } else {
+                alert('Failed to send. Please try again.');
+                btn.innerHTML = orig; btn.disabled = false;
+              }
+            } catch {
+              alert('Network error. Please try again.');
+              btn.innerHTML = orig; btn.disabled = false;
+            }
+          });
+        });
+      }
+      document.addEventListener('DOMContentLoaded', initContactForms);
+      document.addEventListener('astro:page-load', initContactForms);
     </script>
   </body>
 </html>
