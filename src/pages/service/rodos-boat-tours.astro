@@ -1,33 +1,10 @@
 ---
-export const prerender = false;
-
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
-import { createAdminClient } from '../../lib/supabase';
 
-// Fetch approved tours from Supabase for this page
-const supabase = createAdminClient();
-const { data: dbTours } = await supabase
-  .from('tours')
-  .select('*')
-  .eq('service_page', 'rodos-boat-tours')
-  .eq('status', 'approved')
-  .order('created_at', { ascending: false });
-
-const dbCards = (dbTours || []).map((t: any) => ({
-  title: t.title,
-  description: t.description,
-  image: t.images?.[0] || t.image_url || '/assets/img/gallery/yacht/crystal-water-1.jpg',
-  duration: t.duration || '',
-  guests: t.guests || '',
-  boat: t.badge_label || '',
-  price: t.price || '',
-  href: `/tour-detail/${t.id}`,
-}));
-
-const demoTours = [
+const tours = [
   {
     title: 'East Coast Sailing Tour',
     description: 'A full day sailing along the east coast of Rhodes with swimming stops in hidden bays, lunch on board and time to relax at sea.',
@@ -111,7 +88,6 @@ const demoTours = [
   },
 ];
 
-const tours = [...dbCards, ...demoTours];
 ---
 
 <BaseLayout title="Rhodes Boat Tours — Organized Boat Tours in Rhodes" description="Find the best boat tours in Rhodes with local guidance. Sailing tours, catamaran cruises, semi-private trips and sunset tours — handpicked by local experts.">
@@ -172,7 +148,7 @@ const tours = [...dbCards, ...demoTours];
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bt-tours-grid">
         {tours.map((tour, i) => (
-          <a href={tour.href || '/contact'} class="bt-tour-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <a href="/contact" class="bt-tour-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
               <img src={tour.image} alt={tour.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{tour.boat}</span>
