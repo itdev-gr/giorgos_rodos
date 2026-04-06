@@ -1,15 +1,32 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
+function getUrl() {
+  return import.meta.env.PUBLIC_SUPABASE_URL || '';
+}
 
-// Browser client (used in React components)
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+function getAnonKey() {
+  return import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
+}
+
+function getServiceKey() {
+  return import.meta.env.SUPABASE_SERVICE_ROLE_KEY || '';
+}
+
+// Browser client (used in React components) — lazy singleton
+let _supabase: ReturnType<typeof createClient> | null = null;
+export function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(getUrl(), getAnonKey());
+  }
+  return _supabase;
+}
 
 // Server client with user's session (used in API routes and middleware)
 export function createServerClient(accessToken?: string) {
-  return createClient(supabaseUrl, supabaseAnonKey, {
+  const url = getUrl();
+  const key = getAnonKey();
+  if (!url || !key) return null as any;
+  return createClient(url, key, {
     global: {
       headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
     },
@@ -18,5 +35,8 @@ export function createServerClient(accessToken?: string) {
 
 // Admin client with service role (bypasses RLS, used for admin operations)
 export function createAdminClient() {
-  return createClient(supabaseUrl, supabaseServiceKey);
+  const url = getUrl();
+  const key = getServiceKey();
+  if (!url || !key) return null as any;
+  return createClient(url, key);
 }
