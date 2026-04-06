@@ -9,14 +9,20 @@ import TourSearchGrid from '../../components/dashboard/TourSearchGrid';
 import { createAdminClient } from '../../lib/supabase';
 
 // Fetch ALL approved tours from Supabase
-const supabase = createAdminClient();
-const { data: dbTours } = await supabase
-  .from('tours')
-  .select('*')
-  .eq('status', 'approved')
-  .order('created_at', { ascending: false });
-
-const tours = dbTours || [];
+let tours: any[] = [];
+try {
+  const supabase = createAdminClient();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tours')
+      .select('*')
+      .eq('status', 'approved')
+      .order('created_at', { ascending: false });
+    tours = data || [];
+  }
+} catch (e) {
+  console.error('Failed to fetch tours:', e);
+}
 ---
 
 <BaseLayout title="Best Boat Tours in Rhodes — Experiences & Activities | Rhodes Boat Tours" description="Best boat tours in Rhodes. All approved boat tours, trips, cruises, sailing, island hopping and local activities. Handpicked by locals.">

@@ -29,8 +29,8 @@ try {
       href: `/tour-detail/${t.id}`,
     }));
   }
-} catch {
-  // Supabase unavailable — show demo data only
+} catch (e) {
+  console.error("Supabase error:", e); // Supabase unavailable — show demo data only
 }
 
 const demo_trips = [

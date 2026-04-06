@@ -7,19 +7,28 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import { createAdminClient } from '../../lib/supabase';
 
 const { id } = Astro.params;
-const supabase = createAdminClient();
+let tour: any = null;
+let isPublished = false;
 
-const { data: tour } = await supabase
-  .from('tours')
-  .select('*, profiles(full_name, company_name, phone)')
-  .eq('id', id)
-  .single();
+try {
+  const supabase = createAdminClient();
+  if (supabase) {
+    const { data } = await supabase
+      .from('tours')
+      .select('*, profiles(full_name, company_name, phone)')
+      .eq('id', id)
+      .single();
+    tour = data;
+  }
+} catch (e) {
+  console.error('Failed to fetch tour:', e);
+}
 
 if (!tour) {
   return Astro.redirect('/404');
 }
 
-const isPublished = tour.status === 'approved';
+isPublished = tour.status === 'approved';
 
 const images = tour.images?.length ? tour.images : (tour.image_url ? [tour.image_url] : ['/assets/img/gallery/yacht/crystal-water-1.jpg']);
 const highlights = tour.highlights || [];
