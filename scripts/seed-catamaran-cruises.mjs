@@ -151,7 +151,7 @@ const TOURS = [
   {
     slug: 'power-catamaran-boss',
     title: 'Power Catamaran BOSS — Private Charter',
-    service_page: 'rodos-charter',
+    service_page: 'rhodes-sailing-trips',
     badge_label: 'Power Cat',
     price: 'Contact for pricing',
     duration: 'Full Day / Half Day',
@@ -189,7 +189,7 @@ const TOURS = [
   {
     slug: 'sailing-catamaran-wind',
     title: 'Sailing Catamaran WIND — Private Charter',
-    service_page: 'rodos-charter',
+    service_page: 'rhodes-sailing-trips',
     badge_label: 'Sailing Cat',
     price: 'Contact for pricing',
     duration: 'Full Day / Half Day',
@@ -227,7 +227,7 @@ const TOURS = [
   {
     slug: 'sailing-catamaran-freedom',
     title: 'Sailing Catamaran FREEDOM — Private Charter',
-    service_page: 'rodos-charter',
+    service_page: 'rhodes-sailing-trips',
     badge_label: 'Sailing Cat',
     price: 'Contact for pricing',
     duration: 'Full Day / Half Day',
@@ -265,7 +265,7 @@ const TOURS = [
   {
     slug: 'sailing-catamaran-lagoon-450',
     title: 'Sailing Catamaran Lagoon 450 — Private Charter',
-    service_page: 'rodos-charter',
+    service_page: 'rhodes-sailing-trips',
     badge_label: 'New 2026',
     price: 'Contact for pricing',
     duration: 'Full Day / Half Day',
