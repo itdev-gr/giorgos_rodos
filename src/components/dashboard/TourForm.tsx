@@ -77,11 +77,16 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Pending uploads show local previews while uploading to server
+  const [pendingUploads, setPendingUploads] = useState<{ localUrl: string; fileName: string }[]>([]);
+
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (!files) return;
+    if (!files || files.length === 0) return;
 
-    if (images.length + files.length > 5) {
+    const fileArray = Array.from(files);
+
+    if (images.length + pendingUploads.length + fileArray.length > 5) {
       setError('Maximum 5 images allowed');
       return;
     }
@@ -89,7 +94,16 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
     setUploading(true);
     setError('');
 
-    for (const file of Array.from(files)) {
+    // Show local previews immediately
+    const previews = fileArray.map(f => ({
+      localUrl: URL.createObjectURL(f),
+      fileName: f.name,
+    }));
+    setPendingUploads(prev => [...prev, ...previews]);
+
+    // Upload each file
+    for (let i = 0; i < fileArray.length; i++) {
+      const file = fileArray[i];
       const formData = new FormData();
       formData.append('file', file);
 
@@ -98,13 +112,21 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
         const data = await res.json();
 
         if (!res.ok) {
-          setError(data.error || 'Upload failed');
+          setError(data.error || `Upload failed: ${file.name}`);
+          // Remove this preview from pending
+          setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
+          URL.revokeObjectURL(previews[i].localUrl);
           continue;
         }
 
+        // Success — move from pending to confirmed images
         setImages(prev => [...prev, data.url]);
+        setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
+        URL.revokeObjectURL(previews[i].localUrl);
       } catch {
-        setError('Upload failed. Please try again.');
+        setError(`Upload failed: ${file.name}. Please try again.`);
+        setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
+        URL.revokeObjectURL(previews[i].localUrl);
       }
     }
 
@@ -243,13 +265,14 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
         <div style={{ gridColumn: '1 / -1' }}>
           <label style={labelStyle}>Tour Images (up to 5)</label>
 
-          {/* Uploaded images grid */}
-          {images.length > 0 && (
+          {/* Uploaded images grid + pending uploads */}
+          {(images.length > 0 || pendingUploads.length > 0) && (
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 14 }}>
+              {/* Confirmed images */}
               {images.map((url, i) => {
                 const isMain = i === mainIndex;
                 return (
-                  <div key={i} style={{ position: 'relative', width: 120, borderRadius: 8, overflow: 'hidden', border: isMain ? '2px solid #1CA8CB' : '1px solid #e2e8f0', transition: 'border 0.2s' }}>
+                  <div key={`img-${i}`} style={{ position: 'relative', width: 120, borderRadius: 8, overflow: 'hidden', border: isMain ? '2px solid #1CA8CB' : '1px solid #e2e8f0', transition: 'border 0.2s' }}>
                     <div style={{ position: 'relative', width: '100%', height: 90 }}>
                       <img src={url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       {isMain && (
@@ -286,11 +309,24 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
                   </div>
                 );
               })}
+              {/* Pending uploads — local previews with loading overlay */}
+              {pendingUploads.map((p) => (
+                <div key={p.localUrl} style={{ position: 'relative', width: 120, height: 90, borderRadius: 8, overflow: 'hidden', border: '2px dashed #cbd5e1' }}>
+                  <img src={p.localUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.5 }} />
+                  <div style={{
+                    position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.6)',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4,
+                  }}>
+                    <i className="fas fa-spinner fa-spin" style={{ color: '#1CA8CB', fontSize: '1.1rem' }} />
+                    <span style={{ fontSize: '0.6rem', fontWeight: 600, color: '#475569' }}>Uploading...</span>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
 
           {/* Upload button */}
-          {images.length < 5 && (
+          {(images.length + pendingUploads.length) < 5 && (
             <div>
               <input
                 ref={fileInputRef}
