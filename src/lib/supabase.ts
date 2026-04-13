@@ -10,7 +10,12 @@ function getAnonKey() {
 
 function getServiceKey() {
   // Non-PUBLIC env vars: use process.env on server (Vercel SSR)
-  return import.meta.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  // Supabase Vercel integration uses SUPABASE_SERVICE_ROLE (no _KEY suffix)
+  return import.meta.env.SUPABASE_SERVICE_ROLE_KEY
+    || process.env.SUPABASE_SERVICE_ROLE_KEY
+    || import.meta.env.SUPABASE_SERVICE_ROLE
+    || process.env.SUPABASE_SERVICE_ROLE
+    || '';
 }
 
 // Browser client (used in React components) — lazy singleton
