@@ -10,6 +10,7 @@ const adminLinks = [
   { label: 'Overview', href: '/dashboard/admin', icon: 'fas fa-chart-line' },
   { label: 'Bookings', href: '/dashboard/admin/bookings', icon: 'fas fa-calendar-check' },
   { label: 'Tours', href: '/dashboard/admin/tours', icon: 'fas fa-ship' },
+  { label: 'Create Tour', href: '/dashboard/admin/tours/new', icon: 'fas fa-plus-circle' },
   { label: 'Contacts', href: '/dashboard/admin/contacts', icon: 'fas fa-envelope' },
   { label: 'Users', href: '/dashboard/admin/users', icon: 'fas fa-users' },
 ];

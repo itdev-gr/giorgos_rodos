@@ -28,6 +28,14 @@ const servicePageLabels: Record<string, string> = {
 ---
 
 <DashboardLayout title="Tour Management">
+  <!-- Action Bar -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;" class="dash-action-bar">
+    <a href="/dashboard/admin/tours/new" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; font-family: 'Inter', sans-serif;">
+      <i class="fas fa-plus"></i> Create Tour
+    </a>
+    <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">{tours.length} tour{tours.length !== 1 ? 's' : ''} total</p>
+  </div>
+
   <!-- Stats -->
   <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px;" class="tour-stats-grid">
     <div style="background: #FEF3C7; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 12px;">

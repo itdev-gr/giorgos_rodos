@@ -39,7 +39,10 @@ const { data: recentBookings } = await supabase
 
   <!-- Quick Actions -->
   <div style="display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;">
-    <a href="/dashboard/admin/tours" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+    <a href="/dashboard/admin/tours/new" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+      <i class="fas fa-plus"></i> Create Tour
+    </a>
+    <a href="/dashboard/admin/tours" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #113D48; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
       <i class="fas fa-ship"></i> Review Tours
     </a>
     <a href="/dashboard/admin/contacts" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #113D48; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
