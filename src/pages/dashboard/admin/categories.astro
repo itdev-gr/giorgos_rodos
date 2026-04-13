@@ -1,0 +1,130 @@
+---
+export const prerender = false;
+
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import { createAdminClient, createPublicClient } from '../../../lib/supabase';
+
+const supabase = createAdminClient() || createPublicClient();
+
+// Fetch categories from storage config
+let categories: any[] = [];
+try {
+  const { data: urlData } = supabase.storage.from('site-config').getPublicUrl('service-categories.json');
+  if (urlData?.publicUrl) {
+    const res = await fetch(urlData.publicUrl + '?t=' + Date.now());
+    if (res.ok) categories = await res.json();
+  }
+} catch {}
+categories.sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0));
+---
+
+<DashboardLayout title="Service Categories">
+  <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 28px;">
+    Change the images shown on the homepage "Our Services" section. Click the upload button on any category to replace its image.
+  </p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+    {categories.map((cat: any) => (
+      <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);" class="cat-edit-card" data-slug={cat.slug}>
+        {/* Image preview */}
+        <div style="position: relative; height: 200px; overflow: hidden; background: #f1f5f9;">
+          <img
+            src={cat.image}
+            alt={cat.title}
+            class="cat-preview-img"
+            style="width: 100%; height: 100%; object-fit: cover; display: block;"
+          />
+          {/* Upload overlay */}
+          <label class="cat-upload-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.2s; cursor: pointer;">
+            <i class="fas fa-camera" style="color: #fff; font-size: 1.5rem; margin-bottom: 8px;"></i>
+            <span style="color: #fff; font-size: 0.82rem; font-weight: 600;">Change Image</span>
+            <input type="file" accept="image/jpeg,image/png,image/webp" class="cat-file-input" data-slug={cat.slug} style="display: none;" />
+          </label>
+          {/* Loading spinner */}
+          <div class="cat-loading" style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(255,255,255,0.8);">
+            <i class="fas fa-spinner fa-spin" style="color: #1CA8CB; font-size: 1.5rem;"></i>
+          </div>
+        </div>
+
+        {/* Info */}
+        <div style="padding: 16px 20px;">
+          <h3 style="font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 700; color: #113D48; margin: 0 0 4px;">{cat.title}</h3>
+          <p style="font-size: 0.8rem; color: #94a3b8; margin: 0; line-height: 1.5;">{cat.description}</p>
+          <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+            <a href={cat.href} target="_blank" style="font-size: 0.75rem; color: #1CA8CB; text-decoration: none;">
+              <i class="fas fa-external-link-alt" style="margin-right: 4px; font-size: 0.65rem;"></i> View page
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {categories.length === 0 && (
+    <div style="padding: 60px; text-align: center; color: #94a3b8; background: #fff; border-radius: 12px;">
+      <i class="fas fa-images" style="font-size: 2.5rem; margin-bottom: 16px; opacity: 0.2;"></i>
+      <p>No categories found. The configuration may need to be initialized.</p>
+    </div>
+  )}
+</DashboardLayout>
+
+<script>
+  document.querySelectorAll('.cat-file-input').forEach(input => {
+    input.addEventListener('change', async (e) => {
+      const el = e.target as HTMLInputElement;
+      const file = el.files?.[0];
+      if (!file) return;
+
+      const slug = el.dataset.slug;
+      const card = el.closest('.cat-edit-card') as HTMLElement;
+      const loading = card.querySelector('.cat-loading') as HTMLElement;
+      const img = card.querySelector('.cat-preview-img') as HTMLImageElement;
+
+      // Show loading
+      loading.style.display = 'flex';
+
+      try {
+        // 1. Upload image
+        const formData = new FormData();
+        formData.append('file', file);
+        const uploadRes = await fetch('/api/user/upload', { method: 'POST', body: formData });
+        const uploadData = await uploadRes.json();
+
+        if (!uploadRes.ok) {
+          alert('Upload failed: ' + (uploadData.error || 'Unknown error'));
+          loading.style.display = 'none';
+          return;
+        }
+
+        // 2. Update category
+        const updateRes = await fetch('/api/admin/categories', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug, image: uploadData.url }),
+        });
+        const updateData = await updateRes.json();
+
+        if (!updateRes.ok) {
+          alert('Save failed: ' + (updateData.error || 'Unknown error'));
+          loading.style.display = 'none';
+          return;
+        }
+
+        // 3. Update preview
+        img.src = uploadData.url;
+        loading.style.display = 'none';
+      } catch (err: any) {
+        alert('Error: ' + (err?.message || 'Network error'));
+        loading.style.display = 'none';
+      }
+
+      el.value = '';
+    });
+  });
+</script>
+
+<style is:global>
+  .cat-edit-card:hover .cat-upload-overlay {
+    opacity: 1 !important;
+  }
+</style>
