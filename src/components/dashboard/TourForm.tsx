@@ -58,7 +58,15 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
     departure_time: (tour as any)?.departure_time || '',
     return_time: (tour as any)?.return_time || '',
   });
-  const [images, setImages] = useState<string[]>(tour?.images || (tour?.image_url ? [tour.image_url] : []));
+  const initialImages = tour?.images || (tour?.image_url ? [tour.image_url] : []);
+  const [images, setImages] = useState<string[]>(initialImages);
+  const [mainIndex, setMainIndex] = useState(() => {
+    if (tour?.image_url && initialImages.length > 0) {
+      const idx = initialImages.indexOf(tour.image_url);
+      return idx >= 0 ? idx : 0;
+    }
+    return 0;
+  });
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -106,6 +114,11 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
 
   const removeImage = (index: number) => {
     setImages(prev => prev.filter((_, i) => i !== index));
+    setMainIndex(prev => {
+      if (index === prev) return 0;
+      if (index < prev) return prev - 1;
+      return prev;
+    });
   };
 
   const handleSubmit = async (status: 'draft' | 'pending' | 'approved' | 'rejected') => {
@@ -130,7 +143,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
         body: JSON.stringify({
           ...form,
           status,
-          image_url: images[0] || null,
+          image_url: images[mainIndex] || images[0] || null,
           images,
           highlights: form.highlights ? form.highlights.split('\n').map(s => s.trim()).filter(Boolean) : [],
           inclusions: form.inclusions ? form.inclusions.split('\n').map(s => s.trim()).filter(Boolean) : [],
@@ -233,26 +246,46 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
           {/* Uploaded images grid */}
           {images.length > 0 && (
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 14 }}>
-              {images.map((url, i) => (
-                <div key={i} style={{ position: 'relative', width: 120, height: 90, borderRadius: 8, overflow: 'hidden', border: '1px solid #e2e8f0' }}>
-                  <img src={url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  {i === 0 && (
-                    <span style={{ position: 'absolute', top: 4, left: 4, background: '#1CA8CB', color: '#fff', fontSize: '0.6rem', fontWeight: 700, padding: '2px 6px', borderRadius: 4 }}>MAIN</span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => removeImage(i)}
-                    style={{
-                      position: 'absolute', top: 4, right: 4, width: 22, height: 22,
-                      borderRadius: '50%', background: 'rgba(0,0,0,0.6)', color: '#fff',
-                      border: 'none', cursor: 'pointer', fontSize: '0.65rem',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}
-                  >
-                    <i className="fas fa-times" />
-                  </button>
-                </div>
-              ))}
+              {images.map((url, i) => {
+                const isMain = i === mainIndex;
+                return (
+                  <div key={i} style={{ position: 'relative', width: 120, borderRadius: 8, overflow: 'hidden', border: isMain ? '2px solid #1CA8CB' : '1px solid #e2e8f0', transition: 'border 0.2s' }}>
+                    <div style={{ position: 'relative', width: '100%', height: 90 }}>
+                      <img src={url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      {isMain && (
+                        <span style={{ position: 'absolute', top: 4, left: 4, background: '#1CA8CB', color: '#fff', fontSize: '0.6rem', fontWeight: 700, padding: '2px 6px', borderRadius: 4 }}>MAIN</span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => removeImage(i)}
+                        style={{
+                          position: 'absolute', top: 4, right: 4, width: 22, height: 22,
+                          borderRadius: '50%', background: 'rgba(0,0,0,0.6)', color: '#fff',
+                          border: 'none', cursor: 'pointer', fontSize: '0.65rem',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}
+                      >
+                        <i className="fas fa-times" />
+                      </button>
+                    </div>
+                    {!isMain && (
+                      <button
+                        type="button"
+                        onClick={() => setMainIndex(i)}
+                        style={{
+                          width: '100%', padding: '5px 0', background: '#f8fafc',
+                          border: 'none', borderTop: '1px solid #e2e8f0', cursor: 'pointer',
+                          fontSize: '0.65rem', fontWeight: 600, color: '#1CA8CB',
+                          fontFamily: 'Inter, sans-serif', transition: 'background 0.2s',
+                        }}
+                      >
+                        <i className="fas fa-star" style={{ marginRight: 3, fontSize: '0.58rem' }} />
+                        Set as main
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
 
@@ -283,7 +316,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
                 <i className={uploading ? 'fas fa-spinner fa-spin' : 'fas fa-cloud-upload-alt'} />
                 {uploading ? 'Uploading...' : `Upload Images (${images.length}/5)`}
               </button>
-              <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: 6 }}>JPEG, PNG or WebP. Max 5MB each. First image is the main card image.</p>
+              <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: 6 }}>JPEG, PNG or WebP. Max 5MB each. Click "Set as main" to choose the card image.</p>
             </div>
           )}
         </div>
@@ -341,8 +374,8 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
         <div style={{ marginTop: 28, padding: 20, background: '#f8fafc', borderRadius: 10, border: '1px solid #e2e8f0' }}>
           <p style={{ fontSize: '0.75rem', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 12 }}>Card Preview</p>
           <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-            {images[0] && (
-              <img src={images[0]} alt="" style={{ width: 120, height: 80, objectFit: 'cover', borderRadius: 8, flexShrink: 0 }} />
+            {images.length > 0 && (
+              <img src={images[mainIndex] || images[0]} alt="" style={{ width: 120, height: 80, objectFit: 'cover', borderRadius: 8, flexShrink: 0 }} />
             )}
             <div>
               <p style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 700, color: '#113D48', margin: '0 0 4px', fontSize: '0.95rem' }}>{form.title}</p>
