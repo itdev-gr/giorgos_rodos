@@ -21,7 +21,7 @@ try {
     dbCards = (data || []).map((t: any) => ({
       title: t.title,
       description: t.description,
-      image: t.images?.[0] || t.image_url || '/assets/img/gallery/yacht/crystal-water-1.jpg',
+      image: t.image_url || t.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
       duration: t.duration || '',
       guests: t.guests || '',
       boat: t.badge_label || '',

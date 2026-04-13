@@ -123,7 +123,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
       {filtered.length > 0 ? (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="tsg-grid">
           {filtered.map((tour) => {
-            const img = tour.images?.[0] || tour.image_url || '/assets/img/gallery/yacht/crystal-water-1.jpg';
+            const img = tour.image_url || tour.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg';
             return (
               <a
                 key={tour.id}

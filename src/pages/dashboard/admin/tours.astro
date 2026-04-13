@@ -104,7 +104,7 @@ const servicePageLabels: Record<string, string> = {
             <div style="display: flex; gap: 20px; padding: 24px;" class="review-card-inner">
               <div style="flex-shrink: 0;" class="review-card-img">
                 {tour.image_url || tour.images?.[0] ? (
-                  <img src={tour.images?.[0] || tour.image_url} alt="" style="width: 160px; height: 110px; object-fit: cover; border-radius: 10px;" />
+                  <img src={tour.image_url || tour.images?.[0]} alt="" style="width: 160px; height: 110px; object-fit: cover; border-radius: 10px;" />
                 ) : (
                   <div style="width: 160px; height: 110px; background: #f1f5f9; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                     <i class="fas fa-image" style="color: #cbd5e1; font-size: 1.5rem;"></i>
@@ -205,7 +205,7 @@ const servicePageLabels: Record<string, string> = {
                 <div style="display: flex; align-items: center; gap: 14px; padding: 14px 24px; border-bottom: 1px solid #f8f8f8; transition: background 0.2s;" class="owner-tour-row">
                   {/* Image */}
                   {tour.image_url || tour.images?.[0] ? (
-                    <img src={tour.images?.[0] || tour.image_url} alt="" style="width: 48px; height: 36px; object-fit: cover; border-radius: 6px; flex-shrink: 0;" />
+                    <img src={tour.image_url || tour.images?.[0]} alt="" style="width: 48px; height: 36px; object-fit: cover; border-radius: 6px; flex-shrink: 0;" />
                   ) : (
                     <div style="width: 48px; height: 36px; background: #f1f5f9; border-radius: 6px; flex-shrink: 0;"></div>
                   )}
