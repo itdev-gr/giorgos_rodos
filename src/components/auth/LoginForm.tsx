@@ -37,7 +37,7 @@ export default function LoginForm() {
     <div style={{ maxWidth: 400, margin: '0 auto', padding: '40px 24px' }}>
       <div style={{ textAlign: 'center', marginBottom: 32 }}>
         <a href="/">
-          <img src="/assets/img/logo.svg" alt="Rhodes Boat Tours" style={{ height: 40, margin: '0 auto 24px' }} />
+          <img src="/assets/img/logo-traced.svg" alt="Rhodes Boat Tours" style={{ height: 48, margin: '0 auto 24px' }} />
         </a>
         <h1 style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1.5rem', fontWeight: 700, color: '#113D48', marginBottom: 8 }}>
           Sign In
