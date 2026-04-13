@@ -78,9 +78,9 @@ const servicePageLabels: Record<string, string> = {
       <div style="display: grid; gap: 14px;">
         {pending.map((tour: any) => (
           <div style="background: #fff; border-radius: 14px; border: 2px solid #FCD34D; box-shadow: 0 2px 8px rgba(245,158,11,0.1); overflow: hidden;" class="review-card">
-            <div style="display: flex; gap: 20px; padding: 24px;">
+            <div style="display: flex; gap: 20px; padding: 24px;" class="review-card-inner">
               {/* Image */}
-              <div style="flex-shrink: 0;">
+              <div style="flex-shrink: 0;" class="review-card-img">
                 {tour.image_url || tour.images?.[0] ? (
                   <img src={tour.images?.[0] || tour.image_url} alt="" style="width: 160px; height: 110px; object-fit: cover; border-radius: 10px;" />
                 ) : (
@@ -132,13 +132,16 @@ const servicePageLabels: Record<string, string> = {
                 </div>
 
                 {/* Actions */}
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;" class="review-actions">
                   <button data-action="approve" data-id={tour.id} style="padding: 8px 20px; background: #10B981; color: #fff; border: none; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;">
                     <i class="fas fa-check"></i> Approve
                   </button>
                   <button data-action="reject" data-id={tour.id} style="padding: 8px 20px; background: #fff; color: #EF4444; border: 1px solid #EF4444; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;">
                     <i class="fas fa-times"></i> Reject
                   </button>
+                  <a href={`/dashboard/admin/tours/${tour.id}`} style="padding: 8px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; font-size: 0.82rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;">
+                    <i class="fas fa-pen"></i> Edit
+                  </a>
                   <a href={`/tour-detail/${tour.id}`} target="_blank" style="padding: 8px 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; font-weight: 500; color: #64748b; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fas fa-eye"></i> Preview
                   </a>
@@ -160,7 +163,7 @@ const servicePageLabels: Record<string, string> = {
     <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
       {tours.length > 0 ? (
         <div style="overflow-x: auto;">
-          <table>
+          <table class="db-table">
             <thead>
               <tr>
                 <th style="width: 40px;"></th>
@@ -175,28 +178,28 @@ const servicePageLabels: Record<string, string> = {
             <tbody>
               {tours.map((tour: any) => (
                 <tr>
-                  <td style="padding: 8px;">
+                  <td data-label="" style="padding: 8px;">
                     {tour.image_url || tour.images?.[0] ? (
                       <img src={tour.images?.[0] || tour.image_url} alt="" style="width: 40px; height: 30px; object-fit: cover; border-radius: 4px;" />
                     ) : (
                       <div style="width: 40px; height: 30px; background: #f1f5f9; border-radius: 4px;"></div>
                     )}
                   </td>
-                  <td>
+                  <td data-label="Title">
                     <span style="font-weight: 600; color: #113D48;">{tour.title}</span>
                     {tour.badge_label && <span style="display: block; font-size: 0.72rem; color: #94a3b8;">{tour.badge_label}</span>}
                   </td>
-                  <td style="font-size: 0.85rem; color: #64748b;">{tour.profiles?.company_name || tour.profiles?.full_name || '—'}</td>
-                  <td style="font-size: 0.82rem; color: #64748b;">{servicePageLabels[tour.service_page] || tour.service_page || '—'}</td>
-                  <td style="font-size: 0.88rem; font-weight: 600; color: #1CA8CB;">{tour.price || '—'}</td>
-                  <td>
+                  <td data-label="Owner" style="font-size: 0.85rem; color: #64748b;">{tour.profiles?.company_name || tour.profiles?.full_name || '—'}</td>
+                  <td data-label="Page" style="font-size: 0.82rem; color: #64748b;">{servicePageLabels[tour.service_page] || tour.service_page || '—'}</td>
+                  <td data-label="Price" style="font-size: 0.88rem; font-weight: 600; color: #1CA8CB;">{tour.price || '—'}</td>
+                  <td data-label="Status">
                     <span style={{
                       padding: '3px 10px', borderRadius: 20, fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase',
                       background: tour.status === 'approved' ? '#D1FAE5' : tour.status === 'pending' ? '#FEF3C7' : tour.status === 'rejected' ? '#FEE2E2' : '#E5E7EB',
                       color: tour.status === 'approved' ? '#065F46' : tour.status === 'pending' ? '#92400E' : tour.status === 'rejected' ? '#991B1B' : '#374151',
                     }}>{tour.status}</span>
                   </td>
-                  <td>
+                  <td data-label="Actions">
                     <div style="display: flex; gap: 6px;">
                       {tour.status === 'pending' && (
                         <>
@@ -213,6 +216,9 @@ const servicePageLabels: Record<string, string> = {
                           <i class="fas fa-check"></i>
                         </button>
                       )}
+                      <a href={`/dashboard/admin/tours/${tour.id}`} title="Edit" style="width: 28px; height: 28px; background: #DBEAFE; color: #1E40AF; border-radius: 6px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                        <i class="fas fa-pen"></i>
+                      </a>
                       <a href={`/tour-detail/${tour.id}`} target="_blank" title="Preview" style="width: 28px; height: 28px; background: #f1f5f9; color: #64748b; border-radius: 6px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; text-decoration: none;">
                         <i class="fas fa-eye"></i>
                       </a>
@@ -239,19 +245,26 @@ const servicePageLabels: Record<string, string> = {
 <script>
   document.querySelectorAll('[data-action]').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const action = (btn as HTMLElement).dataset.action;
-      const id = (btn as HTMLElement).dataset.id;
+      const el = btn as HTMLButtonElement;
+      const action = el.dataset.action;
+      const id = el.dataset.id;
       if (!id) return;
 
       if (action === 'delete' && !confirm('Are you sure you want to delete this tour?')) return;
       if (action === 'reject' && !confirm('Reject this tour?')) return;
 
-      const method = action === 'delete' ? 'DELETE' : 'PUT';
-      const body = action === 'delete' ? undefined : JSON.stringify({ status: action === 'approve' ? 'approved' : 'rejected' });
+      el.disabled = true;
+      try {
+        const method = action === 'delete' ? 'DELETE' : 'PUT';
+        const body = action === 'delete' ? undefined : JSON.stringify({ status: action === 'approve' ? 'approved' : 'rejected' });
 
-      const res = await fetch(`/api/admin/tours/${id}`, { method, headers: { 'Content-Type': 'application/json' }, body });
-      if (res.ok) window.location.reload();
-      else alert('Action failed');
+        const res = await fetch(`/api/admin/tours/${id}`, { method, headers: { 'Content-Type': 'application/json' }, body });
+        if (res.ok) window.location.reload();
+        else alert('Action failed');
+      } catch {
+        alert('Network error. Please try again.');
+      }
+      el.disabled = false;
     });
   });
 </script>
@@ -270,5 +283,13 @@ const servicePageLabels: Record<string, string> = {
   }
   @media (max-width: 768px) {
     .tour-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .review-card-inner { flex-direction: column !important; gap: 16px !important; }
+    .review-card-img { width: 100% !important; }
+    .review-card-img img, .review-card-img > div { width: 100% !important; height: 180px !important; }
+    .review-actions { flex-wrap: wrap !important; }
+    .review-actions > * { flex: 1 1 calc(50% - 5px) !important; text-align: center; justify-content: center !important; }
+  }
+  @media (max-width: 480px) {
+    .tour-stats-grid { grid-template-columns: 1fr !important; }
   }
 </style>

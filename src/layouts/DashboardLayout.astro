@@ -51,6 +51,75 @@ const currentPath = Astro.url.pathname;
     <style is:global>
       @media (max-width: 768px) {
         main { margin-left: 0 !important; padding: 72px 16px 32px !important; }
+
+        /* --- Dashboard Tables → Card Layout --- */
+        .db-table thead { display: none; }
+        .db-table, .db-table tbody, .db-table tr, .db-table td {
+          display: block; width: 100%;
+        }
+        .db-table tr {
+          background: #fff; border-radius: 10px; padding: 16px;
+          margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+          border: 1px solid #f0f0f0;
+        }
+        .db-table td {
+          padding: 4px 0; border-bottom: none; font-size: 0.85rem;
+          display: flex; justify-content: space-between; align-items: center;
+        }
+        .db-table td::before {
+          content: attr(data-label);
+          font-size: 0.72rem; font-weight: 600; color: #6b7c85;
+          text-transform: uppercase; letter-spacing: 0.3px;
+          margin-right: 12px; flex-shrink: 0;
+        }
+        .db-table td[data-label=""]::before { display: none; }
+        .db-table td:last-child { padding-top: 10px; margin-top: 6px; border-top: 1px solid #f0f0f0; }
+
+        /* --- Stats grids --- */
+        .dash-stats-3 { grid-template-columns: 1fr !important; }
+
+        /* --- Form grids → single column --- */
+        .dash-form-grid { grid-template-columns: 1fr !important; }
+
+        /* --- Tour row cards (user tours) → stack --- */
+        .tour-row {
+          flex-direction: column !important; align-items: flex-start !important;
+          gap: 12px !important; padding: 16px !important;
+        }
+        .tour-row-actions {
+          width: 100%; display: flex !important; gap: 8px;
+        }
+        .tour-row-actions > * { flex: 1; text-align: center; justify-content: center; }
+
+        /* --- Booking pending cards → stack actions --- */
+        .booking-card-actions {
+          flex-direction: column !important; width: 100% !important;
+        }
+        .booking-card-actions > button { width: 100%; }
+
+        /* --- TourForm grid --- */
+        .tour-form-grid { grid-template-columns: 1fr !important; }
+        .tour-form-container { padding: 20px !important; }
+        .tour-form-actions { flex-direction: column !important; }
+        .tour-form-actions > * { width: 100% !important; text-align: center; justify-content: center; }
+
+        /* --- Calendar cells smaller on mobile --- */
+        .cal-grid button { padding: 6px 2px !important; }
+        .cal-grid { gap: 1px !important; }
+
+        /* --- Action bar stacking --- */
+        .dash-action-bar {
+          flex-direction: column !important; align-items: stretch !important;
+          gap: 8px !important;
+        }
+
+        /* --- Filter pills scroll on mobile --- */
+        .filter-pills { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap !important; padding-bottom: 4px; }
+      }
+
+      @media (max-width: 480px) {
+        main { padding: 68px 12px 24px !important; }
+        main > div:first-child h1 { font-size: 1.25rem !important; }
       }
     </style>
   </body>

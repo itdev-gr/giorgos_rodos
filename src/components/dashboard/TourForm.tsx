@@ -16,6 +16,7 @@ interface TourFormProps {
     status: string;
   };
   mode: 'create' | 'edit';
+  isAdmin?: boolean;
 }
 
 const servicePages = [
@@ -39,7 +40,7 @@ const labelStyle: React.CSSProperties = {
   color: '#475569', marginBottom: 5,
 };
 
-export default function TourForm({ tour, mode }: TourFormProps) {
+export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps) {
   const [form, setForm] = useState({
     title: tour?.title || '',
     description: tour?.description || '',
@@ -107,7 +108,7 @@ export default function TourForm({ tour, mode }: TourFormProps) {
     setImages(prev => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (status: 'draft' | 'pending') => {
+  const handleSubmit = async (status: 'draft' | 'pending' | 'approved' | 'rejected') => {
     if (!form.title || !form.description || !form.service_page) {
       setError('Title, description and service page are required');
       return;
@@ -117,8 +118,10 @@ export default function TourForm({ tour, mode }: TourFormProps) {
     setError('');
     setSuccess('');
 
-    const url = mode === 'edit' ? `/api/user/tours/${tour!.id}` : '/api/user/tours';
+    const baseUrl = isAdmin ? '/api/admin/tours' : '/api/user/tours';
+    const url = mode === 'edit' ? `${baseUrl}/${tour!.id}` : baseUrl;
     const method = mode === 'edit' ? 'PUT' : 'POST';
+    const redirectUrl = isAdmin ? '/dashboard/admin/tours' : '/dashboard/user/tours';
 
     try {
       const res = await fetch(url, {
@@ -143,7 +146,7 @@ export default function TourForm({ tour, mode }: TourFormProps) {
       }
 
       setSuccess(mode === 'edit' ? 'Tour updated!' : 'Tour created!');
-      setTimeout(() => { window.location.href = '/dashboard/user/tours'; }, 1000);
+      setTimeout(() => { window.location.href = redirectUrl; }, 1000);
     } catch {
       setError('Network error. Please try again.');
       setLoading(false);
@@ -151,7 +154,7 @@ export default function TourForm({ tour, mode }: TourFormProps) {
   };
 
   return (
-    <div style={{ background: '#fff', borderRadius: 12, padding: 32, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+    <div className="tour-form-container" style={{ background: '#fff', borderRadius: 12, padding: 32, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
       {error && (
         <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '12px 16px', marginBottom: 20, color: '#991b1b', fontSize: '0.88rem' }}>
           {error}
@@ -163,7 +166,7 @@ export default function TourForm({ tour, mode }: TourFormProps) {
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 32px' }}>
+      <div className="tour-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 32px' }}>
         {/* Title - full width */}
         <div style={{ gridColumn: '1 / -1' }}>
           <label style={labelStyle}>Tour Title *</label>
@@ -357,44 +360,101 @@ export default function TourForm({ tour, mode }: TourFormProps) {
       )}
 
       {/* Actions */}
-      <div style={{ display: 'flex', gap: 12, marginTop: 28, paddingTop: 20, borderTop: '1px solid #f1f5f9' }}>
-        <button
-          onClick={() => handleSubmit('draft')}
-          disabled={loading}
-          style={{
-            padding: '11px 24px', background: '#f1f5f9', color: '#475569',
-            border: '1px solid #e2e8f0', borderRadius: 8, fontSize: '0.85rem',
-            fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
-            fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
-          }}
-        >
-          <i className="fas fa-save" style={{ marginRight: 6 }} />
-          Save as Draft
-        </button>
-        <button
-          onClick={() => handleSubmit('pending')}
-          disabled={loading}
-          style={{
-            padding: '11px 24px', background: loading ? '#93c5d6' : '#1CA8CB', color: '#fff',
-            border: 'none', borderRadius: 8, fontSize: '0.85rem',
-            fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
-            fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
-          }}
-        >
-          <i className="fas fa-paper-plane" style={{ marginRight: 6 }} />
-          {loading ? 'Saving...' : 'Submit for Review'}
-        </button>
-        <a
-          href="/dashboard/user/tours"
-          style={{
-            padding: '11px 24px', background: 'transparent', color: '#94a3b8',
-            border: 'none', borderRadius: 8, fontSize: '0.85rem',
-            fontWeight: 500, textDecoration: 'none', display: 'inline-flex',
-            alignItems: 'center', fontFamily: 'Inter, sans-serif',
-          }}
-        >
-          Cancel
-        </a>
+      <div className="tour-form-actions" style={{ display: 'flex', gap: 12, marginTop: 28, paddingTop: 20, borderTop: '1px solid #f1f5f9', flexWrap: 'wrap' }}>
+        {isAdmin ? (
+          <>
+            <button
+              onClick={() => handleSubmit('approved')}
+              disabled={loading}
+              style={{
+                padding: '11px 24px', background: loading ? '#6ee7b7' : '#10B981', color: '#fff',
+                border: 'none', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
+              }}
+            >
+              <i className="fas fa-check" style={{ marginRight: 6 }} />
+              {loading ? 'Saving...' : 'Save & Approve'}
+            </button>
+            <button
+              onClick={() => handleSubmit('pending')}
+              disabled={loading}
+              style={{
+                padding: '11px 24px', background: '#F59E0B', color: '#fff',
+                border: 'none', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
+              }}
+            >
+              <i className="fas fa-clock" style={{ marginRight: 6 }} />
+              Save as Pending
+            </button>
+            <button
+              onClick={() => handleSubmit('draft')}
+              disabled={loading}
+              style={{
+                padding: '11px 24px', background: '#f1f5f9', color: '#475569',
+                border: '1px solid #e2e8f0', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
+              }}
+            >
+              <i className="fas fa-save" style={{ marginRight: 6 }} />
+              Save as Draft
+            </button>
+            <a
+              href="/dashboard/admin/tours"
+              style={{
+                padding: '11px 24px', background: 'transparent', color: '#94a3b8',
+                border: 'none', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 500, textDecoration: 'none', display: 'inline-flex',
+                alignItems: 'center', fontFamily: 'Inter, sans-serif',
+              }}
+            >
+              Cancel
+            </a>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => handleSubmit('draft')}
+              disabled={loading}
+              style={{
+                padding: '11px 24px', background: '#f1f5f9', color: '#475569',
+                border: '1px solid #e2e8f0', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
+              }}
+            >
+              <i className="fas fa-save" style={{ marginRight: 6 }} />
+              Save as Draft
+            </button>
+            <button
+              onClick={() => handleSubmit('pending')}
+              disabled={loading}
+              style={{
+                padding: '11px 24px', background: loading ? '#93c5d6' : '#1CA8CB', color: '#fff',
+                border: 'none', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                fontFamily: 'Inter, sans-serif', transition: 'all 0.2s',
+              }}
+            >
+              <i className="fas fa-paper-plane" style={{ marginRight: 6 }} />
+              {loading ? 'Saving...' : 'Submit for Review'}
+            </button>
+            <a
+              href="/dashboard/user/tours"
+              style={{
+                padding: '11px 24px', background: 'transparent', color: '#94a3b8',
+                border: 'none', borderRadius: 8, fontSize: '0.85rem',
+                fontWeight: 500, textDecoration: 'none', display: 'inline-flex',
+                alignItems: 'center', fontFamily: 'Inter, sans-serif',
+              }}
+            >
+              Cancel
+            </a>
+          </>
+        )}
       </div>
     </div>
   );

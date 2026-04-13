@@ -33,7 +33,7 @@ const userCount = totalUsers - adminCount;
 
 <DashboardLayout title="User Management">
   <!-- Stats Row -->
-  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px;">
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px;" class="dash-stats-3">
     <div style="background: #fff; border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 14px;">
       <div style="width: 44px; height: 44px; border-radius: 10px; background: #DBEAFE; color: #1E40AF; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
         <i class="fas fa-users"></i>
@@ -64,7 +64,7 @@ const userCount = totalUsers - adminCount;
   </div>
 
   <!-- Action Bar -->
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" class="dash-action-bar">
     <button id="create-user-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s;">
       <i class="fas fa-user-plus"></i> Create User
     </button>
@@ -79,7 +79,7 @@ const userCount = totalUsers - adminCount;
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <form id="new-user-form" style="display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px 32px;">
+    <form id="new-user-form" class="dash-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px;">
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Email *</label>
         <input name="email" type="email" placeholder="user@example.com" required style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: border 0.2s;" />
@@ -116,7 +116,7 @@ const userCount = totalUsers - adminCount;
   </div>
 
   <!-- Users Cards Grid -->
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px;">
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
     {users && users.map((u: any) => {
       const counts = countMap[u.id] || { total: 0, approved: 0, pending: 0 };
       const initials = (u.full_name || u.id.slice(0, 2)).split(' ').map((w: string) => w[0]).join('').toUpperCase().slice(0, 2);
@@ -177,6 +177,40 @@ const userCount = totalUsers - adminCount;
             </div>
           )}
 
+          <!-- Edit Form (hidden by default) -->
+          <div class="edit-user-form" data-edit-id={u.id} style="display: none; padding: 16px 0; margin-bottom: 12px; border-bottom: 1px solid #f1f5f9;">
+            <p style="font-size: 0.78rem; font-weight: 700; color: #113D48; margin: 0 0 12px; font-family: 'Manrope', sans-serif;">Edit User</p>
+            <form class="user-edit-form" data-user-id={u.id} style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;">
+              <div>
+                <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Full Name</label>
+                <input name="full_name" type="text" value={u.full_name || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Company</label>
+                <input name="company_name" type="text" value={u.company_name || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Phone</label>
+                <input name="phone" type="tel" value={u.phone || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Role</label>
+                <select name="role" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; background: #fff; cursor: pointer; box-sizing: border-box;">
+                  <option value="user" selected={u.role === 'user'}>Operator (User)</option>
+                  <option value="admin" selected={u.role === 'admin'}>Admin</option>
+                </select>
+              </div>
+              <div style="grid-column: 1 / -1; display: flex; gap: 8px; margin-top: 4px;">
+                <button type="submit" style="padding: 8px 20px; background: #1CA8CB; color: #fff; border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;">
+                  <i class="fas fa-check" style="margin-right: 4px;"></i> Save
+                </button>
+                <button type="button" class="cancel-edit" style="padding: 8px 16px; background: #f1f5f9; color: #64748b; border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+
           <!-- Actions -->
           <div style="display: flex; gap: 8px; padding-top: 14px; border-top: 1px solid #f1f5f9;">
             <button data-action="edit" data-id={u.id} style="flex: 1; padding: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #475569; font-family: 'Inter', sans-serif; transition: all 0.2s;">
@@ -230,6 +264,53 @@ const userCount = totalUsers - adminCount;
     }
   });
 
+  // Edit user - toggle form
+  document.querySelectorAll('[data-action="edit"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = (btn as HTMLElement).dataset.id;
+      const editForm = document.querySelector(`[data-edit-id="${id}"]`) as HTMLElement;
+      if (!editForm) return;
+      const isVisible = editForm.style.display !== 'none';
+      // Hide all other edit forms first
+      document.querySelectorAll('.edit-user-form').forEach(f => (f as HTMLElement).style.display = 'none');
+      editForm.style.display = isVisible ? 'none' : 'block';
+    });
+  });
+
+  // Cancel edit
+  document.querySelectorAll('.cancel-edit').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const form = (btn as HTMLElement).closest('.edit-user-form') as HTMLElement;
+      if (form) form.style.display = 'none';
+    });
+  });
+
+  // Submit edit
+  document.querySelectorAll('.user-edit-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = (form as HTMLElement).dataset.userId;
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving...';
+
+      const fd = new FormData(e.target as HTMLFormElement);
+      const res = await fetch(`/api/admin/users/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(fd)),
+      });
+      if (res.ok) window.location.reload();
+      else {
+        const d = await res.json();
+        alert(d.error || 'Failed to update user');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-check" style="margin-right: 4px;"></i> Save';
+      }
+    });
+  });
+
+  // Delete user
   document.querySelectorAll('[data-action="delete"]').forEach(btn => {
     btn.addEventListener('click', async () => {
       if (!confirm('Are you sure you want to delete this user?')) return;
@@ -245,7 +326,8 @@ const userCount = totalUsers - adminCount;
   .user-card:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
   }
-  #new-user-form input, #new-user-form select {
+  #new-user-form input, #new-user-form select,
+  .user-edit-form input, .user-edit-form select {
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -253,5 +335,8 @@ const userCount = totalUsers - adminCount;
   input:focus, select:focus {
     border-color: #1CA8CB !important;
     box-shadow: 0 0 0 3px rgba(28,168,203,0.1);
+  }
+  @media (max-width: 768px) {
+    .user-edit-form { grid-template-columns: 1fr !important; }
   }
 </style>

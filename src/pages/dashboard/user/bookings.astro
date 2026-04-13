@@ -78,7 +78,7 @@ const cancelled = allBookings.filter((b: any) => b.status === 'cancelled');
                 </div>
                 {b.notes && <p style="font-size: 0.8rem; color: #94a3b8; margin: 8px 0 0; font-style: italic;">"{b.notes}"</p>}
               </div>
-              <div style="display: flex; gap: 8px; flex-shrink: 0;">
+              <div style="display: flex; gap: 8px; flex-shrink: 0;" class="booking-card-actions">
                 <button data-action="confirm" data-id={b.id} style="padding: 8px 18px; background: #10B981; color: #fff; border: none; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px;">
                   <i class="fas fa-check"></i> Confirm
                 </button>
@@ -99,7 +99,7 @@ const cancelled = allBookings.filter((b: any) => b.status === 'cancelled');
     <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
       {allBookings.length > 0 ? (
         <div style="overflow-x: auto;">
-          <table>
+          <table class="db-table">
             <thead>
               <tr>
                 <th>Customer</th>
@@ -114,21 +114,21 @@ const cancelled = allBookings.filter((b: any) => b.status === 'cancelled');
             <tbody>
               {allBookings.map((b: any) => (
                 <tr>
-                  <td style="font-weight: 600;">{b.customer_name}</td>
-                  <td style="font-size: 0.85rem; color: #64748b;">{b.tours?.title || '—'}</td>
-                  <td style="white-space: nowrap; font-size: 0.85rem;">{b.booking_date}</td>
-                  <td>{b.guests}</td>
-                  <td>
+                  <td data-label="Customer" style="font-weight: 600;">{b.customer_name}</td>
+                  <td data-label="Tour" style="font-size: 0.85rem; color: #64748b;">{b.tours?.title || '—'}</td>
+                  <td data-label="Date" style="white-space: nowrap; font-size: 0.85rem;">{b.booking_date}</td>
+                  <td data-label="Guests">{b.guests}</td>
+                  <td data-label="Contact">
                     <a href={`mailto:${b.customer_email}`} style="color: #1CA8CB; font-size: 0.82rem; text-decoration: none;">{b.customer_email}</a>
                   </td>
-                  <td>
+                  <td data-label="Status">
                     <span style={{
                       padding: '3px 10px', borderRadius: 20, fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase',
                       background: b.status === 'confirmed' ? '#D1FAE5' : b.status === 'pending' ? '#FEF3C7' : '#FEE2E2',
                       color: b.status === 'confirmed' ? '#065F46' : b.status === 'pending' ? '#92400E' : '#991B1B',
                     }}>{b.status}</span>
                   </td>
-                  <td>
+                  <td data-label="Actions">
                     <div style="display: flex; gap: 6px;">
                       {b.status === 'pending' && (
                         <>
@@ -166,20 +166,27 @@ const cancelled = allBookings.filter((b: any) => b.status === 'cancelled');
 <script>
   document.querySelectorAll('[data-action]').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const action = (btn as HTMLElement).dataset.action;
-      const id = (btn as HTMLElement).dataset.id;
+      const el = btn as HTMLButtonElement;
+      const action = el.dataset.action;
+      const id = el.dataset.id;
       if (!id) return;
 
       if (action === 'cancel' && !confirm('Cancel this booking?')) return;
 
-      const status = action === 'confirm' ? 'confirmed' : 'cancelled';
-      const res = await fetch(`/api/admin/bookings/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
-      if (res.ok) window.location.reload();
-      else alert('Action failed');
+      el.disabled = true;
+      try {
+        const status = action === 'confirm' ? 'confirmed' : 'cancelled';
+        const res = await fetch(`/api/user/bookings/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status }),
+        });
+        if (res.ok) window.location.reload();
+        else alert('Action failed');
+      } catch {
+        alert('Network error. Please try again.');
+      }
+      el.disabled = false;
     });
   });
 </script>
@@ -194,5 +201,9 @@ const cancelled = allBookings.filter((b: any) => b.status === 'cancelled');
   }
   @media (max-width: 768px) {
     .booking-stats-grid { grid-template-columns: 1fr !important; }
+    .booking-card-actions {
+      flex-direction: column !important; width: 100% !important;
+    }
+    .booking-card-actions > button { width: 100% !important; justify-content: center; }
   }
 </style>

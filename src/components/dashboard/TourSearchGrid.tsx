@@ -77,7 +77,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
         </div>
 
         {/* Category Filter */}
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        <div className="filter-pills" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <button
             onClick={() => setFilter('all')}
             style={{

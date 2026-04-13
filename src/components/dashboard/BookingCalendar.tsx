@@ -92,7 +92,7 @@ export default function BookingCalendar({ bookings }: BookingCalendarProps) {
         </div>
 
         {/* Days grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 2 }}>
+        <div className="cal-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 2 }}>
           {cells.map((day, i) => {
             if (day === null) return <div key={`empty-${i}`} style={{ padding: 8 }} />;
             const dateStr = formatDate(day);

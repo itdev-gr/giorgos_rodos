@@ -22,7 +22,7 @@ const userLinks = [
 ];
 
 export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [open, setOpen] = useState(false);
   const links = role === 'admin' ? adminLinks : userLinks;
 
   const isActive = (href: string) => {
@@ -34,30 +34,38 @@ export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
 
   return (
     <>
-      {/* Mobile toggle */}
+      {/* Mobile toggle - hidden on desktop via CSS, shown on mobile */}
       <button
-        onClick={() => setCollapsed(!collapsed)}
+        onClick={() => setOpen(!open)}
         className="sb-toggle"
         style={{
           position: 'fixed', top: 16, left: 16, zIndex: 100,
           width: 40, height: 40, borderRadius: 8,
           background: '#113D48', color: '#fff', border: 'none',
-          display: 'none', alignItems: 'center', justifyContent: 'center',
+          alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', fontSize: '1.1rem',
         }}
       >
-        <i className={collapsed ? 'fas fa-bars' : 'fas fa-times'} />
+        <i className={open ? 'fas fa-times' : 'fas fa-bars'} />
       </button>
+
+      {/* Mobile overlay backdrop - always in DOM, visibility controlled by CSS */}
+      <div
+        className={`sb-overlay ${open ? 'sb-overlay-visible' : ''}`}
+        onClick={() => setOpen(false)}
+        style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
+          zIndex: 40, transition: 'opacity 0.3s ease',
+        }}
+      />
 
       <aside
         style={{
           width: 260, minHeight: '100vh', background: '#113D48',
           color: '#fff', display: 'flex', flexDirection: 'column',
           position: 'fixed', left: 0, top: 0, zIndex: 50,
-          transform: collapsed ? 'translateX(-100%)' : 'translateX(0)',
-          transition: 'transform 0.3s ease',
         }}
-        className="sb-aside"
+        className={`sb-aside ${open ? 'sb-open' : ''}`}
       >
         {/* Logo */}
         <div style={{ padding: '24px 20px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
@@ -84,6 +92,7 @@ export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
             <a
               key={link.href}
               href={link.href}
+              onClick={() => setOpen(false)}
               style={{
                 display: 'flex', alignItems: 'center', gap: 12,
                 padding: '12px 16px', borderRadius: 8, marginBottom: 4,
@@ -120,10 +129,17 @@ export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
       </aside>
 
       <style>{`
+        /* Desktop: hide toggle and overlay */
+        .sb-toggle { display: none; }
+        .sb-overlay { display: none; }
+        .sb-aside { transition: transform 0.3s ease; }
+
         @media (max-width: 768px) {
           .sb-toggle { display: flex !important; }
           .sb-aside { transform: translateX(-100%); }
-          .sb-aside[style*="translateX(0)"] { transform: translateX(0) !important; }
+          .sb-aside.sb-open { transform: translateX(0) !important; }
+          .sb-overlay { display: none; pointer-events: none; opacity: 0; }
+          .sb-overlay.sb-overlay-visible { display: block !important; pointer-events: auto; opacity: 1; }
         }
       `}</style>
     </>

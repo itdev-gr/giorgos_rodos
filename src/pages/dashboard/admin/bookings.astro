@@ -15,7 +15,7 @@ const { data: bookings } = await supabase
   <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
     {bookings && bookings.length > 0 ? (
       <div style="overflow-x: auto;">
-        <table>
+        <table class="db-table">
           <thead>
             <tr>
               <th>Customer</th>
@@ -30,19 +30,19 @@ const { data: bookings } = await supabase
           <tbody>
             {bookings.map((b: any) => (
               <tr>
-                <td style="font-weight: 600;">{b.customer_name}</td>
-                <td><a href={`mailto:${b.customer_email}`} style="color: #1CA8CB;">{b.customer_email}</a></td>
-                <td>{b.tours?.title || '—'}</td>
-                <td style="white-space: nowrap;">{b.booking_date}</td>
-                <td>{b.guests}</td>
-                <td>
+                <td data-label="Customer" style="font-weight: 600;">{b.customer_name}</td>
+                <td data-label="Email"><a href={`mailto:${b.customer_email}`} style="color: #1CA8CB;">{b.customer_email}</a></td>
+                <td data-label="Tour">{b.tours?.title || '—'}</td>
+                <td data-label="Date" style="white-space: nowrap;">{b.booking_date}</td>
+                <td data-label="Guests">{b.guests}</td>
+                <td data-label="Status">
                   <span style={{
                     padding: '3px 10px', borderRadius: 20, fontSize: '0.72rem', fontWeight: 600, textTransform: 'uppercase',
                     background: b.status === 'confirmed' ? '#D1FAE5' : b.status === 'pending' ? '#FEF3C7' : '#FEE2E2',
                     color: b.status === 'confirmed' ? '#065F46' : b.status === 'pending' ? '#92400E' : '#991B1B',
                   }}>{b.status}</span>
                 </td>
-                <td>
+                <td data-label="Actions">
                   <div style="display: flex; gap: 8px;">
                     {b.status === 'pending' && (
                       <button data-action="confirm" data-id={b.id} style="padding: 4px 12px; background: #10B981; color: #fff; border: none; border-radius: 6px; font-size: 0.75rem; cursor: pointer;">Confirm</button>
@@ -69,18 +69,25 @@ const { data: bookings } = await supabase
 <script>
   document.querySelectorAll('[data-action]').forEach(btn => {
     btn.addEventListener('click', async () => {
-      const action = (btn as HTMLElement).dataset.action;
-      const id = (btn as HTMLElement).dataset.id;
+      const el = btn as HTMLButtonElement;
+      const action = el.dataset.action;
+      const id = el.dataset.id;
       if (!id) return;
 
-      const status = action === 'confirm' ? 'confirmed' : 'cancelled';
-      const res = await fetch(`/api/admin/bookings/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status }),
-      });
-      if (res.ok) window.location.reload();
-      else alert('Action failed');
+      el.disabled = true;
+      try {
+        const status = action === 'confirm' ? 'confirmed' : 'cancelled';
+        const res = await fetch(`/api/admin/bookings/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status }),
+        });
+        if (res.ok) window.location.reload();
+        else alert('Action failed');
+      } catch {
+        alert('Network error. Please try again.');
+      }
+      el.disabled = false;
     });
   });
 </script>

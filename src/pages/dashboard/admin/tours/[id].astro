@@ -1,0 +1,42 @@
+---
+export const prerender = false;
+
+import DashboardLayout from '../../../../layouts/DashboardLayout.astro';
+import TourForm from '../../../../components/dashboard/TourForm';
+import { createAdminClient, createPublicClient } from '../../../../lib/supabase';
+
+const { id } = Astro.params;
+const supabase = createAdminClient() || createPublicClient();
+
+const { data: tour } = await supabase
+  .from('tours')
+  .select('*, profiles(full_name, company_name)')
+  .eq('id', id)
+  .single();
+
+if (!tour) {
+  return Astro.redirect('/dashboard/admin/tours');
+}
+---
+
+<DashboardLayout title="Edit Tour">
+  <div style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+    <a href="/dashboard/admin/tours" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #64748b; text-decoration: none;">
+      <i class="fas fa-arrow-left" style="font-size: 0.75rem;"></i> Back to Tour Management
+    </a>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style={{
+        padding: '4px 12px', borderRadius: 20, fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase',
+        background: tour.status === 'approved' ? '#D1FAE5' : tour.status === 'pending' ? '#FEF3C7' : tour.status === 'rejected' ? '#FEE2E2' : '#E5E7EB',
+        color: tour.status === 'approved' ? '#065F46' : tour.status === 'pending' ? '#92400E' : tour.status === 'rejected' ? '#991B1B' : '#374151',
+      }}>{tour.status}</span>
+      {tour.profiles && (
+        <span style="font-size: 0.82rem; color: #94a3b8;">
+          by {tour.profiles.company_name || tour.profiles.full_name}
+        </span>
+      )}
+    </div>
+  </div>
+
+  <TourForm mode="edit" tour={tour} isAdmin={true} client:load />
+</DashboardLayout>
