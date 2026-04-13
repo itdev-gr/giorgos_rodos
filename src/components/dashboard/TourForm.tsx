@@ -14,6 +14,13 @@ interface TourFormProps {
     images: string[];
     category: string;
     status: string;
+    highlights: string[];
+    inclusions: string[];
+    exclusions: string[];
+    itinerary: string;
+    meeting_point: string;
+    departure_time: string;
+    return_time: string;
   };
   mode: 'create' | 'edit';
   isAdmin?: boolean;
@@ -50,13 +57,13 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
     duration: tour?.duration || '',
     guests: tour?.guests || '',
     category: tour?.category || '',
-    highlights: (tour as any)?.highlights?.join('\n') || '',
-    inclusions: (tour as any)?.inclusions?.join('\n') || '',
-    exclusions: (tour as any)?.exclusions?.join('\n') || '',
-    itinerary: (tour as any)?.itinerary || '',
-    meeting_point: (tour as any)?.meeting_point || '',
-    departure_time: (tour as any)?.departure_time || '',
-    return_time: (tour as any)?.return_time || '',
+    highlights: tour?.highlights?.join('\n') || '',
+    inclusions: tour?.inclusions?.join('\n') || '',
+    exclusions: tour?.exclusions?.join('\n') || '',
+    itinerary: tour?.itinerary || '',
+    meeting_point: tour?.meeting_point || '',
+    departure_time: tour?.departure_time || '',
+    return_time: tour?.return_time || '',
   });
   const initialImages = tour?.images || (tour?.image_url ? [tour.image_url] : []);
   const [images, setImages] = useState<string[]>(initialImages);
