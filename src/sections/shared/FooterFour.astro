@@ -189,16 +189,32 @@
 
     .ft-main {
       grid-template-columns: 1fr !important;
-      gap: 32px !important;
+      gap: 36px !important;
+      text-align: center;
     }
 
     .ft-brand {
       grid-column: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ft-social {
+      justify-content: center;
     }
 
     .ft-links {
       flex-direction: column !important;
-      gap: 32px !important;
+      gap: 36px !important;
+    }
+
+    .ft-list li a {
+      font-size: 0.92rem;
+    }
+
+    .ft-contact {
+      text-align: center;
     }
 
     .ft-bottom {
