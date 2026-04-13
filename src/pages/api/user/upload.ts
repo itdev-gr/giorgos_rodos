@@ -30,13 +30,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Use admin client (service role) to bypass RLS on storage
     const supabase = createAdminClient();
     if (!supabase) {
-      // Fallback to public client if service key not available
-      const publicClient = createPublicClient();
-      if (!publicClient) {
-        return new Response(JSON.stringify({ error: 'Database connection failed. Check server configuration.' }), { status: 500 });
-      }
-      // Try with public client but warn
-      return await doUpload(publicClient, file, userId);
+      console.error('Upload failed: createAdminClient() returned null. SUPABASE_SERVICE_ROLE_KEY missing from environment.');
+      console.error('Available SUPABASE env vars:', Object.keys(process.env).filter(k => k.toLowerCase().includes('supabase')));
+      return new Response(JSON.stringify({
+        error: 'Server configuration error: storage service unavailable. Please contact the administrator.'
+      }), { status: 500 });
     }
 
     return await doUpload(supabase, file, userId);

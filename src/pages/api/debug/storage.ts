@@ -13,6 +13,19 @@ export const GET: APIRoute = async ({ locals }) => {
     SUPABASE_SERVICE_ROLE_KEY: !!(import.meta.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY),
   };
 
+  // Discover ALL supabase-related env var names available at runtime
+  checks.supabaseEnvVarNames = Object.keys(process.env).filter(k => k.toLowerCase().includes('supabase'));
+
+  // Also check import.meta.env keys that contain supabase
+  checks.importMetaEnvKeys = Object.keys(import.meta.env).filter(k => k.toLowerCase().includes('supabase'));
+
+  // Check the raw values exist (truncated for safety — just first/last 4 chars)
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  checks.serviceKeyDebug = {
+    fromProcessEnv: serviceKey ? `${serviceKey.slice(0,4)}...${serviceKey.slice(-4)} (len=${serviceKey.length})` : 'EMPTY',
+    fromImportMeta: (import.meta.env.SUPABASE_SERVICE_ROLE_KEY || '') ? 'EXISTS' : 'EMPTY',
+  };
+
   // Check clients
   const adminClient = createAdminClient();
   const publicClient = createPublicClient();
