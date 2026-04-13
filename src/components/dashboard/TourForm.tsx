@@ -109,11 +109,23 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
 
       try {
         const res = await fetch('/api/user/upload', { method: 'POST', body: formData });
-        const data = await res.json();
+
+        let data: any = {};
+        try {
+          data = await res.json();
+        } catch {
+          data = { error: `Server error (${res.status})` };
+        }
 
         if (!res.ok) {
-          setError(data.error || `Upload failed: ${file.name}`);
-          // Remove this preview from pending
+          setError(data.error || `Upload failed: ${file.name} (${res.status})`);
+          setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
+          URL.revokeObjectURL(previews[i].localUrl);
+          continue;
+        }
+
+        if (!data.url) {
+          setError(`Upload succeeded but no URL returned for ${file.name}`);
           setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
           URL.revokeObjectURL(previews[i].localUrl);
           continue;
@@ -123,8 +135,8 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
         setImages(prev => [...prev, data.url]);
         setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
         URL.revokeObjectURL(previews[i].localUrl);
-      } catch {
-        setError(`Upload failed: ${file.name}. Please try again.`);
+      } catch (err: any) {
+        setError(`Upload failed: ${file.name}. ${err?.message || 'Network error.'}`);
         setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
         URL.revokeObjectURL(previews[i].localUrl);
       }

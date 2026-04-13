@@ -27,47 +27,74 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(JSON.stringify({ error: 'Image must be under 5MB' }), { status: 400 });
     }
 
-    const supabase = createAdminClient() || createPublicClient();
+    // Use admin client (service role) to bypass RLS on storage
+    const supabase = createAdminClient();
+    if (!supabase) {
+      // Fallback to public client if service key not available
+      const publicClient = createPublicClient();
+      if (!publicClient) {
+        return new Response(JSON.stringify({ error: 'Database connection failed. Check server configuration.' }), { status: 500 });
+      }
+      // Try with public client but warn
+      return await doUpload(publicClient, file, userId);
+    }
 
-    // Check if bucket exists, create if not
+    return await doUpload(supabase, file, userId);
+  } catch (err: any) {
+    console.error('Upload handler error:', err);
+    return new Response(JSON.stringify({ error: 'Server error: ' + (err?.message || String(err)) }), { status: 500 });
+  }
+};
+
+async function doUpload(supabase: any, file: File, userId: string) {
+  const BUCKET = 'tour-images';
+
+  // Ensure bucket exists
+  try {
     const { data: buckets } = await supabase.storage.listBuckets();
-    const bucketExists = buckets?.some((b: any) => b.name === 'tour-images');
-    if (!bucketExists) {
-      const { error: createError } = await supabase.storage.createBucket('tour-images', {
+    const exists = buckets?.some((b: any) => b.name === BUCKET);
+    if (!exists) {
+      const { error: createErr } = await supabase.storage.createBucket(BUCKET, {
         public: true,
         fileSizeLimit: 5 * 1024 * 1024,
         allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
       });
-      if (createError) {
-        console.error('Bucket creation error:', createError);
-        return new Response(JSON.stringify({ error: 'Storage setup failed: ' + createError.message }), { status: 500 });
+      if (createErr) {
+        console.error('Bucket creation failed:', createErr);
+        return new Response(JSON.stringify({ error: 'Storage bucket setup failed: ' + createErr.message }), { status: 500 });
       }
     }
-
-    const ext = file.name.split('.').pop() || 'jpg';
-    const fileName = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-
-    // Convert File to ArrayBuffer for Supabase compatibility
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = new Uint8Array(arrayBuffer);
-
-    const { error: uploadError } = await supabase.storage
-      .from('tour-images')
-      .upload(fileName, buffer, {
-        contentType: file.type,
-        upsert: false,
-      });
-
-    if (uploadError) {
-      console.error('Upload error:', uploadError);
-      return new Response(JSON.stringify({ error: 'Upload failed: ' + uploadError.message }), { status: 500 });
-    }
-
-    const { data: { publicUrl } } = supabase.storage.from('tour-images').getPublicUrl(fileName);
-
-    return new Response(JSON.stringify({ url: publicUrl }), { status: 200 });
-  } catch (err: any) {
-    console.error('Upload handler error:', err);
-    return new Response(JSON.stringify({ error: 'Server error: ' + (err?.message || 'Unknown error') }), { status: 500 });
+  } catch (bucketErr: any) {
+    console.error('Bucket check failed:', bucketErr);
+    // Continue anyway — bucket might exist but listBuckets may require different permissions
   }
-};
+
+  const ext = file.name.split('.').pop() || 'jpg';
+  const fileName = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+  // Convert File to buffer — required for Vercel serverless
+  let fileData: Uint8Array;
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    fileData = new Uint8Array(arrayBuffer);
+  } catch (bufErr: any) {
+    console.error('File buffer conversion failed:', bufErr);
+    return new Response(JSON.stringify({ error: 'Failed to process file: ' + bufErr.message }), { status: 500 });
+  }
+
+  const { error: uploadError } = await supabase.storage
+    .from(BUCKET)
+    .upload(fileName, fileData, {
+      contentType: file.type,
+      upsert: false,
+    });
+
+  if (uploadError) {
+    console.error('Supabase upload error:', uploadError);
+    return new Response(JSON.stringify({ error: 'Upload failed: ' + uploadError.message }), { status: 500 });
+  }
+
+  const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
+
+  return new Response(JSON.stringify({ url: publicUrl }), { status: 200 });
+}
