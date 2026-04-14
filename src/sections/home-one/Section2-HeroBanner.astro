@@ -50,6 +50,11 @@
     .hero-overlay {
       background: none;
     }
+    .hero-fullscreen {
+      height: 55vh;
+      min-height: 340px;
+      max-height: 520px;
+    }
   }
 
   .hero-fullscreen .container {
@@ -75,14 +80,13 @@
 
   .hero-accent {
     display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    opacity: 0.9;
+    font-family: 'Allura', cursive;
+    font-size: 2.25rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
+    line-height: 1;
   }
 
   .hero-heading {
@@ -167,6 +171,12 @@
   }
 
   @media (max-width: 767px) {
+    .hero-fullscreen {
+      height: 50vh;
+      min-height: 320px;
+      max-height: 460px;
+    }
+
     .hero-fullscreen .hero-style1 {
       justify-content: flex-end;
       padding-bottom: 5vh;
@@ -178,8 +188,8 @@
     }
 
     .hero-accent {
-      font-size: 1rem;
-      letter-spacing: 2px;
+      font-size: 1.75rem;
+      letter-spacing: 0;
     }
 
     .hero-cta {

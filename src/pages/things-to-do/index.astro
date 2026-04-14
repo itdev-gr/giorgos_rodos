@@ -18,6 +18,7 @@ try {
       .select('*')
       .eq('status', 'approved')
       .neq('service_page', 'rodos-charter')
+      .order('is_global', { ascending: false })
       .order('created_at', { ascending: false });
     tours = data || [];
   }
