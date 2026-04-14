@@ -88,7 +88,7 @@ const exclusions = tour.exclusions || [];
             {tour.badge_label && (
               <span style="display: inline-block; padding: 4px 12px; background: #113D48; color: #fff; border-radius: 6px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">{tour.badge_label}</span>
             )}
-            <h1 style="font-family: 'Manrope', sans-serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
             {tour.profiles?.company_name && (
               <p style="font-size: 0.88rem; color: #64748b; margin: 0;">by {tour.profiles.company_name}</p>
             )}
@@ -124,14 +124,14 @@ const exclusions = tour.exclusions || [];
 
           <!-- Description -->
           <div style="margin-bottom: 36px;">
-            <h2 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">About This Experience</h2>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">About This Experience</h2>
             <p style="font-size: 0.95rem; line-height: 1.8; color: #475569;">{tour.description}</p>
           </div>
 
           <!-- Highlights -->
           {highlights.length > 0 && (
             <div style="margin-bottom: 36px;">
-              <h2 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Highlights</h2>
+              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Highlights</h2>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 {highlights.map((h: string) => (
                   <div style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #fff; border-radius: 8px; border: 1px solid #f1f5f9;">
@@ -148,7 +148,7 @@ const exclusions = tour.exclusions || [];
             <div style="margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="td-inclusions">
               {inclusions.length > 0 && (
                 <div>
-                  <h2 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">What's Included</h2>
+                  <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">What's Included</h2>
                   <div style="display: flex; flex-direction: column; gap: 8px;">
                     {inclusions.map((item: string) => (
                       <div style="display: flex; align-items: center; gap: 10px;">
@@ -161,7 +161,7 @@ const exclusions = tour.exclusions || [];
               )}
               {exclusions.length > 0 && (
                 <div>
-                  <h2 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Not Included</h2>
+                  <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Not Included</h2>
                   <div style="display: flex; flex-direction: column; gap: 8px;">
                     {exclusions.map((item: string) => (
                       <div style="display: flex; align-items: center; gap: 10px;">
@@ -178,7 +178,7 @@ const exclusions = tour.exclusions || [];
           <!-- Itinerary -->
           {tour.itinerary && (
             <div style="margin-bottom: 36px;">
-              <h2 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Route & Itinerary</h2>
+              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Route & Itinerary</h2>
               <p style="font-size: 0.95rem; line-height: 1.8; color: #475569;">{tour.itinerary}</p>
             </div>
           )}
@@ -186,7 +186,7 @@ const exclusions = tour.exclusions || [];
           <!-- Meeting Point -->
           {tour.meeting_point && (
             <div style="margin-bottom: 36px; padding: 20px; background: #fff; border-radius: 12px; border: 1px solid #e2e8f0;">
-              <h2 style="font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 10px;">
+              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 10px;">
                 <i class="fas fa-map-marker-alt" style="color: #1CA8CB; margin-right: 8px;"></i>Meeting Point
               </h2>
               <p style="font-size: 0.92rem; color: #475569; margin: 0;">{tour.meeting_point}</p>
@@ -207,7 +207,7 @@ const exclusions = tour.exclusions || [];
             {tour.price && (
               <div style="margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #f1f5f9;">
                 <p style="font-size: 0.75rem; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.5px;">From</p>
-                <p style="font-family: 'Manrope', sans-serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0;">{tour.price}</p>
+                <p style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0;">{tour.price}</p>
               </div>
             )}
 
@@ -256,7 +256,7 @@ const exclusions = tour.exclusions || [];
               <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #f1f5f9;">
                 <p style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px;">Operated by</p>
                 <div style="display: flex; align-items: center; gap: 10px;">
-                  <div style="width: 36px; height: 36px; border-radius: 50%; background: #1CA8CB; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;">
+                  <div style="width: 36px; height: 36px; border-radius: 50%; background: #1CA8CB; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;">
                     {(tour.profiles.company_name || tour.profiles.full_name || '?')[0].toUpperCase()}
                   </div>
                   <div>
