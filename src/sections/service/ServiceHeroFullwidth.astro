@@ -133,6 +133,24 @@ const {
     .service-hero-overlay {
       background: none;
     }
+
+    .service-hero-fullwidth:has(.service-hero-video) {
+      min-height: 380px;
+      height: 66.67vh;
+      max-height: none;
+    }
+    .service-hero-fullwidth:has(.service-hero-video) .service-hero-content {
+      padding: 60px 0 50px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .service-hero-fullwidth:has(.service-hero-video) {
+      min-height: 360px;
+    }
+    .service-hero-fullwidth:has(.service-hero-video) .service-hero-content {
+      padding: 48px 0 40px;
+    }
   }
 </style>
 

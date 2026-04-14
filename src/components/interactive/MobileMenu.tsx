@@ -60,20 +60,25 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     { id: 0, label: 'Contact Us', href: '/contact' },
   ];
 
+  const closeMenu = () => {
+    const wrapper = document.querySelector('.th-menu-wrapper');
+    if (wrapper) {
+      wrapper.classList.remove('th-body-visible');
+      (wrapper as HTMLElement).style.visibility = 'hidden';
+    }
+    if (typeof onClose === 'function') onClose();
+  };
+
   return (
     <div
       className={`th-menu-wrapper onepage-nav ${isOpen ? 'th-body-visible' : ''}`}
       style={{ visibility: isOpen ? 'visible' : 'hidden' }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) closeMenu();
+      }}
     >
       <div className="th-menu-area text-center">
-        <button className="th-menu-toggle" onClick={() => {
-          const wrapper = document.querySelector('.th-menu-wrapper');
-          if (wrapper) {
-            wrapper.classList.remove('th-body-visible');
-            (wrapper as HTMLElement).style.visibility = 'hidden';
-          }
-          if (typeof onClose === 'function') onClose();
-        }} aria-label="Close">
+        <button className="th-menu-toggle" onClick={closeMenu} aria-label="Close">
           <i className="fal fa-times" />
         </button>
 
