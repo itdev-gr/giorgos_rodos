@@ -165,14 +165,21 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin-
     document.head.appendChild(s);
   }
 
-  function buildCarousel(id, pagId) {
+  function buildCarousel(id, pagId, delay) {
     const el = document.getElementById(id);
     if (!el || el.dataset.initialized) return;
     el.dataset.initialized = 'true';
     new Swiper('#' + id, {
       slidesPerView: 1,
       spaceBetween: 16,
-      loop: false,
+      loop: true,
+      speed: 850,
+      effect: 'creative',
+      creativeEffect: {
+        prev: { translate: ['-18%', 0, -80], opacity: 0, scale: 0.94 },
+        next: { translate: ['100%', 0, 0], opacity: 0, scale: 0.96 },
+      },
+      autoplay: { delay: delay, disableOnInteraction: false, pauseOnMouseEnter: true },
       pagination: { el: '#' + pagId, clickable: true },
     });
   }
@@ -180,8 +187,8 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin-
   function initWhyCarousels() {
     if (!window.matchMedia('(max-width: 991px)').matches) return;
     ensureSwiperLoaded(() => {
-      buildCarousel(aId, aPag);
-      buildCarousel(bId, bPag);
+      buildCarousel(aId, aPag, 4000);
+      buildCarousel(bId, bPag, 5500);
     });
   }
 
