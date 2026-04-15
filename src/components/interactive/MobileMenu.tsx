@@ -47,7 +47,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       ],
     },
     { id: 5, label: 'Best Boat Tours in Rhodes', href: '/things-to-do' },
-    { id: 6, label: 'Gallery', href: '/gallery' },
     {
       id: 7,
       label: 'Blog',

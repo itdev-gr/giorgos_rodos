@@ -93,8 +93,8 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
 
     const fileArray = Array.from(files);
 
-    if (images.length + pendingUploads.length + fileArray.length > 5) {
-      setError('Maximum 5 images allowed');
+    if (images.length + pendingUploads.length + fileArray.length > 10) {
+      setError('Maximum 10 images allowed');
       return;
     }
 
@@ -345,7 +345,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
           )}
 
           {/* Upload button */}
-          {(images.length + pendingUploads.length) < 5 && (
+          {(images.length + pendingUploads.length) < 10 && (
             <div>
               <input
                 ref={fileInputRef}
@@ -369,7 +369,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
                 }}
               >
                 <i className={uploading ? 'fas fa-spinner fa-spin' : 'fas fa-cloud-upload-alt'} />
-                {uploading ? 'Uploading...' : `Upload Images (${images.length}/5)`}
+                {uploading ? 'Uploading...' : `Upload Images (${images.length}/10)`}
               </button>
               <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: 6 }}>JPEG, PNG or WebP. Max 5MB each. Click "Set as main" to choose the card image.</p>
             </div>

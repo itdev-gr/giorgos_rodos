@@ -36,30 +36,18 @@ const faqs = [
       </div>
       <div class="row">
         <div class="col-lg-10 offset-lg-1">
-          <div class="accordion-area mb-30" id="faqAccordion">
+          <div class="faq-list mb-30">
             {faqs.map((faq, index) => (
-              <div class={`accordion-card style2 ${index === 0 ? 'active' : ''}`}>
-                <div class="accordion-header" id={`faqHeading${index}`}>
-                  <button
-                    class={`accordion-button ${index > 0 ? 'collapsed' : ''}`}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#faqCollapse${index}`}
-                    aria-expanded={index === 0 ? 'true' : 'false'}
-                  >
-                    Q{index + 1}. {faq.question}
-                  </button>
+              <details class="faq-item" open={index === 0}>
+                <summary class="faq-item__q">
+                  <span class="faq-item__num">Q{index + 1}.</span>
+                  <span class="faq-item__text">{faq.question}</span>
+                  <span class="faq-item__icon" aria-hidden="true"></span>
+                </summary>
+                <div class="faq-item__a">
+                  <p class="faq-text">{faq.answer}</p>
                 </div>
-                <div
-                  id={`faqCollapse${index}`}
-                  class={`accordion-collapse collapse ${index === 0 ? 'show' : ''}`}
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    <p class="faq-text">{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
+              </details>
             ))}
           </div>
         </div>
@@ -129,3 +117,125 @@ const faqs = [
 
   <FooterFour />
 </BaseLayout>
+
+<style>
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .faq-item {
+    background: #fff;
+    border: 1px solid #e6eef0;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .faq-item[open] {
+    border-color: #1CA8CB;
+    box-shadow: 0 4px 20px rgba(28, 168, 203, 0.08);
+  }
+
+  .faq-item__q {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 26px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #113D48;
+    line-height: 1.4;
+    user-select: none;
+  }
+
+  .faq-item__q::-webkit-details-marker { display: none; }
+  .faq-item__q::marker { content: ''; }
+
+  .faq-item__q:hover .faq-item__text {
+    color: #1CA8CB;
+  }
+
+  .faq-item__num {
+    flex-shrink: 0;
+    color: #1CA8CB;
+    font-weight: 700;
+  }
+
+  .faq-item__text {
+    flex: 1;
+    transition: color 0.2s ease;
+  }
+
+  .faq-item__icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(28, 168, 203, 0.12);
+    color: #1CA8CB;
+    position: relative;
+    transition: transform 0.25s ease, background 0.2s ease;
+  }
+
+  .faq-item__icon::before,
+  .faq-item__icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #1CA8CB;
+    border-radius: 1px;
+  }
+  .faq-item__icon::before {
+    width: 12px;
+    height: 2px;
+    transform: translate(-50%, -50%);
+  }
+  .faq-item__icon::after {
+    width: 2px;
+    height: 12px;
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .faq-item[open] .faq-item__icon::after {
+    transform: translate(-50%, -50%) scaleY(0);
+    opacity: 0;
+  }
+
+  .faq-item[open] .faq-item__icon {
+    background: #1CA8CB;
+  }
+  .faq-item[open] .faq-item__icon::before,
+  .faq-item[open] .faq-item__icon::after {
+    background: #fff;
+  }
+
+  .faq-item__a {
+    padding: 0 26px 24px 68px;
+  }
+  .faq-item__a .faq-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #5a6a72;
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .faq-item__q {
+      padding: 18px 20px;
+      font-size: 0.98rem;
+      gap: 12px;
+    }
+    .faq-item__a {
+      padding: 0 20px 20px 20px;
+    }
+  }
+</style>
