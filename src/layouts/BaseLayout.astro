@@ -48,6 +48,50 @@ const { title = 'Rhodes Boat Tours', description = 'Luxury yacht charters and bo
   <body>
     <slot />
 
+    <a
+      href="https://wa.me/306951666454"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat on WhatsApp"
+      class="wa-float-btn"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <style>
+      .wa-float-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #25D366;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        text-decoration: none;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .wa-float-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+        color: #fff;
+      }
+      @media (max-width: 767px) {
+        .wa-float-btn {
+          right: 16px;
+          bottom: 16px;
+          width: 52px;
+          height: 52px;
+          font-size: 26px;
+        }
+      }
+    </style>
+
     <!-- GSAP -->
     <script>
       import { gsap } from 'gsap';
