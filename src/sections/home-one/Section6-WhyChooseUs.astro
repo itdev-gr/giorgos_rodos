@@ -6,9 +6,21 @@ const items = [
   { icon: 'fas fa-headset', title: 'Personal Support', text: 'Real people answer your questions — before, during, and after your trip. No chatbots, no call centres.' },
   { icon: 'fas fa-handshake', title: 'Not a Marketplace', text: 'We are not a booking platform. We are a local team that personally arranges every experience.' },
   { icon: 'fas fa-lightbulb', title: 'Real Advice', text: 'We will tell you honestly which boat, route, or experience is right for your group and budget.' },
-  { icon: 'fas fa-map-pin', title: 'Based in Rhodes', text: 'Our office is at Mandraki Harbour. We are here if you need us — in person, on the phone, or online.' },
-  { icon: 'fas fa-star', title: 'Best Boat Experiences', text: 'Fifteen years of helping visitors find unforgettable days on the water around Rhodes and the Dodecanese.' },
 ];
+
+const itemsA = items.slice(0, 3);
+const itemsB = items.slice(3, 6);
+
+const rand = () => Math.random().toString(36).slice(2, 8);
+const aId = `why-carousel-a-${rand()}`;
+const bId = `why-carousel-b-${rand()}`;
+const aPag = `${aId}-pag`;
+const bPag = `${bId}-pag`;
+
+const cardStyle = "background: #fff; border-radius: 14px; padding: 32px 24px; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%;";
+const iconStyle = "width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;";
+const titleStyle = "font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #113D48; margin-bottom: 8px;";
+const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin-bottom: 0;";
 ---
 
 <section style="padding: 80px 0; background: #E9F6F9; overflow: hidden;">
@@ -17,16 +29,61 @@ const items = [
       <span class="sub-title style1" data-ani="slideinup">Why Rhodes Rent a Boat</span>
       <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Boat Cruises in Rhodes</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;" class="why-grid">
+
+    <!-- Desktop / tablet grid (≥992px) -->
+    <div class="why-grid">
       {items.map((item, i) => (
-        <div class="why-card" style="background: #fff; border-radius: 14px; padding: 32px 24px; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.05}`}>
-          <div class="why-icon" style={`width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;`}>
+        <div class="why-card" style={cardStyle} data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.05}`}>
+          <div class="why-icon" style={iconStyle}>
             <i class={item.icon}></i>
           </div>
-          <h3 class="why-title" style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #113D48; margin-bottom: 8px;">{item.title}</h3>
-          <p class="why-text" style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin-bottom: 0;">{item.text}</p>
+          <h3 class="why-title" style={titleStyle}>{item.title}</h3>
+          <p class="why-text" style={textStyle}>{item.text}</p>
         </div>
       ))}
+    </div>
+
+    <!-- Mobile carousels (≤991px) — two stacked carousels of 3 -->
+    <div class="why-mobile-carousels">
+      <!-- Carousel A -->
+      <div class="why-carousel-wrap">
+        <div class="swiper why-carousel" id={aId}>
+          <div class="swiper-wrapper">
+            {itemsA.map((item) => (
+              <div class="swiper-slide">
+                <div class="why-card" style={cardStyle}>
+                  <div class="why-icon" style={iconStyle}>
+                    <i class={item.icon}></i>
+                  </div>
+                  <h3 class="why-title" style={titleStyle}>{item.title}</h3>
+                  <p class="why-text" style={textStyle}>{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="swiper-pagination why-pagination" id={aPag}></div>
+      </div>
+
+      <!-- Carousel B -->
+      <div class="why-carousel-wrap" style="margin-top: 32px;">
+        <div class="swiper why-carousel" id={bId}>
+          <div class="swiper-wrapper">
+            {itemsB.map((item) => (
+              <div class="swiper-slide">
+                <div class="why-card" style={cardStyle}>
+                  <div class="why-icon" style={iconStyle}>
+                    <i class={item.icon}></i>
+                  </div>
+                  <h3 class="why-title" style={titleStyle}>{item.title}</h3>
+                  <p class="why-text" style={textStyle}>{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="swiper-pagination why-pagination" id={bPag}></div>
+      </div>
     </div>
   </div>
 </section>
@@ -37,16 +94,98 @@ const items = [
     box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
   }
 
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .why-mobile-carousels {
+    display: none;
+  }
+
+  .why-carousel-wrap {
+    position: relative;
+    padding: 0 8px 36px;
+  }
+
+  .why-carousel :global(.swiper-slide) {
+    height: auto;
+    display: flex;
+  }
+
+  .why-carousel :global(.swiper-slide .why-card) {
+    width: 100%;
+  }
+
+  .why-pagination {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .why-pagination :global(.swiper-pagination-bullet) {
+    width: 8px;
+    height: 8px;
+    background: #1CA8CB;
+    opacity: 0.3;
+    margin: 0 4px !important;
+  }
+  .why-pagination :global(.swiper-pagination-bullet-active) {
+    opacity: 1;
+  }
+
   @media (max-width: 991px) {
-    .why-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
+    .why-grid { display: none; }
+    .why-mobile-carousels { display: block; }
   }
 
   @media (max-width: 575px) {
     .why-grid {
-      grid-template-columns: 1fr !important;
-      gap: 16px !important;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 </style>
+
+<script define:vars={{ aId, aPag, bId, bPag }}>
+  function ensureSwiperLoaded(cb) {
+    if (typeof Swiper !== 'undefined') return cb();
+    if (document.querySelector('script[data-swiper-cdn]')) {
+      const iv = setInterval(() => {
+        if (typeof Swiper !== 'undefined') { clearInterval(iv); cb(); }
+      }, 50);
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+    s.setAttribute('data-swiper-cdn', '1');
+    s.onload = () => cb();
+    document.head.appendChild(s);
+  }
+
+  function buildCarousel(id, pagId) {
+    const el = document.getElementById(id);
+    if (!el || el.dataset.initialized) return;
+    el.dataset.initialized = 'true';
+    new Swiper('#' + id, {
+      slidesPerView: 1,
+      spaceBetween: 16,
+      loop: false,
+      pagination: { el: '#' + pagId, clickable: true },
+    });
+  }
+
+  function initWhyCarousels() {
+    if (!window.matchMedia('(max-width: 991px)').matches) return;
+    ensureSwiperLoaded(() => {
+      buildCarousel(aId, aPag);
+      buildCarousel(bId, bPag);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initWhyCarousels);
+  document.addEventListener('astro:page-load', initWhyCarousels);
+  window.addEventListener('resize', initWhyCarousels);
+</script>

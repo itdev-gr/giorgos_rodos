@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+---
+
+<BaseLayout
+  title="Rhodes Rent a Boat — What You Should Know Before You Decide"
+  description="Renting a boat in Rhodes can be one of the most flexible and rewarding ways to explore the coastline. Honest, personal guidance on the right option for you."
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="rab-hero">
+    <div class="rab-hero__overlay"></div>
+    <div class="container rab-hero__content">
+      <span class="rab-hero__breadcrumb">Blog &nbsp;|&nbsp; Rhodes Rent a Boat</span>
+      <h1 class="rab-hero__title" data-ani="slideinup">Rhodes Rent a Boat</h1>
+      <p class="rab-hero__tagline" data-ani="slideinup" data-ani-delay="0.1">
+        Choose the right way to enjoy the sea — calmly, safely and with clarity.
+      </p>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <article style="padding: 80px 0;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="rab-article" data-ani="fadein">
+            <h2 class="rab-article__heading" data-ani="slideinup">
+              Renting a Boat in Rhodes — What You Should Know Before You Decide
+            </h2>
+
+            <p class="rab-article__lead">
+              Renting a boat in Rhodes can be one of the most flexible and rewarding ways to explore the coastline — if you choose the right option.
+            </p>
+
+            <p>At Rhodes Rent a Boat, we don't believe in pushing experiences. We believe in understanding people.</p>
+
+            <p>Some visitors come to Rhodes looking for freedom. Others look for comfort, safety or simplicity. Some want privacy, others want to share moments. Some know exactly what they want — others don't, and that's perfectly fine.</p>
+
+            <p class="rab-article__emphasis">Our role is to listen first.</p>
+
+            <p>To understand who you are, how you travel, who you are with and what kind of sea experience will make you feel relaxed and confident.</p>
+
+            <p>Based on that, we guide you honestly through the options available in Rhodes: boat rentals, license-free boats, private boat trips with skipper, boat tours, cruises, fishing experiences, yacht charters and specialized marine services.</p>
+
+            <div class="rab-article__cta" data-ani="slideinup" data-ani-delay="0.1">
+              <a href="/contact" class="th-btn style3 th-icon">Talk to Us</a>
+              <a href="/service/rhodes-rent-a-boat" class="th-btn style-outline th-icon">See Rental Options</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <FooterFour />
+</BaseLayout>
+
+<script>
+  function initRabHero() {
+    document.getElementById('header-one')?.classList.add('header-transparent');
+  }
+  document.addEventListener('DOMContentLoaded', initRabHero);
+  document.addEventListener('astro:page-load', initRabHero);
+</script>
+
+<style>
+  .rab-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    background: url('/assets/img/gallery/yacht/yacht-sailing-1.jpg') center/cover no-repeat;
+    overflow: hidden;
+  }
+  .rab-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(17, 61, 72, 0.75) 100%);
+    z-index: 1;
+  }
+  .rab-hero__content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 70px;
+    color: #fff;
+  }
+  .rab-hero__breadcrumb {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+  .rab-hero__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .rab-hero__tagline {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 620px;
+    opacity: 0.92;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 991px) {
+    .rab-hero {
+      min-height: 75vh;
+    }
+    .rab-hero__content {
+      padding-bottom: 5vh;
+    }
+  }
+  @media (max-width: 767px) {
+    .rab-hero__title {
+      font-size: 2rem;
+    }
+  }
+
+  .rab-article {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #4a5568;
+  }
+  .rab-article p {
+    margin-bottom: 18px;
+  }
+  .rab-article__heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.15rem);
+    font-weight: 700;
+    color: #113D48;
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+  .rab-article__lead {
+    font-size: 1.15rem;
+    color: #2d3e46;
+    margin-bottom: 28px !important;
+  }
+  .rab-article__emphasis {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #113D48;
+    font-size: 1.2rem;
+    margin: 28px 0 !important;
+  }
+  .rab-article__cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+</style>
+

@@ -51,10 +51,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     {
       id: 7,
       label: 'Blog',
-      children: [
-        { label: 'Blog', href: '/blog' },
-        { label: 'Blog Details', href: '/blog/1' },
-      ],
+      href: '/blog',
     },
     { id: 0, label: 'FAQ', href: '/faq' },
     { id: 0, label: 'Contact Us', href: '/contact' },

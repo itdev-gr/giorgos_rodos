@@ -20,10 +20,7 @@ const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises'
     <video class="services-hero__video" autoplay muted loop playsinline preload="metadata">
       <source src="/assets/img/hero/services/charter.mp4" type="video/mp4" />
     </video>
-    <div class="services-hero__content">
-      <span class="services-hero__accent" data-ani="fadein">Our Services</span>
-      <h1 class="services-hero__title" data-ani="slideinup" data-ani-delay="0.1">Every Way to Enjoy the Sea in Rhodes</h1>
-    </div>
+    <div class="services-hero__content"></div>
   </section>
 
   <!-- Featured services — large cards -->
@@ -145,8 +142,13 @@ const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises'
       background: none;
     }
 
+    .services-hero {
+      align-items: flex-end;
+    }
+
     .services-hero__content {
       z-index: 2;
+      padding-bottom: 5vh;
     }
   }
 
