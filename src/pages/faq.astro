@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import { getMediaSlot } from '../lib/media';
+
+const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3.jpg');
 
 const faqs = [
   { question: 'Do I need a boat licence to rent a boat in Rhodes?', answer: 'Not necessarily. We offer license-free boats that anyone can drive — no experience required. You get a full safety briefing before departure, and GPS tracking means our team can assist you at any time. If you want a larger vessel or prefer to relax while someone else drives, we also offer boats with a professional skipper included.' },
@@ -65,7 +68,7 @@ const faqs = [
   <!-- FaqContact -->
   <div
     class="bg-top-center space overflow-hidden"
-    style="background: url(/assets/img/bg/tour_bg_3.jpg); background-repeat: no-repeat; position: relative; z-index: 1;"
+    style={`background: url(${contactBg}); background-repeat: no-repeat; position: relative; z-index: 1;`}
   >
     <div class="container">
       <div class="row justify-content-center">

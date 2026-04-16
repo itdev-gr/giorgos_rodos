@@ -3,9 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import services from '../../data/data-service.json';
+import { getMediaSlot } from '../../lib/media';
 
 const featured = services.filter((s: any) => ['rodos-charter', 'rodos-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
 const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
+
+const heroImage = await getMediaSlot('service.index.hero.image', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
+const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/hero/services/charter.mp4');
 ---
 
 <BaseLayout title="Our Services — Luxury Yacht Experiences">
@@ -14,11 +18,11 @@ const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises'
   <!-- Hero header -->
   <section class="services-hero">
     <div class="services-hero__bg">
-      <img src="/assets/img/gallery/yacht/yacht-luxury-1.jpg" alt="" />
+      <img src={heroImage} alt="" />
       <div class="services-hero__overlay"></div>
     </div>
     <video class="services-hero__video" autoplay muted loop playsinline preload="metadata">
-      <source src="/assets/img/hero/services/charter.mp4" type="video/mp4" />
+      <source src={heroVideo} type="video/mp4" />
     </video>
     <div class="services-hero__content"></div>
   </section>

@@ -70,6 +70,39 @@ const slots = [
   // Service: Tender Boat (Unsplash backgroundImage — we keep it as external URL in the default)
   { key: 'service.tender.hero.image', page: 'Service: Tender Boat', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1920&h=1080&fit=crop', defaultUrl: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1920&h=1080&fit=crop', sort_order: 5 },
   { key: 'service.tender.hero.video', page: 'Service: Tender Boat', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/tender.mp4', defaultUrl: '/assets/img/hero/services/tender.mp4', sort_order: 10 },
+
+  // Service: Transfers
+  { key: 'service.transfers.hero.image', page: 'Service: Transfers', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/transfers/rhodes-transfer-hero.jpg', defaultUrl: '/assets/img/transfers/rhodes-transfer-hero.jpg', sort_order: 5 },
+  { key: 'service.transfers.hero.video', page: 'Service: Transfers', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+
+  // Services index
+  { key: 'service.index.hero.image', page: 'Services (index)', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', sort_order: 5 },
+  { key: 'service.index.hero.video', page: 'Services (index)', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+
+  // About — Featured Experiences (Section 6)
+  { key: 'about.experience.sunset.img', page: 'About', section: 'Featured Experiences', label: 'Sunset Cruises Card', type: 'image', url: '/assets/img/gallery/yacht/sunset-cruise-1.jpg', defaultUrl: '/assets/img/gallery/yacht/sunset-cruise-1.jpg', sort_order: 70 },
+  { key: 'about.experience.hopping.img', page: 'About', section: 'Featured Experiences', label: 'Island Hopping Card', type: 'image', url: '/assets/img/gallery/yacht/crystal-water-1.jpg', defaultUrl: '/assets/img/gallery/yacht/crystal-water-1.jpg', sort_order: 80 },
+  { key: 'about.experience.charter.img', page: 'About', section: 'Featured Experiences', label: 'Private Charters Card', type: 'image', url: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', sort_order: 90 },
+  { key: 'about.experience.adventures.img', page: 'About', section: 'Featured Experiences', label: 'Sea Adventures Card', type: 'image', url: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', sort_order: 100 },
+
+  // Things to do — aggregator
+  { key: 'things-to-do.hero.image', page: 'Things to Do', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/greek-island-1.jpg', defaultUrl: '/assets/img/gallery/yacht/greek-island-1.jpg', sort_order: 5 },
+  { key: 'things-to-do.hero.video', page: 'Things to Do', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/boat-tours.mp4', defaultUrl: '/assets/img/hero/services/boat-tours.mp4', sort_order: 10 },
+
+  // Sidecar Tours
+  { key: 'sidecar-tours.hero.image', page: 'Sidecar Tours', section: 'Hero', label: 'Hero Background Image', type: 'image', url: '/assets/img/transfers/rhodes-transfer-hero.jpg', defaultUrl: '/assets/img/transfers/rhodes-transfer-hero.jpg', sort_order: 5 },
+  { key: 'sidecar-tours.body.img-1', page: 'Sidecar Tours', section: 'Body', label: 'Content Image 1 (Rider)', type: 'image', url: '/assets/img/transfers/transfer-rider.jpg', defaultUrl: '/assets/img/transfers/transfer-rider.jpg', sort_order: 20 },
+  { key: 'sidecar-tours.body.img-2', page: 'Sidecar Tours', section: 'Body', label: 'Content Image 2 (Vintage sidecar)', type: 'image', url: '/assets/img/transfers/transfer-sidecar.jpg', defaultUrl: '/assets/img/transfers/transfer-sidecar.jpg', sort_order: 30 },
+
+  // Blog — Rhodes Rent a Boat post
+  { key: 'blog.rhodes-rent-a-boat.hero.bg', page: 'Blog: Rhodes Rent a Boat', section: 'Hero', label: 'Hero Background Photo', type: 'image', url: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', sort_order: 10 },
+
+  // FAQ
+  { key: 'faq.contact.bg', page: 'FAQ', section: 'Contact Banner', label: 'Contact Section Background', type: 'image', url: '/assets/img/bg/tour_bg_3.jpg', defaultUrl: '/assets/img/bg/tour_bg_3.jpg', sort_order: 10 },
+
+  // Contact
+  { key: 'contact.aside.img', page: 'Contact', section: 'Sidebar', label: 'Aside Image (Aegean view)', type: 'image', url: '/assets/img/cruises/greco_sunset3.jpg', defaultUrl: '/assets/img/cruises/greco_sunset3.jpg', sort_order: 10 },
+  { key: 'contact.hero.bg', page: 'Contact', section: 'Hero', label: 'Hero Background', type: 'image', url: '/assets/img/gallery/yacht/crystal-water-1.jpg', defaultUrl: '/assets/img/gallery/yacht/crystal-water-1.jpg', sort_order: 5 },
 ];
 
 async function ensureBucket() {
@@ -84,9 +117,36 @@ async function ensureBucket() {
   }
 }
 
+async function loadExisting() {
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(FILE);
+  try {
+    const res = await fetch(data.publicUrl + '?t=' + Date.now());
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
+
 async function main() {
   await ensureBucket();
-  const json = JSON.stringify(slots, null, 2);
+
+  // Merge: preserve any admin-customised `url` for existing slot keys;
+  // take every other field from this script (label, section, defaultUrl, sort_order)
+  // and add new slots that don't exist yet.
+  const existing = await loadExisting();
+  const existingByKey = new Map(existing.map((s) => [s.key, s]));
+  const merged = slots.map((def) => {
+    const prev = existingByKey.get(def.key);
+    return prev ? { ...def, url: prev.url ?? def.defaultUrl } : def;
+  });
+
+  const added = merged.filter((s) => !existingByKey.has(s.key)).length;
+  const preserved = merged.filter(
+    (s) => existingByKey.has(s.key) && existingByKey.get(s.key).url !== s.defaultUrl
+  ).length;
+
+  const json = JSON.stringify(merged, null, 2);
   const { error } = await supabase.storage
     .from(BUCKET)
     .upload(FILE, new Blob([json], { type: 'application/json' }), {
@@ -96,7 +156,7 @@ async function main() {
   if (error) throw error;
 
   const { data } = supabase.storage.from(BUCKET).getPublicUrl(FILE);
-  console.log(`seeded ${slots.length} slots`);
+  console.log(`total slots: ${merged.length}  (added ${added}, preserved ${preserved} admin customisations)`);
   console.log(`url: ${data.publicUrl}`);
 }
 

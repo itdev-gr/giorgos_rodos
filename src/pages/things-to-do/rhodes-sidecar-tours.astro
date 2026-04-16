@@ -3,6 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import { getMediaSlot } from '../../lib/media';
+
+const heroImage = await getMediaSlot('sidecar-tours.hero.image', '/assets/img/transfers/rhodes-transfer-hero.jpg');
+const bodyImg1 = await getMediaSlot('sidecar-tours.body.img-1', '/assets/img/transfers/transfer-rider.jpg');
+const bodyImg2 = await getMediaSlot('sidecar-tours.body.img-2', '/assets/img/transfers/transfer-sidecar.jpg');
 ---
 
 <BaseLayout title="Rhodes Sidecar Tours — The Most Unique Experience in Rhodes | Rhodes Boat Tours" description="Rhodes Sidecar Tours is one of the most unique things to do in Rhodes. Explore the island in a vintage sidecar motorcycle with a local driver. Panoramic views, hidden locations and unforgettable memories.">
@@ -12,7 +17,7 @@ import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.as
   <ServiceHeroFullwidth
     title="Rhodes Sidecar Tours"
     subtitle="One of the Most Unique Experiences in Rhodes"
-    backgroundImage="/assets/img/transfers/rhodes-transfer-hero.jpg"
+    backgroundImage={heroImage}
   />
 
   <!-- 2. Article -->
@@ -33,7 +38,7 @@ import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.as
 
           <!-- Image 1 -->
           <div style="margin: 32px 0; border-radius: 12px; overflow: hidden;">
-            <img src="/assets/img/transfers/transfer-rider.jpg" alt="Rhodes sidecar tour experience" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;" loading="lazy" />
+            <img src={bodyImg1} alt="Rhodes sidecar tour experience" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;" loading="lazy" />
           </div>
 
           <p>The experience is not just transportation or a tour. It is a journey around Rhodes with panoramic views, coastal roads, mountain routes and hidden locations that many visitors would never find on their own.</p>
@@ -43,7 +48,7 @@ import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.as
 
           <!-- Image 2 -->
           <div style="margin: 32px 0; border-radius: 12px; overflow: hidden;">
-            <img src="/assets/img/transfers/transfer-sidecar.jpg" alt="Vintage sidecar motorcycle in Rhodes" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;" loading="lazy" />
+            <img src={bodyImg2} alt="Vintage sidecar motorcycle in Rhodes" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;" loading="lazy" />
           </div>
 
           <h2 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #113D48; margin: 32px 0 16px;">A Slow, Personal Experience</h2>

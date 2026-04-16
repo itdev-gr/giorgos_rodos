@@ -10,6 +10,17 @@ const safetyImg = await getMediaSlot('about.safety.img', '/assets/img/gallery/ya
 const differenceImg = await getMediaSlot('about.difference.img', '/assets/img/gallery/yacht/yacht-deck-1.jpg');
 const ctaCharterBg = await getMediaSlot('about.cta.charter.bg', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
 const ctaToursBg = await getMediaSlot('about.cta.tours.bg', '/assets/img/gallery/yacht/greek-coast-1.jpg');
+const expSunset = await getMediaSlot('about.experience.sunset.img', '/assets/img/gallery/yacht/sunset-cruise-1.jpg');
+const expHopping = await getMediaSlot('about.experience.hopping.img', '/assets/img/gallery/yacht/crystal-water-1.jpg');
+const expCharter = await getMediaSlot('about.experience.charter.img', '/assets/img/gallery/yacht/yacht-sailing-1.jpg');
+const expAdventures = await getMediaSlot('about.experience.adventures.img', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
+
+const experienceImages: Record<string, string> = {
+  'sunset-cruise-1.jpg': expSunset,
+  'crystal-water-1.jpg': expHopping,
+  'yacht-sailing-1.jpg': expCharter,
+  'yacht-luxury-1.jpg': expAdventures,
+};
 ---
 
 <BaseLayout title="About - Rhodes Rent a Boat">
@@ -198,7 +209,7 @@ const ctaToursBg = await getMediaSlot('about.cta.tours.bg', '/assets/img/gallery
           <div class="col-xl-3 col-lg-6 col-md-6" data-ani="slideinup" data-ani-delay={`${i * 0.1}`}>
             <div class="about-exp-card">
               <div class="about-exp-card__img global-img">
-                <img src={`/assets/img/gallery/yacht/${item.img}`} alt={item.title} />
+                <img src={experienceImages[item.img] || `/assets/img/gallery/yacht/${item.img}`} alt={item.title} />
               </div>
               <div class="about-exp-card__body">
                 <h3 class="box-title">{item.title}</h3>

@@ -2,6 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
+import { getMediaSlot } from '../../lib/media';
+
+const heroBg = await getMediaSlot('blog.rhodes-rent-a-boat.hero.bg', '/assets/img/gallery/yacht/yacht-sailing-1.jpg');
 ---
 
 <BaseLayout
@@ -11,7 +14,7 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
   <Header />
 
   <!-- Hero -->
-  <section class="rab-hero">
+  <section class="rab-hero" style={`background-image: url(${heroBg});`}>
     <div class="rab-hero__overlay"></div>
     <div class="container rab-hero__content">
       <span class="rab-hero__breadcrumb">Blog &nbsp;|&nbsp; Rhodes Rent a Boat</span>
@@ -73,7 +76,10 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
     min-height: 60vh;
     display: flex;
     align-items: flex-end;
-    background: url('/assets/img/gallery/yacht/yacht-sailing-1.jpg') center/cover no-repeat;
+    background-color: #0b2f38;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
   }
   .rab-hero__overlay {

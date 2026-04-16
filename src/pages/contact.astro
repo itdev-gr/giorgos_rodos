@@ -2,13 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import { getMediaSlot } from '../lib/media';
+
+const asideImg = await getMediaSlot('contact.aside.img', '/assets/img/cruises/greco_sunset3.jpg');
+const heroBg = await getMediaSlot('contact.hero.bg', '/assets/img/gallery/yacht/crystal-water-1.jpg');
 ---
 
 <BaseLayout title="Contact - Rhodes Boat Tours">
   <Header />
 
   <!-- ============== Section 1: Hero ============== -->
-  <div class="contact-hero">
+  <div class="contact-hero" style={`background-image: url(${heroBg});`}>
     <div class="contact-hero__overlay"></div>
     <div class="container contact-hero__content">
       <span class="contact-hero__breadcrumb">Rhodes Boat Tours &nbsp;|&nbsp; Contact</span>
@@ -78,7 +82,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
         <!-- Left: Atmospheric Image -->
         <div class="col-lg-5" data-ani="slideinleft">
           <div class="contact-aside">
-            <img class="contact-aside__img" src="/assets/img/cruises/greco_sunset3.jpg" alt="Aegean sea view from yacht" />
+            <img class="contact-aside__img" src={asideImg} alt="Aegean sea view from yacht" />
             <div class="contact-aside__overlay">
               <p class="contact-aside__quote">
                 "We would rather have a good conversation than a quick booking. That is how we have worked for over fifteen years."
@@ -204,7 +208,10 @@ import FooterFour from '../sections/shared/FooterFour.astro';
     min-height: 65vh;
     display: flex;
     align-items: flex-end;
-    background: url('/assets/img/gallery/yacht/crystal-water-1.jpg') center/cover no-repeat;
+    background-color: #0b2f38;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
   }
 
