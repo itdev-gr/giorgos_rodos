@@ -5,7 +5,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const heroVideo = await getMediaSlot('service.boat-cruises.hero.video', '/assets/img/hero/services/boat-cruises.mp4');
+const heroImage = await getMediaSlot('service.boat-cruises.hero.image', '/assets/img/cruises/greco_home1.jpg');
 
 // Fetch approved tours from Supabase
 let dbCards: any[] = [];
@@ -44,8 +48,8 @@ const cruises = dbCards;
   <ServiceHeroFullwidth
     title="Rhodes Boat Cruises"
     subtitle="Organized Day Cruises in Rhodes"
-    backgroundImage="/assets/img/cruises/greco_home1.jpg"
-    heroVideo="/assets/img/hero/services/boat-cruises.mp4"
+    backgroundImage={heroImage}
+    heroVideo={heroVideo}
   />
 
   <!-- 2. Intro -->

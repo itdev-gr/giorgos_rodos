@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import sharp from 'sharp';
 import { createAdminClient, createPublicClient } from '../../../lib/supabase';
 
 
@@ -22,9 +23,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(JSON.stringify({ error: 'Only JPEG, PNG and WebP images are allowed' }), { status: 400 });
     }
 
-    // Max 5MB
-    if (file.size > 5 * 1024 * 1024) {
-      return new Response(JSON.stringify({ error: 'Image must be under 5MB' }), { status: 400 });
+    // Raise original-file ceiling now that we compress; Sharp handles anything within memory.
+    if (file.size > 20 * 1024 * 1024) {
+      return new Response(JSON.stringify({ error: 'Image must be under 20MB' }), { status: 400 });
     }
 
     // Use admin client (service role) to bypass RLS on storage
@@ -67,23 +68,26 @@ async function doUpload(supabase: any, file: File, userId: string) {
     // Continue anyway — bucket might exist but listBuckets may require different permissions
   }
 
-  const ext = file.name.split('.').pop() || 'jpg';
-  const fileName = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const fileName = `${userId}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.webp`;
 
-  // Convert File to buffer — required for Vercel serverless
-  let fileData: Uint8Array;
+  // Read input, then compress via Sharp (resize to 1920px max long edge, encode WebP q80).
+  let compressed: Buffer;
   try {
     const arrayBuffer = await file.arrayBuffer();
-    fileData = new Uint8Array(arrayBuffer);
+    compressed = await sharp(Buffer.from(arrayBuffer))
+      .rotate() // honour EXIF orientation then strip it
+      .resize({ width: 1920, height: 1920, fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toBuffer();
   } catch (bufErr: any) {
-    console.error('File buffer conversion failed:', bufErr);
-    return new Response(JSON.stringify({ error: 'Failed to process file: ' + bufErr.message }), { status: 500 });
+    console.error('Image compression failed:', bufErr);
+    return new Response(JSON.stringify({ error: 'Failed to process image: ' + bufErr.message }), { status: 500 });
   }
 
   const { error: uploadError } = await supabase.storage
     .from(BUCKET)
-    .upload(fileName, fileData, {
-      contentType: file.type,
+    .upload(fileName, compressed, {
+      contentType: 'image/webp',
       upsert: false,
     });
 

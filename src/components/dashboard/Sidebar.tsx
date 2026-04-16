@@ -12,6 +12,7 @@ const adminLinks = [
   { label: 'Tours', href: '/dashboard/admin/tours', icon: 'fas fa-ship' },
   { label: 'Create Tour', href: '/dashboard/admin/tours/new', icon: 'fas fa-plus-circle' },
   { label: 'Categories', href: '/dashboard/admin/categories', icon: 'fas fa-th-large' },
+  { label: 'Media', href: '/dashboard/admin/media', icon: 'fas fa-photo-video' },
   { label: 'Contacts', href: '/dashboard/admin/contacts', icon: 'fas fa-envelope' },
   { label: 'Users', href: '/dashboard/admin/users', icon: 'fas fa-users' },
 ];

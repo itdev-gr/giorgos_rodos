@@ -1,8 +1,12 @@
+---
+import { getMediaSlot } from '../../lib/media';
+const heroVideo = await getMediaSlot('home.hero.video', '/assets/img/hero/hero-video.webm');
+---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
     <div class="th-hero-bg">
       <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
-        <source src="/assets/img/hero/hero-video.webm" type="video/webm" />
+        <source src={heroVideo} />
       </video>
       <div class="hero-overlay"></div>
     </div>

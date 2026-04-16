@@ -2,13 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import { getMediaSlot } from '../lib/media';
+
+const heroBg = await getMediaSlot('about.hero.bg', '/assets/img/about/about-hero-boy-sailboat.jpg');
+const storyImg = await getMediaSlot('about.story.img', '/assets/img/gallery/yacht/greek-island-1.jpg');
+const safetyImg = await getMediaSlot('about.safety.img', '/assets/img/gallery/yacht/yacht-interior-1.jpg');
+const differenceImg = await getMediaSlot('about.difference.img', '/assets/img/gallery/yacht/yacht-deck-1.jpg');
+const ctaCharterBg = await getMediaSlot('about.cta.charter.bg', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
+const ctaToursBg = await getMediaSlot('about.cta.tours.bg', '/assets/img/gallery/yacht/greek-coast-1.jpg');
 ---
 
 <BaseLayout title="About - Rhodes Rent a Boat">
   <Header />
 
   <!-- ============== Section 1: Full-Bleed Hero ============== -->
-  <div class="about-hero">
+  <div class="about-hero" style={`background-image: url(${heroBg});`}>
     <div class="about-hero__overlay"></div>
     <div class="container about-hero__content">
       <span class="about-hero__breadcrumb">Rhodes Rent a Boat &nbsp;|&nbsp; About Us</span>
@@ -76,7 +84,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
       <div class="row align-items-center gy-40">
         <div class="col-lg-6" data-ani="slideinleft">
           <div class="about-split__img">
-            <img class="global-img" src="/assets/img/gallery/yacht/greek-island-1.jpg" alt="Greek island coastline" />
+            <img class="global-img" src={storyImg} alt="Greek island coastline" />
           </div>
         </div>
         <div class="col-lg-6" data-ani="slideinright">
@@ -105,7 +113,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
       <div class="row align-items-center flex-lg-row-reverse gy-40">
         <div class="col-lg-6" data-ani="slideinright">
           <div class="about-split__img">
-            <img class="global-img" src="/assets/img/gallery/yacht/yacht-interior-1.jpg" alt="Luxury yacht interior" />
+            <img class="global-img" src={safetyImg} alt="Luxury yacht interior" />
           </div>
         </div>
         <div class="col-lg-6" data-ani="slideinleft">
@@ -134,7 +142,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
       <div class="row align-items-center gy-40">
         <div class="col-lg-6" data-ani="slideinleft">
           <div class="about-split__img">
-            <img class="global-img" src="/assets/img/gallery/yacht/yacht-deck-1.jpg" alt="Yacht deck view" />
+            <img class="global-img" src={differenceImg} alt="Yacht deck view" />
           </div>
         </div>
         <div class="col-lg-6" data-ani="slideinright">
@@ -209,7 +217,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
       <div class="row g-0">
         <div class="col-lg-6" data-ani="slideinleft">
           <a href="/service/rodos-charter" class="about-cta__card">
-            <img class="about-cta__bg" src="/assets/img/gallery/yacht/yacht-luxury-1.jpg" alt="Private Charters" />
+            <img class="about-cta__bg" src={ctaCharterBg} alt="Private Charters" />
             <div class="about-cta__overlay"></div>
             <div class="about-cta__content">
               <h2 class="about-cta__title">Private Charters</h2>
@@ -220,7 +228,7 @@ import FooterFour from '../sections/shared/FooterFour.astro';
         </div>
         <div class="col-lg-6" data-ani="slideinright">
           <a href="/service/rodos-boat-tours" class="about-cta__card">
-            <img class="about-cta__bg" src="/assets/img/gallery/yacht/greek-coast-1.jpg" alt="Boat Tours" />
+            <img class="about-cta__bg" src={ctaToursBg} alt="Boat Tours" />
             <div class="about-cta__overlay"></div>
             <div class="about-cta__content">
               <h2 class="about-cta__title">Boat Tours</h2>
@@ -251,7 +259,10 @@ import FooterFour from '../sections/shared/FooterFour.astro';
     min-height: 75vh;
     display: flex;
     align-items: flex-end;
-    background: url('/assets/img/about/about-hero-boy-sailboat.jpg') center/cover no-repeat;
+    background-color: #0b2f38;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
   }
 

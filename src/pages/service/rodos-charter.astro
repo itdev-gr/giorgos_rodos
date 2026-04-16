@@ -5,7 +5,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const heroVideo = await getMediaSlot('service.charter.hero.video', '/assets/img/hero/services/charter.mp4');
+const heroImage = await getMediaSlot('service.charter.hero.image', '/assets/img/fleet/oceanis-511-lupo-di-mare.jpg');
 
 // Fetch approved tours from Supabase
 let dbCards: any[] = [];
@@ -43,8 +47,8 @@ const charters = dbCards;
   <ServiceHeroFullwidth
     title="Rhodes Yacht Charter"
     subtitle="Sailing Holidays in the Dodecanese"
-    backgroundImage="/assets/img/fleet/oceanis-511-lupo-di-mare.jpg"
-    heroVideo="/assets/img/hero/services/charter.mp4"
+    backgroundImage={heroImage}
+    heroVideo={heroVideo}
   />
 
   <!-- 2. Intro -->
