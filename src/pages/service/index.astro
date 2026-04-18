@@ -58,7 +58,9 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
     <div class="charter-grid">
       {rest.map((data: any, i: number) => (
         <a
-          href={`/service/${data.slug}`}
+          href={data.externalUrl ?? `/service/${data.slug}`}
+          target={data.externalUrl ? '_blank' : undefined}
+          rel={data.externalUrl ? 'noopener noreferrer' : undefined}
           class={`charter-card ${i === 0 ? 'charter-card--full' : 'charter-card--half'}`}
           data-ani="slideinup"
           data-ani-delay={String(i * 0.1)}

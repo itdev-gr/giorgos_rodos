@@ -61,5 +61,15 @@
         "title": "Rhodes Tender Boat",
         "category": null,
         "item": "Swift tender boat transfers"
+    },
+    {
+        "id": 8,
+        "slug": "rhodes-rent-a-car",
+        "image": "/assets/img/destinations/lindos-bay.jpg",
+        "bannerImg": "/assets/img/destinations/lindos-bay.jpg",
+        "title": "Rhodes Rent a Car",
+        "category": null,
+        "item": "Explore the island at your own pace",
+        "externalUrl": "https://siech-rentacar.com/"
     }
 ]

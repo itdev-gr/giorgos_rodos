@@ -44,6 +44,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         { label: 'MICE & Incentive', href: '/service/rhodes-mice-events' },
         { label: 'Rhodes Tender Boat', href: '/service/rodos-tender-boat' },
         { label: 'Rhodes Transfers', href: '/service/rhodes-transfers' },
+        { label: 'Rhodes Rent a Car', href: 'https://siech-rentacar.com/', external: true },
       ],
     },
     { id: 5, label: 'Best Boat Tours in Rhodes', href: '/things-to-do' },
@@ -100,9 +101,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     className="th-submenu"
                     style={{ height: '0px', overflow: 'hidden', transition: 'height 0.3s ease-in-out' }}
                   >
-                    {item.children.map((child, cidx) => (
+                    {item.children.map((child: any, cidx) => (
                       <li key={cidx}>
-                        <a href={child.href}>{child.label}</a>
+                        <a
+                          href={child.href}
+                          target={child.external ? '_blank' : undefined}
+                          rel={child.external ? 'noopener noreferrer' : undefined}
+                        >{child.label}</a>
                       </li>
                     ))}
                   </ul>
