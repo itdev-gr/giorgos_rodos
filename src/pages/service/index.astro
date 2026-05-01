@@ -24,7 +24,9 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
     <video class="services-hero__video" autoplay muted loop playsinline preload="metadata">
       <source src={heroVideo} type="video/mp4" />
     </video>
-    <div class="services-hero__content"></div>
+    <div class="services-hero__content">
+      <h1 class="services-hub-h1">Boat Services in Rhodes — Tours, Rentals, Cruises and Charters</h1>
+    </div>
   </section>
 
   <!-- Featured services — large cards -->
@@ -93,6 +95,15 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
 </BaseLayout>
 
 <style>
+  /* ===== Visually hidden h1 for SEO ===== */
+  .services-hub-h1 {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
   /* ===== Hero ===== */
   .services-hero {
     position: relative;
