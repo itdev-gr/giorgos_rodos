@@ -1,10 +1,28 @@
 ---
+import Seo from '../components/seo/Seo.astro';
+import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
+
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  articleAuthor?: string;
+  articlePublishedTime?: string;
+  noindex?: boolean;
 }
 
-const { title = 'Rhodes Boat Tours', description = 'Luxury yacht charters and boat rentals in Rhodes, Greece. Explore the Dodecanese islands with bespoke sailing experiences.' } = Astro.props;
+const {
+  title = 'Rhodes Boat Tours | Boat Trips, Cruises & Rentals',
+  description = 'Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts in Mandraki Harbour since 2009.',
+  canonical,
+  ogImage,
+  ogType,
+  articleAuthor,
+  articlePublishedTime,
+  noindex,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -12,9 +30,18 @@ const { title = 'Rhodes Boat Tours', description = 'Luxury yacht charters and bo
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
-    <title>{title}</title>
+    <Seo
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+      ogType={ogType}
+      articleAuthor={articleAuthor}
+      articlePublishedTime={articlePublishedTime}
+      noindex={noindex}
+    />
+    <OrganizationSchema />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
