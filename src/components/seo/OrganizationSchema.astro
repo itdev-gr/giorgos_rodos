@@ -1,0 +1,26 @@
+---
+import { SITE_URL, SITE_NAME } from '../../lib/seo';
+
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  '@id': `${SITE_URL}#organization`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/assets/img/logo2.svg`,
+  image: `${SITE_URL}/assets/img/hero/hero_bg_1_1.jpg`,
+  telephone: '+30 695 166 6454',
+  email: 'info@rhodesrentaboat.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Rhodes',
+    addressRegion: 'South Aegean',
+    addressCountry: 'GR',
+    streetAddress: 'Mandraki Harbour'
+  },
+  areaServed: { '@type': 'Place', name: 'Rhodes, Greece' },
+  sameAs: [],
+  foundingDate: '2009'
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />
