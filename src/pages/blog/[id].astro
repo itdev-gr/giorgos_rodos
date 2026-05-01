@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import posts from '../../data/data-post.json';
+
+const { id } = Astro.params;
+const post = posts.find((p: any) => String(p.id) === String(id));
+
+if (!post) {
+  return new Response(null, { status: 404, statusText: 'Not Found' });
+}
+
+const canonical = `https://rhodesrentaboat.com/blog/${post.id}`;
+const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg || post.image}`;
+---
+
+<BaseLayout
+  title={`${post.title} | Rhodes Boat Tours`}
+  description={post.excerpt}
+  canonical={canonical}
+  ogImage={ogImage}
+  ogType="article"
+  articleAuthor={post.author}
+  articlePublishedTime={post.publishedDate}
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="rab-hero" style={`background-image: url(/assets/img/blog/${post.bannerImg || post.image});`}>
+    <div class="rab-hero__overlay"></div>
+    <div class="container rab-hero__content">
+      <span class="rab-hero__breadcrumb">Blog &nbsp;|&nbsp; {post.tags[0]}</span>
+      <h1 class="rab-hero__title" data-ani="slideinup">{post.title}</h1>
+      <p class="rab-hero__tagline" data-ani="slideinup" data-ani-delay="0.1">
+        {post.excerpt}
+      </p>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <article style="padding: 80px 0;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="rab-article" data-ani="fadein">
+            <div class="rab-article__meta">
+              <span>By {post.author}</span>
+              <span class="rab-article__meta-sep">&bull;</span>
+              <span>{post.date}</span>
+              <span class="rab-article__meta-sep">&bull;</span>
+              <span class="rab-article__tags">
+                {post.tags.map((t: string) => <span class="blog-card_tag">{t.toUpperCase()}</span>)}
+              </span>
+            </div>
+
+            <img
+              src={`/assets/img/blog/${post.bannerImg || post.image}`}
+              alt={post.title}
+              class="rab-article__img"
+            />
+
+            <p class="rab-article__lead">{post.excerpt}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    image: [ogImage],
+    datePublished: post.publishedDate || undefined,
+    author: { '@type': 'Organization', name: post.author },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Rhodes Rent a Boat',
+      logo: { '@type': 'ImageObject', url: 'https://rhodesrentaboat.com/assets/img/logo2.svg' }
+    },
+    mainEntityOfPage: canonical,
+    description: post.excerpt
+  })} />
+
+  <FooterFour />
+</BaseLayout>
+
+<script>
+  function initRabHero() {
+    document.getElementById('header-one')?.classList.add('header-transparent');
+  }
+  document.addEventListener('DOMContentLoaded', initRabHero);
+  document.addEventListener('astro:page-load', initRabHero);
+</script>
+
+<style>
+  .rab-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    background-color: #0b2f38;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  .rab-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(17, 61, 72, 0.75) 100%);
+    z-index: 1;
+  }
+  .rab-hero__content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 70px;
+    color: #fff;
+  }
+  .rab-hero__breadcrumb {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+  .rab-hero__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .rab-hero__tagline {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 620px;
+    opacity: 0.92;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 991px) {
+    .rab-hero {
+      min-height: 75vh;
+    }
+    .rab-hero__content {
+      padding-bottom: 5vh;
+    }
+  }
+  @media (max-width: 767px) {
+    .rab-hero__title {
+      font-size: 2rem;
+    }
+  }
+
+  .rab-article {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #4a5568;
+  }
+  .rab-article p {
+    margin-bottom: 18px;
+  }
+  .rab-article__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #737887;
+    margin-bottom: 28px;
+  }
+  .rab-article__meta-sep {
+    opacity: 0.5;
+  }
+  .rab-article__tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .blog-card_tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #113D48;
+    background: rgba(17, 61, 72, 0.08);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .rab-article__img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .rab-article__lead {
+    font-size: 1.15rem;
+    color: #2d3e46;
+    margin-bottom: 28px !important;
+  }
+</style>
