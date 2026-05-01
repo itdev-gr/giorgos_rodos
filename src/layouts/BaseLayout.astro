@@ -74,6 +74,14 @@ const {
         opacity: 1 !important;
         transform: none !important;
       }
+      @media (max-width: 575px) {
+        :global(body) { font-size: 15px; line-height: 1.55; }
+        :global(small), :global(.small), :global(.meta),
+        :global(.blog-card_meta), :global(.blog-card_tag),
+        :global(.blog-card__tag), :global(.footer-copyright) {
+          font-size: 13px !important;
+        }
+      }
     </style>
   </head>
   <body>
