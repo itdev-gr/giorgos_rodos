@@ -70,6 +70,10 @@ const {
       *, *::before, *::after {
         max-width: 100vw;
       }
+      html:not(.has-gsap) [data-ani] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
     </style>
   </head>
   <body>
@@ -149,152 +153,75 @@ const {
 
       gsap.registerPlugin(ScrollTrigger);
 
+      document.documentElement.classList.add('has-gsap');
+
       // Make gsap available globally for components
       window.gsap = gsap;
       window.ScrollTrigger = ScrollTrigger;
 
       // Initialize scroll animations for elements with data-animate attribute
       function initAnimations() {
-        // Slide in up animations
-        gsap.utils.toArray('[data-ani="slideinup"]').forEach((el) => {
-          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
-          gsap.from(el, {
-            y: 60,
-            opacity: 0,
-            duration: 0.8,
-            delay: delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          });
-        });
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Fade in left
-        gsap.utils.toArray('[data-ani="slideinleft"]').forEach((el) => {
-          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
-          gsap.from(el, {
-            x: -60,
-            opacity: 0,
-            duration: 0.8,
-            delay: delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          });
-        });
+        const animate = (sel: string, fromVars: gsap.TweenVars) => {
+          gsap.utils.toArray<HTMLElement>(sel).forEach((el) => {
+            const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
 
-        // Fade in right
-        gsap.utils.toArray('[data-ani="slideinright"]').forEach((el) => {
-          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
-          gsap.from(el, {
-            x: 60,
-            opacity: 0,
-            duration: 0.8,
-            delay: delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          });
-        });
+            if (reduce) {
+              gsap.set(el, { opacity: 1, x: 0, y: 0, scale: 1, clearProps: 'all' });
+              return;
+            }
 
-        // Fade in down
-        gsap.utils.toArray('[data-ani="slideindown"]').forEach((el) => {
-          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
-          gsap.from(el, {
-            y: -60,
-            opacity: 0,
-            duration: 0.8,
-            delay: delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          });
-        });
+            const rect = el.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-        // Fade in
-        gsap.utils.toArray('[data-ani="fadein"]').forEach((el) => {
-          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
-          gsap.from(el, {
-            opacity: 0,
-            duration: 0.8,
-            delay: delay,
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          });
-        });
+            const tween = {
+              ...fromVars,
+              delay,
+              duration: 0.8,
+              ease: 'power2.out',
+              clearProps: 'transform,opacity',
+            };
 
-        // Zoom in
-        gsap.utils.toArray('[data-ani="zoomIn"]').forEach((el) => {
-          const delay = parseFloat(el.getAttribute('data-ani-delay') || '0');
-          gsap.from(el, {
-            scale: 0.5,
-            opacity: 0,
-            duration: 0.8,
-            delay: delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
+            if (inView) {
+              gsap.from(el, tween);
+            } else {
+              gsap.from(el, {
+                ...tween,
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top 95%',
+                  toggleActions: 'play none none none',
+                  once: true,
+                },
+              });
+            }
           });
-        });
+        };
 
-        // Floating/decorative animations
-        gsap.utils.toArray('.jump, .jumpAni').forEach((el) => {
-          gsap.to(el, {
-            y: -15,
-            repeat: -1,
-            yoyo: true,
-            duration: 2,
-            ease: 'sine.inOut',
-          });
-        });
+        animate('[data-ani="slideinup"]',    { y: 60, opacity: 0 });
+        animate('[data-ani="slideinleft"]',  { x: -60, opacity: 0 });
+        animate('[data-ani="slideinright"]', { x: 60, opacity: 0 });
+        animate('[data-ani="slideindown"]',  { y: -60, opacity: 0 });
+        animate('[data-ani="fadein"]',       { opacity: 0 });
+        animate('[data-ani="zoomIn"]',       { scale: 0.5, opacity: 0 });
 
-        gsap.utils.toArray('.movingX').forEach((el) => {
-          gsap.to(el, {
-            x: 20,
-            repeat: -1,
-            yoyo: true,
-            duration: 3,
-            ease: 'sine.inOut',
-          });
-        });
+        if (reduce) return;
 
-        gsap.utils.toArray('.moving').forEach((el) => {
-          gsap.to(el, {
-            y: 15,
-            x: 10,
-            repeat: -1,
-            yoyo: true,
-            duration: 4,
-            ease: 'sine.inOut',
-          });
-        });
+        gsap.utils.toArray<HTMLElement>('.jump, .jumpAni').forEach((el) =>
+          gsap.to(el, { y: -15, repeat: -1, yoyo: true, duration: 2, ease: 'sine.inOut' })
+        );
+        gsap.utils.toArray<HTMLElement>('.movingX').forEach((el) =>
+          gsap.to(el, { x: 20, repeat: -1, yoyo: true, duration: 3, ease: 'sine.inOut' })
+        );
+        gsap.utils.toArray<HTMLElement>('.moving').forEach((el) =>
+          gsap.to(el, { y: 15, x: 10, repeat: -1, yoyo: true, duration: 4, ease: 'sine.inOut' })
+        );
+        gsap.utils.toArray<HTMLElement>('.spin').forEach((el) =>
+          gsap.to(el, { rotation: 360, repeat: -1, duration: 10, ease: 'none' })
+        );
 
-        gsap.utils.toArray('.spin').forEach((el) => {
-          gsap.to(el, {
-            rotation: 360,
-            repeat: -1,
-            duration: 10,
-            ease: 'none',
-          });
-        });
+        ScrollTrigger.refresh();
       }
 
       // Run on page load
