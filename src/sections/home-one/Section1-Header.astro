@@ -231,6 +231,16 @@ import MobileMenu from '../../components/interactive/MobileMenu';
   /* ===== Transparent state mobile toggle override (already handled above) ===== */
 
   /* ===== Responsive ===== */
+  @media (max-width: 991px) {
+    a[href^="tel:"] {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 4px 8px;
+      font-size: 15px;
+    }
+  }
+
   @media (max-width: 1199px) {
     .luxury-cta {
       padding: 10px 20px;
