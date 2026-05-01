@@ -24,8 +24,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     // Raise original-file ceiling now that we compress; Sharp handles anything within memory.
-    if (file.size > 20 * 1024 * 1024) {
-      return new Response(JSON.stringify({ error: 'Image must be under 20MB' }), { status: 400 });
+    if (file.size > 50 * 1024 * 1024) {
+      return new Response(JSON.stringify({ error: 'Image must be under 50MB' }), { status: 400 });
     }
 
     // Use admin client (service role) to bypass RLS on storage
@@ -55,7 +55,7 @@ async function doUpload(supabase: any, file: File, userId: string) {
     if (!exists) {
       const { error: createErr } = await supabase.storage.createBucket(BUCKET, {
         public: true,
-        fileSizeLimit: 5 * 1024 * 1024,
+        fileSizeLimit: 50 * 1024 * 1024,
         allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
       });
       if (createErr) {

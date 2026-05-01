@@ -371,7 +371,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
                 <i className={uploading ? 'fas fa-spinner fa-spin' : 'fas fa-cloud-upload-alt'} />
                 {uploading ? 'Uploading...' : `Upload Images (${images.length}/10)`}
               </button>
-              <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: 6 }}>JPEG, PNG or WebP. Max 5MB each. Click "Set as main" to choose the card image.</p>
+              <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: 6 }}>JPEG, PNG or WebP. Max 50MB each (auto-compressed on upload). Click "Set as main" to choose the card image.</p>
             </div>
           )}
         </div>

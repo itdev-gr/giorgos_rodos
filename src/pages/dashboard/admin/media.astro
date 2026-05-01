@@ -32,7 +32,7 @@ const pages = Object.keys(grouped);
     Replace images and videos across the public site. Listing images are managed under <a href="/dashboard/admin/tours" style="color: #1CA8CB;">Tours</a>; service category cards under <a href="/dashboard/admin/categories" style="color: #1CA8CB;">Categories</a>.
   </p>
   <div style="padding: 12px 16px; background: #fff8e6; border: 1px solid #f7d97a; border-radius: 8px; margin-bottom: 24px; font-size: 0.82rem; color: #7a5a00;">
-    <strong>Videos:</strong> uploaded as-is, no size limit. For best page speed, pre-compress videos to under ~10 MB (tools like Handbrake or <code>ffmpeg</code>). Images are automatically compressed to WebP on upload.
+    <strong>Videos:</strong> up to 500&nbsp;MB, uploaded direct-to-storage. For best page speed, pre-compress videos to under ~10&nbsp;MB (tools like Handbrake or <code>ffmpeg</code>). <strong>Images:</strong> up to 50&nbsp;MB, automatically compressed to WebP on upload.
   </div>
 
   {slots.length === 0 && (

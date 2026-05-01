@@ -28,7 +28,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const { data: buckets } = await supabase.storage.listBuckets();
     if (!buckets?.some((b: any) => b.name === BUCKET)) {
-      await supabase.storage.createBucket(BUCKET, { public: true });
+      await supabase.storage.createBucket(BUCKET, {
+        public: true,
+        fileSizeLimit: 500 * 1024 * 1024,
+      });
     }
   } catch {
     // continue; bucket may exist already
