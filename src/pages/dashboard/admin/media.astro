@@ -31,9 +31,48 @@ const pages = Object.keys(grouped);
   <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 14px;">
     Replace images and videos across the public site. Listing images are managed under <a href="/dashboard/admin/tours" style="color: #1CA8CB;">Tours</a>; service category cards under <a href="/dashboard/admin/categories" style="color: #1CA8CB;">Categories</a>.
   </p>
-  <div style="padding: 12px 16px; background: #fff8e6; border: 1px solid #f7d97a; border-radius: 8px; margin-bottom: 24px; font-size: 0.82rem; color: #7a5a00;">
+  <div style="padding: 12px 16px; background: #fff8e6; border: 1px solid #f7d97a; border-radius: 8px; margin-bottom: 16px; font-size: 0.82rem; color: #7a5a00;">
     <strong>Videos:</strong> up to 500&nbsp;MB, uploaded direct-to-storage. For best page speed, pre-compress videos to under ~10&nbsp;MB (tools like Handbrake or <code>ffmpeg</code>). <strong>Images:</strong> up to 50&nbsp;MB, automatically compressed to WebP on upload.
   </div>
+
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding: 10px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem;">
+    <span style="color: #475569;">First time using the new limits? Apply them to existing storage buckets:</span>
+    <button
+      id="apply-bucket-limits"
+      type="button"
+      style="padding: 6px 14px; background: #1CA8CB; color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.82rem;"
+    >
+      Apply 500&nbsp;MB / 50&nbsp;MB limits
+    </button>
+    <span id="apply-bucket-limits-status" style="color: #64748b;"></span>
+  </div>
+
+  <script>
+    const btn = document.getElementById('apply-bucket-limits') as HTMLButtonElement | null;
+    const status = document.getElementById('apply-bucket-limits-status');
+    btn?.addEventListener('click', async () => {
+      if (!btn || !status) return;
+      btn.disabled = true;
+      status.textContent = 'Applying…';
+      try {
+        const res = await fetch('/api/admin/storage/update-bucket-limits', { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          status.textContent = 'Failed: ' + (data.error || JSON.stringify(data.results || data));
+          status.style.color = '#b91c1c';
+        } else {
+          const summary = data.results.map((r: any) => `${r.bucket}: ${r.status} (${r.limitMB} MB)`).join(', ');
+          status.textContent = '✓ ' + summary;
+          status.style.color = '#15803d';
+        }
+      } catch (e: any) {
+        status.textContent = 'Network error: ' + (e?.message || e);
+        status.style.color = '#b91c1c';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
 
   {slots.length === 0 && (
     <div style="padding: 60px; text-align: center; color: #94a3b8; background: #fff; border-radius: 12px;">
