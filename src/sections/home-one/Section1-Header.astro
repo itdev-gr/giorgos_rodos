@@ -233,6 +233,17 @@ import MobileMenu from '../../components/interactive/MobileMenu';
 
   /* ===== Transparent state mobile toggle override (already handled above) ===== */
 
+  /* ===== Side / Mobile drawer logo size ===== */
+  :global(.th-menu-wrapper .mobile-logo img) {
+    max-width: 160px;
+    height: auto;
+  }
+  @media (min-width: 1200px) {
+    :global(.th-menu-wrapper .mobile-logo img) {
+      max-width: 110px;
+    }
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 991px) {
     a[href^="tel:"] {
