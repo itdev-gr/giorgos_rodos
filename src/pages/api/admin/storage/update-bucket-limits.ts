@@ -29,11 +29,14 @@ export const POST: APIRoute = async () => {
         public: true,
         fileSizeLimit: target.fileSizeLimit,
       });
+      const isProjectCapError = error?.message?.toLowerCase().includes('exceeded the maximum allowed size');
       results.push({
         bucket: target.name,
         limitMB,
         status: error ? 'error' : 'updated',
-        message: error?.message,
+        message: isProjectCapError
+          ? `Bucket policy of ${limitMB} MB exceeds your project-wide cap. Raise it in Supabase Dashboard → Project Settings → Storage → "Upload file size limit" (Pro plan required for >50 MB).`
+          : error?.message,
       });
     } else {
       const { error } = await supabase.storage.createBucket(target.name, {
