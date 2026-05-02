@@ -89,9 +89,6 @@ const exclusions = tour.exclusions || [];
               <span style="display: inline-block; padding: 4px 12px; background: #113D48; color: #fff; border-radius: 6px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">{tour.badge_label}</span>
             )}
             <h1 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
-            {tour.profiles?.company_name && (
-              <p style="font-size: 0.88rem; color: #64748b; margin: 0;">by {tour.profiles.company_name}</p>
-            )}
           </div>
 
           <!-- Specs Strip -->
@@ -251,21 +248,6 @@ const exclusions = tour.exclusions || [];
               </a>
             </div>
 
-            <!-- Operator -->
-            {tour.profiles && (
-              <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #f1f5f9;">
-                <p style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px;">Operated by</p>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <div style="width: 36px; height: 36px; border-radius: 50%; background: #1CA8CB; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;">
-                    {(tour.profiles.company_name || tour.profiles.full_name || '?')[0].toUpperCase()}
-                  </div>
-                  <div>
-                    <p style="font-weight: 600; color: #113D48; margin: 0; font-size: 0.88rem;">{tour.profiles.company_name || tour.profiles.full_name}</p>
-                    <p style="font-size: 0.75rem; color: #94a3b8; margin: 0;">Local operator in Rhodes</p>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
