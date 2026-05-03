@@ -3,13 +3,27 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
 
 const heroImage = await getMediaSlot('service.transfers.hero.image', '/assets/img/transfers/rhodes-transfer-hero.jpg');
 const heroVideo = await getMediaSlot('service.transfers.hero.video', '/assets/img/hero/services/charter.mp4');
 ---
 
-<BaseLayout title="Rhodes Transfers — Airport, Hotel & Marina Transfers | Rhodes Boat Tours" description="Transportation services in Rhodes. Airport transfers, hotel transfers, marina transfers and private transportation. Connected with reliable local transfer providers.">
+<BaseLayout title="Rhodes Transfers — Airport, Hotel & Marina Transfers | Rhodes Boat Tours" description="Transportation services in Rhodes. Airport transfers, hotel transfers, marina transfers and private transportation. Connected with reliable local transfer providers." ogImage={heroImage}>
+  <ServiceSchema
+    name="Rhodes Transfers"
+    description="Transportation services in Rhodes — airport transfers, hotel transfers, marina transfers and private transportation through reliable local providers."
+    serviceType="Ground Transfer"
+    image={heroImage}
+    url="/service/rhodes-transfers"
+  />
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/service' },
+    { name: 'Rhodes Transfers', url: '/service/rhodes-transfers' },
+  ]} />
   <Header />
 
   <!-- 1. Hero -->

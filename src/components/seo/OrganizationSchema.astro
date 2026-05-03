@@ -3,24 +3,73 @@ import { SITE_URL, SITE_NAME } from '../../lib/seo';
 
 const data = {
   '@context': 'https://schema.org',
-  '@type': 'TravelAgency',
+  '@type': ['TravelAgency', 'LocalBusiness'],
   '@id': `${SITE_URL}#organization`,
   name: SITE_NAME,
+  alternateName: 'Rhodes Boat Tours',
   url: SITE_URL,
-  logo: `${SITE_URL}/assets/img/logo2.svg`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}/assets/img/logo2.svg`,
+    width: 200,
+    height: 60,
+  },
   image: `${SITE_URL}/assets/img/hero/hero_bg_1_1.jpg`,
+  description: 'Local-led boat tours, license-free rentals, sailing trips and yacht charters in Rhodes, Greece. Operating from Mandraki Harbour since 2009.',
   telephone: '+30 695 166 6454',
   email: 'info@rhodesrentaboat.com',
+  priceRange: '€€',
+  currenciesAccepted: 'EUR',
+  paymentAccepted: 'Cash, Credit Card, Bank Transfer',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Mandraki Harbour',
     addressLocality: 'Rhodes',
     addressRegion: 'South Aegean',
+    postalCode: '85100',
     addressCountry: 'GR',
-    streetAddress: 'Mandraki Harbour'
   },
-  areaServed: { '@type': 'Place', name: 'Rhodes, Greece' },
-  sameAs: [],
-  foundingDate: '2009'
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 36.4475,
+    longitude: 28.4275,
+  },
+  areaServed: [
+    { '@type': 'Place', name: 'Rhodes, Greece' },
+    { '@type': 'Place', name: 'Symi, Greece' },
+    { '@type': 'Place', name: 'Lindos, Greece' },
+    { '@type': 'Place', name: 'Dodecanese, Greece' },
+  ],
+  hasMap: 'https://www.google.com/maps/place/Mandraki+Harbour+Rhodes',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '20:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Sunday',
+      opens: '10:00',
+      closes: '18:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/rhodos_yachts',
+    'https://www.facebook.com/rhodosyachts',
+  ],
+  foundingDate: '2009',
+  knowsLanguage: ['en', 'el', 'de', 'it', 'fr'],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+30 695 166 6454',
+      contactType: 'customer service',
+      areaServed: 'GR',
+      availableLanguage: ['English', 'Greek', 'German', 'Italian', 'French'],
+    },
+  ],
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />

@@ -1,0 +1,52 @@
+---
+import { SITE_URL, SITE_NAME } from '../../lib/seo';
+
+interface Props {
+  name: string;
+  description: string;
+  url?: string;
+  image?: string;
+  serviceType?: string;
+  areaServed?: string;
+  priceRange?: string;
+}
+
+const {
+  name,
+  description,
+  url,
+  image,
+  serviceType,
+  areaServed = 'Rhodes, Greece',
+  priceRange = '€€',
+} = Astro.props;
+
+const finalUrl = url
+  ? (url.startsWith('http') ? url : `${SITE_URL}${url.startsWith('/') ? url : `/${url}`}`)
+  : `${SITE_URL}${Astro.url.pathname}`;
+
+const finalImage = image
+  ? (image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? image : `/${image}`}`)
+  : undefined;
+
+const data: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name,
+  description,
+  serviceType: serviceType || name,
+  url: finalUrl,
+  areaServed: { '@type': 'Place', name: areaServed },
+  provider: { '@id': `${SITE_URL}#organization` },
+  brand: { '@type': 'Brand', name: SITE_NAME },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'EUR',
+    priceRange,
+    availability: 'https://schema.org/InStock',
+    url: finalUrl,
+  },
+};
+if (finalImage) data.image = finalImage;
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />

@@ -1,16 +1,23 @@
 ---
 import Seo from '../components/seo/Seo.astro';
 import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
+import WebsiteSchema from '../components/seo/WebsiteSchema.astro';
+import { buildCanonical, SITE_URL } from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   canonical?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   ogType?: 'website' | 'article';
   articleAuthor?: string;
   articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleSection?: string;
+  articleTags?: string[];
   noindex?: boolean;
+  keywords?: string;
 }
 
 const {
@@ -18,34 +25,62 @@ const {
   description = 'Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts in Mandraki Harbour since 2009.',
   canonical,
   ogImage,
+  ogImageAlt,
   ogType,
   articleAuthor,
   articlePublishedTime,
+  articleModifiedTime,
+  articleSection,
+  articleTags,
   noindex,
+  keywords,
 } = Astro.props;
+
+const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
     <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/img/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" hreflang="en" href={finalCanonical} />
+    <link rel="alternate" hreflang="x-default" href={finalCanonical} />
     <Seo
       title={title}
       description={description}
       canonical={canonical}
       ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
       ogType={ogType}
       articleAuthor={articleAuthor}
       articlePublishedTime={articlePublishedTime}
+      articleModifiedTime={articleModifiedTime}
+      articleSection={articleSection}
+      articleTags={articleTags}
       noindex={noindex}
+      keywords={keywords}
     />
     <OrganizationSchema />
+    <WebsiteSchema />
+
+    <!-- DNS prefetch / preconnect to third-party origins -->
+    <link rel="dns-prefetch" href="https://iuidzdvrrrsxevvkbxam.supabase.co" />
+    <link rel="preconnect" href="https://iuidzdvrrrsxevvkbxam.supabase.co" crossorigin />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Allura&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Allura&display=swap"
       rel="stylesheet"

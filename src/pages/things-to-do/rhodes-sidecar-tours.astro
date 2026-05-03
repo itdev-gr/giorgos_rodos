@@ -3,14 +3,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
+import { SITE_URL } from '../../lib/seo';
 
 const heroImage = await getMediaSlot('sidecar-tours.hero.image', '/assets/img/transfers/rhodes-transfer-hero.jpg');
 const bodyImg1 = await getMediaSlot('sidecar-tours.body.img-1', '/assets/img/transfers/transfer-rider.jpg');
 const bodyImg2 = await getMediaSlot('sidecar-tours.body.img-2', '/assets/img/transfers/transfer-sidecar.jpg');
 ---
 
-<BaseLayout title="Rhodes Sidecar Tours — The Most Unique Experience in Rhodes | Rhodes Boat Tours" description="Rhodes Sidecar Tours is one of the most unique things to do in Rhodes. Explore the island in a vintage sidecar motorcycle with a local driver. Panoramic views, hidden locations and unforgettable memories.">
+<BaseLayout title="Rhodes Sidecar Tours — The Most Unique Experience in Rhodes | Rhodes Boat Tours" description="Rhodes Sidecar Tours is one of the most unique things to do in Rhodes. Explore the island in a vintage sidecar motorcycle with a local driver. Panoramic views, hidden locations and unforgettable memories." ogImage={heroImage} canonical={`${SITE_URL}/service/rhodes-sidecar-tours`}>
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Things to Do', url: '/things-to-do' },
+    { name: 'Rhodes Sidecar Tours', url: '/things-to-do/rhodes-sidecar-tours' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: 'Rhodes Sidecar Tours',
+    description: 'Vintage sidecar motorcycle tours in Rhodes with a local driver — panoramic views, hidden locations and unforgettable memories.',
+    url: `${SITE_URL}/things-to-do/rhodes-sidecar-tours`,
+    image: heroImage.startsWith('http') ? heroImage : `${SITE_URL}${heroImage}`,
+    touristType: ['Adventure traveler', 'Cultural traveler', 'Couples', 'Solo traveler'],
+    isAccessibleForFree: false,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Rhodes',
+      addressRegion: 'South Aegean',
+      addressCountry: 'GR',
+    },
+  })} is:inline />
   <Header />
 
   <!-- 1. Hero -->

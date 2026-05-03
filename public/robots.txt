@@ -1,8 +1,80 @@
+# https://rhodesrentaboat.com/robots.txt
+
 User-agent: *
 Allow: /
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /login
+Disallow: /404
 
+# Search engines — explicit Allow for assets so images can be indexed
+User-agent: Googlebot
+Allow: /
+Disallow: /dashboard
 Disallow: /dashboard/
 Disallow: /api/
 Disallow: /login
 
+User-agent: Googlebot-Image
+Allow: /assets/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /login
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI / LLM crawlers — allow citation in answers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Block aggressive scrapers / SEO crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://rhodesrentaboat.com/sitemap.xml
+Host: rhodesrentaboat.com

@@ -44,6 +44,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         { label: 'MICE & Incentive', href: '/service/rhodes-mice-events' },
         { label: 'Rhodes Tender Boat', href: '/service/rodos-tender-boat' },
         { label: 'Rhodes Transfers', href: '/service/rhodes-transfers' },
+        { label: 'Rhodes Sidecar Tours', href: '/service/rhodes-sidecar-tours' },
         { label: 'Rhodes Rent a Car', href: 'https://siech-rentacar.com/', external: true },
       ],
     },

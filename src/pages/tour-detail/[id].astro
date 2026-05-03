@@ -4,7 +4,9 @@ export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { createPublicClient } from '../../lib/supabase';
+import { SITE_URL } from '../../lib/seo';
 
 const { id } = Astro.params;
 let tour: any = null;
@@ -34,9 +36,51 @@ const images = tour.images?.length ? tour.images : (tour.image_url ? [tour.image
 const highlights = tour.highlights || [];
 const inclusions = tour.inclusions || [];
 const exclusions = tour.exclusions || [];
+
+const tourCanonical = `${SITE_URL}/tour-detail/${tour.id}`;
+const heroOgImage = images[0]?.startsWith('http') ? images[0] : `${SITE_URL}${images[0] || ''}`;
+
+const tourJsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${tourCanonical}#trip`,
+  name: tour.title,
+  description: tour.description,
+  url: tourCanonical,
+  image: images.map((img: string) => (img.startsWith('http') ? img : `${SITE_URL}${img}`)),
+  touristType: tour.badge_label || 'Boat tour',
+  itinerary: highlights.length
+    ? { '@type': 'ItemList', itemListElement: highlights.map((h: string, i: number) => ({ '@type': 'ListItem', position: i + 1, name: h })) }
+    : undefined,
+  provider: { '@id': `${SITE_URL}#organization` },
+};
+if (tour.duration) tourJsonLd.duration = tour.duration;
+if (tour.price) {
+  tourJsonLd.offers = {
+    '@type': 'Offer',
+    price: String(tour.price).replace(/[^\d.]/g, '') || undefined,
+    priceCurrency: 'EUR',
+    availability: isPublished ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+    url: tourCanonical,
+  };
+}
 ---
 
-<BaseLayout title={`${tour.title} — Rhodes Boat Tours`} description={tour.description}>
+<BaseLayout
+  title={`${tour.title} — Rhodes Boat Tours`}
+  description={tour.description}
+  canonical={tourCanonical}
+  ogImage={heroOgImage}
+  noindex={!isPublished}
+>
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Things to Do', url: '/things-to-do' },
+    { name: tour.title, url: `/tour-detail/${tour.id}` },
+  ]} />
+  {isPublished && (
+    <script type="application/ld+json" set:html={JSON.stringify(tourJsonLd)} is:inline />
+  )}
   <Header />
 
   {!isPublished && (

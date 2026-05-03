@@ -2,8 +2,23 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import services from '../../data/data-service.json';
 import { getMediaSlot } from '../../lib/media';
+import { SITE_URL } from '../../lib/seo';
+
+const itemListJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Boat services in Rhodes',
+  numberOfItems: services.length,
+  itemListElement: services.map((s: any, i: number) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `${SITE_URL}/service/${s.slug}`,
+    name: s.title,
+  })),
+};
 
 const featured = services.filter((s: any) => ['rodos-charter', 'rodos-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
 const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
@@ -12,7 +27,16 @@ const heroImage = await getMediaSlot('service.index.hero.image', '/assets/img/ga
 const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/hero/services/charter.mp4');
 ---
 
-<BaseLayout title="Our Services — Luxury Yacht Experiences">
+<BaseLayout
+  title="Our Services — Luxury Yacht Experiences"
+  description="All boat services in Rhodes — boat tours, license-free rentals, sailing trips, catamaran cruises, yacht charters, MICE events, transfers and tender boat service. Local experts since 2009."
+  ogImage={heroImage}
+>
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/service' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListJsonLd)} is:inline />
   <Header />
 
   <!-- Hero header -->

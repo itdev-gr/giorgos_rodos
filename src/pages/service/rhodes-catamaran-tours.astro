@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
 
@@ -41,7 +43,19 @@ try {
 const tours = dbCards;
 ---
 
-<BaseLayout title="Rhodes Catamaran Tours — Day & Sunset Catamaran Cruises | Rhodes Boat Tours" description="Catamaran tours in Rhodes. Day tours, sunset tours and private catamaran experiences along the east coast. Spacious boats, swimming stops and all-inclusive options.">
+<BaseLayout title="Rhodes Catamaran Tours — Day & Sunset Catamaran Cruises | Rhodes Boat Tours" description="Catamaran tours in Rhodes. Day tours, sunset tours and private catamaran experiences along the east coast. Spacious boats, swimming stops and all-inclusive options." ogImage={heroImage}>
+  <ServiceSchema
+    name="Rhodes Catamaran Tours"
+    description="Catamaran tours in Rhodes — day, sunset and private catamaran experiences along the east coast with swimming stops and all-inclusive options."
+    serviceType="Catamaran Tour"
+    image={heroImage}
+    url="/service/rhodes-catamaran-tours"
+  />
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/service' },
+    { name: 'Rhodes Catamaran Tours', url: '/service/rhodes-catamaran-tours' },
+  ]} />
   <Header />
 
   <!-- 1. Hero -->

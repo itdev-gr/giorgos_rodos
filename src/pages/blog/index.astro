@@ -2,13 +2,40 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import posts from '../../data/data-post.json';
+import { SITE_URL } from '../../lib/seo';
+
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${SITE_URL}/blog#blog`,
+  name: 'Rhodes Boat Tours — News & Blog',
+  description: 'Practical guides, local tips and news about boat tours, rentals and sailing trips around Rhodes and the Dodecanese.',
+  url: `${SITE_URL}/blog`,
+  inLanguage: 'en-US',
+  publisher: { '@id': `${SITE_URL}#organization` },
+  blogPost: posts.map((p: any) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    url: `${SITE_URL}/blog/${p.id}`,
+    datePublished: p.publishedDate || undefined,
+    image: p.image ? `${SITE_URL}/assets/img/blog/${p.bannerImg || p.image}` : undefined,
+    author: { '@type': 'Organization', name: p.author || 'Rhodes Rent a Boat' },
+    description: p.excerpt,
+  })),
+};
 ---
 
 <BaseLayout
   title="News & Blog — Rhodes Boat Tours, Trips and Coastline Guides"
   description="Practical guides, local tips and news about boat tours, rentals and sailing trips around Rhodes and the Dodecanese."
 >
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify(blogJsonLd)} is:inline />
   <Header />
 
   <!-- Hero Header -->

@@ -2,15 +2,41 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
+import { SITE_URL } from '../../lib/seo';
 
 const heroBg = await getMediaSlot('blog.rhodes-rent-a-boat.hero.bg', '/assets/img/gallery/yacht/yacht-sailing-1.jpg');
+const canonical = `${SITE_URL}/blog/rhodes-rent-a-boat`;
 ---
 
 <BaseLayout
   title="Rhodes Rent a Boat — What You Should Know Before You Decide"
   description="Renting a boat in Rhodes can be one of the most flexible and rewarding ways to explore the coastline. Honest, personal guidance on the right option for you."
+  canonical={canonical}
+  ogImage={heroBg}
+  ogType="article"
+  articleAuthor="Rhodes Rent a Boat"
 >
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: 'Rhodes Rent a Boat — What You Should Know Before You Decide', url: '/blog/rhodes-rent-a-boat' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${canonical}#article`,
+    headline: 'Rhodes Rent a Boat — What You Should Know Before You Decide',
+    description: 'Renting a boat in Rhodes can be one of the most flexible and rewarding ways to explore the coastline. Honest, personal guidance on the right option for you.',
+    image: heroBg.startsWith('http') ? heroBg : `${SITE_URL}${heroBg}`,
+    author: { '@type': 'Organization', name: 'Rhodes Rent a Boat', url: SITE_URL },
+    publisher: { '@id': `${SITE_URL}#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    url: canonical,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_URL}/blog#blog` },
+  })} is:inline />
   <Header />
 
   <!-- Hero -->

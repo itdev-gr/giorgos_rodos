@@ -2,7 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import posts from '../../data/data-post.json';
+import { SITE_URL } from '../../lib/seo';
 
 const { id } = Astro.params;
 const post = posts.find((p: any) => String(p.id) === String(id));
@@ -20,10 +22,19 @@ const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg ||
   description={post.excerpt}
   canonical={canonical}
   ogImage={ogImage}
+  ogImageAlt={post.title}
   ogType="article"
   articleAuthor={post.author}
   articlePublishedTime={post.publishedDate}
+  articleModifiedTime={post.publishedDate}
+  articleSection={Array.isArray(post.tags) ? post.tags[0] : undefined}
+  articleTags={post.tags}
 >
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${post.id}` },
+  ]} />
   <Header />
 
   <!-- Hero -->
@@ -69,18 +80,27 @@ const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg ||
 
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    '@id': `${canonical}#article`,
     headline: post.title,
+    name: post.title,
     image: [ogImage],
     datePublished: post.publishedDate || undefined,
-    author: { '@type': 'Organization', name: post.author },
+    dateModified: post.publishedDate || undefined,
+    author: { '@type': 'Organization', name: post.author, url: SITE_URL },
     publisher: {
+      '@id': `${SITE_URL}#organization`,
       '@type': 'Organization',
       name: 'Rhodes Rent a Boat',
-      logo: { '@type': 'ImageObject', url: 'https://rhodesrentaboat.com/assets/img/logo2.svg' }
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/assets/img/logo2.svg` },
     },
-    mainEntityOfPage: canonical,
-    description: post.excerpt
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    url: canonical,
+    description: post.excerpt,
+    keywords: Array.isArray(post.tags) ? post.tags.join(', ') : undefined,
+    articleSection: Array.isArray(post.tags) ? post.tags[0] : undefined,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_URL}/blog#blog` },
   })} />
 
   <FooterFour />

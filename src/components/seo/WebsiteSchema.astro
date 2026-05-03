@@ -1,0 +1,24 @@
+---
+import { SITE_URL, SITE_NAME } from '../../lib/seo';
+
+const data = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}#website`,
+  url: SITE_URL,
+  name: SITE_NAME,
+  alternateName: 'Rhodes Boat Tours',
+  description: 'Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts in Mandraki Harbour since 2009.',
+  inLanguage: 'en-US',
+  publisher: { '@id': `${SITE_URL}#organization` },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE_URL}/things-to-do?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />

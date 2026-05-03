@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
 
@@ -40,7 +42,21 @@ try {
 const charters = dbCards;
 ---
 
-<BaseLayout title="Rhodes Yacht Charter — Bareboat & Skippered Sailing | Rhodes Boat Tours" description="Yacht charter in Rhodes. Bareboat and skippered sailing yachts, catamarans and island hopping holidays in the Dodecanese. Weekly charters from Rhodes.">
+<BaseLayout title="Rhodes Yacht Charter — Bareboat & Skippered Sailing | Rhodes Boat Tours" description="Yacht charter in Rhodes. Bareboat and skippered sailing yachts, catamarans and island hopping holidays in the Dodecanese. Weekly charters from Rhodes." ogImage={heroImage}>
+  <ServiceSchema
+    name="Rhodes Yacht Charter"
+    description="Yacht charter in Rhodes — bareboat and skippered sailing yachts, catamarans and island-hopping holidays in the Dodecanese. Weekly charters from Rhodes."
+    serviceType="Yacht Charter"
+    image={heroImage}
+    url="/service/rodos-charter"
+    priceRange="€€€"
+    areaServed="Dodecanese, Greece"
+  />
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/service' },
+    { name: 'Rhodes Yacht Charter', url: '/service/rodos-charter' },
+  ]} />
   <Header />
 
   <!-- 1. Hero -->

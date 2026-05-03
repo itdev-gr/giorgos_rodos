@@ -6,8 +6,10 @@ import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import TourSearchGrid from '../../components/dashboard/TourSearchGrid';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { getMediaSlot } from '../../lib/media';
+import { SITE_URL } from '../../lib/seo';
 
 const heroImage = await getMediaSlot('things-to-do.hero.image', '/assets/img/gallery/yacht/greek-island-1.jpg');
 const heroVideo = await getMediaSlot('things-to-do.hero.video', '/assets/img/hero/services/boat-tours.mp4');
@@ -31,7 +33,31 @@ try {
 }
 ---
 
-<BaseLayout title="Best Boat Tours in Rhodes — Experiences & Activities | Rhodes Boat Tours" description="Best boat tours in Rhodes. All approved boat tours, trips, cruises, sailing, island hopping and local activities. Handpicked by locals.">
+<BaseLayout title="Best Boat Tours in Rhodes — Experiences & Activities | Rhodes Boat Tours" description="Best boat tours in Rhodes. All approved boat tours, trips, cruises, sailing, island hopping and local activities. Handpicked by locals." ogImage={heroImage}>
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Things to Do', url: '/things-to-do' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE_URL}/things-to-do#collection`,
+    url: `${SITE_URL}/things-to-do`,
+    name: 'Best Boat Tours in Rhodes — Experiences & Activities',
+    description: 'Best boat tours in Rhodes. All approved boat tours, trips, cruises, sailing, island hopping and local activities. Handpicked by locals.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_URL}#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: tours.length,
+      itemListElement: tours.slice(0, 50).map((t: any, i: number) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/tour-detail/${t.id}`,
+        name: t.title,
+      })),
+    },
+  })} is:inline />
   <Header />
 
   <!-- 1. Hero -->

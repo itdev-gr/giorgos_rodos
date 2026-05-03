@@ -3,13 +3,28 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
 
 const heroVideo = await getMediaSlot('service.mice.hero.video', '/assets/img/hero/services/mise.mp4');
 const heroImage = await getMediaSlot('service.mice.hero.image', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
 ---
 
-<BaseLayout title="Rhodes MICE & Incentive Services — Corporate Events | Rhodes Boat Tours" description="MICE travel, incentive trips, corporate events and group experiences in Rhodes. Boat events, yacht charters, team building and event planning through our local network.">
+<BaseLayout title="Rhodes MICE & Incentive Services — Corporate Events | Rhodes Boat Tours" description="MICE travel, incentive trips, corporate events and group experiences in Rhodes. Boat events, yacht charters, team building and event planning through our local network." ogImage={heroImage}>
+  <ServiceSchema
+    name="Rhodes MICE & Incentive Services"
+    description="MICE travel, incentive trips, corporate events and group experiences in Rhodes — boat events, yacht charters, team building and event planning through our local network."
+    serviceType="MICE / Corporate Events"
+    image={heroImage}
+    url="/service/rhodes-mice-events"
+    priceRange="€€€"
+  />
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/service' },
+    { name: 'Rhodes MICE & Incentive Services', url: '/service/rhodes-mice-events' },
+  ]} />
   <Header />
 
   <!-- 1. Hero -->

@@ -71,5 +71,14 @@
         "category": null,
         "item": "Explore the island at your own pace",
         "externalUrl": "https://siech-rentacar.com/"
+    },
+    {
+        "id": 9,
+        "slug": "rhodes-sidecar-tours",
+        "image": "/assets/img/transfers/transfer-sidecar.jpg",
+        "bannerImg": "/assets/img/transfers/transfer-sidecar.jpg",
+        "title": "Rhodes Sidecar Tours",
+        "category": null,
+        "item": "Vintage sidecar experience with a local driver"
     }
 ]

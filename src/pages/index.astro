@@ -19,20 +19,21 @@ import Footer from '../sections/shared/FooterFour.astro';
   ogImage="https://rhodesrentaboat.com/rhodes-rent-aboat.jpg"
 >
 
-  <!-- JSON-LD Schema: LocalBusiness + TouristTrip -->
+  <!-- JSON-LD Schema: TravelAgency offer catalog (linked to base Organization) -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "TravelAgency",
+    "@id": "https://rhodesrentaboat.com#travelagency",
     "name": "Rhodes Boat Tours",
     "description": "Local boat tour experts in Rhodes, Greece. Handpicked boat trips, cruises, yacht charters, and rent-a-boat experiences since 2009.",
-    "url": "https://rhodosboattours.com",
+    "url": "https://rhodesrentaboat.com",
     "telephone": "+306951666454",
     "email": "info@rhodesrentaboat.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Mandraki Harbour",
       "addressLocality": "Rhodes",
-      "postalCode": "851 00",
+      "postalCode": "85100",
       "addressCountry": "GR"
     },
     "geo": {
@@ -54,10 +55,12 @@ import Footer from '../sections/shared/FooterFour.astro';
       "@type": "OfferCatalog",
       "name": "Boat Experiences in Rhodes",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Boat Tours", "description": "Guided sailing tours along the Rhodes coastline" }},
-        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Boat Cruises", "description": "All-inclusive day and sunset cruises" }},
-        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Yacht Charter", "description": "Bareboat and crewed yacht charters in the Dodecanese" }},
-        { "@type": "Offer", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Rent a Boat", "description": "License-free boat rentals along the Rhodes coast" }}
+        { "@type": "Offer", "url": "https://rhodesrentaboat.com/service/rodos-boat-tours", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Boat Tours", "description": "Guided sailing tours along the Rhodes coastline" }},
+        { "@type": "Offer", "url": "https://rhodesrentaboat.com/service/rodos-boat-cruises", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Boat Cruises", "description": "All-inclusive day and sunset cruises" }},
+        { "@type": "Offer", "url": "https://rhodesrentaboat.com/service/rodos-charter", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Yacht Charter", "description": "Bareboat and crewed yacht charters in the Dodecanese" }},
+        { "@type": "Offer", "url": "https://rhodesrentaboat.com/service/rhodes-rent-a-boat", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Rent a Boat", "description": "License-free boat rentals along the Rhodes coast" }},
+        { "@type": "Offer", "url": "https://rhodesrentaboat.com/service/rhodes-catamaran-tours", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Catamaran Tours", "description": "Day and sunset catamaran experiences" }},
+        { "@type": "Offer", "url": "https://rhodesrentaboat.com/service/rhodes-sailing-trips", "itemOffered": { "@type": "TouristTrip", "name": "Rhodes Sailing Trips", "description": "Shared and private sailing experiences" }}
       ]
     }
   })} />

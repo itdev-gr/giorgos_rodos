@@ -2,7 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../lib/media';
+import { SITE_URL, SITE_NAME } from '../lib/seo';
+
+const aboutPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  '@id': `${SITE_URL}/about#aboutpage`,
+  url: `${SITE_URL}/about`,
+  name: `About ${SITE_NAME}`,
+  description: 'Meet the local team behind Rhodes Rent a Boat — sailors, captains and guides based in Mandraki Harbour since 2009.',
+  inLanguage: 'en-US',
+  isPartOf: { '@id': `${SITE_URL}#website` },
+  about: { '@id': `${SITE_URL}#organization` },
+  mainEntity: { '@id': `${SITE_URL}#organization` },
+};
 
 const heroBg = await getMediaSlot('about.hero.bg', '/assets/img/about/about-hero-boy-sailboat.jpg');
 const storyImg = await getMediaSlot('about.story.img', '/assets/img/gallery/yacht/greek-island-1.jpg');
@@ -26,7 +41,13 @@ const experienceImages: Record<string, string> = {
 <BaseLayout
   title="About Rhodes Rent a Boat — Local Experts in Mandraki Harbour"
   description="Meet the local team behind Rhodes Rent a Boat. Sailors, captains and guides based in Mandraki Harbour since 2009 — not a marketplace."
+  ogImage={heroBg}
 >
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify(aboutPageJsonLd)} is:inline />
   <Header />
 
   <!-- ============== Section 1: Full-Bleed Hero ============== -->

@@ -2,16 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../lib/media';
+import { SITE_URL } from '../lib/seo';
 
 const asideImg = await getMediaSlot('contact.aside.img', '/assets/img/cruises/greco_sunset3.jpg');
 const heroBg = await getMediaSlot('contact.hero.bg', '/assets/img/gallery/yacht/crystal-water-1.jpg');
+
+const contactPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${SITE_URL}/contact#contactpage`,
+  url: `${SITE_URL}/contact`,
+  name: 'Contact Rhodes Rent a Boat',
+  description: 'Reach our team in Rhodes by WhatsApp, phone or email — we help you choose the right boat tour, rental or sailing trip.',
+  inLanguage: 'en-US',
+  isPartOf: { '@id': `${SITE_URL}#website` },
+  about: { '@id': `${SITE_URL}#organization` },
+};
 ---
 
 <BaseLayout
   title="Contact Rhodes Rent a Boat — Talk to a Local in Rhodes"
   description="Reach our team in Rhodes by WhatsApp, phone or email. We help you choose the right boat tour, rental or sailing trip — quickly and personally."
+  ogImage={heroBg}
 >
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Contact', url: '/contact' },
+  ]} />
+  <script type="application/ld+json" set:html={JSON.stringify(contactPageJsonLd)} is:inline />
   <Header />
 
   <!-- ============== Section 1: Hero ============== -->

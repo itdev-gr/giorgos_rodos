@@ -1,0 +1,25 @@
+{
+  "name": "Rhodes Rent a Boat",
+  "short_name": "Rhodes Boat",
+  "description": "Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts in Mandraki Harbour since 2009.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1CA8CB",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}

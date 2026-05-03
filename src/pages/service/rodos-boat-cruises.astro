@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
 
@@ -41,7 +43,19 @@ try {
 const cruises = dbCards;
 ---
 
-<BaseLayout title="Rhodes Boat Cruises — Day Cruises in Rhodes | Rhodes Boat Tours" description="Organized boat cruises in Rhodes. East coast cruises, Symi day cruises, Lindos cruises and sunset cruises from Mandraki, Faliraki and Kolymbia. Handpicked by local experts.">
+<BaseLayout title="Rhodes Boat Cruises — Day Cruises in Rhodes | Rhodes Boat Tours" description="Organized boat cruises in Rhodes. East coast cruises, Symi day cruises, Lindos cruises and sunset cruises from Mandraki, Faliraki and Kolymbia. Handpicked by local experts." ogImage={heroImage}>
+  <ServiceSchema
+    name="Rhodes Boat Cruises"
+    description="Organized boat cruises in Rhodes — East coast, Symi, Lindos and sunset cruises from Mandraki, Faliraki and Kolymbia."
+    serviceType="Boat Cruise"
+    image={heroImage}
+    url="/service/rodos-boat-cruises"
+  />
+  <BreadcrumbSchema items={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/service' },
+    { name: 'Rhodes Boat Cruises', url: '/service/rodos-boat-cruises' },
+  ]} />
   <Header />
 
   <!-- 1. Hero -->
