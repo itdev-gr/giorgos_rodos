@@ -47,7 +47,7 @@ import MobileMenu from '../../components/interactive/MobileMenu';
             </nav>
           </div>
           <!-- CTA + mobile toggle -->
-          <div class="col-auto">
+          <div class="col-auto ms-auto">
             <div class="d-none d-lg-block">
               <a href="/contact" class="luxury-cta">Enquire</a>
             </div>
@@ -133,6 +133,12 @@ import MobileMenu from '../../components/interactive/MobileMenu';
     max-height: 140px;
     width: auto;
     filter: none;
+  }
+
+  @media (max-width: 991px) {
+    .header-logo img {
+      max-height: 100px;
+    }
   }
 
   /* Nav links — ensure flex layout inside centered col */
