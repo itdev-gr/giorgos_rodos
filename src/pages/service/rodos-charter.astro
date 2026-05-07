@@ -32,7 +32,7 @@ try {
       guests: t.guests || '',
       type: t.badge_label || '',
       price: t.price || '',
-      href: `/tour-detail/${t.id}`,
+      href: `/tour-detail/${t.slug || t.id}`,
     }));
   }
 } catch (e) {

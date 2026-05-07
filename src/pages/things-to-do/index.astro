@@ -53,7 +53,7 @@ try {
       itemListElement: tours.slice(0, 50).map((t: any, i: number) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `${SITE_URL}/tour-detail/${t.id}`,
+        url: `${SITE_URL}/tour-detail/${t.slug || t.id}`,
         name: t.title,
       })),
     },

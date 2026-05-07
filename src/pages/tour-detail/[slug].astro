@@ -6,21 +6,37 @@ import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { createPublicClient } from '../../lib/supabase';
-import { SITE_URL } from '../../lib/seo';
+import { SITE_URL, looksLikeUuid } from '../../lib/seo';
 
-const { id } = Astro.params;
+const { slug } = Astro.params;
 let tour: any = null;
 let isPublished = false;
 let relatedTours: any[] = [];
 
 try {
   const supabase = createPublicClient();
-  if (supabase) {
-    const { data } = await supabase
+  if (supabase && slug) {
+    // Try slug lookup first; fall back to UUID lookup for legacy URLs.
+    let { data } = await supabase
       .from('tours')
       .select('*, profiles(full_name, company_name, phone)')
-      .eq('id', id)
-      .single();
+      .eq('slug', slug)
+      .maybeSingle();
+
+    if (!data && looksLikeUuid(slug)) {
+      const { data: byId } = await supabase
+        .from('tours')
+        .select('*, profiles(full_name, company_name, phone)')
+        .eq('id', slug)
+        .maybeSingle();
+      data = byId;
+
+      // 301 to canonical slug URL when this tour has a slug
+      if (data && data.slug && data.slug !== slug) {
+        return Astro.redirect(`/tour-detail/${data.slug}`, 301);
+      }
+    }
+
     tour = data;
 
     // Related tours: same service_page first, fallback to global; exclude current; limit 3
@@ -28,20 +44,19 @@ try {
       const sp = tour.service_page;
       let q = supabase
         .from('tours')
-        .select('id, title, description, image_url, images, duration, guests, price, badge_label')
+        .select('id, slug, title, description, image_url, images, duration, guests, price, badge_label')
         .eq('status', 'approved')
         .neq('id', tour.id)
         .limit(3);
       if (sp) q = q.eq('service_page', sp);
       const { data: related } = await q;
       relatedTours = related || [];
-      // Pad with global tours if we have fewer than 3 same-category matches
       if (relatedTours.length < 3) {
         const fillCount = 3 - relatedTours.length;
         const exclude = [tour.id, ...relatedTours.map((r: any) => r.id)];
         const { data: globals } = await supabase
           .from('tours')
-          .select('id, title, description, image_url, images, duration, guests, price, badge_label')
+          .select('id, slug, title, description, image_url, images, duration, guests, price, badge_label')
           .eq('status', 'approved')
           .eq('is_global', true)
           .not('id', 'in', `(${exclude.join(',')})`)
@@ -65,7 +80,9 @@ const highlights = tour.highlights || [];
 const inclusions = tour.inclusions || [];
 const exclusions = tour.exclusions || [];
 
-const tourCanonical = `${SITE_URL}/tour-detail/${tour.id}`;
+// Canonical always uses slug when available; falls back to id for unbackfilled rows
+const tourPathSegment = tour.slug || tour.id;
+const tourCanonical = `${SITE_URL}/tour-detail/${tourPathSegment}`;
 const heroOgImage = images[0]?.startsWith('http') ? images[0] : `${SITE_URL}${images[0] || ''}`;
 
 // End of next calendar year — sensible default for priceValidUntil
@@ -128,7 +145,7 @@ if (tour.price) {
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Things to Do', url: '/things-to-do' },
-    { name: tour.title, url: `/tour-detail/${tour.id}` },
+    { name: tour.title, url: `/tour-detail/${tourPathSegment}` },
   ]} />
   {isPublished && (
     <script type="application/ld+json" set:html={JSON.stringify(tourJsonLd)} is:inline />
@@ -362,7 +379,7 @@ if (tour.price) {
           {relatedTours.map((rt: any) => {
             const img = (Array.isArray(rt.images) && rt.images[0]) || rt.image_url || '/assets/img/gallery/yacht/crystal-water-1.jpg';
             return (
-              <a href={`/tour-detail/${rt.id}`} class="td-related__card">
+              <a href={`/tour-detail/${rt.slug || rt.id}`} class="td-related__card">
                 <div class="td-related__img">
                   <img src={img} alt={rt.title} loading="lazy" />
                   {rt.badge_label && <span class="td-related__badge">{rt.badge_label}</span>}

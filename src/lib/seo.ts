@@ -8,3 +8,14 @@ export function buildCanonical(pathname: string): string {
   const clean = pathname.split('?')[0].split('#')[0];
   return `${SITE_URL}${clean === '/' ? '' : clean.replace(/\/$/, '')}`;
 }
+
+// Prefer the SEO slug; fall back to UUID for tours that haven't been backfilled
+// yet. The tour-detail route accepts both and 301s UUIDs to slugs.
+export function tourPath(tour: { slug?: string | null; id: string }): string {
+  return `/tour-detail/${tour.slug || tour.id}`;
+}
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export function looksLikeUuid(s: string | undefined | null): boolean {
+  return !!s && UUID_RE.test(s);
+}

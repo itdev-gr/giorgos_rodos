@@ -103,13 +103,13 @@ export const GET: APIRoute = async () => {
     if (supabase) {
       const { data } = await supabase
         .from('tours')
-        .select('id, title, description, images, image_url, updated_at, created_at')
+        .select('id, slug, title, description, images, image_url, updated_at, created_at')
         .eq('status', 'approved');
       for (const t of (data || []) as any[]) {
         const lastmod = ((t.updated_at || t.created_at || '') as string).slice(0, 10) || today;
         const img = (Array.isArray(t.images) && t.images[0]) || t.image_url || null;
         entries.push({
-          loc: `${SITE}/tour-detail/${t.id}`,
+          loc: `${SITE}/tour-detail/${t.slug || t.id}`,
           lastmod,
           changefreq: 'weekly',
           priority: '0.7',

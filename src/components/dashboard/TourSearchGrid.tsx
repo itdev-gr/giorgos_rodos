@@ -127,7 +127,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
             return (
               <a
                 key={tour.id}
-                href={`/tour-detail/${tour.id}`}
+                href={`/tour-detail/${tour.slug || tour.id}`}
                 className="tsg-card"
                 style={{
                   display: 'flex', flexDirection: 'column', textDecoration: 'none',
