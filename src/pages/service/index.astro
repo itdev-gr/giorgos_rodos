@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
 import services from '../../data/data-service.json';
 import { getMediaSlot } from '../../lib/media';
 import { SITE_URL } from '../../lib/seo';
@@ -25,6 +26,33 @@ const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises'
 
 const heroImage = await getMediaSlot('service.index.hero.image', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
 const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/hero/services/charter.mp4');
+
+const faqItems = [
+  {
+    question: 'Which service should I pick — rent a boat, boat tour or yacht charter?',
+    answer: 'It depends on how independent you want to be. A license-free rental is best for couples and small families who want to swim in their own bay at their own pace. A guided boat tour or cruise works for groups that prefer a captain, a planned route and lunch on board. A yacht charter is the right choice for a multi-day Dodecanese trip with a crew. If you are unsure, contact us and we will recommend the right option for your group.',
+  },
+  {
+    question: 'What does each service typically cost?',
+    answer: 'License-free rentals start at the lower end and depend on boat size and rental duration. Shared boat tours and cruises are priced per person. Private boat trips and catamaran charters are priced per boat for a half or full day. Weekly yacht charters depend on the yacht type, season and whether a skipper is included. We send a clear, written quote before any booking — no hidden fees.',
+  },
+  {
+    question: 'Are these services run by you directly or by partners?',
+    answer: 'A mix of both. Some boats and yachts are operated directly by us; others are run by trusted local captains and small family-owned operators we have worked with for years. Either way, every operator on this page is one we know personally and would put our own family on.',
+  },
+  {
+    question: 'Can I combine multiple services on the same trip?',
+    answer: 'Yes — most of our visitors combine two or three. A common pairing is a license-free rental day plus a Symi cruise the next day, or a sunset cruise paired with a sidecar tour on the island. Tell us your dates and we will suggest a balanced plan.',
+  },
+  {
+    question: 'Do you offer transfers from my hotel to the harbour?',
+    answer: 'Yes. We provide private transfers from any hotel or villa in Rhodes to Mandraki Harbour, Faliraki, Kolymbia and other departure points. See the Rhodes Transfers service for details.',
+  },
+  {
+    question: 'Which services are available year-round?',
+    answer: 'Yacht charters and private boat trips run from late April to late October. Daily cruises and group tours operate from May to mid-October, with peak availability June–September. Sidecar tours, transfers and event planning run year-round.',
+  },
+];
 ---
 
 <BaseLayout
@@ -37,6 +65,7 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
     { name: 'Services', url: '/service' },
   ]} />
   <script type="application/ld+json" set:html={JSON.stringify(itemListJsonLd)} is:inline />
+  <FAQSchema items={faqItems} />
   <Header />
 
   <!-- Hero header -->
@@ -75,6 +104,32 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
     </div>
   </section>
 
+  <!-- SEO intro: explains what's on this page and helps users choose -->
+  <section class="services-intro" data-ani="fadein">
+    <div class="services-intro__inner">
+      <h2 class="services-intro__title">Boat Services in Rhodes — Choose the Right Experience</h2>
+      <div class="services-intro__copy">
+        <p>From license-free boat rentals and skippered day cruises to private yacht charters, corporate events and harbour transfers, we connect you with trusted local operators across Rhodes. Every service on this page is run by a small, family-owned team we know personally — sailors, captains and event planners who have worked these waters for years.</p>
+        <p>If you are not sure which option fits your group, the simplest path is to <a href="/contact">tell us what you have in mind</a>. We will recommend the best choice without sales pressure. You can also browse the <a href="/things-to-do">full catalog of approved boat experiences</a>.</p>
+      </div>
+
+      <div class="services-intro__pillars">
+        <article class="services-pillar">
+          <h3 class="services-pillar__title">For independent travellers</h3>
+          <p class="services-pillar__body"><a href="/service/rhodes-rent-a-boat">Rent a boat in Rhodes</a> — license-free options for couples and small families, plus skippered boats if you prefer to relax. Best for crystal bays along the east coast.</p>
+        </article>
+        <article class="services-pillar">
+          <h3 class="services-pillar__title">For organised day trips</h3>
+          <p class="services-pillar__body"><a href="/service/rodos-boat-cruises">Boat cruises</a> and <a href="/service/rhodes-catamaran-tours">catamaran tours</a> — Symi, Lindos, Anthony Quinn Bay and sunset routes. Lunch, swimming stops and a captain included.</p>
+        </article>
+        <article class="services-pillar">
+          <h3 class="services-pillar__title">For private occasions</h3>
+          <p class="services-pillar__body"><a href="/service/rodos-charter">Yacht charter</a> for weekly Dodecanese itineraries, plus <a href="/service/rhodes-mice-events">corporate events</a> and group experiences.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- All other services -->
   <section class="services-more">
     <div class="services-more__header" data-ani="fadein">
@@ -99,6 +154,22 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
           </div>
         </a>
       ))}
+    </div>
+  </section>
+
+  <!-- FAQ section: helps users choose between services + FAQPage schema for rich results -->
+  <section class="services-faq" data-ani="fadein">
+    <div class="services-faq__inner">
+      <h2 class="services-faq__title">Frequently Asked Questions</h2>
+      <p class="services-faq__intro">Common questions about choosing between our services. For booking, weather and licence details, see the <a href="/faq">full FAQ</a>.</p>
+      <div class="services-faq__list">
+        {faqItems.map((item) => (
+          <details class="services-faq__item">
+            <summary class="services-faq__q">{item.question}</summary>
+            <div class="services-faq__a"><p>{item.answer}</p></div>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -496,8 +567,191 @@ const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/he
     border-color: #fff;
   }
 
+  /* ===== SEO intro ===== */
+  .services-intro {
+    padding: 80px 16px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .services-intro__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .services-intro__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .services-intro__copy {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #4a5568;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .services-intro__copy p {
+    margin: 0 0 18px;
+  }
+
+  .services-intro__copy a {
+    color: #1CA8CB;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .services-intro__pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-top: 8px;
+  }
+
+  .services-pillar {
+    background: #f8fafb;
+    border-left: 3px solid #1CA8CB;
+    padding: 24px 24px 22px;
+  }
+
+  .services-pillar__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #113D48;
+    margin: 0 0 10px;
+  }
+
+  .services-pillar__body {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #4a5568;
+    margin: 0;
+  }
+
+  .services-pillar__body a {
+    color: #113D48;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .services-pillar__body a:hover {
+    color: #1CA8CB;
+  }
+
+  /* ===== FAQ ===== */
+  .services-faq {
+    padding: 80px 16px 0;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .services-faq__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .services-faq__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0;
+    text-align: center;
+  }
+
+  .services-faq__intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #6E7070;
+    text-align: center;
+    margin: 0;
+  }
+
+  .services-faq__intro a {
+    color: #1CA8CB;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .services-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .services-faq__item {
+    border-bottom: 1px solid #e5eaee;
+  }
+
+  .services-faq__item[open] {
+    background: #f8fafb;
+  }
+
+  .services-faq__q {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: #113D48;
+    padding: 18px 44px 18px 16px;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .services-faq__q::-webkit-details-marker { display: none; }
+
+  .services-faq__q::after {
+    content: '+';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #1CA8CB;
+    transition: transform 0.25s ease;
+  }
+
+  .services-faq__item[open] .services-faq__q::after {
+    content: '−';
+  }
+
+  .services-faq__q:hover {
+    color: #1CA8CB;
+  }
+
+  .services-faq__a {
+    padding: 0 16px 20px;
+  }
+
+  .services-faq__a p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin: 0;
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 991px) {
+    .services-intro__pillars {
+      grid-template-columns: 1fr;
+    }
+
     .services-featured__grid {
       grid-template-columns: 1fr;
     }

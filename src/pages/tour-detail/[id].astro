@@ -40,6 +40,9 @@ const exclusions = tour.exclusions || [];
 const tourCanonical = `${SITE_URL}/tour-detail/${tour.id}`;
 const heroOgImage = images[0]?.startsWith('http') ? images[0] : `${SITE_URL}${images[0] || ''}`;
 
+// End of next calendar year — sensible default for priceValidUntil
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
+
 const tourJsonLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'TouristTrip',
@@ -47,22 +50,43 @@ const tourJsonLd: Record<string, unknown> = {
   name: tour.title,
   description: tour.description,
   url: tourCanonical,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': tourCanonical },
   image: images.map((img: string) => (img.startsWith('http') ? img : `${SITE_URL}${img}`)),
   touristType: tour.badge_label || 'Boat tour',
+  inLanguage: 'en-US',
   itinerary: highlights.length
     ? { '@type': 'ItemList', itemListElement: highlights.map((h: string, i: number) => ({ '@type': 'ListItem', position: i + 1, name: h })) }
     : undefined,
   provider: { '@id': `${SITE_URL}#organization` },
 };
 if (tour.duration) tourJsonLd.duration = tour.duration;
+if (tour.meeting_point) {
+  tourJsonLd.departureLocation = {
+    '@type': 'Place',
+    name: tour.meeting_point,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Rhodes',
+      addressRegion: 'South Aegean',
+      addressCountry: 'GR',
+    },
+  };
+}
+if (tour.guests) {
+  tourJsonLd.audience = { '@type': 'PeopleAudience', suggestedMinAge: 0, name: String(tour.guests) };
+}
 if (tour.price) {
-  tourJsonLd.offers = {
+  const numericPrice = String(tour.price).replace(/[^\d.]/g, '');
+  tourJsonLd.offers = [{
     '@type': 'Offer',
-    price: String(tour.price).replace(/[^\d.]/g, '') || undefined,
+    price: numericPrice || undefined,
     priceCurrency: 'EUR',
     availability: isPublished ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
     url: tourCanonical,
-  };
+    priceValidUntil,
+    seller: { '@id': `${SITE_URL}#organization` },
+    category: tour.badge_label || 'Boat experience',
+  }];
 }
 ---
 

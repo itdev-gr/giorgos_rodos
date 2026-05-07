@@ -7,8 +7,40 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSchema from '../../components/seo/FAQSchema.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const rentABoatFaq = [
+  {
+    question: 'Do I really need no licence to rent a boat in Rhodes?',
+    answer: 'Yes — Greek law allows visitors to operate small motorboats up to 30 horsepower without a boating licence, provided they are over 18 and have a valid ID or passport. The boats we offer in this category fall well within that limit. You will receive a short safety briefing before departure.',
+  },
+  {
+    question: 'No licence vs with skipper — how do I decide?',
+    answer: 'Pick a license-free self-drive boat if you want full independence, you are comfortable around water, and you want to swim in your own bay at your own pace. Pick a boat with skipper if you prefer to relax, you want a local guide who knows hidden coves, you are bringing children, or the sea conditions favour an experienced driver.',
+  },
+  {
+    question: 'How far can I go with a license-free boat?',
+    answer: 'License-free boats are intended for coastal cruising up to about 1 nautical mile from shore in good weather. The east coast between Mandraki and Anthony Quinn Bay is the typical playground — plenty of bays, swim spots and beach tavernas within easy range. For longer trips (Symi, Lindos, full-day exploration) we recommend a skippered boat.',
+  },
+  {
+    question: 'What is included in the rental?',
+    answer: 'Boat, fuel for the agreed range, safety equipment (life jackets, first-aid kit, anchor), a marine map of the area, and a 15-minute safety briefing. A cooler with ice is usually included. Snorkelling masks and snacks can be arranged on request.',
+  },
+  {
+    question: 'What if the weather turns bad?',
+    answer: 'Safety always comes first. If wind or sea conditions exceed safe limits on your booked day, we either move the rental to another day in your stay or refund in full. We make the call early in the morning based on the official forecast.',
+  },
+  {
+    question: 'Can I take children on board?',
+    answer: 'Yes — children of any age are welcome with proper life jackets (we provide child-size jackets free of charge). For families with very young children we usually recommend a boat with skipper, so the parents can fully focus on the kids.',
+  },
+  {
+    question: 'How do I book and what are the payment terms?',
+    answer: 'Send us a message or WhatsApp with your dates and group size. We confirm availability the same day and send a written quote. A deposit secures the booking; the balance is paid on the day of the rental in cash or by card.',
+  },
+];
 
 const heroVideo = await getMediaSlot('service.rent-a-boat.hero.video', '/assets/img/hero/services/license-free.mp4');
 const heroImage = await getMediaSlot('service.rent-a-boat.hero.image', '/assets/img/gallery/yacht/crystal-water-1.jpg');
@@ -56,6 +88,7 @@ const boats = dbCards;
     { name: 'Services', url: '/service' },
     { name: 'Rhodes Rent a Boat', url: '/service/rhodes-rent-a-boat' },
   ]} />
+  <FAQSchema items={rentABoatFaq} />
   <Header />
 
   <!-- 1. Hero -->
@@ -136,7 +169,68 @@ const boats = dbCards;
     </div>
   </section>
 
-  <!-- 4. Contact -->
+  <!-- 4. No-licence vs Skipper comparison — decision content for visitors -->
+  <section class="rb-compare" data-ani="fadein">
+    <div class="container">
+      <div class="rb-compare__header">
+        <h2 class="rb-compare__title">No Licence vs With Skipper — Which Is Right for You?</h2>
+        <p class="rb-compare__intro">Both options are popular and both are safe. The right pick depends on how independent you want to be, your group, and how confident you feel on the water. Here is the honest breakdown.</p>
+      </div>
+      <div class="rb-compare__grid">
+        <article class="rb-compare__card">
+          <header class="rb-compare__card-head">
+            <i class="fas fa-key" aria-hidden="true"></i>
+            <h3>License-Free Self-Drive</h3>
+          </header>
+          <ul class="rb-compare__list">
+            <li><strong>Best for:</strong> couples and small families who want full independence</li>
+            <li><strong>Boat size:</strong> small motorboats up to 30 hp (4–6 guests)</li>
+            <li><strong>Range:</strong> coastal cruising — typically the east coast bays</li>
+            <li><strong>Driving:</strong> you steer; 15-minute safety briefing before departure</li>
+            <li><strong>Required:</strong> 18+, valid ID or passport, no licence needed</li>
+            <li><strong>Typical day:</strong> swim stops in 2–3 secluded coves, lunch ashore</li>
+          </ul>
+          <a href="/contact" class="rb-compare__cta">Ask about license-free rental</a>
+        </article>
+        <article class="rb-compare__card rb-compare__card--accent">
+          <header class="rb-compare__card-head">
+            <i class="fas fa-user-shield" aria-hidden="true"></i>
+            <h3>Boat with Skipper</h3>
+          </header>
+          <ul class="rb-compare__list">
+            <li><strong>Best for:</strong> families with kids, longer trips, or full-day exploration</li>
+            <li><strong>Boat size:</strong> small to mid-size boats (4–10 guests)</li>
+            <li><strong>Range:</strong> wider — Lindos, secluded south-coast bays, sunset routes</li>
+            <li><strong>Driving:</strong> experienced local skipper handles the boat</li>
+            <li><strong>Required:</strong> nothing — just show up at the harbour</li>
+            <li><strong>Typical day:</strong> custom route based on your interests and the weather</li>
+          </ul>
+          <a href="/contact" class="rb-compare__cta">Ask about boat with skipper</a>
+        </article>
+      </div>
+      <p class="rb-compare__note"><i class="fas fa-info-circle" aria-hidden="true"></i> <strong>Safety note:</strong> all boats carry full safety equipment (life jackets, first-aid kit, anchor, marine map). We monitor the official sea-state forecast every morning and will reschedule or refund if conditions are not safe. Children's life jackets are provided free of charge.</p>
+    </div>
+  </section>
+
+  <!-- 5. FAQ — long-tail SEO + decision support -->
+  <section class="rb-faq" data-ani="fadein">
+    <div class="container">
+      <div class="rb-faq__header">
+        <h2 class="rb-faq__title">Rent a Boat in Rhodes — FAQ</h2>
+        <p class="rb-faq__intro">Common questions from first-time renters. For booking, pricing or anything specific, <a href="/contact">send us a message</a>.</p>
+      </div>
+      <div class="rb-faq__list">
+        {rentABoatFaq.map((item) => (
+          <details class="rb-faq__item">
+            <summary class="rb-faq__q">{item.question}</summary>
+            <div class="rb-faq__a"><p>{item.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact -->
   <section style="padding: 80px 0; background: #113D48;">
     <div class="container">
       <div style="max-width: 700px; margin: 0 auto; text-align: center;">
@@ -170,6 +264,285 @@ const boats = dbCards;
     transform: scale(1.05);
   }
 
+  /* ===== Comparison block ===== */
+  .rb-compare {
+    padding: 80px 0;
+    background: #fff;
+  }
+
+  .rb-compare__header {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+
+  .rb-compare__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 14px;
+    line-height: 1.25;
+  }
+
+  .rb-compare__intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5a6a72;
+    margin: 0;
+  }
+
+  .rb-compare__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .rb-compare__card {
+    background: #f8fafb;
+    border: 1px solid #e5eaee;
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rb-compare__card--accent {
+    background: #113D48;
+    border-color: #113D48;
+    color: #fff;
+  }
+
+  .rb-compare__card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5eaee;
+  }
+
+  .rb-compare__card--accent .rb-compare__card-head {
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+
+  .rb-compare__card-head i {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(28,168,203,0.12);
+    color: #1CA8CB;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+
+  .rb-compare__card--accent .rb-compare__card-head i {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+
+  .rb-compare__card-head h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 0;
+  }
+
+  .rb-compare__card--accent .rb-compare__card-head h3 {
+    color: #fff;
+  }
+
+  .rb-compare__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rb-compare__list li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: #4a5568;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .rb-compare__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #1CA8CB;
+    font-weight: 700;
+  }
+
+  .rb-compare__card--accent .rb-compare__list li {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .rb-compare__card--accent .rb-compare__list li::before {
+    color: #5fd0eb;
+  }
+
+  .rb-compare__list strong {
+    color: #113D48;
+  }
+
+  .rb-compare__card--accent .rb-compare__list strong {
+    color: #fff;
+  }
+
+  .rb-compare__cta {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-block;
+    padding: 11px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #1CA8CB;
+    border: 1.5px solid #1CA8CB;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .rb-compare__cta:hover {
+    background: #1CA8CB;
+    color: #fff;
+  }
+
+  .rb-compare__card--accent .rb-compare__cta {
+    color: #fff;
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .rb-compare__card--accent .rb-compare__cta:hover {
+    background: #fff;
+    color: #113D48;
+    border-color: #fff;
+  }
+
+  .rb-compare__note {
+    max-width: 1100px;
+    margin: 28px auto 0;
+    padding: 16px 18px;
+    background: #fff7e6;
+    border-left: 3px solid #F59E0B;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #5a4a1f;
+  }
+
+  .rb-compare__note i {
+    color: #F59E0B;
+    margin-right: 6px;
+  }
+
+  /* ===== FAQ ===== */
+  .rb-faq {
+    padding: 80px 0;
+    background: #f8fafb;
+  }
+
+  .rb-faq__header {
+    max-width: 760px;
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+
+  .rb-faq__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 12px;
+  }
+
+  .rb-faq__intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #5a6a72;
+    margin: 0;
+  }
+
+  .rb-faq__intro a {
+    color: #1CA8CB;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .rb-faq__list {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rb-faq__item {
+    background: #fff;
+    border: 1px solid #e5eaee;
+    border-radius: 10px;
+  }
+
+  .rb-faq__item[open] {
+    border-color: #1CA8CB;
+  }
+
+  .rb-faq__q {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #113D48;
+    padding: 16px 44px 16px 18px;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+  }
+
+  .rb-faq__q::-webkit-details-marker { display: none; }
+
+  .rb-faq__q::after {
+    content: '+';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #1CA8CB;
+  }
+
+  .rb-faq__item[open] .rb-faq__q::after { content: '−'; }
+
+  .rb-faq__a {
+    padding: 0 18px 18px;
+  }
+
+  .rb-faq__a p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4a5568;
+    margin: 0;
+  }
+
   @media (max-width: 991px) {
     .rb-intro-grid {
       grid-template-columns: 1fr !important;
@@ -178,11 +551,20 @@ const boats = dbCards;
     .rb-boats-grid {
       grid-template-columns: repeat(2, 1fr) !important;
     }
+    .rb-compare__grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 575px) {
     .rb-boats-grid {
       grid-template-columns: 1fr !important;
+    }
+    .rb-compare__card {
+      padding: 22px 22px 20px;
+    }
+    .rb-compare__note {
+      margin: 22px 16px 0;
     }
   }
 </style>
