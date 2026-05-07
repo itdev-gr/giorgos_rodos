@@ -15,6 +15,47 @@ if (!post) {
 
 const canonical = `${SITE_URL}/blog/${post.slug}`;
 const ogImage = `${SITE_URL}/assets/img/blog/${post.bannerImg || post.image}`;
+
+// Related posts: any tag overlap, exclude current, sort by publishedDate desc, max 3
+const currentTags = new Set<string>(post.tags || []);
+const relatedPosts = (posts as any[])
+  .filter((p) => p.slug !== post.slug && (p.tags || []).some((t: string) => currentTags.has(t)))
+  .sort((a, b) => String(b.publishedDate || '').localeCompare(String(a.publishedDate || '')))
+  .slice(0, 3);
+
+// Tag → service CTA map. Pick up to 2 distinct service CTAs based on this post's tags.
+const TAG_TO_SERVICE: Record<string, { url: string; title: string; blurb: string }> = {
+  'Rent a Boat': { url: '/service/rhodes-rent-a-boat', title: 'Rent a Boat in Rhodes', blurb: 'License-free options or boats with skipper.' },
+  'Boat Trips': { url: '/service/rhodes-boat-trips', title: 'Rhodes Boat Trips', blurb: 'Skippered boat trips with flexible routes.' },
+  'Cruises': { url: '/service/rodos-boat-cruises', title: 'Rhodes Boat Cruises', blurb: 'Symi, Lindos and sunset day cruises.' },
+  'Symi': { url: '/service/rodos-boat-cruises', title: 'Symi Day Cruise', blurb: 'The most popular day trip from Rhodes.' },
+  'Day Trips': { url: '/service/rodos-boat-cruises', title: 'Rhodes Day Cruises', blurb: 'Organised day trips with lunch and swimming stops.' },
+  'Lindos': { url: '/service/rodos-boat-cruises', title: 'Lindos by Boat', blurb: 'See the Acropolis from the sea.' },
+  'Boat Tours': { url: '/service/rodos-boat-tours', title: 'Boat Tours in Rhodes', blurb: 'Local guides, hidden bays, handpicked experiences.' },
+  'Private Tours': { url: '/service/rhodes-boat-trips', title: 'Private Boat Trip', blurb: 'Your own boat, your own pace, with a local skipper.' },
+  'Sunset': { url: '/service/rodos-boat-cruises', title: 'Sunset Cruise in Rhodes', blurb: 'Magical sunset routes along the coastline.' },
+  'Beaches': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse the catalog of approved experiences.' },
+  'Hidden Gems': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Hand-picked tours, no algorithms.' },
+  'Activities': { url: '/things-to-do', title: 'Things to Do in Rhodes', blurb: 'Catalog of all approved experiences.' },
+  'Guide': { url: '/service', title: 'Boat Services in Rhodes', blurb: 'See all our services in one place.' },
+  'Rhodes': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse all approved boat experiences.' },
+};
+const seenServiceUrls = new Set<string>();
+const serviceCtas: { url: string; title: string; blurb: string }[] = [];
+for (const tag of (post.tags || []) as string[]) {
+  const svc = TAG_TO_SERVICE[tag];
+  if (svc && !seenServiceUrls.has(svc.url)) {
+    seenServiceUrls.add(svc.url);
+    serviceCtas.push(svc);
+    if (serviceCtas.length === 2) break;
+  }
+}
+// Always end with a contact fallback if we didn't fill 2 slots
+if (serviceCtas.length < 2) {
+  if (!seenServiceUrls.has('/contact')) {
+    serviceCtas.push({ url: '/contact', title: 'Talk to a Local', blurb: 'Tell us your dates — we will recommend the right experience for your group.' });
+  }
+}
 ---
 
 <BaseLayout
@@ -77,6 +118,50 @@ const ogImage = `${SITE_URL}/assets/img/blog/${post.bannerImg || post.image}`;
       </div>
     </div>
   </article>
+
+  <!-- Service CTAs — connect blog readers to relevant money pages -->
+  {serviceCtas.length > 0 && (
+    <section class="rab-services" aria-labelledby="rab-services-title">
+      <div class="container">
+        <div class="rab-services__inner">
+          <h2 id="rab-services-title" class="rab-services__title">Ready to Book Something?</h2>
+          <p class="rab-services__intro">Based on what you just read, these services may be the right fit:</p>
+          <div class="rab-services__grid">
+            {serviceCtas.map((cta) => (
+              <a href={cta.url} class="rab-services__card">
+                <h3 class="rab-services__card-title">{cta.title}</h3>
+                <p class="rab-services__card-blurb">{cta.blurb}</p>
+                <span class="rab-services__card-cta">Learn more →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Related posts — internal linking + reader retention -->
+  {relatedPosts.length > 0 && (
+    <section class="rab-related" aria-labelledby="rab-related-title">
+      <div class="container">
+        <h2 id="rab-related-title" class="rab-related__title">Keep Reading</h2>
+        <div class="rab-related__grid">
+          {relatedPosts.map((rp) => (
+            <a href={`/blog/${rp.slug}`} class="rab-related__card">
+              <div class="rab-related__img">
+                <img src={`/assets/img/blog/${rp.image}`} alt={rp.title} loading="lazy" />
+              </div>
+              <div class="rab-related__body">
+                <span class="rab-related__tag">{(rp.tags && rp.tags[0]) || 'Article'}</span>
+                <h3 class="rab-related__card-title">{rp.title}</h3>
+                <p class="rab-related__excerpt">{rp.excerpt}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
@@ -224,5 +309,155 @@ const ogImage = `${SITE_URL}/assets/img/blog/${post.bannerImg || post.image}`;
     font-size: 1.15rem;
     color: #2d3e46;
     margin-bottom: 28px !important;
+  }
+
+  /* ===== Service CTAs ===== */
+  .rab-services {
+    padding: 30px 0 60px;
+    background: #f8fafb;
+  }
+  .rab-services__inner {
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .rab-services__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 8px;
+  }
+  .rab-services__intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #5a6a72;
+    margin: 0 0 28px;
+  }
+  .rab-services__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .rab-services__card {
+    display: block;
+    padding: 24px 22px 22px;
+    background: #fff;
+    border: 1px solid #e5eaee;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    text-align: left;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rab-services__card:hover {
+    border-color: #1CA8CB;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(28,168,203,0.12);
+  }
+  .rab-services__card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 8px;
+  }
+  .rab-services__card-blurb {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #5a6a72;
+    margin: 0 0 12px;
+  }
+  .rab-services__card-cta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== Related posts ===== */
+  .rab-related {
+    padding: 60px 0 80px;
+    background: #fff;
+  }
+  .rab-related__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #113D48;
+    text-align: center;
+    margin: 0 0 32px;
+  }
+  .rab-related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .rab-related__card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e5eaee;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .rab-related__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .rab-related__img {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .rab-related__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .rab-related__card:hover .rab-related__img img {
+    transform: scale(1.05);
+  }
+  .rab-related__body {
+    padding: 18px 18px 20px;
+  }
+  .rab-related__tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1CA8CB;
+    margin-bottom: 8px;
+  }
+  .rab-related__card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #113D48;
+    margin: 0 0 10px;
+  }
+  .rab-related__excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #5a6a72;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 767px) {
+    .rab-services__grid { grid-template-columns: 1fr; }
+    .rab-related__grid { grid-template-columns: 1fr; }
   }
 </style>

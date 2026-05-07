@@ -11,6 +11,7 @@ import { SITE_URL } from '../../lib/seo';
 const { id } = Astro.params;
 let tour: any = null;
 let isPublished = false;
+let relatedTours: any[] = [];
 
 try {
   const supabase = createPublicClient();
@@ -21,6 +22,33 @@ try {
       .eq('id', id)
       .single();
     tour = data;
+
+    // Related tours: same service_page first, fallback to global; exclude current; limit 3
+    if (tour) {
+      const sp = tour.service_page;
+      let q = supabase
+        .from('tours')
+        .select('id, title, description, image_url, images, duration, guests, price, badge_label')
+        .eq('status', 'approved')
+        .neq('id', tour.id)
+        .limit(3);
+      if (sp) q = q.eq('service_page', sp);
+      const { data: related } = await q;
+      relatedTours = related || [];
+      // Pad with global tours if we have fewer than 3 same-category matches
+      if (relatedTours.length < 3) {
+        const fillCount = 3 - relatedTours.length;
+        const exclude = [tour.id, ...relatedTours.map((r: any) => r.id)];
+        const { data: globals } = await supabase
+          .from('tours')
+          .select('id, title, description, image_url, images, duration, guests, price, badge_label')
+          .eq('status', 'approved')
+          .eq('is_global', true)
+          .not('id', 'in', `(${exclude.join(',')})`)
+          .limit(fillCount);
+        relatedTours = [...relatedTours, ...(globals || [])];
+      }
+    }
   }
 } catch (e) {
   console.error('Failed to fetch tour:', e);
@@ -322,6 +350,40 @@ if (tour.price) {
     </div>
   </section>
 
+  <!-- Related tours — internal linking + crawl flow -->
+  {relatedTours.length > 0 && (
+    <section class="td-related" aria-labelledby="td-related-title">
+      <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
+        <div class="td-related__header">
+          <h2 id="td-related-title" class="td-related__title">You May Also Like</h2>
+          <a href="/things-to-do" class="td-related__link">Browse all experiences →</a>
+        </div>
+        <div class="td-related__grid">
+          {relatedTours.map((rt: any) => {
+            const img = (Array.isArray(rt.images) && rt.images[0]) || rt.image_url || '/assets/img/gallery/yacht/crystal-water-1.jpg';
+            return (
+              <a href={`/tour-detail/${rt.id}`} class="td-related__card">
+                <div class="td-related__img">
+                  <img src={img} alt={rt.title} loading="lazy" />
+                  {rt.badge_label && <span class="td-related__badge">{rt.badge_label}</span>}
+                </div>
+                <div class="td-related__body">
+                  <h3 class="td-related__card-title">{rt.title}</h3>
+                  <p class="td-related__excerpt">{rt.description}</p>
+                  <div class="td-related__meta">
+                    {rt.duration && <span><i class="far fa-clock" aria-hidden="true"></i> {rt.duration}</span>}
+                    {rt.guests && <span><i class="far fa-user" aria-hidden="true"></i> {rt.guests}</span>}
+                    {rt.price && <span class="td-related__price">{rt.price}</span>}
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
   <FooterFour />
 </BaseLayout>
 
@@ -399,4 +461,131 @@ if (tour.price) {
     box-shadow: 0 0 0 3px rgba(28,168,203,0.1);
   }
   #book-btn:hover:not(:disabled) { background: #178da8 !important; }
+
+  /* Related tours */
+  .td-related {
+    padding: 60px 0 80px;
+    background: #fff;
+  }
+  .td-related__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .td-related__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0;
+  }
+  .td-related__link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    text-decoration: none;
+  }
+  .td-related__link:hover { text-decoration: underline; }
+  .td-related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .td-related__card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .td-related__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+  }
+  .td-related__img {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .td-related__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .td-related__card:hover .td-related__img img {
+    transform: scale(1.05);
+  }
+  .td-related__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(17,61,72,0.85);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+  .td-related__body {
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .td-related__card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 10px;
+    line-height: 1.35;
+  }
+  .td-related__excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #5a6a72;
+    margin: 0 0 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .td-related__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: #5a6a72;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .td-related__meta i { color: #1CA8CB; margin-right: 4px; }
+  .td-related__price {
+    margin-left: auto;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1CA8CB;
+  }
+  @media (max-width: 991px) {
+    .td-related__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 575px) {
+    .td-related__grid { grid-template-columns: 1fr; }
+  }
 </style>

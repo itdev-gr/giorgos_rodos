@@ -77,7 +77,7 @@ const contactPageJsonLd = {
             <h4 class="contact-card__title">Call Us</h4>
             <p class="contact-card__text">
               <a href="tel:+306951666454">+30 695 166 6454</a><br />
-              <span class="contact-card__note">Mon – Sat: 09:00 – 20:00</span>
+              <span class="contact-card__note">Available daily — calls or WhatsApp</span>
             </p>
           </div>
         </div>
@@ -156,13 +156,75 @@ const contactPageJsonLd = {
     </div>
   </section>
 
-  <!-- ============== Section 4: Google Maps ============== -->
+  <!-- ============== Section 4: How to Find Us — local SEO + UX ============== -->
+  <section class="contact-find" data-ani="fadein">
+    <div class="container">
+      <div class="contact-find__grid">
+        <div class="contact-find__col">
+          <h2 class="contact-find__title">How to Find Us at Mandraki Harbour</h2>
+          <p class="contact-find__text">Mandraki Harbour sits in the centre of Rhodes Old Town, just below the medieval walls. We meet most guests directly at the quay so you can see the boats before you board.</p>
+          <ul class="contact-find__list">
+            <li><strong>From Rhodes Airport (RHO):</strong> 14 km / 25 minutes by car. We can arrange a private transfer — see <a href="/service/rhodes-transfers">Rhodes Transfers</a>.</li>
+            <li><strong>From the cruise port (Akandia / Kolona):</strong> a 5-minute taxi or a 15-minute walk along the seafront promenade.</li>
+            <li><strong>From the Old Town:</strong> walk through the Liberty Gate (Eleftherias Pyli) — the harbour is directly in front of you.</li>
+            <li><strong>Parking:</strong> public lots are available near the New Market (Nea Agora) and along Eleftherias Square.</li>
+            <li><strong>Landmarks:</strong> look for the three iconic windmills and the bronze deer columns at the harbour entrance — boats are moored along the inner quay.</li>
+          </ul>
+        </div>
+        <aside class="contact-find__nap" aria-label="Business address and hours">
+          <h3 class="contact-find__nap-title">Rhodes Rent a Boat</h3>
+          <dl class="contact-find__nap-list">
+            <dt>Address</dt>
+            <dd>Mandraki Harbour<br />Rhodes 851 00, Greece</dd>
+            <dt>Phone</dt>
+            <dd><a href="tel:+306951666454">+30 695 166 6454</a></dd>
+            <dt>WhatsApp</dt>
+            <dd><a href="https://wa.me/306951666454" target="_blank" rel="noopener">+30 695 166 6454</a></dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a></dd>
+            <dt>Hours</dt>
+            <dd>Available 24/7 — calls and messages</dd>
+            <dt>Languages</dt>
+            <dd>English, Greek, German, Italian, French</dd>
+          </dl>
+          <a href="https://www.google.com/maps/place/Mandraki+Harbour+Rhodes" target="_blank" rel="noopener" class="contact-find__directions">Open in Google Maps →</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 5: Most-Booked Services — funnel routing ============== -->
+  <section class="contact-services" data-ani="fadein">
+    <div class="container">
+      <h2 class="contact-services__title">While You're Here — Browse Our Most-Booked Services</h2>
+      <div class="contact-services__grid">
+        <a href="/service/rhodes-rent-a-boat" class="contact-services__card">
+          <h3>Rent a Boat</h3>
+          <p>License-free self-drive or skippered. Best for couples and small families.</p>
+        </a>
+        <a href="/service/rodos-boat-cruises" class="contact-services__card">
+          <h3>Boat Cruises</h3>
+          <p>Symi, Lindos, sunset and east-coast day cruises with lunch and swim stops.</p>
+        </a>
+        <a href="/service/rodos-charter" class="contact-services__card">
+          <h3>Yacht Charter</h3>
+          <p>Bareboat and crewed weekly charters in the Dodecanese.</p>
+        </a>
+        <a href="/things-to-do" class="contact-services__card contact-services__card--all">
+          <h3>All Experiences</h3>
+          <p>Browse the full catalog of approved boat tours and activities.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Section 6: Google Maps ============== -->
   <div class="contact-map style2" data-ani="fadein">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3231.5!2d28.4275!3d36.4475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a0c0a4f5c0c8ed%3A0x4e8e0e0e1f2a3b4c!2sMandraki%20Harbour!5e0!3m2!1sen!2sgr!4v1700000000000!5m2!1sen!2sgr"
       allowfullscreen
       loading="lazy"
-      title="Mandraki Harbour, Rhodes"
+      title="Mandraki Harbour, Rhodes — Rhodes Rent a Boat"
       style="height: 450px;"
     ></iframe>
   </div>
@@ -417,5 +479,207 @@ const contactPageJsonLd = {
 
   .contact-form :global(.th-btn.style3) {
     min-width: 200px;
+  }
+
+  /* ===== Section 4: How to Find Us (NAP block + harbour directions) ===== */
+  .contact-find {
+    padding: 80px 0;
+    background: #f8fafb;
+  }
+  .contact-find__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .contact-find__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 16px;
+    line-height: 1.25;
+  }
+  .contact-find__text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #4a5568;
+    margin: 0 0 22px;
+  }
+  .contact-find__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .contact-find__list li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #4a5568;
+    padding-left: 22px;
+    position: relative;
+  }
+  .contact-find__list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #1CA8CB;
+    font-weight: 700;
+  }
+  .contact-find__list strong {
+    color: #113D48;
+  }
+  .contact-find__list a {
+    color: #1CA8CB;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .contact-find__nap {
+    background: #fff;
+    border: 1px solid #e5eaee;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  }
+  .contact-find__nap-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #e5eaee;
+  }
+  .contact-find__nap-list {
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 18px;
+  }
+  .contact-find__nap-list dt {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1CA8CB;
+    align-self: start;
+    padding-top: 2px;
+  }
+  .contact-find__nap-list dd {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: #4a5568;
+    margin: 0;
+  }
+  .contact-find__nap-list a {
+    color: #4a5568;
+    transition: color 0.2s ease;
+  }
+  .contact-find__nap-list a:hover {
+    color: #1CA8CB;
+  }
+  .contact-find__directions {
+    display: inline-block;
+    margin-top: 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  .contact-find__directions:hover {
+    color: #178da8;
+  }
+
+  /* ===== Section 5: Most-Booked Services ===== */
+  .contact-services {
+    padding: 80px 0;
+    background: #fff;
+  }
+  .contact-services__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: #113D48;
+    text-align: center;
+    margin: 0 0 36px;
+  }
+  .contact-services__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .contact-services__card {
+    display: block;
+    padding: 24px 22px 22px;
+    background: #f8fafb;
+    border: 1px solid #e5eaee;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+  }
+  .contact-services__card:hover {
+    background: #fff;
+    border-color: #1CA8CB;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(28,168,203,0.12);
+  }
+  .contact-services__card--all {
+    background: #113D48;
+    border-color: #113D48;
+    color: #fff;
+  }
+  .contact-services__card--all:hover {
+    background: #0e2f38;
+    border-color: #0e2f38;
+    color: #fff;
+  }
+  .contact-services__card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 8px;
+  }
+  .contact-services__card--all h3 {
+    color: #fff;
+  }
+  .contact-services__card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #5a6a72;
+    margin: 0;
+  }
+  .contact-services__card--all p {
+    color: rgba(255,255,255,0.8);
+  }
+
+  @media (max-width: 991px) {
+    .contact-find__grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 575px) {
+    .contact-services__grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
