@@ -82,7 +82,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         <div className="mobile-logo">
           <a href="/">
-            <img src="/assets/img/logo2.svg" alt="Rhodes Boat Tours" />
+            <img src="/assets/img/logo2.svg" alt="Rhodes Rent a Boat" />
           </a>
         </div>
 

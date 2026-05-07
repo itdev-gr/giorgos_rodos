@@ -83,10 +83,11 @@ export const GET: APIRoute = async () => {
 
   // Blog posts (static + dynamic from data-post.json)
   for (const p of posts as any[]) {
-    const id = p.id;
+    const slug = p.slug;
+    if (!slug) continue;
     const lastmod = (p.publishedDate as string) || today;
     entries.push({
-      loc: `${SITE}/blog/${id}`,
+      loc: `${SITE}/blog/${slug}`,
       lastmod,
       changefreq: 'monthly',
       priority: '0.6',

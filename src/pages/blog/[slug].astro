@@ -6,19 +6,19 @@ import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import posts from '../../data/data-post.json';
 import { SITE_URL } from '../../lib/seo';
 
-const { id } = Astro.params;
-const post = posts.find((p: any) => String(p.id) === String(id));
+const { slug } = Astro.params;
+const post = posts.find((p: any) => p.slug === slug);
 
 if (!post) {
   return new Response(null, { status: 404, statusText: 'Not Found' });
 }
 
-const canonical = `https://rhodesrentaboat.com/blog/${post.id}`;
-const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg || post.image}`;
+const canonical = `${SITE_URL}/blog/${post.slug}`;
+const ogImage = `${SITE_URL}/assets/img/blog/${post.bannerImg || post.image}`;
 ---
 
 <BaseLayout
-  title={`${post.title} | Rhodes Boat Tours`}
+  title={`${post.title} | Rhodes Rent a Boat`}
   description={post.excerpt}
   canonical={canonical}
   ogImage={ogImage}
@@ -33,7 +33,7 @@ const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg ||
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Blog', url: '/blog' },
-    { name: post.title, url: `/blog/${post.id}` },
+    { name: post.title, url: `/blog/${post.slug}` },
   ]} />
   <Header />
 

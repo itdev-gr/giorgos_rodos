@@ -1,5 +1,5 @@
 ---
-import { SITE_URL, SITE_NAME } from '../../lib/seo';
+import { SITE_URL, SITE_NAME, SITE_ALTERNATE_NAME, FOUNDING_YEAR } from '../../lib/seo';
 
 const data = {
   '@context': 'https://schema.org',
@@ -7,8 +7,8 @@ const data = {
   '@id': `${SITE_URL}#website`,
   url: SITE_URL,
   name: SITE_NAME,
-  alternateName: 'Rhodes Boat Tours',
-  description: 'Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts in Mandraki Harbour since 2009.',
+  alternateName: SITE_ALTERNATE_NAME,
+  description: `Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts in Mandraki Harbour since ${FOUNDING_YEAR}.`,
   inLanguage: 'en-US',
   publisher: { '@id': `${SITE_URL}#organization` },
   potentialAction: {

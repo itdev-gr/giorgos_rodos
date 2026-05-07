@@ -26,7 +26,11 @@ async function buildMaster(size) {
   const padded = await sharp(cropped)
     .extend({ top: 0, bottom: 0, left: 55, right: 55, background: { r: 255, g: 255, b: 255, alpha: 1 } })
     .toBuffer();
-  return sharp(padded).resize(size, size, { kernel: 'lanczos3' }).png().toBuffer();
+  return sharp(padded)
+    .resize(size, size, { kernel: 'lanczos3' })
+    .flatten({ background: '#ffffff' })
+    .png()
+    .toBuffer();
 }
 
 // Build a PNG-format .ico. Modern browsers accept PNG-encoded ICO entries.

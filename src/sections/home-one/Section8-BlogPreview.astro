@@ -11,7 +11,7 @@ const featured = posts.slice(0, 3);
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;" class="blog-grid">
       {featured.map((post, i) => (
-        <a href={`/blog/${post.id}`} class="blog-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.1}`}>
+        <a href={`/blog/${post.slug}`} class="blog-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.1}`}>
           <div class="blog-card__img">
             <img src={`/assets/img/blog/${post.image}`} alt={post.title} loading="lazy" />
           </div>

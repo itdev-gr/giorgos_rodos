@@ -1,12 +1,12 @@
 ---
-import { SITE_URL, SITE_NAME } from '../../lib/seo';
+import { SITE_URL, SITE_NAME, SITE_ALTERNATE_NAME, FOUNDING_YEAR } from '../../lib/seo';
 
 const data = {
   '@context': 'https://schema.org',
   '@type': ['TravelAgency', 'LocalBusiness'],
   '@id': `${SITE_URL}#organization`,
   name: SITE_NAME,
-  alternateName: 'Rhodes Boat Tours',
+  alternateName: SITE_ALTERNATE_NAME,
   url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
@@ -15,7 +15,7 @@ const data = {
     height: 60,
   },
   image: `${SITE_URL}/assets/img/hero/hero_bg_1_1.jpg`,
-  description: 'Local-led boat tours, license-free rentals, sailing trips and yacht charters in Rhodes, Greece. Operating from Mandraki Harbour since 2009.',
+  description: `Local-led boat tours, license-free rentals, sailing trips and yacht charters in Rhodes, Greece. Operating from Mandraki Harbour since ${FOUNDING_YEAR}.`,
   telephone: '+30 695 166 6454',
   email: 'info@rhodesrentaboat.com',
   priceRange: '€€',
@@ -44,22 +44,16 @@ const data = {
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '09:00',
-      closes: '20:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Sunday',
-      opens: '10:00',
-      closes: '18:00',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
     },
   ],
   sameAs: [
     'https://www.instagram.com/rhodos_yachts',
     'https://www.facebook.com/rhodosyachts',
   ],
-  foundingDate: '2009',
+  foundingDate: FOUNDING_YEAR,
   knowsLanguage: ['en', 'el', 'de', 'it', 'fr'],
   contactPoint: [
     {
