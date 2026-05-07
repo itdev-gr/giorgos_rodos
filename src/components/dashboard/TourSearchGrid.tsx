@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { imgUrl, imgSrcset } from '../../lib/media';
 
 interface Tour {
   id: string;
@@ -137,10 +138,19 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
                 }}
               >
                 <div style={{ height: 220, overflow: 'hidden', position: 'relative' }}>
-                  <img src={img} alt={tour.title} loading="lazy" style={{
-                    width: '100%', height: '100%', objectFit: 'cover',
-                    transition: 'transform 0.5s ease',
-                  }} />
+                  <img
+                    src={imgUrl(img, 600, { quality: 75 })}
+                    srcSet={imgSrcset(img, [400, 600, 800])}
+                    sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
+                    alt={tour.title}
+                    loading="lazy"
+                    width={600}
+                    height={220}
+                    style={{
+                      width: '100%', height: '100%', objectFit: 'cover',
+                      transition: 'transform 0.5s ease',
+                    }}
+                  />
                   {tour.badge_label && (
                     <span style={{
                       position: 'absolute', top: 14, right: 14,

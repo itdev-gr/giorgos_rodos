@@ -76,8 +76,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       }}
     >
       <div className="th-menu-area text-center">
-        <button className="th-menu-toggle" onClick={closeMenu} aria-label="Close">
-          <i className="fal fa-times" />
+        <button className="th-menu-toggle" onClick={closeMenu} aria-label="Close menu">
+          <i className="fas fa-times" aria-hidden="true" />
         </button>
 
         <div className="mobile-logo">

@@ -70,6 +70,9 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
     <OrganizationSchema />
     <WebsiteSchema />
 
+    <!-- Page-specific <head> additions (preload, page-scoped meta, etc.) -->
+    <slot name="head" />
+
     <!-- DNS prefetch / preconnect to third-party origins -->
     <link rel="dns-prefetch" href="https://iuidzdvrrrsxevvkbxam.supabase.co" />
     <link rel="preconnect" href="https://iuidzdvrrrsxevvkbxam.supabase.co" crossorigin />
@@ -127,7 +130,9 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
     </style>
   </head>
   <body>
-    <slot />
+    <main id="main-content">
+      <slot />
+    </main>
 
     <a
       href="https://wa.me/306951666454"
@@ -148,7 +153,7 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
         align-items: center;
         gap: 10px;
         padding: 8px 8px 8px 18px;
-        background: #25D366;
+        background: #128C7E;
         color: #fff;
         border-radius: 999px;
         text-decoration: none;

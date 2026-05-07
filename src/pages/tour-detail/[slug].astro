@@ -7,6 +7,7 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { SITE_URL, looksLikeUuid } from '../../lib/seo';
+import { imgUrl, imgSrcset } from '../../lib/media';
 
 const { slug } = Astro.params;
 let tour: any = null;
@@ -142,6 +143,9 @@ if (tour.price) {
   ogImage={heroOgImage}
   noindex={!isPublished}
 >
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={imgUrl(images[0], 1200, { quality: 80 })} imagesrcset={imgSrcset(images[0])} imagesizes="(max-width: 991px) 100vw, 1200px" fetchpriority="high" />
+  </Fragment>
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Things to Do', url: '/things-to-do' },
@@ -165,7 +169,7 @@ if (tour.price) {
       <div class="td-gallery" style="border-radius: 16px; overflow: hidden; position: relative;">
         <!-- Main Image -->
         <div id="main-image-wrap" style="width: 100%; aspect-ratio: 16/7; overflow: hidden; cursor: pointer;">
-          <img id="main-image" src={images[0]} alt={tour.title} style="width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s;" />
+          <img id="main-image" src={imgUrl(images[0], 1200, { quality: 80 })} srcset={imgSrcset(images[0])} sizes="(max-width: 991px) 100vw, 1200px" data-full={images[0]} alt={tour.title} width="1200" height="525" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s;" />
         </div>
         <!-- Thumbnails -->
         {images.length > 1 && (
@@ -174,9 +178,11 @@ if (tour.price) {
               <button
                 class="td-thumb"
                 data-index={i}
+                data-full={img}
+                aria-label={`View image ${i + 1}`}
                 style={`flex: 1; height: 80px; overflow: hidden; border: none; padding: 0; cursor: pointer; border-radius: 4px; opacity: ${i === 0 ? '1' : '0.6'}; transition: opacity 0.2s;`}
               >
-                <img src={img} alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                <img src={imgUrl(img, 200, { quality: 75 })} alt="" loading="lazy" width="200" height="80" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
               </button>
             ))}
           </div>
@@ -328,8 +334,8 @@ if (tour.price) {
                 <input type="date" name="booking_date" required style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Number of Guests</label>
-                <select name="guests" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box; background: #fff; cursor: pointer;">
+                <label for="booking-guests" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Number of Guests</label>
+                <select id="booking-guests" name="guests" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box; background: #fff; cursor: pointer;">
                   {[1,2,3,4,5,6,7,8,9,10,11,12,15,20,25,30].map(n => (
                     <option value={n}>{n} guest{n !== 1 ? 's' : ''}</option>
                   ))}
@@ -381,7 +387,7 @@ if (tour.price) {
             return (
               <a href={`/tour-detail/${rt.slug || rt.id}`} class="td-related__card">
                 <div class="td-related__img">
-                  <img src={img} alt={rt.title} loading="lazy" />
+                  <img src={imgUrl(img, 600, { quality: 75 })} srcset={imgSrcset(img, [400, 600, 800])} sizes="(max-width: 991px) 50vw, 380px" alt={rt.title} loading="lazy" width="600" height="450" />
                   {rt.badge_label && <span class="td-related__badge">{rt.badge_label}</span>}
                 </div>
                 <div class="td-related__body">
@@ -405,14 +411,15 @@ if (tour.price) {
 </BaseLayout>
 
 <script>
-  // Image gallery
+  // Image gallery — thumbnails carry data-full with the original URL
   const mainImg = document.getElementById('main-image') as HTMLImageElement;
   const thumbs = document.querySelectorAll('.td-thumb');
   thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
-      const img = thumb.querySelector('img') as HTMLImageElement;
-      if (img && mainImg) {
-        mainImg.src = img.src;
+      const full = (thumb as HTMLElement).dataset.full;
+      if (full && mainImg) {
+        mainImg.src = full;
+        mainImg.removeAttribute('srcset');
         thumbs.forEach(t => (t as HTMLElement).style.opacity = '0.6');
         (thumb as HTMLElement).style.opacity = '1';
       }
