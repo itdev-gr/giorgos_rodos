@@ -8,7 +8,7 @@ import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.as
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
-import { getMediaSlot } from '../../lib/media';
+import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
 
 const boatTripsFaq = [
@@ -143,7 +143,7 @@ const trips = dbCards;
         {trips.map((trip, i) => (
           <a href={trip.href || '/contact'} class="bt-trip-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={trip.image} alt={trip.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{trip.boat}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
