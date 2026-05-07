@@ -1,8 +1,21 @@
 ---
 import MobileMenu from '../../components/interactive/MobileMenu';
+
+interface Props {
+  /**
+   * Transparent-over-hero rendering (white text, absolute positioning).
+   * Defaults to true because every page that uses this component sits over
+   * a full-bleed hero. Set false for layouts without a dark backdrop.
+   * Server-side rendering avoids the CLS 1.0 caused by the previous JS
+   * class-toggle approach.
+   */
+  transparent?: boolean;
+}
+
+const { transparent = true } = Astro.props;
 ---
 
-<header class="th-header header-layout1" id="header-one">
+<header class:list={['th-header header-layout1', transparent && 'header-transparent']} id="header-one">
   <div class="sticky-wrapper" id="sticky-wrapper">
     <div class="menu-area">
       <div class="container th-container">

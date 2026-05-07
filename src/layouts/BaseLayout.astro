@@ -122,17 +122,39 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
       @media (min-width: 1200px) { .container { max-width: 1140px; } }
       @media (min-width: 1400px) { .container { max-width: 1320px; } }
 
-      /* Header — fixed/transparent over hero */
+      /* Header — transparent over hero by default, sticky-wrapper reserves
+         a fixed height so the layout doesn't shift when the sticky class
+         activates on scroll. Both states have the same physical footprint. */
       header { position: relative; z-index: 100; }
-      .th-header { position: absolute; top: 0; left: 0; right: 0; z-index: 100; }
-
-      /* Hero — full-bleed, dark fallback bg so video has something to overlay */
-      .hero-fullscreen, .th-hero-wrapper, .service-hero-fullwidth, .services-hero, .about-hero, .contact-hero, .rab-hero {
-        position: relative;
-        min-height: 60vh;
-        background-color: #0b2f38;
-        overflow: hidden;
+      .th-header.header-transparent .sticky-wrapper:not(.sticky) {
+        position: absolute; top: 0; left: 0; right: 0; z-index: 100;
       }
+      .sticky-wrapper { min-height: 90px; }
+      @media (max-width: 991px) { .sticky-wrapper { min-height: 70px; } }
+
+      /* Hero containers — reserve their final height now so the deferred
+         theme CSS doesn't trigger a 1.0+ CLS when it eventually applies. */
+      .hero-fullscreen, .th-hero-wrapper {
+        position: relative; min-height: 600px; height: 100vh;
+        background-color: #0b2f38; overflow: hidden;
+      }
+      .service-hero-fullwidth, .services-hero, .about-hero, .contact-hero, .rab-hero {
+        position: relative; min-height: 100vh;
+        background-color: #0b2f38; overflow: hidden;
+      }
+      @media (max-width: 991px) {
+        .service-hero-fullwidth { min-height: 380px; height: 75vh; }
+        .services-hero { min-height: 50vh; }
+        .about-hero, .contact-hero, .rab-hero { min-height: 75vh; }
+      }
+      @media (max-width: 767px) {
+        .service-hero-fullwidth { min-height: 360px; }
+      }
+
+      /* Tour-detail gallery wrapper — main image is 16/7. Reserving the
+         aspect prevents the section from collapsing pre-CSS. */
+      .td-gallery { aspect-ratio: 16 / 7; }
+      @media (max-width: 991px) { .td-gallery { aspect-ratio: 4 / 3; } }
 
       /* Stop horizontal scroll the moment the page paints */
       html, body {
