@@ -93,15 +93,67 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
       />
     </noscript>
 
-    <!-- Critical CSS — render-blocking by design (layout grid + theme above-fold) -->
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <!-- Critical CSS inlined: covers above-the-fold (header, hero, base layout)
+         so the page paints immediately while Bootstrap + theme load async below. -->
+    <style>
+      /* Reset + base layout — keeps everything in place pre-Bootstrap */
+      *, *::before, *::after { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #113D48;
+        background: #fff;
+        -webkit-font-smoothing: antialiased;
+      }
+      img, video { max-width: 100%; height: auto; display: block; }
+      a { color: inherit; text-decoration: none; }
+      .container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      @media (min-width: 576px) { .container { max-width: 540px; } }
+      @media (min-width: 768px) { .container { max-width: 720px; } }
+      @media (min-width: 992px) { .container { max-width: 960px; } }
+      @media (min-width: 1200px) { .container { max-width: 1140px; } }
+      @media (min-width: 1400px) { .container { max-width: 1320px; } }
 
-    <!-- Non-critical CSS — async via media-print swap, with noscript fallback -->
+      /* Header — fixed/transparent over hero */
+      header { position: relative; z-index: 100; }
+      .th-header { position: absolute; top: 0; left: 0; right: 0; z-index: 100; }
+
+      /* Hero — full-bleed, dark fallback bg so video has something to overlay */
+      .hero-fullscreen, .th-hero-wrapper, .service-hero-fullwidth, .services-hero, .about-hero, .contact-hero, .rab-hero {
+        position: relative;
+        min-height: 60vh;
+        background-color: #0b2f38;
+        overflow: hidden;
+      }
+
+      /* Stop horizontal scroll the moment the page paints */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+    </style>
+
+    <!-- Bootstrap + theme — load async via print-onload swap; noscript fallback -->
+    <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
+    <link rel="preload" href="/assets/css/style.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="/assets/css/style.css" media="print" onload="this.media='all'" />
+
+    <!-- Non-critical CSS — async via media-print swap -->
     <link rel="stylesheet" href="/assets/css/fontawesome.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
     <noscript>
+      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="/assets/css/style.css" />
       <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
       <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
       <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />

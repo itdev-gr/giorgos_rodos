@@ -7,6 +7,13 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'server',
   adapter: vercel(),
+  // Inline component-scoped CSS (page styles, footer styles, etc.) into the
+  // <head> instead of emitting render-blocking <link> tags for tiny CSS chunks.
+  // 'always' is fine because we're only talking about per-page scoped styles —
+  // the heavy framework CSS (bootstrap, theme) is loaded separately.
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),
