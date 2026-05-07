@@ -7,8 +7,36 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const sailingFaq = [
+  {
+    question: 'What is the best month for sailing in Rhodes?',
+    answer: 'May, June, September and early October are the best — warm sea, lighter winds and quieter anchorages. July and August have the strong Meltemi north winds (Force 4–7) which experienced sailors love but can be tiring for relaxed cruising. Spring and autumn are ideal for first-time sailors.',
+  },
+  {
+    question: 'What is the Meltemi wind and does it affect my trip?',
+    answer: 'The Meltemi is a dry north-westerly wind that blows across the Aegean from late June through August, often Force 4–7. On the east coast of Rhodes (where most of our trips run) the island shelters you from the worst of it, but it can affect crossings to Symi or Halki. We always check the forecast and may shift the route to a sheltered coast on Meltemi days — safety first.',
+  },
+  {
+    question: 'Do I need any sailing experience?',
+    answer: 'No. All our sailing trips include a professional skipper who handles the boat. You are welcome to help (steering, raising sails) if you want, but you can also just relax. If you have a sailing licence and want to try a <a href="/service/rodos-charter">bareboat charter</a>, we can arrange that too.',
+  },
+  {
+    question: 'Where can I sail to from Rhodes?',
+    answer: 'Day trips: along the east coast to Lindos, Kalithea, Anthony Quinn Bay, Faliraki. Half-day: short hops to Mandraki bays and Kalithea Springs. Multi-day: Symi (1.5h crossing), Tilos, Halki, Nisyros (3–4h). Full-week routes can reach Kos and Patmos. Tell us how long you have and we will plan a route that fits.',
+  },
+  {
+    question: 'Where do sailing trips depart from?',
+    answer: 'Most depart from Mandraki Harbour in Rhodes Town. Some east-coast day sails leave from Faliraki or Kolymbia. Multi-day charters typically start from Mandraki or Rhodes Marina depending on the yacht. We confirm the exact berth when you book.',
+  },
+  {
+    question: 'What should I bring on a sailing trip?',
+    answer: 'Soft-sole shoes (no black-sole sneakers — they mark the deck), sunscreen, a hat, sunglasses, a light layer for the wind, and a swimsuit. We provide towels, snorkel gear, water and snacks. For multi-day trips bring a soft bag (suitcases do not fit in cabin lockers) and any specific food preferences — we provision before departure.',
+  },
+];
 
 const heroVideo = await getMediaSlot('service.sailing.hero.video', '/assets/img/hero/services/charter.mp4');
 const heroImage = await getMediaSlot('service.sailing.hero.image', '/assets/img/gallery/yacht/sailing-sunset-1.jpg');
@@ -135,6 +163,12 @@ const trips = dbCards;
       </div>
     </div>
   </section>
+
+  <FAQSection
+    items={sailingFaq}
+    title="Sailing Trips in Rhodes — FAQ"
+    intro="Common questions about sailing experiences in the Dodecanese. For booking and weather see the <a href='/faq'>full FAQ</a>."
+  />
 
   <!-- 4. Contact -->
   <section style="padding: 80px 0; background: #113D48;">

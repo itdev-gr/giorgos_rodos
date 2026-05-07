@@ -7,8 +7,36 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const boatToursFaq = [
+  {
+    question: 'What is a boat tour in Rhodes?',
+    answer: 'A guided experience on the water with a local skipper. The boat follows a planned route, stops in the best swimming and snorkeling bays, and gets you back to the harbour by a set time. Most are private or semi-private (4–10 guests on a smaller boat), as opposed to a <a href="/service/rodos-boat-cruises">cruise</a> which is a larger shared boat with all-inclusive food and drinks.',
+  },
+  {
+    question: 'How long does a boat tour usually last?',
+    answer: 'Half-day tours run 3–4 hours with one or two swim stops. Full-day tours run 6–8 hours with three or four stops, lunch on board and time to swim, snorkel and explore. Sunset tours are typically 2.5–3 hours along the coast and back.',
+  },
+  {
+    question: 'What is included in a guided boat tour?',
+    answer: 'Boat, fuel, professional skipper, safety gear (life jackets, first-aid, anchor), snorkeling masks, soft drinks and snacks. Lunch is included on most full-day tours; on half-day tours we stop at a beach taverna or pack a picnic. Pickup from your hotel can be arranged via <a href="/service/rhodes-transfers">our transfer service</a>.',
+  },
+  {
+    question: 'Where do boat tours go?',
+    answer: 'The east coast of Rhodes is the main playground — Anthony Quinn Bay, Kalithea Springs, Ladiko, Traganou Caves, Tsambika beach and the wider Lindos area. Full-day tours can reach Symi Island. Routes are flexible — tell your skipper what you want most (swimming, sightseeing, secluded coves) and they will adjust.',
+  },
+  {
+    question: 'Are boat tours private or shared?',
+    answer: 'We offer both. Shared tours run on fixed schedules with up to 12 other guests — best value per person. Private tours are your group only, fully flexible route and timing — best for couples, families and small groups celebrating something. <a href="/contact">Tell us your group size</a> and we will recommend the right format.',
+  },
+  {
+    question: 'Boat tour vs cruise vs charter — what is the difference?',
+    answer: 'A <strong>boat tour</strong> is typically a smaller boat with a skipper visiting specific spots (3–8 hours). A <strong><a href="/service/rodos-boat-cruises">cruise</a></strong> is a larger group on a bigger boat with all-inclusive food, drinks and entertainment. A <strong><a href="/service/rodos-charter">charter</a></strong> is a multi-day rental of an entire yacht. <a href="/faq">More on the difference here</a>.',
+  },
+];
 
 const heroVideo = await getMediaSlot('service.boat-tours.hero.video', '/assets/img/hero/services/boat-tours.mp4');
 const heroImage = await getMediaSlot('service.boat-tours.hero.image', '/assets/img/tours/hero-rhodes-coast.jpg');
@@ -135,6 +163,12 @@ const tours = dbCards;
       </div>
     </div>
   </section>
+
+  <FAQSection
+    items={boatToursFaq}
+    title="Rhodes Boat Tours — FAQ"
+    intro="Common questions about guided boat tours in Rhodes. For booking and weather see the <a href='/faq'>full FAQ</a>."
+  />
 
   <!-- 4. Contact Section -->
   <section style="padding: 80px 0; background: #113D48;">

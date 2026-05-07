@@ -7,8 +7,36 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const charterFaq = [
+  {
+    question: 'Do I need a licence to charter a yacht in Rhodes?',
+    answer: 'For a <strong>bareboat</strong> charter (you skipper the yacht yourself) you need a recognised qualification — RYA Day Skipper or higher, ASA, IYT or an ICC. Greek law also requires a co-skipper with at least basic sailing experience on board. For a <strong>skippered</strong> charter we put a professional captain on board so no licence is required from your party — that is the most popular option for visitors.',
+  },
+  {
+    question: 'Bareboat or skippered — which should I pick?',
+    answer: 'Bareboat suits experienced sailors who want to plan their own route, anchor where they like and run the boat themselves. Skippered is the right call if you want to relax, learn the area from a local pro, focus on the holiday rather than the navigation, or have any uncertainty about the weather and harbours. Most first-time visitors to the Dodecanese pick skippered.',
+  },
+  {
+    question: 'How much does a yacht charter in Rhodes cost?',
+    answer: 'Weekly bareboat rates typically run €1,500–€7,500 for monohull sailing yachts (35–55 ft), and €3,500–€15,000+ for catamarans, depending on size, year and season. Skipper service is around €180–€250 per day on top. Peak weeks (mid-July to late August) are the most expensive. June and September are 20–30% cheaper for the same boat.',
+  },
+  {
+    question: 'When is the best time for a sailing holiday in the Dodecanese?',
+    answer: 'May, June, September and early October are the sweet spot — warm sea, lighter winds and emptier anchorages. July and August bring the strong Meltemi north winds (Force 4–7) which experienced sailors enjoy but families with kids may find tiring. We help you match the season to your group.',
+  },
+  {
+    question: 'Do charters always start on a Saturday?',
+    answer: 'Yes — Greek bareboat charters traditionally start on Saturday and run for 7 nights, with embarkation in the late afternoon and disembarkation by 09:00 the following Saturday. So a "weekly" charter is really 6 days of sailing. We can arrange shorter or non-Saturday charters case by case — just ask.',
+  },
+  {
+    question: 'Where can I sail to from Rhodes?',
+    answer: 'Rhodes is a fantastic Dodecanese base. Typical 7-day routes loop Symi, Tilos, Halki, Nisyros and back; longer trips reach Kos, Leros and Patmos. The east coast of Rhodes alone gives you Lindos, Kalithea and Faliraki bays for shorter loops. <a href="/contact">Tell us your dates and the kind of trip you want</a> — we will sketch a route.',
+  },
+];
 
 const heroVideo = await getMediaSlot('service.charter.hero.video', '/assets/img/hero/services/charter.mp4');
 const heroImage = await getMediaSlot('service.charter.hero.image', '/assets/img/fleet/oceanis-511-lupo-di-mare.jpg');
@@ -136,6 +164,12 @@ const charters = dbCards;
       </div>
     </div>
   </section>
+
+  <FAQSection
+    items={charterFaq}
+    title="Rhodes Yacht Charter — FAQ"
+    intro="Common questions from charterers heading to the Dodecanese. For booking and weather see the <a href='/faq'>full FAQ</a>."
+  />
 
   <!-- 4. Contact -->
   <section style="padding: 80px 0; background: #113D48;">

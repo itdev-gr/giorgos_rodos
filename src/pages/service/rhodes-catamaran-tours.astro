@@ -7,8 +7,36 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const catamaranFaq = [
+  {
+    question: 'Why choose a catamaran over a monohull boat?',
+    answer: 'Two hulls instead of one means the boat sits flat on the water — almost no roll in light chop. You get more deck space, more shaded seating, stairs straight into the water, and stable trampolines at the bow. For families, anyone prone to sea-sickness, or guests who want to walk around freely instead of bracing against tilt, a catamaran is the easy choice.',
+  },
+  {
+    question: 'What is included on a catamaran day cruise?',
+    answer: 'A typical 6-hour all-inclusive day cruise includes a buffet lunch (Mediterranean — chicken, Greek salad, pasta, hummus, bread), unlimited soft drinks plus wine and beer, snorkel masks, three or four swim stops in calm bays, and a music system. Towels and sun-deck cushions are provided. Some cruises also include paddleboards.',
+  },
+  {
+    question: 'Are catamaran tours good if I get sea-sick?',
+    answer: 'Yes — they are the most stable option short of a private yacht. Catamarans roll far less than monohulls, especially on the calm east coast routes. We still suggest you book a morning trip rather than afternoon (winds usually pick up after 14:00) and pick a coastal route over a long crossing.',
+  },
+  {
+    question: 'Day cruise or sunset catamaran cruise — which to pick?',
+    answer: 'Day cruises (6–7 hours) are about swimming, snorkeling, lunch and exploring multiple bays — best for first-time visitors and active groups. Sunset cruises (3 hours) are about the evening light, dinner on board, drinks and the return view of the medieval city — best for couples and a romantic mood. Many guests do both during a one-week stay.',
+  },
+  {
+    question: 'Are catamaran tours private or shared?',
+    answer: 'Both. Shared cruises run with up to ~30 other guests on a fixed schedule and are the best value per person. Private catamaran charters are your group only (typically up to 12) with full route flexibility — best for celebrations, larger families or groups. Private day rates start around €920–€1,200 for half-day.',
+  },
+  {
+    question: 'How many people fit on a catamaran cruise?',
+    answer: 'Day cruise catamarans seat 25–40 guests comfortably with plenty of deck space per person — never feels crowded. Private charter catamarans are sized 38–55 ft and take 8–14 guests cruising. Tell us your group size and we will book a boat where everyone has space.',
+  },
+];
 
 const heroVideo = await getMediaSlot('service.catamaran.hero.video', '/assets/img/hero/services/charter.mp4');
 const heroImage = await getMediaSlot('service.catamaran.hero.image', '/assets/img/fleet/lagoon-42-aenaos.jpg');
@@ -135,6 +163,12 @@ const tours = dbCards;
       </div>
     </div>
   </section>
+
+  <FAQSection
+    items={catamaranFaq}
+    title="Catamaran Tours in Rhodes — FAQ"
+    intro="Common questions about day and sunset catamaran cruises. For booking and weather see the <a href='/faq'>full FAQ</a>."
+  />
 
   <!-- 4. Contact -->
   <section style="padding: 80px 0; background: #113D48;">

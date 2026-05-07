@@ -11,6 +11,38 @@ import Reviews from '../sections/home-one/Section7-Reviews.astro';
 import BlogPreview from '../sections/home-one/Section8-BlogPreview.astro';
 import Contact from '../sections/home-one/Section9-Contact.astro';
 import Footer from '../sections/shared/FooterFour.astro';
+import FAQSection from '../components/FAQSection.astro';
+
+// People-Also-Ask-aligned FAQ for the homepage's broad commercial intent
+// (boat tours / rent a boat / cruises / charters in Rhodes). Distinct from
+// the dedicated /faq page (which covers contracts, kids, weather, contact)
+// and from /service hub (which is about choosing between services).
+const homeFaq = [
+  {
+    question: 'What is the best boat tour in Rhodes?',
+    answer: 'It depends on what you want from the day. The most popular shared cruises visit Anthony Quinn Bay, Kalithea Springs and the east coast for swimming and snorkeling. Day trips to Symi and Lindos focus on sightseeing rather than swimming. For couples or small families a private boat trip with a skipper gives you full flexibility — pick the bays, set the pace. <a href="/things-to-do">Browse the full catalog</a> or <a href="/contact">tell us your dates</a> and we will recommend the right option.',
+  },
+  {
+    question: 'How much does a boat tour in Rhodes cost?',
+    answer: 'Shared day cruises typically run €40–€80 per person including lunch and drinks. Sunset catamaran cruises are €40–€70. Private half-day trips with a skipper start around €400–€600 for the boat (4–8 guests). Weekly yacht charters depend on yacht type and season. We send a clear written quote before any booking — no hidden fees and no commission to a marketplace.',
+  },
+  {
+    question: 'When is the best time of year to take a boat tour in Rhodes?',
+    answer: 'May to October is the operating season. June and September give the best balance of warm sea, light winds and lighter crowds. July and August are peak summer — book at least 1–2 weeks ahead, especially for private boats and weekend slots. Spring and early autumn are ideal for sailing trips because the Meltemi north winds are weaker.',
+  },
+  {
+    question: 'Where do boat tours in Rhodes depart from?',
+    answer: 'Most shared cruises and tours depart from Mandraki Harbour in Rhodes Town. Some east-coast trips depart from Faliraki, Kolymbia or Lindos depending on the route. We tell you the exact meeting point when we confirm your booking, and we can arrange a <a href="/service/rhodes-transfers">private transfer</a> from your hotel if you prefer.',
+  },
+  {
+    question: 'How long does a typical boat tour last?',
+    answer: 'Half-day trips are 3–4 hours with one or two swim stops. Full-day cruises run 6–8 hours with three or four stops, lunch on board, and time to swim and snorkel at each. Day trips to Symi or Lindos take a full day because of the longer crossing. Sunset cruises are usually 2.5–3 hours.',
+  },
+  {
+    question: 'Are boat tours suitable for non-swimmers and people who get sea-sick?',
+    answer: 'Yes — non-swimmers can absolutely join. Pool noodles and life jackets are on every boat, and most stops are in calm shallow bays where you can stand close to shore or stay on board. If you are prone to sea sickness, choose a catamaran (significantly more stable than a monohull) or a coastal route rather than a longer crossing like Symi. Tell us when you book and we will steer you to a smoother option.',
+  },
+];
 ---
 
 <BaseLayout
@@ -75,6 +107,11 @@ import Footer from '../sections/shared/FooterFour.astro';
   <Reviews />
   <BlogPreview />
   <Contact />
+  <FAQSection
+    items={homeFaq}
+    title="Rhodes Boat Tours — Common Questions"
+    intro="The questions visitors ask us most often. For more, see the <a href='/faq'>full FAQ</a>."
+  />
   <GoogleMap />
   <Footer />
 

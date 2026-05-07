@@ -7,8 +7,36 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot } from '../../lib/media';
 import { createPublicClient } from '../../lib/supabase';
+
+const cruisesFaq = [
+  {
+    question: 'What is included in a Rhodes day cruise?',
+    answer: 'Most all-inclusive cruises include a buffet lunch (Mediterranean dishes — chicken, Greek salad, pasta, bread), unlimited soft drinks plus wine and beer, snorkel masks, and three to four swim stops. Music, sun deck and shaded seating are standard. Sunset cruises typically include a lighter dinner with grilled meats and salads plus an open bar of beer, wine and juice.',
+  },
+  {
+    question: 'Where do Rhodes cruises depart from?',
+    answer: 'Most depart from Mandraki Harbour in Rhodes Town. Some east-coast cruises leave from Faliraki, Kolymbia or Lindos depending on the route. Symi cruises always leave from Mandraki around 09:00. We confirm the meeting point when you book and can arrange a <a href="/service/rhodes-transfers">private transfer</a> from your hotel.',
+  },
+  {
+    question: 'Is a day cruise different from a private boat trip?',
+    answer: 'A day cruise is a shared experience on a larger boat (40–80 guests) with a fixed route, an all-inclusive buffet and a set return time — best value per person and great for first-time visitors. A <a href="/service/rhodes-boat-trips">private boat trip</a> is your group only, on a smaller boat, with a flexible route. Pick a cruise for the full social/inclusive experience; pick a private trip for total flexibility.',
+  },
+  {
+    question: 'Are catamarans more comfortable than monohull boats?',
+    answer: 'Yes — significantly. Catamarans have two hulls, so they sit flat on the water and barely roll in light chop. They have more deck space, more shade, and stairs straight into the water. If you are prone to sea sickness or travelling with kids, a <a href="/service/rhodes-catamaran-tours">catamaran cruise</a> is the safer pick.',
+  },
+  {
+    question: 'Can I see Symi Island on a Rhodes day cruise?',
+    answer: 'Yes — the Symi day trip is the most popular full-day cruise from Rhodes. Boats leave Mandraki around 09:00, take 80 minutes to cross, give you 4–5 hours on the island for lunch and walking the pastel harbour, then a swim stop on the return. Return to Rhodes by ~18:00.',
+  },
+  {
+    question: 'Are sunset cruises worth it?',
+    answer: 'They are the most-booked evening activity in Rhodes for a reason. A typical 2.5–3 hour sunset cruise leaves around 17:30, includes a swim stop, a light dinner, an open bar, and the return run is timed so you watch the sun set against the medieval walls of Rhodes Town. Couples especially love them.',
+  },
+];
 
 const heroVideo = await getMediaSlot('service.boat-cruises.hero.video', '/assets/img/hero/services/boat-cruises.mp4');
 const heroImage = await getMediaSlot('service.boat-cruises.hero.image', '/assets/img/cruises/greco_home1.jpg');
@@ -135,6 +163,12 @@ const cruises = dbCards;
       </div>
     </div>
   </section>
+
+  <FAQSection
+    items={cruisesFaq}
+    title="Rhodes Boat Cruises — FAQ"
+    intro="Common questions about day and sunset cruises. For booking and weather see the <a href='/faq'>full FAQ</a>."
+  />
 
   <!-- 5. Contact -->
   <section style="padding: 80px 0; background: #113D48;">
