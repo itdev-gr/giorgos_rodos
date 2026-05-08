@@ -19,9 +19,9 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
   ],
   redirects: {
-    '/tag/rhodes-day-cruise': { status: 301, destination: '/service/rodos-boat-cruises' },
+    '/tag/rhodes-day-cruise': { status: 301, destination: '/service/rhodes-boat-cruises' },
     '/tag/[...slug]': { status: 301, destination: '/blog' },
-    '/why-daily-cruises-are-a-must-do-in-rhodes': { status: 301, destination: '/service/rodos-boat-cruises' },
+    '/why-daily-cruises-are-a-must-do-in-rhodes': { status: 301, destination: '/service/rhodes-boat-cruises' },
     '/our-fleet-comfortable-modern-boats-rent-a-boat-in-rhodes': { status: 301, destination: '/service/rhodes-rent-a-boat' },
     '/blog/1': { status: 301, destination: '/blog/best-boat-trips-rhodes' },
     '/blog/2': { status: 301, destination: '/blog/boat-trip-symi-from-rhodes' },
@@ -32,5 +32,13 @@ export default defineConfig({
     '/blog/7': { status: 301, destination: '/blog/best-beaches-rhodes-by-boat' },
     '/blog/8': { status: 301, destination: '/blog/sunset-cruise-rhodes' },
     '/blog/9': { status: 301, destination: '/blog/things-to-do-rhodes-water-guide' },
+    // rodos-* → rhodes-* slug consolidation (May 2026): the 4 service URLs
+    // that historically used the Greek romanisation are now in English to
+    // match the rest of the site (rhodes-rent-a-boat, rhodes-catamaran-tours,
+    // etc.). Any inbound link to the old slugs forwards to the new ones.
+    '/service/rodos-boat-tours': { status: 301, destination: '/service/rhodes-boat-tours' },
+    '/service/rodos-boat-cruises': { status: 301, destination: '/service/rhodes-boat-cruises' },
+    '/service/rodos-charter': { status: 301, destination: '/service/rhodes-charter' },
+    '/service/rodos-tender-boat': { status: 301, destination: '/service/rhodes-tender-boat' },
   },
 });

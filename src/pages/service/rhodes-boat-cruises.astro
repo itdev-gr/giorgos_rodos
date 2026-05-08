@@ -49,7 +49,7 @@ try {
     const { data } = await supabase
       .from('tours')
       .select('*')
-      .or('service_page.eq.rodos-boat-cruises,is_global.eq.true')
+      .or('service_page.eq.rhodes-boat-cruises,is_global.eq.true')
       .eq('status', 'approved')
       .order('is_global', { ascending: false })
       .order('created_at', { ascending: false });
@@ -77,12 +77,12 @@ const cruises = dbCards;
     description="Organized boat cruises in Rhodes — East coast, Symi, Lindos and sunset cruises from Mandraki, Faliraki and Kolymbia."
     serviceType="Boat Cruise"
     image={heroImage}
-    url="/service/rodos-boat-cruises"
+    url="/service/rhodes-boat-cruises"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Services', url: '/service' },
-    { name: 'Rhodes Boat Cruises', url: '/service/rodos-boat-cruises' },
+    { name: 'Rhodes Boat Cruises', url: '/service/rhodes-boat-cruises' },
   ]} />
   <Header />
 

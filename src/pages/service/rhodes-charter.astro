@@ -49,7 +49,7 @@ try {
     const { data } = await supabase
       .from('tours')
       .select('*')
-      .eq('service_page', 'rodos-charter')
+      .eq('service_page', 'rhodes-charter')
       .eq('status', 'approved')
       .order('created_at', { ascending: false });
     dbCards = (data || []).map((t: any) => ({
@@ -76,14 +76,14 @@ const charters = dbCards;
     description="Yacht charter in Rhodes — bareboat and skippered sailing yachts, catamarans and island-hopping holidays in the Dodecanese. Weekly charters from Rhodes."
     serviceType="Yacht Charter"
     image={heroImage}
-    url="/service/rodos-charter"
+    url="/service/rhodes-charter"
     priceRange="€€€"
     areaServed="Dodecanese, Greece"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Services', url: '/service' },
-    { name: 'Rhodes Yacht Charter', url: '/service/rodos-charter' },
+    { name: 'Rhodes Yacht Charter', url: '/service/rhodes-charter' },
   ]} />
   <Header />
 

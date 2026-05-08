@@ -21,8 +21,8 @@ const itemListJsonLd = {
   })),
 };
 
-const featured = services.filter((s: any) => ['rodos-charter', 'rodos-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
-const rest = services.filter((s: any) => !['rodos-charter', 'rodos-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
+const featured = services.filter((s: any) => ['rhodes-charter', 'rhodes-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
+const rest = services.filter((s: any) => !['rhodes-charter', 'rhodes-boat-cruises', 'rhodes-boat-trips'].includes(s.slug));
 
 const heroImage = await getMediaSlot('service.index.hero.image', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
 const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/hero/services/charter.mp4');
@@ -120,11 +120,11 @@ const faqItems = [
         </article>
         <article class="services-pillar">
           <h3 class="services-pillar__title">For organised day trips</h3>
-          <p class="services-pillar__body"><a href="/service/rodos-boat-cruises">Boat cruises</a> and <a href="/service/rhodes-catamaran-tours">catamaran tours</a> — Symi, Lindos, Anthony Quinn Bay and sunset routes. Lunch, swimming stops and a captain included.</p>
+          <p class="services-pillar__body"><a href="/service/rhodes-boat-cruises">Boat cruises</a> and <a href="/service/rhodes-catamaran-tours">catamaran tours</a> — Symi, Lindos, Anthony Quinn Bay and sunset routes. Lunch, swimming stops and a captain included.</p>
         </article>
         <article class="services-pillar">
           <h3 class="services-pillar__title">For private occasions</h3>
-          <p class="services-pillar__body"><a href="/service/rodos-charter">Yacht charter</a> for weekly Dodecanese itineraries, plus <a href="/service/rhodes-mice-events">corporate events</a> and group experiences.</p>
+          <p class="services-pillar__body"><a href="/service/rhodes-charter">Yacht charter</a> for weekly Dodecanese itineraries, plus <a href="/service/rhodes-mice-events">corporate events</a> and group experiences.</p>
         </article>
       </div>
     </div>

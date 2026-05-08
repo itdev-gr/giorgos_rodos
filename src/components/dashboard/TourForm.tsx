@@ -27,12 +27,12 @@ interface TourFormProps {
 }
 
 const servicePages = [
-  { value: 'rodos-boat-tours', label: 'Rhodes Boat Tours' },
+  { value: 'rhodes-boat-tours', label: 'Rhodes Boat Tours' },
   { value: 'rhodes-boat-trips', label: 'Rhodes Boat Trips' },
-  { value: 'rodos-boat-cruises', label: 'Rhodes Boat Cruises' },
+  { value: 'rhodes-boat-cruises', label: 'Rhodes Boat Cruises' },
   { value: 'rhodes-catamaran-tours', label: 'Rhodes Catamaran Tours' },
   { value: 'rhodes-sailing-trips', label: 'Rhodes Sailing Trips' },
-  { value: 'rodos-charter', label: 'Rhodes Yacht Charter' },
+  { value: 'rhodes-charter', label: 'Rhodes Yacht Charter' },
   { value: 'rhodes-rent-a-boat', label: 'Rhodes Rent a Boat' },
 ];
 

@@ -14,7 +14,7 @@ import { createPublicClient } from '../../lib/supabase';
 const boatToursFaq = [
   {
     question: 'What is a boat tour in Rhodes?',
-    answer: 'A guided experience on the water with a local skipper. The boat follows a planned route, stops in the best swimming and snorkeling bays, and gets you back to the harbour by a set time. Most are private or semi-private (4–10 guests on a smaller boat), as opposed to a <a href="/service/rodos-boat-cruises">cruise</a> which is a larger shared boat with all-inclusive food and drinks.',
+    answer: 'A guided experience on the water with a local skipper. The boat follows a planned route, stops in the best swimming and snorkeling bays, and gets you back to the harbour by a set time. Most are private or semi-private (4–10 guests on a smaller boat), as opposed to a <a href="/service/rhodes-boat-cruises">cruise</a> which is a larger shared boat with all-inclusive food and drinks.',
   },
   {
     question: 'How long does a boat tour usually last?',
@@ -34,7 +34,7 @@ const boatToursFaq = [
   },
   {
     question: 'Boat tour vs cruise vs charter — what is the difference?',
-    answer: 'A <strong>boat tour</strong> is typically a smaller boat with a skipper visiting specific spots (3–8 hours). A <strong><a href="/service/rodos-boat-cruises">cruise</a></strong> is a larger group on a bigger boat with all-inclusive food, drinks and entertainment. A <strong><a href="/service/rodos-charter">charter</a></strong> is a multi-day rental of an entire yacht. <a href="/faq">More on the difference here</a>.',
+    answer: 'A <strong>boat tour</strong> is typically a smaller boat with a skipper visiting specific spots (3–8 hours). A <strong><a href="/service/rhodes-boat-cruises">cruise</a></strong> is a larger group on a bigger boat with all-inclusive food, drinks and entertainment. A <strong><a href="/service/rhodes-charter">charter</a></strong> is a multi-day rental of an entire yacht. <a href="/faq">More on the difference here</a>.',
   },
 ];
 
@@ -49,7 +49,7 @@ try {
     const { data } = await supabase
       .from('tours')
       .select('*')
-      .or('service_page.eq.rodos-boat-tours,is_global.eq.true')
+      .or('service_page.eq.rhodes-boat-tours,is_global.eq.true')
       .eq('status', 'approved')
       .order('is_global', { ascending: false })
       .order('created_at', { ascending: false });
@@ -77,12 +77,12 @@ const tours = dbCards;
     description="Organized boat tours in Rhodes — sailing tours, catamaran cruises, semi-private trips and sunset tours, handpicked by local experts."
     serviceType="Guided Boat Tour"
     image={heroImage}
-    url="/service/rodos-boat-tours"
+    url="/service/rhodes-boat-tours"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Services', url: '/service' },
-    { name: 'Rhodes Boat Tours', url: '/service/rodos-boat-tours' },
+    { name: 'Rhodes Boat Tours', url: '/service/rhodes-boat-tours' },
   ]} />
   <Header />
 

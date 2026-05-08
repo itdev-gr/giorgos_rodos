@@ -35,7 +35,7 @@ const thingsToDoFaq = [
   },
   {
     question: 'Can I see Symi or Lindos by boat from Rhodes?',
-    answer: 'Yes — both are popular full-day trips. Symi is a 80-minute crossing each way; you spend most of the day on the island. Lindos is a coastal cruise along the east shore that lets you see the Acropolis from the sea, with a swim stop in St Paul\'s Bay below the citadel. Both are bookable as <a href="/service/rodos-boat-cruises">shared cruises</a> or <a href="/service/rhodes-boat-trips">private trips</a>.',
+    answer: 'Yes — both are popular full-day trips. Symi is a 80-minute crossing each way; you spend most of the day on the island. Lindos is a coastal cruise along the east shore that lets you see the Acropolis from the sea, with a swim stop in St Paul\'s Bay below the citadel. Both are bookable as <a href="/service/rhodes-boat-cruises">shared cruises</a> or <a href="/service/rhodes-boat-trips">private trips</a>.',
   },
 ];
 
@@ -51,7 +51,7 @@ try {
       .from('tours')
       .select('*')
       .eq('status', 'approved')
-      .neq('service_page', 'rodos-charter')
+      .neq('service_page', 'rhodes-charter')
       .order('is_global', { ascending: false })
       .order('created_at', { ascending: false });
     tours = data || [];
