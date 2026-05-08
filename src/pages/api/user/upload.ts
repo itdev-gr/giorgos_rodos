@@ -89,6 +89,7 @@ async function doUpload(supabase: any, file: File, userId: string) {
     .upload(fileName, compressed, {
       contentType: 'image/webp',
       upsert: false,
+      cacheControl: '31536000',
     });
 
   if (uploadError) {
