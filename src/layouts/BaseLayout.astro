@@ -161,6 +161,18 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
         overflow-x: hidden;
         max-width: 100vw;
       }
+
+      /* Swiper pagination bullets — bump touch target to ≥24px each
+         (WCAG 2.5.8 Target Size minimum is 24×24, recommended 44×44 with
+         spacing). Visual dot stays the same; padding makes the hit area
+         bigger. */
+      .swiper-pagination-bullet {
+        width: 12px !important;
+        height: 12px !important;
+        margin: 0 6px !important;
+        padding: 6px;
+        background-clip: content-box !important;
+      }
     </style>
 
     <!-- Bootstrap + theme — load async via print-onload swap; noscript fallback -->
@@ -227,7 +239,7 @@ const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
         align-items: center;
         gap: 10px;
         padding: 8px 8px 8px 18px;
-        background: #128C7E;
+        background: #075E54;
         color: #fff;
         border-radius: 999px;
         text-decoration: none;

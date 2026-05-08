@@ -111,8 +111,9 @@ try {
   </section>
 
   <!-- 3. Tours Grid with Search -->
-  <section style="padding: 40px 0 80px; background: #f8fafb;">
+  <section aria-labelledby="all-tours-heading" style="padding: 40px 0 80px; background: #f8fafb;">
     <div class="container">
+      <h2 id="all-tours-heading" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">All Approved Boat Experiences in Rhodes</h2>
       {tours.length > 0 ? (
         <TourSearchGrid tours={tours} client:load />
       ) : (

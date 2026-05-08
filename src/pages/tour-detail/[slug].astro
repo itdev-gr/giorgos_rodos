@@ -330,8 +330,8 @@ if (tour.price) {
             <!-- Booking Form -->
             <form id="booking-form">
               <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Preferred Date</label>
-                <input type="date" name="booking_date" required style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <label for="booking-date" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Preferred Date</label>
+                <input id="booking-date" type="date" name="booking_date" required style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 14px;">
                 <label for="booking-guests" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Number of Guests</label>
@@ -342,16 +342,16 @@ if (tour.price) {
                 </select>
               </div>
               <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Your Name</label>
-                <input type="text" name="customer_name" required placeholder="Full name" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <label for="booking-name" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Your Name</label>
+                <input id="booking-name" type="text" name="customer_name" required placeholder="Full name" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Email</label>
-                <input type="email" name="customer_email" required placeholder="you@email.com" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <label for="booking-email" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Email</label>
+                <input id="booking-email" type="email" name="customer_email" required placeholder="you@email.com" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 18px;">
-                <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Phone (optional)</label>
-                <input type="tel" name="customer_phone" placeholder="+30 ..." style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <label for="booking-phone" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Phone (optional)</label>
+                <input id="booking-phone" type="tel" name="customer_phone" placeholder="+30 ..." style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
               </div>
               <input type="hidden" name="tour_id" value={tour.id} />
               <button type="submit" id="book-btn" style="width: 100%; padding: 14px; background: #1CA8CB; color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s;">
