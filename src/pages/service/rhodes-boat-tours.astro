@@ -14,7 +14,7 @@ import { createPublicClient } from '../../lib/supabase';
 const boatToursFaq = [
   {
     question: 'What is a boat tour in Rhodes?',
-    answer: 'A guided experience on the water with a local skipper. The boat follows a planned route, stops in the best swimming and snorkeling bays, and gets you back to the harbour by a set time. Most are private or semi-private (4–10 guests on a smaller boat), as opposed to a <a href="/service/rhodes-boat-cruises">cruise</a> which is a larger shared boat with all-inclusive food and drinks.',
+    answer: 'A guided experience on the water with a local skipper. The boat follows a planned route, stops in the best swimming and snorkeling bays, and gets you back to the harbour by a set time. Includes both private/semi-private tours (4–10 guests) and larger all-inclusive day cruises with food and drinks.',
   },
   {
     question: 'How long does a boat tour usually last?',
@@ -34,7 +34,7 @@ const boatToursFaq = [
   },
   {
     question: 'Boat tour vs cruise vs charter — what is the difference?',
-    answer: 'A <strong>boat tour</strong> is typically a smaller boat with a skipper visiting specific spots (3–8 hours). A <strong><a href="/service/rhodes-boat-cruises">cruise</a></strong> is a larger group on a bigger boat with all-inclusive food, drinks and entertainment. A <strong><a href="/service/rhodes-charter">charter</a></strong> is a multi-day rental of an entire yacht. <a href="/faq">More on the difference here</a>.',
+    answer: 'A <strong>boat tour</strong> can be either a semi-private guided trip on a small boat (3–8 hours) or a shared day cruise on a larger vessel with all-inclusive food and drinks. A <strong><a href="/service/rhodes-charter">charter</a></strong> is a multi-day rental of an entire yacht. <a href="/faq">More on the difference here</a>.',
   },
 ];
 
@@ -71,13 +71,16 @@ try {
 const tours = dbCards;
 ---
 
-<BaseLayout title="Rhodes Boat Tours — Organized Boat Tours in Rhodes" description="Find the best boat tours in Rhodes with local guidance. Sailing tours, catamaran cruises, semi-private trips and sunset tours — handpicked by local experts." ogImage={heroImage}>
+<BaseLayout title="Rhodes Boat Tours — Organized Boat Tours in Rhodes" description="Organized boat tours in Rhodes from €75/person. Swimming stops, lunch on board, east coast and Symi routes. Shared and semi-private day tours departing from Mandraki Harbour." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Boat Tours"
     description="Organized boat tours in Rhodes — sailing tours, catamaran cruises, semi-private trips and sunset tours, handpicked by local experts."
     serviceType="Guided Boat Tour"
     image={heroImage}
     url="/service/rhodes-boat-tours"
+    lowPrice="75"
+    highPrice="120"
+    offerCount="6"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
@@ -137,7 +140,7 @@ const tours = dbCards;
   <section style="padding: 80px 0; background: #f8fafb;">
     <div class="container">
       <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">Explore Our Boat Tours in Rhodes</h2>
+        <h2 class="sec-title" data-ani="slideinup">Which Boat Tour in Rhodes Is Right for You?</h2>
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bt-tours-grid">
         {tours.map((tour, i) => (

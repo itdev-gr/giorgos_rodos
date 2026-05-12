@@ -15,6 +15,7 @@ const heroVideo = await getMediaSlot('home.hero.video', '/assets/img/hero/hero-v
         <div class="hero-content">
           <span class="hero-accent">Boat Experiences in Rhodes</span>
           <h1 class="hero-heading">Rhodes Rent a Boat & Boat Tours Handpicked Trips, Cruises and Private Experiences</h1>
+          <a href="/contact" class="hero-cta-btn">Enquire Now</a>
         </div>
       </div>
     </div>
@@ -25,6 +26,24 @@ const heroVideo = await getMediaSlot('home.hero.video', '/assets/img/hero/hero-v
   .hero-fullscreen {
     height: 100vh;
     min-height: 600px;
+  }
+
+  .hero-cta-btn {
+    display: inline-block;
+    background-color: #1CA8CB;
+    color: #fff;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 24px;
+    transition: background-color 0.2s;
+  }
+  .hero-cta-btn:hover {
+    background-color: #178fa8;
+    color: #fff;
   }
 
   .hero-fullscreen .hero-inner {

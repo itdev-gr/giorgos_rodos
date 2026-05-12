@@ -7,33 +7,56 @@ const SITE = 'https://rhodesrentaboat.com';
 
 type Entry = {
   loc: string;
-  lastmod: string;
-  changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
-  priority?: string;
+  lastmod?: string;
   image?: { loc: string; title?: string; caption?: string };
 };
 
+// Static entries — no changefreq or priority (Google ignores both)
+// /service/rhodes-boat-cruises is excluded (301 → /service/rhodes-boat-tours)
+// /things-to-do/rhodes-sidecar-tours excluded (canonical → /service/rhodes-sidecar-tours)
+// /things-to-do excluded (noindex)
 const STATIC_ENTRIES: Omit<Entry, 'lastmod'>[] = [
-  { loc: '/',                                changefreq: 'weekly',  priority: '1.0' },
-  { loc: '/about',                           changefreq: 'monthly', priority: '0.8' },
-  { loc: '/contact',                         changefreq: 'monthly', priority: '0.8' },
-  { loc: '/faq',                             changefreq: 'monthly', priority: '0.7' },
-  { loc: '/blog',                            changefreq: 'weekly',  priority: '0.8' },
-  { loc: '/things-to-do',                    changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/things-to-do/rhodes-sidecar-tours', changefreq: 'monthly', priority: '0.7' },
-  { loc: '/service',                         changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-rent-a-boat',      changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-boat-tours',        changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-boat-trips',       changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-boat-cruises',      changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-catamaran-tours',  changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-sailing-trips',    changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-charter',           changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/service/rhodes-mice-events',      changefreq: 'monthly', priority: '0.7' },
-  { loc: '/service/rhodes-tender-boat',       changefreq: 'monthly', priority: '0.7' },
-  { loc: '/service/rhodes-transfers',        changefreq: 'monthly', priority: '0.7' },
-  { loc: '/service/rhodes-sidecar-tours',    changefreq: 'monthly', priority: '0.8' },
+  { loc: '/' },
+  { loc: '/about' },
+  { loc: '/contact' },
+  { loc: '/faq' },
+  { loc: '/blog' },
+  { loc: '/service' },
+  { loc: '/service/rhodes-rent-a-boat' },
+  { loc: '/service/rhodes-boat-tours' },
+  { loc: '/service/rhodes-boat-trips' },
+  { loc: '/service/rhodes-catamaran-tours' },
+  { loc: '/service/rhodes-sailing-trips' },
+  { loc: '/service/rhodes-charter' },
+  { loc: '/service/rhodes-mice-events' },
+  { loc: '/service/rhodes-tender-boat' },
+  { loc: '/service/rhodes-transfers' },
+  { loc: '/service/rhodes-sidecar-tours' },
+  { loc: '/privacy' },
+  { loc: '/terms' },
 ];
+
+// Static lastmod dates — use real update dates where known
+const STATIC_LASTMOD: Record<string, string> = {
+  '/': '2026-04-20',
+  '/about': '2026-03-01',
+  '/contact': '2026-03-01',
+  '/faq': '2026-04-10',
+  '/blog': '2026-04-15',
+  '/service': '2026-04-10',
+  '/service/rhodes-rent-a-boat': '2026-04-10',
+  '/service/rhodes-boat-tours': '2026-04-10',
+  '/service/rhodes-boat-trips': '2026-04-10',
+  '/service/rhodes-catamaran-tours': '2026-04-10',
+  '/service/rhodes-sailing-trips': '2026-04-10',
+  '/service/rhodes-charter': '2026-04-10',
+  '/service/rhodes-mice-events': '2026-03-15',
+  '/service/rhodes-tender-boat': '2026-03-15',
+  '/service/rhodes-transfers': '2026-03-15',
+  '/service/rhodes-sidecar-tours': '2026-03-15',
+  '/privacy': '2026-05-01',
+  '/terms': '2026-05-01',
+};
 
 function escapeXml(str: string): string {
   return String(str)
@@ -47,10 +70,8 @@ function escapeXml(str: string): string {
 function urlBlock(e: Entry): string {
   const parts = [
     `    <loc>${escapeXml(e.loc)}</loc>`,
-    `    <lastmod>${e.lastmod}</lastmod>`,
   ];
-  if (e.changefreq) parts.push(`    <changefreq>${e.changefreq}</changefreq>`);
-  if (e.priority)   parts.push(`    <priority>${e.priority}</priority>`);
+  if (e.lastmod) parts.push(`    <lastmod>${e.lastmod}</lastmod>`);
   if (e.image) {
     parts.push('    <image:image>');
     parts.push(`      <image:loc>${escapeXml(e.image.loc)}</image:loc>`);
@@ -62,11 +83,13 @@ function urlBlock(e: Entry): string {
 }
 
 export const GET: APIRoute = async () => {
-  const today = new Date().toISOString().slice(0, 10);
+  const entries: Entry[] = STATIC_ENTRIES.map((s) => ({
+    ...s,
+    loc: `${SITE}${s.loc}`,
+    lastmod: STATIC_LASTMOD[s.loc] || undefined,
+  }));
 
-  const entries: Entry[] = STATIC_ENTRIES.map((s) => ({ ...s, loc: `${SITE}${s.loc}`, lastmod: today }));
-
-  // Service pages with image (from data-service.json) — overrides priority + adds image entry
+  // Service pages with image (from data-service.json)
   const serviceMap = new Map(services.map((s: any) => [s.slug, s]));
   entries.forEach((e) => {
     const m = e.loc.match(/\/service\/([^/]+)$/);
@@ -81,23 +104,23 @@ export const GET: APIRoute = async () => {
     }
   });
 
-  // Blog posts (static + dynamic from data-post.json)
+  // Blog posts — use publishedDate as lastmod (real date)
   for (const p of posts as any[]) {
     const slug = p.slug;
     if (!slug) continue;
-    const lastmod = (p.publishedDate as string) || today;
+    // Skip slug collision with service page
+    if (slug === 'rhodes-rent-a-boat') continue;
+    const lastmod = (p.publishedDate as string) || undefined;
     entries.push({
       loc: `${SITE}/blog/${slug}`,
       lastmod,
-      changefreq: 'monthly',
-      priority: '0.6',
       image: p.bannerImg || p.image
         ? { loc: `${SITE}/assets/img/blog/${p.bannerImg || p.image}`, title: p.title, caption: p.excerpt }
         : undefined,
     });
   }
 
-  // Dynamic tour-detail pages from Supabase
+  // Dynamic tour-detail pages from Supabase — use updated_at as lastmod
   try {
     const supabase = createPublicClient();
     if (supabase) {
@@ -106,13 +129,12 @@ export const GET: APIRoute = async () => {
         .select('id, slug, title, description, images, image_url, updated_at, created_at')
         .eq('status', 'approved');
       for (const t of (data || []) as any[]) {
-        const lastmod = ((t.updated_at || t.created_at || '') as string).slice(0, 10) || today;
+        const rawDate = (t.updated_at || t.created_at || '') as string;
+        const lastmod = rawDate ? rawDate.slice(0, 10) : undefined;
         const img = (Array.isArray(t.images) && t.images[0]) || t.image_url || null;
         entries.push({
           loc: `${SITE}/tour-detail/${t.slug || t.id}`,
           lastmod,
-          changefreq: 'weekly',
-          priority: '0.7',
           image: img
             ? { loc: img.startsWith('http') ? img : `${SITE}${img}`, title: t.title, caption: t.description }
             : undefined,

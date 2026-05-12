@@ -75,13 +75,16 @@ try {
 const boats = dbCards;
 ---
 
-<BaseLayout title="Rent a Boat in Rhodes — License Free & With Skipper" description="Rent a boat in Rhodes. License free boats and small boats with skipper along the east coast. Explore bays, swim and enjoy the sea at your own pace." ogImage={heroImage}>
+<BaseLayout title="Rent a Boat in Rhodes — License Free & With Skipper" description="Rent a boat in Rhodes without a licence. Self-drive 30HP motorboats from €130 for 2 hours. No experience needed, age 18+. Optional skipper available." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Rent a Boat"
     description="License-free boat rentals and small boats with skipper along the Rhodes coast. Explore bays, swim and enjoy the sea at your own pace."
     serviceType="Boat Rental"
     image={heroImage}
     url="/service/rhodes-rent-a-boat"
+    lowPrice="130"
+    highPrice="380"
+    offerCount="5"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
@@ -142,7 +145,7 @@ const boats = dbCards;
   <section style="padding: 80px 0; background: #f8fafb;">
     <div class="container">
       <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">Explore Rent a Boat Options in Rhodes</h2>
+        <h2 class="sec-title" data-ani="slideinup">What Are Your Options for Renting a Boat in Rhodes?</h2>
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="rb-boats-grid">
         {boats.map((boat, i) => (

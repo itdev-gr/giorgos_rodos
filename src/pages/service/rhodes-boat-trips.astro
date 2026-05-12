@@ -22,7 +22,7 @@ const boatTripsFaq = [
   },
   {
     question: 'How is a private boat trip different from a guided tour or cruise?',
-    answer: 'A private trip is your group only on a small or mid-size boat with a dedicated skipper and a flexible route. A <a href="/service/rhodes-boat-tours">guided tour</a> may be private OR shared with up to 12 others on a fixed route. A <a href="/service/rhodes-boat-cruises">cruise</a> is a larger shared boat (40–80 guests) with all-inclusive food and drinks. Private = most flexibility; cruise = best value per person.',
+    answer: 'A private trip is your group only on a small or mid-size boat with a dedicated skipper and a flexible route. A <a href="/service/rhodes-boat-tours">guided tour</a> may be private OR shared with up to 12 others on a fixed route. A day cruise is a larger shared boat (40–80 guests) with all-inclusive food and drinks. Private = most flexibility; cruise = best value per person.',
   },
   {
     question: 'How many people fit on a private boat?',
@@ -71,13 +71,16 @@ try {
 const trips = dbCards;
 ---
 
-<BaseLayout title="Rhodes Boat Trips — Boat Experiences in Rhodes | Rhodes Rent a Boat" description="Boat trips in Rhodes with professional skippers. Flexible routes, swimming stops and a great experience on the sea. Handpicked by local experts." ogImage={heroImage}>
+<BaseLayout title="Rhodes Boat Trips — Boat Experiences in Rhodes | Rhodes Rent a Boat" description="Private boat trips in Rhodes with your own skipper. Flexible routes, 2–8 hours, from €350. Speedboats, RIBs and catamarans — you choose the vessel and the route." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Boat Trips"
     description="Boat trips in Rhodes with professional skippers. Flexible routes, swimming stops and an authentic experience on the sea."
     serviceType="Boat Trip"
     image={heroImage}
     url="/service/rhodes-boat-trips"
+    lowPrice="350"
+    highPrice="1500"
+    offerCount="8"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },

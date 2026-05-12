@@ -27,13 +27,13 @@ const relatedPosts = (posts as any[])
 const TAG_TO_SERVICE: Record<string, { url: string; title: string; blurb: string }> = {
   'Rent a Boat': { url: '/service/rhodes-rent-a-boat', title: 'Rent a Boat in Rhodes', blurb: 'License-free options or boats with skipper.' },
   'Boat Trips': { url: '/service/rhodes-boat-trips', title: 'Rhodes Boat Trips', blurb: 'Skippered boat trips with flexible routes.' },
-  'Cruises': { url: '/service/rhodes-boat-cruises', title: 'Rhodes Boat Cruises', blurb: 'Symi, Lindos and sunset day cruises.' },
-  'Symi': { url: '/service/rhodes-boat-cruises', title: 'Symi Day Cruise', blurb: 'The most popular day trip from Rhodes.' },
-  'Day Trips': { url: '/service/rhodes-boat-cruises', title: 'Rhodes Day Cruises', blurb: 'Organised day trips with lunch and swimming stops.' },
-  'Lindos': { url: '/service/rhodes-boat-cruises', title: 'Lindos by Boat', blurb: 'See the Acropolis from the sea.' },
+  'Cruises': { url: '/service/rhodes-boat-tours', title: 'Rhodes Boat Cruises', blurb: 'Symi, Lindos and sunset day cruises.' },
+  'Symi': { url: '/service/rhodes-boat-tours', title: 'Symi Day Cruise', blurb: 'The most popular day trip from Rhodes.' },
+  'Day Trips': { url: '/service/rhodes-boat-tours', title: 'Rhodes Day Cruises', blurb: 'Organised day trips with lunch and swimming stops.' },
+  'Lindos': { url: '/service/rhodes-boat-tours', title: 'Lindos by Boat', blurb: 'See the Acropolis from the sea.' },
   'Boat Tours': { url: '/service/rhodes-boat-tours', title: 'Boat Tours in Rhodes', blurb: 'Local guides, hidden bays, handpicked experiences.' },
   'Private Tours': { url: '/service/rhodes-boat-trips', title: 'Private Boat Trip', blurb: 'Your own boat, your own pace, with a local skipper.' },
-  'Sunset': { url: '/service/rhodes-boat-cruises', title: 'Sunset Cruise in Rhodes', blurb: 'Magical sunset routes along the coastline.' },
+  'Sunset': { url: '/service/rhodes-boat-tours', title: 'Sunset Cruise in Rhodes', blurb: 'Magical sunset routes along the coastline.' },
   'Beaches': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse the catalog of approved experiences.' },
   'Hidden Gems': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Hand-picked tours, no algorithms.' },
   'Activities': { url: '/things-to-do', title: 'Things to Do in Rhodes', blurb: 'Catalog of all approved experiences.' },
@@ -113,6 +113,10 @@ if (serviceCtas.length < 2) {
             />
 
             <p class="rab-article__lead">{post.excerpt}</p>
+
+            {(post as any).content && (
+              <div class="rab-article__body" set:html={(post as any).content} />
+            )}
           </div>
         </div>
       </div>
@@ -172,7 +176,12 @@ if (serviceCtas.length < 2) {
     image: [ogImage],
     datePublished: post.publishedDate || undefined,
     dateModified: post.publishedDate || undefined,
-    author: { '@type': 'Organization', name: post.author, url: SITE_URL },
+    author: {
+      '@type': 'Person',
+      name: 'Rhodes Rent a Boat Editorial Team',
+      url: `${SITE_URL}/about`,
+      sameAs: ['https://www.instagram.com/rhodos_yachts', 'https://www.facebook.com/rhodosyachts'],
+    },
     publisher: {
       '@id': `${SITE_URL}#organization`,
       '@type': 'Organization',
@@ -309,6 +318,33 @@ if (serviceCtas.length < 2) {
     color: #2d3e46;
     margin-bottom: 28px !important;
   }
+  .rab-article__body {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #4a5568;
+  }
+  .rab-article__body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 40px 0 16px;
+  }
+  .rab-article__body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 28px 0 12px;
+  }
+  .rab-article__body p { margin-bottom: 18px; }
+  .rab-article__body ul, .rab-article__body ol {
+    padding-left: 22px;
+    margin-bottom: 18px;
+  }
+  .rab-article__body li { margin-bottom: 8px; }
+  .rab-article__body a { color: #1CA8CB; text-decoration: underline; }
+  .rab-article__body strong { color: #113D48; }
 
   /* ===== Service CTAs ===== */
   .rab-services {

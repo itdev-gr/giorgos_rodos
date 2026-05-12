@@ -70,15 +70,17 @@ try {
 const charters = dbCards;
 ---
 
-<BaseLayout title="Rhodes Yacht Charter — Bareboat & Skippered Sailing | Rhodes Rent a Boat" description="Yacht charter in Rhodes. Bareboat and skippered sailing yachts, catamarans and island hopping holidays in the Dodecanese. Weekly charters from Rhodes." ogImage={heroImage}>
+<BaseLayout title="Rhodes Yacht Charter — Bareboat & Skippered Sailing | Rhodes Rent a Boat" description="Yacht charter in Rhodes — 80+ sailing yachts and catamarans for weekly hire. Bareboat or skippered, €1,500–€15,000/week. Dodecanese island hopping since 1998." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Yacht Charter"
     description="Yacht charter in Rhodes — bareboat and skippered sailing yachts, catamarans and island-hopping holidays in the Dodecanese. Weekly charters from Rhodes."
     serviceType="Yacht Charter"
     image={heroImage}
     url="/service/rhodes-charter"
-    priceRange="€€€"
     areaServed="Dodecanese, Greece"
+    lowPrice="1500"
+    highPrice="15000"
+    offerCount="80"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
@@ -138,7 +140,7 @@ const charters = dbCards;
   <section style="padding: 80px 0; background: #f8fafb;">
     <div class="container">
       <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">Explore Yacht Charter Options in Rhodes</h2>
+        <h2 class="sec-title" data-ani="slideinup">How Does Yacht Charter Work in Rhodes?</h2>
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="yc-charter-grid">
         {charters.map((charter, i) => (

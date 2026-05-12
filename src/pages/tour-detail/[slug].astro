@@ -105,7 +105,20 @@ const tourJsonLd: Record<string, unknown> = {
     : undefined,
   provider: { '@id': `${SITE_URL}#organization` },
 };
-if (tour.duration) tourJsonLd.duration = tour.duration;
+if (tour.duration) {
+  // Convert duration to ISO 8601 format required by Google
+  // Handles: numeric hours (e.g. 6, 6.5), or strings like "6 Hours", "6.5 Hours", "PT6H"
+  const toISO8601Duration = (raw: string | number): string => {
+    if (typeof raw === 'string' && raw.startsWith('PT')) return raw;
+    const numStr = String(raw).replace(/[^\d.]/g, '');
+    const hours = parseFloat(numStr);
+    if (isNaN(hours)) return String(raw);
+    const h = Math.floor(hours);
+    const m = Math.round((hours - h) * 60);
+    return `PT${h}H${m > 0 ? m + 'M' : ''}`;
+  };
+  tourJsonLd.duration = toISO8601Duration(tour.duration);
+}
 if (tour.meeting_point) {
   tourJsonLd.departureLocation = {
     '@type': 'Place',

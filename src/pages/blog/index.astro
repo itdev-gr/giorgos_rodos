@@ -10,8 +10,8 @@ const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   '@id': `${SITE_URL}/blog#blog`,
-  name: 'Rhodes Rent a Boat — News & Blog',
-  description: 'Practical guides, local tips and news about boat tours, rentals and sailing trips around Rhodes and the Dodecanese.',
+  name: 'Rhodes Rent a Boat — Blog',
+  description: 'Guides, tips and local knowledge about boat tours, sailing trips, yacht charters and things to do by sea in Rhodes, Greece.',
   url: `${SITE_URL}/blog`,
   inLanguage: 'en-US',
   publisher: { '@id': `${SITE_URL}#organization` },
@@ -21,7 +21,7 @@ const blogJsonLd = {
     url: `${SITE_URL}/blog/${p.slug}`,
     datePublished: p.publishedDate || undefined,
     image: p.image ? `${SITE_URL}/assets/img/blog/${p.bannerImg || p.image}` : undefined,
-    author: { '@type': 'Organization', name: p.author || 'Rhodes Rent a Boat' },
+    author: { '@type': 'Person', name: 'Rhodes Rent a Boat Editorial Team', url: `${SITE_URL}/about` },
     description: p.excerpt,
   })),
 };
@@ -29,7 +29,7 @@ const blogJsonLd = {
 
 <BaseLayout
   title="News & Blog — Rhodes Rent a Boat, Trips and Coastline Guides"
-  description="Practical guides, local tips and news about boat tours, rentals and sailing trips around Rhodes and the Dodecanese."
+  description="Guides and tips about boat tours, sailing trips and yacht charters in Rhodes, Greece. Local knowledge from a team operating since 1998."
 >
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },

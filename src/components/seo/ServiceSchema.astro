@@ -9,6 +9,9 @@ interface Props {
   serviceType?: string;
   areaServed?: string;
   priceRange?: string;
+  lowPrice?: string;
+  highPrice?: string;
+  offerCount?: string;
 }
 
 const {
@@ -19,6 +22,9 @@ const {
   serviceType,
   areaServed = 'Rhodes, Greece',
   priceRange = '€€',
+  lowPrice,
+  highPrice,
+  offerCount,
 } = Astro.props;
 
 const finalUrl = url
@@ -28,6 +34,24 @@ const finalUrl = url
 const finalImage = image
   ? (image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? image : `/${image}`}`)
   : undefined;
+
+const offersBlock = lowPrice && highPrice
+  ? {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'EUR',
+      lowPrice,
+      highPrice,
+      ...(offerCount ? { offerCount } : {}),
+      availability: 'https://schema.org/InStock',
+      url: finalUrl,
+    }
+  : {
+      '@type': 'Offer',
+      priceCurrency: 'EUR',
+      priceRange,
+      availability: 'https://schema.org/InStock',
+      url: finalUrl,
+    };
 
 const data: Record<string, unknown> = {
   '@context': 'https://schema.org',
@@ -39,13 +63,7 @@ const data: Record<string, unknown> = {
   areaServed: { '@type': 'Place', name: areaServed },
   provider: { '@id': `${SITE_URL}#organization` },
   brand: { '@type': 'Brand', name: SITE_NAME },
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'EUR',
-    priceRange,
-    availability: 'https://schema.org/InStock',
-    url: finalUrl,
-  },
+  offers: offersBlock,
 };
 if (finalImage) data.image = finalImage;
 ---

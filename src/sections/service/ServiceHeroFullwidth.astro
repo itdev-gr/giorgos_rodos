@@ -33,6 +33,7 @@ const {
   <div class="container position-relative" style="z-index: 2;">
     <div class="service-hero-content text-center">
       <h1 class="service-hero-title">{title}</h1>
+      <a href="/contact" class="hero-cta-btn">Enquire Now</a>
     </div>
   </div>
 </div>
@@ -73,6 +74,24 @@ const {
     margin-bottom: 20px;
     line-height: 1.15;
   }
+  .hero-cta-btn {
+    display: inline-block;
+    background-color: #1CA8CB;
+    color: #fff;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 24px;
+    transition: background-color 0.2s;
+  }
+  .hero-cta-btn:hover {
+    background-color: #178fa8;
+    color: #fff;
+  }
+
   .service-hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.35rem);
     color: rgba(255,255,255,0.85);
@@ -131,7 +150,7 @@ const {
     }
 
     .service-hero-overlay {
-      background: none;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
     }
 
     .service-hero-fullwidth {

@@ -71,13 +71,16 @@ try {
 const trips = dbCards;
 ---
 
-<BaseLayout title="Rhodes Sailing Boat Trips — Sailing Experiences in Rhodes | Rhodes Rent a Boat" description="Sailing boat trips in Rhodes. Shared and private sailing experiences along the east coast. The wind, the sea and the most authentic way to explore Rhodes." ogImage={heroImage}>
+<BaseLayout title="Rhodes Sailing Boat Trips — Sailing Experiences in Rhodes | Rhodes Rent a Boat" description="Sailing trips in Rhodes from €260. Private yacht experiences along the east coast, 2–6 hours. Wind-powered, quiet, authentic sailing with experienced skippers." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Sailing Boat Trips"
     description="Sailing boat trips in Rhodes. Shared and private sailing experiences along the east coast — the wind, the sea and the most authentic way to explore Rhodes."
     serviceType="Sailing Trip"
     image={heroImage}
     url="/service/rhodes-sailing-trips"
+    lowPrice="260"
+    highPrice="720"
+    offerCount="4"
   />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
@@ -137,7 +140,7 @@ const trips = dbCards;
   <section style="padding: 80px 0; background: #f8fafb;">
     <div class="container">
       <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">Explore Our Sailing Boat Trips in Rhodes</h2>
+        <h2 class="sec-title" data-ani="slideinup">What Sailing Experiences Are Available in Rhodes?</h2>
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="sl-trips-grid">
         {trips.map((trip, i) => (
