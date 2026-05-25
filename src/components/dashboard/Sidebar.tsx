@@ -122,7 +122,7 @@ export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
                 background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
                 color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', fontWeight: 500,
                 cursor: 'pointer', transition: 'all 0.2s',
-                fontFamily: 'Inter, sans-serif',
+                fontFamily: 'Helvetica, "Helvetica Neue", Arial, sans-serif',
               }}
             >
               <i className="fas fa-sign-out-alt" style={{ marginRight: 8 }} /> Sign Out

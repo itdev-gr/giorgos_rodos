@@ -89,72 +89,20 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <link rel="dns-prefetch" href="https://iuidzdvrrrsxevvkbxam.supabase.co" />
     <link rel="preconnect" href="https://iuidzdvrrrsxevvkbxam.supabase.co" crossorigin />
 
-    <!-- Google Fonts — public site only needs Inter, Playfair, Allura (Manrope is dashboard-only) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Allura&display=optional"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Allura&display=optional"
-      />
-    </noscript>
-
     <!-- Critical CSS inlined: covers above-the-fold (header, hero, base layout)
          so the page paints immediately while Bootstrap + theme load async below. -->
     <style>
-      /* Font-metric fallback overrides — when Inter / Playfair finally arrive
-         from Google Fonts, the layout doesn't shift because the fallback was
-         already rendering at the same effective dimensions. Pre-fetched
-         capsize-style metrics. */
-      @font-face {
-        font-family: 'Inter Fallback';
-        src: local('Arial');
-        size-adjust: 107.4%;
-        ascent-override: 90%;
-        descent-override: 22.4%;
-        line-gap-override: 0%;
-      }
-      @font-face {
-        font-family: 'Playfair Display Fallback';
-        src: local('Georgia'), local('Times New Roman'), local('serif');
-        size-adjust: 118%;
-        ascent-override: 95.6%;
-        descent-override: 23.5%;
-        line-gap-override: 0%;
-      }
-      @font-face {
-        font-family: 'Allura Fallback';
-        src: local('Snell Roundhand'), local('Brush Script MT'), local('cursive');
-        size-adjust: 88%;
-        ascent-override: 95%;
-        descent-override: 30%;
-        line-gap-override: 0%;
-      }
-
       /* Reset + base layout — keeps everything in place pre-Bootstrap */
       *, *::before, *::after { box-sizing: border-box; }
       html { -webkit-text-size-adjust: 100%; }
       body {
         margin: 0;
-        font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
         font-size: 16px;
         line-height: 1.6;
         color: #113D48;
         background: #fff;
         -webkit-font-smoothing: antialiased;
-      }
-      /* Headings using Playfair Display get the matched fallback */
-      h1, h2, .hero-heading, .sec-title, [style*="Playfair Display"] {
-        font-family: 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
-      }
-      .hero-accent, .intro-accent {
-        font-family: 'Allura', 'Allura Fallback', cursive;
       }
       img, video { max-width: 100%; height: auto; display: block; }
       a { color: inherit; text-decoration: none; }
@@ -310,9 +258,11 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <!-- Bootstrap + theme — single fetch via preload-as-stylesheet (no duplicate preload + link) -->
     <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="preload" href="/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href="/assets/css/site-fonts.css" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
       <link rel="stylesheet" href="/assets/css/style.css" />
+      <link rel="stylesheet" href="/assets/css/site-fonts.css" />
     </noscript>
 
     <!-- Non-critical CSS — async via media-print swap -->
@@ -397,7 +347,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         color: #fff;
       }
       .wa-float-btn__label {
-        font-family: 'Inter', sans-serif;
+        font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
         font-size: 0.9rem;
         font-weight: 600;
         letter-spacing: 0.2px;

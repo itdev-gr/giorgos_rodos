@@ -1,0 +1,39 @@
+:root {
+  --title-font: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  --body-font: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  --style-font: Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+html body {
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html body :where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  li,
+  td,
+  th,
+  div,
+  figcaption,
+  blockquote,
+  small,
+  strong,
+  em
+):not([class*="fa-"]) {
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif !important;
+}

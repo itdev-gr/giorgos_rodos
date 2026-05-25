@@ -15,9 +15,9 @@ export default {
         gray: '#E1E4E5',
       },
       fontFamily: {
-        title: ['Manrope', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        style: ['Cormorant Garamond', 'serif'],
+        title: ['Helvetica', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        body: ['Helvetica', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        style: ['Helvetica', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
       maxWidth: {
         container: '1320px',
