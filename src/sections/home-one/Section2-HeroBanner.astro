@@ -1,13 +1,24 @@
 ---
 import { getMediaSlot } from '../../lib/media';
 const heroVideo = await getMediaSlot('home.hero.video', '/assets/img/hero/hero-video.webm');
+const heroPoster = '/assets/img/hero/hero_bg_1_1.jpg';
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
     <div class="th-hero-bg">
-      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
-        <source src={heroVideo} />
-      </video>
+      <video
+        id="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster={heroPoster}
+        data-src={heroVideo}
+        width="1920"
+        height="1080"
+        style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;"
+      ></video>
       <div class="hero-overlay"></div>
     </div>
     <div class="container">
@@ -222,3 +233,33 @@ const heroVideo = await getMediaSlot('home.hero.video', '/assets/img/hero/hero-v
     }
   }
 </style>
+
+<script>
+  function initHeroVideo() {
+    const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+    if (!video || video.dataset.loaded) return;
+    video.dataset.loaded = 'true';
+
+    const src = video.dataset.src;
+    if (!src) return;
+
+    const start = () => {
+      if (video.querySelector('source')) return;
+      const source = document.createElement('source');
+      source.src = src;
+      source.type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
+      video.appendChild(source);
+      video.load();
+      video.play().catch(() => {});
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(start, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', start, { once: true });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initHeroVideo);
+  document.addEventListener('astro:page-load', initHeroVideo);
+</script>

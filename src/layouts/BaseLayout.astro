@@ -76,13 +76,10 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <OrganizationSchema />
     <WebsiteSchema />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YCY0C2ZXF"></script>
+    <!-- GA4 stub — script loads after page is interactive (see body) -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3YCY0C2ZXF');
     </script>
 
     <!-- Page-specific <head> additions (preload, page-scoped meta, etc.) -->
@@ -92,19 +89,19 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <link rel="dns-prefetch" href="https://iuidzdvrrrsxevvkbxam.supabase.co" />
     <link rel="preconnect" href="https://iuidzdvrrrsxevvkbxam.supabase.co" crossorigin />
 
-    <!-- Google Fonts — load non-blocking via media-print swap (one network request) -->
+    <!-- Google Fonts — public site only needs Inter, Playfair, Allura (Manrope is dashboard-only) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Allura&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Allura&display=swap"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Allura&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Allura&display=swap"
       />
     </noscript>
 
@@ -215,23 +212,27 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       }
     </style>
 
-    <!-- Bootstrap + theme — load async via print-onload swap; noscript fallback -->
-    <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
-    <link rel="preload" href="/assets/css/style.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="/assets/css/style.css" media="print" onload="this.media='all'" />
+    <!-- Bootstrap + theme — single fetch via preload-as-stylesheet (no duplicate preload + link) -->
+    <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" href="/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="/assets/css/style.css" />
+    </noscript>
 
     <!-- Non-critical CSS — async via media-print swap -->
     <link rel="stylesheet" href="/assets/css/fontawesome.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="/assets/css/style.css" />
       <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
       <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
       <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
     </noscript>
+    <!-- Fallback for browsers that don't fire onload on preload-as-stylesheet -->
+    <script is:inline>
+      !function(e){"use strict";var t=function(t,n,o){var r,i=e.document,a=i.createElement("link");if(n)r=n;else{var l=(i.body||i.getElementsByTagName("head")[0]).childNodes;r=l[l.length-1]}var d=i.styleSheets;a.rel="stylesheet",a.href=t,a.media="only x",function e(t){if(i.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(a,n?r:r.nextSibling)});var f=function(e){for(var t=a.href,n=d.length;n--;)if(d[n].href===t)return e();setTimeout(function(){f(e)})};return a.addEventListener&&a.addEventListener("load",function(){this.media=o||"all"}),a.onloadcssdefined=f,f(function(){a.media=o||"all"}),a};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this);
+    </script>
     <style>
       html, body {
         overflow-x: hidden !important;
@@ -341,21 +342,37 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       }
     </style>
 
-    <!-- GSAP -->
+    <!-- GSAP — lazy-loaded only when the page uses scroll animations or hero parallax -->
     <script>
-      import { gsap } from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      let gsapBootPromise: Promise<void> | null = null;
 
-      gsap.registerPlugin(ScrollTrigger);
+      function needsGsap() {
+        return document.querySelector(
+          '[data-ani], .jump, .jumpAni, .movingX, .moving, .spin, #service-hero .service-hero-bg'
+        );
+      }
 
-      document.documentElement.classList.add('has-gsap');
+      async function bootGsap() {
+        if (!needsGsap()) return;
+        if (!gsapBootPromise) {
+          gsapBootPromise = (async () => {
+            const { gsap } = await import('gsap');
+            const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+            gsap.registerPlugin(ScrollTrigger);
+            document.documentElement.classList.add('has-gsap');
+            window.gsap = gsap;
+            window.ScrollTrigger = ScrollTrigger;
+          })();
+        }
+        await gsapBootPromise;
+      }
 
-      // Make gsap available globally for components
-      window.gsap = gsap;
-      window.ScrollTrigger = ScrollTrigger;
+      async function initAnimations() {
+        await bootGsap();
+        if (!window.gsap || !window.ScrollTrigger) return;
 
-      // Initialize scroll animations for elements with data-animate attribute
-      function initAnimations() {
+        const gsap = window.gsap;
+        const ScrollTrigger = window.ScrollTrigger;
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const animate = (sel: string, fromVars: gsap.TweenVars) => {
@@ -419,10 +436,17 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         ScrollTrigger.refresh();
       }
 
-      // Run on page load
-      document.addEventListener('DOMContentLoaded', initAnimations);
-      // Also run on Astro page transitions
-      document.addEventListener('astro:page-load', initAnimations);
+      function scheduleAnimations() {
+        const run = () => { void initAnimations(); };
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(run, { timeout: 2000 });
+        } else {
+          setTimeout(run, 1);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', scheduleAnimations);
+      document.addEventListener('astro:page-load', scheduleAnimations);
 
       // Global contact form handler
       function initContactForms() {
@@ -460,6 +484,27 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       }
       document.addEventListener('DOMContentLoaded', initContactForms);
       document.addEventListener('astro:page-load', initContactForms);
+    </script>
+
+    <!-- GA4 — deferred until after first paint -->
+    <script is:inline>
+      (function () {
+        function loadGa4() {
+          var s = document.createElement('script');
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-3YCY0C2ZXF';
+          s.async = true;
+          document.head.appendChild(s);
+          s.onload = function () {
+            gtag('js', new Date());
+            gtag('config', 'G-3YCY0C2ZXF');
+          };
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGa4, { timeout: 3000 });
+        } else {
+          window.addEventListener('load', loadGa4);
+        }
+      })();
     </script>
   </body>
 </html>

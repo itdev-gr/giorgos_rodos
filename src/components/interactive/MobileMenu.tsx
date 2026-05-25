@@ -77,12 +77,22 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     >
       <div className="th-menu-area text-center">
         <button className="th-menu-toggle" onClick={closeMenu} aria-label="Close menu">
-          <i className="fas fa-times" aria-hidden="true" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
         </button>
 
         <div className="mobile-logo">
           <a href="/">
-            <img src="/assets/img/logo2.svg" alt="Rhodes Rent a Boat" />
+            <img
+              src="/assets/img/logo-traced.svg"
+              alt="Rhodes Rent a Boat"
+              width="160"
+              height="48"
+              loading="lazy"
+              decoding="async"
+            />
           </a>
         </div>
 

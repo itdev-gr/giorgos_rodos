@@ -51,13 +51,13 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="none"
       poster={heroSrc}
+      data-src={heroVideo}
+      data-type={videoType}
       width="1920"
       height="1080"
-    >
-      <source src={heroVideo} type={videoType} />
-    </video>
+    ></video>
   )}
   <div class="service-hero-overlay"></div>
   <div class="container position-relative" style="z-index: 2;">
@@ -217,8 +217,26 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
 </style>
 
 <script>
+  function loadServiceHeroVideo() {
+    const video = document.querySelector('#service-hero .service-hero-video') as HTMLVideoElement | null;
+    if (!video || video.dataset.loaded) return;
+    if (window.matchMedia('(min-width: 992px)').matches) return;
+
+    video.dataset.loaded = 'true';
+    const src = video.dataset.src;
+    const type = video.dataset.type;
+    if (!src) return;
+
+    const source = document.createElement('source');
+    source.src = src;
+    if (type) source.type = type;
+    video.appendChild(source);
+    video.load();
+    video.play().catch(() => {});
+  }
+
   function initHeroVideoFallback() {
-    const video = document.querySelector('#service-hero .service-hero-video');
+    const video = document.querySelector('#service-hero .service-hero-video') as HTMLVideoElement | null;
     if (!video || video.dataset.fallbackInit) return;
     video.dataset.fallbackInit = 'true';
 
@@ -227,16 +245,32 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
     video.addEventListener('error', showImage);
     video.addEventListener('emptied', showImage);
 
-    // If the video never loads a frame, fall back to the poster/background image.
     window.setTimeout(() => {
-      if (video.readyState < 2) showImage();
+      if (video.querySelector('source') && video.readyState < 2) showImage();
     }, 2500);
   }
 
-  function initHeroParallax() {
-    if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') return;
-    const bg = document.querySelector('.service-hero-bg');
+  async function initHeroParallax() {
+    const bg = document.querySelector('.service-hero-bg') as HTMLElement | null;
     if (!bg || bg.dataset.parallaxInit) return;
+
+    const boot = () => new Promise<void>((resolve) => {
+      const tick = () => {
+        if (window.gsap && window.ScrollTrigger) return resolve();
+        setTimeout(tick, 50);
+      };
+      tick();
+    });
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => { void boot().then(() => runParallax(bg)); }, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', () => { void boot().then(() => runParallax(bg)); }, { once: true });
+    }
+  }
+
+  function runParallax(bg: HTMLElement) {
+    if (bg.dataset.parallaxInit || !window.gsap || !window.ScrollTrigger) return;
     bg.dataset.parallaxInit = 'true';
     window.gsap.to(bg, {
       yPercent: 30,
@@ -249,12 +283,17 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
       },
     });
   }
-  document.addEventListener('DOMContentLoaded', () => {
+
+  function initServiceHero() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadServiceHeroVideo, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', loadServiceHeroVideo, { once: true });
+    }
     initHeroVideoFallback();
     initHeroParallax();
-  });
-  document.addEventListener('astro:page-load', () => {
-    initHeroVideoFallback();
-    initHeroParallax();
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initServiceHero);
+  document.addEventListener('astro:page-load', initServiceHero);
 </script>
