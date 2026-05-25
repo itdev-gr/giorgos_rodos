@@ -44,3 +44,9 @@ Yacht charter: https://rhodesrentaboat.com/service/rhodes-charter
 FAQ: https://rhodesrentaboat.com/faq
 Blog: https://rhodesrentaboat.com/blog
 Contact: https://rhodesrentaboat.com/contact
+
+## Key Pages
+- FAQ: https://rhodesrentaboat.com/faq
+- Boat Tours: https://rhodesrentaboat.com/service/rhodes-boat-tours
+- Charter: https://rhodesrentaboat.com/service/rhodes-charter
+- Blog: https://rhodesrentaboat.com/blog/best-boat-trips-rhodes

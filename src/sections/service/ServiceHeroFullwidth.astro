@@ -27,6 +27,7 @@ const {
 
 const heroSrc = imgUrl(backgroundImage, 1200) || backgroundImage;
 const heroSrcset = imgSrcset(backgroundImage, [640, 960, 1200, 1920]) || '';
+const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
 ---
 
 <div class="service-hero-fullwidth position-relative overflow-hidden" id="service-hero">
@@ -52,8 +53,10 @@ const heroSrcset = imgSrcset(backgroundImage, [640, 960, 1200, 1920]) || '';
       playsinline
       preload="metadata"
       poster={heroSrc}
+      width="1920"
+      height="1080"
     >
-      <source src={heroVideo} type="video/mp4" />
+      <source src={heroVideo} type={videoType} />
     </video>
   )}
   <div class="service-hero-overlay"></div>

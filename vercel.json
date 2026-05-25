@@ -1,11 +1,12 @@
 {
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
         },
         {
           "key": "Strict-Transport-Security",
@@ -57,13 +58,44 @@
   ],
   "redirects": [
     {
-      "source": "/service/rodos-:path*",
-      "destination": "/service/rhodes-:path*",
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.rhodesrentaboat.com" }],
+      "destination": "https://rhodesrentaboat.com/:path",
       "permanent": true
     },
     {
-      "source": "/service/rhodes-boat-cruises",
+      "source": "/service/rodos-boat-tours",
       "destination": "/service/rhodes-boat-tours",
+      "permanent": true
+    },
+    {
+      "source": "/service/rodos-boat-trips",
+      "destination": "/service/rhodes-boat-trips",
+      "permanent": true
+    },
+    {
+      "source": "/service/rodos-sailing-trips",
+      "destination": "/service/rhodes-sailing-trips",
+      "permanent": true
+    },
+    {
+      "source": "/service/rodos-catamaran-tours",
+      "destination": "/service/rhodes-catamaran-tours",
+      "permanent": true
+    },
+    {
+      "source": "/service/rodos-charter",
+      "destination": "/service/rhodes-charter",
+      "permanent": true
+    },
+    {
+      "source": "/service/rodos-rent-a-boat",
+      "destination": "/service/rhodes-rent-a-boat",
+      "permanent": true
+    },
+    {
+      "source": "/service/rodos-boat-cruises",
+      "destination": "/service/rhodes-boat-cruises",
       "permanent": true
     },
     {

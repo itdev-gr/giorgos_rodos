@@ -37,7 +37,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         { label: 'Rhodes Rent a Boat', href: '/service/rhodes-rent-a-boat' },
         { label: 'Rhodes Boat Tours', href: '/service/rhodes-boat-tours' },
         { label: 'Rhodes Boat Trips', href: '/service/rhodes-boat-trips' },
-        { label: 'Rhodes Boat Cruises', href: '/service/rhodes-boat-tours' },
+        { label: 'Rhodes Boat Cruises', href: '/service/rhodes-boat-cruises' },
         { label: 'Rhodes Catamaran Tours', href: '/service/rhodes-catamaran-tours' },
         { label: 'Rhodes Sailing Trips', href: '/service/rhodes-sailing-trips' },
         { label: 'Rhodes Yacht Charter', href: '/service/rhodes-charter' },
@@ -48,7 +48,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         { label: 'Rhodes Rent a Car', href: 'https://siech-rentacar.com/', external: true },
       ],
     },
-    { id: 5, label: 'Best Boat Tours in Rhodes', href: '/things-to-do' },
+    { id: 5, label: 'All Experiences', href: '/things-to-do' },
     {
       id: 7,
       label: 'Blog',

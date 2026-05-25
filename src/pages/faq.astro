@@ -15,7 +15,7 @@ const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3
   title="FAQ — Boat Tours, Rentals & Charters in Rhodes | Rhodes Rent a Boat"
   description="Frequently asked questions about boat tours, rentals, and charters in Rhodes. Licensing, weather, pricing, and booking info."
 >
-  <FAQSchema items={faqs} />
+  <FAQSchema items={faqs} id="https://rhodesrentaboat.com/faq#faqpage" />
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'FAQ', url: '/faq' },
@@ -115,16 +115,6 @@ const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3
       </div>
     </div>
   </div>
-
-  <script type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(({ question, answer }) => ({
-      '@type': 'Question',
-      name: question,
-      acceptedAnswer: { '@type': 'Answer', text: answer }
-    }))
-  })} />
 
   <FooterFour />
 </BaseLayout>

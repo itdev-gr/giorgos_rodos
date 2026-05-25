@@ -7,13 +7,14 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   ogImageAlt?: string;
-  ogType?: 'website' | 'article';
+  ogType?: 'website' | 'article' | 'product';
   articleAuthor?: string;
   articlePublishedTime?: string;
   articleModifiedTime?: string;
   articleSection?: string;
   articleTags?: string[];
   noindex?: boolean;
+  noindexFollow?: boolean;
   keywords?: string;
 }
 
@@ -30,6 +31,7 @@ const {
   articleSection,
   articleTags = [],
   noindex = false,
+  noindexFollow = false,
   keywords,
 } = Astro.props;
 
@@ -41,12 +43,14 @@ const finalOgImageAlt = ogImageAlt || description;
 <meta name="description" content={description} />
 <link rel="canonical" href={finalCanonical} />
 
-{noindex
+{noindexFollow
+  ? <meta name="robots" content="noindex, follow" />
+  : noindex
   ? <meta name="robots" content="noindex, nofollow" />
   : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 }
-<meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
-<meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta name="googlebot" content={noindexFollow ? 'noindex, follow' : noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+<meta name="bingbot" content={noindexFollow ? 'noindex, follow' : noindex ? 'noindex, nofollow' : 'index, follow'} />
 
 {keywords && <meta name="keywords" content={keywords} />}
 

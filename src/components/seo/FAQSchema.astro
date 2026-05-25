@@ -6,13 +6,15 @@ interface FaqItem {
 
 interface Props {
   items: FaqItem[];
+  id?: string;
 }
 
-const { items } = Astro.props;
+const { items, id } = Astro.props;
 
 const data = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  ...(id ? { '@id': id } : {}),
   mainEntity: items.map((f) => ({
     '@type': 'Question',
     name: f.question,
