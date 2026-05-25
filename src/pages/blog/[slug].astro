@@ -4,6 +4,7 @@ import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import posts from '../../data/data-post.json';
+import { blogExpansions } from '../../data/blog-expansions';
 import { SITE_URL } from '../../lib/seo';
 import { blogImageAlt } from '../../lib/tour-alt';
 
@@ -117,7 +118,7 @@ if (serviceCtas.length < 2) {
             <p class="rab-article__lead">{post.excerpt}</p>
 
             {(post as any).content && (
-              <div class="rab-article__body" set:html={(post as any).content} />
+              <div class="rab-article__body" set:html={(post as any).content + (blogExpansions[post.slug] || '')} />
             )}
           </div>
         </div>

@@ -1,5 +1,6 @@
 ---
 import { imgUrl, imgSrcset } from '../../lib/media';
+import { heroVideoSources } from '../../lib/hero-video';
 
 interface Props {
   title: string;
@@ -27,7 +28,7 @@ const {
 
 const heroSrc = imgUrl(backgroundImage, 1200) || backgroundImage;
 const heroSrcset = imgSrcset(backgroundImage, [640, 960, 1200, 1920]) || '';
-const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
+const videoSources = heroVideo ? heroVideoSources(heroVideo) : null;
 ---
 
 <div class="service-hero-fullwidth position-relative overflow-hidden" id="service-hero">
@@ -44,20 +45,20 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
       decoding="async"
     />
   </div>
-  {heroVideo && (
+  {videoSources && (
     <video
       class="service-hero-video"
       autoplay
       muted
       loop
       playsinline
-      preload="none"
       poster={heroSrc}
-      data-src={heroVideo}
-      data-type={videoType}
       width="1920"
       height="1080"
-    ></video>
+    >
+      {videoSources.webm && <source src={videoSources.webm} type="video/webm" />}
+      <source src={videoSources.mp4} type="video/mp4" />
+    </video>
   )}
   <div class="service-hero-overlay"></div>
   <div class="container position-relative" style="z-index: 2;">
@@ -217,24 +218,6 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
 </style>
 
 <script>
-  function loadServiceHeroVideo() {
-    const video = document.querySelector('#service-hero .service-hero-video') as HTMLVideoElement | null;
-    if (!video || video.dataset.loaded) return;
-    if (window.matchMedia('(min-width: 992px)').matches) return;
-
-    video.dataset.loaded = 'true';
-    const src = video.dataset.src;
-    const type = video.dataset.type;
-    if (!src) return;
-
-    const source = document.createElement('source');
-    source.src = src;
-    if (type) source.type = type;
-    video.appendChild(source);
-    video.load();
-    video.play().catch(() => {});
-  }
-
   function initHeroVideoFallback() {
     const video = document.querySelector('#service-hero .service-hero-video') as HTMLVideoElement | null;
     if (!video || video.dataset.fallbackInit) return;
@@ -246,7 +229,7 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
     video.addEventListener('emptied', showImage);
 
     window.setTimeout(() => {
-      if (video.querySelector('source') && video.readyState < 2) showImage();
+      if (video.readyState < 2) showImage();
     }, 2500);
   }
 
@@ -285,11 +268,6 @@ const videoType = heroVideo.toLowerCase().endsWith('.mov') ? 'video/quicktime' :
   }
 
   function initServiceHero() {
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadServiceHeroVideo, { timeout: 4000 });
-    } else {
-      window.addEventListener('load', loadServiceHeroVideo, { once: true });
-    }
     initHeroVideoFallback();
     initHeroParallax();
   }

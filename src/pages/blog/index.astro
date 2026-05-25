@@ -21,7 +21,7 @@ const blogJsonLd = {
     url: `${SITE_URL}/blog/${p.slug}`,
     datePublished: p.publishedDate || undefined,
     image: p.image ? `${SITE_URL}/assets/img/blog/${p.bannerImg || p.image}` : undefined,
-    author: { '@type': 'Person', name: 'Rhodes Rent a Boat Editorial Team', url: `${SITE_URL}/about` },
+    author: { '@type': 'Person', name: 'Giorgos R., Captain & Founder', url: `${SITE_URL}/about` },
     description: p.excerpt,
   })),
 };
@@ -29,7 +29,7 @@ const blogJsonLd = {
 
 <BaseLayout
   title="News & Blog — Rhodes Rent a Boat, Trips and Coastline Guides"
-  description="Guides and tips about boat tours, sailing trips and yacht charters in Rhodes, Greece. Local knowledge from a team operating since 1998."
+  description="Rhodes sea guides by Giorgos R. — in-depth articles on boat tours, Symi day trips, rent-a-boat tips, hidden beaches and sunset cruises from a local team since 1998."
 >
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },

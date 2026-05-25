@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import TouristTripSchema from '../../components/seo/TouristTripSchema.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { SITE_URL, looksLikeUuid } from '../../lib/seo';
 import { imgUrl, imgSrcset } from '../../lib/media';
@@ -88,77 +89,18 @@ const highlights = tour.highlights || [];
 const inclusions = tour.inclusions || [];
 const exclusions = tour.exclusions || [];
 
-// Canonical always uses slug when available; falls back to id for unbackfilled rows
 const tourPathSegment = tour.slug || tour.id;
 const tourCanonical = `${SITE_URL}/tour-detail/${tourPathSegment}`;
 const heroOgImage = images[0]?.startsWith('http') ? images[0] : `${SITE_URL}${images[0] || ''}`;
 
-// End of next calendar year — sensible default for priceValidUntil
-const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
-
-const tourJsonLd: Record<string, unknown> = {
-  '@context': 'https://schema.org',
-  '@type': 'TouristTrip',
-  '@id': `${tourCanonical}#trip`,
-  name: tour.title,
-  description: displayDescription,
-  url: tourCanonical,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': tourCanonical },
-  image: images.map((img: string) => (img.startsWith('http') ? img : `${SITE_URL}${img}`)),
-  touristType: tour.badge_label || 'Boat tour',
-  inLanguage: 'en-US',
-  itinerary: highlights.length
-    ? { '@type': 'ItemList', itemListElement: highlights.map((h: string, i: number) => ({ '@type': 'ListItem', position: i + 1, name: h })) }
-    : undefined,
-  provider: { '@id': `${SITE_URL}#organization` },
-};
-if (tour.duration) {
-  // Convert duration to ISO 8601 format required by Google
-  // Handles: numeric hours (e.g. 6, 6.5), or strings like "6 Hours", "6.5 Hours", "PT6H"
-  const toISO8601Duration = (raw: string | number): string => {
-    if (typeof raw === 'string' && raw.startsWith('PT')) return raw;
-    const numStr = String(raw).replace(/[^\d.]/g, '');
-    const hours = parseFloat(numStr);
-    if (isNaN(hours)) return String(raw);
-    const h = Math.floor(hours);
-    const m = Math.round((hours - h) * 60);
-    return `PT${h}H${m > 0 ? m + 'M' : ''}`;
-  };
-  tourJsonLd.duration = toISO8601Duration(tour.duration);
-}
-if (tour.meeting_point) {
-  tourJsonLd.departureLocation = {
-    '@type': 'Place',
-    name: tour.meeting_point,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Rhodes',
-      addressRegion: 'South Aegean',
-      addressCountry: 'GR',
-    },
-  };
-}
-if (tour.guests) {
-  tourJsonLd.audience = { '@type': 'PeopleAudience', suggestedMinAge: 0, name: String(tour.guests) };
-}
-if (tour.price) {
-  const numericPrice = String(tour.price).replace(/[^\d.]/g, '');
-  tourJsonLd.offers = [{
-    '@type': 'Offer',
-    price: numericPrice || undefined,
-    priceCurrency: 'EUR',
-    availability: isPublished ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-    url: tourCanonical,
-    priceValidUntil,
-    seller: { '@id': `${SITE_URL}#organization` },
-    category: tour.badge_label || 'Boat experience',
-  }];
-}
+const metaDescription =
+  displayDescription?.trim() ||
+  `${tour.title} in Rhodes — ${tour.duration ? `${tour.duration}, ` : ''}${tour.price ? `from ${tour.price}. ` : ''}Enquire with local experts at Rhodes Rent a Boat.`;
 ---
 
 <BaseLayout
   title={`${tour.title} — Rhodes Rent a Boat`}
-  description={displayDescription}
+  description={metaDescription}
   canonical={tourCanonical}
   ogImage={heroOgImage}
   noindex={!isPublished}
@@ -172,7 +114,7 @@ if (tour.price) {
     { name: tour.title, url: `/tour-detail/${tourPathSegment}` },
   ]} />
   {isPublished && (
-    <script type="application/ld+json" set:html={JSON.stringify(tourJsonLd)} is:inline />
+    <TouristTripSchema tour={tour} displayDescription={displayDescription} isPublished={isPublished} />
   )}
   <Header />
 

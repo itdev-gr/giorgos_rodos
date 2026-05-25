@@ -1,19 +1,39 @@
 import { defineMiddleware } from 'astro:middleware';
 
-export const onRequest = defineMiddleware(async (context, next) => {
-  const { pathname } = context.url;
+const PUBLIC_HTML_CACHE =
+  'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400';
 
-  // Only protect dashboard and API routes
-  const isProtected = pathname.startsWith('/dashboard') || pathname.startsWith('/api/admin') || pathname.startsWith('/api/user');
+export const onRequest = defineMiddleware(async (context, next) => {
+  const { pathname, hostname, search } = context.url;
+
+  // www → apex (301 permanent for link equity)
+  if (hostname === 'www.rhodesrentaboat.com') {
+    return context.redirect(`https://rhodesrentaboat.com${pathname}${search}`, 301);
+  }
+
+  const isProtected =
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/api/admin') ||
+    pathname.startsWith('/api/user');
 
   if (!isProtected) {
-    return next();
+    const response = await next();
+    if (
+      context.request.method === 'GET' &&
+      !pathname.startsWith('/api/') &&
+      pathname !== '/login'
+    ) {
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('text/html')) {
+        response.headers.set('Cache-Control', PUBLIC_HTML_CACHE);
+      }
+    }
+    return response;
   }
 
   try {
     const { createServerClient } = await import('./lib/supabase');
 
-    // Get tokens from cookies
     const accessToken = context.cookies.get('sb-access-token')?.value;
     const refreshToken = context.cookies.get('sb-refresh-token')?.value;
 
@@ -24,7 +44,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
       return context.redirect('/login');
     }
 
-    // Create client with the user's access token
     const supabase = createServerClient(accessToken);
     if (!supabase) {
       if (pathname.startsWith('/api/')) {
@@ -33,15 +52,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
       return context.redirect('/login');
     }
 
-    // Verify session
     const { data: { user }, error } = await supabase.auth.getUser();
 
     if (error || !user) {
-      // Try refresh
       if (refreshToken) {
-        const { data: refreshData, error: refreshError } = await supabase.auth.refreshSession({ refresh_token: refreshToken });
+        const { data: refreshData, error: refreshError } = await supabase.auth.refreshSession({
+          refresh_token: refreshToken,
+        });
         if (!refreshError && refreshData.session) {
-          // Set new cookies
           context.cookies.set('sb-access-token', refreshData.session.access_token, {
             path: '/',
             httpOnly: true,
@@ -57,11 +75,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
             maxAge: 60 * 60 * 24 * 7,
           });
 
-          // Get profile — use the refreshed token client
           const freshClient = createServerClient(refreshData.session.access_token);
           let profile = null;
           if (freshClient) {
-            const { data } = await freshClient.from('profiles').select('*').eq('id', refreshData.user!.id).single();
+            const { data } = await freshClient
+              .from('profiles')
+              .select('*')
+              .eq('id', refreshData.user!.id)
+              .single();
             profile = data;
           }
 
@@ -69,7 +90,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
           context.locals.profile = profile;
           context.locals.accessToken = refreshData.session.access_token;
         } else {
-          // Both tokens invalid
           context.cookies.delete('sb-access-token', { path: '/' });
           context.cookies.delete('sb-refresh-token', { path: '/' });
           if (pathname.startsWith('/api/')) {
@@ -85,7 +105,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
         return context.redirect('/login');
       }
     } else {
-      // Valid token — get profile using the same user-authenticated client
       let profile = null;
       const { data } = await supabase.from('profiles').select('*').eq('id', user.id).single();
       profile = data;
@@ -95,9 +114,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
       context.locals.accessToken = accessToken;
     }
 
-    // Role-based access
     const profile = context.locals.profile;
-    const isAdminRoute = pathname.startsWith('/dashboard/admin') || pathname.startsWith('/api/admin');
+    const isAdminRoute =
+      pathname.startsWith('/dashboard/admin') || pathname.startsWith('/api/admin');
 
     if (isAdminRoute && profile?.role !== 'admin') {
       if (pathname.startsWith('/api/')) {

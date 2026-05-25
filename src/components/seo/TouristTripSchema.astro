@@ -1,0 +1,111 @@
+---
+import { SITE_URL } from '../../lib/seo';
+
+interface Props {
+  tour: {
+    title: string;
+    description?: string | null;
+    slug?: string | null;
+    id: string;
+    duration?: string | number | null;
+    meeting_point?: string | null;
+    guests?: string | number | null;
+    price?: string | null;
+    badge_label?: string | null;
+    status?: string;
+    images?: string[] | null;
+    image_url?: string | null;
+    highlights?: string[] | null;
+  };
+  displayDescription: string;
+  isPublished: boolean;
+}
+
+const { tour, displayDescription, isPublished } = Astro.props;
+
+const images = tour.images?.length
+  ? tour.images
+  : tour.image_url
+    ? [tour.image_url]
+    : ['/assets/img/gallery/yacht/crystal-water-1.jpg'];
+
+const tourPathSegment = tour.slug || tour.id;
+const tourCanonical = `${SITE_URL}/tour-detail/${tourPathSegment}`;
+const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
+const highlights = tour.highlights || [];
+
+const toISO8601Duration = (raw: string | number): string => {
+  if (typeof raw === 'string' && raw.startsWith('PT')) return raw;
+  const numStr = String(raw).replace(/[^\d.]/g, '');
+  const hours = parseFloat(numStr);
+  if (isNaN(hours)) return String(raw);
+  const h = Math.floor(hours);
+  const m = Math.round((hours - h) * 60);
+  return `PT${h}H${m > 0 ? `${m}M` : ''}`;
+};
+
+const data: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  '@id': `${tourCanonical}#trip`,
+  name: tour.title,
+  description: displayDescription,
+  url: tourCanonical,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': tourCanonical },
+  image: images.map((img: string) => (img.startsWith('http') ? img : `${SITE_URL}${img}`)),
+  touristType: tour.badge_label || 'Boat experience',
+  inLanguage: 'en-US',
+  provider: { '@id': `${SITE_URL}#organization` },
+};
+
+if (highlights.length) {
+  data.itinerary = {
+    '@type': 'ItemList',
+    itemListElement: highlights.map((h: string, i: number) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: h,
+    })),
+  };
+}
+
+if (tour.duration) {
+  data.duration = toISO8601Duration(tour.duration);
+}
+
+if (tour.meeting_point) {
+  data.departureLocation = {
+    '@type': 'Place',
+    name: tour.meeting_point,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Rhodes',
+      addressRegion: 'South Aegean',
+      addressCountry: 'GR',
+    },
+  };
+}
+
+if (tour.guests) {
+  data.audience = {
+    '@type': 'PeopleAudience',
+    suggestedMinAge: 0,
+    name: String(tour.guests),
+  };
+}
+
+if (tour.price) {
+  const numericPrice = String(tour.price).replace(/[^\d.]/g, '');
+  data.offers = [{
+    '@type': 'Offer',
+    price: numericPrice || undefined,
+    priceCurrency: 'EUR',
+    availability: isPublished ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+    url: tourCanonical,
+    priceValidUntil,
+    seller: { '@id': `${SITE_URL}#organization` },
+    category: tour.badge_label || 'Boat experience',
+  }];
+}
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />
