@@ -58,10 +58,10 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/:path(.*)",
       "has": [{ "type": "host", "value": "www.rhodesrentaboat.com" }],
-      "destination": "https://rhodesrentaboat.com/:path*",
-      "statusCode": 301
+      "destination": "https://rhodesrentaboat.com/:path",
+      "permanent": true
     },
     {
       "source": "/service/rodos-boat-tours",
