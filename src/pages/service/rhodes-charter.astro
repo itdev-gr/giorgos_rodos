@@ -9,34 +9,10 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
+import { charterCardDescription } from '../../lib/charter-description';
 import { createPublicClient } from '../../lib/supabase';
-
-const charterFaq = [
-  {
-    question: 'Do I need a licence to charter a yacht in Rhodes?',
-    answer: 'For a <strong>bareboat</strong> charter (you skipper the yacht yourself) you need a recognised qualification — RYA Day Skipper or higher, ASA, IYT or an ICC. Greek law also requires a co-skipper with at least basic sailing experience on board. For a <strong>skippered</strong> charter we put a professional captain on board so no licence is required from your party — that is the most popular option for visitors.',
-  },
-  {
-    question: 'Bareboat or skippered — which should I pick?',
-    answer: 'Bareboat suits experienced sailors who want to plan their own route, anchor where they like and run the boat themselves. Skippered is the right call if you want to relax, learn the area from a local pro, focus on the holiday rather than the navigation, or have any uncertainty about the weather and harbours. Most first-time visitors to the Dodecanese pick skippered.',
-  },
-  {
-    question: 'How much does a yacht charter in Rhodes cost?',
-    answer: 'Weekly bareboat rates typically run €1,500–€7,500 for monohull sailing yachts (35–55 ft), and €3,500–€15,000+ for catamarans, depending on size, year and season. Skipper service is around €180–€250 per day on top. Peak weeks (mid-July to late August) are the most expensive. June and September are 20–30% cheaper for the same boat.',
-  },
-  {
-    question: 'When is the best time for a sailing holiday in the Dodecanese?',
-    answer: 'May, June, September and early October are the sweet spot — warm sea, lighter winds and emptier anchorages. July and August bring the strong Meltemi north winds (Force 4–7) which experienced sailors enjoy but families with kids may find tiring. We help you match the season to your group.',
-  },
-  {
-    question: 'Do charters always start on a Saturday?',
-    answer: 'Yes — Greek bareboat charters traditionally start on Saturday and run for 7 nights, with embarkation in the late afternoon and disembarkation by 09:00 the following Saturday. So a "weekly" charter is really 6 days of sailing. We can arrange shorter or non-Saturday charters case by case — just ask.',
-  },
-  {
-    question: 'Where can I sail to from Rhodes?',
-    answer: 'Rhodes is a fantastic Dodecanese base. Typical 7-day routes loop Symi, Tilos, Halki, Nisyros and back; longer trips reach Kos, Leros and Patmos. The east coast of Rhodes alone gives you Lindos, Kalithea and Faliraki bays for shorter loops. <a href="/contact">Tell us your dates and the kind of trip you want</a> — we will sketch a route.',
-  },
-];
+import { charterFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.charter.hero.video', '/assets/img/hero/services/charter.mp4');
 const heroImage = await getMediaSlot('service.charter.hero.image', '/assets/img/fleet/oceanis-511-lupo-di-mare.jpg');
@@ -49,18 +25,19 @@ try {
     const { data } = await supabase
       .from('tours')
       .select('*')
-      .eq('service_page', 'rhodes-charter')
+      .or('service_page.eq.rhodes-charter,service_page.eq.rodos-charter')
       .eq('status', 'approved')
       .order('created_at', { ascending: false });
     dbCards = (data || []).map((t: any) => ({
       title: t.title,
-      description: t.description,
+      description: charterCardDescription(t),
       image: t.image_url || t.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
       duration: t.duration || '',
       guests: t.guests || '',
       type: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -70,7 +47,7 @@ try {
 const charters = dbCards;
 ---
 
-<BaseLayout title="Rhodes Yacht Charter — Bareboat & Skippered Sailing | Rhodes Rent a Boat" description="Yacht charter in Rhodes — 80+ sailing yachts and catamarans for weekly hire. Bareboat or skippered, €1,500–€15,000/week. Dodecanese island hopping since 1998." ogImage={heroImage}>
+<BaseLayout title="Rhodes Yacht Charter — Bareboat & Skippered Sailing | Rhodes Rent a Boat" description="Bareboat & skippered yacht charters in Rhodes. Weekly sailing from Mandraki Harbour through the Dodecanese islands." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Yacht Charter"
     description="Yacht charter in Rhodes — bareboat and skippered sailing yachts, catamarans and island-hopping holidays in the Dodecanese. Weekly charters from Rhodes."
@@ -110,27 +87,27 @@ const charters = dbCards;
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-compass"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Bareboat Charter</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Bareboat Charter</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Rent a sailing yacht without skipper. For experienced sailors with a valid license who want to plan their own route.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-user-shield"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Skippered Charter</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Skippered Charter</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">A sailing yacht with professional skipper on board. No sailing experience needed — the skipper handles everything.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We connect you with the right charter company in Rhodes. Not a booking platform — real advice from locals who know the waters.</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We connect you with the right charter company and yacht class for your crew, dates and route — bareboat or skippered.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
         <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          We don't charter yachts. We help you find the right sailing experience in Greece.
+          We don't charter yachts. We help you find the right sailing experience in Greece. For shorter trips, see our <a href="/service/rhodes-sailing-trips">sailing trips</a>.
         </p>
       </div>
     </div>
@@ -146,7 +123,7 @@ const charters = dbCards;
         {charters.map((charter, i) => (
           <a href={charter.href || '/contact'} class="yc-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(charter.image, 600, { quality: 75 })} srcset={imgSrcset(charter.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={charter.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(charter.image, 600, { quality: 75 })} srcset={imgSrcset(charter.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={charter.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{charter.type}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">

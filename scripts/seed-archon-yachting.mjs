@@ -75,7 +75,7 @@ const TOURS = [
   {
     slug: 'lagoon-55-utopia',
     title: 'Lagoon 55 Utopia \u2014 Luxury Crewed Catamaran Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Catamaran',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -114,7 +114,7 @@ const TOURS = [
   {
     slug: 'fountaine-pajot-aura-51-amante',
     title: 'Fountaine Pajot Aura 51 Amante \u2014 Crewed Catamaran Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Catamaran',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -153,7 +153,7 @@ const TOURS = [
   {
     slug: 'lagoon-46-si-mi-amor',
     title: 'Lagoon 46 Si Mi Amor \u2014 Catamaran Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Catamaran',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -191,7 +191,7 @@ const TOURS = [
   {
     slug: 'hanse-510-sea-emerald',
     title: 'Hanse 510 Sea Emerald \u2014 Sailing Yacht Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Sailing Yacht',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -229,7 +229,7 @@ const TOURS = [
   {
     slug: 'lagoon-46-xhenia',
     title: 'Lagoon 46 Xhenia \u2014 Catamaran Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Catamaran',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -267,7 +267,7 @@ const TOURS = [
   {
     slug: 'beneteau-first-53-izanami',
     title: 'Beneteau First 53 Izanami \u2014 Crewed Sailing Yacht Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Sailing Yacht',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -305,7 +305,7 @@ const TOURS = [
   {
     slug: 'lagoon-50-rio',
     title: 'Lagoon 50 Rio \u2014 Catamaran Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Catamaran',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -343,7 +343,7 @@ const TOURS = [
   {
     slug: 'lagoon-50-ioli',
     title: 'Lagoon 50 Ioli \u2014 Catamaran Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Catamaran',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',
@@ -381,7 +381,7 @@ const TOURS = [
   {
     slug: 'gianetti-65-shooting-star',
     title: 'Gianetti 65 Shooting Star \u2014 Crewed Sailing Yacht Charter',
-    service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
     badge_label: 'Sailing Yacht',
     price: 'Contact for pricing',
     duration: 'Weekly Charter',

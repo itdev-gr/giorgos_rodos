@@ -9,34 +9,9 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
 import { createPublicClient } from '../../lib/supabase';
-
-const boatTripsFaq = [
-  {
-    question: 'How much does a private boat trip in Rhodes cost?',
-    answer: 'Half-day private trips on a small motorboat with skipper start around €350–€500 for the boat (4–6 guests). Full-day trips are €600–€900. Private catamaran day cruises run €920–€1,400. Luxury yachts start €1,500/day and go up depending on yacht size and crew. Price is per boat — split between your group it works out comparable to a per-person shared cruise.',
-  },
-  {
-    question: 'Is a private boat trip worth it compared to a shared tour?',
-    answer: 'For groups of 4 or more, often yes — the per-person cost lands close to a shared cruise but you get a flexible route, your own pace, no other guests, and the boat is just yours. For couples it is more of a celebration choice. The biggest difference is feel: you stop where you want, swim as long as you want, lunch at the taverna you pick.',
-  },
-  {
-    question: 'How is a private boat trip different from a guided tour or cruise?',
-    answer: 'A private trip is your group only on a small or mid-size boat with a dedicated skipper and a flexible route. A <a href="/service/rhodes-boat-tours">guided tour</a> may be private OR shared with up to 12 others on a fixed route. A day cruise is a larger shared boat (40–80 guests) with all-inclusive food and drinks. Private = most flexibility; cruise = best value per person.',
-  },
-  {
-    question: 'How many people fit on a private boat?',
-    answer: 'Small motorboats and speedboats: 4–8 guests. Mid-size sailing or motor yachts: 8–12. Catamarans: 12–14 cruising, up to 30 stationary at anchor. Tell us the group size when you enquire and we will recommend the right boat for comfort and budget.',
-  },
-  {
-    question: 'Can we choose the route on a private trip?',
-    answer: 'Yes — that is the main reason people book private. Tell the skipper what you want most (snorkeling at Anthony Quinn Bay, lunch at a beach taverna, sunset light along the Old Town walls, a longer reach toward Symi) and they will design the day around it. The skipper will steer you away from anything weather makes unsafe.',
-  },
-  {
-    question: 'How far in advance should I book a private boat trip?',
-    answer: 'In peak season (mid-June through August) book 1–2 weeks ahead, especially for weekends and luxury yachts. In May, late September and October a few days notice is usually enough. For specific dates around special occasions (anniversary, proposal, birthday) book as early as you can — we get repeat boats requested often.',
-  },
-];
+import { boatTripsFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.boat-trips.hero.video', '/assets/img/hero/services/private-tours.mp4');
 const heroImage = await getMediaSlot('service.boat-trips.hero.image', '/assets/img/gallery/yacht/crystal-water-1.jpg');
@@ -62,6 +37,7 @@ try {
       boat: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -110,27 +86,27 @@ const trips = dbCards;
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-ship"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Your Own Boat</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Your Own Boat</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Rent a boat with a skipper for your group. Flexible duration from 2 hours to a full day, with swimming stops and time to relax at sea.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-check-circle"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Handpicked Boats</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Handpicked Boats</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">From all the boat trips available in Rhodes, we have selected those with quality boats, experienced skippers and great overall experiences.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We are not a booking platform. We help you choose the right boat, the right duration and the right experience for your group.</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Tell us your group size, occasion and budget — we recommend vessel size, duration and route without pushing the priciest boat.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
         <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          We don't sell boat trips. We help you choose the right boat experience in Rhodes.
+          We don't sell boat trips. We help you choose the right boat experience in Rhodes. For a skippered day with a fixed route, see our <a href="/service/rhodes-boat-tours">organised boat tours</a>; for self-drive options, see <a href="/service/rhodes-rent-a-boat">rent a boat</a>.
         </p>
       </div>
     </div>
@@ -146,7 +122,7 @@ const trips = dbCards;
         {trips.map((trip, i) => (
           <a href={trip.href || '/contact'} class="bt-trip-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{trip.boat}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">

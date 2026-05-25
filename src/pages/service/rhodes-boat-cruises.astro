@@ -9,34 +9,9 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
 import { createPublicClient } from '../../lib/supabase';
-
-const cruisesFaq = [
-  {
-    question: 'What is included in a Rhodes day cruise?',
-    answer: 'Most all-inclusive cruises include a buffet lunch (Mediterranean dishes — chicken, Greek salad, pasta, bread), unlimited soft drinks plus wine and beer, snorkel masks, and three to four swim stops. Music, sun deck and shaded seating are standard. Sunset cruises typically include a lighter dinner with grilled meats and salads plus an open bar of beer, wine and juice.',
-  },
-  {
-    question: 'Where do Rhodes cruises depart from?',
-    answer: 'Most depart from Mandraki Harbour in Rhodes Town. Some east-coast cruises leave from Faliraki, Kolymbia or Lindos depending on the route. Symi cruises always leave from Mandraki around 09:00. We confirm the meeting point when you book and can arrange a <a href="/service/rhodes-transfers">private transfer</a> from your hotel.',
-  },
-  {
-    question: 'Is a day cruise different from a private boat trip?',
-    answer: 'A day cruise is a shared experience on a larger boat (40–80 guests) with a fixed route, an all-inclusive buffet and a set return time — best value per person and great for first-time visitors. A <a href="/service/rhodes-boat-trips">private boat trip</a> is your group only, on a smaller boat, with a flexible route. Pick a cruise for the full social/inclusive experience; pick a private trip for total flexibility.',
-  },
-  {
-    question: 'Are catamarans more comfortable than monohull boats?',
-    answer: 'Yes — significantly. Catamarans have two hulls, so they sit flat on the water and barely roll in light chop. They have more deck space, more shade, and stairs straight into the water. If you are prone to sea sickness or travelling with kids, a <a href="/service/rhodes-catamaran-tours">catamaran cruise</a> is the safer pick.',
-  },
-  {
-    question: 'Can I see Symi Island on a Rhodes day cruise?',
-    answer: 'Yes — the Symi day trip is the most popular full-day cruise from Rhodes. Boats leave Mandraki around 09:00, take 80 minutes to cross, give you 4–5 hours on the island for lunch and walking the pastel harbour, then a swim stop on the return. Return to Rhodes by ~18:00.',
-  },
-  {
-    question: 'Are sunset cruises worth it?',
-    answer: 'They are the most-booked evening activity in Rhodes for a reason. A typical 2.5–3 hour sunset cruise leaves around 17:30, includes a swim stop, a light dinner, an open bar, and the return run is timed so you watch the sun set against the medieval walls of Rhodes Town. Couples especially love them.',
-  },
-];
+import { cruisesFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.boat-cruises.hero.video', '/assets/img/hero/services/boat-cruises.mp4');
 const heroImage = await getMediaSlot('service.boat-cruises.hero.image', '/assets/img/cruises/greco_home1.jpg');
@@ -62,6 +37,7 @@ try {
       departure: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -107,22 +83,22 @@ const cruises = dbCards;
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-anchor"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Organized Day Cruises</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Organized Day Cruises</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Larger boats with fixed routes along the east coast, to Symi Island or Lindos. Swimming stops, lunch and drinks included.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-signs"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Multiple Departure Points</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Multiple Departure Points</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Cruises depart from Mandraki Harbour, Faliraki, Kolymbia and Lindos depending on the route and destination.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We are not a booking platform. We help you understand the differences and choose the right cruise for your holiday.</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Tell us whether you want Symi, east-coast swimming or sunset — we explain which cruise schedule fits your hotel location and week.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
@@ -143,7 +119,7 @@ const cruises = dbCards;
         {cruises.map((cruise, i) => (
           <a href={cruise.href || '/contact'} class="bc-cruise-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(cruise.image, 600, { quality: 75 })} srcset={imgSrcset(cruise.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={cruise.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(cruise.image, 600, { quality: 75 })} srcset={imgSrcset(cruise.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={cruise.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{cruise.departure}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">

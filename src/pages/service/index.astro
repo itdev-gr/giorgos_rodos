@@ -7,6 +7,7 @@ import FAQSchema from '../../components/seo/FAQSchema.astro';
 import services from '../../data/data-service.json';
 import { getMediaSlot } from '../../lib/media';
 import { SITE_URL } from '../../lib/seo';
+import { serviceHubFaq as faqItems } from '../../lib/faq';
 
 const itemListJsonLd = {
   '@context': 'https://schema.org',
@@ -26,33 +27,6 @@ const rest = services.filter((s: any) => !['rhodes-charter', 'rhodes-boat-tours'
 
 const heroImage = await getMediaSlot('service.index.hero.image', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
 const heroVideo = await getMediaSlot('service.index.hero.video', '/assets/img/hero/services/charter.mp4');
-
-const faqItems = [
-  {
-    question: 'Which service should I pick — rent a boat, boat tour or yacht charter?',
-    answer: 'It depends on how independent you want to be. A license-free rental is best for couples and small families who want to swim in their own bay at their own pace. A guided boat tour or cruise works for groups that prefer a captain, a planned route and lunch on board. A yacht charter is the right choice for a multi-day Dodecanese trip with a crew. If you are unsure, contact us and we will recommend the right option for your group.',
-  },
-  {
-    question: 'What does each service typically cost?',
-    answer: 'License-free rentals start at the lower end and depend on boat size and rental duration. Shared boat tours and cruises are priced per person. Private boat trips and catamaran charters are priced per boat for a half or full day. Weekly yacht charters depend on the yacht type, season and whether a skipper is included. We send a clear, written quote before any booking — no hidden fees.',
-  },
-  {
-    question: 'Are these services run by you directly or by partners?',
-    answer: 'A mix of both. Some boats and yachts are operated directly by us; others are run by trusted local captains and small family-owned operators we have worked with for years. Either way, every operator on this page is one we know personally and would put our own family on.',
-  },
-  {
-    question: 'Can I combine multiple services on the same trip?',
-    answer: 'Yes — most of our visitors combine two or three. A common pairing is a license-free rental day plus a Symi cruise the next day, or a sunset cruise paired with a sidecar tour on the island. Tell us your dates and we will suggest a balanced plan.',
-  },
-  {
-    question: 'Do you offer transfers from my hotel to the harbour?',
-    answer: 'Yes. We provide private transfers from any hotel or villa in Rhodes to Mandraki Harbour, Faliraki, Kolymbia and other departure points. See the Rhodes Transfers service for details.',
-  },
-  {
-    question: 'Which services are available year-round?',
-    answer: 'Yacht charters and private boat trips run from late April to late October. Daily cruises and group tours operate from May to mid-October, with peak availability June–September. Sidecar tours, transfers and event planning run year-round.',
-  },
-];
 ---
 
 <BaseLayout

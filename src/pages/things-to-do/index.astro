@@ -11,33 +11,7 @@ import FAQSection from '../../components/FAQSection.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { getMediaSlot } from '../../lib/media';
 import { SITE_URL } from '../../lib/seo';
-
-const thingsToDoFaq = [
-  {
-    question: 'What are the best things to do in Rhodes by boat?',
-    answer: 'The biggest hits are the Symi day cruise, swimming and snorkeling at Anthony Quinn Bay and Kalithea Springs, the Lindos seaward approach to the Acropolis, and a sunset catamaran cruise. For a more independent day, a license-free boat lets you explore east-coast bays at your own pace.',
-  },
-  {
-    question: 'Should I book a boat tour or a day cruise?',
-    answer: 'A boat tour is usually private or semi-private on a smaller boat with a skipper — ideal for couples and small groups who want flexibility. A day cruise is a larger shared boat with all-inclusive food, drinks and a fixed route — ideal for first-time visitors who want everything organised. <a href="/contact">Tell us your group size and we will recommend the right one.</a>',
-  },
-  {
-    question: 'Which Rhodes boat experience is best for families?',
-    answer: 'Catamaran day cruises are the most family-friendly: stable in light chop, lots of deck space, shaded areas, lunch on board, and several swim stops in calm bays. Children of any age are welcome and child-size life jackets are provided. <a href="/service/rhodes-catamaran-tours">See catamaran tours</a>.',
-  },
-  {
-    question: 'What is the most popular boat trip from Rhodes?',
-    answer: 'The Symi day cruise is the single most-booked trip. The boat leaves Mandraki around 09:00, reaches Symi in about 80 minutes, gives you 4–5 hours on the island for lunch and exploring the pastel harbour, then a swim stop on the way back.',
-  },
-  {
-    question: 'Do I need to book my Rhodes boat experience in advance?',
-    answer: 'In high season (June–August) yes — popular shared cruises and most private boats sell out 1–2 weeks ahead, especially for weekends. In May, late September and October a few days notice is usually enough. For weekly yacht charters book 1–3 months ahead.',
-  },
-  {
-    question: 'Can I see Symi or Lindos by boat from Rhodes?',
-    answer: 'Yes — both are popular full-day trips. Symi is a 80-minute crossing each way; you spend most of the day on the island. Lindos is a coastal cruise along the east shore that lets you see the Acropolis from the sea, with a swim stop in St Paul\'s Bay below the citadel. Both are bookable as <a href="/service/rhodes-boat-tours">shared cruises</a> or <a href="/service/rhodes-boat-trips">private trips</a>.',
-  },
-];
+import { thingsToDoFaq } from '../../lib/faq';
 
 const heroImage = await getMediaSlot('things-to-do.hero.image', '/assets/img/gallery/yacht/greek-island-1.jpg');
 const heroVideo = await getMediaSlot('things-to-do.hero.video', '/assets/img/hero/services/boat-tours.mp4');

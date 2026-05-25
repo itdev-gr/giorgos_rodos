@@ -101,7 +101,7 @@ async function main() {
       owner_id: userId,
       title: b.title,
       description: b.description,
-      service_page: 'rodos-charter',
+      service_page: 'rhodes-charter',
       badge_label: b.badge,
       price: 'Contact for pricing',
       duration: 'Weekly Charter',

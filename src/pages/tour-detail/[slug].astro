@@ -8,6 +8,8 @@ import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { SITE_URL, looksLikeUuid } from '../../lib/seo';
 import { imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
+import { charterCardDescription } from '../../lib/charter-description';
 
 const { slug } = Astro.params;
 let tour: any = null;
@@ -77,6 +79,11 @@ if (!tour) {
 isPublished = tour.status === 'approved';
 
 const images = tour.images?.length ? tour.images : (tour.image_url ? [tour.image_url] : ['/assets/img/gallery/yacht/crystal-water-1.jpg']);
+const isCharterTour =
+  tour.service_page === 'rhodes-charter' || tour.service_page === 'rodos-charter';
+const displayDescription = isCharterTour
+  ? charterCardDescription(tour)
+  : tour.description;
 const highlights = tour.highlights || [];
 const inclusions = tour.inclusions || [];
 const exclusions = tour.exclusions || [];
@@ -94,7 +101,7 @@ const tourJsonLd: Record<string, unknown> = {
   '@type': 'TouristTrip',
   '@id': `${tourCanonical}#trip`,
   name: tour.title,
-  description: tour.description,
+  description: displayDescription,
   url: tourCanonical,
   mainEntityOfPage: { '@type': 'WebPage', '@id': tourCanonical },
   image: images.map((img: string) => (img.startsWith('http') ? img : `${SITE_URL}${img}`)),
@@ -151,7 +158,7 @@ if (tour.price) {
 
 <BaseLayout
   title={`${tour.title} — Rhodes Rent a Boat`}
-  description={tour.description}
+  description={displayDescription}
   canonical={tourCanonical}
   ogImage={heroOgImage}
   noindex={!isPublished}
@@ -254,7 +261,7 @@ if (tour.price) {
           <!-- Description -->
           <div style="margin-bottom: 36px;">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">About This Experience</h2>
-            <p style="font-size: 0.95rem; line-height: 1.8; color: #475569;">{tour.description}</p>
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #475569;">{displayDescription}</p>
           </div>
 
           <!-- Highlights -->
@@ -397,15 +404,19 @@ if (tour.price) {
         <div class="td-related__grid">
           {relatedTours.map((rt: any) => {
             const img = (Array.isArray(rt.images) && rt.images[0]) || rt.image_url || '/assets/img/gallery/yacht/crystal-water-1.jpg';
+            const rtDescription =
+              rt.service_page === 'rhodes-charter' || rt.service_page === 'rodos-charter'
+                ? charterCardDescription(rt)
+                : rt.description;
             return (
               <a href={`/tour-detail/${rt.slug || rt.id}`} class="td-related__card">
                 <div class="td-related__img">
-                  <img src={imgUrl(img, 600, { quality: 75 })} srcset={imgSrcset(img, [400, 600, 800])} sizes="(max-width: 991px) 50vw, 380px" alt={rt.title} loading="lazy" width="600" height="450" />
+                  <img src={imgUrl(img, 600, { quality: 75 })} srcset={imgSrcset(img, [400, 600, 800])} sizes="(max-width: 991px) 50vw, 380px" alt={tourCardAlt(rt.title, rt.badge_label)} loading="lazy" width="600" height="450" />
                   {rt.badge_label && <span class="td-related__badge">{rt.badge_label}</span>}
                 </div>
                 <div class="td-related__body">
                   <h3 class="td-related__card-title">{rt.title}</h3>
-                  <p class="td-related__excerpt">{rt.description}</p>
+                  <p class="td-related__excerpt">{rtDescription}</p>
                   <div class="td-related__meta">
                     {rt.duration && <span><i class="far fa-clock" aria-hidden="true"></i> {rt.duration}</span>}
                     {rt.guests && <span><i class="far fa-user" aria-hidden="true"></i> {rt.guests}</span>}

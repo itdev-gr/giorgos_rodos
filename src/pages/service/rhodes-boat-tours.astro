@@ -9,34 +9,9 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
 import { createPublicClient } from '../../lib/supabase';
-
-const boatToursFaq = [
-  {
-    question: 'What is a boat tour in Rhodes?',
-    answer: 'A guided experience on the water with a local skipper. The boat follows a planned route, stops in the best swimming and snorkeling bays, and gets you back to the harbour by a set time. Includes both private/semi-private tours (4–10 guests) and larger all-inclusive day cruises with food and drinks.',
-  },
-  {
-    question: 'How long does a boat tour usually last?',
-    answer: 'Half-day tours run 3–4 hours with one or two swim stops. Full-day tours run 6–8 hours with three or four stops, lunch on board and time to swim, snorkel and explore. Sunset tours are typically 2.5–3 hours along the coast and back.',
-  },
-  {
-    question: 'What is included in a guided boat tour?',
-    answer: 'Boat, fuel, professional skipper, safety gear (life jackets, first-aid, anchor), snorkeling masks, soft drinks and snacks. Lunch is included on most full-day tours; on half-day tours we stop at a beach taverna or pack a picnic. Pickup from your hotel can be arranged via <a href="/service/rhodes-transfers">our transfer service</a>.',
-  },
-  {
-    question: 'Where do boat tours go?',
-    answer: 'The east coast of Rhodes is the main playground — Anthony Quinn Bay, Kalithea Springs, Ladiko, Traganou Caves, Tsambika beach and the wider Lindos area. Full-day tours can reach Symi Island. Routes are flexible — tell your skipper what you want most (swimming, sightseeing, secluded coves) and they will adjust.',
-  },
-  {
-    question: 'Are boat tours private or shared?',
-    answer: 'We offer both. Shared tours run on fixed schedules with up to 12 other guests — best value per person. Private tours are your group only, fully flexible route and timing — best for couples, families and small groups celebrating something. <a href="/contact">Tell us your group size</a> and we will recommend the right format.',
-  },
-  {
-    question: 'Boat tour vs cruise vs charter — what is the difference?',
-    answer: 'A <strong>boat tour</strong> can be either a semi-private guided trip on a small boat (3–8 hours) or a shared day cruise on a larger vessel with all-inclusive food and drinks. A <strong><a href="/service/rhodes-charter">charter</a></strong> is a multi-day rental of an entire yacht. <a href="/faq">More on the difference here</a>.',
-  },
-];
+import { boatToursFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.boat-tours.hero.video', '/assets/img/hero/services/boat-tours.mp4');
 const heroImage = await getMediaSlot('service.boat-tours.hero.image', '/assets/img/tours/hero-rhodes-coast.jpg');
@@ -62,6 +37,7 @@ try {
       boat: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -95,6 +71,7 @@ const tours = dbCards;
     subtitle="Organized Boat Tours in Rhodes"
     backgroundImage={heroImage}
     heroVideo={heroVideo}
+    imageAlt="Boat tour departing from Rhodes harbour"
   />
 
   <!-- 2. Intro -->
@@ -110,27 +87,27 @@ const tours = dbCards;
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-water"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Daily Boat Cruises</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Daily Boat Cruises</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Organized cruises along the east coast with swimming stops, lunch on board and time to relax at sea. Each tour is unique.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-check-circle"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Handpicked Tours</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Handpicked Tours</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">From all the tours available in Rhodes, we have selected those that offer a great overall experience — quality boats, good crews, fair prices.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We are not a booking platform. We are local advisors who help you understand the differences and choose the right tour for you.</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Tell us your group size and dates — we match you to the tour format and route that fit, from shared day cruises to private skippered trips.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
         <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          There are many boat tours in Rhodes. The difference is choosing the right one — this is where we help.
+          There are many boat tours in Rhodes. The difference is choosing the right one — this is where we help. See also our <a href="/service/rhodes-catamaran-tours">catamaran tours</a> and <a href="/service/rhodes-boat-trips">private boat trips</a>.
         </p>
       </div>
     </div>
@@ -146,7 +123,7 @@ const tours = dbCards;
         {tours.map((tour, i) => (
           <a href={tour.href || '/contact'} class="bt-tour-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(tour.image, 600, { quality: 75 })} srcset={imgSrcset(tour.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={tour.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(tour.image, 600, { quality: 75 })} srcset={imgSrcset(tour.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={tour.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{tour.boat}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">

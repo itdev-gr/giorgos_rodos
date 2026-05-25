@@ -5,6 +5,7 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import posts from '../../data/data-post.json';
 import { SITE_URL } from '../../lib/seo';
+import { blogImageAlt } from '../../lib/tour-alt';
 
 const { slug } = Astro.params;
 const post = posts.find((p: any) => p.slug === slug);
@@ -13,6 +14,7 @@ if (!post) {
   return new Response(null, { status: 404, statusText: 'Not Found' });
 }
 
+const articleImageAlt = blogImageAlt(post.title, post.tags?.[0]);
 const canonical = `${SITE_URL}/blog/${post.slug}`;
 const ogImage = `${SITE_URL}/assets/img/blog/${post.bannerImg || post.image}`;
 
@@ -63,7 +65,7 @@ if (serviceCtas.length < 2) {
   description={post.excerpt}
   canonical={canonical}
   ogImage={ogImage}
-  ogImageAlt={post.title}
+  ogImageAlt={articleImageAlt}
   ogType="article"
   articleAuthor={post.author}
   articlePublishedTime={post.publishedDate}
@@ -108,7 +110,7 @@ if (serviceCtas.length < 2) {
 
             <img
               src={`/assets/img/blog/${post.bannerImg || post.image}`}
-              alt={post.title}
+              alt={articleImageAlt}
               class="rab-article__img"
             />
 
@@ -178,9 +180,9 @@ if (serviceCtas.length < 2) {
     dateModified: post.publishedDate || undefined,
     author: {
       '@type': 'Person',
-      name: 'Rhodes Rent a Boat Editorial Team',
+      name: 'Giorgos R.',
+      jobTitle: 'Captain & Founder',
       url: `${SITE_URL}/about`,
-      sameAs: ['https://www.instagram.com/rhodos_yachts', 'https://www.facebook.com/rhodosyachts'],
     },
     publisher: {
       '@id': `${SITE_URL}#organization`,

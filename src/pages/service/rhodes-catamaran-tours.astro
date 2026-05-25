@@ -9,34 +9,9 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
 import { createPublicClient } from '../../lib/supabase';
-
-const catamaranFaq = [
-  {
-    question: 'Why choose a catamaran over a monohull boat?',
-    answer: 'Two hulls instead of one means the boat sits flat on the water — almost no roll in light chop. You get more deck space, more shaded seating, stairs straight into the water, and stable trampolines at the bow. For families, anyone prone to sea-sickness, or guests who want to walk around freely instead of bracing against tilt, a catamaran is the easy choice.',
-  },
-  {
-    question: 'What is included on a catamaran day cruise?',
-    answer: 'A typical 6-hour all-inclusive day cruise includes a buffet lunch (Mediterranean — chicken, Greek salad, pasta, hummus, bread), unlimited soft drinks plus wine and beer, snorkel masks, three or four swim stops in calm bays, and a music system. Towels and sun-deck cushions are provided. Some cruises also include paddleboards.',
-  },
-  {
-    question: 'Are catamaran tours good if I get sea-sick?',
-    answer: 'Yes — they are the most stable option short of a private yacht. Catamarans roll far less than monohulls, especially on the calm east coast routes. We still suggest you book a morning trip rather than afternoon (winds usually pick up after 14:00) and pick a coastal route over a long crossing.',
-  },
-  {
-    question: 'Day cruise or sunset catamaran cruise — which to pick?',
-    answer: 'Day cruises (6–7 hours) are about swimming, snorkeling, lunch and exploring multiple bays — best for first-time visitors and active groups. Sunset cruises (3 hours) are about the evening light, dinner on board, drinks and the return view of the medieval city — best for couples and a romantic mood. Many guests do both during a one-week stay.',
-  },
-  {
-    question: 'Are catamaran tours private or shared?',
-    answer: 'Both. Shared cruises run with up to ~30 other guests on a fixed schedule and are the best value per person. Private catamaran charters are your group only (typically up to 12) with full route flexibility — best for celebrations, larger families or groups. Private day rates start around €920–€1,200 for half-day.',
-  },
-  {
-    question: 'How many people fit on a catamaran cruise?',
-    answer: 'Day cruise catamarans seat 25–40 guests comfortably with plenty of deck space per person — never feels crowded. Private charter catamarans are sized 38–55 ft and take 8–14 guests cruising. Tell us your group size and we will book a boat where everyone has space.',
-  },
-];
+import { catamaranFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.catamaran.hero.video', '/assets/img/hero/services/charter.mp4');
 const heroImage = await getMediaSlot('service.catamaran.hero.image', '/assets/img/fleet/lagoon-42-aenaos.jpg');
@@ -62,6 +37,7 @@ try {
       type: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -71,7 +47,7 @@ try {
 const tours = dbCards;
 ---
 
-<BaseLayout title="Rhodes Catamaran Tours — Day & Sunset Catamaran Cruises | Rhodes Rent a Boat" description="Catamaran cruises in Rhodes — day and sunset tours on stable, spacious boats. Shared from €39/person, private from €920. Ideal for couples and groups." ogImage={heroImage}>
+<BaseLayout title="Rhodes Catamaran Tours — Day & Sunset Catamaran Cruises | Rhodes Rent a Boat" description="Catamaran day cruises in Rhodes. Shared and private tours to Lindos, Symi, and the east coast beaches." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Catamaran Tours"
     description="Catamaran tours in Rhodes — day, sunset and private catamaran experiences along the east coast with swimming stops and all-inclusive options."
@@ -95,6 +71,7 @@ const tours = dbCards;
     subtitle="Day and Sunset Catamaran Experiences"
     backgroundImage={heroImage}
     heroVideo={heroVideo}
+    imageAlt="Catamaran cruise departing from Rhodes harbour"
   />
 
   <!-- 2. Intro -->
@@ -110,27 +87,27 @@ const tours = dbCards;
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-sun"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Day Catamaran Tours</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Day Catamaran Tours</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Full day tours with swimming stops, lunch, drinks and time to relax on the nets. Shared or private options.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-moon"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Sunset Catamaran Tours</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Sunset Catamaran Tours</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Evening tours with drinks and light snacks as the sun goes down. Perfect for couples and special occasions.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We help you choose between day tours, sunset tours and private options. Real advice from locals, not a booking platform.</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Not sure between day tour, sunset sail or private charter? We compare schedules, capacity and inclusions for your group.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
         <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          We don't sell catamaran tours. We help you choose the right sea experience in Rhodes.
+          We don't sell catamaran tours. We help you choose the right sea experience in Rhodes. Compare with our <a href="/service/rhodes-boat-tours">boat tours</a> if you want a smaller vessel.
         </p>
       </div>
     </div>
@@ -146,7 +123,7 @@ const tours = dbCards;
         {tours.map((tour, i) => (
           <a href={tour.href || '/contact'} class="ct-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(tour.image, 600, { quality: 75 })} srcset={imgSrcset(tour.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={tour.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(tour.image, 600, { quality: 75 })} srcset={imgSrcset(tour.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={tour.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{tour.type}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">

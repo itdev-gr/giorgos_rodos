@@ -76,5 +76,12 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
+User-agent: CCBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
 Sitemap: https://rhodesrentaboat.com/sitemap.xml
+Sitemap: https://rhodesrentaboat.com/sitemap-images.xml
 Host: rhodesrentaboat.com

@@ -4,6 +4,10 @@
       "source": "/(.*)",
       "headers": [
         {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400"
+        },
+        {
           "key": "Strict-Transport-Security",
           "value": "max-age=63072000; includeSubDomains; preload"
         },
@@ -52,6 +56,11 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/service/rodos-:path*",
+      "destination": "/service/rhodes-:path*",
+      "permanent": true
+    },
     {
       "source": "/service/rhodes-boat-cruises",
       "destination": "/service/rhodes-boat-tours",

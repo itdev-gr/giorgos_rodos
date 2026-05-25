@@ -9,38 +9,9 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSchema from '../../components/seo/FAQSchema.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
 import { createPublicClient } from '../../lib/supabase';
-
-const rentABoatFaq = [
-  {
-    question: 'Do I really need no licence to rent a boat in Rhodes?',
-    answer: 'Yes — Greek law allows visitors to operate small motorboats up to 30 horsepower without a boating licence, provided they are over 18 and have a valid ID or passport. The boats we offer in this category fall well within that limit. You will receive a short safety briefing before departure.',
-  },
-  {
-    question: 'No licence vs with skipper — how do I decide?',
-    answer: 'Pick a license-free self-drive boat if you want full independence, you are comfortable around water, and you want to swim in your own bay at your own pace. Pick a boat with skipper if you prefer to relax, you want a local guide who knows hidden coves, you are bringing children, or the sea conditions favour an experienced driver.',
-  },
-  {
-    question: 'How far can I go with a license-free boat?',
-    answer: 'License-free boats are intended for coastal cruising up to about 1 nautical mile from shore in good weather. The east coast between Mandraki and Anthony Quinn Bay is the typical playground — plenty of bays, swim spots and beach tavernas within easy range. For longer trips (Symi, Lindos, full-day exploration) we recommend a skippered boat.',
-  },
-  {
-    question: 'What is included in the rental?',
-    answer: 'Boat, fuel for the agreed range, safety equipment (life jackets, first-aid kit, anchor), a marine map of the area, and a 15-minute safety briefing. A cooler with ice is usually included. Snorkelling masks and snacks can be arranged on request.',
-  },
-  {
-    question: 'What if the weather turns bad?',
-    answer: 'Safety always comes first. If wind or sea conditions exceed safe limits on your booked day, we either move the rental to another day in your stay or refund in full. We make the call early in the morning based on the official forecast.',
-  },
-  {
-    question: 'Can I take children on board?',
-    answer: 'Yes — children of any age are welcome with proper life jackets (we provide child-size jackets free of charge). For families with very young children we usually recommend a boat with skipper, so the parents can fully focus on the kids.',
-  },
-  {
-    question: 'How do I book and what are the payment terms?',
-    answer: 'Send us a message or WhatsApp with your dates and group size. We confirm availability the same day and send a written quote. A deposit secures the booking; the balance is paid on the day of the rental in cash or by card.',
-  },
-];
+import { rentABoatFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.rent-a-boat.hero.video', '/assets/img/hero/services/license-free.mp4');
 const heroImage = await getMediaSlot('service.rent-a-boat.hero.image', '/assets/img/gallery/yacht/crystal-water-1.jpg');
@@ -66,6 +37,7 @@ try {
       type: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -75,7 +47,7 @@ try {
 const boats = dbCards;
 ---
 
-<BaseLayout title="Rent a Boat in Rhodes — License Free & With Skipper" description="Rent a boat in Rhodes without a licence. Self-drive 30HP motorboats from €130 for 2 hours. No experience needed, age 18+. Optional skipper available." ogImage={heroImage}>
+<BaseLayout title="Rent a Boat in Rhodes — License Free & With Skipper" description="Rent a boat in Rhodes without a licence. Self-drive boats from 30hp to 150hp departing daily from Rhodes Town." ogImage={heroImage}>
   <ServiceSchema
     name="Rhodes Rent a Boat"
     description="License-free boat rentals and small boats with skipper along the Rhodes coast. Explore bays, swim and enjoy the sea at your own pace."
@@ -130,12 +102,12 @@ const boats = dbCards;
             <i class="fas fa-map-marked-alt"></i>
           </div>
           <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #56646b; margin: 0;">We help you choose the right boat and the right experience. Not a booking platform — real, personal advice from locals.</p>
+          <p style="font-size: 0.9rem; line-height: 1.65; color: #56646b; margin: 0;">We help you pick license-free or skippered, and the boat size that matches your coastal plans and group.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
         <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          We don't rent boats. We help you choose the right sea experience in Rhodes.
+          We don't rent boats. We help you choose the right sea experience in Rhodes. Prefer a skipper and a planned route? See our <a href="/service/rhodes-boat-trips">private boat trips</a>.
         </p>
       </div>
     </div>
@@ -151,7 +123,7 @@ const boats = dbCards;
         {boats.map((boat, i) => (
           <a href={boat.href || '/contact'} class="rb-boat-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(boat.image, 600, { quality: 75 })} srcset={imgSrcset(boat.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={boat.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(boat.image, 600, { quality: 75 })} srcset={imgSrcset(boat.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={boat.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{boat.type}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">

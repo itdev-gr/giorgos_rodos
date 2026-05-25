@@ -9,34 +9,9 @@ import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
+import { tourCardAlt } from '../../lib/tour-alt';
 import { createPublicClient } from '../../lib/supabase';
-
-const sailingFaq = [
-  {
-    question: 'What is the best month for sailing in Rhodes?',
-    answer: 'May, June, September and early October are the best — warm sea, lighter winds and quieter anchorages. July and August have the strong Meltemi north winds (Force 4–7) which experienced sailors love but can be tiring for relaxed cruising. Spring and autumn are ideal for first-time sailors.',
-  },
-  {
-    question: 'What is the Meltemi wind and does it affect my trip?',
-    answer: 'The Meltemi is a dry north-westerly wind that blows across the Aegean from late June through August, often Force 4–7. On the east coast of Rhodes (where most of our trips run) the island shelters you from the worst of it, but it can affect crossings to Symi or Halki. We always check the forecast and may shift the route to a sheltered coast on Meltemi days — safety first.',
-  },
-  {
-    question: 'Do I need any sailing experience?',
-    answer: 'No. All our sailing trips include a professional skipper who handles the boat. You are welcome to help (steering, raising sails) if you want, but you can also just relax. If you have a sailing licence and want to try a <a href="/service/rhodes-charter">bareboat charter</a>, we can arrange that too.',
-  },
-  {
-    question: 'Where can I sail to from Rhodes?',
-    answer: 'Day trips: along the east coast to Lindos, Kalithea, Anthony Quinn Bay, Faliraki. Half-day: short hops to Mandraki bays and Kalithea Springs. Multi-day: Symi (1.5h crossing), Tilos, Halki, Nisyros (3–4h). Full-week routes can reach Kos and Patmos. Tell us how long you have and we will plan a route that fits.',
-  },
-  {
-    question: 'Where do sailing trips depart from?',
-    answer: 'Most depart from Mandraki Harbour in Rhodes Town. Some east-coast day sails leave from Faliraki or Kolymbia. Multi-day charters typically start from Mandraki or Rhodes Marina depending on the yacht. We confirm the exact berth when you book.',
-  },
-  {
-    question: 'What should I bring on a sailing trip?',
-    answer: 'Soft-sole shoes (no black-sole sneakers — they mark the deck), sunscreen, a hat, sunglasses, a light layer for the wind, and a swimsuit. We provide towels, snorkel gear, water and snacks. For multi-day trips bring a soft bag (suitcases do not fit in cabin lockers) and any specific food preferences — we provision before departure.',
-  },
-];
+import { sailingFaq } from '../../lib/faq';
 
 const heroVideo = await getMediaSlot('service.sailing.hero.video', '/assets/img/hero/services/charter.mp4');
 const heroImage = await getMediaSlot('service.sailing.hero.image', '/assets/img/gallery/yacht/sailing-sunset-1.jpg');
@@ -62,6 +37,7 @@ try {
       type: t.badge_label || '',
       price: t.price || '',
       href: `/tour-detail/${t.slug || t.id}`,
+      imageAlt: tourCardAlt(t.title, t.badge_label),
     }));
   }
 } catch (e) {
@@ -95,6 +71,7 @@ const trips = dbCards;
     subtitle="Experience the Sea Under Sail"
     backgroundImage={heroImage}
     heroVideo={heroVideo}
+    imageAlt="Sailing trip departing from Rhodes harbour"
   />
 
   <!-- 2. Intro -->
@@ -110,27 +87,27 @@ const trips = dbCards;
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-wind"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">The Sailing Experience</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">The Sailing Experience</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Sailing is slower, quieter and more connected to the sea. The wind on the sails, the boat moving through the water — a real sea experience.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-users"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Shared & Private</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Shared & Private</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Join a small group sailing trip or rent a sailing yacht for your group. Day trips, sunset sails and multi-day adventures.</p>
         </div>
         <div style="text-align: center; padding: 32px 24px;">
           <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
             <i class="fas fa-map-marked-alt"></i>
           </div>
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h3>
+          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
           <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We help you choose between shared trips, private sailing and multi-day routes. Real advice from people who know the waters.</p>
         </div>
       </div>
       <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
         <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          Sailing is not just a boat trip. It is a way to experience the sea.
+          Sailing is not just a boat trip. It is a way to experience the sea. For multi-day holidays, see <a href="/service/rhodes-charter">yacht charter</a> in the Dodecanese.
         </p>
       </div>
     </div>
@@ -146,7 +123,7 @@ const trips = dbCards;
         {trips.map((trip, i) => (
           <a href={trip.href || '/contact'} class="sl-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
             <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.title} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
               <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{trip.type}</span>
             </div>
             <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
