@@ -14,7 +14,6 @@ import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astr
 import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
 import ServiceRouteGuide from '../../components/service/ServiceRouteGuide.astro';
-import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
 import { boatTripsFaq } from '../../lib/faq';
 import { getServiceSeo } from '../../lib/service-seo';
@@ -50,6 +49,5 @@ const trips = await fetchServiceTours(SLUG);
   </ServiceCatalog>
 
   <FAQSection items={boatTripsFaq} intro="Common questions about Rhodes boat trips — shared cruises and private skippered days. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
-  <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
   <FooterFour />
 </BaseLayout>
