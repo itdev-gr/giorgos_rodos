@@ -14,44 +14,17 @@ import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro'
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
 import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
-import { tourCardAlt } from '../../lib/tour-alt';
-import { createPublicClient } from '../../lib/supabase';
 import { boatToursFaq } from '../../lib/faq';
 import { getServiceSeo } from '../../lib/service-seo';
 import { getServiceContent } from '../../lib/service-content';
+import { fetchServiceTours } from '../../lib/service-tours';
 
 const SLUG = 'rhodes-boat-tours';
 const seo = getServiceSeo(SLUG)!;
 const content = getServiceContent(SLUG)!;
 
 const heroImage = await getMediaSlot('service.boat-tours.hero.image', '/assets/img/tours/hero-rhodes-coast.jpg');
-
-let tours: any[] = [];
-try {
-  const supabase = createPublicClient();
-  if (supabase) {
-    const { data } = await supabase
-      .from('tours')
-      .select('*')
-      .or('service_page.eq.rhodes-boat-tours,is_global.eq.true')
-      .eq('status', 'approved')
-      .order('is_global', { ascending: false })
-      .order('created_at', { ascending: false });
-    tours = (data || []).map((t: any) => ({
-      title: t.title,
-      description: t.description,
-      image: t.image_url || t.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
-      duration: t.duration || '',
-      guests: t.guests || '',
-      boat: t.badge_label || '',
-      price: t.price || '',
-      href: `/tour-detail/${t.slug || t.id}`,
-      imageAlt: tourCardAlt(t.title, t.badge_label),
-    }));
-  }
-} catch {
-  // Supabase unavailable
-}
+const tours = await fetchServiceTours(SLUG);
 ---
 
 <BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
@@ -82,7 +55,7 @@ try {
 
   {content.catalogTitle && (
     <ServiceCatalog title={content.catalogTitle} subtitle={content.catalogSubtitle}>
-      <div class="exp-grid">
+      <div class="exp-grid exp-grid--catalog">
         {tours.map((tour, i) => (
           <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
             <ExperienceCard
@@ -91,7 +64,7 @@ try {
               description={tour.description}
               image={tour.image}
               imageAlt={tour.imageAlt}
-              badge={tour.boat || tour.duration}
+              badge={tour.badge || tour.duration}
               price={tour.price}
               duration={tour.duration}
               guests={tour.guests}

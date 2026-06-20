@@ -1,5 +1,5 @@
 ---
-import { imgUrl, imgSrcset } from '../../lib/media';
+import ExperienceCard from '../ExperienceCard.astro';
 
 interface CharterItem {
   title: string;
@@ -20,173 +20,20 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="sp-charter-grid">
+<div class="exp-grid exp-grid--catalog">
   {items.map((charter, i) => (
-    <a href={charter.href || '/contact'} class="sp-charter-card" data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
-      <div class="sp-charter-card__media">
-        <img
-          src={imgUrl(charter.image, 600, { quality: 75 })}
-          srcset={imgSrcset(charter.image, [400, 600, 800])}
-          sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
-          width="600"
-          height="450"
-          alt={charter.imageAlt || charter.title}
-          loading="lazy"
-          decoding="async"
-        />
-        {charter.type && <span class="sp-charter-card__badge">{charter.type}</span>}
-      </div>
-      <div class="sp-charter-card__body">
-        <h3 class="sp-charter-card__title">{charter.title}</h3>
-        <p class="sp-charter-card__desc">{charter.description}</p>
-        <div class="sp-charter-card__tags">
-          {charter.duration && (
-            <span><i class="far fa-clock" aria-hidden="true"></i> {charter.duration}</span>
-          )}
-          {charter.guests && (
-            <span><i class="far fa-user" aria-hidden="true"></i> {charter.guests}</span>
-          )}
-        </div>
-        <div class="sp-charter-card__foot">
-          {charter.price && <span class="sp-charter-card__price">{charter.price}</span>}
-          <span class="sp-charter-card__cta">Explore <i class="fa-regular fa-arrow-right" aria-hidden="true"></i></span>
-        </div>
-      </div>
-    </a>
+    <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
+      <ExperienceCard
+        href={charter.href || '/contact'}
+        title={charter.title}
+        description={charter.description}
+        image={charter.image}
+        imageAlt={charter.imageAlt}
+        badge={charter.type || charter.duration}
+        price={charter.price}
+        duration={charter.duration}
+        guests={charter.guests}
+      />
+    </div>
   ))}
 </div>
-
-<style>
-  .sp-charter-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .sp-charter-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid #e8eef0;
-    box-shadow: 0 4px 24px rgba(17, 61, 72, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .sp-charter-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 36px rgba(17, 61, 72, 0.12);
-  }
-
-  .sp-charter-card__media {
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .sp-charter-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .sp-charter-card:hover .sp-charter-card__media img {
-    transform: scale(1.05);
-  }
-
-  .sp-charter-card__badge {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    background: rgba(17, 61, 72, 0.88);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 6px;
-    backdrop-filter: blur(4px);
-  }
-
-  .sp-charter-card__body {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .sp-charter-card__title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #113D48;
-    margin: 0 0 8px;
-  }
-
-  .sp-charter-card__desc {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #000;
-    margin: 0 0 14px;
-  }
-
-  .sp-charter-card__tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .sp-charter-card__tags span {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.75rem;
-    color: #000;
-    background: #f0f4f5;
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
-
-  .sp-charter-card__tags i {
-    font-size: 0.7rem;
-    color: #1CA8CB;
-  }
-
-  .sp-charter-card__foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 14px;
-    border-top: 1px solid #f0f0f0;
-  }
-
-  .sp-charter-card__price {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #1CA8CB;
-  }
-
-  .sp-charter-card__cta {
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #113D48;
-  }
-
-  @media (max-width: 991px) {
-    .sp-charter-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 575px) {
-    .sp-charter-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

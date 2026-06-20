@@ -118,10 +118,11 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
       </p>
 
       {filtered.length > 0 ? (
-        <div className="exp-grid">
+        <div className="exp-grid exp-grid--catalog">
           {filtered.map((tour) => {
             const img = tour.image_url || tour.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg';
             const badge = tour.badge_label || tour.duration || '';
+            const showDurationMeta = Boolean(tour.duration && tour.duration !== badge);
             return (
               <a
                 key={tour.id}
@@ -164,9 +165,9 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
                     <p className="exp-card__desc">{tour.description}</p>
                   )}
 
-                  {(tour.duration || tour.guests) && (
+                  {(showDurationMeta || tour.guests) && (
                     <div className="exp-card__meta">
-                      {tour.duration && !tour.badge_label && (
+                      {showDurationMeta && (
                         <span><i className="far fa-clock" /> {tour.duration}</span>
                       )}
                       {tour.guests && (

@@ -36,7 +36,7 @@ const tours = await fetchServiceTours(SLUG);
   {content.panel && <ServiceIntroPanel {...content.panel} image={heroImage} />}
 
   <ServiceCatalog title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
-    <div class="exp-grid">
+    <div class="exp-grid exp-grid--catalog">
       {tours.map((tour, i) => (
         <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
           <ExperienceCard href={tour.href} title={tour.title} description={tour.description} image={tour.image} imageAlt={tour.imageAlt} badge={tour.badge || tour.duration} price={tour.price} duration={tour.duration} guests={tour.guests} />
