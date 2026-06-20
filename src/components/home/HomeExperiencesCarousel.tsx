@@ -111,28 +111,23 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
           </h2>
         </div>
         {count > 0 && (
-          <div className="home-exp__actions">
-            <a href="/things-to-do" className="home-exp__view-all">
-              Browse all {count} experiences
-            </a>
-            <div className="home-exp__nav" aria-label="Carousel navigation">
-              <button
-                ref={prevRef}
-                type="button"
-                className="home-exp__nav-btn home-exp__nav-btn--prev"
-                aria-label="Previous experiences"
-              >
-                <i className="fa-regular fa-arrow-left" aria-hidden="true" />
-              </button>
-              <button
-                ref={nextRef}
-                type="button"
-                className="home-exp__nav-btn home-exp__nav-btn--next"
-                aria-label="Next experiences"
-              >
-                <i className="fa-regular fa-arrow-right" aria-hidden="true" />
-              </button>
-            </div>
+          <div className="home-exp__nav" aria-label="Carousel navigation">
+            <button
+              ref={prevRef}
+              type="button"
+              className="home-exp__nav-btn home-exp__nav-btn--prev"
+              aria-label="Previous experiences"
+            >
+              <i className="fa-regular fa-arrow-left" aria-hidden="true" />
+            </button>
+            <button
+              ref={nextRef}
+              type="button"
+              className="home-exp__nav-btn home-exp__nav-btn--next"
+              aria-label="Next experiences"
+            >
+              <i className="fa-regular fa-arrow-right" aria-hidden="true" />
+            </button>
           </div>
         )}
       </div>

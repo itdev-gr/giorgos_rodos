@@ -42,27 +42,6 @@ const experiences = await fetchAllApprovedExperiences();
     color: #56646b;
   }
 
-  .home-exp__actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 16px;
-  }
-
-  .home-exp__view-all {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: #1CA8CB;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .home-exp__view-all:hover {
-    color: #1489a8;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
   .home-exp__track-wrap {
     position: relative;
     padding-bottom: 8px;
@@ -163,13 +142,6 @@ const experiences = await fetchAllApprovedExperiences();
 
     .home-exp__track-wrap {
       min-height: 380px;
-    }
-
-    .home-exp__actions {
-      width: 100%;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
     }
 
     .home-exp-card.exp-card {
