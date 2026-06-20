@@ -128,6 +128,11 @@
       "source": "/assets/img/hero/:path*",
       "destination": "/assets/img/heroes/:path*",
       "permanent": true
+    },
+    {
+      "source": "/assets/img/about/:path*",
+      "destination": "/assets/img/pages/about/:path*",
+      "permanent": true
     }
   ]
 }

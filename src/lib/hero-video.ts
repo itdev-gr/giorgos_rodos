@@ -1,16 +1,13 @@
+import { normalizeBundledAssetUrl } from './bundled-asset-url';
+
 /** Local optimized hero fallback (≈1.1MB). */
 export const DEFAULT_HERO_MP4 = '/assets/img/heroes/hero-video.mp4';
-
-const LEGACY_HERO_PREFIX = '/assets/img/hero/';
 
 /** Map bundled hero media paths to current public/ paths (post–asset reorganisation). */
 export function normalizeBundledHeroVideoUrl(url: string): string {
   if (!url.startsWith('/assets/')) return url;
 
-  let path = url;
-  if (path.startsWith(LEGACY_HERO_PREFIX)) {
-    path = path.replace(LEGACY_HERO_PREFIX, '/assets/img/heroes/');
-  }
+  let path = normalizeBundledAssetUrl(url);
 
   if (path.toLowerCase().endsWith('.webm')) {
     path = path.replace(/\.webm$/i, '.mp4');

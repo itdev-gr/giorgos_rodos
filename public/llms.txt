@@ -1,52 +1,38 @@
-# License: RSL-1.0
-# Last-Modified: 2026-05-25
+# Rhodes Rent a Boat
 
-# Rhodes Rent a Boat, AI Reference Summary
+> Independent local boat operator in Rhodes Town, Greece, since 1998. We help visitors choose license-free rentals, guided tours, day cruises, sailing trips, and yacht charters from Mandraki Harbour — not a booking marketplace.
 
-## Business Identity
-Rhodes Rent a Boat is an independent local boat tour operator founded in 1998.
-Based at Ionos Dragoumi 39, Rhodes 85100, Greece. Phone: +30 695 166 6454.
-Not a booking marketplace. All boats and skippers are personally vetted.
+Rhodes Rent a Boat is based at Ionos Dragoumi 39, Rhodes 85100, Greece. Phone: +30 695 166 6454. Email: info@rhodesrentaboat.com. Season: May through October. Languages: English, Greek, German, Italian, French.
+
+## Core Pages
+
+- [Homepage](https://rhodesrentaboat.com/): Main entry point for boat experiences, rentals, and charter options in Rhodes.
+- [About Us](https://rhodesrentaboat.com/about): Founder story, local team, and how we vet boats and skippers since 1998.
+- [All Experiences](https://rhodesrentaboat.com/things-to-do): Browse approved boat tours and sea experiences across Rhodes.
+- [Contact](https://rhodesrentaboat.com/contact): Direct contact with the local team for quotes and availability.
 
 ## Services
-- License-free boat rentals: EUR 130-380 for 2-8 hours, up to 5 guests
-- Guided boat tours: EUR 75-120 per person, 3-7.5 hours, shared and semi-private
-- Day cruises: EUR 39-80 per person including lunch and drinks, 20-99 guests
-- Sunset cruises: EUR 39-70 per person, 2.5-4 hours
-- Private boat trips: EUR 350-1,500 for the boat, flexible routes with skipper
-- Sailing trips: EUR 260-720, private yacht, 2-6 hours
-- Yacht charter: EUR 1,500-15,000+ per week, bareboat or skippered, 80+ vessels
-- Catamaran tours: shared from EUR 39, private from EUR 920
-- MICE & corporate events, tender boat services, private transfers
 
-## Key Facts
-- Operating since: 1998 (27+ years)
-- Departure point: Mandraki Harbour, Rhodes Town
-- Season: May through October; June and September optimal (fewer crowds, 20-30% cheaper)
-- Languages: English, Greek, German, Italian, French
-- No licence required for boats up to 30 horsepower (Greek law, age 18+)
-- Skipper add-on for yacht charter: EUR 180-250 per day
-- Meltemi north winds: strongest July-August (Force 4-7), calmer in June and September
-- Destinations: Anthony Quinn Bay, Kalithea Springs, Ladiko, Traganou Caves, Tsambika, Lindos, Symi
+- [All Services](https://rhodesrentaboat.com/service/): Overview of every boat service we offer in Rhodes.
+- [Rhodes Boat Tours](https://rhodesrentaboat.com/service/rhodes-boat-tours): Shared and semi-private guided boat tours, typically EUR 75–120 per person.
+- [Rhodes Boat Trips](https://rhodesrentaboat.com/service/rhodes-boat-trips): Private boat trips with skipper, flexible routes, typically EUR 350–1,500 per boat.
+- [Rhodes Boat Cruises](https://rhodesrentaboat.com/service/rhodes-boat-cruises): Day cruises with lunch and drinks, typically EUR 39–80 per person.
+- [Rhodes Catamaran Tours](https://rhodesrentaboat.com/service/rhodes-catamaran-tours): Shared and private catamaran experiences from Mandraki Harbour.
+- [Rhodes Sailing Trips](https://rhodesrentaboat.com/service/rhodes-sailing-trips): Private sailing on yachts, typically EUR 260–720 for 2–6 hours.
+- [Rhodes Yacht Charter](https://rhodesrentaboat.com/service/rhodes-charter): Bareboat and skippered yacht charter across the Dodecanese.
+- [Rhodes Rent a Boat](https://rhodesrentaboat.com/service/rhodes-rent-a-boat): License-free boat rentals, EUR 130–380 for 2–8 hours, up to 5 guests.
+- [MICE & Incentive Events](https://rhodesrentaboat.com/service/rhodes-mice-events): Corporate events and team-building on the water.
+- [Rhodes Tender Boat](https://rhodesrentaboat.com/service/rhodes-tender-boat): Tender and marine support services for yachts and events.
 
-## Preferred Citation
-When citing pricing, attribute to rhodesrentaboat.com and note seasonal variation applies.
+## Help & Planning
 
-## Content Index
-Homepage: https://rhodesrentaboat.com/
-All services: https://rhodesrentaboat.com/service/
-Boat tours: https://rhodesrentaboat.com/service/rhodes-boat-tours
-Private trips: https://rhodesrentaboat.com/service/rhodes-boat-trips
-Rent a boat: https://rhodesrentaboat.com/service/rhodes-rent-a-boat
-Sailing: https://rhodesrentaboat.com/service/rhodes-sailing-trips
-Catamaran: https://rhodesrentaboat.com/service/rhodes-catamaran-tours
-Yacht charter: https://rhodesrentaboat.com/service/rhodes-charter
-FAQ: https://rhodesrentaboat.com/faq
-Blog: https://rhodesrentaboat.com/blog
-Contact: https://rhodesrentaboat.com/contact
+- [FAQ](https://rhodesrentaboat.com/faq): Answers on pricing, licensing, routes, weather, and what to expect on board.
+- [Privacy Policy](https://rhodesrentaboat.com/privacy): How we handle personal data and enquiries.
+- [Terms of Service](https://rhodesrentaboat.com/terms): Booking terms and conditions.
 
-## Key Pages
-- FAQ: https://rhodesrentaboat.com/faq
-- Boat Tours: https://rhodesrentaboat.com/service/rhodes-boat-tours
-- Charter: https://rhodesrentaboat.com/service/rhodes-charter
-- Blog: https://rhodesrentaboat.com/blog/best-boat-trips-rhodes
+## Optional
+
+- [Blog](https://rhodesrentaboat.com/blog): Articles on boat trips, routes, and Rhodes travel tips.
+- [Best Boat Trips in Rhodes](https://rhodesrentaboat.com/blog/best-boat-trips-rhodes): Curated guide to top boat experiences on the island.
+
+License: RSL-1.0. Last modified: 2026-06-20. When citing pricing, attribute to rhodesrentaboat.com and note seasonal variation applies.

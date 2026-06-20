@@ -30,6 +30,22 @@ export function mapTourToExperience(t: any): ExperienceCardData {
   };
 }
 
+/** Extract the first numeric price from strings like "€55/person" or "From €400". */
+export function parseExperiencePrice(price: string | null | undefined): number {
+  if (!price?.trim()) return Number.POSITIVE_INFINITY;
+  const match = price.replace(/\s/g, '').match(/(\d+(?:[.,]\d+)?)/);
+  if (!match) return Number.POSITIVE_INFINITY;
+  return parseFloat(match[1].replace(',', '.'));
+}
+
+export function sortExperiencesByPriceAsc(tours: ExperienceCardData[]): ExperienceCardData[] {
+  return [...tours].sort((a, b) => {
+    const byPrice = parseExperiencePrice(a.price) - parseExperiencePrice(b.price);
+    if (byPrice !== 0) return byPrice;
+    return a.title.localeCompare(b.title, 'en');
+  });
+}
+
 export async function fetchAllApprovedExperiences(): Promise<ExperienceCardData[]> {
   try {
     const supabase = createReadClient();
@@ -38,14 +54,12 @@ export async function fetchAllApprovedExperiences(): Promise<ExperienceCardData[
       .from('tours')
       .select('*')
       .eq('status', 'approved')
-      .neq('service_page', 'rhodes-charter')
-      .order('is_global', { ascending: false })
-      .order('created_at', { ascending: false });
+      .neq('service_page', 'rhodes-charter');
     if (error) {
       console.error('[fetchAllApprovedExperiences]', error.message);
       return [];
     }
-    return (data || []).map(mapTourToExperience);
+    return sortExperiencesByPriceAsc((data || []).map(mapTourToExperience));
   } catch (err) {
     console.error('[fetchAllApprovedExperiences]', err);
     return [];

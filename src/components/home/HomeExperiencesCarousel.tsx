@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
-import type { Swiper as SwiperType } from 'swiper';
+import { Navigation, A11y } from 'swiper/modules';
 import { getSupabase } from '../../lib/supabase';
-import { mapTourToExperience, type ExperienceCardData } from '../../lib/service-tours';
+import { mapTourToExperience, sortExperiencesByPriceAsc, type ExperienceCardData } from '../../lib/service-tours';
 import { imgUrl, imgSrcset } from '../../lib/media';
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 interface Props {
   initialTours: ExperienceCardData[];
@@ -72,12 +69,10 @@ async function fetchToursClient(): Promise<ExperienceCardData[]> {
     .from('tours')
     .select('*')
     .eq('status', 'approved')
-    .neq('service_page', 'rhodes-charter')
-    .order('is_global', { ascending: false })
-    .order('created_at', { ascending: false });
+    .neq('service_page', 'rhodes-charter');
 
   if (error || !data) return [];
-  return data.map(mapTourToExperience);
+  return sortExperiencesByPriceAsc(data.map(mapTourToExperience));
 }
 
 export default function HomeExperiencesCarousel({ initialTours }: Props) {
@@ -85,7 +80,6 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
   const [loading, setLoading] = useState(initialTours.length === 0);
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
-  const pagRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (initialTours.length > 0) {
@@ -105,23 +99,6 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
       cancelled = true;
     };
   }, [initialTours]);
-
-  const bindSwiperControls = (swiper: SwiperType) => {
-    if (typeof swiper.params.navigation === 'object' && swiper.params.navigation) {
-      swiper.params.navigation.prevEl = prevRef.current;
-      swiper.params.navigation.nextEl = nextRef.current;
-      swiper.navigation.destroy();
-      swiper.navigation.init();
-      swiper.navigation.update();
-    }
-    if (typeof swiper.params.pagination === 'object' && swiper.params.pagination) {
-      swiper.params.pagination.el = pagRef.current;
-      swiper.pagination.destroy();
-      swiper.pagination.init();
-      swiper.pagination.render();
-      swiper.pagination.update();
-    }
-  };
 
   const count = tours.length;
 
@@ -171,16 +148,16 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
         <div className="home-exp__track-wrap">
           <Swiper
             className="home-exp__swiper"
-            modules={[Navigation, Pagination, A11y]}
+            modules={[Navigation, A11y]}
             slidesPerView="auto"
             spaceBetween={20}
             speed={650}
             grabCursor
             watchOverflow
-            navigation
-            pagination={{ clickable: true, dynamicBullets: true, dynamicMainBullets: 5 }}
-            onBeforeInit={bindSwiperControls}
-            onInit={bindSwiperControls}
+            navigation={{
+              prevEl: '.home-exp__nav-btn--prev',
+              nextEl: '.home-exp__nav-btn--next',
+            }}
             breakpoints={{
               768: { spaceBetween: 22 },
               1200: { spaceBetween: 24 },
@@ -192,9 +169,6 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="container">
-            <div ref={pagRef} className="home-exp__pagination" />
-          </div>
         </div>
       ) : !loading ? (
         <div className="container home-exp__empty">

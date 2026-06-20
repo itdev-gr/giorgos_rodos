@@ -1,3 +1,4 @@
+import { normalizeBundledAssetUrl } from './bundled-asset-url';
 import { createPublicClient } from './supabase';
 
 interface MediaSlot {
@@ -38,7 +39,7 @@ async function loadSlots(): Promise<MediaSlot[]> {
 export async function getMediaSlot(key: string, fallback: string): Promise<string> {
   const slots = await loadSlots();
   const hit = slots.find((s) => s.key === key);
-  return hit?.url || fallback;
+  return normalizeBundledAssetUrl(hit?.url || fallback);
 }
 
 export async function getAllMediaSlots(): Promise<MediaSlot[]> {

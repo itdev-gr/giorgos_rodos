@@ -116,28 +116,11 @@ const experiences = await fetchAllApprovedExperiences();
     cursor: not-allowed;
   }
 
-  .home-exp__pagination {
-    position: relative !important;
-    width: 100% !important;
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-    bottom: auto !important;
-    top: auto !important;
-  }
-
-  .home-exp__pagination .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    background: #c5d5db;
-    opacity: 1;
-    transition: width 0.25s ease, background 0.25s ease;
-  }
-
-  .home-exp__pagination .swiper-pagination-bullet-active {
-    width: 28px;
-    border-radius: 999px;
-    background: #1CA8CB;
+  /* Swiper default overlay controls — only use header nav buttons */
+  .home-exp__swiper :global(.swiper-button-prev),
+  .home-exp__swiper :global(.swiper-button-next),
+  .home-exp__swiper :global(.swiper-pagination) {
+    display: none !important;
   }
 
   .home-exp__empty {
