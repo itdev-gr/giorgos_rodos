@@ -1,0 +1,106 @@
+---
+interface Route {
+  heading: string;
+  body: string;
+}
+
+interface Props {
+  title: string;
+  intro: string;
+  routes: Route[];
+  closing: string;
+}
+
+const { title, intro, routes, closing } = Astro.props;
+---
+
+<section class="sp-routes" aria-labelledby="sp-routes-title">
+  <div class="container">
+    <div class="sp-routes__inner" data-ani="fadein">
+      <h2 id="sp-routes-title" class="sp-routes__title">{title}</h2>
+      <p class="sp-routes__intro">{intro}</p>
+      {routes.map((route) => (
+        <div class="sp-routes__block">
+          <h3 class="sp-routes__heading">{route.heading}</h3>
+          <p class="sp-routes__body" set:html={route.body} />
+        </div>
+      ))}
+      <p class="sp-routes__closing" set:html={closing} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .sp-routes {
+    padding: 64px 0;
+    background: #fff;
+  }
+
+  .sp-routes__inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .sp-routes__title {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 16px;
+    line-height: 1.25;
+    text-transform: none;
+  }
+
+  .sp-routes__intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #475569;
+    margin: 0 0 32px;
+  }
+
+  .sp-routes__block {
+    margin-bottom: 28px;
+  }
+
+  .sp-routes__heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 10px;
+    line-height: 1.35;
+    text-transform: none;
+  }
+
+  .sp-routes__body {
+    font-size: 1rem;
+    line-height: 1.72;
+    color: #475569;
+    margin: 0;
+  }
+
+  .sp-routes__body :global(a) {
+    color: #1CA8CB;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .sp-routes__body :global(a:hover) {
+    color: #1489a8;
+  }
+
+  .sp-routes__closing {
+    font-size: 1rem;
+    line-height: 1.72;
+    color: #475569;
+    margin: 36px 0 0;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .sp-routes__closing :global(a) {
+    color: #1CA8CB;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

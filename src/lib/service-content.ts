@@ -35,6 +35,12 @@ export interface ServicePageContent {
   splits?: ServiceSplit[];
   ctaTitle?: string;
   ctaText?: string;
+  routeGuide?: {
+    title: string;
+    intro: string;
+    routes: { heading: string; body: string }[];
+    closing: string;
+  };
 }
 
 export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
@@ -143,6 +149,29 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     },
     catalogTitle: 'Private Boat Trips',
     catalogSubtitle: 'Skippered experiences reserved for your group',
+    routeGuide: {
+      title: 'Popular Rhodes Boat Trip Routes',
+      intro: 'Rhodes boat trips cover everything from budget-friendly shared day cruises to fully private speedboat charters. Most visitors ask about Symi, Lindos and the east-coast swim bays — here is how the main routes compare, and where shared and private options fit.',
+      routes: [
+        {
+          heading: 'Rhodes boat trip to Symi',
+          body: 'The Symi day trip is the most booked boat route from Rhodes. Shared cruises leave Mandraki around 09:00, cross in roughly 75–90 minutes and give you four to five hours in the pastel harbour of Gialos before returning by about 18:00. Expect €45–€70 per person on organised day boats with a swim stop en route. Private speedboat trips to Symi suit groups who want faster crossings, Panormitis Monastery or flexible timing — typically €1,000–€1,300 per vessel for up to six guests. Browse <a href="/service/rhodes-boat-cruises">Symi day cruises</a> for shared departures or the private options in our catalog below.',
+        },
+        {
+          heading: 'Rhodes boat trip to Lindos',
+          body: 'Lindos boat trips combine swimming at St Paul\'s Bay with free time in the village beneath the Acropolis. Shared cruises from Rhodes Town or Kolymbia often run €39–€100 per person depending on duration and lunch. Express routes focus on Lindos ashore; fuller day cruises add east-coast swim stops at Anthony Quinn Bay or Kalithea Springs on the return leg. Private speedboat trips to Lindos start around €460 for a half-day and €700+ for a full day with lunch on deck — ideal when you want to control how long you stay in the village. See <a href="/service/rhodes-boat-cruises">Lindos and east-coast cruises</a> or enquire about a private Lindos day.',
+        },
+        {
+          heading: 'East coast swim trips (Anthony Quinn, Kalithea, Ladiko)',
+          body: 'Not every Rhodes boat trip crosses to another island. Half-day and full-day east-coast routes stay along the sheltered shoreline — Anthony Quinn Bay, Kalithea Springs, Ladiko and Traganou Caves are the classic swim-and-snorkel stops. Shared all-inclusive cruises run €45–€75 per person with lunch and drinks on board. Private half-day trips from €350 let your group hit two or three bays at your own pace without a fixed timetable. These routes suit first-time visitors who want turquoise water without an open-sea crossing.',
+        },
+        {
+          heading: 'Boat trips from Kolymbia and Faliraki',
+          body: 'If you stay on the east coast, departures from Kolymbia or Faliraki shorten transfer time to Symi, Lindos and local swim bays. Express boats to Symi from Kolymbia often leave later than Mandraki services and include a swim stop at St George\'s Bay. Faliraki sea shuttles connect the resort strip with Rhodes Town harbour for guests who prefer not to drive. When you enquire, tell us your hotel area — we match you to the nearest sensible departure rather than sending you across the island unnecessarily.',
+        },
+      ],
+      closing: 'Shared day cruises offer the best per-person value; private skippered trips give you the boat, route and timing to yourselves. We have curated both since 1998 — <a href="/service/rhodes-boat-cruises">compare shared Rhodes boat cruises</a>, browse the private trips below, or <a href="/contact">ask us</a> which format fits your dates and group.',
+    },
     ctaTitle: 'Planning a private day on the water?',
     ctaText: 'Send your dates, group size and ideas — we will quote the best options available.',
   },
