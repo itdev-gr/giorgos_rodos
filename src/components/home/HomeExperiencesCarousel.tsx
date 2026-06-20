@@ -109,13 +109,6 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
           <h2 id="home-exp-title" className="home-exp__title">
             Rhodes Boat Experiences
           </h2>
-          <p className="home-exp__lead">
-            {loading
-              ? 'Loading approved boat experiences…'
-              : count > 0
-                ? `${count} approved tours, cruises and private trips — each vetted by our local team. Swipe to explore, tap to book.`
-                : 'Browse our full catalog of boat tours, cruises and private trips in Rhodes.'}
-          </p>
         </div>
         {count > 0 && (
           <div className="home-exp__actions">
