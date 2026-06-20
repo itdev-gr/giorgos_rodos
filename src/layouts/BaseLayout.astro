@@ -385,8 +385,13 @@ const isHome = Astro.url.pathname === '/';
 
     {isHome ? (
       <>
-        <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-        <link rel="preload" href="/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        {/* Render-blocking so the legacy theme geometry (header/hero padding,
+            section heights) is applied before first paint. Loading these async
+            previously caused a flash-of-unstyled-content reflow → large CLS on
+            slow connections. They're small over the wire (≈24KB + ≈77KB gzip,
+            immutable-cached) so the FCP cost is minimal vs the CLS it removes. */}
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
         <link rel="preload" href="/assets/css/experience-cards.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <link rel="preload" href="/assets/css/home-contact.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <link rel="preload" href="/assets/css/site-fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />

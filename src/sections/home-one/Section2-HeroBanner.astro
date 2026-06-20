@@ -2,32 +2,35 @@
 import { DEFAULT_HERO_MP4 } from '../../lib/hero-video';
 
 const heroPoster = '/assets/img/heroes/hero-poster-padded.jpg';
-const heroPosterMobile = '/assets/img/heroes/hero-poster-mobile.jpg';
 const mp4Src = DEFAULT_HERO_MP4;
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
     <div class="th-hero-bg hero-bg-video">
-      <picture>
-        <source media="(max-width: 767px)" srcset={heroPosterMobile} />
-        <img
-          class="hero-poster"
-          src={heroPoster}
-          alt=""
-          aria-hidden="true"
-          width="1920"
-          height="1080"
-          decoding="sync"
-          fetchpriority="high"
-        />
-      </picture>
+      <!--
+        The poster image is the LCP element: it's preloaded with high priority
+        and paints as soon as it decodes, anchoring LCP to a fast image.
+        The video is NOT downloaded up front (preload="none"); it is loaded
+        and faded in only after the page has loaded, so on slow connections it
+        never paints inside the LCP window and never resets LCP. On fast
+        connections it appears within a moment of load — effectively direct.
+      -->
+      <img
+        class="hero-poster"
+        src={heroPoster}
+        alt=""
+        aria-hidden="true"
+        width="1920"
+        height="1080"
+        decoding="sync"
+        fetchpriority="high"
+      />
       <video
         class="hero-video"
-        autoplay
         muted
         loop
         playsinline
-        preload="auto"
+        preload="none"
         poster={heroPoster}
         width="1920"
         height="1080"
@@ -59,35 +62,51 @@ const mp4Src = DEFAULT_HERO_MP4;
     function ensureHeroVideo() {
       var video = document.querySelector('.hero-video');
       if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // On phones the video is hidden (poster only) to keep LCP fast and avoid
+      // downloading the clip on mobile data — don't fetch/play it there.
+      if (window.matchMedia('(max-width: 767px)').matches) return;
       if (video.dataset.heroReady) return;
       video.dataset.heroReady = '1';
 
-      // Reveal the video the instant it actually starts rendering frames,
-      // so it plays straight away instead of sitting behind the poster.
-      function reveal() { video.classList.add('is-playing'); }
-      video.addEventListener('playing', reveal, { once: true });
-      if (!video.paused && video.readyState >= 3) reveal();
+      // Fade the video in only once it is actually rendering frames, so it
+      // replaces the poster seamlessly with no flash.
+      video.addEventListener('playing', function () {
+        video.classList.add('is-playing');
+      }, { once: true });
 
       video.addEventListener('error', function onError() {
         var source = video.querySelector('source');
         if (source && source.getAttribute('src') !== FALLBACK) {
           source.setAttribute('src', FALLBACK);
-          video.load();
         }
+        video.load();
         video.play().catch(function () {});
       }, { once: true });
 
-      // Start playback immediately — no idle/timeout gating.
+      // Kick off loading + playback. preload="none" means nothing was fetched
+      // until now, keeping the video out of the LCP/critical path; we start it
+      // as soon as the page is otherwise loaded so it appears promptly.
+      video.load();
       var p = video.play();
       if (p && p.catch) p.catch(function () {});
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', ensureHeroVideo);
-    } else {
-      ensureHeroVideo();
+    function schedule() {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(ensureHeroVideo, { timeout: 1500 });
+      } else {
+        setTimeout(ensureHeroVideo, 200);
+      }
     }
-    document.addEventListener('astro:page-load', ensureHeroVideo);
+
+    // Wait until the page has loaded so the hero video never competes with the
+    // LCP poster or extends the LCP window on slow connections.
+    if (document.readyState === 'complete') {
+      schedule();
+    } else {
+      window.addEventListener('load', schedule, { once: true });
+    }
+    document.addEventListener('astro:page-load', schedule);
   })();
 </script>
 
@@ -128,11 +147,19 @@ const mp4Src = DEFAULT_HERO_MP4;
   .hero-video {
     z-index: 1;
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.4s ease;
   }
 
   .hero-video.is-playing {
     opacity: 1;
+  }
+
+  /* Phones: show the poster only. A full-bleed autoplay video would become the
+     LCP element and load ~0.8MB on mobile data; the poster keeps LCP fast. */
+  @media (max-width: 767px) {
+    .hero-video {
+      display: none !important;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
