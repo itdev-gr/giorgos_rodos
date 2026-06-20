@@ -120,7 +120,7 @@ const metaDescription =
   {isPublished && (
     <TouristTripSchema tour={{ ...tour, meeting_point: meetingPoint }} displayDescription={displayDescription} isPublished={isPublished} />
   )}
-  <Header />
+  <Header transparent={false} />
 
   {!isPublished && (
     <div style={`position: fixed; top: 0; left: 0; right: 0; z-index: 9999; padding: 10px 20px; text-align: center; font-size: 0.82rem; font-weight: 600; font-family: Helvetica, "Helvetica Neue", Arial, sans-serif; ${tour.status === 'pending' ? 'background: #FEF3C7; color: #92400E;' : tour.status === 'rejected' ? 'background: #FEE2E2; color: #991B1B;' : 'background: #E5E7EB; color: #374151;'}`}>
@@ -143,7 +143,7 @@ const metaDescription =
             {tour.badge_label && (
               <span style="display: inline-block; padding: 4px 12px; background: #113D48; color: #fff; border-radius: 6px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">{tour.badge_label}</span>
             )}
-            <h1 style="font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
+            <h1 class="td-page__title" style="font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
           </div>
 
           <!-- Specs Strip -->
@@ -318,7 +318,7 @@ const metaDescription =
 
   <FAQSection
     items={faq}
-    title={`${tour.title}: FAQ`}
+    title="Frequently Asked Questions"
     intro="Quick answers about this experience. For booking, weather and general boat questions see the <a href='/faq'>full FAQ</a>."
     background="white"
   />
@@ -411,6 +411,10 @@ const metaDescription =
 </script>
 
 <style is:global>
+  .td-page__title {
+    text-transform: none !important;
+  }
+
   @media (max-width: 991px) {
     .td-layout { grid-template-columns: 1fr !important; }
     .td-sidebar { position: static !important; }
@@ -477,6 +481,7 @@ const metaDescription =
     font-weight: 700;
     color: #113D48;
     margin: 0;
+    text-transform: none;
   }
   .td-related__link {font-size: 0.88rem;
     font-weight: 600;

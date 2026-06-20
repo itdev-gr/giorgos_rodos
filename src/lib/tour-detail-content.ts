@@ -61,6 +61,9 @@ function detectKind(tour: TourLike): TourKind {
 
   if (sp.includes('charter')) return 'charter';
   if (sp.includes('boat-trips')) return 'private_trip';
+  if (/\bprivate\b/.test(h) && (sp.includes('sailing') || sp.includes('catamaran') || sp.includes('boat-tours'))) {
+    return 'private_trip';
+  }
   if (sp.includes('sailing')) return 'sailing';
   if (sp.includes('catamaran')) return 'catamaran';
   if (sp.includes('boat-cruises') || sp.includes('boat-tours') || /cruise|day trip|all inclusive/.test(h)) {
@@ -287,13 +290,12 @@ function parseItinerarySteps(raw: string): TourItineraryStep[] | null {
 }
 
 function defaultFaq(kind: TourKind, tour: TourLike): TourFaqItem[] {
-  const title = tour.title;
   const price = tour.price ? ` (${tour.price})` : '';
 
   const common: TourFaqItem[] = [
     {
-      question: `How do I book ${title}?`,
-      answer: `Send a booking request on this page or <a href="/contact">contact us</a> with your date and group size. We confirm availability with the operator, usually within a few hours. July and August departures need at least a week ahead for shared cruises. Your confirmation includes meeting point, time and what to bring.`,
+      question: 'How do I book this experience?',
+      answer: `Send a booking request on this page or <a href="/contact">contact us</a> with your preferred date and group size. We confirm availability with the operator, usually within a few hours. July and August departures need at least one week ahead for shared cruises. Your confirmation includes meeting point, time and what to bring.`,
     },
     {
       question: 'What should I bring on the day?',
@@ -339,8 +341,8 @@ function defaultFaq(kind: TourKind, tour: TourLike): TourFaqItem[] {
       answer: 'Catamarans offer wide decks, trampolines and much less rolling than monohulls—ideal for families. Shared day tours include lunch and swim stops similar to motor vessels. See <a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a> for motor routes.',
     },
     generic_cruise: {
-      question: `Is ${title}${price} per person or per boat?`,
-      answer: `The price shown${price || ''} is typically per person on shared day cruises unless stated otherwise. Private charters are quoted per vessel. Include children's ages in your request; we confirm the final price before you pay.`,
+      question: 'Is the price per person or per boat?',
+      answer: `The price shown${price || ''} is typically per person on shared day cruises unless stated otherwise. Private charters and boat hire are quoted per vessel for your group. Include children's ages in your request; we confirm the final price before you pay.`,
     },
   };
 

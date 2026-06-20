@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { imgUrl, imgSrcset } from '../../lib/media';
+import ExperienceCard from '../experience/ExperienceCard';
 
 interface Tour {
   id: string;
@@ -122,61 +122,19 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
           {filtered.map((tour) => {
             const img = tour.image_url || tour.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg';
             const badge = tour.badge_label || tour.duration || '';
-            const showDurationMeta = Boolean(tour.duration && tour.duration !== badge);
             return (
-              <a
+              <ExperienceCard
                 key={tour.id}
                 href={`/tour-detail/${tour.slug || tour.id}`}
-                className="exp-card home-exp-card"
-              >
-                <div className="exp-card__media">
-                  <img
-                    src={imgUrl(img, 700, { quality: 80 })}
-                    srcSet={imgSrcset(img, [480, 640, 700, 900])}
-                    sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
-                    alt={tour.title}
-                    loading="lazy"
-                    width={700}
-                    height={875}
-                  />
-                </div>
-                <div className="exp-card__scrim" />
-
-                {badge && <span className="exp-card__badge">{badge}</span>}
-
-                {tour.price && (
-                  <div className="exp-card__price">
-                    <span className="exp-card__price-current">{tour.price}</span>
-                  </div>
-                )}
-
-                <div className="exp-card__body">
-                  <div className="exp-card__stars" aria-hidden="true">
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                  </div>
-
-                  <h3 className="exp-card__title">{tour.title}</h3>
-
-                  {tour.description && (
-                    <p className="exp-card__desc">{tour.description}</p>
-                  )}
-
-                  {(showDurationMeta || tour.guests) && (
-                    <div className="exp-card__meta">
-                      {showDurationMeta && (
-                        <span><i className="far fa-clock" /> {tour.duration}</span>
-                      )}
-                      {tour.guests && (
-                        <span><i className="far fa-user" /> {tour.guests}</span>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </a>
+                title={tour.title}
+                description={tour.description}
+                image={img}
+                imageAlt={tour.title}
+                badge={badge}
+                price={tour.price}
+                duration={tour.duration}
+                guests={tour.guests}
+              />
             );
           })}
         </div>

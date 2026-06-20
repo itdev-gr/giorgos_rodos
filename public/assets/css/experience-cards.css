@@ -259,13 +259,13 @@
 
   .exp-grid--catalog,
   .exp-grid--catalog.exp-grid {
-    justify-items: stretch;
+    justify-items: center;
   }
 
   .exp-grid--catalog > *,
   .exp-grid--catalog.exp-grid > * {
-    width: 100%;
-    max-width: none;
+    width: min(320px, 100%);
+    max-width: 100%;
   }
 
   .exp-card {
@@ -283,21 +283,22 @@
   }
 }
 
-/* Service + things-to-do catalogs — full-width portrait cards on mobile/tablet */
+/* Service + things-to-do catalogs — same centered portrait cards as homepage carousel */
 @media (max-width: 991px) {
   .exp-grid--catalog {
     grid-template-columns: 1fr !important;
     gap: 20px;
-    justify-items: stretch;
+    justify-items: center;
   }
 
   .exp-grid--catalog > * {
-    width: 100%;
-    max-width: none;
+    width: min(320px, 100%);
+    max-width: 100%;
     display: block;
   }
 
-  .exp-grid--catalog .exp-card {
+  .exp-grid--catalog .exp-card,
+  .exp-grid--catalog .home-exp-card.exp-card {
     aspect-ratio: 4 / 5;
     min-height: 380px;
     width: 100%;

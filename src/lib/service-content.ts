@@ -45,7 +45,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-check-circle', title: 'Handpicked Tours', text: 'From all the tours available in Rhodes, we have selected those with quality boats, experienced crews and fair prices.' },
       { icon: 'fas fa-map-marked-alt', title: 'Local Guidance', text: 'Tell us your group size and dates — we match you to the tour format and route that fit best.' },
     ],
-    footnote: 'There are many boat tours in Rhodes. The difference is choosing the right one — this is where we help. See also our <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a>, <a href="/service/rhodes-catamaran-tours">catamaran tours</a> and <a href="/service/rhodes-boat-trips">private boat trips</a>, or <a href="/things-to-do">browse all boat experiences in Rhodes</a>.',
     panel: {
       eyebrow: 'Local experts since 1998',
       title: 'Guided tours, honestly recommended',
@@ -54,7 +53,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
         'Rhodes boat tours range from small sailing groups to faster sightseeing trips along the east coast. We help you understand the difference before you book — group size, duration, what is included and whether a tour or a private trip suits you better.',
         'Every tour on this page is from an operator we know personally. No anonymous listings, no paid placements — just honest advice from people who work the harbour every day.',
       ],
-      note: 'Looking for Symi or Lindos? Compare departures in our <a href="/things-to-do">Rhodes boat experiences catalog</a>. For a large all-inclusive day cruise see our dedicated <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a> page.',
       imageKey: 'hero',
       reversed: false,
     },
@@ -70,7 +68,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-map-signs', title: 'Multiple Departure Points', text: 'Cruises depart from Mandraki Harbour, Faliraki, Kolymbia and Lindos depending on route and destination.' },
       { icon: 'fas fa-map-marked-alt', title: 'Local Guidance', text: 'We help you pick the right cruise for your hotel location, group size and how much time you want at sea.' },
     ],
-    footnote: 'For smaller guided tours see <a href="/service/rhodes-boat-tours">Rhodes boat tours</a>. For twin-hull comfort see <a href="/service/rhodes-catamaran-tours">catamaran cruises</a>. Compare every route in our <a href="/things-to-do">boat experiences catalog</a>.',
     panel: {
       eyebrow: 'Symi · Lindos · East coast',
       title: 'Organised day cruises from Rhodes',
@@ -92,7 +89,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-moon', title: 'Sunset Catamaran Tours', text: 'Evening sails with drinks and light dinner as the sun goes down — ideal for couples and celebrations.' },
       { icon: 'fas fa-users', title: 'Family-Friendly Stability', text: 'Twin hulls mean less roll in light chop — the format most guests prefer for swimming-and-lunch days.' },
     ],
-    footnote: 'For monohull sailing see <a href="/service/rhodes-sailing-trips">Rhodes sailing trips</a>. For large shared cruise boats see <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a>. <a href="/things-to-do">Browse catamaran day trips</a> in the full catalog.',
     panel: {
       eyebrow: 'Stable · spacious · all-inclusive',
       title: 'Catamaran cruises in Rhodes',
@@ -114,7 +110,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-users', title: 'Shared & Private', text: 'Join a small group trip or charter a yacht for your group for the day. For weekly holidays see yacht charter.' },
       { icon: 'fas fa-map-marked-alt', title: 'East Coast Routes', text: 'Half-day and full-day sails along the Rhodes coastline with a professional skipper on every departure.' },
     ],
-    footnote: 'For weekly island-hopping see <a href="/service/rhodes-charter">yacht charter Rhodes</a>. For stable catamaran days see <a href="/service/rhodes-catamaran-tours">catamaran tours</a>. <a href="/things-to-do">Compare sailing day trips</a> from the catalog.',
     panel: {
       eyebrow: 'Half-day & full-day',
       title: 'Authentic sailing days from Rhodes',
@@ -135,9 +130,8 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     features: [
       { icon: 'fas fa-ship', title: 'Your Private Boat', text: 'A skippered boat reserved for your group — flexible 2–8 hour trips, not a shared tour or large cruise vessel.' },
       { icon: 'fas fa-check-circle', title: 'Handpicked Boats', text: 'Speedboats, RIBs and small catamarans from operators we know — quality vessels and experienced skippers.' },
-      { icon: 'fas fa-route', title: 'Flexible Routes', text: 'Anthony Quinn Bay, Lindos, south coast or east-coast swims — you choose with the skipper on the day.' },
+      { icon: 'fas fa-map-marked-alt', title: 'Flexible Routes', text: 'Anthony Quinn Bay, Lindos, south coast or east-coast swims — you choose with the skipper on the day.' },
     ],
-    footnote: 'For shared organised cruises see <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a>. To drive yourself see <a href="/#rent-a-boat">boat rental Rhodes no license</a>. <a href="/things-to-do">Browse private boat trips</a> with fixed pricing.',
     panel: {
       eyebrow: 'Private · skippered · flexible',
       title: 'Private boat trips for your group',
@@ -159,7 +153,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-user-shield', title: 'Skippered Charter', text: 'Professional skipper on board — no sailing experience needed, they handle navigation and anchorages.' },
       { icon: 'fas fa-map-marked-alt', title: 'Local Guidance', text: 'We connect you with the right charter company and yacht class for your crew, dates and route.' },
     ],
-    footnote: 'We help you find the right charter — we do not operate yachts ourselves. For day sails see <a href="/service/rhodes-sailing-trips">Rhodes sailing trips</a>. <a href="/things-to-do">Browse weekly charter yachts</a> in the catalog.',
     panel: {
       eyebrow: 'Weekly · Dodecanese',
       title: 'Yacht charter from Rhodes Marina',
@@ -182,7 +175,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-ship', title: 'Boat Experiences', text: 'Fleet days, catamaran cruises, yacht charters and sailing trips organised for groups of any size.' },
       { icon: 'fas fa-handshake', title: 'Local Network', text: 'We connect planners with trusted boats, venues, transfers and service providers across the island.' },
     ],
-    footnote: 'We do not operate events ourselves — we connect planners with trusted partners. Explore <a href="/service/rhodes-charter">yacht charter Rhodes</a>, <a href="/service/rhodes-catamaran-tours">catamaran cruises</a>, <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a> and <a href="https://www.rhodestransfer24.com/" target="_blank" rel="noopener noreferrer">Rhodes transfers</a>.',
     panel: {
       eyebrow: 'MICE · Incentive · Corporate',
       title: 'Events and incentives on the water',
@@ -202,7 +194,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
       { icon: 'fas fa-shield-alt', title: 'Safe & Licensed', text: 'Well-maintained tenders with professional operators trained for all conditions.' },
       { icon: 'fas fa-calendar-check', title: 'Scheduled or On-Demand', text: 'Pre-arrange regular transfers or call for immediate dispatch when you need it.' },
     ],
-    footnote: 'For airport and hotel ground transport see <a href="https://www.rhodestransfer24.com/" target="_blank" rel="noopener noreferrer">Rhodes transfers</a>. For cruise and yacht guests see <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a> and <a href="/things-to-do">boat experiences in Rhodes</a>.',
     panel: {
       eyebrow: 'Marine transfers',
       title: 'Tender boat service in Rhodes',

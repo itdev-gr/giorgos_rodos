@@ -30,7 +30,7 @@ const {
   showStars = true,
   showButton = false,
   buttonText = 'View More',
-  sizes = '(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw',
+  sizes = '(max-width: 575px) min(320px, 100vw), (max-width: 991px) min(320px, 50vw), 33vw',
 } = Astro.props;
 
 const imgSrc = imgUrl(image, 700, { quality: 80 }) || image;
@@ -39,7 +39,7 @@ const showDurationMeta = Boolean(duration && duration !== badge);
 const showMeta = showDurationMeta || Boolean(guests);
 ---
 
-<a href={href} class="exp-card">
+<a href={href} class="exp-card home-exp-card">
   <div class="exp-card__media">
     <img
       src={imgSrc}

@@ -215,7 +215,14 @@ const isHome = Astro.url.pathname === '/';
       }
 
       :global(.td-page-start) {
-        padding-top: calc(80px + var(--page-header-gap)) !important;
+        padding-top: 32px !important;
+        background: #f8fafc;
+      }
+
+      @media (max-width: 991px) {
+        :global(.td-page-start) {
+          padding-top: 24px !important;
+        }
       }
 
       @media (max-width: 991px) {
@@ -466,7 +473,6 @@ const isHome = Astro.url.pathname === '/';
       :global(.intro-heading),
       :global(.rab-subheading),
       :global(.rab-title),
-      :global(.faq-section__title),
       :global(.hero-heading),
       :global(.box-title),
       :global(.box-title2),
@@ -491,7 +497,6 @@ const isHome = Astro.url.pathname === '/';
       :global(.intro-heading)::first-letter,
       :global(.rab-subheading)::first-letter,
       :global(.rab-title)::first-letter,
-      :global(.faq-section__title)::first-letter,
       :global(.hero-heading)::first-letter,
       :global(.box-title)::first-letter,
       :global(.box-title2)::first-letter,
