@@ -2,21 +2,25 @@
 import { DEFAULT_HERO_MP4 } from '../../lib/hero-video';
 
 const heroPoster = '/assets/img/heroes/hero-poster-padded.jpg';
+const heroPosterMobile = '/assets/img/heroes/hero-poster-mobile.jpg';
 const mp4Src = DEFAULT_HERO_MP4;
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
     <div class="th-hero-bg hero-bg-video">
-      <img
-        class="hero-poster"
-        src={heroPoster}
-        alt=""
-        aria-hidden="true"
-        width="1920"
-        height="1080"
-        decoding="async"
-        fetchpriority="high"
-      />
+      <picture>
+        <source media="(max-width: 767px)" srcset={heroPosterMobile} />
+        <img
+          class="hero-poster"
+          src={heroPoster}
+          alt=""
+          aria-hidden="true"
+          width="1920"
+          height="1080"
+          decoding="sync"
+          fetchpriority="high"
+        />
+      </picture>
       <video
         class="hero-video"
         autoplay
@@ -66,7 +70,11 @@ const mp4Src = DEFAULT_HERO_MP4;
       }, { once: true });
 
       function playWhenReady() {
-        if (video.paused) video.play().catch(function () {});
+        if (video.paused) {
+          video.play().then(function () {
+            video.classList.add('is-playing');
+          }).catch(function () {});
+        }
       }
 
       if ('requestIdleCallback' in window) {
@@ -121,6 +129,12 @@ const mp4Src = DEFAULT_HERO_MP4;
 
   .hero-video {
     z-index: 1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .hero-video.is-playing {
+    opacity: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {

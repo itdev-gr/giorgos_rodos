@@ -3,22 +3,130 @@ const mapSrc =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3231.5!2d28.2197904!3d36.4497769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1495612e417eb653%3A0x90a1e588da06a420!2sRhodes+Rent+a+Boat!5e0!3m2!1sen!2sgr!4v1715072400000!5m2!1sen!2sgr';
 ---
 
-<section style="padding: 80px 0;">
+<section class="gmap-section">
   <div class="container">
-    <div class="title-area text-center" style="margin-bottom: 40px;">
+    <div class="title-area text-center gmap-section__header">
       <h2 class="sec-title" data-ani="slideinup">Find Us in Rhodes Town</h2>
     </div>
-    <div class="gmap-wrap" data-ani="fadein" data-ani-delay="0.2" style="border-radius: 12px; overflow: hidden;">
-      <iframe
-        src={mapSrc}
-        width="100%"
-        height="450"
-        style="border: 0; display: block;"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Rhodes Rent a Boat, Ionos Dragoumi 39, Rhodes"
-        allowfullscreen
-      ></iframe>
+    <div class="gmap-wrap" data-ani="fadein" data-ani-delay="0.2">
+      <button
+        type="button"
+        class="gmap-facade"
+        id="gmap-facade"
+        data-src={mapSrc}
+        aria-label="Load interactive map: Rhodes Rent a Boat, Ionos Dragoumi 39, Rhodes"
+      >
+        <span class="gmap-facade__pin" aria-hidden="true">📍</span>
+        <span class="gmap-facade__title">Rhodes Rent a Boat</span>
+        <span class="gmap-facade__address">Ionos Dragoumi 39, Rhodes 851 00</span>
+        <span class="gmap-facade__cta">Tap to load map</span>
+      </button>
     </div>
   </div>
 </section>
+
+<style>
+  .gmap-section {
+    padding: 80px 0;
+  }
+
+  .gmap-section__header {
+    margin-bottom: 40px;
+  }
+
+  .gmap-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .gmap-facade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 320px;
+    padding: 32px 24px;
+    border: 0;
+    border-radius: 12px;
+    background:
+      linear-gradient(135deg, rgba(17, 61, 72, 0.92), rgba(28, 168, 203, 0.78)),
+      url('/assets/img/locations/destination-details.jpg') center / cover no-repeat;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font: inherit;
+  }
+
+  .gmap-facade__pin {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .gmap-facade__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .gmap-facade__address {
+    font-size: 0.95rem;
+    opacity: 0.92;
+  }
+
+  .gmap-facade__cta {
+    margin-top: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .gmap-facade {
+      min-height: 450px;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initGmapFacade() {
+      var btn = document.getElementById('gmap-facade');
+      if (!btn || btn.dataset.wired) return;
+      btn.dataset.wired = '1';
+
+      function loadMap() {
+        var src = btn.getAttribute('data-src');
+        if (!src) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.width = '100%';
+        iframe.height = '450';
+        iframe.style.border = '0';
+        iframe.style.display = 'block';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.title = 'Rhodes Rent a Boat, Ionos Dragoumi 39, Rhodes';
+        iframe.setAttribute('allowfullscreen', '');
+        btn.replaceWith(iframe);
+      }
+
+      btn.addEventListener('click', loadMap, { once: true });
+      btn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          loadMap();
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGmapFacade);
+    } else {
+      initGmapFacade();
+    }
+    document.addEventListener('astro:page-load', initGmapFacade);
+  })();
+</script>

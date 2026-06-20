@@ -157,6 +157,10 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #56646b; margin-
       }, 50);
       return;
     }
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = '/assets/css/swiper-bundle.min.css';
+    document.head.appendChild(css);
     const s = document.createElement('script');
     s.src = '/assets/js/swiper-bundle.min.js';
     s.setAttribute('data-swiper-local', '1');
