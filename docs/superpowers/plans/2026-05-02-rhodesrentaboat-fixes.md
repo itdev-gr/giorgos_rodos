@@ -227,7 +227,7 @@ if (!post) {
 }
 
 const canonical = `https://rhodesrentaboat.com/blog/${post.id}`;
-const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg || post.image}`;
+const ogImage = `https://rhodesrentaboat.com/assets/img/pages/blog/${post.bannerImg || post.image}`;
 ---
 
 <BaseLayout
@@ -245,7 +245,7 @@ const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg ||
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <img src={`/assets/img/blog/${post.bannerImg || post.image}`} alt={post.title} class="blog-single_img" />
+          <img src={`/assets/img/pages/blog/${post.bannerImg || post.image}`} alt={post.title} class="blog-single_img" />
           <h1 class="blog-single_title">{post.title}</h1>
           <p class="blog-single_meta">By {post.author} &bull; {post.date}</p>
           <div class="blog-single_tags">
@@ -267,7 +267,7 @@ const ogImage = `https://rhodesrentaboat.com/assets/img/blog/${post.bannerImg ||
     publisher: {
       '@type': 'Organization',
       name: 'Rhodes Rent a Boat',
-      logo: { '@type': 'ImageObject', url: 'https://rhodesrentaboat.com/assets/img/logo2.svg' }
+      logo: { '@type': 'ImageObject', url: 'https://rhodesrentaboat.com/assets/img/brand/logos/logo2.svg' }
     },
     mainEntityOfPage: canonical,
     description: post.excerpt
@@ -389,7 +389,7 @@ const data = {
   '@id': `${SITE_URL}#organization`,
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/assets/img/logo2.svg`,
+  logo: `${SITE_URL}/assets/img/brand/logos/logo2.svg`,
   image: `${SITE_URL}/assets/img/home-one/hero_1_1.jpg`,
   telephone: '+30 695 166 6454',
   email: 'info@rhodesrentaboat.com',
@@ -536,7 +536,7 @@ Replace:
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/brand/logos/favicon.svg" />
     <title>{title}</title>
 ```
 
@@ -546,7 +546,7 @@ with:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/brand/logos/favicon.svg" />
     <Seo
       title={title}
       description={description}

@@ -30,7 +30,7 @@ const { data: contacts } = await supabase
               <tr style={{ opacity: c.is_read ? 0.6 : 1 }}>
                 <td data-label="Name" style={{ fontWeight: c.is_read ? 400 : 600 }}>{c.name}</td>
                 <td data-label="Email"><a href={`mailto:${c.email}`} style="color: #1CA8CB;">{c.email}</a></td>
-                <td data-label="Subject">{c.subject || '—'}</td>
+                <td data-label="Subject">{c.subject || '-'}</td>
                 <td data-label="Date" style="white-space: nowrap;">{new Date(c.created_at).toLocaleDateString()}</td>
                 <td data-label="Status">
                   <span style={{

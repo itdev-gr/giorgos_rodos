@@ -138,7 +138,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
           continue;
         }
 
-        // Success — move from pending to confirmed images
+        // Success, move from pending to confirmed images
         setImages(prev => [...prev, data.url]);
         setPendingUploads(prev => prev.filter(p => p.localUrl !== previews[i].localUrl));
         URL.revokeObjectURL(previews[i].localUrl);
@@ -328,7 +328,7 @@ export default function TourForm({ tour, mode, isAdmin = false }: TourFormProps)
                   </div>
                 );
               })}
-              {/* Pending uploads — local previews with loading overlay */}
+              {/* Pending uploads, local previews with loading overlay */}
               {pendingUploads.map((p) => (
                 <div key={p.localUrl} style={{ position: 'relative', width: 120, height: 90, borderRadius: 8, overflow: 'hidden', border: '2px dashed #cbd5e1' }}>
                   <img src={p.localUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.5 }} />

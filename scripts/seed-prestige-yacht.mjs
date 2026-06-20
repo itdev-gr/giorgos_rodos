@@ -183,7 +183,7 @@ const TOURS = [
   },
   {
     slug: 'sunset-cruise',
-    title: 'Sunset Cruise — Shared or Private',
+    title: 'Sunset Cruise, Shared or Private',
     service_page: 'rodos-boat-cruises',
     badge_label: 'Sunset',
     price: 'Contact for pricing',
@@ -219,7 +219,7 @@ const TOURS = [
   },
   {
     slug: 'golden-hour-experience',
-    title: 'Golden Hour Yacht Experience — Semi-Private',
+    title: 'Golden Hour Yacht Experience, Semi-Private',
     service_page: 'rodos-boat-cruises',
     badge_label: 'Golden Hour',
     price: 'Contact for pricing',

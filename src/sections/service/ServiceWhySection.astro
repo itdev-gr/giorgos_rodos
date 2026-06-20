@@ -43,7 +43,7 @@ const reversed = layout === 'right';
           {features.map((feature, i) => (
             <div class="why-feature" data-ani="slideinup" data-ani-delay={`${0.2 + i * 0.1}`}>
               <div class="why-feature-icon">
-                <img src={feature.icon} alt="" />
+                <img src={feature.icon} alt="" aria-hidden="true" />
               </div>
               <div class="why-feature-body">
                 <h4 class="why-feature-title">{feature.title}</h4>
@@ -118,9 +118,7 @@ const reversed = layout === 'right';
   }
 
   .why-label {
-    display: inline-block;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
+    display: inline-block;font-style: italic;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -129,9 +127,7 @@ const reversed = layout === 'right';
     margin-bottom: 12px;
   }
 
-  .why-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  .why-title {font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
     line-height: 1.15;
     color: #113D48;
@@ -185,9 +181,7 @@ const reversed = layout === 'right';
     height: 24px;
   }
 
-  .why-feature-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+  .why-feature-title {font-size: 1.05rem;
     font-weight: 700;
     color: #113D48;
     margin-bottom: 4px;
@@ -203,9 +197,7 @@ const reversed = layout === 'right';
   /* CTA */
   .why-btn {
     display: inline-block;
-    padding: 14px 36px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
+    padding: 14px 36px;font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;

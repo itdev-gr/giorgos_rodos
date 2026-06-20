@@ -57,10 +57,10 @@ export type { MediaSlot };
  * /render/image/.
  *
  * On Supabase Pro this serves a transformed image at the requested width/format;
- * on the free tier the endpoint still resolves but returns the original — so
+ * on the free tier the endpoint still resolves but returns the original, so
  * either way it's safe (never regresses).
  *
- * @param url    Original Supabase Storage URL (or any other URL — passed through)
+ * @param url    Original Supabase Storage URL (or any other URL, passed through)
  * @param width  Target rendered width in CSS pixels
  * @param opts   Optional quality (1–100) and format ('origin' | 'webp')
  */

@@ -69,13 +69,13 @@ const families = [
   'fa-brands-400',
 ];
 
-// Always subset from .ttf source — the FA-shipped .woff2 has a brotli stream
+// Always subset from .ttf source, the FA-shipped .woff2 has a brotli stream
 // fonttools can't decode. The .ttf decodes cleanly and pyftsubset can emit
 // any flavor we want.
 for (const fam of families) {
   const ttfSource = resolve(fontDir, `${fam}.ttf`);
   if (!existsSync(ttfSource)) {
-    console.warn(`  ${fam}.ttf missing — skipping`);
+    console.warn(`  ${fam}.ttf missing, skipping`);
     continue;
   }
   const flavors = [
@@ -108,14 +108,14 @@ for (const fam of families) {
       const pct = before ? ((1 - after / before) * 100).toFixed(1) : 'new';
       console.log(`  ${fam}.${ext}: ${(before / 1024).toFixed(0)} KB → ${(after / 1024).toFixed(0)} KB (-${pct}%)`);
     } catch (err) {
-      console.error(`  ${fam}.${ext}: subset failed —`, err.message?.split('\n')[0]);
+      console.error(`  ${fam}.${ext}: subset failed ,`, err.message?.split('\n')[0]);
     }
   }
 }
 
 // 4. Delete font files for styles we never use. The CSS references these via
 // @font-face, but browsers only fetch a font when a matching font-family
-// is actually applied — our markup never triggers thin/light/duotone, so
+// is actually applied, our markup never triggers thin/light/duotone, so
 // they're dead weight on disk and a confusing console 404 if the CSS resolves.
 for (const fam of ['fa-light-300', 'fa-duotone-900', 'fa-thin-100']) {
   for (const ext of ['woff2', 'woff', 'ttf', 'eot']) {

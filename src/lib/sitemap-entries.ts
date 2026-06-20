@@ -1,5 +1,9 @@
 import posts from '../data/data-post.json';
 import services from '../data/data-service.json';
+import {
+  assertAllServicePagesInSitemap,
+  SERVICE_PAGE_SLUGS,
+} from './service-page-slugs';
 import { createPublicClient } from './supabase';
 
 export const SITE = 'https://rhodesrentaboat.com';
@@ -12,26 +16,20 @@ export type SitemapEntry = {
   images: SitemapImage[];
 };
 
-const STATIC_PATHS = [
+const CORE_STATIC_PATHS = [
   '/',
   '/about',
   '/contact',
   '/faq',
   '/blog',
   '/service',
-  '/service/rhodes-rent-a-boat',
-  '/service/rhodes-boat-tours',
-  '/service/rhodes-boat-trips',
-  '/service/rhodes-catamaran-tours',
-  '/service/rhodes-sailing-trips',
-  '/service/rhodes-charter',
-  '/service/rhodes-mice-events',
-  '/service/rhodes-tender-boat',
-  '/service/rhodes-transfers',
-  '/service/rhodes-sidecar-tours',
   '/privacy',
   '/terms',
 ];
+
+const SERVICE_PATHS = SERVICE_PAGE_SLUGS.map((slug) => `/service/${slug}`);
+
+const STATIC_PATHS = [...CORE_STATIC_PATHS, ...SERVICE_PATHS];
 
 const STATIC_LASTMOD: Record<string, string> = {
   '/': '2026-04-20',
@@ -40,23 +38,21 @@ const STATIC_LASTMOD: Record<string, string> = {
   '/faq': '2026-04-10',
   '/blog': '2026-04-15',
   '/service': '2026-04-10',
-  '/service/rhodes-rent-a-boat': '2026-04-10',
   '/service/rhodes-boat-tours': '2026-04-10',
   '/service/rhodes-boat-trips': '2026-04-10',
+  '/service/rhodes-boat-cruises': '2026-04-10',
   '/service/rhodes-catamaran-tours': '2026-04-10',
   '/service/rhodes-sailing-trips': '2026-04-10',
   '/service/rhodes-charter': '2026-04-10',
   '/service/rhodes-mice-events': '2026-03-15',
   '/service/rhodes-tender-boat': '2026-03-15',
-  '/service/rhodes-transfers': '2026-03-15',
-  '/service/rhodes-sidecar-tours': '2026-03-15',
   '/privacy': '2026-05-01',
   '/terms': '2026-05-01',
 };
 
 const STATIC_PAGE_IMAGES: Record<string, SitemapImage[]> = {
-  '/': [{ loc: `${SITE}/assets/img/hero/hero_bg_1_1.jpg`, title: 'Rhodes Rent a Boat — boat tours in Rhodes' }],
-  '/about': [{ loc: `${SITE}/assets/img/about/about-hero-boy-sailboat.jpg`, title: 'About Rhodes Rent a Boat' }],
+  '/': [{ loc: `${SITE}/assets/img/heroes/hero_bg_1_1.jpg`, title: 'Rhodes Rent a Boat, boat tours in Rhodes' }],
+  '/about': [{ loc: `${SITE}/assets/img/pages/about/about-hero-boy-sailboat.jpg`, title: 'About Rhodes Rent a Boat' }],
   '/service': [{ loc: `${SITE}/assets/img/gallery/yacht/crystal-water-1.jpg`, title: 'Boat services in Rhodes' }],
 };
 
@@ -95,7 +91,7 @@ export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
       lastmod: (p.publishedDate as string) || undefined,
       images: imgFile
         ? [{
-            loc: `${SITE}/assets/img/blog/${imgFile}`,
+            loc: `${SITE}/assets/img/pages/blog/${imgFile}`,
             title: p.title,
             caption: p.excerpt,
           }]
@@ -131,6 +127,8 @@ export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
   } catch (err) {
     console.error('[sitemap] failed to fetch tours from Supabase', err);
   }
+
+  assertAllServicePagesInSitemap(entries, SITE);
 
   return entries;
 }

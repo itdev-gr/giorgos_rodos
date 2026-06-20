@@ -72,7 +72,7 @@ async function uploadImage(userId, sourceUrl, destName) {
 const TOURS = [
   {
     slug: 'day-cruise',
-    title: 'Catamaran Day Cruise — East Coast of Rhodes',
+    title: 'Catamaran Day Cruise, East Coast of Rhodes',
     service_page: 'rhodes-catamaran-tours',
     badge_label: 'Full Day',
     price: 'Contact for pricing',
@@ -80,7 +80,7 @@ const TOURS = [
     guests: 'Up to 40 Guests',
     category: 'catamaran_tour',
     description:
-      'Set sail from Mandraki Harbor aboard a luxury catamaran and enjoy sailing along the East coast beaches of Rhodes. Visit 3–4 swimming spots — Anthony Quinn Bay, Afandou Caves, Ladiko Bay and Kalithea Bay — with approximately one hour at each location. The catamaran anchors offshore; shore access is by swimming. Includes a full Greek buffet lunch, unlimited drinks, breakfast, seasonal fresh fruits, snorkeling gear, floating noodles and life jackets.',
+      'Set sail from Mandraki Harbor aboard a luxury catamaran and enjoy sailing along the East coast beaches of Rhodes. Visit 3–4 swimming spots, Anthony Quinn Bay, Afandou Caves, Ladiko Bay and Kalithea Bay, with approximately one hour at each location. The catamaran anchors offshore; shore access is by swimming. Includes a full Greek buffet lunch, unlimited drinks, breakfast, seasonal fresh fruits, snorkeling gear, floating noodles and life jackets.',
     highlights: [
       'Sail the East coast of Rhodes on a luxury catamaran',
       'Swim at Anthony Quinn Bay, famous from "Guns of Navarone"',
@@ -98,7 +98,7 @@ const TOURS = [
     ],
     exclusions: ['Hotel transfers'],
     itinerary:
-      'Depart Mandraki Harbor, Rhodes. Stop 1 — Anthony Quinn Bay (approx. 1 hour swimming and snorkeling). Stop 2 — Afandou Caves (underwater exploration). Stop 3 — Ladiko Bay (calm waters, swimming). Stop 4 — Kalithea Bay (cave access, snorkeling). Return to Mandraki Harbor.',
+      'Depart Mandraki Harbor, Rhodes. Stop 1, Anthony Quinn Bay (approx. 1 hour swimming and snorkeling). Stop 2, Afandou Caves (underwater exploration). Stop 3, Ladiko Bay (calm waters, swimming). Stop 4, Kalithea Bay (cave access, snorkeling). Return to Mandraki Harbor.',
     meeting_point: 'Mandraki Harbor, Rhodes, Greece',
     departure_time: '09:30',
     return_time: '15:30',
@@ -112,7 +112,7 @@ const TOURS = [
   },
   {
     slug: 'sunset-cruise',
-    title: 'Catamaran Sunset Cruise — Kalithea & Aegean Sunset',
+    title: 'Catamaran Sunset Cruise, Kalithea & Aegean Sunset',
     service_page: 'rhodes-catamaran-tours',
     badge_label: 'Sunset',
     price: 'Contact for pricing',
@@ -150,7 +150,7 @@ const TOURS = [
   },
   {
     slug: 'power-catamaran-boss',
-    title: 'Power Catamaran BOSS — Private Charter',
+    title: 'Power Catamaran BOSS, Private Charter',
     service_page: 'rhodes-sailing-trips',
     badge_label: 'Power Cat',
     price: 'Contact for pricing',
@@ -188,7 +188,7 @@ const TOURS = [
   },
   {
     slug: 'sailing-catamaran-wind',
-    title: 'Sailing Catamaran WIND — Private Charter',
+    title: 'Sailing Catamaran WIND, Private Charter',
     service_page: 'rhodes-sailing-trips',
     badge_label: 'Sailing Cat',
     price: 'Contact for pricing',
@@ -226,7 +226,7 @@ const TOURS = [
   },
   {
     slug: 'sailing-catamaran-freedom',
-    title: 'Sailing Catamaran FREEDOM — Private Charter',
+    title: 'Sailing Catamaran FREEDOM, Private Charter',
     service_page: 'rhodes-sailing-trips',
     badge_label: 'Sailing Cat',
     price: 'Contact for pricing',
@@ -264,7 +264,7 @@ const TOURS = [
   },
   {
     slug: 'sailing-catamaran-lagoon-450',
-    title: 'Sailing Catamaran Lagoon 450 — Private Charter',
+    title: 'Sailing Catamaran Lagoon 450, Private Charter',
     service_page: 'rhodes-sailing-trips',
     badge_label: 'New 2026',
     price: 'Contact for pricing',
@@ -274,7 +274,7 @@ const TOURS = [
     description:
       'Brand new sailing catamaran available from 2026. The Lagoon 450 is a 13.96m premium sailing catamaran with spacious sunbathing lounge nets, flybridge, indoor saloon, deck saloon, fully equipped kitchen, sound system, USB charging ports and outdoor shower. With 4 guest cabins and 4 bathrooms, she is the newest and largest addition to the Catamaran Cruises Rhodes fleet.',
     highlights: [
-      'Brand new Lagoon 450 — newest in the fleet',
+      'Brand new Lagoon 450, newest in the fleet',
       'Largest catamaran at 13.96m with 7.87m beam',
       'Spacious sunbathing lounge nets and flybridge',
       '4 guest cabins and 4 bathrooms',

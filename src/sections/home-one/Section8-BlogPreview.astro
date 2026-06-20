@@ -1,129 +1,234 @@
 ---
 import posts from '../../data/data-post.json';
+import { imgUrl, imgSrcset } from '../../lib/media';
+
 const featured = posts.slice(0, 3);
 ---
 
-<section style="padding: 80px 0; overflow: hidden;">
+<section class="home-news">
   <div class="container">
-    <div class="title-area text-center" style="margin-bottom: 50px;">
-      <span class="sub-title style1" data-ani="slideinup">Rhodes Guide</span>
-      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">From Our Rhodes Sea Guide</h2>
+    <div class="home-news__header text-center">
+      <h2 class="home-news__title" data-ani="slideinup">Our Boating News</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;" class="blog-grid">
-      {featured.map((post, i) => (
-        <a href={`/blog/${post.slug}`} class="blog-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.1}`}>
-          <div class="blog-card__img">
-            <img src={`/assets/img/blog/${post.image}`} alt={post.title} loading="lazy" />
-          </div>
-          <div class="blog-card__body">
-            <div class="blog-card__meta">
-              <span>{post.author}</span>
-              <span>{post.date}</span>
-            </div>
-            <h3 class="blog-card__title">{post.title}</h3>
-            <p class="blog-card__excerpt">{post.excerpt}</p>
-            <div class="blog-card__tags">
-              {post.tags.map((tag: string) => (
-                <span class="blog-card__tag">{tag}</span>
-              ))}
-            </div>
-          </div>
-        </a>
-      ))}
+
+    <div class="home-news__grid">
+      {featured.map((post, i) => {
+        const imagePath = `/assets/img/pages/blog/${post.bannerImg || post.image}`;
+        const tag = post.tags?.[0];
+        return (
+          <article class="home-news__card" data-ani="slideinup" data-ani-delay={`${0.05 + i * 0.08}`}>
+            <a href={`/blog/${post.slug}`} class="home-news__link">
+              <div class="home-news__media">
+                <img
+                  src={imgUrl(imagePath, 640, { quality: 80 }) || imagePath}
+                  srcset={imgSrcset(imagePath, [400, 640, 800]) || undefined}
+                  sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
+                  alt={post.title}
+                  loading="lazy"
+                  width="640"
+                  height="400"
+                  decoding="async"
+                />
+                {tag && <span class="home-news__tag">{tag}</span>}
+              </div>
+              <div class="home-news__body">
+                <p class="home-news__meta">
+                  <time datetime={post.publishedDate || undefined}>{post.date}</time>
+                </p>
+                <h3 class="home-news__card-title">{post.title}</h3>
+                <p class="home-news__excerpt">{post.excerpt}</p>
+                <span class="home-news__cta">Read article <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </article>
+        );
+      })}
     </div>
-    <div class="text-center" style="margin-top: 40px;" data-ani="fadein" data-ani-delay="0.4">
-      <a href="/blog" class="th-btn style3 th-icon">See All Articles</a>
+
+    <div class="home-news__cta-wrap">
+      <a href="/blog" class="th-btn style3 home-news__btn" data-ani="fadein" data-ani-delay="0.3">See All Articles</a>
     </div>
   </div>
 </section>
 
 <style>
-  .blog-card {
-    display: block;
+  .home-news {
+    padding: 80px 0;
+    background: #f8fafb;
+  }
+
+  .home-news__header {
+    margin-bottom: 44px;
+  }
+
+  .home-news__title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .home-news__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .home-news__card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e8eef2;
+    box-shadow: 0 4px 20px rgba(17, 61, 72, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .home-news__card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(28, 168, 203, 0.12);
+    border-color: rgba(28, 168, 203, 0.35);
+  }
+
+  .home-news__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     text-decoration: none;
     color: inherit;
-    background: #fff;
-    border-radius: 12px;
+  }
+
+  .home-news__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #dce8ec;
   }
 
-  .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
-
-  .blog-card__img {
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-  }
-
-  .blog-card__img img {
+  .home-news__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.5s ease;
   }
 
-  .blog-card:hover .blog-card__img img {
+  .home-news__card:hover .home-news__media img {
     transform: scale(1.05);
   }
 
-  .blog-card__body {
-    padding: 24px;
-  }
-
-  .blog-card__meta {
-    display: flex;
-    gap: 16px;
-    font-size: 0.8rem;
-    color: #999;
-    margin-bottom: 10px;
-  }
-
-  .blog-card__title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #113D48;
-    margin-bottom: 10px;
-    line-height: 1.4;
-  }
-
-  .blog-card__excerpt {
-    font-size: 0.88rem;
-    line-height: 1.6;
-    color: #6b7c85;
-    margin-bottom: 14px;
-  }
-
-  .blog-card__tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .blog-card__tag {
+  .home-news__tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(17, 61, 72, 0.88);
+    color: #fff;
     font-size: 0.72rem;
     font-weight: 600;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 4px 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    color: #888;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+
+  .home-news__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px 22px 24px;
+  }
+
+  .home-news__meta {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0 0 10px;
+  }
+
+  .home-news__card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #113D48;
+    margin: 0 0 10px;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .home-news__card:hover .home-news__card-title {
+    color: #1CA8CB;
+  }
+
+  .home-news__excerpt {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #5a6a72;
+    margin: 0 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .home-news__cta {
+    margin-top: auto;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease;
+  }
+
+  .home-news__card:hover .home-news__cta {
+    gap: 10px;
+  }
+
+  .home-news__cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 44px;
+  }
+
+  .home-news__btn {
+    display: inline-flex;
+    justify-content: center;
   }
 
   @media (max-width: 991px) {
-    .blog-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
+    .home-news {
+      padding: 64px 0;
+    }
+
+    .home-news__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
     }
   }
 
   @media (max-width: 575px) {
-    .blog-grid {
-      grid-template-columns: 1fr !important;
+    .home-news {
+      padding: 52px 0;
+    }
+
+    .home-news__header {
+      margin-bottom: 32px;
+    }
+
+    .home-news__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .home-news__body {
+      padding: 18px 18px 20px;
+    }
+
+    .home-news__cta-wrap {
+      margin-top: 32px;
     }
   }
 </style>

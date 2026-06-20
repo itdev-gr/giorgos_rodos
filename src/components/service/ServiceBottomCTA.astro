@@ -1,0 +1,118 @@
+---
+interface Props {
+  title: string;
+  text: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  primaryExternal?: boolean;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  title,
+  text,
+  primaryHref = '/contact',
+  primaryLabel = 'Get in Touch',
+  primaryExternal = primaryHref.startsWith('http'),
+  secondaryHref = '/service',
+  secondaryLabel = 'All Boat Services in Rhodes',
+} = Astro.props;
+---
+
+<section class="sp-cta">
+  <div class="container">
+    <div class="sp-cta__inner text-center" data-ani="fadein">
+      <h2 class="sp-cta__title">{title}</h2>
+      <p class="sp-cta__text">{text}</p>
+      <div class="sp-cta__actions">
+        <a
+          href={primaryHref}
+          class="sp-cta__btn sp-cta__btn--primary"
+          target={primaryExternal ? '_blank' : undefined}
+          rel={primaryExternal ? 'noopener noreferrer' : undefined}
+        >{primaryLabel}</a>
+        <a href={secondaryHref} class="sp-cta__btn sp-cta__btn--outline">{secondaryLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sp-cta {
+    padding: 72px 0 88px;
+    background: linear-gradient(135deg, #113D48 0%, #1a5563 50%, #1CA8CB 100%);
+  }
+
+  .sp-cta__inner {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .sp-cta__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 14px;
+    line-height: 1.25;
+  }
+
+  .sp-cta__text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 28px;
+  }
+
+  .sp-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .sp-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .sp-cta__btn--primary {
+    background: #fff;
+    color: #113D48;
+  }
+
+  .sp-cta__btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    color: #113D48;
+  }
+
+  .sp-cta__btn--outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+  }
+
+  .sp-cta__btn--outline:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  @media (max-width: 575px) {
+    .sp-cta__actions {
+      flex-direction: column;
+    }
+
+    .sp-cta__btn {
+      width: 100%;
+    }
+  }
+</style>

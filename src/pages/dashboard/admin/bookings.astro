@@ -32,7 +32,7 @@ const { data: bookings } = await supabase
               <tr>
                 <td data-label="Customer" style="font-weight: 600;">{b.customer_name}</td>
                 <td data-label="Email"><a href={`mailto:${b.customer_email}`} style="color: #1CA8CB;">{b.customer_email}</a></td>
-                <td data-label="Tour">{b.tours?.title || '—'}</td>
+                <td data-label="Tour">{b.tours?.title || '-'}</td>
                 <td data-label="Date" style="white-space: nowrap;">{b.booking_date}</td>
                 <td data-label="Guests">{b.guests}</td>
                 <td data-label="Status">

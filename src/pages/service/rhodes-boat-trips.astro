@@ -4,211 +4,48 @@ export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
-import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
-import { tourCardAlt } from '../../lib/tour-alt';
-import { createPublicClient } from '../../lib/supabase';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import ServiceGradientHero from '../../components/service/ServiceGradientHero.astro';
+import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astro';
+import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
+import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
+import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
+import { getMediaSlot } from '../../lib/media';
 import { boatTripsFaq } from '../../lib/faq';
+import { getServiceSeo } from '../../lib/service-seo';
+import { getServiceContent } from '../../lib/service-content';
+import { fetchServiceTours } from '../../lib/service-tours';
 
-const heroVideo = await getMediaSlot('service.boat-trips.hero.video', '/assets/img/hero/services/private-tours.mp4');
+const SLUG = 'rhodes-boat-trips';
+const seo = getServiceSeo(SLUG)!;
+const content = getServiceContent(SLUG)!;
 const heroImage = await getMediaSlot('service.boat-trips.hero.image', '/assets/img/gallery/yacht/crystal-water-1.jpg');
-
-// Fetch approved tours from Supabase
-let dbCards: any[] = [];
-try {
-  const supabase = createPublicClient();
-  if (supabase) {
-    const { data } = await supabase
-      .from('tours')
-      .select('*')
-      .or('service_page.eq.rhodes-boat-trips,is_global.eq.true')
-      .eq('status', 'approved')
-      .order('is_global', { ascending: false })
-      .order('created_at', { ascending: false });
-    dbCards = (data || []).map((t: any) => ({
-      title: t.title,
-      description: t.description,
-      image: t.image_url || t.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
-      duration: t.duration || '',
-      guests: t.guests || '',
-      boat: t.badge_label || '',
-      price: t.price || '',
-      href: `/tour-detail/${t.slug || t.id}`,
-      imageAlt: tourCardAlt(t.title, t.badge_label),
-    }));
-  }
-} catch (e) {
-  console.error("Supabase error:", e); // Supabase unavailable — show demo data only
-}
-
-const trips = dbCards;
+const trips = await fetchServiceTours(SLUG);
 ---
 
-<BaseLayout title="Rhodes Boat Trips — Boat Experiences in Rhodes | Rhodes Rent a Boat" description="Private boat trips in Rhodes with your own skipper. Flexible routes, 2–8 hours, from €350. Speedboats, RIBs and catamarans — you choose the vessel and the route." ogImage={heroImage}>
-  <ServiceSchema
-    name="Rhodes Boat Trips"
-    description="Boat trips in Rhodes with professional skippers. Flexible routes, swimming stops and an authentic experience on the sea."
-    serviceType="Boat Trip"
-    image={heroImage}
-    url="/service/rhodes-boat-trips"
-    lowPrice="350"
-    highPrice="1500"
-    offerCount="8"
-  />
-  <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Services', url: '/service' },
-    { name: 'Rhodes Boat Trips', url: '/service/rhodes-boat-trips' },
-  ]} />
-  <Header />
+<BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
+  <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="350" highPrice="1500" offerCount="8" />
+  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <Header transparent={false} />
 
-  <!-- 1. Hero -->
-  <ServiceHeroFullwidth
-    title="Rhodes Boat Trips"
-    subtitle="Boat Trips and Experiences in Rhodes"
-    backgroundImage={heroImage}
-    heroVideo={heroVideo}
-  />
+  <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
+  <ServiceFeatureGrid quote={content.introQuote} features={content.features} footnote={content.footnote} />
+  {content.panel && <ServiceIntroPanel {...content.panel} image={heroImage} />}
 
-  <!-- 2. Intro -->
-  <section style="padding: 60px 0 40px;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;">
-        <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein">
-          A boat trip is one of the most beautiful ways to experience Rhodes at your own pace.
-        </p>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="bt-intro-grid" data-ani="slideinup" data-ani-delay="0.1">
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-ship"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Your Own Boat</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Rent a boat with a skipper for your group. Flexible duration from 2 hours to a full day, with swimming stops and time to relax at sea.</p>
+  <ServiceCatalog title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
+    <div class="exp-grid">
+      {trips.map((tour, i) => (
+        <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
+          <ExperienceCard href={tour.href} title={tour.title} description={tour.description} image={tour.image} imageAlt={tour.imageAlt} badge={tour.badge || tour.duration} price={tour.price} duration={tour.duration} guests={tour.guests} />
         </div>
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-check-circle"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Handpicked Boats</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">From all the boat trips available in Rhodes, we have selected those with quality boats, experienced skippers and great overall experiences.</p>
-        </div>
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-map-marked-alt"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Tell us your group size, occasion and budget — we recommend vessel size, duration and route without pushing the priciest boat.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
-        <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          We don't sell boat trips. We help you choose the right boat experience in Rhodes. For a skippered day with a fixed route, see our <a href="/service/rhodes-boat-tours">organised boat tours</a>; for self-drive options, see <a href="/service/rhodes-rent-a-boat">rent a boat</a>.
-        </p>
-      </div>
+      ))}
     </div>
-  </section>
+  </ServiceCatalog>
 
-  <!-- 4. Trips Grid -->
-  <section style="padding: 80px 0; background: #f8fafb;">
-    <div class="container">
-      <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">Explore Our Boat Trips in Rhodes</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bt-trips-grid">
-        {trips.map((trip, i) => (
-          <a href={trip.href || '/contact'} class="bt-trip-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
-              <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{trip.boat}</span>
-            </div>
-            <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
-              <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;">{trip.title}</h3>
-              <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;">{trip.description}</p>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;"></i> {trip.duration}</span>
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;"></i> {trip.guests}</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;">
-                <span style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;">{trip.price}</span>
-                <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;">Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;"></i></span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <FAQSection
-    items={boatTripsFaq}
-    title="Private Boat Trips in Rhodes — FAQ"
-    intro="Common questions from couples, families and small groups. For booking and weather see the <a href='/faq'>full FAQ</a>."
-  />
-
-  <!-- 5. Contact -->
-  <section style="padding: 80px 0; background: #113D48;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup">Need Help Planning Your Boat Trip?</h2>
-        <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1">
-          If you are planning a boat trip in Rhodes and you are not sure which boat or how many hours you need, contact us and we will help you plan your day at sea based on your group, your budget and the type of experience you are looking for.
-        </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2">
-          <a href="/contact" class="th-btn style3 th-icon">Send Us a Message</a>
-          <a href="https://wa.me/306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          <a href="tel:+306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fas fa-phone"></i> +30 695 166 6454</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <FAQSection items={boatTripsFaq} intro="Common questions about private skippered trips. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
+  <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
   <FooterFour />
 </BaseLayout>
-
-<script>
-</script>
-
-<style>
-  .bt-flow {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.02rem;
-    line-height: 1.8;
-    color: #4a5568;
-  }
-
-  .bt-flow p {
-    margin-bottom: 16px;
-  }
-
-  .bt-trip-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-  }
-
-  .bt-trip-card:hover img {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 991px) {
-    .bt-intro-grid {
-      grid-template-columns: 1fr !important;
-      gap: 0 !important;
-    }
-    .bt-trips-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-  }
-
-  @media (max-width: 575px) {
-    .bt-trips-grid {
-      grid-template-columns: 1fr !important;
-    }
-    .bt-who-grid {
-      grid-template-columns: 1fr !important;
-    }
-  }
-</style>

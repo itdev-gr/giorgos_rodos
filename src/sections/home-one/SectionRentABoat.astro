@@ -1,39 +1,44 @@
-<section class="rab-section" style="padding: 80px 0; background: #fff;">
+---
+import { imgUrl, imgSrcset } from '../../lib/media';
+
+const heroImage = '/assets/img/home/sections/rhodes-customers.png';
+const heroSrc = imgUrl(heroImage, 800, { quality: 80 }) || heroImage;
+const heroSrcset = imgSrcset(heroImage, [480, 640, 800, 1000]) || '';
+---
+
+<section class="rab-section" id="rent-a-boat">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-9 text-center">
-        <span class="sub-title style1" data-ani="slideinup">
-          <em>Local, Personal, Honest</em>
-        </span>
-        <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Rhodes Rent a Boat</h2>
-        <p class="rab-tagline" data-ani="fadein" data-ani-delay="0.15">
-          Choose the right way to enjoy the sea — calmly, safely and with clarity.
-        </p>
+    <div class="rab-grid">
+      <div class="rab-visual" data-ani="slideinleft">
+        <div class="rab-visual__frame">
+          <img
+            src={heroSrc}
+            srcset={heroSrcset || undefined}
+            sizes="(max-width: 991px) 100vw, 42vw"
+            alt="Guests enjoying a speedboat cruise in Rhodes"
+            loading="lazy"
+            width="800"
+            height="1000"
+            decoding="async"
+          />
+          <div class="rab-visual__overlay"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="row justify-content-center" style="margin-top: 40px;">
-      <div class="col-lg-8">
-        <article class="rab-body" data-ani="fadein">
-          <h3 class="rab-subheading">Renting a Boat in Rhodes — What You Should Know Before You Decide</h3>
+      <div class="rab-content">
+        <article class="rab-card" data-ani="fadein">
+          <h2 class="rab-subheading">What Our Guests Love About Us</h2>
 
-          <p class="rab-lead">
-            Renting a boat in Rhodes can be one of the most flexible and rewarding ways to explore the coastline — if you choose the right option.
-          </p>
+          <div class="rab-copy">
+            <p>Thousands of happy guests explore Rhodes from the sea each year. A morning swim in a hidden bay, a slow cruise along the east coast, lunch at a beach taverna: that is what a great boat day looks like here.</p>
 
-          <p>At Rhodes Rent a Boat, we don't believe in pushing experiences. We believe in understanding people.</p>
+            <p>Whether you want a license-free boat for two or a skippered trip for the whole family, we help you pick the right option with honest advice and no sales pressure. Real boats, local knowledge, and guests who leave smiling. That is what we care about.</p>
+          </div>
 
-          <p>Some visitors come to Rhodes looking for freedom. Others look for comfort, safety or simplicity. Some want privacy, others want to share moments. Some know exactly what they want — others don't, and that's perfectly fine.</p>
-
-          <p class="rab-emphasis">Our role is to listen first.</p>
-
-          <p>To understand who you are, how you travel, who you are with and what kind of sea experience will make you feel relaxed and confident.</p>
-
-          <p>Based on that, we guide you honestly through the options available in Rhodes: boat rentals, license-free boats, private boat trips with skipper, boat tours, cruises, fishing experiences, yacht charters and specialized marine services.</p>
-
-          <p class="rab-emphasis">We don't list everything. We help you choose wisely.</p>
-
-          <p class="rab-close">It's about choosing the right one.</p>
+          <div class="rab-actions">
+            <a href="/contact" class="rab-btn rab-btn--primary">Book Now</a>
+            <a href="/things-to-do" class="rab-btn rab-btn--outline">Explore Rentals</a>
+          </div>
         </article>
       </div>
     </div>
@@ -41,69 +46,152 @@
 </section>
 
 <style>
-  .rab-tagline {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-    color: #1CA8CB;
-    line-height: 1.6;
-    margin-top: 10px;
+  .rab-section {
+    padding: 88px 0;
+    background: linear-gradient(180deg, #f4fafc 0%, #fff 45%, #fff 100%);
+    overflow: hidden;
+  }
+
+  .rab-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.05fr);
+    gap: 56px;
+    align-items: center;
+  }
+
+  .rab-visual {
+    position: relative;
+  }
+
+  .rab-visual__frame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 24px 60px rgba(17, 61, 72, 0.14);
+  }
+
+  .rab-visual__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .rab-visual__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(17, 61, 72, 0) 55%,
+      rgba(17, 61, 72, 0.35) 100%
+    );
+    pointer-events: none;
+  }
+
+  .rab-card {
+    background: #fff;
+    border: 1px solid rgba(17, 61, 72, 0.08);
+    border-radius: 20px;
+    padding: 32px 34px;
+    box-shadow: 0 10px 40px rgba(17, 61, 72, 0.06);
+  }
+
+  .rab-subheading {font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 700;
+    color: #113D48;
+    line-height: 1.35;
+    margin: 0 0 18px;
+  }
+
+  .rab-copy {font-size: 1.1rem;
+    line-height: 1.85;
+    color: #000;
+  }
+
+  .rab-copy p {
+    margin: 0 0 16px;
+    color: #000;
+  }
+
+  .rab-copy p:last-child {
     margin-bottom: 0;
   }
 
-  .rab-body {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: #4a5568;
+  .rab-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
   }
 
-  .rab-body p {
-    margin-bottom: 18px;
-  }
-
-  .rab-subheading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-    font-weight: 700;
-    color: #113D48;
-    line-height: 1.3;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-
-  .rab-lead {
-    font-size: 1.12rem;
-    color: #2d3e46;
-    text-align: center;
-    margin-bottom: 28px !important;
-  }
-
-  .rab-emphasis {
-    font-family: 'Playfair Display', serif;
+  .rab-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px;
+    border-radius: 6px;font-size: 0.82rem;
     font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .rab-btn--primary {
+    background: #1CA8CB;
+    color: #fff;
+    border: 1px solid #1CA8CB;
+  }
+
+  .rab-btn--primary:hover {
+    background: #178fa8;
+    border-color: #178fa8;
+    color: #fff;
+  }
+
+  .rab-btn--outline {
+    background: transparent;
     color: #113D48;
-    font-size: 1.15rem;
-    margin: 24px 0 !important;
-    text-align: center;
+    border: 1px solid rgba(17, 61, 72, 0.2);
   }
 
-  .rab-close {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.2rem;
+  .rab-btn--outline:hover {
+    border-color: #1CA8CB;
     color: #1CA8CB;
-    text-align: center;
-    margin-top: 28px !important;
-    margin-bottom: 0 !important;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     .rab-section {
-      padding: 60px 0 !important;
+      padding: 64px 0;
     }
-    .rab-body {
-      font-size: 1rem;
+
+    .rab-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .rab-visual__frame {
+      aspect-ratio: 16 / 10;
+      max-height: 360px;
+    }
+
+    .rab-card {
+      padding: 24px 20px;
+    }
+
+    .rab-copy {
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .rab-actions {
+      flex-direction: column;
+    }
+
+    .rab-btn {
+      width: 100%;
     }
   }
 </style>

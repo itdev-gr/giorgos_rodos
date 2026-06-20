@@ -1,20 +1,18 @@
 ---
 import { createAdminClient, createPublicClient } from '../../lib/supabase';
-import { imgUrl, imgSrcset } from '../../lib/media';
+import ExperienceCard from '../../components/ExperienceCard.astro';
 
-// Hardcoded fallback
 const fallbackCategories = [
   { title: 'Rhodes Boat Tours', description: 'Guided sailing tours along the stunning Rhodes coastline and nearby islands.', image: '/assets/img/cruises/greco_sunset3.jpg', href: '/service/rhodes-boat-tours' },
-  { title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/destinations/private-sailing.jpg', href: '/service/rhodes-boat-trips' },
+  { title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/locations/private-sailing.jpg', href: '/service/rhodes-boat-trips' },
   { title: 'Rhodes Boat Cruises', description: 'All-inclusive day and sunset cruises with swimming, dining, and music.', image: '/assets/img/cruises/greco_home1.jpg', href: '/service/rhodes-boat-cruises' },
-  { title: 'Rhodes Rent a Boat', description: 'Drive your own boat along the coast — no licence needed, full freedom.', image: '/assets/img/destinations/tsambika-beach.jpg', href: '/service/rhodes-rent-a-boat' },
+  { title: 'Rhodes Rent a Boat', description: 'Drive your own boat along the coast, no licence needed, full freedom.', image: '/assets/img/locations/tsambika-beach.jpg', href: '/#rent-a-boat' },
   { title: 'Rhodes Catamaran Cruises', description: 'Spacious catamarans for group cruises, events, and island-hopping adventures.', image: '/assets/img/fleet/lagoon-42-aenaos.webp', href: '/service/rhodes-catamaran-tours' },
   { title: 'Rhodes Yacht Charter', description: 'Over 80 sailing yachts and catamarans. Bareboat or crewed, the Dodecanese is yours.', image: '/assets/img/fleet/oceanis-461-nailah.jpg', href: '/service/rhodes-charter' },
-  { title: 'Rhodes Tender Boat Services', description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.', image: '/assets/img/tender/tender-service.jpg', href: '/service/rhodes-tender-boat' },
+  { title: 'Rhodes Tender Boat Services', description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.', image: '/assets/img/operations/tender/tender-service.jpg', href: '/service/rhodes-tender-boat' },
   { title: 'Rhodes MICE & Incentive Events', description: 'Corporate events, incentive trips, and team-building experiences on the water.', image: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', href: '/service/rhodes-mice-events' },
 ];
 
-// Try to fetch from Supabase Storage config
 let categories = fallbackCategories;
 try {
   const supabase = createAdminClient() || createPublicClient();
@@ -35,131 +33,84 @@ try {
 }
 ---
 
-<section style="padding: 80px 0; overflow: hidden;">
+<section class="services-categories">
   <div class="container">
-    <div class="title-area text-center" style="margin-bottom: 50px;">
-      <span class="sub-title style1" data-ani="slideinup">Our Services</span>
-      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">What Boat Experiences Can You Book in Rhodes?</h2>
+    <div class="title-area text-center services-categories__header">
+      <h2 class="sec-title services-categories__title" data-ani="slideinup">Our Services</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;" class="cat-grid">
+    <div class="exp-grid exp-grid--4 services-categories__grid">
       {categories.map((cat, i) => (
-        <a href={cat.href} class="cat-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.05}`}>
-          <div class="cat-card__img">
-            <img
-              src={imgUrl(cat.image, 600, { quality: 75 })}
-              srcset={imgSrcset(cat.image, [400, 600, 800])}
-              sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 25vw"
-              alt={cat.title}
-              loading="lazy"
-              width="600"
-              height="340"
-            />
-          </div>
-          <div class="cat-card__overlay"></div>
-          <div class="cat-card__content">
-            <h3 class="cat-card__title">{cat.title}</h3>
-            <p class="cat-card__desc">{cat.description}</p>
-            <span class="cat-card__btn">View More</span>
-          </div>
-        </a>
+        <div class="services-categories__cell" data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.04}`}>
+          <ExperienceCard
+            href={cat.href}
+            title={cat.title}
+            description={cat.description}
+            image={cat.image}
+            showStars={false}
+            showButton={true}
+            sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 25vw"
+          />
+        </div>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .cat-card {
-    position: relative;
-    display: block;
-    border-radius: 12px;
+  .services-categories {
+    padding: 88px 0;
     overflow: hidden;
-    height: 340px;
-    text-decoration: none;
-    color: #fff;
+    background: #fff;
   }
 
-  .cat-card__img {
-    position: absolute;
-    inset: 0;
+  .services-categories__header {
+    margin-bottom: 48px;
   }
 
-  .cat-card__img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .cat-card:hover .cat-card__img img {
-    transform: scale(1.08);
-  }
-
-  .cat-card__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%);
-    transition: background 0.3s ease;
-  }
-
-  .cat-card:hover .cat-card__overlay {
-    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 55%);
-  }
-
-  .cat-card__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 24px;
-    z-index: 1;
-  }
-
-  .cat-card__title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
+  .services-categories__title {font-size: clamp(1.75rem, 3vw, 2.35rem);
     font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  .cat-card__desc {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 12px;
-  }
-
-  .cat-card__btn {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 8px 20px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-
-  .cat-card:hover .cat-card__btn {
-    background: rgba(255,255,255,0.15);
-    border-color: #fff;
+    color: #113D48;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    line-height: 1.2;
   }
 
   @media (max-width: 991px) {
-    .cat-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
+    .services-categories {
+      padding: 64px 0;
+      width: 100%;
+      overflow: visible;
+    }
+
+    .services-categories .container {
+      width: 100%;
+      max-width: 100%;
+      padding-inline: 20px;
+      box-sizing: border-box;
+    }
+
+    .services-categories__header {
+      margin-bottom: 36px;
+    }
+
+    .services-categories__grid {
+      width: 100%;
+    }
+
+    .services-categories__cell {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .services-categories__cell :global(.exp-card) {
+      width: 100%;
     }
   }
 
   @media (max-width: 575px) {
-    .cat-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    .cat-card {
-      height: 280px;
+    .services-categories .container {
+      padding-inline: 16px;
     }
   }
 </style>

@@ -65,7 +65,7 @@ const userCount = totalUsers - adminCount;
 
   <!-- Action Bar -->
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" class="dash-action-bar">
-    <button id="create-user-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s;">
+    <button id="create-user-btn" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer;transition: background 0.2s;">
       <i class="fas fa-user-plus"></i> Create User
     </button>
     <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">{totalUsers} user{totalUsers !== 1 ? 's' : ''} registered</p>
@@ -82,33 +82,33 @@ const userCount = totalUsers - adminCount;
     <form id="new-user-form" class="dash-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px;">
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Email *</label>
-        <input name="email" type="email" placeholder="user@example.com" required style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: border 0.2s;" />
+        <input name="email" type="email" placeholder="user@example.com" required style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; transition: border 0.2s;" />
       </div>
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Password *</label>
-        <input name="password" type="password" placeholder="Min 6 characters" required style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: border 0.2s;" />
+        <input name="password" type="password" placeholder="Min 6 characters" required style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; transition: border 0.2s;" />
       </div>
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Full Name</label>
-        <input name="full_name" type="text" placeholder="John Doe" style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none;" />
+        <input name="full_name" type="text" placeholder="John Doe" style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none;" />
       </div>
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Company Name</label>
-        <input name="company_name" type="text" placeholder="Company (optional)" style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none;" />
+        <input name="company_name" type="text" placeholder="Company (optional)" style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none;" />
       </div>
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Phone</label>
-        <input name="phone" type="tel" placeholder="+30 ..." style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none;" />
+        <input name="phone" type="tel" placeholder="+30 ..." style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none;" />
       </div>
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Role</label>
-        <select name="role" style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; background: #fff; cursor: pointer;">
+        <select name="role" style="width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; background: #fff; cursor: pointer;">
           <option value="user">Operator (User)</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <div style="grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 4px;">
-        <button type="submit" style="padding: 10px 28px; background: #1CA8CB; color: #fff; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s;">
+        <button type="submit" style="padding: 10px 28px; background: #1CA8CB; color: #fff; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer;transition: background 0.2s;">
           <i class="fas fa-check" style="margin-right: 6px;"></i> Create User
         </button>
       </div>
@@ -183,28 +183,28 @@ const userCount = totalUsers - adminCount;
             <form class="user-edit-form" data-user-id={u.id} style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;">
               <div>
                 <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Full Name</label>
-                <input name="full_name" type="text" value={u.full_name || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input name="full_name" type="text" value={u.full_name || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem;outline: none; box-sizing: border-box;" />
               </div>
               <div>
                 <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Company</label>
-                <input name="company_name" type="text" value={u.company_name || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input name="company_name" type="text" value={u.company_name || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem;outline: none; box-sizing: border-box;" />
               </div>
               <div>
                 <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Phone</label>
-                <input name="phone" type="tel" value={u.phone || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input name="phone" type="tel" value={u.phone || ''} style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem;outline: none; box-sizing: border-box;" />
               </div>
               <div>
                 <label style="display: block; font-size: 0.72rem; font-weight: 600; color: #475569; margin-bottom: 4px;">Role</label>
-                <select name="role" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem; font-family: 'Inter', sans-serif; outline: none; background: #fff; cursor: pointer; box-sizing: border-box;">
+                <select name="role" style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.82rem;outline: none; background: #fff; cursor: pointer; box-sizing: border-box;">
                   <option value="user" selected={u.role === 'user'}>Operator (User)</option>
                   <option value="admin" selected={u.role === 'admin'}>Admin</option>
                 </select>
               </div>
               <div style="grid-column: 1 / -1; display: flex; gap: 8px; margin-top: 4px;">
-                <button type="submit" style="padding: 8px 20px; background: #1CA8CB; color: #fff; border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;">
+                <button type="submit" style="padding: 8px 20px; background: #1CA8CB; color: #fff; border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
                   <i class="fas fa-check" style="margin-right: 4px;"></i> Save
                 </button>
-                <button type="button" class="cancel-edit" style="padding: 8px 16px; background: #f1f5f9; color: #64748b; border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif;">
+                <button type="button" class="cancel-edit" style="padding: 8px 16px; background: #f1f5f9; color: #64748b; border: none; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer;">
                   Cancel
                 </button>
               </div>
@@ -213,10 +213,10 @@ const userCount = totalUsers - adminCount;
 
           <!-- Actions -->
           <div style="display: flex; gap: 8px; padding-top: 14px; border-top: 1px solid #f1f5f9;">
-            <button data-action="edit" data-id={u.id} style="flex: 1; padding: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #475569; font-family: 'Inter', sans-serif; transition: all 0.2s;">
+            <button data-action="edit" data-id={u.id} style="flex: 1; padding: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #475569;transition: all 0.2s;">
               <i class="fas fa-pen" style="margin-right: 4px; font-size: 0.7rem;"></i> Edit
             </button>
-            <button data-action="delete" data-id={u.id} style="padding: 8px 14px; background: #fff; border: 1px solid #fecaca; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #dc2626; font-family: 'Inter', sans-serif; transition: all 0.2s;">
+            <button data-action="delete" data-id={u.id} style="padding: 8px 14px; background: #fff; border: 1px solid #fecaca; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #dc2626;transition: all 0.2s;">
               <i class="fas fa-trash" style="font-size: 0.7rem;"></i>
             </button>
           </div>

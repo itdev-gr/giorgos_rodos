@@ -27,7 +27,7 @@ const servicePageLabels: Record<string, string> = {
 <DashboardLayout title="My Tours">
   <!-- Action Bar -->
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;" class="dash-action-bar">
-    <a href="/dashboard/user/tours/new" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; font-family: 'Inter', sans-serif;">
+    <a href="/dashboard/user/tours/new" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
       <i class="fas fa-plus"></i> Create New Tour
     </a>
     <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">{tours?.length || 0} tour{(tours?.length || 0) !== 1 ? 's' : ''}</p>
@@ -71,7 +71,7 @@ const servicePageLabels: Record<string, string> = {
             <a href={`/dashboard/user/tours/${tour.id}`} style="padding: 7px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.78rem; font-weight: 500; color: #475569; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
               <i class="fas fa-pen" style="font-size: 0.7rem;"></i> Edit
             </a>
-            <button data-delete={tour.id} style="padding: 7px 14px; background: #fff; border: 1px solid #fecaca; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #dc2626; font-family: 'Inter', sans-serif;">
+            <button data-delete={tour.id} style="padding: 7px 14px; background: #fff; border: 1px solid #fecaca; border-radius: 6px; font-size: 0.78rem; font-weight: 500; cursor: pointer; color: #dc2626;">
               <i class="fas fa-trash" style="font-size: 0.7rem;"></i>
             </button>
           </div>

@@ -25,10 +25,10 @@ const FILE = 'media-slots.json';
 
 const slots = [
   // Home
-  { key: 'home.hero.video', page: 'Home', section: 'Hero', label: 'Hero Video (all viewports)', type: 'video', url: '/assets/img/hero/hero-video.webm', defaultUrl: '/assets/img/hero/hero-video.webm', sort_order: 10 },
+  { key: 'home.hero.video', page: 'Home', section: 'Hero', label: 'Hero Video (desktop)', type: 'video', url: '/assets/img/heroes/hero-video.mp4', defaultUrl: '/assets/img/heroes/hero-video.mp4', sort_order: 10 },
 
   // About
-  { key: 'about.hero.bg', page: 'About', section: 'Hero', label: 'Hero Background Photo (all viewports)', type: 'image', url: '/assets/img/about/about-hero-boy-sailboat.jpg', defaultUrl: '/assets/img/about/about-hero-boy-sailboat.jpg', sort_order: 10 },
+  { key: 'about.hero.bg', page: 'About', section: 'Hero', label: 'Hero Background Photo (all viewports)', type: 'image', url: '/assets/img/pages/about/about-hero-boy-sailboat.jpg', defaultUrl: '/assets/img/pages/about/about-hero-boy-sailboat.jpg', sort_order: 10 },
   { key: 'about.story.img', page: 'About', section: 'Our Story', label: 'Our Story Image', type: 'image', url: '/assets/img/gallery/yacht/greek-island-1.jpg', defaultUrl: '/assets/img/gallery/yacht/greek-island-1.jpg', sort_order: 20 },
   { key: 'about.safety.img', page: 'About', section: 'Safety', label: 'Safety Section Image', type: 'image', url: '/assets/img/gallery/yacht/yacht-interior-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-interior-1.jpg', sort_order: 30 },
   { key: 'about.difference.img', page: 'About', section: 'What Makes Us Different', label: 'What Makes Us Different Image', type: 'image', url: '/assets/img/gallery/yacht/yacht-deck-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-deck-1.jpg', sort_order: 40 },
@@ -37,68 +37,68 @@ const slots = [
 
   // Service: Boat Tours
   { key: 'service.boat-tours.hero.image', page: 'Service: Boat Tours', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/tours/hero-rhodes-coast.jpg', defaultUrl: '/assets/img/tours/hero-rhodes-coast.jpg', sort_order: 5 },
-  { key: 'service.boat-tours.hero.video', page: 'Service: Boat Tours', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/boat-tours.mp4', defaultUrl: '/assets/img/hero/services/boat-tours.mp4', sort_order: 10 },
+  { key: 'service.boat-tours.hero.video', page: 'Service: Boat Tours', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/boat-tours.mp4', defaultUrl: '/assets/img/heroes/services/boat-tours.mp4', sort_order: 10 },
 
   // Service: Boat Cruises
   { key: 'service.boat-cruises.hero.image', page: 'Service: Boat Cruises', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/cruises/greco_home1.jpg', defaultUrl: '/assets/img/cruises/greco_home1.jpg', sort_order: 5 },
-  { key: 'service.boat-cruises.hero.video', page: 'Service: Boat Cruises', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/boat-cruises.mp4', defaultUrl: '/assets/img/hero/services/boat-cruises.mp4', sort_order: 10 },
+  { key: 'service.boat-cruises.hero.video', page: 'Service: Boat Cruises', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/boat-cruises.mp4', defaultUrl: '/assets/img/heroes/services/boat-cruises.mp4', sort_order: 10 },
 
   // Service: Boat Trips
   { key: 'service.boat-trips.hero.image', page: 'Service: Boat Trips', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/crystal-water-1.jpg', defaultUrl: '/assets/img/gallery/yacht/crystal-water-1.jpg', sort_order: 5 },
-  { key: 'service.boat-trips.hero.video', page: 'Service: Boat Trips', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/private-tours.mp4', defaultUrl: '/assets/img/hero/services/private-tours.mp4', sort_order: 10 },
+  { key: 'service.boat-trips.hero.video', page: 'Service: Boat Trips', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/private-tours.mp4', defaultUrl: '/assets/img/heroes/services/private-tours.mp4', sort_order: 10 },
 
   // Service: Rent a Boat
   { key: 'service.rent-a-boat.hero.image', page: 'Service: Rent a Boat', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/crystal-water-1.jpg', defaultUrl: '/assets/img/gallery/yacht/crystal-water-1.jpg', sort_order: 5 },
-  { key: 'service.rent-a-boat.hero.video', page: 'Service: Rent a Boat', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/license-free.mp4', defaultUrl: '/assets/img/hero/services/license-free.mp4', sort_order: 10 },
+  { key: 'service.rent-a-boat.hero.video', page: 'Service: Rent a Boat', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/license-free.mp4', defaultUrl: '/assets/img/heroes/services/license-free.mp4', sort_order: 10 },
 
   // Service: Yacht Charter
   { key: 'service.charter.hero.image', page: 'Service: Yacht Charter', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/fleet/oceanis-511-lupo-di-mare.jpg', defaultUrl: '/assets/img/fleet/oceanis-511-lupo-di-mare.jpg', sort_order: 5 },
-  { key: 'service.charter.hero.video', page: 'Service: Yacht Charter', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+  { key: 'service.charter.hero.video', page: 'Service: Yacht Charter', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/charter.mp4', defaultUrl: '/assets/img/heroes/services/charter.mp4', sort_order: 10 },
 
   // Service: Catamaran
   { key: 'service.catamaran.hero.image', page: 'Service: Catamaran', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/fleet/lagoon-42-aenaos.jpg', defaultUrl: '/assets/img/fleet/lagoon-42-aenaos.jpg', sort_order: 5 },
-  { key: 'service.catamaran.hero.video', page: 'Service: Catamaran', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+  { key: 'service.catamaran.hero.video', page: 'Service: Catamaran', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/charter.mp4', defaultUrl: '/assets/img/heroes/services/charter.mp4', sort_order: 10 },
 
   // Service: Sailing
   { key: 'service.sailing.hero.image', page: 'Service: Sailing', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/sailing-sunset-1.jpg', defaultUrl: '/assets/img/gallery/yacht/sailing-sunset-1.jpg', sort_order: 5 },
-  { key: 'service.sailing.hero.video', page: 'Service: Sailing', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+  { key: 'service.sailing.hero.video', page: 'Service: Sailing', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/charter.mp4', defaultUrl: '/assets/img/heroes/services/charter.mp4', sort_order: 10 },
 
   // Service: MICE
   { key: 'service.mice.hero.image', page: 'Service: MICE', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', sort_order: 5 },
-  { key: 'service.mice.hero.video', page: 'Service: MICE', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/mise.mp4', defaultUrl: '/assets/img/hero/services/mise.mp4', sort_order: 10 },
+  { key: 'service.mice.hero.video', page: 'Service: MICE', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/mise.mp4', defaultUrl: '/assets/img/heroes/services/mise.mp4', sort_order: 10 },
 
-  // Service: Tender Boat (Unsplash backgroundImage — we keep it as external URL in the default)
+  // Service: Tender Boat (Unsplash backgroundImage, we keep it as external URL in the default)
   { key: 'service.tender.hero.image', page: 'Service: Tender Boat', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1920&h=1080&fit=crop', defaultUrl: 'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1920&h=1080&fit=crop', sort_order: 5 },
-  { key: 'service.tender.hero.video', page: 'Service: Tender Boat', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/tender.mp4', defaultUrl: '/assets/img/hero/services/tender.mp4', sort_order: 10 },
+  { key: 'service.tender.hero.video', page: 'Service: Tender Boat', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/tender.mp4', defaultUrl: '/assets/img/heroes/services/tender.mp4', sort_order: 10 },
 
   // Service: Transfers
-  { key: 'service.transfers.hero.image', page: 'Service: Transfers', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/transfers/rhodes-transfer-hero.jpg', defaultUrl: '/assets/img/transfers/rhodes-transfer-hero.jpg', sort_order: 5 },
-  { key: 'service.transfers.hero.video', page: 'Service: Transfers', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+  { key: 'service.transfers.hero.image', page: 'Service: Transfers', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/operations/transfers/rhodes-transfer-hero.jpg', defaultUrl: '/assets/img/operations/transfers/rhodes-transfer-hero.jpg', sort_order: 5 },
+  { key: 'service.transfers.hero.video', page: 'Service: Transfers', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/charter.mp4', defaultUrl: '/assets/img/heroes/services/charter.mp4', sort_order: 10 },
 
   // Services index
   { key: 'service.index.hero.image', page: 'Services (index)', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', sort_order: 5 },
-  { key: 'service.index.hero.video', page: 'Services (index)', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/charter.mp4', defaultUrl: '/assets/img/hero/services/charter.mp4', sort_order: 10 },
+  { key: 'service.index.hero.video', page: 'Services (index)', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/charter.mp4', defaultUrl: '/assets/img/heroes/services/charter.mp4', sort_order: 10 },
 
-  // About — Featured Experiences (Section 6)
+  // About, Featured Experiences (Section 6)
   { key: 'about.experience.sunset.img', page: 'About', section: 'Featured Experiences', label: 'Sunset Cruises Card', type: 'image', url: '/assets/img/gallery/yacht/sunset-cruise-1.jpg', defaultUrl: '/assets/img/gallery/yacht/sunset-cruise-1.jpg', sort_order: 70 },
   { key: 'about.experience.hopping.img', page: 'About', section: 'Featured Experiences', label: 'Island Hopping Card', type: 'image', url: '/assets/img/gallery/yacht/crystal-water-1.jpg', defaultUrl: '/assets/img/gallery/yacht/crystal-water-1.jpg', sort_order: 80 },
   { key: 'about.experience.charter.img', page: 'About', section: 'Featured Experiences', label: 'Private Charters Card', type: 'image', url: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', sort_order: 90 },
   { key: 'about.experience.adventures.img', page: 'About', section: 'Featured Experiences', label: 'Sea Adventures Card', type: 'image', url: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', sort_order: 100 },
 
-  // Things to do — aggregator
+  // Things to do, aggregator
   { key: 'things-to-do.hero.image', page: 'Things to Do', section: 'Hero (desktop)', label: 'Hero Background Image (desktop)', type: 'image', url: '/assets/img/gallery/yacht/greek-island-1.jpg', defaultUrl: '/assets/img/gallery/yacht/greek-island-1.jpg', sort_order: 5 },
-  { key: 'things-to-do.hero.video', page: 'Things to Do', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/hero/services/boat-tours.mp4', defaultUrl: '/assets/img/hero/services/boat-tours.mp4', sort_order: 10 },
+  { key: 'things-to-do.hero.video', page: 'Things to Do', section: 'Hero (mobile/tablet)', label: 'Hero Video (mobile/tablet)', type: 'video', url: '/assets/img/heroes/services/boat-tours.mp4', defaultUrl: '/assets/img/heroes/services/boat-tours.mp4', sort_order: 10 },
 
   // Sidecar Tours
-  { key: 'sidecar-tours.hero.image', page: 'Sidecar Tours', section: 'Hero', label: 'Hero Background Image', type: 'image', url: '/assets/img/transfers/rhodes-transfer-hero.jpg', defaultUrl: '/assets/img/transfers/rhodes-transfer-hero.jpg', sort_order: 5 },
-  { key: 'sidecar-tours.body.img-1', page: 'Sidecar Tours', section: 'Body', label: 'Content Image 1 (Rider)', type: 'image', url: '/assets/img/transfers/transfer-rider.jpg', defaultUrl: '/assets/img/transfers/transfer-rider.jpg', sort_order: 20 },
-  { key: 'sidecar-tours.body.img-2', page: 'Sidecar Tours', section: 'Body', label: 'Content Image 2 (Vintage sidecar)', type: 'image', url: '/assets/img/transfers/transfer-sidecar.jpg', defaultUrl: '/assets/img/transfers/transfer-sidecar.jpg', sort_order: 30 },
+  { key: 'sidecar-tours.hero.image', page: 'Sidecar Tours', section: 'Hero', label: 'Hero Background Image', type: 'image', url: '/assets/img/operations/transfers/rhodes-transfer-hero.jpg', defaultUrl: '/assets/img/operations/transfers/rhodes-transfer-hero.jpg', sort_order: 5 },
+  { key: 'sidecar-tours.body.img-1', page: 'Sidecar Tours', section: 'Body', label: 'Content Image 1 (Rider)', type: 'image', url: '/assets/img/operations/transfers/transfer-rider.jpg', defaultUrl: '/assets/img/operations/transfers/transfer-rider.jpg', sort_order: 20 },
+  { key: 'sidecar-tours.body.img-2', page: 'Sidecar Tours', section: 'Body', label: 'Content Image 2 (Vintage sidecar)', type: 'image', url: '/assets/img/operations/transfers/transfer-sidecar.jpg', defaultUrl: '/assets/img/operations/transfers/transfer-sidecar.jpg', sort_order: 30 },
 
-  // Blog — Rhodes Rent a Boat post
+  // Blog, Rhodes Rent a Boat post
   { key: 'blog.rhodes-rent-a-boat.hero.bg', page: 'Blog: Rhodes Rent a Boat', section: 'Hero', label: 'Hero Background Photo', type: 'image', url: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', defaultUrl: '/assets/img/gallery/yacht/yacht-sailing-1.jpg', sort_order: 10 },
 
   // FAQ
-  { key: 'faq.contact.bg', page: 'FAQ', section: 'Contact Banner', label: 'Contact Section Background', type: 'image', url: '/assets/img/bg/tour_bg_3.jpg', defaultUrl: '/assets/img/bg/tour_bg_3.jpg', sort_order: 10 },
+  { key: 'faq.contact.bg', page: 'FAQ', section: 'Contact Banner', label: 'Contact Section Background', type: 'image', url: '/assets/img/ui/backgrounds/tour_bg_3.jpg', defaultUrl: '/assets/img/ui/backgrounds/tour_bg_3.jpg', sort_order: 10 },
 
   // Contact
   { key: 'contact.aside.img', page: 'Contact', section: 'Sidebar', label: 'Aside Image (Aegean view)', type: 'image', url: '/assets/img/cruises/greco_sunset3.jpg', defaultUrl: '/assets/img/cruises/greco_sunset3.jpg', sort_order: 10 },

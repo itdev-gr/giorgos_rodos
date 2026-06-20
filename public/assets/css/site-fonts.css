@@ -5,11 +5,12 @@
 }
 
 html body {
-  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--body-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Match homepage typography site-wide (Helvetica stack) */
 html body :where(
   h1,
   h2,
@@ -33,7 +34,9 @@ html body :where(
   blockquote,
   small,
   strong,
-  em
-):not([class*="fa-"]) {
-  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif !important;
+  em,
+  dt,
+  dd
+):not([class*="fa-"]):not(.fab):not(.fas):not(.far):not(.fal) {
+  font-family: var(--body-font) !important;
 }

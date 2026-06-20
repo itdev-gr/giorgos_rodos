@@ -3,6 +3,7 @@ import { imgUrl, imgSrcset } from '../../lib/media';
 
 interface Tour {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   image_url: string;
@@ -51,12 +52,10 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
 
   return (
     <div>
-      {/* Search + Filter Bar */}
       <div style={{
         display: 'flex', gap: 14, marginBottom: 32, flexWrap: 'wrap',
         alignItems: 'center', justifyContent: 'space-between',
       }}>
-        {/* Search */}
         <div style={{ position: 'relative', flex: '1 1 300px', maxWidth: 400 }}>
           <i className="fas fa-search" style={{
             position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
@@ -77,7 +76,6 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
           />
         </div>
 
-        {/* Category Filter */}
         <div className="filter-pills" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <button
             onClick={() => setFilter('all')}
@@ -114,102 +112,68 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
         </div>
       </div>
 
-      {/* Results count */}
       <p style={{ fontSize: '0.82rem', color: '#94a3b8', marginBottom: 20 }}>
         {filtered.length} experience{filtered.length !== 1 ? 's' : ''} found
         {search && ` for "${search}"`}
       </p>
 
-      {/* Grid */}
       {filtered.length > 0 ? (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="tsg-grid">
+        <div className="exp-grid">
           {filtered.map((tour) => {
             const img = tour.image_url || tour.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg';
+            const badge = tour.badge_label || tour.duration || '';
             return (
               <a
                 key={tour.id}
                 href={`/tour-detail/${tour.slug || tour.id}`}
-                className="tsg-card"
-                style={{
-                  display: 'flex', flexDirection: 'column', textDecoration: 'none',
-                  color: 'inherit', background: '#fff', borderRadius: 14,
-                  overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                }}
+                className="exp-card"
               >
-                <div style={{ height: 220, overflow: 'hidden', position: 'relative' }}>
+                <div className="exp-card__media">
                   <img
-                    src={imgUrl(img, 600, { quality: 75 })}
-                    srcSet={imgSrcset(img, [400, 600, 800])}
+                    src={imgUrl(img, 700, { quality: 80 })}
+                    srcSet={imgSrcset(img, [480, 640, 700, 900])}
                     sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
                     alt={tour.title}
                     loading="lazy"
-                    width={600}
-                    height={220}
-                    style={{
-                      width: '100%', height: '100%', objectFit: 'cover',
-                      transition: 'transform 0.5s ease',
-                    }}
+                    width={700}
+                    height={875}
                   />
-                  {tour.badge_label && (
-                    <span style={{
-                      position: 'absolute', top: 14, right: 14,
-                      background: 'rgba(17,61,72,0.85)', color: '#fff',
-                      fontFamily: 'Inter, sans-serif', fontSize: '0.75rem',
-                      fontWeight: 600, padding: '5px 12px', borderRadius: 6,
-                      backdropFilter: 'blur(4px)',
-                    }}>{tour.badge_label}</span>
-                  )}
-                  {tour.service_page && (
-                    <span style={{
-                      position: 'absolute', bottom: 14, left: 14,
-                      background: 'rgba(28,168,203,0.9)', color: '#fff',
-                      fontFamily: 'Inter, sans-serif', fontSize: '0.68rem',
-                      fontWeight: 600, padding: '4px 10px', borderRadius: 6,
-                    }}>{servicePageLabels[tour.service_page] || tour.service_page}</span>
-                  )}
                 </div>
-                <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <h3 style={{
-                    fontFamily: 'Manrope, sans-serif', fontSize: '1.1rem',
-                    fontWeight: 700, color: '#113D48', marginBottom: 8,
-                  }}>{tour.title}</h3>
-                  <p style={{
-                    fontSize: '0.88rem', lineHeight: 1.6, color: '#6b7c85',
-                    marginBottom: 14, display: '-webkit-box', WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical', overflow: 'hidden',
-                  }}>{tour.description}</p>
-                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
-                    {tour.duration && (
-                      <span style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 4,
-                        fontSize: '0.75rem', color: '#5a6a72', background: '#f0f4f5',
-                        padding: '4px 10px', borderRadius: 20,
-                      }}>
-                        <i className="far fa-clock" style={{ fontSize: '0.7rem', color: '#1CA8CB' }} /> {tour.duration}
-                      </span>
-                    )}
-                    {tour.guests && (
-                      <span style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 4,
-                        fontSize: '0.75rem', color: '#5a6a72', background: '#f0f4f5',
-                        padding: '4px 10px', borderRadius: 20,
-                      }}>
-                        <i className="far fa-user" style={{ fontSize: '0.7rem', color: '#1CA8CB' }} /> {tour.guests}
-                      </span>
-                    )}
+                <div className="exp-card__scrim" />
+
+                {badge && <span className="exp-card__badge">{badge}</span>}
+
+                {tour.price && (
+                  <div className="exp-card__price">
+                    <span className="exp-card__price-current">{tour.price}</span>
                   </div>
-                  <div style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    marginTop: 'auto', paddingTop: 14, borderTop: '1px solid #f0f0f0',
-                  }}>
-                    {tour.price && (
-                      <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '1.05rem', fontWeight: 700, color: '#1CA8CB' }}>{tour.price}</span>
-                    )}
-                    <span style={{ fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1, color: '#113D48' }}>
-                      View Details <i className="fa-regular fa-arrow-right" style={{ marginLeft: 4 }} />
-                    </span>
+                )}
+
+                <div className="exp-card__body">
+                  <div className="exp-card__stars" aria-hidden="true">
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
                   </div>
+
+                  <h3 className="exp-card__title">{tour.title}</h3>
+
+                  {tour.description && (
+                    <p className="exp-card__desc">{tour.description}</p>
+                  )}
+
+                  {(tour.duration || tour.guests) && (
+                    <div className="exp-card__meta">
+                      {tour.duration && !tour.badge_label && (
+                        <span><i className="far fa-clock" /> {tour.duration}</span>
+                      )}
+                      {tour.guests && (
+                        <span><i className="far fa-user" /> {tour.guests}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </a>
             );
@@ -224,10 +188,6 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
       )}
 
       <style>{`
-        .tsg-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; }
-        .tsg-card:hover img { transform: scale(1.05); }
-        @media (max-width: 991px) { .tsg-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        @media (max-width: 575px) { .tsg-grid { grid-template-columns: 1fr !important; } }
         input:focus { border-color: #1CA8CB !important; box-shadow: 0 0 0 3px rgba(28,168,203,0.1); }
       `}</style>
     </div>

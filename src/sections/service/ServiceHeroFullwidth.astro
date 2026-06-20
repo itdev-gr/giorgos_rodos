@@ -64,7 +64,7 @@ const videoSources = heroVideo ? heroVideoSources(heroVideo) : null;
   <div class="container position-relative" style="z-index: 2;">
     <div class="service-hero-content text-center">
       <h1 class="service-hero-title">{title}</h1>
-      <a href="/contact" class="hero-cta-btn">Enquire Now</a>
+      <a href={cta1Link} class="hero-cta-btn">{cta1Text}</a>
     </div>
   </div>
 </div>
@@ -118,9 +118,7 @@ const videoSources = heroVideo ? heroVideoSources(heroVideo) : null;
     color: #fff;
     padding: 14px 32px;
     font-size: 16px;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    border-radius: 4px;
+    font-weight: 600;border-radius: 4px;
     text-decoration: none;
     margin-top: 24px;
     transition: background-color 0.2s;
@@ -167,7 +165,7 @@ const videoSources = heroVideo ? heroVideoSources(heroVideo) : null;
     50% { transform: translateX(-50%) translateY(12px); opacity: 0.3; }
   }
 
-  /* Video hero — mobile only; image stays visible as fallback/poster */
+  /* Video hero, mobile only; image stays visible as fallback/poster */
   .service-hero-video {
     display: none;
   }

@@ -45,7 +45,7 @@ const servicePageLabels: Record<string, string> = {
 <DashboardLayout title="Tour Management">
   <!-- Action Bar -->
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;" class="dash-action-bar">
-    <a href="/dashboard/admin/tours/new" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; font-family: 'Inter', sans-serif;">
+    <a href="/dashboard/admin/tours/new" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
       <i class="fas fa-plus"></i> Create Tour
     </a>
     <p style="font-size: 0.8rem; color: #94a3b8; margin: 0;">{tours.length} tour{tours.length !== 1 ? 's' : ''} total</p>
@@ -143,10 +143,10 @@ const servicePageLabels: Record<string, string> = {
                   )}
                 </div>
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;" class="review-actions">
-                  <button data-action="approve" data-id={tour.id} style="padding: 8px 20px; background: #10B981; color: #fff; border: none; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px;">
+                  <button data-action="approve" data-id={tour.id} style="padding: 8px 20px; background: #10B981; color: #fff; border: none; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fas fa-check"></i> Approve
                   </button>
-                  <button data-action="reject" data-id={tour.id} style="padding: 8px 20px; background: #fff; color: #EF4444; border: 1px solid #EF4444; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px;">
+                  <button data-action="reject" data-id={tour.id} style="padding: 8px 20px; background: #fff; color: #EF4444; border: 1px solid #EF4444; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fas fa-times"></i> Reject
                   </button>
                   <a href={`/dashboard/admin/tours/${tour.id}`} style="padding: 8px 20px; background: #1CA8CB; color: #fff; border-radius: 8px; font-size: 0.82rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
@@ -155,7 +155,7 @@ const servicePageLabels: Record<string, string> = {
                   <a href={`/tour-detail/${tour.id}`} target="_blank" style="padding: 8px 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.82rem; font-weight: 500; color: #64748b; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fas fa-eye"></i> Preview
                   </a>
-                  <button data-action="delete" data-id={tour.id} style="padding: 8px 16px; background: #fff; border: 1px solid #fecaca; border-radius: 8px; font-size: 0.82rem; cursor: pointer; color: #dc2626; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px;">
+                  <button data-action="delete" data-id={tour.id} style="padding: 8px 16px; background: #fff; border: 1px solid #fecaca; border-radius: 8px; font-size: 0.82rem; cursor: pointer; color: #dc2626;display: inline-flex; align-items: center; gap: 6px;">
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
@@ -177,8 +177,8 @@ const servicePageLabels: Record<string, string> = {
         const pendingCount = owner.tours.filter((t: any) => t.status === 'pending').length;
         return (
           <div style="background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden;" class="owner-group">
-            {/* Owner header — clickable */}
-            <button class="owner-toggle" data-owner={ownerId} style="width: 100%; padding: 20px 24px; border: none; background: #fff; cursor: pointer; display: flex; align-items: center; gap: 14px; font-family: 'Inter', sans-serif; text-align: left; transition: background 0.2s;">
+            {/* Owner header, clickable */}
+            <button class="owner-toggle" data-owner={ownerId} style="width: 100%; padding: 20px 24px; border: none; background: #fff; cursor: pointer; display: flex; align-items: center; gap: 14px;text-align: left; transition: background 0.2s;">
               <div style={{
                 width: '42px', height: '42px', borderRadius: '50%', flexShrink: 0,
                 background: '#1CA8CB', color: '#fff',
@@ -199,7 +199,7 @@ const servicePageLabels: Record<string, string> = {
               <i class="fas fa-chevron-down owner-chevron" style="color: #94a3b8; font-size: 0.8rem; transition: transform 0.3s;"></i>
             </button>
 
-            {/* Tours list — hidden by default */}
+            {/* Tours list, hidden by default */}
             <div class="owner-tours" data-owner-tours={ownerId} style="display: none; border-top: 1px solid #f0f0f0;">
               {owner.tours.map((tour: any) => (
                 <div style="display: flex; align-items: center; gap: 14px; padding: 14px 24px; border-bottom: 1px solid #f8f8f8; transition: background 0.2s;" class="owner-tour-row">

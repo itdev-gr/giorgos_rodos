@@ -1,42 +1,96 @@
 ---
 import { getMediaSlot } from '../../lib/media';
-import { heroVideoSources } from '../../lib/hero-video';
-const heroVideo = await getMediaSlot('home.hero.video', '/assets/img/hero/hero-video.webm');
-const sources = heroVideoSources(heroVideo);
+import { resolveHeroMp4, DEFAULT_HERO_MP4 } from '../../lib/hero-video';
+
+const heroVideo = await getMediaSlot('home.hero.video', DEFAULT_HERO_MP4);
+const mp4Src = resolveHeroMp4(heroVideo, DEFAULT_HERO_MP4);
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
-    <div class="th-hero-bg">
+    <div class="th-hero-bg hero-bg-video">
       <video
+        class="hero-video"
         autoplay
         muted
         loop
         playsinline
+        preload="auto"
         width="1920"
         height="1080"
-        style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;"
+        aria-hidden="true"
       >
-        {sources.webm && <source src={sources.webm} type="video/webm" />}
-        <source src={sources.mp4} type="video/mp4" />
+        <source src={mp4Src} type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
     </div>
     <div class="container">
       <div class="hero-style1">
         <div class="hero-content">
-          <span class="hero-accent">Boat Experiences in Rhodes</span>
-          <h1 class="hero-heading">Rhodes Rent a Boat & Boat Tours Handpicked Trips, Cruises and Private Experiences</h1>
-          <a href="/contact" class="hero-cta-btn">Enquire Now</a>
+          <h1 class="hero-heading">Rhodes Rent a Boat</h1>
+          <p class="hero-lead">
+            Explore the east coast at your own pace. License-free options for couples and families,
+            plus skippered boats when you prefer to sit back and enjoy the day.
+          </p>
+          <a href="/contact" class="hero-cta-btn">Book Now</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<script is:inline>
+  (function () {
+    function ensureHeroVideo() {
+      var video = document.querySelector('.hero-video');
+      if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (video.paused) video.play().catch(function () {});
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', ensureHeroVideo);
+    } else {
+      ensureHeroVideo();
+    }
+    document.addEventListener('astro:page-load', ensureHeroVideo);
+  })();
+</script>
+
 <style>
   .hero-fullscreen {
     height: 100vh;
     min-height: 600px;
+  }
+
+  .hero-fullscreen .hero-inner {
+    position: relative;
+    height: 100%;
+  }
+
+  .hero-1.hero-fullscreen .th-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-video {
+      background: url('/assets/img/heroes/hero-poster-padded.jpg') center / cover no-repeat;
+    }
+
+    .hero-video {
+      display: none !important;
+    }
   }
 
   .hero-cta-btn {
@@ -45,9 +99,7 @@ const sources = heroVideoSources(heroVideo);
     color: #fff;
     padding: 14px 32px;
     font-size: 16px;
-    font-weight: 600;
-    font-family: 'Inter', sans-serif;
-    border-radius: 4px;
+    font-weight: 600;border-radius: 4px;
     text-decoration: none;
     margin-top: 24px;
     transition: background-color 0.2s;
@@ -55,14 +107,6 @@ const sources = heroVideoSources(heroVideo);
   .hero-cta-btn:hover {
     background-color: #178fa8;
     color: #fff;
-  }
-
-  .hero-fullscreen .hero-inner {
-    height: 100%;
-  }
-
-  .hero-fullscreen .th-hero-bg {
-    height: 100%;
   }
 
   .hero-overlay {
@@ -78,6 +122,7 @@ const sources = heroVideoSources(heroVideo);
       rgba(0, 0, 0, 0.3) 100%
     );
     z-index: 1;
+    pointer-events: none;
   }
 
   @media (max-width: 991px) {
@@ -88,10 +133,18 @@ const sources = heroVideoSources(heroVideo);
       height: 75vh;
       min-height: 380px;
     }
+
+    .hero-lead {
+      color: #fff;
+      font-weight: 500;
+    }
   }
 
   .hero-fullscreen .container {
+    position: relative;
+    z-index: 2;
     height: 100%;
+    pointer-events: none;
   }
 
   .hero-fullscreen .hero-style1 {
@@ -102,39 +155,44 @@ const sources = heroVideoSources(heroVideo);
     align-items: flex-start;
     justify-content: center;
     position: relative;
-    z-index: 2;
+    pointer-events: auto;
   }
 
   .hero-content {
     text-align: left;
     color: #fff;
     max-width: 700px;
+    position: relative;
+    z-index: 1;
   }
 
   .hero-accent {
-    display: block;
-    font-family: 'Allura', cursive;
-    font-size: 2.25rem;
-    font-weight: 400;
-    letter-spacing: 0;
-    margin-bottom: 0.5rem;
-    opacity: 0.95;
-    line-height: 1;
+    display: block;font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: #fff;
+    line-height: 1.3;
   }
 
-  .hero-heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.4rem, 2.5vw, 2.25rem);
+  .hero-heading {font-size: clamp(1.75rem, 3.5vw, 3rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     color: #fff;
     letter-spacing: -0.5px;
   }
 
-  .hero-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.25rem);
+  .hero-lead {font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0 0 1.75rem;
+    max-width: 540px;
+  }
+
+  .hero-subtitle {font-size: clamp(1rem, 2vw, 1.25rem);
     font-weight: 300;
     margin-bottom: 2.5rem;
     opacity: 0.85;
@@ -144,9 +202,7 @@ const sources = heroVideoSources(heroVideo);
 
   .hero-cta {
     display: inline-block;
-    padding: 16px 40px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
+    padding: 16px 40px;font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -179,9 +235,7 @@ const sources = heroVideoSources(heroVideo);
     color: rgba(255, 255, 255, 0.7);
   }
 
-  .scroll-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
+  .scroll-text {font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -211,17 +265,32 @@ const sources = heroVideoSources(heroVideo);
 
     .hero-fullscreen .hero-style1 {
       justify-content: flex-end;
-      padding-bottom: 5vh;
-      align-items: center;
+      padding: 0 0 5vh 5%;
+      align-items: flex-start;
     }
 
     .hero-content {
-      text-align: center;
+      text-align: left;
     }
 
     .hero-accent {
-      font-size: 1.75rem;
-      letter-spacing: 0;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero-heading {
+      font-size: 32px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero-lead {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      max-width: 100%;
     }
 
     .hero-cta {

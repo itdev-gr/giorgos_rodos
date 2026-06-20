@@ -92,7 +92,7 @@ async function main() {
 
   console.log(`Found ${tours.length} tours total.`);
   const existing = new Set(tours.filter((t) => t.slug).map((t) => t.slug));
-  console.log(`${existing.size} already have a slug — skipping those.`);
+  console.log(`${existing.size} already have a slug, skipping those.`);
 
   let updates = 0;
   let skipped = 0;

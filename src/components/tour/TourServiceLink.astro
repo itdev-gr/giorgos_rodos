@@ -1,0 +1,61 @@
+---
+import { getServiceLinkForTour, THINGS_TO_DO_CATALOG_LINK } from '../../lib/internal-links';
+
+interface Props {
+  servicePage?: string | null;
+}
+
+const { servicePage } = Astro.props;
+const serviceLink = getServiceLinkForTour(servicePage);
+---
+
+<aside class="td-svc-links" aria-label="Related services">
+  {serviceLink ? (
+    <p class="td-svc-links__text">
+      This experience is part of our
+      <a href={serviceLink.url} class="td-svc-links__primary">{serviceLink.name}</a>
+      service — {serviceLink.blurb}.
+      Compare similar options in our
+      <a href={THINGS_TO_DO_CATALOG_LINK.url} class="td-svc-links__secondary">{THINGS_TO_DO_CATALOG_LINK.name}</a>
+      catalog.
+    </p>
+  ) : (
+    <p class="td-svc-links__text">
+      Handpicked by local experts since 1998. Browse more
+      <a href={THINGS_TO_DO_CATALOG_LINK.url} class="td-svc-links__primary">{THINGS_TO_DO_CATALOG_LINK.name}</a>
+      or explore our
+      <a href="/service" class="td-svc-links__secondary">boat services in Rhodes</a>.
+    </p>
+  )}
+</aside>
+
+<style>
+  .td-svc-links {
+    margin-bottom: 28px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #1CA8CB;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .td-svc-links__text {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #475569;
+  }
+
+  .td-svc-links__primary,
+  .td-svc-links__secondary {
+    color: #1CA8CB;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .td-svc-links__primary:hover,
+  .td-svc-links__secondary:hover {
+    color: #1489a8;
+  }
+</style>

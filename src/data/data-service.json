@@ -1,84 +1,102 @@
 [
     {
         "id": 1,
-        "slug": "rhodes-rent-a-boat",
-        "image": "/assets/img/gallery/yacht/crystal-water-1.jpg",
-        "bannerImg": "/assets/img/gallery/yacht/crystal-water-1.jpg",
-        "title": "Rhodes Rent a Boat",
-        "category": null,
-        "item": "License free boats and boats with skipper"
-    },
-    {
-        "id": 2,
         "slug": "rhodes-boat-tours",
         "image": "/assets/img/gallery/yacht/greek-island-1.jpg",
         "bannerImg": "/assets/img/gallery/yacht/greek-island-1.jpg",
         "title": "Rhodes Boat Tours",
-        "category": null,
-        "item": "Guided boat tours around Rhodes"
+        "item": "Small-group guided tours with local skippers"
     },
     {
-        "id": 3,
-        "slug": "rhodes-boat-trips",
-        "image": "/assets/img/gallery/yacht/sunset-cruise-1.jpg",
-        "bannerImg": "/assets/img/gallery/yacht/sunset-cruise-1.jpg",
-        "title": "Rhodes Boat Trips",
-        "category": null,
-        "item": "Boat trips with skipper in Rhodes"
-    },
-    {
-        "id": 4,
+        "id": 2,
         "slug": "rhodes-boat-cruises",
         "image": "/assets/img/cruises/greco_sunset3.jpg",
         "bannerImg": "/assets/img/cruises/greco_sunset3.jpg",
         "title": "Rhodes Boat Cruises",
-        "category": null,
-        "item": "Scenic cruises around the island"
+        "item": "Symi, Lindos and east-coast day cruises"
+    },
+    {
+        "id": 3,
+        "slug": "rhodes-catamaran-tours",
+        "image": "/assets/img/fleet/lagoon-42-aenaos.webp",
+        "bannerImg": "/assets/img/fleet/lagoon-42-aenaos.webp",
+        "title": "Rhodes Catamaran Cruises",
+        "item": "Day and sunset catamaran cruises"
+    },
+    {
+        "id": 4,
+        "slug": "rhodes-sailing-trips",
+        "image": "/assets/img/gallery/yacht/sailing-sunset-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/sailing-sunset-1.jpg",
+        "title": "Rhodes Sailing Trips",
+        "item": "Half and full-day trips under sail"
     },
     {
         "id": 5,
-        "slug": "rhodes-charter",
-        "image": "/assets/img/charter/mediterranean.jpg",
-        "bannerImg": "/assets/img/charter/mediterranean.jpg",
-        "title": "Rhodes Charter",
-        "category": null,
-        "item": "Charter a luxury yacht for your group"
+        "slug": "rhodes-boat-trips",
+        "image": "/assets/img/gallery/yacht/sunset-cruise-1.jpg",
+        "bannerImg": "/assets/img/gallery/yacht/sunset-cruise-1.jpg",
+        "title": "Rhodes Boat Trips",
+        "item": "Private skippered trips — you choose the route"
     },
     {
         "id": 6,
+        "slug": "rent-a-boat",
+        "image": "/assets/img/locations/tsambika-beach.jpg",
+        "bannerImg": "/assets/img/locations/tsambika-beach.jpg",
+        "title": "Rhodes Rent a Boat",
+        "item": "License-free self-drive boats along the coast",
+        "href": "/#rent-a-boat"
+    },
+    {
+        "id": 7,
+        "slug": "rhodes-charter",
+        "image": "/assets/img/charter/mediterranean.jpg",
+        "bannerImg": "/assets/img/charter/mediterranean.jpg",
+        "title": "Rhodes Yacht Charter",
+        "item": "Weekly bareboat and crewed yacht charter"
+    },
+    {
+        "id": 8,
         "slug": "rhodes-mice-events",
         "image": "/assets/img/gallery/yacht/yacht-luxury-1.jpg",
         "bannerImg": "/assets/img/gallery/yacht/yacht-luxury-1.jpg",
         "title": "MICE & Incentive",
-        "category": null,
-        "item": "Corporate events and incentive trips"
+        "item": "Corporate events and incentive trips at sea"
     },
     {
-        "id": 7,
+        "id": 9,
         "slug": "rhodes-tender-boat",
         "image": "/assets/img/gallery/yacht/yacht-exterior-1.jpg",
         "bannerImg": "/assets/img/gallery/yacht/yacht-exterior-1.jpg",
         "title": "Rhodes Tender Boat",
-        "category": null,
-        "item": "Swift tender boat transfers"
+        "item": "Fast shore-to-ship tender transfers"
     },
     {
-        "id": 8,
-        "slug": "rhodes-rent-a-car",
-        "image": "/assets/img/destinations/lindos-bay.jpg",
-        "bannerImg": "/assets/img/destinations/lindos-bay.jpg",
-        "title": "Rhodes Rent a Car",
-        "category": null,
-        "item": "Explore the island at your own pace",
-        "externalUrl": "https://siech-rentacar.com/"
+        "id": 10,
+        "slug": "rhodes-transfers",
+        "image": "/assets/img/operations/transfers/rhodes-transfer-hero.jpg",
+        "bannerImg": "/assets/img/operations/transfers/rhodes-transfer-hero.jpg",
+        "title": "Rhodes Transfers",
+        "item": "Airport, hotel and marina private transfers",
+        "externalUrl": "https://www.rhodestransfer24.com/"
     },
     {
-        "id": 9,
+        "id": 11,
         "slug": "rhodes-sidecar-tours",
-        "image": "/assets/img/transfers/transfer-sidecar.jpg",
-        "bannerImg": "/assets/img/transfers/transfer-sidecar.jpg",
+        "image": "/assets/img/operations/transfers/transfer-sidecar.jpg",
+        "bannerImg": "/assets/img/operations/transfers/transfer-sidecar.jpg",
         "title": "Rhodes Sidecar Tours",
-        "category": null,
-        "item": "Vintage sidecar experience with a local driver"
+        "item": "Vintage sidecar tours with a local driver",
+        "externalUrl": "https://rhodessidecartours.com/"
+    },
+    {
+        "id": 12,
+        "slug": "rhodes-rent-a-car",
+        "image": "/assets/img/locations/lindos-bay.jpg",
+        "bannerImg": "/assets/img/locations/lindos-bay.jpg",
+        "title": "Rhodes Rent a Car",
+        "item": "Car rental through our trusted local partner",
+        "externalUrl": "https://siech-rentacar.com/"
     }
 ]

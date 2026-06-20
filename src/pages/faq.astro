@@ -1,19 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
-import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
 import FAQSchema from '../components/seo/FAQSchema.astro';
 import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
-import { getMediaSlot } from '../lib/media';
 import { mainFaq as faqs } from '../lib/faq';
-
-const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3.jpg');
 ---
 
 <BaseLayout
-  title="FAQ — Boat Tours, Rentals & Charters in Rhodes | Rhodes Rent a Boat"
-  description="Answers to 69+ questions about Rhodes boat tours, license-free rentals, yacht charters, weather, pricing and booking — from local experts since 1998."
+  title="FAQ: Boat Tours, Rentals & Charters in Rhodes | Rhodes Rent a Boat"
+  description="Answers to 70+ questions about Rhodes boat trips, tours, license-free rentals, yacht charters, pricing, Symi day trips and booking—from local experts since 1998."
 >
   <FAQSchema items={faqs} id="https://rhodesrentaboat.com/faq#faqpage" />
   <BreadcrumbSchema items={[
@@ -21,25 +17,23 @@ const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3
     { name: 'FAQ', url: '/faq' },
   ]} />
   <Header />
-  <Breadcrumb title="FAQs" />
+
+  <section class="faq-hero">
+    <div class="container">
+      <div class="faq-hero__content text-center">
+        <h1 class="faq-hero__title">Frequently Asked Questions</h1>
+      </div>
+    </div>
+  </section>
 
   <!-- FaqInner -->
-  <div class="space-top space-extra-bottom">
+  <div class="faq-body space-extra-bottom">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xl-7">
-          <div class="title-area text-center">
-            <span class="sub-title">FAQ</span>
-            <h2 class="sec-title">Frequently Asked Questions</h2>
-            <p>We believe in honest answers. If you do not find what you need here, just reach out — we are always happy to help.</p>
-          </div>
-        </div>
-      </div>
       <div class="row">
         <div class="col-lg-10 offset-lg-1">
           <div class="faq-list mb-30">
             {faqs.map((faq, index) => (
-              <details class="faq-item" open={index === 0}>
+              <details class="faq-item">
                 <summary class="faq-item__q">
                   <span class="faq-item__num">Q{index + 1}.</span>
                   <span class="faq-item__text">{faq.question}</span>
@@ -56,70 +50,57 @@ const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3
     </div>
   </div>
 
-  <!-- ElementSection placeholder -->
-  <section class="elements-sec">
-    <div class="container-fluid border-0 p-0">
-      <div class="tags-container relative border-0"></div>
-    </div>
-  </section>
-
-  <!-- FaqContact -->
-  <div
-    class="bg-top-center space overflow-hidden"
-    style={`background: url(${contactBg}); background-repeat: no-repeat; position: relative; z-index: 1;`}
-  >
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-11">
-          <div>
-            <div class="title-area text-center mb-30">
-              <span class="sub-title style1">Still Have Questions?</span>
-              <h2 class="sec-title">We Are Happy to Help</h2>
-            </div>
-            <form class="contact-form ajax-contact">
-              <h3 class="sec-title mb-30">Send Us a Message</h3>
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" class="form-control" name="name" id="name3" placeholder="First Name" />
-                  <img src="/assets/img/icon/user.svg" alt="name field icon" />
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email3" id="email3" placeholder="Your Mail" />
-                  <img src="/assets/img/icon/mail.svg" alt="email field icon" />
-                </div>
-                <div class="form-group col-12">
-                  <select name="subject" id="subject" class="form-select nice-select" aria-label="What you are interested in">
-                    <option value="" disabled selected>What are you interested in?</option>
-                    <option value="Yacht Charter">Yacht Charter</option>
-                    <option value="Boat Tour or Cruise">Boat Tour or Cruise</option>
-                    <option value="Speedboat with Skipper">Speedboat with Skipper</option>
-                    <option value="License-Free Boat Rental">License-Free Boat Rental</option>
-                    <option value="Special Event or Celebration">Special Event or Celebration</option>
-                    <option value="Something Else">Something Else</option>
-                  </select>
-                </div>
-                <div class="form-group col-12">
-                  <textarea name="message" id="message" cols="30" rows="3" class="form-control" placeholder="Your Message"></textarea>
-                  <img src="/assets/img/icon/chat.svg" alt="message field icon" />
-                </div>
-                <div class="form-btn col-12 mt-24">
-                  <button type="submit" class="th-btn style3">
-                    Send message <img src="/assets/img/icon/plane.svg" alt="send icon" />
-                  </button>
-                </div>
-              </div>
-              <p class="form-messages mb-0 mt-3"></p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <FooterFour />
 </BaseLayout>
 
 <style>
+  .faq-hero {
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 0 64px;
+    background: linear-gradient(135deg, #1CA8CB 0%, #1489a8 35%, #113D48 100%);
+  }
+
+  .faq-hero__content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .faq-hero__title {font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  .faq-body {
+    padding-top: 64px;
+    background: #fff;
+  }
+
+  @media (max-width: 991px) {
+    .faq-hero {
+      min-height: 280px;
+      padding: 120px 0 52px;
+    }
+
+    .faq-body {
+      padding-top: 48px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .faq-hero {
+      padding: 108px 0 44px;
+    }
+
+    .faq-body {
+      padding-top: 40px;
+    }
+  }
+
   .faq-list {
     display: flex;
     flex-direction: column;
@@ -146,9 +127,7 @@ const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 22px 26px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+    padding: 22px 26px;font-size: 1.05rem;
     font-weight: 600;
     color: #113D48;
     line-height: 1.4;
@@ -221,9 +200,7 @@ const contactBg = await getMediaSlot('faq.contact.bg', '/assets/img/bg/tour_bg_3
   .faq-item__a {
     padding: 0 26px 24px 68px;
   }
-  .faq-item__a .faq-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.98rem;
+  .faq-item__a .faq-text {font-size: 0.98rem;
     line-height: 1.75;
     color: #5a6a72;
     margin: 0;

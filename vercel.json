@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
   "headers": [
     {
@@ -58,9 +59,9 @@
   ],
   "redirects": [
     {
-      "source": "/:path(.*)",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "www.rhodesrentaboat.com" }],
-      "destination": "https://rhodesrentaboat.com/:path",
+      "destination": "https://rhodesrentaboat.com/:path*",
       "permanent": true
     },
     {
@@ -90,7 +91,12 @@
     },
     {
       "source": "/service/rodos-rent-a-boat",
-      "destination": "/service/rhodes-rent-a-boat",
+      "destination": "/#rent-a-boat",
+      "permanent": true
+    },
+    {
+      "source": "/service/rhodes-rent-a-boat",
+      "destination": "/#rent-a-boat",
       "permanent": true
     },
     {
@@ -105,7 +111,17 @@
     },
     {
       "source": "/things-to-do/rhodes-sidecar-tours",
-      "destination": "/service/rhodes-sidecar-tours",
+      "destination": "https://rhodessidecartours.com/",
+      "permanent": true
+    },
+    {
+      "source": "/service/rhodes-sidecar-tours",
+      "destination": "https://rhodessidecartours.com/",
+      "permanent": true
+    },
+    {
+      "source": "/service/rhodes-transfers",
+      "destination": "https://www.rhodestransfer24.com/",
       "permanent": true
     }
   ]

@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { collectSitemapEntries } from '../lib/sitemap-entries';
 import { buildUrlsetXml } from '../lib/sitemap-xml';
 
-/** Dedicated image sitemap — all page images, including multi-image tour galleries. */
+/** Dedicated image sitemap, all page images, including multi-image tour galleries. */
 export const GET: APIRoute = async () => {
   const entries = (await collectSitemapEntries()).filter((e) => e.images.length > 0);
 

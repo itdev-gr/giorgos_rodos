@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  muted?: boolean;
+}
+
+const { title, subtitle, muted = true } = Astro.props;
+---
+
+<section class:list={['sp-catalog', muted && 'sp-catalog--muted']}>
+  <div class="container">
+    <div class="sp-catalog__head text-center">
+      <h2 class="sp-catalog__title" data-ani="slideinup">{title}</h2>
+      {subtitle && <p class="sp-catalog__subtitle" data-ani="fadein" data-ani-delay="0.08">{subtitle}</p>}
+    </div>
+    <div class="sp-catalog__grid" data-ani="slideinup" data-ani-delay="0.12">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .sp-catalog {
+    padding: 72px 0 80px;
+    background: #fff;
+  }
+
+  .sp-catalog--muted {
+    background: #f4f8f9;
+  }
+
+  .sp-catalog__head {
+    max-width: 640px;
+    margin: 0 auto 44px;
+  }
+
+  .sp-catalog__title {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: #113D48;
+    margin: 0 0 10px;
+    line-height: 1.25;
+  }
+
+  .sp-catalog__subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #000;
+    margin: 0;
+  }
+
+  .sp-catalog__grid :global(.exp-grid) {
+    margin: 0;
+  }
+
+  @media (max-width: 575px) {
+    .sp-catalog {
+      padding: 48px 0 64px;
+    }
+  }
+</style>

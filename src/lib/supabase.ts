@@ -18,7 +18,7 @@ function getServiceKey() {
     || '';
 }
 
-// Browser client (used in React components) — lazy singleton
+// Browser client (used in React components), lazy singleton
 let _supabase: ReturnType<typeof createClient> | null = null;
 export function getSupabase() {
   if (!_supabase) {
@@ -45,6 +45,11 @@ export function createPublicClient() {
   const key = getAnonKey();
   if (!url || !key) return null as any;
   return createClient(url, key);
+}
+
+// Public reads: anon client first, admin fallback for SSR/build when service role is set.
+export function createReadClient() {
+  return createPublicClient() || createAdminClient();
 }
 
 // Admin client with service role (bypasses RLS, used for admin operations)

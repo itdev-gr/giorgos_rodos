@@ -3,6 +3,7 @@ import ImageLightbox from './ImageLightbox';
 
 interface GalleryImage {
   src: string;
+  /** Required — empty alt is not allowed in gallery grids. */
   alt: string;
 }
 

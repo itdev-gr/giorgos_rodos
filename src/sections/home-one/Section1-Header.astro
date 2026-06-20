@@ -24,23 +24,21 @@ const { transparent = true } = Astro.props;
           <div class="col-auto">
             <div class="header-logo">
               <a href="/">
-                <img src="/assets/img/logo-traced.svg" alt="Rhodes Rent a Boat" width="200" height="60" decoding="async" />
+                <img src="/assets/img/brand/logos/logo-traced.svg" alt="Rhodes Rent a Boat" width="200" height="60" decoding="async" />
               </a>
             </div>
           </div>
-          <!-- Nav — centered on desktop -->
+          <!-- Nav, centered on desktop -->
           <div class="col d-none d-lg-flex justify-content-center">
             <nav class="main-menu">
               <ul>
                 <li>
-                  <a class="active" href="/">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li><a href="/about">About Us</a></li>
                 <li class="menu-item-has-children">
                   <a href="/service">Service</a>
                   <ul class="sub-menu">
-                    <li><a href="/service">All Services</a></li>
-                    <li><a href="/service/rhodes-rent-a-boat">Rhodes Rent a Boat</a></li>
                     <li><a href="/service/rhodes-boat-tours">Rhodes Boat Tours</a></li>
                     <li><a href="/service/rhodes-boat-trips">Rhodes Boat Trips</a></li>
                     <li><a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a></li>
@@ -49,24 +47,25 @@ const { transparent = true } = Astro.props;
                     <li><a href="/service/rhodes-charter">Rhodes Yacht Charter</a></li>
                     <li><a href="/service/rhodes-mice-events">MICE & Incentive</a></li>
                     <li><a href="/service/rhodes-tender-boat">Rhodes Tender Boat</a></li>
-                    <li><a href="/service/rhodes-transfers">Rhodes Transfers</a></li>
-                    <li><a href="/service/rhodes-sidecar-tours">Rhodes Sidecar Tours</a></li>
+                    <li><a href="https://www.rhodestransfer24.com/" target="_blank" rel="noopener noreferrer">Rhodes Transfers</a></li>
+                    <li><a href="https://rhodessidecartours.com/" target="_blank" rel="noopener noreferrer">Rhodes Sidecar Tours</a></li>
                     <li><a href="https://siech-rentacar.com/" target="_blank" rel="noopener noreferrer">Rhodes Rent a Car</a></li>
                   </ul>
                 </li>
                 <li><a href="/things-to-do">All Experiences</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/faq">FAQ</a></li>
+                <li><a href="/contact">Contact Us</a></li>
               </ul>
             </nav>
           </div>
           <!-- CTA + mobile toggle -->
           <div class="col-auto ms-auto">
             <div class="d-none d-lg-block">
-              <a href="/contact" class="luxury-cta">Enquire</a>
+              <a href="/contact" class="luxury-cta">Book Now</a>
             </div>
             <button type="button" class="th-menu-toggle d-block d-lg-none" id="mobile-menu-trigger" aria-label="Open menu">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -80,7 +79,7 @@ const { transparent = true } = Astro.props;
 </header>
 
 <div id="mobile-menu-container">
-  <MobileMenu client:media="(max-width: 991px)" isOpen={false} onClose={() => {}} />
+  <MobileMenu client:load />
 </div>
 
 <style>
@@ -94,7 +93,7 @@ const { transparent = true } = Astro.props;
     display: none !important;
   }
 
-  /* Transparent mode — only active when .header-transparent is on the header AND not scrolled */
+  /* Transparent mode, only active when .header-transparent is on the header AND not scrolled */
   #header-one.header-transparent .sticky-wrapper:not(.sticky) {
     position: absolute;
     top: 0;
@@ -132,7 +131,7 @@ const { transparent = true } = Astro.props;
   #header-one.header-transparent .sticky-wrapper:not(.sticky) .th-menu-toggle {
     background: transparent;
     color: #fff;
-    border: 1.5px solid rgba(255,255,255,0.6);
+    border: none;
   }
 
   /* ===== Solid State (default & scrolled) ===== */
@@ -158,15 +157,15 @@ const { transparent = true } = Astro.props;
     }
   }
 
-  /* Nav links — ensure flex layout inside centered col */
+  /* Nav links, ensure flex layout inside centered col */
   #header-one .main-menu > ul {
     display: flex;
     align-items: center;
   }
 
-  /* ===== Nav Links — Luxury Typography ===== */
+  /* ===== Nav Links, Luxury Typography ===== */
   #header-one .main-menu > ul > li > a {
-    font-family: var(--body-font, 'Inter', sans-serif);
+    font-family: var(--body-font);
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
@@ -177,7 +176,7 @@ const { transparent = true } = Astro.props;
     transition: color 0.3s ease;
   }
 
-  /* Underline hover — slides in from left */
+  /* Underline hover, slides in from left */
   #header-one .main-menu > ul > li > a::before {
     content: '';
     position: absolute;
@@ -198,7 +197,7 @@ const { transparent = true } = Astro.props;
     color: var(--theme-color, #1CA8CB);
   }
 
-  /* Dropdown arrow — smaller, matches text color */
+  /* Dropdown arrow, smaller, matches text color */
   #header-one .main-menu ul li.menu-item-has-children > a:after {
     font-size: 0.7em;
     margin-left: 5px;
@@ -207,11 +206,27 @@ const { transparent = true } = Astro.props;
 
   /* ===== Sub-menu / Dropdown Refinement ===== */
   #header-one .main-menu ul.sub-menu {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: scaleY(0) !important;
     border-bottom: 2px solid var(--theme-color, #1CA8CB);
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 4px;
+  }
+
+  @media (min-width: 992px) {
+    html.nav-hover-ready #header-one .main-menu li.menu-item-has-children:hover > ul.sub-menu,
+    #header-one .main-menu li.menu-item-has-children:focus-within > ul.sub-menu {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      transform: scaleY(1) !important;
+    }
   }
 
   #header-one .main-menu ul.sub-menu a {
@@ -221,11 +236,11 @@ const { transparent = true } = Astro.props;
     text-transform: none;
   }
 
-  /* ===== CTA Button — Solid State ===== */
+  /* ===== CTA Button, Solid State ===== */
   .luxury-cta {
     display: inline-block;
     padding: 10px 24px;
-    font-family: var(--body-font, 'Inter', sans-serif);
+    font-family: var(--body-font);
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
@@ -243,16 +258,17 @@ const { transparent = true } = Astro.props;
     color: #fff;
   }
 
-  /* ===== Mobile Toggle — Luxury ===== */
+  /* ===== Mobile Toggle, Luxury ===== */
   #header-one .th-menu-toggle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--theme-color, #1CA8CB);
-    color: #fff;
+    width: auto;
+    height: auto;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 0;
+    background: transparent;
+    color: var(--title-color, #113D48);
     border: none;
-    font-size: 18px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -261,23 +277,95 @@ const { transparent = true } = Astro.props;
 
   #header-one .th-menu-toggle svg {
     display: block;
+    width: 28px;
+    height: 28px;
   }
 
   #header-one .th-menu-toggle:hover {
+    background: transparent;
+    color: var(--theme-color, #1CA8CB);
+  }
+
+  #header-one.header-transparent .sticky-wrapper:not(.sticky) .th-menu-toggle:hover {
+    color: #fff;
+    opacity: 0.75;
+  }
+
+  /* ===== Full-screen mobile drawer ===== */
+  :global(.th-menu-wrapper) {
+    background-color: #fff;
+  }
+
+  :global(.th-menu-wrapper .th-menu-area) {
+    width: 100%;
+    max-width: 100%;
+    border-right: none;
+    left: -100%;
+  }
+
+  :global(.th-menu-wrapper.th-body-visible .th-menu-area) {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  :global(.th-menu-wrapper .mobile-menu-close) {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: transparent;
+    border: 2px solid var(--title-color, #113D48);
+    color: var(--title-color, #113D48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 1000000;
+    line-height: 1;
+  }
+
+  :global(.th-menu-wrapper .mobile-menu-close:hover) {
     background: var(--title-color, #113D48);
+    color: #fff;
   }
 
-  /* ===== Transparent state mobile toggle override (already handled above) ===== */
+  :global(.th-menu-wrapper .th-mobile-menu) {
+    margin-top: 0;
+    padding-top: 72px;
+    max-height: calc(100vh - 40px);
+    padding-bottom: 40px;
+    overflow-y: auto;
+    text-align: left;
+  }
 
-  /* ===== Side / Mobile drawer logo size ===== */
-  :global(.th-menu-wrapper .mobile-logo img) {
-    max-width: 160px;
+  :global(.th-menu-wrapper .th-mobile-menu > ul) {
+    padding: 0 24px;
+  }
+
+  :global(.th-menu-wrapper .th-mobile-menu ul li a) {
+    font-weight: 600;
+    font-size: 17px;
+    padding: 16px 0;
+    line-height: 1.3;
+  }
+
+  :global(.th-menu-wrapper .th-mobile-menu ul li) {
+    border-bottom-color: #e8e8e8;
+  }
+
+  :global(.th-menu-wrapper .th-mobile-menu ul .menu-item-has-children > a:after) {
+    background: transparent;
+    border-radius: 0;
+    width: auto;
     height: auto;
-  }
-  @media (min-width: 1200px) {
-    :global(.th-menu-wrapper .mobile-logo img) {
-      max-width: 110px;
-    }
+    line-height: 1;
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--title-color, #113D48);
   }
 
   /* ===== Responsive ===== */
@@ -291,15 +379,15 @@ const { transparent = true } = Astro.props;
     }
   }
 
-  /* Tighten nav at small-desktop / landscape-tablet so 6 items + CTA fit */
+  /* Tighten nav at small-desktop / landscape-tablet so 7 items + CTA fit */
   @media (min-width: 992px) and (max-width: 1199px) {
     #header-one .main-menu > ul > li > a {
-      font-size: 12px;
-      letter-spacing: 0.8px;
+      font-size: 11.5px;
+      letter-spacing: 0.6px;
       padding: 28px 0;
     }
     #header-one .main-menu > ul {
-      gap: 18px;
+      gap: 14px;
     }
     .luxury-cta {
       padding: 10px 18px;
@@ -310,22 +398,27 @@ const { transparent = true } = Astro.props;
 </style>
 
 <script>
-  // Sticky header — triggers at 80px for quick transition
+  // Block desktop dropdown hover until the user actually moves the mouse.
+  // Fixes refresh flash when the cursor is already over "Service".
+  function enableNavHover() {
+    document.documentElement.classList.add('nav-hover-ready');
+  }
+  document.documentElement.classList.remove('nav-hover-ready');
+  window.addEventListener('mousemove', enableNavHover, { once: true, passive: true });
+  window.addEventListener('touchstart', enableNavHover, { once: true, passive: true });
+  window.addEventListener('keydown', enableNavHover, { once: true });
+
+  document.addEventListener('astro:page-load', () => {
+    document.documentElement.classList.remove('nav-hover-ready');
+  });
+
+  // Sticky header, triggers at 80px for quick transition
   const stickyWrapper = document.getElementById('sticky-wrapper');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
       stickyWrapper?.classList.add('sticky');
     } else {
       stickyWrapper?.classList.remove('sticky');
-    }
-  });
-
-  // Mobile menu trigger
-  document.getElementById('mobile-menu-trigger')?.addEventListener('click', () => {
-    const wrapper = document.querySelector('.th-menu-wrapper');
-    if (wrapper) {
-      wrapper.classList.add('th-body-visible');
-      wrapper.style.visibility = 'visible';
     }
   });
 </script>

@@ -5,12 +5,13 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import posts from '../../data/data-post.json';
 import { SITE_URL } from '../../lib/seo';
+import { imgUrl, imgSrcset } from '../../lib/media';
 
 const blogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   '@id': `${SITE_URL}/blog#blog`,
-  name: 'Rhodes Rent a Boat — Blog',
+  name: 'Rhodes Rent a Boat, Blog',
   description: 'Guides, tips and local knowledge about boat tours, sailing trips, yacht charters and things to do by sea in Rhodes, Greece.',
   url: `${SITE_URL}/blog`,
   inLanguage: 'en-US',
@@ -20,7 +21,7 @@ const blogJsonLd = {
     headline: p.title,
     url: `${SITE_URL}/blog/${p.slug}`,
     datePublished: p.publishedDate || undefined,
-    image: p.image ? `${SITE_URL}/assets/img/blog/${p.bannerImg || p.image}` : undefined,
+    image: p.image ? `${SITE_URL}/assets/img/pages/blog/${p.bannerImg || p.image}` : undefined,
     author: { '@type': 'Person', name: 'Giorgos R., Captain & Founder', url: `${SITE_URL}/about` },
     description: p.excerpt,
   })),
@@ -28,8 +29,8 @@ const blogJsonLd = {
 ---
 
 <BaseLayout
-  title="News & Blog — Rhodes Rent a Boat, Trips and Coastline Guides"
-  description="Rhodes sea guides by Giorgos R. — in-depth articles on boat tours, Symi day trips, rent-a-boat tips, hidden beaches and sunset cruises from a local team since 1998."
+  title="News & Blog: Rhodes Rent a Boat, Trips and Coastline Guides"
+  description="Rhodes sea guides by Giorgos R., in-depth articles on boat tours, Symi day trips, rent-a-boat tips, hidden beaches and sunset cruises from a local team since 1998."
 >
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
@@ -38,46 +39,50 @@ const blogJsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(blogJsonLd)} is:inline />
   <Header />
 
-  <!-- Hero Header -->
   <section class="blog-hero">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h1 class="blog-hero_title">News & Blog</h1>
-          <p class="blog-hero_subtitle">ALL THE LATEST NEWS AND EVENTS FROM THE WORLD OF YACHTING</p>
-        </div>
+      <div class="blog-hero__content text-center">
+        <h1 class="blog-hero__title">News & Blog</h1>
       </div>
     </div>
   </section>
 
-  <!-- Blog Grid -->
-  <section class="blog-grid space-bottom">
+  <section class="blog-listing">
     <div class="container">
-      <div class="row gy-30">
-        {posts.map((post, index) => (
-          <div class="col-lg-4 col-md-6" data-ani="slideinup" data-ani-delay={`0.${index % 3 + 1}s`}>
-            <div class="blog-card">
-              <div class="blog-card_img">
-                <a href={`/blog/${post.slug}`}>
-                  <img src={`/assets/img/blog/${post.image}`} alt={post.title} />
-                </a>
-              </div>
-              <div class="blog-card_content">
-                <h3 class="blog-card_title">
-                  <a href={`/blog/${post.slug}`}>{post.title}</a>
-                </h3>
-                <p class="blog-card_meta">
-                  By: {post.author} &bull; {post.date}
-                </p>
-                <div class="blog-card_tags">
-                  {post.tags.map((tag: string) => (
-                    <span class="blog-card_tag">{tag.toUpperCase()}</span>
-                  ))}
+      <div class="blog-grid">
+        {posts.map((post, i) => {
+          const imagePath = `/assets/img/pages/blog/${post.bannerImg || post.image}`;
+          const tag = post.tags?.[0];
+          return (
+            <article class="blog-card" data-ani="slideinup" data-ani-delay={`${0.05 + (i % 3) * 0.08}`}>
+              <a href={`/blog/${post.slug}`} class="blog-card__link">
+                <div class="blog-card__media">
+                  <img
+                    src={imgUrl(imagePath, 640, { quality: 80 })}
+                    srcset={imgSrcset(imagePath, [400, 640, 800])}
+                    sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"
+                    width="640"
+                    height="400"
+                    alt={post.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {tag && <span class="blog-card__tag">{tag}</span>}
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
+                <div class="blog-card__body">
+                  <p class="blog-card__meta">
+                    <span>{post.author}</span>
+                    <span class="blog-card__dot" aria-hidden="true">&bull;</span>
+                    <time datetime={post.publishedDate || undefined}>{post.date}</time>
+                  </p>
+                  <h2 class="blog-card__title">{post.title}</h2>
+                  <p class="blog-card__excerpt">{post.excerpt}</p>
+                  <span class="blog-card__cta">Read article <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -87,112 +92,181 @@ const blogJsonLd = {
 
 <style>
   .blog-hero {
-    padding: 80px 0 50px;
-    background: var(--white-color, #fff);
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 0 72px;
+    background: linear-gradient(135deg, #1CA8CB 0%, #1489a8 35%, #113D48 100%);
   }
 
-  .blog-hero_title {
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--title-color, #1a1a2e);
-    margin-bottom: 12px;
+  .blog-hero__content {
+    max-width: 760px;
+    margin: 0 auto;
   }
 
-  .blog-hero_subtitle {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    color: var(--body-color, #737887);
-    margin-bottom: 0;
+  .blog-hero__title {font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.12;
+  }
+
+  .blog-listing {
+    padding: 72px 0 100px;
+    background: #f8fafb;
   }
 
   .blog-grid {
-    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
   }
 
   .blog-card {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid #e8eef2;
+    box-shadow: 0 4px 20px rgba(17, 61, 72, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(28, 168, 203, 0.12);
+    border-color: rgba(28, 168, 203, 0.35);
   }
 
-  .blog-card_img {
+  .blog-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-card__media {
     position: relative;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    background: #dce8ec;
   }
 
-  .blog-card_img img {
+  .blog-card__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.5s ease;
   }
 
-  .blog-card:hover .blog-card_img img {
-    transform: scale(1.05);
+  .blog-card:hover .blog-card__media img {
+    transform: scale(1.06);
   }
 
-  .blog-card_content {
-    padding: 20px 20px 24px;
+  .blog-card__tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(17, 61, 72, 0.88);
+    color: #fff;font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+
+  .blog-card__body {
     display: flex;
     flex-direction: column;
     flex: 1;
+    padding: 22px 22px 24px;
   }
 
-  .blog-card_title {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-
-  .blog-card_title a {
-    color: var(--title-color, #1a1a2e);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .blog-card_title a:hover {
-    color: var(--theme-color, #3b71fe);
-  }
-
-  .blog-card_meta {
-    font-size: 13px;
-    color: var(--body-color, #737887);
-    margin-bottom: 16px;
-  }
-
-  .blog-card_tags {
+  .blog-card__meta {font-size: 0.8rem;
+    color: #64748b;
+    margin: 0 0 10px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 8px;
-    margin-top: auto;
   }
 
-  .blog-card_tag {
-    display: inline-block;
-    font-size: 10px;
+  .blog-card__dot {
+    color: #94a3b8;
+  }
+
+  .blog-card__title {font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    border: 1.5px solid var(--theme-color, #3b71fe);
-    color: var(--theme-color, #3b71fe);
-    border-radius: 20px;
-    transition: background 0.3s ease, color 0.3s ease;
+    line-height: 1.35;
+    color: #113D48;
+    margin: 0 0 10px;
+    transition: color 0.2s ease;
   }
 
-  .blog-card_tag:hover {
-    background: var(--theme-color, #3b71fe);
-    color: #fff;
+  .blog-card:hover .blog-card__title {
+    color: #1CA8CB;
+  }
+
+  .blog-card__excerpt {font-size: 0.92rem;
+    line-height: 1.65;
+    color: #5a6a72;
+    margin: 0 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card__cta {
+    margin-top: auto;font-size: 0.85rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease;
+  }
+
+  .blog-card:hover .blog-card__cta {
+    gap: 10px;
+  }
+
+  @media (max-width: 991px) {
+    .blog-hero {
+      min-height: 300px;
+      padding: 120px 0 56px;
+    }
+
+    .blog-listing {
+      padding: 56px 0 80px;
+    }
+
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .blog-hero {
+      padding: 108px 0 48px;
+    }
+
+    .blog-listing {
+      padding: 40px 0 64px;
+    }
+
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .blog-card__body {
+      padding: 18px 18px 20px;
+    }
   }
 </style>

@@ -11,6 +11,10 @@ import { SITE_URL, looksLikeUuid } from '../../lib/seo';
 import { imgUrl, imgSrcset } from '../../lib/media';
 import { tourCardAlt } from '../../lib/tour-alt';
 import { charterCardDescription } from '../../lib/charter-description';
+import TourDetailGallery from '../../components/tour/TourDetailGallery.astro';
+import TourServiceLink from '../../components/tour/TourServiceLink.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import { enrichTourDetailContent } from '../../lib/tour-detail-content';
 
 const { slug } = Astro.params;
 let tour: any = null;
@@ -86,8 +90,8 @@ const displayDescription = isCharterTour
   ? charterCardDescription(tour)
   : tour.description;
 const highlights = tour.highlights || [];
-const inclusions = tour.inclusions || [];
-const exclusions = tour.exclusions || [];
+const detail = enrichTourDetailContent(tour);
+const { inclusions, exclusions, inclusionsIntro, exclusionsIntro, itineraryIntro, itinerarySteps, meetingPoint, meetingNotes, experienceNotes, practicalTips, faq } = detail;
 
 const tourPathSegment = tour.slug || tour.id;
 const tourCanonical = `${SITE_URL}/tour-detail/${tourPathSegment}`;
@@ -95,11 +99,11 @@ const heroOgImage = images[0]?.startsWith('http') ? images[0] : `${SITE_URL}${im
 
 const metaDescription =
   displayDescription?.trim() ||
-  `${tour.title} in Rhodes — ${tour.duration ? `${tour.duration}, ` : ''}${tour.price ? `from ${tour.price}. ` : ''}Enquire with local experts at Rhodes Rent a Boat.`;
+  `${tour.title} in Rhodes, ${tour.duration ? `${tour.duration}, ` : ''}${tour.price ? `from ${tour.price}. ` : ''}Enquire with local experts at Rhodes Rent a Boat.`;
 ---
 
 <BaseLayout
-  title={`${tour.title} — Rhodes Rent a Boat`}
+  title={`${tour.title}: Rhodes Rent a Boat`}
   description={metaDescription}
   canonical={tourCanonical}
   ogImage={heroOgImage}
@@ -114,48 +118,18 @@ const metaDescription =
     { name: tour.title, url: `/tour-detail/${tourPathSegment}` },
   ]} />
   {isPublished && (
-    <TouristTripSchema tour={tour} displayDescription={displayDescription} isPublished={isPublished} />
+    <TouristTripSchema tour={{ ...tour, meeting_point: meetingPoint }} displayDescription={displayDescription} isPublished={isPublished} />
   )}
   <Header />
 
   {!isPublished && (
-    <div style={`position: fixed; top: 0; left: 0; right: 0; z-index: 9999; padding: 10px 20px; text-align: center; font-size: 0.82rem; font-weight: 600; font-family: Inter, sans-serif; ${tour.status === 'pending' ? 'background: #FEF3C7; color: #92400E;' : tour.status === 'rejected' ? 'background: #FEE2E2; color: #991B1B;' : 'background: #E5E7EB; color: #374151;'}`}>
+    <div style={`position: fixed; top: 0; left: 0; right: 0; z-index: 9999; padding: 10px 20px; text-align: center; font-size: 0.82rem; font-weight: 600; font-family: Helvetica, "Helvetica Neue", Arial, sans-serif; ${tour.status === 'pending' ? 'background: #FEF3C7; color: #92400E;' : tour.status === 'rejected' ? 'background: #FEE2E2; color: #991B1B;' : 'background: #E5E7EB; color: #374151;'}`}>
       <i class={`fas ${tour.status === 'pending' ? 'fa-clock' : tour.status === 'rejected' ? 'fa-times-circle' : 'fa-file'}`} style="margin-right: 6px;"></i>
       {tour.status === 'pending' ? 'This tour is pending review and not yet visible to the public.' : tour.status === 'rejected' ? 'This tour has been rejected and is not visible to the public.' : 'This tour is a draft and not yet published.'}
     </div>
   )}
 
-  <!-- Image Gallery -->
-  <section style="padding-top: 80px; background: #f8fafc;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
-      <div class="td-gallery" style="border-radius: 16px; overflow: hidden; position: relative;">
-        <!-- Main Image -->
-        <div id="main-image-wrap" style="width: 100%; aspect-ratio: 16/7; overflow: hidden; cursor: pointer;">
-          <img id="main-image" src={imgUrl(images[0], 1200, { quality: 80 })} srcset={imgSrcset(images[0])} sizes="(max-width: 991px) 100vw, 1200px" data-full={images[0]} alt={tour.title} width="1200" height="525" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s;" />
-        </div>
-        <!-- Thumbnails -->
-        {images.length > 1 && (
-          <div style="display: flex; gap: 4px; margin-top: 4px;">
-            {images.map((img: string, i: number) => (
-              <button
-                class="td-thumb"
-                data-index={i}
-                data-full={img}
-                aria-label={`View image ${i + 1}`}
-                style={`flex: 1; height: 80px; overflow: hidden; border: none; padding: 0; cursor: pointer; border-radius: 4px; opacity: ${i === 0 ? '1' : '0.6'}; transition: opacity 0.2s;`}
-              >
-                <img src={imgUrl(img, 200, { quality: 75 })} alt="" loading="lazy" width="200" height="80" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-              </button>
-            ))}
-          </div>
-        )}
-        <!-- Image count badge -->
-        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.6); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; backdrop-filter: blur(4px);">
-          <i class="fas fa-camera" style="margin-right: 6px;"></i>{images.length} photo{images.length !== 1 ? 's' : ''}
-        </div>
-      </div>
-    </div>
-  </section>
+  <TourDetailGallery tourTitle={tour.title} images={images} />
 
   <!-- Content -->
   <section style="padding: 40px 0 80px; background: #f8fafc;">
@@ -169,7 +143,7 @@ const metaDescription =
             {tour.badge_label && (
               <span style="display: inline-block; padding: 4px 12px; background: #113D48; color: #fff; border-radius: 6px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">{tour.badge_label}</span>
             )}
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0 0 8px; line-height: 1.25;">{tour.title}</h1>
           </div>
 
           <!-- Specs Strip -->
@@ -202,14 +176,17 @@ const metaDescription =
 
           <!-- Description -->
           <div style="margin-bottom: 36px;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">About This Experience</h2>
+            <TourServiceLink servicePage={tour.service_page} />
+            <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">About This Experience</h2>
             <p style="font-size: 0.95rem; line-height: 1.8; color: #475569;">{displayDescription}</p>
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #475569; margin-top: 14px;">{experienceNotes}</p>
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #475569; margin-top: 14px;">{practicalTips}</p>
           </div>
 
           <!-- Highlights -->
           {highlights.length > 0 && (
             <div style="margin-bottom: 36px;">
-              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Highlights</h2>
+              <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Highlights</h2>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 {highlights.map((h: string) => (
                   <div style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #fff; border-radius: 8px; border: 1px solid #f1f5f9;">
@@ -222,70 +199,74 @@ const metaDescription =
           )}
 
           <!-- What's Included / Not Included -->
-          {(inclusions.length > 0 || exclusions.length > 0) && (
-            <div style="margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="td-inclusions">
-              {inclusions.length > 0 && (
-                <div>
-                  <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">What's Included</h2>
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    {inclusions.map((item: string) => (
-                      <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-check-circle" style="color: #10B981; font-size: 0.85rem; flex-shrink: 0;"></i>
-                        <span style="font-size: 0.88rem; color: #334155;">{item}</span>
-                      </div>
-                    ))}
+          <div style="margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="td-inclusions">
+            <div>
+              <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">What's Included</h2>
+              <p style="font-size: 0.88rem; line-height: 1.65; color: #64748b; margin: 0 0 12px;">{inclusionsIntro}</p>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                {inclusions.map((item: string) => (
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: #10B981; font-size: 0.85rem; flex-shrink: 0;"></i>
+                    <span style="font-size: 0.88rem; color: #334155;">{item}</span>
                   </div>
-                </div>
-              )}
-              {exclusions.length > 0 && (
-                <div>
-                  <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Not Included</h2>
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    {exclusions.map((item: string) => (
-                      <div style="display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-times-circle" style="color: #EF4444; font-size: 0.85rem; flex-shrink: 0;"></i>
-                        <span style="font-size: 0.88rem; color: #334155;">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+                ))}
+              </div>
             </div>
-          )}
+            <div>
+              <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Not Included</h2>
+              <p style="font-size: 0.88rem; line-height: 1.65; color: #64748b; margin: 0 0 12px;">{exclusionsIntro}</p>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                {exclusions.map((item: string) => (
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-times-circle" style="color: #EF4444; font-size: 0.85rem; flex-shrink: 0;"></i>
+                    <span style="font-size: 0.88rem; color: #334155;">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <!-- Itinerary -->
-          {tour.itinerary && (
-            <div style="margin-bottom: 36px;">
-              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Route & Itinerary</h2>
-              <p style="font-size: 0.95rem; line-height: 1.8; color: #475569;">{tour.itinerary}</p>
-            </div>
-          )}
+          <div style="margin-bottom: 36px;">
+            <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Route & Itinerary</h2>
+            <p style="font-size: 0.95rem; line-height: 1.8; color: #475569; margin: 0 0 18px;">{itineraryIntro}</p>
+            <ol class="td-itinerary">
+              {itinerarySteps.map((step) => (
+                <li class="td-itinerary__item">
+                  {step.time && <span class="td-itinerary__time">{step.time}</span>}
+                  <div>
+                    <strong class="td-itinerary__title">{step.title}</strong>
+                    <p class="td-itinerary__detail">{step.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
 
           <!-- Meeting Point -->
-          {tour.meeting_point && (
-            <div style="margin-bottom: 36px; padding: 20px; background: #fff; border-radius: 12px; border: 1px solid #e2e8f0;">
-              <h2 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 10px;">
-                <i class="fas fa-map-marker-alt" style="color: #1CA8CB; margin-right: 8px;"></i>Meeting Point
-              </h2>
-              <p style="font-size: 0.92rem; color: #475569; margin: 0;">{tour.meeting_point}</p>
-              {tour.departure_time && tour.return_time && (
-                <p style="font-size: 0.85rem; color: #94a3b8; margin: 8px 0 0;">
-                  <i class="far fa-clock" style="margin-right: 6px;"></i>
-                  {tour.departure_time} — {tour.return_time}
-                </p>
-              )}
-            </div>
-          )}
+          <div style="margin-bottom: 36px; padding: 20px; background: #fff; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 10px;">
+              <i class="fas fa-map-marker-alt" style="color: #1CA8CB; margin-right: 8px;"></i>Meeting Point
+            </h2>
+            <p style="font-size: 0.92rem; color: #475569; margin: 0 0 10px;">{meetingPoint}</p>
+            <p style="font-size: 0.88rem; line-height: 1.65; color: #64748b; margin: 0;">{meetingNotes}</p>
+            {tour.departure_time && tour.return_time && (
+              <p style="font-size: 0.85rem; color: #94a3b8; margin: 12px 0 0;">
+                <i class="far fa-clock" style="margin-right: 6px;"></i>
+                Typical hours: {tour.departure_time} – {tour.return_time}
+              </p>
+            )}
+          </div>
         </div>
 
-        <!-- Right Column — Sticky Sidebar -->
+        <!-- Right Column, Sticky Sidebar -->
         <div class="td-sidebar" style="position: sticky; top: 100px;">
           <div style="background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
             <!-- Price -->
             {tour.price && (
               <div style="margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #f1f5f9;">
                 <p style="font-size: 0.75rem; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.5px;">From</p>
-                <p style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0;">{tour.price}</p>
+                <p style="font-size: 1.8rem; font-weight: 800; color: #113D48; margin: 0;">{tour.price}</p>
               </div>
             )}
 
@@ -293,11 +274,11 @@ const metaDescription =
             <form id="booking-form">
               <div style="margin-bottom: 14px;">
                 <label for="booking-date" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Preferred Date</label>
-                <input id="booking-date" type="date" name="booking_date" required style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input id="booking-date" type="date" name="booking_date" required style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 14px;">
                 <label for="booking-guests" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Number of Guests</label>
-                <select id="booking-guests" name="guests" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box; background: #fff; cursor: pointer;">
+                <select id="booking-guests" name="guests" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box; background: #fff; cursor: pointer;">
                   {[1,2,3,4,5,6,7,8,9,10,11,12,15,20,25,30].map(n => (
                     <option value={n}>{n} guest{n !== 1 ? 's' : ''}</option>
                   ))}
@@ -305,18 +286,18 @@ const metaDescription =
               </div>
               <div style="margin-bottom: 14px;">
                 <label for="booking-name" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Your Name</label>
-                <input id="booking-name" type="text" name="customer_name" required placeholder="Full name" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input id="booking-name" type="text" name="customer_name" required placeholder="Full name" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 14px;">
                 <label for="booking-email" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Email</label>
-                <input id="booking-email" type="email" name="customer_email" required placeholder="you@email.com" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input id="booking-email" type="email" name="customer_email" required placeholder="you@email.com" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
               </div>
               <div style="margin-bottom: 18px;">
                 <label for="booking-phone" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Phone (optional)</label>
-                <input id="booking-phone" type="tel" name="customer_phone" placeholder="+30 ..." style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; box-sizing: border-box;" />
+                <input id="booking-phone" type="tel" name="customer_phone" placeholder="+30 ..." style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
               </div>
               <input type="hidden" name="tour_id" value={tour.id} />
-              <button type="submit" id="book-btn" style="width: 100%; padding: 14px; background: #1CA8CB; color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s;">
+              <button type="submit" id="book-btn" style="width: 100%; padding: 14px; background: #1CA8CB; color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer;transition: background 0.2s;">
                 Book Now
               </button>
               <div id="booking-msg" style="margin-top: 12px; text-align: center; font-size: 0.85rem; display: none;"></div>
@@ -335,13 +316,20 @@ const metaDescription =
     </div>
   </section>
 
-  <!-- Related tours — internal linking + crawl flow -->
+  <FAQSection
+    items={faq}
+    title={`${tour.title}: FAQ`}
+    intro="Quick answers about this experience. For booking, weather and general boat questions see the <a href='/faq'>full FAQ</a>."
+    background="white"
+  />
+
+  <!-- Related tours, internal linking + crawl flow -->
   {relatedTours.length > 0 && (
     <section class="td-related" aria-labelledby="td-related-title">
       <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
         <div class="td-related__header">
           <h2 id="td-related-title" class="td-related__title">You May Also Like</h2>
-          <a href="/things-to-do" class="td-related__link">Browse all experiences →</a>
+          <a href="/things-to-do" class="td-related__link">Browse all boat experiences in Rhodes →</a>
         </div>
         <div class="td-related__grid">
           {relatedTours.map((rt: any) => {
@@ -377,21 +365,6 @@ const metaDescription =
 </BaseLayout>
 
 <script>
-  // Image gallery — thumbnails carry data-full with the original URL
-  const mainImg = document.getElementById('main-image') as HTMLImageElement;
-  const thumbs = document.querySelectorAll('.td-thumb');
-  thumbs.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      const full = (thumb as HTMLElement).dataset.full;
-      if (full && mainImg) {
-        mainImg.src = full;
-        mainImg.removeAttribute('srcset');
-        thumbs.forEach(t => (t as HTMLElement).style.opacity = '0.6');
-        (thumb as HTMLElement).style.opacity = '1';
-      }
-    });
-  });
-
   // Booking form
   const form = document.getElementById('booking-form') as HTMLFormElement;
   const msg = document.getElementById('booking-msg') as HTMLElement;
@@ -451,6 +424,42 @@ const metaDescription =
   }
   #book-btn:hover:not(:disabled) { background: #178da8 !important; }
 
+  .td-itinerary {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .td-itinerary__item {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 14px;
+    padding: 16px 18px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+  }
+  .td-itinerary__time {font-size: 0.78rem;
+    font-weight: 700;
+    color: #1CA8CB;
+    line-height: 1.3;
+  }
+  .td-itinerary__title {
+    display: block;font-size: 0.95rem;
+    color: #113D48;
+    margin-bottom: 6px;
+  }
+  .td-itinerary__detail {font-size: 0.88rem;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+  @media (max-width: 575px) {
+    .td-itinerary__item { grid-template-columns: 1fr; gap: 6px; }
+  }
+
   /* Related tours */
   .td-related {
     padding: 60px 0 80px;
@@ -464,16 +473,12 @@ const metaDescription =
     gap: 12px;
     margin-bottom: 28px;
   }
-  .td-related__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+  .td-related__title {font-size: clamp(1.5rem, 2.5vw, 1.9rem);
     font-weight: 700;
     color: #113D48;
     margin: 0;
   }
-  .td-related__link {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
+  .td-related__link {font-size: 0.88rem;
     font-weight: 600;
     color: #1CA8CB;
     text-decoration: none;
@@ -518,9 +523,7 @@ const metaDescription =
     top: 12px;
     right: 12px;
     background: rgba(17,61,72,0.85);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
+    color: #fff;font-size: 0.7rem;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 6px;
@@ -532,17 +535,13 @@ const metaDescription =
     flex-direction: column;
     flex: 1;
   }
-  .td-related__card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+  .td-related__card-title {font-size: 1.05rem;
     font-weight: 700;
     color: #113D48;
     margin: 0 0 10px;
     line-height: 1.35;
   }
-  .td-related__excerpt {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.86rem;
+  .td-related__excerpt {font-size: 0.86rem;
     line-height: 1.55;
     color: #5a6a72;
     margin: 0 0 14px;
@@ -555,9 +554,7 @@ const metaDescription =
     display: flex;
     align-items: center;
     gap: 12px;
-    flex-wrap: wrap;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
+    flex-wrap: wrap;font-size: 0.78rem;
     color: #5a6a72;
     margin-top: auto;
     padding-top: 12px;
@@ -565,9 +562,7 @@ const metaDescription =
   }
   .td-related__meta i { color: #1CA8CB; margin-right: 4px; }
   .td-related__price {
-    margin-left: auto;
-    font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
+    margin-left: auto;font-size: 0.95rem;
     font-weight: 700;
     color: #1CA8CB;
   }

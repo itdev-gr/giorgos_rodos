@@ -22,12 +22,12 @@ const supabase = createClient(
 
 const categories = [
   { slug: 'rodos-boat-tours', title: 'Rhodes Boat Tours', description: 'Guided sailing tours along the stunning Rhodes coastline and nearby islands.', image: '/assets/img/cruises/greco_sunset3.jpg', href: '/service/rodos-boat-tours', sort_order: 1 },
-  { slug: 'rhodes-boat-trips', title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/destinations/private-sailing.jpg', href: '/service/rhodes-boat-trips', sort_order: 2 },
+  { slug: 'rhodes-boat-trips', title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/locations/private-sailing.jpg', href: '/service/rhodes-boat-trips', sort_order: 2 },
   { slug: 'rodos-boat-cruises', title: 'Rhodes Boat Cruises', description: 'All-inclusive day and sunset cruises with swimming, dining, and music.', image: '/assets/img/cruises/greco_home1.jpg', href: '/service/rodos-boat-cruises', sort_order: 3 },
-  { slug: 'rhodes-rent-a-boat', title: 'Rhodes Rent a Boat', description: 'Drive your own boat along the coast — no licence needed, full freedom.', image: '/assets/img/destinations/tsambika-beach.jpg', href: '/service/rhodes-rent-a-boat', sort_order: 4 },
+  { slug: 'rhodes-rent-a-boat', title: 'Rhodes Rent a Boat', description: 'Drive your own boat along the coast, no licence needed, full freedom.', image: '/assets/img/locations/tsambika-beach.jpg', href: '/service/rhodes-rent-a-boat', sort_order: 4 },
   { slug: 'rhodes-catamaran-tours', title: 'Rhodes Catamaran Cruises', description: 'Spacious catamarans for group cruises, events, and island-hopping adventures.', image: '/assets/img/fleet/lagoon-42-aenaos.jpg', href: '/service/rhodes-catamaran-tours', sort_order: 5 },
   { slug: 'rodos-charter', title: 'Rhodes Yacht Charter', description: 'Over 80 sailing yachts and catamarans. Bareboat or crewed, the Dodecanese is yours.', image: '/assets/img/fleet/oceanis-461-nailah.jpg', href: '/service/rodos-charter', sort_order: 6 },
-  { slug: 'rodos-tender-boat', title: 'Rhodes Tender Boat Services', description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.', image: '/assets/img/tender/tender-service.jpg', href: '/service/rodos-tender-boat', sort_order: 7 },
+  { slug: 'rodos-tender-boat', title: 'Rhodes Tender Boat Services', description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.', image: '/assets/img/operations/tender/tender-service.jpg', href: '/service/rodos-tender-boat', sort_order: 7 },
   { slug: 'rhodes-mice-events', title: 'Rhodes MICE & Incentive Events', description: 'Corporate events, incentive trips, and team-building experiences on the water.', image: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', href: '/service/rhodes-mice-events', sort_order: 8 },
 ];
 
@@ -52,7 +52,7 @@ async function run() {
   });
 
   if (sqlError) {
-    // RPC may not exist — try direct insert (table might already exist)
+    // RPC may not exist, try direct insert (table might already exist)
     console.log('RPC not available, trying direct upsert...');
   } else {
     console.log('Table created/verified');

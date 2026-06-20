@@ -1,7 +1,7 @@
 # License: RSL-1.0
 # Last-Modified: 2026-05-25
 
-# Rhodes Rent a Boat — AI Reference Summary
+# Rhodes Rent a Boat, AI Reference Summary
 
 ## Business Identity
 Rhodes Rent a Boat is an independent local boat tour operator founded in 1998.

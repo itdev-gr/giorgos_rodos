@@ -46,7 +46,7 @@ const TOURS = [
     description:
       'A short private sailing escape departing from Mandraki Harbour. Spend two relaxed hours aboard with the whole yacht to yourselves, stopping at a nearby bay (such as Kallithea Springs or Anthony Quinn Bay) for a swim and a snorkel before sailing back to the Old Town. Ideal for a sunset date, a proposal or a quick afternoon on the water.',
     highlights: [
-      'Private yacht — the whole boat is yours',
+      'Private yacht, the whole boat is yours',
       'Departure from Mandraki Harbour',
       'One swim/snorkel stop at a nearby bay',
       'Professional local crew',
@@ -107,9 +107,9 @@ const TOURS = [
     guests: '1–10 Guests',
     departure_time: 'Flexible',
     description:
-      'A full day of private sailing along the east coast of Rhodes — the whole yacht is yours. Depart from Mandraki Harbour and sail to a sequence of the coast\'s best bays (Anthony Quinn, Ladiko / Blue Lagoon, Traganou Caves, Kalithea Springs, Kalami Beach), with plenty of time for swimming, snorkelling, paddle-boarding and a long, relaxed Greek lunch on board. Flexible route — the crew adjusts the day around you.',
+      'A full day of private sailing along the east coast of Rhodes, the whole yacht is yours. Depart from Mandraki Harbour and sail to a sequence of the coast\'s best bays (Anthony Quinn, Ladiko / Blue Lagoon, Traganou Caves, Kalithea Springs, Kalami Beach), with plenty of time for swimming, snorkelling, paddle-boarding and a long, relaxed Greek lunch on board. Flexible route, the crew adjusts the day around you.',
     highlights: [
-      'Private yacht for exclusive use — full day on board',
+      'Private yacht for exclusive use, full day on board',
       'Multiple swim stops along the east coast',
       'Long lunch stop with Greek meal served on board',
       'Anthony Quinn Bay, Ladiko, Traganou Caves, Kalithea',
@@ -142,11 +142,11 @@ const TOURS = [
     guests: '1–10 Guests',
     departure_time: 'Flexible',
     description:
-      'A longer private sailing adventure along the east coast of Rhodes with three swimming stops — Anthony Quinn Bay, the Blue Lagoon and Kalithea Springs — plus a full Greek lunch served on board (oven-baked chicken, tzatziki, salad, bread and seasonal fruit). The yacht is yours for the day, with the crew adjusting the route and stops around you.',
+      'A longer private sailing adventure along the east coast of Rhodes with three swimming stops, Anthony Quinn Bay, the Blue Lagoon and Kalithea Springs, plus a full Greek lunch served on board (oven-baked chicken, tzatziki, salad, bread and seasonal fruit). The yacht is yours for the day, with the crew adjusting the route and stops around you.',
     highlights: [
       'Three swim stops: Anthony Quinn Bay, Blue Lagoon, Kalithea Springs',
       'Full Greek lunch served on board',
-      'Private yacht — exclusive use',
+      'Private yacht, exclusive use',
       'SUP paddle board and snorkelling gear',
       'Flexible departure time',
     ],

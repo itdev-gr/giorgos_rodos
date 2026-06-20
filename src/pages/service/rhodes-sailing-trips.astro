@@ -4,198 +4,48 @@ export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
-import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
-import { tourCardAlt } from '../../lib/tour-alt';
-import { createPublicClient } from '../../lib/supabase';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import ServiceGradientHero from '../../components/service/ServiceGradientHero.astro';
+import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astro';
+import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
+import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
+import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
+import { getMediaSlot } from '../../lib/media';
 import { sailingFaq } from '../../lib/faq';
+import { getServiceSeo } from '../../lib/service-seo';
+import { getServiceContent } from '../../lib/service-content';
+import { fetchServiceTours } from '../../lib/service-tours';
 
-const heroVideo = await getMediaSlot('service.sailing.hero.video', '/assets/img/hero/services/charter.mp4');
+const SLUG = 'rhodes-sailing-trips';
+const seo = getServiceSeo(SLUG)!;
+const content = getServiceContent(SLUG)!;
 const heroImage = await getMediaSlot('service.sailing.hero.image', '/assets/img/gallery/yacht/sailing-sunset-1.jpg');
-
-// Fetch approved tours from Supabase
-let dbCards: any[] = [];
-try {
-  const supabase = createPublicClient();
-  if (supabase) {
-    const { data } = await supabase
-      .from('tours')
-      .select('*')
-      .or('service_page.eq.rhodes-sailing-trips,is_global.eq.true')
-      .eq('status', 'approved')
-      .order('is_global', { ascending: false })
-      .order('created_at', { ascending: false });
-    dbCards = (data || []).map((t: any) => ({
-      title: t.title,
-      description: t.description,
-      image: t.image_url || t.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
-      duration: t.duration || '',
-      guests: t.guests || '',
-      type: t.badge_label || '',
-      price: t.price || '',
-      href: `/tour-detail/${t.slug || t.id}`,
-      imageAlt: tourCardAlt(t.title, t.badge_label),
-    }));
-  }
-} catch (e) {
-  console.error("Supabase error:", e); // Supabase unavailable — show demo data only
-}
-
-const trips = dbCards;
+const trips = await fetchServiceTours(SLUG);
 ---
 
-<BaseLayout title="Rhodes Sailing Boat Trips — Sailing Experiences in Rhodes | Rhodes Rent a Boat" description="Sailing experiences in Rhodes — shared and private trips along the east coast and to Symi. Half-day and full-day options." ogImage={heroImage}>
-  <ServiceSchema
-    name="Rhodes Sailing Boat Trips"
-    description="Sailing boat trips in Rhodes. Shared and private sailing experiences along the east coast — the wind, the sea and the most authentic way to explore Rhodes."
-    serviceType="Sailing Trip"
-    image={heroImage}
-    url="/service/rhodes-sailing-trips"
-    lowPrice="260"
-    highPrice="720"
-    offerCount="4"
-  />
-  <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Services', url: '/service' },
-    { name: 'Rhodes Sailing Boat Trips', url: '/service/rhodes-sailing-trips' },
-  ]} />
-  <Header />
+<BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
+  <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="260" highPrice="720" offerCount="4" />
+  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <Header transparent={false} />
 
-  <!-- 1. Hero -->
-  <ServiceHeroFullwidth
-    title="Rhodes Sailing Boat Trips"
-    subtitle="Experience the Sea Under Sail"
-    backgroundImage={heroImage}
-    heroVideo={heroVideo}
-    imageAlt="Sailing trip departing from Rhodes harbour"
-  />
+  <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
+  <ServiceFeatureGrid quote={content.introQuote} features={content.features} footnote={content.footnote} />
+  {content.panel && <ServiceIntroPanel {...content.panel} image={heroImage} />}
 
-  <!-- 2. Intro -->
-  <section style="padding: 60px 0 40px;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;">
-        <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein">
-          Sailing is not about speed, it's about the journey. The wind decides the route.
-        </p>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="sl-intro-grid" data-ani="slideinup" data-ani-delay="0.1">
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-wind"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">The Sailing Experience</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Sailing is slower, quieter and more connected to the sea. The wind on the sails, the boat moving through the water — a real sea experience.</p>
+  <ServiceCatalog title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
+    <div class="exp-grid">
+      {trips.map((tour, i) => (
+        <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
+          <ExperienceCard href={tour.href} title={tour.title} description={tour.description} image={tour.image} imageAlt={tour.imageAlt} badge={tour.badge || tour.duration} price={tour.price} duration={tour.duration} guests={tour.guests} />
         </div>
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-users"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Shared & Private</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Join a small group sailing trip or rent a sailing yacht for your group. Day trips, sunset sails and multi-day adventures.</p>
-        </div>
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-map-marked-alt"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">We help you choose between shared trips, private sailing and multi-day routes. Real advice from people who know the waters.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
-        <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          Sailing is not just a boat trip. It is a way to experience the sea. For multi-day holidays, see <a href="/service/rhodes-charter">yacht charter</a> in the Dodecanese.
-        </p>
-      </div>
+      ))}
     </div>
-  </section>
+  </ServiceCatalog>
 
-  <!-- 3. Tours Grid -->
-  <section style="padding: 80px 0; background: #f8fafb;">
-    <div class="container">
-      <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">What Sailing Experiences Are Available in Rhodes?</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="sl-trips-grid">
-        {trips.map((trip, i) => (
-          <a href={trip.href || '/contact'} class="sl-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(trip.image, 600, { quality: 75 })} srcset={imgSrcset(trip.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={trip.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
-              <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{trip.type}</span>
-            </div>
-            <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
-              <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;">{trip.title}</h3>
-              <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;">{trip.description}</p>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;"></i> {trip.duration}</span>
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;"></i> {trip.guests}</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;">
-                <span style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;">{trip.price}</span>
-                <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;">Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;"></i></span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <FAQSection
-    items={sailingFaq}
-    title="Sailing Trips in Rhodes — FAQ"
-    intro="Common questions about sailing experiences in the Dodecanese. For booking and weather see the <a href='/faq'>full FAQ</a>."
-  />
-
-  <!-- 4. Contact -->
-  <section style="padding: 80px 0; background: #113D48;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup">Need Help Choosing the Right Sailing Trip?</h2>
-        <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1">
-          If you are not sure whether a sailing boat trip, a catamaran tour or a boat trip is the best option for you, contact us and we will help you choose the experience that suits you best.
-        </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2">
-          <a href="/contact" class="th-btn style3 th-icon">Send Us a Message</a>
-          <a href="https://wa.me/306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          <a href="tel:+306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fas fa-phone"></i> +30 695 166 6454</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <FAQSection items={sailingFaq} intro="Common questions about sailing day trips. For weekly charter see <a href='/service/rhodes-charter'>yacht charter</a> or the <a href='/faq'>full FAQ</a>." background="white" />
+  <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
   <FooterFour />
 </BaseLayout>
-
-<script>
-</script>
-
-<style>
-  .sl-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-  }
-
-  .sl-card:hover img {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 991px) {
-    .sl-intro-grid {
-      grid-template-columns: 1fr !important;
-      gap: 0 !important;
-    }
-    .sl-trips-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-  }
-
-  @media (max-width: 575px) {
-    .sl-trips-grid {
-      grid-template-columns: 1fr !important;
-    }
-  }
-</style>

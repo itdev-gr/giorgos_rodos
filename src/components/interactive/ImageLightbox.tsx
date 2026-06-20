@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 interface ImageLightboxProps {
-  images: { src: string; alt?: string }[];
+  images: { src: string; alt: string }[];
   initialIndex?: number;
   isOpen: boolean;
   onClose: () => void;
@@ -76,7 +76,7 @@ export default function ImageLightbox({ images, initialIndex = 0, isOpen, onClos
         </button>
         <img
           src={images[currentIndex]?.src}
-          alt={images[currentIndex]?.alt || ''}
+          alt={images[currentIndex]?.alt}
           style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain' }}
         />
         {images.length > 1 && (

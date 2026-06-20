@@ -1,0 +1,89 @@
+---
+import { imgUrl, imgSrcset } from '../lib/media';
+
+interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  image: string;
+  imageAlt?: string;
+  badge?: string;
+  price?: string;
+  duration?: string;
+  guests?: string;
+  showStars?: boolean;
+  showButton?: boolean;
+  buttonText?: string;
+  sizes?: string;
+}
+
+const {
+  href,
+  title,
+  description = '',
+  image,
+  imageAlt,
+  badge,
+  price,
+  duration,
+  guests,
+  showStars = true,
+  showButton = false,
+  buttonText = 'View More',
+  sizes = '(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw',
+} = Astro.props;
+
+const imgSrc = imgUrl(image, 700, { quality: 80 }) || image;
+const imgSet = imgSrcset(image, [480, 640, 700, 900]) || '';
+const showDurationMeta = Boolean(duration && duration !== badge);
+const showMeta = showDurationMeta || Boolean(guests);
+---
+
+<a href={href} class="exp-card">
+  <div class="exp-card__media">
+    <img
+      src={imgSrc}
+      srcset={imgSet || undefined}
+      sizes={sizes}
+      alt={imageAlt || title}
+      loading="lazy"
+      width="700"
+      height="875"
+      decoding="async"
+    />
+  </div>
+  <div class="exp-card__scrim"></div>
+
+  {badge && <span class="exp-card__badge">{badge}</span>}
+
+  {price && (
+    <div class="exp-card__price">
+      <span class="exp-card__price-current">{price}</span>
+    </div>
+  )}
+
+  <div class="exp-card__body">
+    {showStars && !showButton && (
+      <div class="exp-card__stars" aria-hidden="true">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    )}
+
+    <h3 class="exp-card__title">{title}</h3>
+
+    {description && <p class="exp-card__desc">{description}</p>}
+
+    {showMeta && (
+      <div class="exp-card__meta">
+        {showDurationMeta && <span><i class="far fa-clock"></i> {duration}</span>}
+        {guests && <span><i class="far fa-user"></i> {guests}</span>}
+      </div>
+    )}
+
+    {showButton && <span class="exp-card__btn">{buttonText}</span>}
+  </div>
+</a>

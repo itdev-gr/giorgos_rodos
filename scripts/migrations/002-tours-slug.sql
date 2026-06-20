@@ -10,7 +10,7 @@
 alter table public.tours
   add column if not exists slug text;
 
--- Partial unique index — allows NULL during migration, blocks duplicate slugs.
+-- Partial unique index, allows NULL during migration, blocks duplicate slugs.
 create unique index if not exists tours_slug_unique_idx
   on public.tours (slug)
   where slug is not null;

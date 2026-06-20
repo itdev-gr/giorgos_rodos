@@ -7,6 +7,7 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import TourSearchGrid from '../../components/dashboard/TourSearchGrid';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
+import ServiceExploreLinks from '../../components/things-to-do/ServiceExploreLinks.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { SITE_URL } from '../../lib/seo';
 import { thingsToDoFaq } from '../../lib/faq';
@@ -32,7 +33,7 @@ try {
 }
 ---
 
-<BaseLayout title="All Boat Experiences in Rhodes — Browse & Filter | Rhodes Rent a Boat" description="Browse all approved boat experiences in Rhodes — sailing trips, day cruises, private boats, catamaran tours and self-drive rentals. Compare and choose." ogImage={ogImage}>
+<BaseLayout title="All Boat Experiences in Rhodes: Browse & Filter | Rhodes Rent a Boat" description="Browse all approved boat experiences in Rhodes, sailing trips, day cruises, private boats, catamaran tours and self-drive rentals. Compare and choose." ogImage={ogImage}>
   <BreadcrumbSchema items={[
     { name: 'Home', url: '/' },
     { name: 'Things to Do', url: '/things-to-do' },
@@ -42,8 +43,8 @@ try {
     '@type': 'CollectionPage',
     '@id': `${SITE_URL}/things-to-do#collection`,
     url: `${SITE_URL}/things-to-do`,
-    name: 'All Boat Experiences in Rhodes — Browse & Filter',
-    description: 'Browse all approved boat experiences in Rhodes — sailing trips, day cruises, private boats, catamaran tours and self-drive rentals. Compare and choose.',
+    name: 'All Boat Experiences in Rhodes: Browse & Filter',
+    description: 'Browse all approved boat experiences in Rhodes, sailing trips, day cruises, private boats, catamaran tours and self-drive rentals. Compare and choose.',
     inLanguage: 'en-US',
     isPartOf: { '@id': `${SITE_URL}#website` },
     mainEntity: {
@@ -72,15 +73,17 @@ try {
   <section style="padding: 60px 0 40px;">
     <div class="container">
       <div style="max-width: 750px; margin: 0 auto; text-align: center;">
-        <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 24px;" data-ani="fadein">
-          Discover all the best boat experiences in Rhodes — handpicked by locals and verified by our team.
+        <p style="font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 24px;" data-ani="fadein">
+          Discover all the best boat experiences in Rhodes, handpicked by locals and verified by our team.
         </p>
         <p style="font-size: 1rem; line-height: 1.8; color: #4a5568; margin-bottom: 0;" data-ani="fadein" data-ani-delay="0.1">
-          Browse boat tours, sailing trips, catamaran cruises, yacht charters, rent-a-boat options and unique experiences. Use the search and filters to find exactly what you are looking for.
+          Browse <a href="/service/rhodes-boat-tours" style="color: #1CA8CB; font-weight: 600;">Rhodes boat tours</a>, <a href="/service/rhodes-boat-cruises" style="color: #1CA8CB; font-weight: 600;">Rhodes boat cruises</a>, <a href="/service/rhodes-boat-trips" style="color: #1CA8CB; font-weight: 600;">private boat trips</a>, catamaran sails, yacht charters and rent-a-boat options. Use the search and filters to find exactly what you are looking for.
         </p>
       </div>
     </div>
   </section>
+
+  <ServiceExploreLinks />
 
   <!-- 3. Tours Grid with Search -->
   <section aria-labelledby="all-tours-heading" style="padding: 40px 0 80px; background: #f8fafb;">
@@ -91,7 +94,7 @@ try {
       ) : (
         <div style="text-align: center; padding: 80px 20px;">
           <i class="fas fa-ship" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 20px;"></i>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #113D48; margin-bottom: 12px;">No Tours Available Yet</h2>
+          <h2 style="font-size: 1.3rem; font-weight: 700; color: #113D48; margin-bottom: 12px;">No Tours Available Yet</h2>
           <p style="font-size: 0.95rem; color: #64748b; max-width: 500px; margin: 0 auto;">
             We are currently adding new boat experiences to this page. Check back soon or contact us for personal recommendations.
           </p>
@@ -105,22 +108,6 @@ try {
     title="Choosing the Right Boat Experience in Rhodes"
     intro="Quick answers for first-time visitors. For booking, weather and licence questions see the <a href='/faq'>full FAQ</a>."
   />
-
-  <!-- 4. Contact -->
-  <section style="padding: 80px 0; background: #113D48;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup">Looking for Something Specific?</h2>
-        <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1">
-          Can't find what you're looking for? Contact us and we will help you find the perfect boat experience in Rhodes.
-        </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2">
-          <a href="/contact" class="th-btn style3 th-icon">Send Us a Message</a>
-          <a href="https://wa.me/306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <FooterFour />
 </BaseLayout>

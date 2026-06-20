@@ -3,8 +3,8 @@ const items = [
   { icon: 'fas fa-map-marked-alt', title: 'Local Knowledge', text: 'We live and work in Rhodes. We know every bay, every route, and every captain personally.' },
   { icon: 'fas fa-ship', title: 'Handpicked Boats', text: 'Every boat we recommend has been personally vetted by our team for quality, safety, and comfort.' },
   { icon: 'fas fa-shield-alt', title: 'Safety First', text: 'All vessels are fully licensed and insured, with experienced crews trained for all conditions.' },
-  { icon: 'fas fa-headset', title: 'Personal Support', text: 'Real people answer your questions — before, during, and after your trip. No chatbots, no call centres.' },
-  { icon: 'fas fa-handshake', title: 'Direct Arrangements', text: 'We personally arrange every experience with captains and operators we know — no anonymous listings or call-centre handoffs.' },
+  { icon: 'fas fa-headset', title: 'Personal Support', text: 'Real people answer your questions, before, during, and after your trip. No chatbots, no call centres.' },
+  { icon: 'fas fa-handshake', title: 'Direct Arrangements', text: 'We personally arrange every experience with captains and operators we know, no anonymous listings or call-centre handoffs.' },
   { icon: 'fas fa-lightbulb', title: 'Real Advice', text: 'We will tell you honestly which boat, route, or experience is right for your group and budget.' },
 ];
 
@@ -19,15 +19,14 @@ const bPag = `${bId}-pag`;
 
 const cardStyle = "background: #fff; border-radius: 14px; padding: 32px 24px; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%;";
 const iconStyle = "width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;";
-const titleStyle = "font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #113D48; margin-bottom: 8px;";
+const titleStyle = "font-size: 1.05rem; font-weight: 700; color: #113D48; margin-bottom: 8px;";
 const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #56646b; margin-bottom: 0;";
 ---
 
 <section style="padding: 80px 0; background: #E9F6F9; overflow: hidden;">
   <div class="container">
     <div class="title-area text-center" style="margin-bottom: 50px;">
-      <span class="sub-title style1" data-ani="slideinup">Why Rhodes Rent a Boat</span>
-      <h2 class="sec-title" data-ani="slideinup" data-ani-delay="0.1">Why Guests Choose Us</h2>
+      <h2 class="sec-title" data-ani="slideinup">Why Guests Trust Us</h2>
     </div>
 
     <!-- Desktop / tablet grid (≥992px) -->
@@ -43,7 +42,7 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #56646b; margin-
       ))}
     </div>
 
-    <!-- Mobile carousels (≤991px) — two stacked carousels of 3 -->
+    <!-- Mobile carousels (≤991px), two stacked carousels of 3 -->
     <div class="why-mobile-carousels">
       <!-- Carousel A -->
       <div class="why-carousel-wrap">
@@ -152,15 +151,15 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #56646b; margin-
 <script define:vars={{ aId, aPag, bId, bPag }}>
   function ensureSwiperLoaded(cb) {
     if (typeof Swiper !== 'undefined') return cb();
-    if (document.querySelector('script[data-swiper-cdn]')) {
+    if (document.querySelector('script[data-swiper-local]')) {
       const iv = setInterval(() => {
         if (typeof Swiper !== 'undefined') { clearInterval(iv); cb(); }
       }, 50);
       return;
     }
     const s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
-    s.setAttribute('data-swiper-cdn', '1');
+    s.src = '/assets/js/swiper-bundle.min.js';
+    s.setAttribute('data-swiper-local', '1');
     s.onload = () => cb();
     document.head.appendChild(s);
   }
@@ -186,10 +185,30 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #56646b; margin-
 
   function initWhyCarousels() {
     if (!window.matchMedia('(max-width: 991px)').matches) return;
-    ensureSwiperLoaded(() => {
+    const wrap = document.querySelector('.why-mobile-carousels');
+    if (!wrap || wrap.dataset.swiperScheduled) return;
+    wrap.dataset.swiperScheduled = 'true';
+
+    const start = () => ensureSwiperLoaded(() => {
       buildCarousel(aId, aPag, 4000);
       buildCarousel(bId, bPag, 5500);
     });
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            io.disconnect();
+            start();
+          }
+        },
+        { rootMargin: '120px' }
+      );
+      io.observe(wrap);
+      return;
+    }
+
+    start();
   }
 
   document.addEventListener('DOMContentLoaded', initWhyCarousels);

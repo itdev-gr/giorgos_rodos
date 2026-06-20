@@ -1,5 +1,5 @@
 ---
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildCanonical } from '../../lib/seo';
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildCanonical, buildPageTitle } from '../../lib/seo';
 
 interface Props {
   title: string;
@@ -16,6 +16,8 @@ interface Props {
   noindex?: boolean;
   noindexFollow?: boolean;
   keywords?: string;
+  /** When false, title omits "| Rhodes Rent a Boat" suffix. */
+  addBrandSuffix?: boolean;
 }
 
 const {
@@ -33,13 +35,15 @@ const {
   noindex = false,
   noindexFollow = false,
   keywords,
+  addBrandSuffix = true,
 } = Astro.props;
 
 const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 const finalOgImageAlt = ogImageAlt || description;
+const finalTitle = buildPageTitle(title, { addBrand: addBrandSuffix });
 ---
-<title>{title}</title>
+<title>{finalTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={finalCanonical} />
 
@@ -57,7 +61,7 @@ const finalOgImageAlt = ogImageAlt || description;
 <meta property="og:type" content={ogType} />
 <meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:url" content={finalCanonical} />
-<meta property="og:title" content={title} />
+<meta property="og:title" content={finalTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={absoluteOgImage} />
 <meta property="og:image:secure_url" content={absoluteOgImage} />
@@ -67,7 +71,7 @@ const finalOgImageAlt = ogImageAlt || description;
 <meta property="og:locale" content="en_US" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={finalTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={absoluteOgImage} />
 <meta name="twitter:image:alt" content={finalOgImageAlt} />

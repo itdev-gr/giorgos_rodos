@@ -4,194 +4,48 @@ export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
 import FooterFour from '../../sections/shared/FooterFour.astro';
-import ServiceHeroFullwidth from '../../sections/service/ServiceHeroFullwidth.astro';
 import ServiceSchema from '../../components/seo/ServiceSchema.astro';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
-import { getMediaSlot, imgUrl, imgSrcset } from '../../lib/media';
-import { tourCardAlt } from '../../lib/tour-alt';
-import { createPublicClient } from '../../lib/supabase';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import ServiceGradientHero from '../../components/service/ServiceGradientHero.astro';
+import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astro';
+import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
+import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
+import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
+import { getMediaSlot } from '../../lib/media';
 import { cruisesFaq } from '../../lib/faq';
+import { getServiceSeo } from '../../lib/service-seo';
+import { getServiceContent } from '../../lib/service-content';
+import { fetchServiceTours } from '../../lib/service-tours';
 
-const heroVideo = await getMediaSlot('service.boat-cruises.hero.video', '/assets/img/hero/services/boat-cruises.mp4');
+const SLUG = 'rhodes-boat-cruises';
+const seo = getServiceSeo(SLUG)!;
+const content = getServiceContent(SLUG)!;
 const heroImage = await getMediaSlot('service.boat-cruises.hero.image', '/assets/img/cruises/greco_home1.jpg');
-
-// Fetch approved tours from Supabase
-let dbCards: any[] = [];
-try {
-  const supabase = createPublicClient();
-  if (supabase) {
-    const { data } = await supabase
-      .from('tours')
-      .select('*')
-      .or('service_page.eq.rhodes-boat-cruises,is_global.eq.true')
-      .eq('status', 'approved')
-      .order('is_global', { ascending: false })
-      .order('created_at', { ascending: false });
-    dbCards = (data || []).map((t: any) => ({
-      title: t.title,
-      description: t.description,
-      image: t.image_url || t.images?.[0] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
-      duration: t.duration || '',
-      guests: t.guests || '',
-      departure: t.badge_label || '',
-      price: t.price || '',
-      href: `/tour-detail/${t.slug || t.id}`,
-      imageAlt: tourCardAlt(t.title, t.badge_label),
-    }));
-  }
-} catch (e) {
-  console.error("Supabase error:", e); // Supabase unavailable — show demo data only
-}
-
-const cruises = dbCards;
+const cruises = await fetchServiceTours(SLUG);
 ---
 
-<BaseLayout title="Rhodes Boat Cruises — Day Cruises in Rhodes | Rhodes Rent a Boat" description="Organized boat cruises in Rhodes. East coast cruises, Symi day cruises, Lindos cruises and sunset cruises from Mandraki, Faliraki and Kolymbia. Handpicked by local experts." ogImage={heroImage}>
-  <ServiceSchema
-    name="Rhodes Boat Cruises"
-    description="Organized boat cruises in Rhodes — East coast, Symi, Lindos and sunset cruises from Mandraki, Faliraki and Kolymbia."
-    serviceType="Boat Cruise"
-    image={heroImage}
-    url="/service/rhodes-boat-cruises"
-  />
-  <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Services', url: '/service' },
-    { name: 'Rhodes Boat Cruises', url: '/service/rhodes-boat-cruises' },
-  ]} />
-  <Header />
+<BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
+  <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} />
+  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <Header transparent={false} />
 
-  <!-- 1. Hero -->
-  <ServiceHeroFullwidth
-    title="Rhodes Boat Cruises"
-    subtitle="Organized Day Cruises in Rhodes"
-    backgroundImage={heroImage}
-    heroVideo={heroVideo}
-  />
+  <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
+  <ServiceFeatureGrid quote={content.introQuote} features={content.features} footnote={content.footnote} />
+  {content.panel && <ServiceIntroPanel {...content.panel} image={heroImage} />}
 
-  <!-- 2. Intro -->
-  <section style="padding: 60px 0 40px;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center; margin-bottom: 40px;">
-        <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 0;" data-ani="fadein">
-          Boat cruises are one of the best ways to explore the coastline, visit famous bays and spend the day on the sea.
-        </p>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;" class="bc-intro-grid" data-ani="slideinup" data-ani-delay="0.1">
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-anchor"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Organized Day Cruises</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Larger boats with fixed routes along the east coast, to Symi Island or Lindos. Swimming stops, lunch and drinks included.</p>
+  <ServiceCatalog title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
+    <div class="exp-grid">
+      {cruises.map((tour, i) => (
+        <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
+          <ExperienceCard href={tour.href} title={tour.title} description={tour.description} image={tour.image} imageAlt={tour.imageAlt} badge={tour.badge || tour.duration} price={tour.price} duration={tour.duration} guests={tour.guests} />
         </div>
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-map-signs"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Multiple Departure Points</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Cruises depart from Mandraki Harbour, Faliraki, Kolymbia and Lindos depending on the route and destination.</p>
-        </div>
-        <div style="text-align: center; padding: 32px 24px;">
-          <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(28,168,203,0.1); color: #1CA8CB; display: inline-flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 18px;">
-            <i class="fas fa-map-marked-alt"></i>
-          </div>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #113D48; margin-bottom: 10px;">Local Guidance</h2>
-          <p style="font-size: 0.9rem; line-height: 1.65; color: #6b7c85; margin: 0;">Tell us whether you want Symi, east-coast swimming or sunset — we explain which cruise schedule fits your hotel location and week.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 28px;" data-ani="fadein" data-ani-delay="0.2">
-        <p style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 0.95rem; color: #113D48; margin: 0;">
-          We don't sell cruises. We help you choose the right sea experience in Rhodes.
-        </p>
-      </div>
+      ))}
     </div>
-  </section>
+  </ServiceCatalog>
 
-  <!-- 3. Cruises Grid -->
-  <section style="padding: 80px 0; background: #f8fafb;">
-    <div class="container">
-      <div class="title-area text-center" style="margin-bottom: 50px;">
-        <h2 class="sec-title" data-ani="slideinup">Explore Our Boat Cruises in Rhodes</h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="bc-cruises-grid">
-        {cruises.map((cruise, i) => (
-          <a href={cruise.href || '/contact'} class="bc-cruise-card" data-ani="slideinup" data-ani-delay={`${0.1 + i * 0.06}`} style="display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <div style="height: 220px; overflow: hidden; position: relative;">
-              <img src={imgUrl(cruise.image, 600, { quality: 75 })} srcset={imgSrcset(cruise.image, [400, 600, 800])} sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw" width="600" height="450" alt={cruise.imageAlt} loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
-              <span style="position: absolute; top: 14px; right: 14px; background: rgba(17,61,72,0.85); color: #fff; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border-radius: 6px; backdrop-filter: blur(4px);">{cruise.departure}</span>
-            </div>
-            <div style="padding: 24px; display: flex; flex-direction: column; flex: 1;">
-              <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #113D48; margin-bottom: 8px;">{cruise.title}</h3>
-              <p style="font-size: 0.88rem; line-height: 1.6; color: #6b7c85; margin-bottom: 14px;">{cruise.description}</p>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-clock" style="font-size: 0.7rem; color: #1CA8CB;"></i> {cruise.duration}</span>
-                <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: #5a6a72; background: #f0f4f5; padding: 4px 10px; border-radius: 20px;"><i class="far fa-user" style="font-size: 0.7rem; color: #1CA8CB;"></i> {cruise.guests}</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid #f0f0f0;">
-                <span style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #1CA8CB;">{cruise.price}</span>
-                <span style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #113D48;">Enquire <i class="fa-regular fa-arrow-right" style="margin-left: 4px;"></i></span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <FAQSection
-    items={cruisesFaq}
-    title="Rhodes Boat Cruises — FAQ"
-    intro="Common questions about day and sunset cruises. For booking and weather see the <a href='/faq'>full FAQ</a>."
-  />
-
-  <!-- 5. Contact -->
-  <section style="padding: 80px 0; background: #113D48;">
-    <div class="container">
-      <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 20px;" data-ani="slideinup">Need Help Choosing the Right Boat Cruise?</h2>
-        <p style="font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.7); margin-bottom: 36px;" data-ani="fadein" data-ani-delay="0.1">
-          If you are not sure which boat cruise to choose, contact us and we will help you decide whether a day cruise, a boat tour or a boat trip is the best option for your holiday in Rhodes.
-        </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;" data-ani="slideinup" data-ani-delay="0.2">
-          <a href="/contact" class="th-btn style3 th-icon">Send Us a Message</a>
-          <a href="https://wa.me/306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          <a href="tel:+306951666454" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; transition: all 0.3s ease;"><i class="fas fa-phone"></i> +30 695 166 6454</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <FAQSection items={cruisesFaq} intro="Common questions about day cruises from Rhodes. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
+  <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
   <FooterFour />
 </BaseLayout>
-
-<script>
-</script>
-
-<style>
-  .bc-cruise-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
-  }
-
-  .bc-cruise-card:hover img {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 991px) {
-    .bc-intro-grid {
-      grid-template-columns: 1fr !important;
-      gap: 0 !important;
-    }
-    .bc-cruises-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-  }
-
-  @media (max-width: 575px) {
-    .bc-cruises-grid {
-      grid-template-columns: 1fr !important;
-    }
-  }
-</style>

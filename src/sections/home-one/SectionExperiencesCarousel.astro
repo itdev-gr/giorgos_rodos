@@ -1,0 +1,202 @@
+---
+import HomeExperiencesCarousel from '../../components/home/HomeExperiencesCarousel';
+import { fetchAllApprovedExperiences } from '../../lib/service-tours';
+
+const experiences = await fetchAllApprovedExperiences();
+---
+
+<HomeExperiencesCarousel initialTours={experiences} client:load />
+
+<style is:global>
+  .home-exp {
+    padding: 88px 0 72px;
+    background: linear-gradient(180deg, #f4f8f9 0%, #fff 42%, #fff 100%);
+    overflow: hidden;
+  }
+
+  .home-exp__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px 32px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .home-exp__intro {
+    max-width: 640px;
+  }
+
+  .home-exp__title {
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: #113D48;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+
+  .home-exp__lead {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #56646b;
+  }
+
+  .home-exp__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .home-exp__view-all {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .home-exp__view-all:hover {
+    color: #1489a8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .home-exp__track-wrap {
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .home-exp__swiper {
+    overflow: visible;
+    padding: 8px max(16px, calc((100vw - 1320px) / 2 + 16px)) 8px;
+  }
+
+  .home-exp__slide {
+    width: min(320px, 78vw) !important;
+    height: auto;
+  }
+
+  .home-exp-card.exp-card {
+    min-height: 420px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .home-exp__nav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .home-exp__nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #d8e4e8;
+    background: #fff;
+    color: #113D48;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .home-exp__nav-btn:hover:not(:disabled) {
+    background: #1CA8CB;
+    border-color: #1CA8CB;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .home-exp__nav-btn:disabled,
+  .home-exp__nav-btn.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .home-exp__pagination {
+    position: relative !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    bottom: auto !important;
+    top: auto !important;
+  }
+
+  .home-exp__pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #c5d5db;
+    opacity: 1;
+    transition: width 0.25s ease, background 0.25s ease;
+  }
+
+  .home-exp__pagination .swiper-pagination-bullet-active {
+    width: 28px;
+    border-radius: 999px;
+    background: #1CA8CB;
+  }
+
+  .home-exp__empty {
+    text-align: center;
+    padding: 12px 0 24px;
+  }
+
+  .home-exp__foot {
+    margin-top: 28px;
+    text-align: center;
+  }
+
+  .home-exp__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #113D48;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: 1.5px solid #113D48;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .home-exp__cta:hover {
+    background: #113D48;
+    color: #fff;
+  }
+
+  @media (max-width: 991px) {
+    .home-exp {
+      padding: 64px 0 56px;
+    }
+
+    .home-exp__head {
+      margin-bottom: 28px;
+    }
+
+    .home-exp__actions {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .home-exp-card.exp-card {
+      min-height: 380px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .home-exp__nav-btn {
+      width: 44px;
+      height: 44px;
+    }
+
+    .home-exp__slide {
+      width: min(300px, 84vw) !important;
+    }
+  }
+</style>

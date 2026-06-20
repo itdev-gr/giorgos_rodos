@@ -1,0 +1,144 @@
+---
+import type { ServicePanel } from '../../lib/service-content';
+
+interface Props extends ServicePanel {
+  image: string;
+}
+
+const { eyebrow, title, lead, paragraphs, note, image, reversed = false } = Astro.props;
+---
+
+<section class:list={['sp-panel', reversed && 'sp-panel--reverse']}>
+  <div class="container">
+    <div class:list={['row align-items-center gy-40', reversed && 'flex-lg-row-reverse']}>
+      <div class="col-lg-6" data-ani={reversed ? 'slideinright' : 'slideinleft'}>
+        <div class="sp-panel__media">
+          <img src={image} alt={title} loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <div class="col-lg-6" data-ani={reversed ? 'slideinleft' : 'slideinright'}>
+        <div class="sp-panel__body">
+          <span class="sp-panel__eyebrow">{eyebrow}</span>
+          <h2 class="sp-panel__title">{title}</h2>
+          {lead && <p class="sp-panel__lead"><em>{lead}</em></p>}
+          {paragraphs.map((p) => <p>{p}</p>)}
+          {note && <div class="sp-panel__note" set:html={note} />}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sp-panel {
+    padding: 72px 0;
+    background: #f8fafb;
+  }
+
+  .sp-panel--reverse {
+    background: #fff;
+  }
+
+  .sp-panel--reverse .sp-panel__body {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .sp-panel__media {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(17, 61, 72, 0.12);
+    position: relative;
+  }
+
+  .sp-panel__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(17, 61, 72, 0.15) 100%);
+    pointer-events: none;
+  }
+
+  .sp-panel__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .sp-panel:hover .sp-panel__media img {
+    transform: scale(1.03);
+  }
+
+  .sp-panel__body {
+    max-width: 540px;
+  }
+
+  .sp-panel--reverse .sp-panel__body {
+    margin-left: auto;
+  }
+
+  .sp-panel__eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1CA8CB;
+    margin-bottom: 10px;
+  }
+
+  .sp-panel__title {
+    font-size: clamp(1.65rem, 3vw, 2.15rem);
+    font-weight: 700;
+    color: #113D48;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+
+  .sp-panel__lead {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1CA8CB;
+    margin: 0 0 16px;
+  }
+
+  .sp-panel__body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #000;
+    margin: 0 0 14px;
+  }
+
+  .sp-panel__note {
+    margin-top: 8px;
+    padding: 16px 18px;
+    border-left: 3px solid #1CA8CB;
+    background: rgba(28, 168, 203, 0.08);
+    border-radius: 0 10px 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #113D48;
+    font-weight: 500;
+  }
+
+  .sp-panel__note :global(a) {
+    color: #1CA8CB;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 991px) {
+    .sp-panel {
+      padding: 56px 0;
+    }
+
+    .sp-panel__body,
+    .sp-panel--reverse .sp-panel__body {
+      max-width: none;
+      margin: 0;
+    }
+  }
+</style>

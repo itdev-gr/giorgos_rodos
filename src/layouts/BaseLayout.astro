@@ -19,11 +19,12 @@ interface Props {
   noindex?: boolean;
   noindexFollow?: boolean;
   keywords?: string;
+  loadMagnific?: boolean;
 }
 
 const {
-  title = 'Rhodes Rent a Boat | Boat Tours, Cruises & License-Free Rentals',
-  description = 'Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts on Ionos Dragoumi 39, Rhodes Town, since 1998.',
+  title = 'Rent a Boat Rhodes | Boat Without License | Rhodes Rent a Boat',
+  description = 'Rent a boat in Rhodes | Rhodes Boat Rentals | Rhodes Rent a Boat',
   canonical,
   ogImage,
   ogImageAlt,
@@ -36,11 +37,14 @@ const {
   noindex,
   noindexFollow,
   keywords,
+  loadMagnific = Astro.url.pathname !== '/',
 } = Astro.props;
 
 const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
 const isServiceDetail =
   Astro.url.pathname.startsWith('/service/') && Astro.url.pathname !== '/service/';
+const isServiceRoute =
+  Astro.url.pathname === '/service' || Astro.url.pathname.startsWith('/service/');
 const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
 ---
 
@@ -48,6 +52,9 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      document.documentElement.classList.remove('nav-hover-ready');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -72,11 +79,12 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       noindex={noindex}
       noindexFollow={noindexFollow}
       keywords={keywords}
+      addBrandSuffix={!isServiceRoute}
     />
     <OrganizationSchema />
     <WebsiteSchema />
 
-    <!-- GA4 stub — script loads after page is interactive (see body) -->
+    <!-- GA4 stub, script loads after page is interactive (see body) -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -92,7 +100,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <!-- Critical CSS inlined: covers above-the-fold (header, hero, base layout)
          so the page paints immediately while Bootstrap + theme load async below. -->
     <style>
-      /* Reset + base layout — keeps everything in place pre-Bootstrap */
+      /* Reset + base layout, keeps everything in place pre-Bootstrap */
       *, *::before, *::after { box-sizing: border-box; }
       html { -webkit-text-size-adjust: 100%; }
       body {
@@ -107,7 +115,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       img, video { max-width: 100%; height: auto; display: block; }
       a { color: inherit; text-decoration: none; }
 
-      /* Bootstrap grid — inlined so header/hero don't reflow when bootstrap.min.css arrives */
+      /* Bootstrap grid, inlined so header/hero don't reflow when bootstrap.min.css arrives */
       .row {
         --bs-gutter-x: 1.5rem;
         --bs-gutter-y: 0;
@@ -154,7 +162,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       @media (min-width: 1200px) { .container { max-width: 1140px; } }
       @media (min-width: 1400px) { .container { max-width: 1320px; } }
 
-      /* Header — transparent over hero by default, sticky-wrapper reserves
+      /* Header, transparent over hero by default, sticky-wrapper reserves
          a fixed height so the layout doesn't shift when the sticky class
          activates on scroll. Both states have the same physical footprint. */
       header { position: relative; z-index: 100; }
@@ -171,6 +179,74 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       @media (max-width: 991px) {
         .header-logo img { max-height: 100px; }
       }
+
+      /* Extra space below transparent header on inner pages */
+      :root {
+        --page-header-gap: 28px;
+        --page-hero-padding-top: calc(140px + var(--page-header-gap));
+        --page-hero-padding-top-md: calc(120px + var(--page-header-gap));
+        --page-hero-padding-top-sm: calc(108px + var(--page-header-gap));
+      }
+
+      :global(.faq-hero),
+      :global(.blog-hero),
+      :global(.contact-hero),
+      :global(.things-hero),
+      :global(.about-hero),
+      :global(.legal-hero),
+      :global(.breadcumb-wrapper) {
+        padding-top: var(--page-hero-padding-top) !important;
+      }
+
+      :global(.service-hero-content) {
+        padding-top: calc(160px + var(--page-header-gap)) !important;
+      }
+
+      :global(.services-hero),
+      :global(.service-hero-fullwidth),
+      :global(.rab-hero) {
+        padding-top: var(--page-header-gap);
+        box-sizing: border-box;
+      }
+
+      :global(.td-page-start) {
+        padding-top: calc(80px + var(--page-header-gap)) !important;
+      }
+
+      @media (max-width: 991px) {
+        :root {
+          --page-header-gap: 24px;
+        }
+
+        :global(.faq-hero),
+        :global(.blog-hero),
+        :global(.contact-hero),
+        :global(.things-hero),
+        :global(.about-hero),
+        :global(.legal-hero),
+        :global(.breadcumb-wrapper) {
+          padding-top: var(--page-hero-padding-top-md) !important;
+        }
+
+        :global(.service-hero-content) {
+          padding-top: calc(140px + var(--page-header-gap)) !important;
+        }
+      }
+
+      @media (max-width: 575px) {
+        :root {
+          --page-header-gap: 20px;
+        }
+
+        :global(.faq-hero),
+        :global(.blog-hero),
+        :global(.contact-hero),
+        :global(.things-hero),
+        :global(.about-hero) {
+          padding-top: var(--page-hero-padding-top-sm) !important;
+        }
+      }
+
       #header-one .main-menu > ul {
         display: flex;
         align-items: center;
@@ -187,8 +263,31 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         padding: 32px 0;
         white-space: nowrap;
       }
+      /* Prevent Service dropdown flash on refresh (hover blocked until user moves mouse) */
+      #header-one .main-menu ul.sub-menu {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: scaleY(0);
+      }
+      @media (min-width: 992px) {
+        html.nav-hover-ready #header-one .main-menu li.menu-item-has-children:hover > ul.sub-menu,
+        #header-one .main-menu li.menu-item-has-children:focus-within > ul.sub-menu {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          pointer-events: auto !important;
+          transform: scaleY(1);
+        }
+      }
+      .th-menu-wrapper:not(.th-body-visible) {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
 
-      /* Hero — full structure reserved before style.css loads */
+      /* Hero, full structure reserved before style.css loads */
       .th-hero-wrapper {
         position: relative;
         z-index: 1;
@@ -218,20 +317,20 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         position: relative; min-height: 600px; height: 100vh;
         background-color: #0b2f38; overflow: hidden;
       }
-      .service-hero-fullwidth, .services-hero, .about-hero, .contact-hero, .rab-hero {
+      .service-hero-fullwidth, .services-hero, .rab-hero {
         position: relative; min-height: 100vh;
         background-color: #0b2f38; overflow: hidden;
       }
       @media (max-width: 991px) {
         .service-hero-fullwidth { min-height: 380px; height: 75vh; }
         .services-hero { min-height: 50vh; }
-        .about-hero, .contact-hero, .rab-hero { min-height: 75vh; }
+        .rab-hero { min-height: 75vh; }
       }
       @media (max-width: 767px) {
         .service-hero-fullwidth { min-height: 360px; }
       }
 
-      /* Tour-detail gallery wrapper — main image is 16/7. Reserving the
+      /* Tour-detail gallery wrapper, main image is 16/7. Reserving the
          aspect prevents the section from collapsing pre-CSS. */
       .td-gallery { aspect-ratio: 16 / 7; }
       @media (max-width: 991px) { .td-gallery { aspect-ratio: 4 / 3; } }
@@ -242,7 +341,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         max-width: 100vw;
       }
 
-      /* Swiper pagination bullets — bump touch target to ≥24px each
+      /* Swiper pagination bullets, bump touch target to ≥24px each
          (WCAG 2.5.8 Target Size minimum is 24×24, recommended 44×44 with
          spacing). Visual dot stays the same; padding makes the hit area
          bigger. */
@@ -255,23 +354,29 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       }
     </style>
 
-    <!-- Bootstrap + theme — single fetch via preload-as-stylesheet (no duplicate preload + link) -->
+    <!-- Bootstrap + theme, single fetch via preload-as-stylesheet (no duplicate preload + link) -->
     <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="preload" href="/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href="/assets/css/site-fonts.css" />
+    <link rel="stylesheet" href="/assets/css/home-contact.css" />
+    <link rel="stylesheet" href="/assets/css/experience-cards.css" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
       <link rel="stylesheet" href="/assets/css/style.css" />
       <link rel="stylesheet" href="/assets/css/site-fonts.css" />
+      <link rel="stylesheet" href="/assets/css/home-contact.css" />
+      <link rel="stylesheet" href="/assets/css/experience-cards.css" />
     </noscript>
 
-    <!-- Non-critical CSS — async via media-print swap -->
+    <!-- Non-critical CSS, async via media-print swap -->
     <link rel="stylesheet" href="/assets/css/fontawesome.min.css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" media="print" onload="this.media='all'" />
+    {loadMagnific && (
+      <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" media="print" onload="this.media='all'" />
+    )}
     <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
     <noscript>
       <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
-      <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
+      {loadMagnific && <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />}
       <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
     </noscript>
     <!-- Fallback for browsers that don't fire onload on preload-as-stylesheet -->
@@ -292,7 +397,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         opacity: 1 !important;
         transform: none !important;
       }
-      /* Logo touch target — WCAG 2.5.8 minimum 48×48px */
+      /* Logo touch target, WCAG 2.5.8 minimum 48×48px */
       :global(.header-logo a), :global(.navbar-brand) {
         display: inline-flex;
         align-items: center;
@@ -307,6 +412,163 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
           font-size: 13px !important;
         }
       }
+
+      /* Headings: sentence case (only first letter capital) */
+      :global(h1),
+      :global(h2),
+      :global(h3),
+      :global(h4),
+      :global(h5),
+      :global(h6),
+      :global(.sec-title),
+      :global(.sub-title),
+      :global(.intro-heading),
+      :global(.rab-subheading),
+      :global(.rab-title),
+      :global(.faq-section__title),
+      :global(.hero-heading),
+      :global(.box-title),
+      :global(.box-title2),
+      :global(.service-hero-title),
+      :global(.services-hero__title),
+      :global(.things-hero__title),
+      :global(.about-hero__title),
+      :global(.contact-hero__title),
+      :global(.blog-card__title),
+      :global(.exp-card__title),
+      :global(.why-title) {
+        text-transform: lowercase !important;
+      }
+      :global(h1)::first-letter,
+      :global(h2)::first-letter,
+      :global(h3)::first-letter,
+      :global(h4)::first-letter,
+      :global(h5)::first-letter,
+      :global(h6)::first-letter,
+      :global(.sec-title)::first-letter,
+      :global(.sub-title)::first-letter,
+      :global(.intro-heading)::first-letter,
+      :global(.rab-subheading)::first-letter,
+      :global(.rab-title)::first-letter,
+      :global(.faq-section__title)::first-letter,
+      :global(.hero-heading)::first-letter,
+      :global(.box-title)::first-letter,
+      :global(.box-title2)::first-letter,
+      :global(.service-hero-title)::first-letter,
+      :global(.services-hero__title)::first-letter,
+      :global(.things-hero__title)::first-letter,
+      :global(.about-hero__title)::first-letter,
+      :global(.contact-hero__title)::first-letter,
+      :global(.blog-card__title)::first-letter,
+      :global(.exp-card__title)::first-letter,
+      :global(.why-title)::first-letter {
+        text-transform: uppercase !important;
+      }
+
+      /* Mobile heading scale */
+      @media (max-width: 991px) {
+        :global(.sec-title),
+        :global(.title-area .sec-title) {
+          font-size: 26px !important;
+          line-height: 1.3 !important;
+        }
+        :global(.sub-title) {
+          font-size: 22px !important;
+          line-height: 1.2 !important;
+        }
+        :global(.breadcumb-title),
+        :global(.hero-title) {
+          font-size: 32px !important;
+          line-height: 1.2 !important;
+        }
+        :global(.box-title) {
+          font-size: 20px !important;
+          line-height: 1.35 !important;
+        }
+        :global(.box-title2) {
+          font-size: 17px !important;
+        }
+        :global(.hero-heading) {
+          font-size: 32px !important;
+          line-height: 1.15 !important;
+          color: #fff !important;
+          font-weight: 700 !important;
+        }
+        :global(.intro-heading) {
+          font-size: 1.35rem !important;
+          line-height: 1.25 !important;
+        }
+        :global(.hero-accent) {
+          font-size: 0.85rem !important;
+          color: #fff !important;
+          font-weight: 700 !important;
+        }
+        :global(.service-hero-title),
+        :global(.services-hero__title),
+        :global(.things-hero__title),
+        :global(.about-hero__title),
+        :global(.contact-hero__title),
+        :global(.legal-hero__title),
+        :global(.rab-hero__title),
+        :global(.blog-hero__title),
+        :global(.faq-hero__title) {
+          font-size: 1.75rem !important;
+          line-height: 1.2 !important;
+        }
+        :global(.contact-find__title),
+        :global(.contact-services__title),
+        :global(.services-intro__title),
+        :global(.services-more__title),
+        :global(.services-faq__title),
+        :global(.services-cta__title),
+        :global(.rb-compare__title),
+        :global(.rb-faq__title),
+        :global(.about-cta__title),
+        :global(.rab-subheading),
+        :global(.rab-services__title),
+        :global(.rab-related__title) {
+          font-size: 1.35rem !important;
+          line-height: 1.3 !important;
+        }
+        :global(main h2[style*="clamp"]) {
+          font-size: 1.25rem !important;
+          line-height: 1.3 !important;
+        }
+      }
+
+      @media (max-width: 575px) {
+        :global(.sec-title),
+        :global(.title-area .sec-title) {
+          font-size: 22px !important;
+        }
+        :global(.breadcumb-title),
+        :global(.hero-title) {
+          font-size: 28px !important;
+        }
+        :global(.sub-title) {
+          font-size: 20px !important;
+        }
+        :global(.hero-heading) {
+          font-size: 32px !important;
+          line-height: 1.15 !important;
+          color: #fff !important;
+          font-weight: 700 !important;
+        }
+        :global(.service-hero-title),
+        :global(.services-hero__title),
+        :global(.things-hero__title),
+        :global(.about-hero__title),
+        :global(.contact-hero__title),
+        :global(.legal-hero__title),
+        :global(.rab-hero__title),
+        :global(.blog-hero__title),
+        :global(.faq-hero__title) {
+          font-size: 1.5rem !important;
+        }
+        :global(main h2[style*="clamp"]) {
+          font-size: 1.15rem !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -318,7 +580,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       href="https://wa.me/306951666454"
       target="_blank"
       rel="noopener"
-      aria-label="Chat on WhatsApp — Let us help you"
+      aria-label="Chat on WhatsApp, Let us help you"
       class="wa-float-btn"
     >
       <span class="wa-float-btn__label">Let us help you</span>
@@ -388,7 +650,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       }
     </style>
 
-    <!-- GSAP — lazy-loaded only when the page uses scroll animations or hero parallax -->
+    <!-- GSAP, lazy-loaded only when the page uses scroll animations or hero parallax -->
     <script>
       let gsapBootPromise: Promise<void> | null = null;
 
@@ -422,7 +684,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) return;
 
-        // Decorative loops only — scroll entrance animations disabled to prevent CLS
+        // Decorative loops only, scroll entrance animations disabled to prevent CLS
         gsap.utils.toArray<HTMLElement>('.jump, .jumpAni').forEach((el) =>
           gsap.to(el, { y: -15, repeat: -1, yoyo: true, duration: 2, ease: 'sine.inOut' })
         );
@@ -463,11 +725,17 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
             btn.disabled = true;
             btn.textContent = 'Sending...';
             const fd = new FormData(form as HTMLFormElement);
+            const data = Object.fromEntries(fd) as Record<string, string>;
+            if (data.firstName || data.lastName) {
+              data.name = [data.firstName, data.lastName].filter(Boolean).join(' ').trim();
+              delete data.firstName;
+              delete data.lastName;
+            }
             try {
               const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(Object.fromEntries(fd)),
+                body: JSON.stringify(data),
               });
               if (res.ok) {
                 btn.textContent = 'Message Sent!';
@@ -489,7 +757,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       document.addEventListener('astro:page-load', initContactForms);
     </script>
 
-    <!-- GA4 — deferred until after first paint -->
+    <!-- GA4, deferred until after first paint -->
     <script is:inline>
       (function () {
         function loadGa4() {

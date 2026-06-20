@@ -17,7 +17,7 @@ if (!post) {
 
 const articleImageAlt = blogImageAlt(post.title, post.tags?.[0]);
 const canonical = `${SITE_URL}/blog/${post.slug}`;
-const ogImage = `${SITE_URL}/assets/img/blog/${post.bannerImg || post.image}`;
+const ogImage = `${SITE_URL}/assets/img/pages/blog/${post.bannerImg || post.image}`;
 
 // Related posts: any tag overlap, exclude current, sort by publishedDate desc, max 3
 const currentTags = new Set<string>(post.tags || []);
@@ -26,25 +26,32 @@ const relatedPosts = (posts as any[])
   .sort((a, b) => String(b.publishedDate || '').localeCompare(String(a.publishedDate || '')))
   .slice(0, 3);
 
-// Tag → service CTA map. Pick up to 2 distinct service CTAs based on this post's tags.
-const TAG_TO_SERVICE: Record<string, { url: string; title: string; blurb: string }> = {
-  'Rent a Boat': { url: '/service/rhodes-rent-a-boat', title: 'Rent a Boat in Rhodes', blurb: 'License-free options or boats with skipper.' },
-  'Boat Trips': { url: '/service/rhodes-boat-trips', title: 'Rhodes Boat Trips', blurb: 'Skippered boat trips with flexible routes.' },
-  'Cruises': { url: '/service/rhodes-boat-cruises', title: 'Rhodes Boat Cruises', blurb: 'Symi, Lindos and sunset day cruises.' },
-  'Symi': { url: '/service/rhodes-boat-tours', title: 'Symi Day Cruise', blurb: 'The most popular day trip from Rhodes.' },
-  'Day Trips': { url: '/service/rhodes-boat-tours', title: 'Rhodes Day Cruises', blurb: 'Organised day trips with lunch and swimming stops.' },
-  'Lindos': { url: '/service/rhodes-boat-tours', title: 'Lindos by Boat', blurb: 'See the Acropolis from the sea.' },
-  'Boat Tours': { url: '/service/rhodes-boat-tours', title: 'Boat Tours in Rhodes', blurb: 'Local guides, hidden bays, handpicked experiences.' },
-  'Private Tours': { url: '/service/rhodes-boat-trips', title: 'Private Boat Trip', blurb: 'Your own boat, your own pace, with a local skipper.' },
-  'Sunset': { url: '/service/rhodes-boat-tours', title: 'Sunset Cruise in Rhodes', blurb: 'Magical sunset routes along the coastline.' },
-  'Beaches': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse the catalog of approved experiences.' },
-  'Hidden Gems': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Hand-picked tours, no algorithms.' },
-  'Activities': { url: '/things-to-do', title: 'Things to Do in Rhodes', blurb: 'Catalog of all approved experiences.' },
-  'Guide': { url: '/service', title: 'Boat Services in Rhodes', blurb: 'See all our services in one place.' },
-  'Rhodes': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse all approved boat experiences.' },
+// Tag → service CTA map. Pick up to 2 distinct CTAs based on this post's tags.
+interface BlogServiceCta {
+  url: string;
+  title: string;
+  blurb: string;
+  ctaLabel: string;
+}
+
+const TAG_TO_SERVICE: Record<string, BlogServiceCta> = {
+  'Rent a Boat': { url: '/#rent-a-boat', title: 'Rent a Boat in Rhodes', blurb: 'License-free options or boats with skipper.', ctaLabel: 'Compare boat rental Rhodes no license' },
+  'Boat Trips': { url: '/service/rhodes-boat-trips', title: 'Rhodes Boat Trips', blurb: 'Skippered boat trips with flexible routes.', ctaLabel: 'Book a private Rhodes boat trip' },
+  'Cruises': { url: '/service/rhodes-boat-cruises', title: 'Rhodes Boat Cruises', blurb: 'Symi, Lindos and sunset day cruises.', ctaLabel: 'See Rhodes boat cruises' },
+  'Symi': { url: '/things-to-do', title: 'Symi Day Trips from Rhodes', blurb: 'Compare approved Symi cruises and private boats.', ctaLabel: 'Browse Symi day trips from Rhodes' },
+  'Day Trips': { url: '/service/rhodes-boat-cruises', title: 'Rhodes Day Cruises', blurb: 'Organised day trips with lunch and swimming stops.', ctaLabel: 'Explore Rhodes day cruises' },
+  'Lindos': { url: '/things-to-do', title: 'Lindos Boat Trips from Rhodes', blurb: 'Coastal routes to St Paul\'s Bay and the Acropolis.', ctaLabel: 'Browse Lindos boat trips' },
+  'Boat Tours': { url: '/service/rhodes-boat-tours', title: 'Rhodes Boat Tours', blurb: 'Local guides, hidden bays, handpicked experiences.', ctaLabel: 'See Rhodes boat tours' },
+  'Private Tours': { url: '/service/rhodes-boat-trips', title: 'Private Boat Trip Rhodes', blurb: 'Your own boat, your own pace, with a local skipper.', ctaLabel: 'Book a private boat trip' },
+  'Sunset': { url: '/service/rhodes-boat-cruises', title: 'Sunset Cruise in Rhodes', blurb: 'Magical sunset routes along the coastline.', ctaLabel: 'Find sunset cruises in Rhodes' },
+  'Beaches': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse the catalog of approved experiences.', ctaLabel: 'Browse boat experiences in Rhodes' },
+  'Hidden Gems': { url: '/things-to-do', title: 'Hidden Bays by Boat in Rhodes', blurb: 'Hand-picked tours, no algorithms.', ctaLabel: 'Discover hidden boat routes' },
+  'Activities': { url: '/things-to-do', title: 'Things to Do in Rhodes by Boat', blurb: 'Catalog of all approved experiences.', ctaLabel: 'Browse all boat experiences' },
+  'Guide': { url: '/service', title: 'Boat Services in Rhodes', blurb: 'See all our services in one place.', ctaLabel: 'Explore boat services in Rhodes' },
+  'Rhodes': { url: '/things-to-do', title: 'Best Boat Tours in Rhodes', blurb: 'Browse all approved boat experiences.', ctaLabel: 'Browse Rhodes boat experiences' },
 };
 const seenServiceUrls = new Set<string>();
-const serviceCtas: { url: string; title: string; blurb: string }[] = [];
+const serviceCtas: BlogServiceCta[] = [];
 for (const tag of (post.tags || []) as string[]) {
   const svc = TAG_TO_SERVICE[tag];
   if (svc && !seenServiceUrls.has(svc.url)) {
@@ -56,7 +63,7 @@ for (const tag of (post.tags || []) as string[]) {
 // Always end with a contact fallback if we didn't fill 2 slots
 if (serviceCtas.length < 2) {
   if (!seenServiceUrls.has('/contact')) {
-    serviceCtas.push({ url: '/contact', title: 'Talk to a Local', blurb: 'Tell us your dates — we will recommend the right experience for your group.' });
+    serviceCtas.push({ url: '/contact', title: 'Talk to a Local', blurb: 'Tell us your dates, we will recommend the right experience for your group.', ctaLabel: 'Get a local recommendation' });
   }
 }
 ---
@@ -82,51 +89,41 @@ if (serviceCtas.length < 2) {
   <Header />
 
   <!-- Hero -->
-  <section class="rab-hero" style={`background-image: url(/assets/img/blog/${post.bannerImg || post.image});`}>
+  <section class="rab-hero" style={`background-image: url(/assets/img/pages/blog/${post.bannerImg || post.image});`}>
     <div class="rab-hero__overlay"></div>
     <div class="container rab-hero__content">
-      <span class="rab-hero__breadcrumb">Blog &nbsp;|&nbsp; {post.tags[0]}</span>
       <h1 class="rab-hero__title" data-ani="slideinup">{post.title}</h1>
-      <p class="rab-hero__tagline" data-ani="slideinup" data-ani-delay="0.1">
-        {post.excerpt}
-      </p>
     </div>
   </section>
 
   <!-- Article -->
-  <article style="padding: 80px 0;">
+  <article class="rab-post">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="rab-article" data-ani="fadein">
-            <div class="rab-article__meta">
-              <span>By {post.author}</span>
-              <span class="rab-article__meta-sep">&bull;</span>
-              <span>{post.date}</span>
-              <span class="rab-article__meta-sep">&bull;</span>
-              <span class="rab-article__tags">
-                {post.tags.map((t: string) => <span class="blog-card_tag">{t.toUpperCase()}</span>)}
-              </span>
-            </div>
-
-            <img
-              src={`/assets/img/blog/${post.bannerImg || post.image}`}
-              alt={articleImageAlt}
-              class="rab-article__img"
-            />
-
-            <p class="rab-article__lead">{post.excerpt}</p>
-
-            {(post as any).content && (
-              <div class="rab-article__body" set:html={(post as any).content + (blogExpansions[post.slug] || '')} />
+      <div class="rab-post__layout">
+        <div class="rab-article" data-ani="fadein">
+          <div class="rab-article__meta">
+            <span class="rab-article__meta-item">By {post.author}</span>
+            <span class="rab-article__meta-sep" aria-hidden="true">&bull;</span>
+            <span class="rab-article__meta-item">{post.date}</span>
+            {post.tags?.length > 0 && (
+              <>
+                <span class="rab-article__meta-sep" aria-hidden="true">&bull;</span>
+                <span class="rab-article__tags">
+                  {post.tags.map((t: string) => <span class="rab-article__tag">{t}</span>)}
+                </span>
+              </>
             )}
           </div>
+
+          {(post as any).content && (
+            <div class="rab-article__body" set:html={(post as any).content + (blogExpansions[post.slug] || '')} />
+          )}
         </div>
       </div>
     </div>
   </article>
 
-  <!-- Service CTAs — connect blog readers to relevant money pages -->
+  <!-- Service CTAs, connect blog readers to relevant money pages -->
   {serviceCtas.length > 0 && (
     <section class="rab-services" aria-labelledby="rab-services-title">
       <div class="container">
@@ -138,7 +135,7 @@ if (serviceCtas.length < 2) {
               <a href={cta.url} class="rab-services__card">
                 <h3 class="rab-services__card-title">{cta.title}</h3>
                 <p class="rab-services__card-blurb">{cta.blurb}</p>
-                <span class="rab-services__card-cta">Learn more →</span>
+                <span class="rab-services__card-cta">{cta.ctaLabel} →</span>
               </a>
             ))}
           </div>
@@ -147,7 +144,7 @@ if (serviceCtas.length < 2) {
     </section>
   )}
 
-  <!-- Related posts — internal linking + reader retention -->
+  <!-- Related posts, internal linking + reader retention -->
   {relatedPosts.length > 0 && (
     <section class="rab-related" aria-labelledby="rab-related-title">
       <div class="container">
@@ -156,7 +153,7 @@ if (serviceCtas.length < 2) {
           {relatedPosts.map((rp) => (
             <a href={`/blog/${rp.slug}`} class="rab-related__card">
               <div class="rab-related__img">
-                <img src={`/assets/img/blog/${rp.image}`} alt={rp.title} loading="lazy" />
+                <img src={`/assets/img/pages/blog/${rp.image}`} alt={rp.title} loading="lazy" />
               </div>
               <div class="rab-related__body">
                 <span class="rab-related__tag">{(rp.tags && rp.tags[0]) || 'Article'}</span>
@@ -189,7 +186,7 @@ if (serviceCtas.length < 2) {
       '@id': `${SITE_URL}#organization`,
       '@type': 'Organization',
       name: 'Rhodes Rent a Boat',
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/assets/img/logo2.svg` },
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/assets/img/brand/logos/logo2.svg` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     url: canonical,
@@ -231,41 +228,25 @@ if (serviceCtas.length < 2) {
   .rab-hero__content {
     position: relative;
     z-index: 2;
-    padding-bottom: 70px;
+    padding: 140px 0 70px;
     color: #fff;
   }
-  .rab-hero__breadcrumb {
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-    opacity: 0.85;
-  }
+
   .rab-hero__title {
-    font-family: 'Playfair Display', serif;
     font-size: clamp(2.25rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin: 0;
     color: #fff;
-  }
-  .rab-hero__tagline {
-    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-    line-height: 1.6;
-    max-width: 620px;
-    opacity: 0.92;
-    margin-bottom: 0;
   }
 
   @media (max-width: 991px) {
     .rab-hero {
-      min-height: 75vh;
+      min-height: 52vh;
     }
     .rab-hero__content {
-      padding-bottom: 5vh;
+      padding-top: 120px;
+      padding-bottom: 48px;
     }
   }
   @media (max-width: 767px) {
@@ -274,101 +255,202 @@ if (serviceCtas.length < 2) {
     }
   }
 
+  /* ===== Article reading experience ===== */
+  .rab-post {
+    padding: 64px 0 88px;
+    background: #fff;
+  }
+
+  .rab-post__layout {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
   .rab-article {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: #4a5568;
+    color: #445963;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
   }
-  .rab-article p {
-    margin-bottom: 18px;
-  }
+
   .rab-article__meta {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
-    font-size: 14px;
-    color: #737887;
-    margin-bottom: 28px;
+    font-size: 0.875rem;
+    color: #6b7c85;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e8eef0;
   }
+
+  .rab-article__meta-item {
+    font-weight: 500;
+  }
+
   .rab-article__meta-sep {
-    opacity: 0.5;
+    opacity: 0.45;
   }
+
   .rab-article__tags {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
   }
-  .blog-card_tag {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #113D48;
-    background: rgba(17, 61, 72, 0.08);
-    border-radius: 4px;
-    padding: 2px 8px;
+
+  .rab-article__tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1CA8CB;
+    background: rgba(28, 168, 203, 0.1);
+    border-radius: 999px;
+    padding: 5px 12px;
   }
-  .rab-article__img {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 32px;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-  }
-  .rab-article__lead {
-    font-size: 1.15rem;
-    color: #2d3e46;
-    margin-bottom: 28px !important;
-  }
+
   .rab-article__body {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: #4a5568;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
   }
-  .rab-article__body h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+
+  .rab-article__body :global(h2) {
+    font-size: clamp(1.55rem, 3vw, 1.95rem);
     font-weight: 700;
     color: #113D48;
-    margin: 40px 0 16px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 3rem 0 1rem;
   }
-  .rab-article__body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
+
+  .rab-article__body :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .rab-article__body :global(h3) {
+    font-size: clamp(1.2rem, 2.2vw, 1.4rem);
     font-weight: 700;
     color: #113D48;
-    margin: 28px 0 12px;
+    line-height: 1.35;
+    margin: 2.25rem 0 0.75rem;
   }
-  .rab-article__body p { margin-bottom: 18px; }
-  .rab-article__body ul, .rab-article__body ol {
-    padding-left: 22px;
-    margin-bottom: 18px;
+
+  .rab-article__body :global(p) {
+    margin: 0 0 1.35rem;
   }
-  .rab-article__body li { margin-bottom: 8px; }
-  .rab-article__body a { color: #1CA8CB; text-decoration: underline; }
-  .rab-article__body strong { color: #113D48; }
+
+  .rab-article__body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .rab-article__body :global(ul),
+  .rab-article__body :global(ol) {
+    margin: 0 0 1.5rem;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .rab-article__body :global(ul li),
+  .rab-article__body :global(ol li) {
+    position: relative;
+    padding-left: 1.35rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.75;
+  }
+
+  .rab-article__body :global(ul li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1CA8CB;
+  }
+
+  .rab-article__body :global(ol) {
+    counter-reset: rab-ol;
+  }
+
+  .rab-article__body :global(ol li) {
+    counter-increment: rab-ol;
+  }
+
+  .rab-article__body :global(ol li::before) {
+    content: counter(rab-ol) '.';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1CA8CB;
+  }
+
+  .rab-article__body :global(a) {
+    color: #1489a8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s ease;
+  }
+
+  .rab-article__body :global(a:hover) {
+    color: #113D48;
+  }
+
+  .rab-article__body :global(strong) {
+    color: #113D48;
+    font-weight: 600;
+  }
+
+  .rab-article__body :global(em) {
+    font-style: italic;
+    color: #3a4f57;
+  }
+
+  @media (max-width: 767px) {
+    .rab-post {
+      padding: 48px 0 64px;
+    }
+
+    .rab-article {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+    }
+
+    .rab-article__meta {
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+    }
+
+    .rab-article__body :global(h2) {
+      margin-top: 2.25rem;
+    }
+  }
 
   /* ===== Service CTAs ===== */
   .rab-services {
-    padding: 30px 0 60px;
-    background: #f8fafb;
+    padding: 48px 0 72px;
+    background: #f4f8f9;
   }
   .rab-services__inner {
     max-width: 880px;
     margin: 0 auto;
     text-align: center;
   }
-  .rab-services__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+  .rab-services__title {font-size: clamp(1.5rem, 2.5vw, 1.9rem);
     font-weight: 700;
     color: #113D48;
     margin: 0 0 8px;
   }
   .rab-services__intro {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.65;
     color: #5a6a72;
     margin: 0 0 28px;
   }
@@ -393,23 +475,17 @@ if (serviceCtas.length < 2) {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(28,168,203,0.12);
   }
-  .rab-services__card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+  .rab-services__card-title {font-size: 1.1rem;
     font-weight: 700;
     color: #113D48;
     margin: 0 0 8px;
   }
-  .rab-services__card-blurb {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.92rem;
+  .rab-services__card-blurb {font-size: 0.92rem;
     line-height: 1.6;
     color: #5a6a72;
     margin: 0 0 12px;
   }
-  .rab-services__card-cta {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
+  .rab-services__card-cta {font-size: 0.82rem;
     font-weight: 600;
     color: #1CA8CB;
     letter-spacing: 0.5px;
@@ -417,12 +493,10 @@ if (serviceCtas.length < 2) {
 
   /* ===== Related posts ===== */
   .rab-related {
-    padding: 60px 0 80px;
+    padding: 72px 0 88px;
     background: #fff;
   }
-  .rab-related__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+  .rab-related__title {font-size: clamp(1.5rem, 2.5vw, 1.9rem);
     font-weight: 700;
     color: #113D48;
     text-align: center;
@@ -465,26 +539,20 @@ if (serviceCtas.length < 2) {
     padding: 18px 18px 20px;
   }
   .rab-related__tag {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
+    display: inline-block;font-size: 11px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #1CA8CB;
     margin-bottom: 8px;
   }
-  .rab-related__card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+  .rab-related__card-title {font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.35;
     color: #113D48;
     margin: 0 0 10px;
   }
-  .rab-related__excerpt {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
+  .rab-related__excerpt {font-size: 0.88rem;
     line-height: 1.6;
     color: #5a6a72;
     margin: 0;

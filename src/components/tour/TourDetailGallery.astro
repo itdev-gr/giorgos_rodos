@@ -1,0 +1,89 @@
+---
+import { imgUrl, imgSrcset } from '../../lib/media';
+import { tourGalleryAlt } from '../../lib/tour-alt';
+
+interface Props {
+  /** Required — used for alt text on every gallery image. */
+  tourTitle: string;
+  images: string[];
+}
+
+const { tourTitle, images } = Astro.props;
+
+if (!tourTitle?.trim()) {
+  throw new Error('[TourDetailGallery] tourTitle is required for image alt text');
+}
+
+if (!images.length) {
+  throw new Error('[TourDetailGallery] at least one image is required');
+}
+
+const total = images.length;
+const alts = images.map((_, i) => tourGalleryAlt(tourTitle, i, total));
+---
+
+<section class="td-page-start" style="padding-top: 80px; background: #f8fafc;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
+    <div class="td-gallery" style="border-radius: 16px; overflow: hidden; position: relative;">
+      <div id="main-image-wrap" style="width: 100%; aspect-ratio: 16/7; overflow: hidden; cursor: pointer;">
+        <img
+          id="main-image"
+          src={imgUrl(images[0], 1200, { quality: 80 })}
+          srcset={imgSrcset(images[0])}
+          sizes="(max-width: 991px) 100vw, 1200px"
+          data-full={images[0]}
+          alt={alts[0]}
+          width="1200"
+          height="525"
+          fetchpriority="high"
+          style="width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s;"
+        />
+      </div>
+      {images.length > 1 && (
+        <div style="display: flex; gap: 4px; margin-top: 4px;">
+          {images.map((img, i) => (
+            <button
+              class="td-thumb"
+              data-index={i}
+              data-full={img}
+              data-alt={alts[i]}
+              aria-label={`View image ${i + 1} of ${total}`}
+              style={`flex: 1; height: 80px; overflow: hidden; border: none; padding: 0; cursor: pointer; border-radius: 4px; opacity: ${i === 0 ? '1' : '0.6'}; transition: opacity 0.2s;`}
+            >
+              <img
+                src={imgUrl(img, 200, { quality: 75 })}
+                alt={alts[i]}
+                loading="lazy"
+                width="200"
+                height="80"
+                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+      <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.6); color: #fff; padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; backdrop-filter: blur(4px);">
+        <i class="fas fa-camera" style="margin-right: 6px;"></i>{total} photo{total !== 1 ? 's' : ''}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const mainImg = document.getElementById('main-image') as HTMLImageElement | null;
+  const thumbs = document.querySelectorAll('.td-thumb');
+
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      const full = (thumb as HTMLElement).dataset.full;
+      const alt = (thumb as HTMLElement).dataset.alt;
+      if (full && mainImg) {
+        mainImg.src = full;
+        mainImg.removeAttribute('srcset');
+        if (alt) mainImg.alt = alt;
+        thumbs.forEach((t) => ((t as HTMLElement).style.opacity = '0.6'));
+        (thumb as HTMLElement).style.opacity = '1';
+      }
+    });
+  });
+</script>

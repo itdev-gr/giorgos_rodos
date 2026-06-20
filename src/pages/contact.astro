@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import ContactPanel from '../components/ContactPanel.astro';
 import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
 import { getMediaSlot } from '../lib/media';
 import { SITE_URL } from '../lib/seo';
 
-const asideImg = await getMediaSlot('contact.aside.img', '/assets/img/cruises/greco_sunset3.jpg');
 const heroBg = await getMediaSlot('contact.hero.bg', '/assets/img/gallery/yacht/crystal-water-1.jpg');
 
 const contactPageJsonLd = {
@@ -15,7 +15,7 @@ const contactPageJsonLd = {
   '@id': `${SITE_URL}/contact#contactpage`,
   url: `${SITE_URL}/contact`,
   name: 'Contact Rhodes Rent a Boat',
-  description: 'Reach our team in Rhodes by WhatsApp, phone or email — we help you choose the right boat tour, rental or sailing trip.',
+  description: 'Reach our team in Rhodes by WhatsApp, phone or email, we help you choose the right boat tour, rental or sailing trip.',
   inLanguage: 'en-US',
   isPartOf: { '@id': `${SITE_URL}#website` },
   about: { '@id': `${SITE_URL}#organization` },
@@ -23,8 +23,8 @@ const contactPageJsonLd = {
 ---
 
 <BaseLayout
-  title="Contact Rhodes Rent a Boat — Talk to a Local in Rhodes"
-  description="Reach our team in Rhodes by WhatsApp, phone or email. We help you choose the right boat tour, rental or sailing trip — quickly and personally."
+  title="Contact Rhodes Rent a Boat: Talk to a Local in Rhodes"
+  description="Reach our team in Rhodes by WhatsApp, phone or email. We help you choose the right boat tour, rental or sailing trip, quickly and personally."
   ogImage={heroBg}
 >
   <BreadcrumbSchema items={[
@@ -34,146 +34,42 @@ const contactPageJsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(contactPageJsonLd)} is:inline />
   <Header />
 
-  <!-- ============== Section 1: Hero ============== -->
-  <div class="contact-hero" style={`background-image: url(${heroBg});`}>
-    <div class="contact-hero__overlay"></div>
-    <div class="container contact-hero__content">
-      <span class="contact-hero__breadcrumb">Rhodes Rent a Boat &nbsp;|&nbsp; Contact</span>
-      <h1 class="contact-hero__title" data-ani="slideinup">Talk to Us First</h1>
-      <p class="contact-hero__desc" data-ani="slideinup" data-ani-delay="0.15">
-        This page is not here to push you into a booking. It is here so you can speak with real people who know the sea. Tell us what you are thinking, and we will give you honest advice.
-      </p>
-    </div>
-  </div>
-
-  <!-- ============== Section 2: Contact Info Cards ============== -->
-  <section class="bg-smoke space">
+  <section class="contact-hero">
     <div class="container">
-      <div class="title-area text-center" data-ani="slideinup">
-        <span class="sub-title">Contact Information</span>
-        <h2 class="sec-title">Reach Us Directly</h2>
-      </div>
-      <div class="row gy-30 justify-content-center">
-        <!-- Visit Us -->
-        <div class="col-lg-4 col-md-6" data-ani="slideinup">
-          <div class="contact-card">
-            <div class="contact-card__icon">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <h4 class="contact-card__title">Visit Us</h4>
-            <p class="contact-card__text">
-              Ionos Dragoumi 39<br />
-              Rhodes, 851 00<br />
-              Greece
-            </p>
-          </div>
-        </div>
-        <!-- Call Us -->
-        <div class="col-lg-4 col-md-6" data-ani="slideinup" data-ani-delay="0.1">
-          <div class="contact-card">
-            <div class="contact-card__icon">
-              <i class="fa-solid fa-phone"></i>
-            </div>
-            <h4 class="contact-card__title">Call Us</h4>
-            <p class="contact-card__text">
-              <a href="tel:+306951666454">+30 695 166 6454</a><br />
-              <span class="contact-card__note">Available daily — calls or WhatsApp</span>
-            </p>
-          </div>
-        </div>
-        <!-- Email Us -->
-        <div class="col-lg-4 col-md-6" data-ani="slideinup" data-ani-delay="0.2">
-          <div class="contact-card">
-            <div class="contact-card__icon">
-              <i class="fa-solid fa-envelope"></i>
-            </div>
-            <h4 class="contact-card__title">Email Us</h4>
-            <p class="contact-card__text">
-              <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />
-              <a href="mailto:bookings@rhodesrentaboat.com">bookings@rhodesrentaboat.com</a>
-            </p>
-          </div>
-        </div>
+      <div class="contact-hero__content text-center">
+        <h1 class="contact-hero__title">Let's Get in Touch</h1>
       </div>
     </div>
   </section>
 
-  <!-- ============== Section 3: Contact Form (Split Layout) ============== -->
-  <section class="space">
-    <div class="container">
-      <div class="row gy-40 align-items-center">
-        <!-- Left: Atmospheric Image -->
-        <div class="col-lg-5" data-ani="slideinleft">
-          <div class="contact-aside">
-            <img class="contact-aside__img" src={asideImg} alt="Aegean sea view from yacht" />
-            <div class="contact-aside__overlay">
-              <p class="contact-aside__quote">
-                "We would rather have a good conversation than a quick booking. That is how we have worked for over 25 years."
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Right: Form -->
-        <div class="col-lg-7" data-ani="slideinright">
-          <div class="contact-form ps-lg-4">
-            <div class="title-area">
-              <span class="sub-title">Send a Message</span>
-              <h2 class="sec-title">Tell Us What You Have in Mind</h2>
-              <p class="sec-text">Share your dates, group size, and what sounds good. We will get back to you personally — usually within a few hours.</p>
-            </div>
-            <form class="ajax-contact">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <input type="text" class="form-control" name="name" placeholder="Full Name *" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="email" class="form-control" name="email" placeholder="Email Address *" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="tel" class="form-control" name="phone" placeholder="Phone Number" />
-                </div>
-                <div class="form-group col-md-6">
-                  <select class="form-select form-control" name="subject" aria-label="What you are interested in">
-                    <option value="" disabled selected>I'm interested in...</option>
-                    <option value="Private Yacht Charter">Private Yacht Charter</option>
-                    <option value="Boat Tour / Cruise">Boat Tour / Cruise</option>
-                    <option value="Boat Rental">Boat Rental</option>
-                    <option value="Special Event">Special Event</option>
-                    <option value="Something Else">Something Else</option>
-                  </select>
-                </div>
-                <div class="form-group col-12">
-                  <textarea class="form-control" name="message" placeholder="Tell us about your ideal experience — dates, group size, preferences..." required></textarea>
-                </div>
-                <div class="form-btn col-12">
-                  <button class="th-btn style3" type="submit">Send Message <i class="fa-regular fa-arrow-right"></i></button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ContactPanel
+    class="contact-page__panel"
+    formIdPrefix="pg"
+    formIntro="For any question or info about our services, please fill out the form below and we'll get back to you as soon as possible."
+    infoIntro="Our team is available every day, by phone, WhatsApp, or email. We answer personally with clear advice, fair prices, and boats we know well."
+  />
 
-  <!-- ============== Section 4: How to Find Us — local SEO + UX ============== -->
-  <section class="contact-find" data-ani="fadein">
+  <section class="contact-location">
     <div class="container">
-      <div class="contact-find__grid">
-        <div class="contact-find__col">
-          <h2 class="contact-find__title">How to Find Our Office in Rhodes Town</h2>
-          <p class="contact-find__text">Our office is at Ionos Dragoumi 39, in the centre of Rhodes Town. Stop by for advice, paperwork or your safety briefing — and from here we'll guide you to your boat for departure.</p>
-          <ul class="contact-find__list">
-            <li><strong>From Rhodes Airport (RHO):</strong> 14 km / 25 minutes by car. We can arrange a private transfer — see <a href="/service/rhodes-transfers">Rhodes Transfers</a>.</li>
+      <div class="contact-location__grid">
+        <div class="contact-location__content">
+          <span class="contact-location__eyebrow">Find Us</span>
+          <h2 class="contact-location__title">How to Reach Our Office in Rhodes Town</h2>
+          <p class="contact-location__text">
+            Our office is at Ionos Dragoumi 39, in the centre of Rhodes Town. Stop by for advice, paperwork or your safety briefing, and from here we'll guide you to your boat for departure.
+          </p>
+          <ul class="contact-location__list">
+            <li><strong>From Rhodes Airport (RHO):</strong> 14 km / 25 minutes by car. We can arrange a private transfer, see <a href="https://www.rhodestransfer24.com/" target="_blank" rel="noopener noreferrer">Rhodes Transfers</a>.</li>
             <li><strong>From the cruise port (Akandia / Kolona):</strong> a 5-minute taxi or a 15-minute walk along the seafront promenade.</li>
             <li><strong>From the Old Town:</strong> walk through the Liberty Gate (Eleftherias Pyli); Ionos Dragoumi runs through the New Town a few minutes' walk inland.</li>
-            <li><strong>Parking:</strong> public lots are available near the New Market (Nea Agora) and along Eleftherias Square, both within a few minutes' walk.</li>
+            <li><strong>Parking:</strong> public lots near the New Market (Nea Agora) and Eleftherias Square, both within a few minutes' walk.</li>
             <li><strong>Boat departures:</strong> we meet you at the office first, then walk together to the quay so you know exactly where to board.</li>
           </ul>
         </div>
-        <aside class="contact-find__nap" aria-label="Business address and hours">
-          <h3 class="contact-find__nap-title">Rhodes Rent a Boat</h3>
-          <dl class="contact-find__nap-list">
+
+        <aside class="contact-location__card" aria-label="Business address and hours">
+          <h3 class="contact-location__card-title">Rhodes Rent a Boat</h3>
+          <dl class="contact-location__card-list">
             <dt>Address</dt>
             <dd>Ionos Dragoumi 39<br />Rhodes 851 00, Greece</dd>
             <dt>Phone</dt>
@@ -183,502 +79,240 @@ const contactPageJsonLd = {
             <dt>Email</dt>
             <dd><a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a></dd>
             <dt>Hours</dt>
-            <dd>Available 24/7 — calls and messages</dd>
-            <dt>Languages</dt>
-            <dd>English, Greek, German, Italian, French</dd>
+            <dd>Available 24/7, calls and messages</dd>
           </dl>
-          <a href="https://maps.app.goo.gl/2KSkGvEyWXBu83SVA" target="_blank" rel="noopener" class="contact-find__directions">Open in Google Maps →</a>
+          <a href="https://maps.app.goo.gl/2KSkGvEyWXBu83SVA" target="_blank" rel="noopener" class="contact-location__maps-link">
+            Open in Google Maps
+            <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
+          </a>
         </aside>
       </div>
-    </div>
-  </section>
 
-  <!-- ============== Section 5: Most-Booked Services — funnel routing ============== -->
-  <section class="contact-services" data-ani="fadein">
-    <div class="container">
-      <h2 class="contact-services__title">While You're Here — Browse Our Most-Booked Services</h2>
-      <div class="contact-services__grid">
-        <a href="/service/rhodes-rent-a-boat" class="contact-services__card">
-          <h3>Rent a Boat</h3>
-          <p>License-free self-drive or skippered. Best for couples and small families.</p>
-        </a>
-        <a href="/service/rhodes-boat-tours" class="contact-services__card">
-          <h3>Boat Tours &amp; Cruises</h3>
-          <p>Symi, Lindos, sunset and east-coast day cruises with lunch and swim stops.</p>
-        </a>
-        <a href="/service/rhodes-charter" class="contact-services__card">
-          <h3>Yacht Charter</h3>
-          <p>Bareboat and crewed weekly charters in the Dodecanese.</p>
-        </a>
-        <a href="/things-to-do" class="contact-services__card contact-services__card--all">
-          <h3>All Experiences</h3>
-          <p>Browse the full catalog of approved boat tours and activities.</p>
-        </a>
+      <div class="contact-location__map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3231.5!2d28.2197904!3d36.4497769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1495612e417eb653%3A0x90a1e588da06a420!2sRhodes+Rent+a+Boat!5e0!3m2!1sen!2sgr!4v1715072400000!5m2!1sen!2sgr"
+          allowfullscreen
+          loading="lazy"
+          title="Rhodes Rent a Boat, Ionos Dragoumi 39, Rhodes"
+        ></iframe>
       </div>
     </div>
   </section>
-
-  <!-- ============== Section 6: Google Maps ============== -->
-  <div class="contact-map style2" data-ani="fadein">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3231.5!2d28.2197904!3d36.4497769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1495612e417eb653%3A0x90a1e588da06a420!2sRhodes+Rent+a+Boat!5e0!3m2!1sen!2sgr!4v1715072400000!5m2!1sen!2sgr"
-      allowfullscreen
-      loading="lazy"
-      title="Rhodes Rent a Boat — Ionos Dragoumi 39, Rhodes"
-      style="height: 450px;"
-    ></iframe>
-  </div>
 
   <FooterFour />
 </BaseLayout>
 
-<script>
-  function initContactHero() {
-  }
-  document.addEventListener('DOMContentLoaded', initContactHero);
-  document.addEventListener('astro:page-load', initContactHero);
-
-  // Contact form submission
-  function initContactForm() {
-    const forms = document.querySelectorAll('.ajax-contact');
-    forms.forEach(form => {
-      if ((form as HTMLElement).dataset.wired) return;
-      (form as HTMLElement).dataset.wired = 'true';
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-        const originalText = btn.innerHTML;
-        btn.disabled = true;
-        btn.textContent = 'Sending...';
-
-        const fd = new FormData(form as HTMLFormElement);
-        const data = Object.fromEntries(fd);
-
-        try {
-          const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          });
-
-          if (res.ok) {
-            btn.textContent = 'Message Sent!';
-            btn.style.background = '#10B981';
-            (form as HTMLFormElement).reset();
-            setTimeout(() => { btn.innerHTML = originalText; btn.style.background = ''; btn.disabled = false; }, 3000);
-          } else {
-            const d = await res.json();
-            alert(d.error || 'Failed to send. Please try again.');
-            btn.innerHTML = originalText;
-            btn.disabled = false;
-          }
-        } catch {
-          alert('Network error. Please try again.');
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-        }
-      });
-    });
-  }
-  document.addEventListener('DOMContentLoaded', initContactForm);
-  document.addEventListener('astro:page-load', initContactForm);
-</script>
-
 <style>
-  /* ===== Section 1: Hero ===== */
   .contact-hero {
-    position: relative;
-    min-height: 65vh;
+    min-height: 280px;
     display: flex;
-    align-items: flex-end;
-    background-color: #0b2f38;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-  }
-
-  .contact-hero__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.15) 0%,
-      rgba(17, 61, 72, 0.7) 100%
-    );
-    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 0 56px;
+    background: linear-gradient(135deg, #1CA8CB 0%, #1489a8 35%, #113D48 100%);
   }
 
   .contact-hero__content {
-    position: relative;
-    z-index: 2;
-    padding-bottom: 80px;
-    color: var(--white-color);
-  }
-
-  .contact-hero__breadcrumb {
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    opacity: 0.85;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
   .contact-hero__title {
-    font-size: 56px;
-    font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 800;
     line-height: 1.15;
-    margin-bottom: 20px;
-    max-width: 650px;
-    color: var(--white-color);
-  }
-
-  .contact-hero__desc {
-    font-size: 18px;
-    line-height: 1.7;
-    max-width: 550px;
+    margin: 0;
     color: #fff;
-    margin-bottom: 0;
   }
 
-  @media (max-width: 991px) {
-    .contact-hero {
-      min-height: 55vh;
-    }
-    .contact-hero__title {
-      font-size: 38px;
-    }
-    .contact-hero__content {
-      padding-bottom: 50px;
-    }
+  .contact-page__panel {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    background: #fff;
   }
 
-  @media (max-width: 575px) {
-    .contact-hero {
-      min-height: 50vh;
-    }
-    .contact-hero__title {
-      font-size: 30px;
-    }
-    .contact-hero__desc {
-      font-size: 16px;
-    }
+  .contact-location {
+    padding: 0 0 88px;
+    background: #f4f8f9;
   }
 
-  /* ===== Section 2: Contact Info Cards ===== */
-  .contact-card {
-    background: var(--white-color);
-    border-radius: 16px;
-    padding: 40px 30px;
-    text-align: center;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-  }
-
-  .contact-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
-  }
-
-  .contact-card__icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: var(--theme-color);
-    color: var(--white-color);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 24px;
-  }
-
-  .contact-card__title {
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    color: var(--title-color);
-  }
-
-  .contact-card__text {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--body-color);
-    margin-bottom: 0;
-  }
-
-  .contact-card__text a {
-    color: var(--body-color);
-    transition: color 0.2s ease;
-  }
-
-  .contact-card__text a:hover {
-    color: var(--theme-color);
-  }
-
-  .contact-card__note {
-    font-size: 13px;
-    opacity: 0.7;
-    display: inline-block;
-    margin-top: 4px;
-  }
-
-  /* ===== Section 3: Contact Aside (Image with Quote) ===== */
-  .contact-aside {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .contact-aside__img {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    display: block;
-  }
-
-  .contact-aside__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 60px 30px 30px;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(17, 61, 72, 0.85) 100%
-    );
-  }
-
-  .contact-aside__quote {
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-style: italic;
-    font-size: 20px;
-    line-height: 1.5;
-    color: var(--white-color);
-    margin-bottom: 0;
-    opacity: 0.95;
-  }
-
-  @media (max-width: 991px) {
-    .contact-aside__img {
-      aspect-ratio: 16 / 9;
-    }
-  }
-
-  /* ===== Section 3: Form Select ===== */
-  .contact-form :global(select.form-select) {
-    appearance: auto;
-    cursor: pointer;
-  }
-
-  .contact-form :global(.th-btn.style3) {
-    min-width: 200px;
-  }
-
-  /* ===== Section 4: How to Find Us (NAP block + harbour directions) ===== */
-  .contact-find {
-    padding: 80px 0;
-    background: #f8fafb;
-  }
-  .contact-find__grid {
+  .contact-location__grid {
     display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 32px;
     align-items: start;
-    max-width: 1100px;
-    margin: 0 auto;
+    margin-bottom: 36px;
   }
-  .contact-find__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
+
+  .contact-location__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1CA8CB;
+    margin-bottom: 10px;
+  }
+
+  .contact-location__title {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
     font-weight: 700;
     color: #113D48;
-    margin: 0 0 16px;
+    margin: 0 0 14px;
     line-height: 1.25;
   }
-  .contact-find__text {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+
+  .contact-location__text {
+    font-size: 0.98rem;
     line-height: 1.75;
-    color: #4a5568;
+    color: #000;
     margin: 0 0 22px;
   }
-  .contact-find__list {
+
+  .contact-location__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
-  .contact-find__list li {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+
+  .contact-location__list li {
+    font-size: 0.94rem;
     line-height: 1.65;
-    color: #4a5568;
-    padding-left: 22px;
+    color: #000;
+    padding-left: 20px;
     position: relative;
   }
-  .contact-find__list li::before {
-    content: '→';
+
+  .contact-location__list li::before {
+    content: '';
     position: absolute;
     left: 0;
-    top: 0;
-    color: #1CA8CB;
-    font-weight: 700;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1CA8CB;
   }
-  .contact-find__list strong {
-    color: #113D48;
+
+  .contact-location__list strong {
+    color: #000;
   }
-  .contact-find__list a {
+
+  .contact-location__list a {
     color: #1CA8CB;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .contact-find__nap {
+  .contact-location__card {
     background: #fff;
-    border: 1px solid #e5eaee;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 28px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+    box-shadow: 0 12px 40px rgba(17, 61, 72, 0.08);
+    border: 1px solid #e8eef0;
   }
-  .contact-find__nap-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
+
+  .contact-location__card-title {
+    font-size: 1.2rem;
     font-weight: 700;
     color: #113D48;
     margin: 0 0 18px;
     padding-bottom: 14px;
-    border-bottom: 1px solid #e5eaee;
+    border-bottom: 1px solid #e8eef0;
   }
-  .contact-find__nap-list {
+
+  .contact-location__card-list {
     margin: 0;
     display: grid;
     grid-template-columns: max-content 1fr;
-    gap: 8px 18px;
+    gap: 8px 16px;
   }
-  .contact-find__nap-list dt {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
+
+  .contact-location__card-list dt {
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.08em;
     color: #1CA8CB;
     align-self: start;
     padding-top: 2px;
   }
-  .contact-find__nap-list dd {
-    font-family: 'Inter', sans-serif;
+
+  .contact-location__card-list dd {
     font-size: 0.92rem;
     line-height: 1.55;
-    color: #4a5568;
+    color: #000;
     margin: 0;
   }
-  .contact-find__nap-list a {
-    color: #4a5568;
+
+  .contact-location__card-list a {
+    color: #000;
     transition: color 0.2s ease;
   }
-  .contact-find__nap-list a:hover {
+
+  .contact-location__card-list a:hover {
     color: #1CA8CB;
   }
-  .contact-find__directions {
-    display: inline-block;
+
+  .contact-location__maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 22px;
-    font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
     color: #1CA8CB;
     text-decoration: none;
-    border-bottom: 1px solid currentColor;
-  }
-  .contact-find__directions:hover {
-    color: #178da8;
   }
 
-  /* ===== Section 5: Most-Booked Services ===== */
-  .contact-services {
-    padding: 80px 0;
-    background: #fff;
+  .contact-location__maps-link:hover {
+    color: #178fa8;
   }
-  .contact-services__title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
-    font-weight: 700;
-    color: #113D48;
-    text-align: center;
-    margin: 0 0 36px;
+
+  .contact-location__map {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(17, 61, 72, 0.1);
+    border: 1px solid #e8eef0;
   }
-  .contact-services__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .contact-services__card {
+
+  .contact-location__map iframe {
     display: block;
-    padding: 24px 22px 22px;
-    background: #f8fafb;
-    border: 1px solid #e5eaee;
-    border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.25s ease;
-  }
-  .contact-services__card:hover {
-    background: #fff;
-    border-color: #1CA8CB;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(28,168,203,0.12);
-  }
-  .contact-services__card--all {
-    background: #113D48;
-    border-color: #113D48;
-    color: #fff;
-  }
-  .contact-services__card--all:hover {
-    background: #0e2f38;
-    border-color: #0e2f38;
-    color: #fff;
-  }
-  .contact-services__card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #113D48;
-    margin: 0 0 8px;
-  }
-  .contact-services__card--all h3 {
-    color: #fff;
-  }
-  .contact-services__card p {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
-    line-height: 1.55;
-    color: #5a6a72;
-    margin: 0;
-  }
-  .contact-services__card--all p {
-    color: rgba(255,255,255,0.8);
+    width: 100%;
+    height: 420px;
+    border: 0;
   }
 
   @media (max-width: 991px) {
-    .contact-find__grid {
-      grid-template-columns: 1fr;
+    .contact-hero {
+      min-height: 240px;
+      padding: 120px 0 44px;
     }
-    .contact-services__grid {
-      grid-template-columns: repeat(2, 1fr);
+
+    .contact-page__panel {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    .contact-location__grid {
+      grid-template-columns: 1fr;
     }
   }
+
   @media (max-width: 575px) {
-    .contact-services__grid {
-      grid-template-columns: 1fr;
+    .contact-hero {
+      padding: 108px 0 36px;
+    }
+
+    .contact-location {
+      padding-bottom: 64px;
+    }
+
+    .contact-location__map iframe {
+      height: 320px;
     }
   }
 </style>

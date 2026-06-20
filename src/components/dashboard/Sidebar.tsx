@@ -73,7 +73,7 @@ export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
         {/* Logo */}
         <div style={{ padding: '24px 20px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: '#fff' }}>
-            <img src="/assets/img/logo-traced.svg" alt="Rhodes Rent a Boat" style={{ height: 36, filter: 'brightness(0) invert(1)' }} />
+            <img src="/assets/img/brand/logos/logo-traced.svg" alt="Rhodes Rent a Boat" style={{ height: 36, filter: 'brightness(0) invert(1)' }} />
           </a>
         </div>
 

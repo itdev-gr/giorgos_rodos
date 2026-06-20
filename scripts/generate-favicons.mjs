@@ -1,5 +1,5 @@
 // Generate favicon assets from the brand logo's boat mark.
-// Source: public/assets/img/logo-clean.svg
+// Source: public/assets/img/brand/logos/logo-clean.svg
 // Outputs: public/favicon.ico, favicon-16.png, favicon-32.png, favicon-48.png,
 //          apple-touch-icon.png, android-chrome-192.png, android-chrome-512.png
 
@@ -12,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 const out = (p) => resolve(root, 'public', p);
 
-const SRC = resolve(root, 'public/assets/img/logo-clean.svg');
+const SRC = resolve(root, 'public/assets/img/brand/logos/logo-clean.svg');
 
 // Render source at high density, then crop the boat mark, then pad to square.
 // Crop coords were chosen by visual inspection of a 1600px-wide render.
@@ -22,7 +22,7 @@ async function buildMaster(size) {
     .extract({ left: 235, top: 240, width: 470, height: 580 })
     .toBuffer();
   // Pad to square (top/bottom equal, sides equal so image stays centered).
-  // Crop is 470x580 — pad horizontally to 580 → 55px each side.
+  // Crop is 470x580, pad horizontally to 580 → 55px each side.
   const padded = await sharp(cropped)
     .extend({ top: 0, bottom: 0, left: 55, right: 55, background: { r: 255, g: 255, b: 255, alpha: 1 } })
     .toBuffer();

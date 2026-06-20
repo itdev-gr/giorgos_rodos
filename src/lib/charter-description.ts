@@ -6,7 +6,7 @@ const ENDINGS = [
   'Available for weekly bareboat or skippered charter in the Dodecanese.',
   'A popular choice for families and groups exploring the Greek islands by sail.',
   'Well suited to multi-day routes along the Rhodes and Dodecanese coastline.',
-  'Ready for your sailing holiday — flexible embarkation from Rhodes or nearby bases.',
+  'Ready for your sailing holiday, flexible embarkation from Rhodes or nearby bases.',
   'Spacious layout and modern equipment for comfortable Aegean cruising.',
 ];
 
@@ -38,7 +38,7 @@ export function charterCardDescription(tour: {
     return `${stripped}. ${ending}`;
   }
 
-  const yachtName = tour.title.split('—')[0]?.trim() || tour.title;
+  const yachtName = tour.title.split('-')[0]?.trim() || tour.title;
   const type = (tour.badge_label || 'Yacht').toLowerCase();
   const yearMatch = raw.match(/\ba (\d{4}) /);
   const lengthMatch = raw.match(/(\d+\.?\d*)m length/);
@@ -47,7 +47,7 @@ export function charterCardDescription(tour: {
   const parts: string[] = [];
   if (yearMatch && lengthMatch) {
     parts.push(
-      `${yachtName} — ${yearMatch[1]} ${type}, ${lengthMatch[1]}m${guestPart ? `, ${guestPart.toLowerCase()}` : ''}.`
+      `${yachtName}, ${yearMatch[1]} ${type}, ${lengthMatch[1]}m${guestPart ? `, ${guestPart.toLowerCase()}` : ''}.`
     );
   } else {
     parts.push(`${yachtName}: ${type} charter in the Dodecanese.`);

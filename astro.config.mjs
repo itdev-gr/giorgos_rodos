@@ -3,6 +3,9 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel';
+import { assertSitemapServices } from './integrations/assert-sitemap-services.ts';
+import { assertImgAlt } from './integrations/assert-img-alt.ts';
+import { vercelWwwRedirect } from './integrations/vercel-www-redirect.ts';
 
 export default defineConfig({
   output: 'server',
@@ -17,12 +20,17 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),
+    assertImgAlt(),
+    assertSitemapServices(),
+    vercelWwwRedirect(),
   ],
   redirects: {
     '/tag/rhodes-day-cruise': { status: 301, destination: '/service/rhodes-boat-cruises' },
     '/tag/[...slug]': { status: 301, destination: '/blog' },
     '/why-daily-cruises-are-a-must-do-in-rhodes': { status: 301, destination: '/service/rhodes-boat-cruises' },
-    '/our-fleet-comfortable-modern-boats-rent-a-boat-in-rhodes': { status: 301, destination: '/service/rhodes-rent-a-boat' },
+    '/our-fleet-comfortable-modern-boats-rent-a-boat-in-rhodes': { status: 301, destination: '/#rent-a-boat' },
+    '/service/rhodes-rent-a-boat': { status: 301, destination: '/#rent-a-boat' },
+    '/service/rodos-rent-a-boat': { status: 301, destination: '/#rent-a-boat' },
     '/blog/1': { status: 301, destination: '/blog/best-boat-trips-rhodes' },
     '/blog/2': { status: 301, destination: '/blog/boat-trip-symi-from-rhodes' },
     '/blog/3': { status: 301, destination: '/blog/boat-trip-lindos-acropolis' },
@@ -40,5 +48,8 @@ export default defineConfig({
     '/service/rodos-boat-cruises': { status: 301, destination: '/service/rhodes-boat-cruises' },
     '/service/rodos-charter': { status: 301, destination: '/service/rhodes-charter' },
     '/service/rodos-tender-boat': { status: 301, destination: '/service/rhodes-tender-boat' },
+    '/service/rhodes-sidecar-tours': { status: 301, destination: 'https://rhodessidecartours.com/' },
+    '/things-to-do/rhodes-sidecar-tours': { status: 301, destination: 'https://rhodessidecartours.com/' },
+    '/service/rhodes-transfers': { status: 301, destination: 'https://www.rhodestransfer24.com/' },
   },
 });
