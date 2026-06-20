@@ -1,6 +1,6 @@
 import { normalizeBundledAssetUrl } from './bundled-asset-url';
 
-/** Local optimized hero fallback (≈1.1MB). */
+/** Local optimized hero fallback (720p, ≈830KB). */
 export const DEFAULT_HERO_MP4 = '/assets/img/heroes/hero-video.mp4';
 
 /** Map bundled hero media paths to current public/ paths (post–asset reorganisation). */

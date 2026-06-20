@@ -27,7 +27,7 @@ const mp4Src = DEFAULT_HERO_MP4;
         muted
         loop
         playsinline
-        preload="none"
+        preload="auto"
         poster={heroPoster}
         width="1920"
         height="1080"
@@ -59,6 +59,14 @@ const mp4Src = DEFAULT_HERO_MP4;
     function ensureHeroVideo() {
       var video = document.querySelector('.hero-video');
       if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (video.dataset.heroReady) return;
+      video.dataset.heroReady = '1';
+
+      // Reveal the video the instant it actually starts rendering frames,
+      // so it plays straight away instead of sitting behind the poster.
+      function reveal() { video.classList.add('is-playing'); }
+      video.addEventListener('playing', reveal, { once: true });
+      if (!video.paused && video.readyState >= 3) reveal();
 
       video.addEventListener('error', function onError() {
         var source = video.querySelector('source');
@@ -69,19 +77,9 @@ const mp4Src = DEFAULT_HERO_MP4;
         video.play().catch(function () {});
       }, { once: true });
 
-      function playWhenReady() {
-        if (video.paused) {
-          video.play().then(function () {
-            video.classList.add('is-playing');
-          }).catch(function () {});
-        }
-      }
-
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(playWhenReady, { timeout: 2500 });
-      } else {
-        setTimeout(playWhenReady, 400);
-      }
+      // Start playback immediately — no idle/timeout gating.
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
     }
 
     if (document.readyState === 'loading') {
