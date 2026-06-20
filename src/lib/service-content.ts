@@ -146,6 +146,27 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     ctaTitle: 'Planning a private day on the water?',
     ctaText: 'Send your dates, group size and ideas — we will quote the best options available.',
   },
+  'rhodes-rent-a-boat': {
+    introQuote: 'Drive your own boat along the Rhodes coast — no licence needed for boats up to 30 HP.',
+    features: [
+      { icon: 'fas fa-id-card', title: 'No Licence Required', text: 'Greek law allows anyone 18+ to operate pleasure craft up to 30 HP without a formal boating licence.' },
+      { icon: 'fas fa-map', title: 'Coastal Freedom', text: 'Explore east-coast bays at your own pace — Anthony Quinn, Ladiko, Kalithea and sheltered swims within the permitted zone.' },
+      { icon: 'fas fa-check-circle', title: 'Handpicked Operators', text: 'We work with trusted rental bases we know personally — briefing, fuel, map and safety equipment included.' },
+    ],
+    panel: {
+      eyebrow: 'Self-drive · east coast',
+      title: 'License-free boat rental in Rhodes',
+      paragraphs: [
+        'Renting your own boat is the most independent way to see Rhodes from the sea — stop when you want, swim where you like and return when you are ready.',
+        'Before you leave the dock you receive a safety briefing and a chart of your permitted sailing area. We help you pick the right boat size and duration for your group honestly.',
+      ],
+      imageKey: 'hero',
+    },
+    catalogTitle: 'Available Rental Boats',
+    catalogSubtitle: 'License-free self-drive boats along the Rhodes coast',
+    ctaTitle: 'Not sure which rental fits your group?',
+    ctaText: 'Tell us your dates and how many people — we will recommend the right boat and base.',
+  },
   'rhodes-charter': {
     introQuote: 'Yacht charter is a different kind of sea holiday — multi-day sailing, island hopping and the freedom of the open Aegean.',
     features: [
@@ -210,5 +231,6 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
 };
 
 export function getServiceContent(slug: string): ServicePageContent | undefined {
-  return SERVICE_CONTENT[slug];
+  const normalized = slug === 'rent-a-boat' ? 'rhodes-rent-a-boat' : slug;
+  return SERVICE_CONTENT[normalized];
 }

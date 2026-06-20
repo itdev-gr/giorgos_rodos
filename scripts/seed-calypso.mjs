@@ -144,8 +144,8 @@ const TOURS = [
     ],
   },
   {
-    slug: 'sunset-remedy',
-    title: 'All Inclusive Sunset Cruise \u2014 A Sunset Remedy',
+    slug: 'sunset-cruise-lindos-calypso',
+    title: 'Sunset Cruise from Lindos — Calypso All Inclusive',
     badge_label: 'Sunset',
     price: 'From \u20AC39',
     duration: '2.5 Hours',

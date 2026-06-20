@@ -1,0 +1,51 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../sections/home-one/Section1-Header.astro';
+import FooterFour from '../../sections/shared/FooterFour.astro';
+import ServiceSchema from '../../components/seo/ServiceSchema.astro';
+import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import ExperienceCard from '../../components/ExperienceCard.astro';
+import ServiceGradientHero from '../../components/service/ServiceGradientHero.astro';
+import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astro';
+import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
+import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
+import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
+import { getMediaSlot } from '../../lib/media';
+import { rentABoatFaq } from '../../lib/faq';
+import { getServiceSeo } from '../../lib/service-seo';
+import { getServiceContent } from '../../lib/service-content';
+import { fetchServiceTours } from '../../lib/service-tours';
+
+const SLUG = 'rhodes-rent-a-boat';
+const seo = getServiceSeo(SLUG)!;
+const content = getServiceContent(SLUG)!;
+const heroImage = await getMediaSlot('service.rent-a-boat.hero.image', '/assets/img/locations/tsambika-beach.jpg');
+const rentals = await fetchServiceTours(SLUG);
+---
+
+<BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
+  <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="130" highPrice="380" offerCount="4" />
+  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <Header transparent={false} />
+
+  <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
+  <ServiceFeatureGrid quote={content.introQuote} features={content.features} footnote={content.footnote} />
+  {content.panel && <ServiceIntroPanel {...content.panel} image={heroImage} />}
+
+  <ServiceCatalog title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
+    <div class="exp-grid exp-grid--catalog">
+      {rentals.map((tour, i) => (
+        <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
+          <ExperienceCard href={tour.href} title={tour.title} description={tour.description} image={tour.image} imageAlt={tour.imageAlt} badge={tour.badge || tour.duration} price={tour.price} duration={tour.duration} guests={tour.guests} />
+        </div>
+      ))}
+    </div>
+  </ServiceCatalog>
+
+  <FAQSection items={rentABoatFaq} intro="Common questions about license-free rentals. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
+  <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
+  <FooterFour />
+</BaseLayout>

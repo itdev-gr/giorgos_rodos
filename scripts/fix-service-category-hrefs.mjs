@@ -11,16 +11,29 @@ const env = Object.fromEntries(
     .map((l) => {
       const i = l.indexOf('=');
       return [l.slice(0, i).trim(), l.slice(i + 1).trim()];
-    })
+    }),
 );
 
-const supabase = createClient(
-  env.PUBLIC_SUPABASE_URL,
-  env.SUPABASE_SERVICE_ROLE_KEY,
-  { auth: { persistSession: false } }
-);
+const supabase = createClient(env.PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, {
+  auth: { persistSession: false },
+});
 
-const categories = [
+const BUCKET = 'site-config';
+const FILE = 'service-categories.json';
+
+function normalizeServiceHref(href) {
+  if (!href?.trim()) return href || '';
+  const trimmed = href.trim();
+  if (trimmed.startsWith('/service/rodos-')) {
+    return trimmed.replace('/service/rodos-', '/service/rhodes-');
+  }
+  if (trimmed === '/service/rhodes-rent-a-boat' || trimmed === '/service/rodos-rent-a-boat') {
+    return '/service/rhodes-rent-a-boat';
+  }
+  return trimmed;
+}
+
+const canonicalCategories = [
   { slug: 'rhodes-boat-tours', title: 'Rhodes Boat Tours', description: 'Guided sailing tours along the stunning Rhodes coastline and nearby islands.', image: '/assets/img/cruises/greco_sunset3.jpg', href: '/service/rhodes-boat-tours', sort_order: 1 },
   { slug: 'rhodes-boat-trips', title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/locations/private-sailing.jpg', href: '/service/rhodes-boat-trips', sort_order: 2 },
   { slug: 'rhodes-boat-cruises', title: 'Rhodes Boat Cruises', description: 'All-inclusive day and sunset cruises with swimming, dining, and music.', image: '/assets/img/cruises/greco_home1.jpg', href: '/service/rhodes-boat-cruises', sort_order: 3 },
@@ -32,62 +45,42 @@ const categories = [
 ];
 
 async function run() {
-  console.log('Creating service_categories table...');
+  const { data: urlData } = supabase.storage.from(BUCKET).getPublicUrl(FILE);
+  let categories = canonicalCategories;
 
-  // Create table via SQL (Supabase admin)
-  const { error: sqlError } = await supabase.rpc('exec_sql', {
-    sql: `
-      CREATE TABLE IF NOT EXISTS service_categories (
-        id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
-        slug text UNIQUE NOT NULL,
-        title text NOT NULL,
-        description text,
-        image text,
-        href text,
-        sort_order integer DEFAULT 0,
-        created_at timestamptz DEFAULT now(),
-        updated_at timestamptz DEFAULT now()
-      );
-    `
-  });
-
-  if (sqlError) {
-    // RPC may not exist, try direct insert (table might already exist)
-    console.log('RPC not available, trying direct upsert...');
-  } else {
-    console.log('Table created/verified');
-  }
-
-  // Upsert categories
-  for (const cat of categories) {
-    const { error } = await supabase
-      .from('service_categories')
-      .upsert(cat, { onConflict: 'slug' });
-
-    if (error) {
-      if (error.message.includes('relation') && error.message.includes('does not exist')) {
-        console.error('Table does not exist. Please create it in Supabase Dashboard:');
-        console.error('Table name: service_categories');
-        console.error('Columns: id (uuid, pk), slug (text, unique), title (text), description (text), image (text), href (text), sort_order (int4), created_at (timestamptz), updated_at (timestamptz)');
-        process.exit(1);
+  try {
+    const res = await fetch(`${urlData.publicUrl}?t=${Date.now()}`);
+    if (res.ok) {
+      const existing = await res.json();
+      if (Array.isArray(existing) && existing.length) {
+        categories = existing.map((cat) => ({
+          ...cat,
+          href: normalizeServiceHref(cat.href),
+          slug: String(cat.slug || '').replace(/^rodos-/, 'rhodes-'),
+        }));
       }
-      console.error(`Failed to upsert ${cat.slug}:`, error.message);
-    } else {
-      console.log(`✓ ${cat.title}`);
     }
+  } catch {
+    // use canonical list
   }
 
-  // Verify
-  const { data, error: fetchErr } = await supabase
-    .from('service_categories')
-    .select('slug, title, image')
-    .order('sort_order');
+  const json = JSON.stringify(categories, null, 2);
+  const { error } = await supabase.storage
+    .from(BUCKET)
+    .upload(FILE, json, { contentType: 'application/json', upsert: true });
 
-  if (fetchErr) {
-    console.error('Fetch failed:', fetchErr.message);
-  } else {
-    console.log(`\nDone! ${data.length} categories in database.`);
+  if (error) {
+    console.error('Upload failed:', error.message);
+    process.exit(1);
+  }
+
+  console.log('Updated service-categories.json with canonical rhodes-* hrefs.');
+  for (const cat of categories) {
+    console.log(`  ${cat.title} → ${cat.href}`);
   }
 }
 
-run().catch(e => console.error(e));
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

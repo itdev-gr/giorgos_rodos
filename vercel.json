@@ -91,12 +91,12 @@
     },
     {
       "source": "/service/rodos-rent-a-boat",
-      "destination": "/#rent-a-boat",
+      "destination": "/service/rhodes-rent-a-boat",
       "permanent": true
     },
     {
-      "source": "/service/rhodes-rent-a-boat",
-      "destination": "/#rent-a-boat",
+      "source": "/tour-detail/all-inclusive-sunset-cruise-a-sunset-remedy",
+      "destination": "/tour-detail/sunset-cruise-lindos-calypso",
       "permanent": true
     },
     {

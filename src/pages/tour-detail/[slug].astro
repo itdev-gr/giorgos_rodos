@@ -15,8 +15,14 @@ import TourDetailGallery from '../../components/tour/TourDetailGallery.astro';
 import TourServiceLink from '../../components/tour/TourServiceLink.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { enrichTourDetailContent } from '../../lib/tour-detail-content';
+import { resolveTourSlugRedirect } from '../../lib/tour-slug-redirects';
 
 const { slug } = Astro.params;
+
+const redirectSlug = resolveTourSlugRedirect(slug);
+if (redirectSlug) {
+  return Astro.redirect(`/tour-detail/${redirectSlug}`, 301);
+}
 let tour: any = null;
 let isPublished = false;
 let relatedTours: any[] = [];

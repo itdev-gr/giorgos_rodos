@@ -83,17 +83,17 @@ export const SERVICE_SEO: Record<string, ServiceSeo> = {
     serviceType: 'Private Boat Trip',
     cardSummary: 'Private skippered boat trips Rhodes',
   },
-  'rent-a-boat': {
-    slug: 'rent-a-boat',
+  'rhodes-rent-a-boat': {
+    slug: 'rhodes-rent-a-boat',
     name: 'Rhodes Rent a Boat',
-    metaTitle: 'Boat Rental Rhodes No License | Self-Drive',
+    metaTitle: 'Rhodes Rent a Boat | No License Self-Drive',
     metaDescription:
-      'Boat rental Rhodes no license required — rent a boat Rhodes without license for coastal days. Self drive boat Rhodes with safety briefing, fuel and map included.',
+      'License-free boat rental in Rhodes since 1998. Self-drive coastal boats with briefing, fuel and map included — personally selected by our local sailing owner.',
     schemaDescription:
-      'Boat rental Rhodes no license — rent a boat Rhodes without license. Self drive boat Rhodes with briefing, fuel and equipment from trusted local operators.',
+      'License-free boat rental in Rhodes — self-drive coastal boats with safety briefing, fuel and equipment from trusted local operators since 1998.',
     heroSubtitle: 'No License Required — Self-Drive Coastal Boats',
     serviceType: 'Boat Rental',
-    cardSummary: 'Boat rental Rhodes no license — self-drive',
+    cardSummary: 'License-free self-drive boat rental in Rhodes',
   },
   'rhodes-charter': {
     slug: 'rhodes-charter',
@@ -146,7 +146,8 @@ export const SERVICE_SEO: Record<string, ServiceSeo> = {
 };
 
 export function getServiceSeo(slug: string): ServiceSeo | undefined {
-  return SERVICE_SEO[slug];
+  const normalized = slug === 'rent-a-boat' ? 'rhodes-rent-a-boat' : slug;
+  return SERVICE_SEO[normalized];
 }
 
 export function servicePageUrl(slug: string): string {

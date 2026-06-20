@@ -115,8 +115,8 @@ const TOURS = [
     ],
   },
   {
-    slug: 'sunset-remedy',
-    title: 'A Sunset Remedy \u2014 All Inclusive Sunset Cruise',
+    slug: 'a-sunset-remedy-el-greco-sunset-cruise',
+    title: 'A Sunset Remedy \u2014 El Greco All Inclusive Sunset Cruise',
     service_page: 'rodos-boat-cruises',
     badge_label: 'Sunset',
     price: 'From \u20AC39',

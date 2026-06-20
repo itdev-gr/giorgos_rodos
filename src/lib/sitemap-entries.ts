@@ -43,6 +43,7 @@ const STATIC_LASTMOD: Record<string, string> = {
   '/service/rhodes-boat-cruises': '2026-04-10',
   '/service/rhodes-catamaran-tours': '2026-04-10',
   '/service/rhodes-sailing-trips': '2026-04-10',
+  '/service/rhodes-rent-a-boat': '2026-04-10',
   '/service/rhodes-charter': '2026-04-10',
   '/service/rhodes-mice-events': '2026-03-15',
   '/service/rhodes-tender-boat': '2026-03-15',
