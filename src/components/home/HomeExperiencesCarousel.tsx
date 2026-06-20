@@ -105,11 +105,9 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
   return (
     <section className="home-exp" aria-labelledby="home-exp-title">
       <div className="container home-exp__head">
-        <div className="home-exp__intro">
-          <h2 id="home-exp-title" className="home-exp__title">
-            Rhodes Boat Experiences
-          </h2>
-        </div>
+        <h2 id="home-exp-title" className="home-exp__title">
+          Rhodes Boat Experiences
+        </h2>
         {count > 0 && (
           <div className="home-exp__nav" aria-label="Carousel navigation">
             <button
@@ -142,6 +140,8 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
             speed={650}
             grabCursor
             watchOverflow
+            centeredSlides
+            centeredSlidesBounds
             navigation={{
               prevEl: '.home-exp__nav-btn--prev',
               nextEl: '.home-exp__nav-btn--next',
