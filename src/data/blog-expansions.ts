@@ -30,6 +30,7 @@ export const blogExpansions: Record<string, string> = {
   'best-boat-trips-rhodes': `
 <h2>How to Compare Boat Trips Without Reading Fifty Reviews</h2>
 <p>Online reviews for Rhodes boat trips are noisy. A five-star rating might reflect a fun DJ on a party catamaran or a quiet swim in a cave, opposite experiences that both earn praise from the right audience. Start with three filters: group size, route and what is included in the price. A €45 shared cruise with lunch and three swim stops is excellent value if you want structure; it is the wrong product if you hate crowds and fixed timetables.</p>
+<p>Our <a href="/service/rhodes-boat-trips">Rhodes boat trips</a> service page lays out shared Symi and Lindos cruises alongside private skippered options — use it as a checklist before you read dozens of conflicting reviews.</p>
 <p>I have watched the Rhodes boat market evolve since the late nineties. The best operators are not always the ones with the largest billboards on the harbour front. Look for clear departure times, stated maximum capacity, named swim stops and a cancellation policy for bad weather. If those basics are missing from the listing, keep looking.</p>
 <h2>Hidden Costs and Fine Print Worth Checking</h2>
 <p>Shared cruises often advertise lunch and drinks included, but the details matter. Some include wine and beer; others offer water and soft drinks only, with alcohol at bar prices. Snorkelling gear may be free or rented for a few euros. Harbour fees, fuel surcharges and environmental taxes appear on a minority of bookings, always ask before you pay.</p>
@@ -56,6 +57,8 @@ export const blogExpansions: Record<string, string> = {
 `,
 
   'boat-trip-symi-from-rhodes': `
+<h2>Choosing Shared vs Private for Symi</h2>
+<p>Symi is the most requested Rhodes boat trip for good reason: Gialos harbour, the Kali Strata climb and harbour tavernas reward a full day. Shared day cruises from Mandraki cost €45–€70 per person with a swim stop; private speedboats from €1,000 per vessel suit groups who want later departures or Panormitis on the route. Compare both on our <a href="/service/rhodes-boat-trips">Rhodes boat trips</a> page before you book peak-season weekends.</p>
 <h2>Panormitis Monastery and the South of Symi</h2>
 <p>Most day trips anchor the day in Gialos harbour, but Symi’s south coast holds one of the Dodecanese’s most important pilgrimage sites: the Monastery of Archangel Michael at Panormitis. Some excursion boats include a brief stop here on the way to or from the main harbour; private charters can devote an hour to the courtyard, the museum and the quiet pebble beach below the monastery walls.</p>
 <p>The architecture is unmistakable, a fortified monastery complex with a bell tower visible from the sea long before you reach the mooring. Even if you are not religious, the setting is worth the detour: cypress trees, still water and a sense of distance from the harbour bustle. If your shared cruise does not mention Panormitis, ask whether the route includes it or passes only the open sea lane to Gialos.</p>
@@ -83,6 +86,8 @@ export const blogExpansions: Record<string, string> = {
 `,
 
   'boat-trip-lindos-acropolis': `
+<h2>Lindos by boat: shared cruises and private days</h2>
+<p>Lindos boat trips from Rhodes combine St Paul's Bay swimming with time ashore beneath the Acropolis. Shared express routes from €39 per person suit visitors who want structure; private half-days from around €460 let you arrive before coach crowds. See current <a href="/service/rhodes-boat-trips">Rhodes boat trips</a> including Lindos routes, or ask us which departure fits your hotel area.</p>
 <h2>Beating the Crowds: Timing Your Arrival by Sea</h2>
 <p>Lindos village receives cruise ship excursions and coach parties between roughly 10:00 and 15:00 in high season. Arriving by boat at St Paul’s Bay lets you swim while others queue on the donkey path, but only if your departure from Rhodes is early enough. Shared cruises follow fixed timetables; many reach Lindos late morning when the Acropolis path is busiest.</p>
 <p>Private trips can leave Mandraki at 08:00, swim first in a quiet southern cove, reach St Paul’s Bay by 10:30 and climb to the Acropolis before the worst of the heat and queues. I have made this run hundreds of times since the nineties, and the difference between an 09:00 and an 11:30 arrival is visible in both temperature and temperament.</p>

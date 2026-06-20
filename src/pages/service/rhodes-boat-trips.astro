@@ -1,5 +1,5 @@
 ---
-export const prerender = false;
+export const prerender = true;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
@@ -9,9 +9,11 @@ import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import ExperienceCard from '../../components/ExperienceCard.astro';
 import ServiceGradientHero from '../../components/service/ServiceGradientHero.astro';
+import ServiceBoatTripsIntro from '../../components/service/ServiceBoatTripsIntro.astro';
 import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astro';
 import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
+import ServiceRouteGuide from '../../components/service/ServiceRouteGuide.astro';
 import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
 import { boatTripsFaq } from '../../lib/faq';
@@ -27,15 +29,17 @@ const trips = await fetchServiceTours(SLUG);
 ---
 
 <BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
-  <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="350" highPrice="1500" offerCount="8" />
+  <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="39" highPrice="1500" offerCount="8" />
   <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
   <Header transparent={false} />
 
   <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
+  <ServiceBoatTripsIntro />
+  {content.routeGuide && <ServiceRouteGuide {...content.routeGuide} />}
   <ServiceFeatureGrid quote={content.introQuote} features={content.features} footnote={content.footnote} />
   {content.panel && <ServiceIntroPanel {...content.panel} image={heroImage} />}
 
-  <ServiceCatalog title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
+  <ServiceCatalog id="boat-trips-catalog" title={content.catalogTitle!} subtitle={content.catalogSubtitle}>
     <div class="exp-grid exp-grid--catalog">
       {trips.map((tour, i) => (
         <div data-ani="slideinup" data-ani-delay={`${0.08 + i * 0.06}`}>
@@ -45,7 +49,7 @@ const trips = await fetchServiceTours(SLUG);
     </div>
   </ServiceCatalog>
 
-  <FAQSection items={boatTripsFaq} intro="Common questions about private skippered trips. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
+  <FAQSection items={boatTripsFaq} intro="Common questions about Rhodes boat trips — shared cruises and private skippered days. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
   <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
   <FooterFour />
 </BaseLayout>

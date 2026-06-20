@@ -74,13 +74,13 @@ export const SERVICE_SEO: Record<string, ServiceSeo> = {
   'rhodes-boat-trips': {
     slug: 'rhodes-boat-trips',
     name: 'Rhodes Boat Trips',
-    metaTitle: 'Rhodes Boat Trips | Private & Semi-Private Trips by Local Sailor',
+    metaTitle: 'Rhodes Boat Trips | Symi, Lindos & Private Skippered',
     metaDescription:
-      'Rhodes boat trips handpicked by a local sailor since 1998. Private skippered trips, custom routes, speedboats & yachts. 2-8 hours from €350. Book direct.',
+      'Rhodes boat trips to Symi, Lindos and the east coast — shared day cruises from €39 or private skippered trips from €350. Handpicked by a local sailor since 1998.',
     schemaDescription:
-      'Rhodes boat trips handpicked by a local sailor since 1998 — private skippered trips, custom routes, speedboats and yachts. Flexible 2–8 hour experiences.',
-    heroSubtitle: 'Private & Semi-Private Trips by Local Sailor',
-    serviceType: 'Private Boat Trip',
+      'Rhodes boat trips to Symi, Lindos and east-coast bays — shared day cruises and private skippered speedboat trips handpicked by a local sailor since 1998.',
+    heroSubtitle: 'Shared day cruises from €39 · Private skippered trips from €350',
+    serviceType: 'Boat Trip',
     cardSummary: 'Private skippered boat trips Rhodes',
   },
   'rhodes-rent-a-boat': {

@@ -3,12 +3,13 @@ interface Props {
   title: string;
   subtitle?: string;
   muted?: boolean;
+  id?: string;
 }
 
-const { title, subtitle, muted = true } = Astro.props;
+const { title, subtitle, muted = true, id } = Astro.props;
 ---
 
-<section class:list={['sp-catalog', muted && 'sp-catalog--muted']}>
+<section id={id} class:list={['sp-catalog', muted && 'sp-catalog--muted']}>
   <div class="container">
     <div class="sp-catalog__head text-center">
       <h2 class="sp-catalog__title" data-ani="slideinup">{title}</h2>

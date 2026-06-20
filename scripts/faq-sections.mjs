@@ -132,6 +132,16 @@ export default {
 
   boatTrips: [
     {
+      question: 'How much is a Rhodes boat trip to Symi?',
+      answer:
+        'A Rhodes boat trip to Symi typically costs €45–€70 per person on shared day cruises that leave Mandraki around 09:00, include a swim stop and give you four to five hours in Gialos harbour before returning by about 18:00. Express departures and sunset variants sit in the same range depending on season. Private speedboat trips to Symi are priced per vessel, often €1,000–€1,300 for up to six guests with faster crossings and flexible timing. July and August fill first; June and September usually offer better availability. We quote fuel, inclusions and departure point in writing before you pay. Browse <a href="/service/rhodes-boat-cruises">shared Symi day cruises</a> or the private options on our <a href="/service/rhodes-boat-trips">Rhodes boat trips</a> page, or <a href="/contact">ask us</a> which format fits your group.',
+    },
+    {
+      question: 'Rhodes boat trips vs private boat trip — which is better?',
+      answer:
+        'Rhodes boat trips on shared day cruises suit visitors who want the lowest per-person price, a fixed timetable, lunch and drinks included, and a social deck without planning routes. A private boat trip suits groups who want the vessel to themselves, flexible swim stops, and timing you control with a dedicated skipper. Couples on a budget often choose shared Symi or east-coast cruises; groups of six to eight sometimes find private trips competitive once you split the boat cost. We do not push one format: tell us your dates, hotel area and group size and we recommend honestly from operators we know since 1998. Compare formats on our <a href="/service/rhodes-boat-trips">Rhodes boat trips</a> guide or <a href="/contact">message us</a> for a straight answer.',
+    },
+    {
       question: 'How much does a boat trip in Rhodes cost?',
       answer:
         'A boat trip in Rhodes typically costs €40–€80 per person on shared day cruises that include lunch, soft drinks and several swim stops along the east coast. Private boat trips are priced per vessel: half-day skippered trips often start around €350–€500, full-day private trips €600–€900 for groups of four to eight. License-free self-drive rentals along the sheltered coast run roughly €150–€280 for the day depending on boat size and season. Sunset catamaran cruises are usually €40–€70 per person with a lighter meal and drinks on board. Weekly yacht charters start from about €1,500 per week for bareboat monohulls in shoulder season; catamarans cost more in peak summer. July and August are the priciest weeks; June and September often deliver the same routes for less. We send a written quote listing fuel, food, skipper and equipment before you pay a deposit, with no hidden harbour fees. <a href="/contact">Contact us</a> with your dates and group size for real numbers from operators we work with since 1998, not teaser ranges that change at checkout.',
