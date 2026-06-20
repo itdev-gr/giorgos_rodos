@@ -24,7 +24,7 @@ const { transparent = true } = Astro.props;
           <div class="col-auto">
             <div class="header-logo">
               <a href="/">
-                <img src="/assets/img/brand/logos/logo-traced.svg" alt="Rhodes Rent a Boat" width="200" height="60" decoding="async" />
+                <img src="/assets/img/brand/logos/logo-traced.svg" alt="Rhodes Rent a Boat" width="200" height="60" decoding="async" fetchpriority="high" />
               </a>
             </div>
           </div>
@@ -79,7 +79,7 @@ const { transparent = true } = Astro.props;
 </header>
 
 <div id="mobile-menu-container">
-  <MobileMenu client:load />
+  <MobileMenu client:idle />
 </div>
 
 <style>

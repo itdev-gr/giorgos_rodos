@@ -5,7 +5,7 @@ import { fetchAllApprovedExperiences } from '../../lib/service-tours';
 const experiences = await fetchAllApprovedExperiences();
 ---
 
-<HomeExperiencesCarousel initialTours={experiences} client:load />
+<HomeExperiencesCarousel initialTours={experiences} client:visible={{ rootMargin: '200px' }} />
 
 <style is:global>
   .home-exp {
@@ -66,6 +66,7 @@ const experiences = await fetchAllApprovedExperiences();
   .home-exp__track-wrap {
     position: relative;
     padding-bottom: 8px;
+    min-height: 420px;
   }
 
   .home-exp__swiper {
@@ -175,6 +176,10 @@ const experiences = await fetchAllApprovedExperiences();
 
     .home-exp__head {
       margin-bottom: 28px;
+    }
+
+    .home-exp__track-wrap {
+      min-height: 380px;
     }
 
     .home-exp__actions {

@@ -46,6 +46,7 @@ const isServiceDetail =
 const isServiceRoute =
   Astro.url.pathname === '/service' || Astro.url.pathname.startsWith('/service/');
 const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
+const isHome = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -94,8 +95,12 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <slot name="head" />
 
     <!-- DNS prefetch / preconnect to third-party origins -->
-    <link rel="dns-prefetch" href="https://iuidzdvrrrsxevvkbxam.supabase.co" />
-    <link rel="preconnect" href="https://iuidzdvrrrsxevvkbxam.supabase.co" crossorigin />
+    {!isHome && (
+      <>
+        <link rel="dns-prefetch" href="https://iuidzdvrrrsxevvkbxam.supabase.co" />
+        <link rel="preconnect" href="https://iuidzdvrrrsxevvkbxam.supabase.co" crossorigin />
+      </>
+    )}
 
     <!-- Critical CSS inlined: covers above-the-fold (header, hero, base layout)
          so the page paints immediately while Bootstrap + theme load async below. -->
@@ -338,7 +343,7 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       /* Stop horizontal scroll the moment the page paints */
       html, body {
         overflow-x: hidden;
-        max-width: 100vw;
+        max-width: 100%;
       }
 
       /* Swiper pagination bullets, bump touch target to ≥24px each
@@ -354,9 +359,17 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
       }
     </style>
 
-    <!-- Bootstrap + theme, single fetch via preload-as-stylesheet (no duplicate preload + link) -->
-    <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="preload" href="/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    {isHome ? (
+      <>
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+      </>
+    ) : (
+      <>
+        <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+        <link rel="preload" href="/assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+      </>
+    )}
     <link rel="stylesheet" href="/assets/css/site-fonts.css" />
     <link rel="stylesheet" href="/assets/css/home-contact.css" />
     <link rel="stylesheet" href="/assets/css/experience-cards.css" />
@@ -386,11 +399,8 @@ const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
     <style>
       html, body {
         overflow-x: hidden !important;
-        max-width: 100vw !important;
+        max-width: 100% !important;
         width: 100% !important;
-      }
-      *, *::before, *::after {
-        max-width: 100vw;
       }
       html:not(.has-gsap) [data-ani],
       html.has-gsap [data-ani] {
