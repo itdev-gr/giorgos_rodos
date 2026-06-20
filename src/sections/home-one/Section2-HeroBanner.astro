@@ -40,9 +40,21 @@ const mp4Src = resolveHeroMp4(heroVideo, DEFAULT_HERO_MP4);
 
 <script is:inline>
   (function () {
+    var FALLBACK = '/assets/img/heroes/hero-video.mp4';
+
     function ensureHeroVideo() {
       var video = document.querySelector('.hero-video');
       if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      video.addEventListener('error', function onError() {
+        var source = video.querySelector('source');
+        if (source && source.getAttribute('src') !== FALLBACK) {
+          source.setAttribute('src', FALLBACK);
+          video.load();
+        }
+        video.play().catch(function () {});
+      }, { once: true });
+
       if (video.paused) video.play().catch(function () {});
     }
 

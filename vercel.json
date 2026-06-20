@@ -123,6 +123,11 @@
       "source": "/service/rhodes-transfers",
       "destination": "https://www.rhodestransfer24.com/",
       "permanent": true
+    },
+    {
+      "source": "/assets/img/hero/:path*",
+      "destination": "/assets/img/heroes/:path*",
+      "permanent": true
     }
   ]
 }
