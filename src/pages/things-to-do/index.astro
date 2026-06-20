@@ -7,7 +7,6 @@ import FooterFour from '../../sections/shared/FooterFour.astro';
 import TourSearchGrid from '../../components/dashboard/TourSearchGrid';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
-import ServiceExploreLinks from '../../components/things-to-do/ServiceExploreLinks.astro';
 import { createPublicClient } from '../../lib/supabase';
 import { SITE_URL } from '../../lib/seo';
 import { thingsToDoFaq } from '../../lib/faq';
@@ -69,23 +68,7 @@ try {
     </div>
   </section>
 
-  <!-- 2. Intro -->
-  <section style="padding: 60px 0 40px;">
-    <div class="container">
-      <div style="max-width: 750px; margin: 0 auto; text-align: center;">
-        <p style="font-style: italic; font-size: 1.2rem; line-height: 1.7; color: #1CA8CB; margin-bottom: 24px;" data-ani="fadein">
-          Discover all the best boat experiences in Rhodes, handpicked by locals and verified by our team.
-        </p>
-        <p style="font-size: 1rem; line-height: 1.8; color: #4a5568; margin-bottom: 0;" data-ani="fadein" data-ani-delay="0.1">
-          Browse <a href="/service/rhodes-boat-tours" style="color: #1CA8CB; font-weight: 600;">Rhodes boat tours</a>, <a href="/service/rhodes-boat-cruises" style="color: #1CA8CB; font-weight: 600;">Rhodes boat cruises</a>, <a href="/service/rhodes-boat-trips" style="color: #1CA8CB; font-weight: 600;">private boat trips</a>, catamaran sails, yacht charters and rent-a-boat options. Use the search and filters to find exactly what you are looking for.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <ServiceExploreLinks />
-
-  <!-- 3. Tours Grid with Search -->
+  <!-- 2. Tours Grid with Search -->
   <section aria-labelledby="all-tours-heading" style="padding: 40px 0 80px; background: #f8fafb;">
     <div class="container">
       <h2 id="all-tours-heading" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">All Approved Boat Experiences in Rhodes</h2>

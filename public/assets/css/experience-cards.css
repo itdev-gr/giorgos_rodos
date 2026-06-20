@@ -116,6 +116,12 @@
   border-color: #fff;
 }
 
+/* Homepage carousel + experiences catalog — same portrait card shape */
+.home-exp-card.exp-card {
+  aspect-ratio: 4 / 5;
+  min-height: 420px;
+}
+
 /* Tour card overlays */
 .exp-card__badge {
   position: absolute;
@@ -206,7 +212,7 @@
 @media (max-width: 991px) {
   .exp-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 16px;
   }
 
   .exp-grid--4 {
@@ -217,6 +223,11 @@
   .exp-card {
     min-height: 0;
     width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .home-exp-card.exp-card {
+    min-height: 380px;
   }
 
   .exp-card__body {
@@ -233,15 +244,26 @@
   .exp-grid,
   .exp-grid--4 {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .exp-grid > *,
+  .exp-grid--4 > * {
+    width: min(320px, 100%);
   }
 
   .exp-card {
-    aspect-ratio: 16 / 10;
-    min-height: 0;
+    aspect-ratio: 4 / 5;
+    min-height: 380px;
+    width: 100%;
   }
 
   .exp-card__body {
     padding: 22px 20px;
+  }
+
+  .exp-card__desc {
+    -webkit-line-clamp: 2;
   }
 }

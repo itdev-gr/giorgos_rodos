@@ -126,7 +126,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
               <a
                 key={tour.id}
                 href={`/tour-detail/${tour.slug || tour.id}`}
-                className="exp-card"
+                className="exp-card home-exp-card"
               >
                 <div className="exp-card__media">
                   <img

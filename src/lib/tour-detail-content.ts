@@ -293,54 +293,54 @@ function defaultFaq(kind: TourKind, tour: TourLike): TourFaqItem[] {
   const common: TourFaqItem[] = [
     {
       question: `How do I book ${title}?`,
-      answer: `Send a booking request through this page with your preferred date and group size, or <a href="/contact">contact us directly</a>. We confirm availability with the operator, usually within a few hours on weekdays. For July and August departures, book at least one week ahead for shared cruises and earlier for private boats. Your confirmation email includes meeting point, departure time and what to bring. Payment terms vary by operator; we explain them clearly before you commit. We have matched guests to the right boat experiences in Rhodes since 1998.`,
+      answer: `Send a booking request on this page or <a href="/contact">contact us</a> with your date and group size. We confirm availability with the operator, usually within a few hours. July and August departures need at least a week ahead for shared cruises. Your confirmation includes meeting point, time and what to bring.`,
     },
     {
       question: 'What should I bring on the day?',
-      answer: 'Pack swimwear, a towel, high-SPF sunscreen, a hat and sunglasses. Soft-soled shoes are easier on deck than flip-flops alone. Bring a light layer for the return journey, it feels cooler on the water than on the beach. If you are prone to seasickness, take medication an hour before boarding on longer crossings such as Symi. Cash is useful for extras ashore or drinks not included in your ticket. Leave bulky luggage at your hotel. Prescription glasses benefit from a strap; use a waterproof pouch for your phone when swimming.',
+      answer: 'Swimwear, towel, high-SPF sunscreen, hat and sunglasses. Soft-soled shoes work best on deck; bring a light layer for the return trip. Take seasickness tablets before longer crossings if needed. Leave bulky luggage at your hotel.',
     },
     {
       question: 'What happens if the weather is bad?',
-      answer: 'Safety comes first. If wind or sea conditions are unsuitable, the operator reschedules to another day during your stay or offers a full refund according to their policy. Shared cruises on large vessels sail more often than small open boats, but Symi crossings and sunset trips can move when the Meltemi is strong. We monitor forecasts and communicate with operators so you are not left waiting at the harbour without notice. For more general cancellation guidance see our <a href="/faq">FAQ page</a>.',
+      answer: 'If conditions are unsafe, the operator reschedules during your stay or refunds according to their policy. Symi crossings and sunset trips may move when wind is strong. See our <a href="/faq">FAQ page</a> for general weather guidance.',
     },
   ];
 
   const kindSpecific: Record<TourKind, TourFaqItem> = {
     symi: {
       question: 'Can you visit Symi in one day from Rhodes?',
-      answer: 'Yes—you can visit Symi in one day from Rhodes without staying overnight. Most Symi day cruises leave Mandraki around 09:00, cross in 75–90 minutes when the sea is calm, and give you four to five hours ashore in Gialos harbour before the return call, typically back in Rhodes by about 18:00. That is enough to climb the Kali Strata, lunch at a taverna and browse the shops. Exact timings are on your ticket; be back at the quay at least fifteen minutes before departure. If you want more flexibility on timing, ask us about a <a href="/service/rhodes-boat-trips">private boat trip to Symi</a> instead of a shared excursion.',
+      answer: 'Yes. Most Symi day cruises leave Mandraki around 09:00, cross in 75–90 minutes and give you four to five hours in Gialos before returning by about 18:00. For more flexibility, ask about a <a href="/service/rhodes-boat-trips">private boat trip to Symi</a>.',
     },
     lindos: {
       question: 'Can I visit the Lindos Acropolis on this trip?',
-      answer: 'Many Lindos boat tours include free time ashore, but the climb to the Acropolis takes 20–40 minutes each way and entry fees are paid separately at the site. Tell us when you book if visiting the Acropolis is your priority so we match you to a tour with enough time ashore. St Paul\'s Bay swim stop is included on most routes regardless. Comfortable shoes and water are essential for the village lanes and the climb.',
+      answer: 'Many Lindos tours include free time ashore, but the Acropolis climb takes 20–40 minutes each way and entry is paid separately. Tell us if the Acropolis is your priority so we match you to a tour with enough time ashore.',
     },
     sunset: {
       question: 'What time does a sunset cruise depart?',
-      answer: 'Departure shifts with the season: roughly 17:15–18:00 in spring and autumn, later in midsummer when sunset falls after 20:30. Your confirmation states the exact boarding time. Arrive 20 minutes early because popular sunset sailings fill the best deck spots quickly. The return is after dark; bring a light jacket. Compare shared and catamaran options on our <a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a> page if you are choosing between vessels.',
+      answer: 'Departure shifts with the season: roughly 17:15–18:00 in spring and autumn, later in midsummer. Arrive 20 minutes early. Compare options on our <a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a> page.',
     },
     east_coast: {
       question: 'Is lunch included on this cruise?',
-      answer: 'Full-day east coast shared cruises typically include a buffet lunch, unlimited water and soft drinks, and sometimes local wine or beer. Exact menus vary by operator, Greek salad, grilled chicken, pasta and bread are common. Vegetarian options are usually available if you mention dietary needs when booking. Alcoholic cocktails and premium drinks may cost extra on board. Your confirmation lists inclusions for this specific departure.',
+      answer: 'Full-day east coast shared cruises usually include buffet lunch, water and soft drinks, sometimes wine or beer. Menus vary by operator. Mention dietary needs when booking; your confirmation lists exact inclusions.',
     },
     charter: {
       question: 'Do I need a sailing licence for a bareboat charter?',
-      answer: 'Bareboat charter requires a recognised sailing licence (ICC, RYA or equivalent) and usually a short resume of your experience. If you are unsure, choose a skippered charter: a professional captain handles navigation while you swim, dine and enjoy the islands. We explain qualification requirements before you pay a deposit. Weekly charters from Rhodes reach Symi, Tilos, Halki and beyond depending on weather and your pace.',
+      answer: 'Bareboat charter requires a recognised sailing licence (ICC, RYA or equivalent) plus a short experience resume. If unsure, choose a skippered charter and let a professional captain handle navigation.',
     },
     private_trip: {
       question: 'Can we customise the route on a private trip?',
-      answer: 'Yes, that is the main advantage. Your skipper adapts stops to your group: more swimming, a Lindos run, quiet coves south of Faliraki, or a birthday setup on deck. Discuss priorities when you book so fuel and duration match your plan. Half-day trips stay on the sheltered east coast; full-day private charters can reach Lindos or longer loops when the sea is calm.',
+      answer: 'Yes—that is the main advantage. Your skipper adapts stops to your group: extra swimming, Lindos, quiet coves or a birthday setup on deck. Discuss priorities when you book so fuel and duration match your plan.',
     },
     sailing: {
       question: 'Is sailing suitable if I get seasick easily?',
-      answer: 'Sailing feels different from a large motor cruise: more motion when the wind fills the sails, but less engine noise and a smoother rhythm on catamarans. Choose morning departures in summer when wind is lighter. Catamaran tours are the most stable shared option. Tell us about sensitivity to motion and we recommend vessel type and route honestly rather than selling the wrong trip.',
+      answer: 'Sailing feels different from a large motor cruise: more motion when sails fill, but catamarans are the most stable shared option. Morning departures in summer are gentler. Tell us about motion sensitivity and we recommend honestly.',
     },
     catamaran: {
       question: 'Why choose a catamaran over a traditional motor cruise?',
-      answer: 'Catamarans offer wide decks, trampolines for sunbathing and much less rolling than monohulls, ideal for families and guests worried about seasickness. Shared catamaran day tours include lunch and multiple swim stops similar to larger motor vessels, with a more spacious feel. Sunset catamaran trips are among the most booked evening activities in Rhodes. See also <a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a> for motor-vessel day routes.',
+      answer: 'Catamarans offer wide decks, trampolines and much less rolling than monohulls—ideal for families. Shared day tours include lunch and swim stops similar to motor vessels. See <a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a> for motor routes.',
     },
     generic_cruise: {
       question: `Is ${title}${price} per person or per boat?`,
-      answer: `The price shown${price || ''} is typically per person on shared day cruises unless the listing states otherwise. Private charters and boat hire are quoted per vessel for your group. Children\'s fares and infants may differ; include ages when you send a booking request. We confirm the final price, inclusions and meeting point before you pay so there are no surprises at the harbour.`,
+      answer: `The price shown${price || ''} is typically per person on shared day cruises unless stated otherwise. Private charters are quoted per vessel. Include children's ages in your request; we confirm the final price before you pay.`,
     },
   };
 

@@ -1,15 +1,14 @@
 /**
- * Generates src/data/faq.json with 134+ word answers for AI citability.
+ * Generates src/data/faq.json with concise FAQ answers.
  * Run: node scripts/build-faq-data.mjs
  */
 import { writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sections from './faq-sections.mjs';
+import { shortenFaqAnswer, wordCount } from './faq-shorten.mjs';
 
-function wordCount(html) {
-  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean).length;
-}
+const MAX_WORDS = 68;
 
 const faq = {
   main: [
@@ -67,23 +66,29 @@ const faq = {
   ...sections,
 };
 
-const minWords = 134;
-const failures = [];
+const output = {};
+const stats = [];
 for (const [section, items] of Object.entries(faq)) {
-  for (const item of items) {
-    const words = wordCount(item.answer);
-    if (words < minWords) failures.push({ section, question: item.question, words });
-  }
-}
-if (failures.length) {
-  console.error('FAQ answers below 134 words:');
-  for (const f of failures) console.error(`  [${f.section}] ${f.words}w, ${f.question}`);
-  process.exit(1);
+  output[section] = items.map((item) => {
+    const answer = shortenFaqAnswer(item.answer, MAX_WORDS);
+    const words = wordCount(answer);
+    stats.push(words);
+    return { question: item.question, answer };
+  });
 }
 
 writeFileSync(
   join(dirname(fileURLToPath(import.meta.url)), '../src/data/faq.json'),
-  JSON.stringify(faq, null, 2) + '\n',
+  JSON.stringify(output, null, 2) + '\n',
 );
-const total = Object.values(faq).reduce((n, items) => n + items.length, 0);
-console.log('Wrote src/data/faq.json with', total, 'FAQ items across', Object.keys(faq).length, 'sections');
+const total = Object.values(output).reduce((n, items) => n + items.length, 0);
+const avg = Math.round(stats.reduce((a, b) => a + b, 0) / stats.length);
+const max = Math.max(...stats);
+console.log(
+  'Wrote src/data/faq.json with',
+  total,
+  'FAQ items across',
+  Object.keys(output).length,
+  'sections',
+  `(avg ${avg}w, max ${max}w)`,
+);

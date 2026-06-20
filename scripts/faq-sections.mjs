@@ -1,5 +1,5 @@
 /**
- * FAQ content for section-specific pages, 134+ word answers for AI citability.
+ * FAQ content for section-specific pages. Answers are shortened at build time.
  * Tone: local Rhodes boat experts since 1998, honest, not a marketplace.
  */
 
