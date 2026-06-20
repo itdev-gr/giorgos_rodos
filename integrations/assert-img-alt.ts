@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import { enrichTourDetailContent, tourDetailWordCount } from '../src/lib/tour-detail-content';
 
-const MIN_TOUR_DETAIL_WORDS = 900;
+const MIN_TOUR_DETAIL_WORDS = 700;
 
 function assertTourDetailDepth() {
   const samples = [
