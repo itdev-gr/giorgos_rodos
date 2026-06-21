@@ -113,6 +113,45 @@ export const fr: Record<string, ServicePageContent> = {
     ctaTitle: 'Besoin d aide pour choisir une croisiere ?',
     ctaText:
       'Partagez la zone de votre hotel et la taille de votre groupe : nous vous orienterons vers le bon depart et le bon itineraire.',
+    routeGuide: {
+      title: 'Croisières en bateau à Rhodes : croisières à la journée et au coucher du soleil tout compris',
+      intro: 'Une croisière en bateau à Rhodes est la façon simple et tout compris de passer une journée ou une soirée en mer — des bateaux organisés plus grands, des itinéraires fixes, des arrêts baignade et des repas et boissons à bord. La plupart des croisières partent du port de Mandraki, à Rhodes-ville, et opèrent du printemps à octobre. Voici comment se comparent les principales croisières, ce qui est inclus et comment choisir celle qui convient à votre groupe.',
+      routes: [
+        {
+          heading: 'Ce qui est inclus dans une croisière en bateau tout compris à Rhodes',
+          body: 'La plupart des croisières en bateau à Rhodes sont tout compris — c’est précisément pourquoi elles sont si populaires : vous payez une fois et tout est réglé. Une croisière type d’une journée comprend l’itinéraire, deux ou trois arrêts baignade et snorkeling, un déjeuner cuisiné ou un buffet grec et des boissons sans alcool à volonté — beaucoup de croisières au coucher du soleil ajoutent vin, bière et musique live. Les prix vont en général de €30 à €80 par personne selon le bateau et la durée, avec des tarifs enfants et des réductions familles sur la plupart des départs. Pas de frais cachés : nous annonçons le prix complet à l’avance et vous réservez en direct, sans majoration de plateforme. Comme nous travaillons au port de Mandraki depuis 1998, nous ne proposons que des croisières sur des bateaux bien tenus avec des équipages expérimentés. Indiquez-nous le nombre de personnes et vos dates et nous vous orienterons vers la bonne croisière.',
+        },
+        {
+          heading: 'Croisières à la journée tout compris',
+          body: 'Les croisières d’une journée sont la sortie classique à Rhodes : une navigation détendue le long de la côte avec plusieurs arrêts baignade, déjeuner et boissons inclus, et le temps de simplement profiter de la mer. La <a href="/tour-detail/east-coast-of-rhodes-group-cruise">croisière de groupe sur la côte est de Rhodes</a> et la décontractée croisière <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> sont des options partagées populaires, qui conviennent aux familles, aux couples et aux groupes. Ces croisières échangent la vitesse d’une sortie privée contre une ambiance conviviale tout compris au meilleur prix par personne. Si vous préférez un bateau plus petit, demandez les alternatives semi-privées ci-dessous.',
+        },
+        {
+          heading: 'Croisières au coucher du soleil à Rhodes',
+          body: 'Les croisières au coucher du soleil sont la croisière en bateau la plus romantique à Rhodes — vous naviguez dans les eaux calmes du soir avec des boissons, un BBQ grec ou un buffet et souvent de la musique live tandis que le ciel devient doré. La <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">croisière au coucher du soleil tout compris « A Sunset Remedy »</a> à bord de l’El Greco et la <a href="/tour-detail/sunset-cruise-lindos-calypso">croisière au coucher du soleil tout compris Calypso au départ de Lindos</a> sont des favorites, tandis que l’<a href="/tour-detail/golden-hour-yacht-experience-semi-private">expérience en yacht semi-privée Golden Hour</a> limite le nombre pour une soirée plus intime. Emportez une couche légère : il fait plus frais sur l’eau une fois le soleil couché. Les croisières au coucher du soleil se remplissent vite en juillet et août, alors réservez à l’avance.',
+        },
+        {
+          heading: 'Croisière à la journée vers Symi',
+          body: 'La croisière à la journée vers Symi est l’une des plus réservées au départ de Rhodes. Les bateaux quittent Mandraki le matin, traversent en environ 75 à 90 minutes et vous laissent plusieurs heures dans le port aux teintes pastel de Gialos, généralement avec un arrêt baignade en chemin. Symi est réputée pour ses maisons néoclassiques, le monastère de Panormitis et son eau cristalline — idéale pour les photos et un déjeuner tranquille à terre. Les croisières partagées tout compris sont la façon la plus économique de la découvrir ; si vous voulez des horaires flexibles ou un petit groupe, demandez plutôt des <a href="/service/rhodes-boat-trips">excursions en bateau privées</a>.',
+        },
+        {
+          heading: 'Croisière à la journée vers Lindos',
+          body: 'Une croisière à la journée vers Lindos associe le village médiéval et son Acropole à la baignade au pied des falaises de la baie de St Paul. Approcher Lindos par la mer est la plus belle façon d’arriver. La <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise à Lindos</a> est une option détendue tout compris avec du temps au village et des arrêts baignade le long de la côte est. Prévoyez de bonnes chaussures si vous comptez monter à l’Acropole, et un chapeau — le village offre peu d’ombre à midi.',
+        },
+        {
+          heading: 'Croisières sur la côte est — Anthony Quinn Bay et Kallithea',
+          body: 'Toutes les croisières en bateau de Rhodes ne traversent pas vers une autre île. Les croisières de la côte est restent le long du littoral abrité, avec des arrêts à Anthony Quinn Bay, aux sources de Kallithea, à Ladiko et aux grottes marines de Traganou — les spots classiques de snorkeling et de baignade en eau calme et turquoise. Elles conviennent aux primo-visiteurs et aux familles qui veulent de jolies criques sans traversée en mer ouverte, avec déjeuner et boissons inclus à bord. C’est aussi un excellent choix si quelqu’un de votre groupe préfère un itinéraire plus court et abrité à une longue traversée.',
+        },
+        {
+          heading: 'D’où partent les croisières en bateau à Rhodes',
+          body: 'La plupart des croisières organisées partent du port de Mandraki, à Rhodes-ville, mais certaines partent aussi de Faliraki, Kolymbia et Lindos selon l’itinéraire et la destination. Si vous logez le long de la côte est, choisir un point de départ plus proche vous évite un long transfert en début et en fin de journée. Indiquez-nous votre secteur d’hôtel lors de votre demande et nous vous orienterons vers le départ le plus proche et le plus logique, plutôt que de vous envoyer à l’autre bout de l’île. La saison des croisières va de fin avril à octobre, avec la mer la plus calme et l’eau la plus chaude de juin à septembre.',
+        },
+        {
+          heading: 'Quelle croisière vous convient ?',
+          body: 'Les croisières partagées tout compris offrent le meilleur rapport qualité-prix et une ambiance conviviale sur de plus grands bateaux. Les croisières semi-privées comme l’<a href="/tour-detail/golden-hour-yacht-experience-semi-private">expérience en yacht Golden Hour</a> limitent le nombre pour plus d’espace et un rythme plus calme. Si vous voulez le bateau, l’itinéraire et les horaires rien que pour vous, une <a href="/service/rhodes-boat-trips">excursion en bateau privée</a> ou un <a href="/service/rhodes-charter">affrètement de yacht</a> conviennent mieux, et un <a href="/service/rhodes-catamaran-tours">tour en catamaran</a> ajoute stabilité et espace sur le pont. Vous hésitez ? Indiquez-nous vos dates et votre groupe et nous vous conseillerons honnêtement, sans pression.',
+        },
+      ],
+      closing: 'Nous orientons les visiteurs vers les bonnes croisières en bateau à Rhodes depuis 1998 — tout compris, recommandées honnêtement, avec réservation directe et sans frais de plateforme. Parcourez les croisières à la journée et au coucher du soleil ci-dessous, comparez les <a href="/service/rhodes-boat-tours">excursions guidées en bateau</a> ou les <a href="/service/rhodes-boat-trips">excursions en bateau privées</a>, ou <a href="/contact">indiquez-nous vos dates</a> et nous vous suggérerons la meilleure croisière pour votre groupe.',
+    },
   },
   'rhodes-catamaran-tours': {
     introQuote:

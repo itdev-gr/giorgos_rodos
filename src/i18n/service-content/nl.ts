@@ -113,6 +113,45 @@ export const nl: Record<string, ServicePageContent> = {
     ctaTitle: 'Hulp nodig bij het kiezen van een cruise?',
     ctaText:
       'Deel je hotelgebied en groepsgrootte - wij wijzen je naar de juiste vertrekhaven en route.',
+    routeGuide: {
+      title: 'Boottochten op Rhodos: all-inclusive dag- en zonsondergangcruises uitgelegd',
+      intro: 'Een bootcruise op Rhodos is de makkelijke, all-inclusive manier om een dag of avond op zee door te brengen — grotere georganiseerde boten met vaste routes, zwemstops en eten en drinken aan boord. De meeste cruises vertrekken vanuit de haven van Mandraki in Rhodos-stad en varen van het voorjaar tot oktober. Hieronder lees je hoe de belangrijkste cruises zich verhouden, wat is inbegrepen en hoe je de juiste kiest voor je groep.',
+      routes: [
+        {
+          heading: 'Wat is inbegrepen bij een all-inclusive bootcruise op Rhodos',
+          body: 'De meeste bootcruises op Rhodos zijn all-inclusive, precies daarom zijn ze zo populair: je betaalt één keer en alles is geregeld. Een typische dagcruise omvat de route, twee of drie zwem- en snorkelstops, een warme lunch of Grieks buffet en onbeperkt frisdrank — veel zonsondergangcruises voegen wijn, bier en livemuziek toe. Prijzen lopen meestal van ongeveer €30–€80 per persoon, afhankelijk van de boot en duur, met kindertarieven en gezinskortingen bij de meeste afvaarten. Geen verborgen kosten: we noemen de volledige prijs vooraf en je boekt direct, zonder platformtoeslag. Omdat we sinds 1998 in de haven van Mandraki werken, bieden we alleen cruises aan op goed gerunde boten met ervaren bemanningen. Vertel ons je groepsgrootte en data en we koppelen je aan de juiste cruise.',
+        },
+        {
+          heading: 'All-inclusive dagcruises',
+          body: 'Dagcruises zijn het klassieke dagje uit op Rhodos: een ontspannen boottocht langs de kust met meerdere zwemstops, lunch en drankjes inbegrepen, en tijd om gewoon van de zee te genieten. De <a href="/tour-detail/east-coast-of-rhodes-group-cruise">groepscruise langs de oostkust van Rhodos</a> en de luchtige <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a>-cruise zijn populaire gedeelde opties, geschikt voor gezinnen, koppels en groepen. Deze cruises ruilen de snelheid van een privétocht in voor een gezellige all-inclusive sfeer tegen de beste prijs per persoon. Wil je liever een kleinere boot, vraag dan naar de semi-private alternatieven hieronder.',
+        },
+        {
+          heading: 'Zonsondergangcruises op Rhodos',
+          body: 'Zonsondergangcruises zijn de meest romantische bootcruise op Rhodos — je vaart door de kalme avondwateren met drankjes, een Griekse BBQ of buffet en vaak livemuziek terwijl de lucht goudkleurig wordt. De <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">all-inclusive zonsondergangcruise A Sunset Remedy</a> op de El Greco en de <a href="/tour-detail/sunset-cruise-lindos-calypso">all-inclusive zonsondergangcruise Calypso vanuit Lindos</a> zijn favorieten, terwijl de <a href="/tour-detail/golden-hour-yacht-experience-semi-private">semi-private Golden Hour-jachtervaring</a> de aantallen klein houdt voor een intiemere avond. Neem een lichte laag mee — op het water koelt het af zodra de zon ondergaat. Zonsondergangcruises zitten in juli en augustus snel vol, dus boek op tijd.',
+        },
+        {
+          heading: 'Dagcruise naar Symi',
+          body: 'De dagcruise naar Symi is een van de meest geboekte vanaf Rhodos. De boten vertrekken ’s ochtends uit Mandraki, steken in ongeveer 75–90 minuten over en geven je enkele uren in de pastelkleurige haven van Gialos, meestal met een zwemstop onderweg. Symi staat bekend om zijn neoklassieke huizen, het Panormitis-klooster en het kristalheldere water — ideaal voor foto’s en een ontspannen lunch aan wal. Gedeelde all-inclusive cruises zijn de voordeligste manier om het te zien; wil je flexibele tijden of een kleinere groep, vraag dan naar <a href="/service/rhodes-boat-trips">privé boottochten</a>.',
+        },
+        {
+          heading: 'Dagcruise naar Lindos',
+          body: 'Een dagcruise naar Lindos combineert het middeleeuwse dorp en zijn Akropolis met zwemmen onder de kliffen bij St Paul’s Bay. Lindos vanaf zee benaderen is de mooiste manier om aan te komen. De <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise in Lindos</a> is een ontspannen all-inclusive optie met tijd in het dorp en zwemstops langs de oostkust. Neem comfortabele schoenen mee als je naar de Akropolis wilt lopen, en een hoed — het dorp heeft rond het middaguur weinig schaduw.',
+        },
+        {
+          heading: 'Oostkustcruises — Anthony Quinn Bay & Kallithea',
+          body: 'Niet elke bootcruise op Rhodos steekt over naar een ander eiland. Oostkustcruises blijven langs de beschutte kustlijn en stoppen bij Anthony Quinn Bay, de bronnen van Kallithea, Ladiko en de zeegrotten van Traganou — de klassieke snorkel- en zwemplekken in kalm, turquoise water. Deze cruises passen bij eerste bezoekers en gezinnen die mooie baaien willen zonder open zee, met lunch en drankjes aan boord. Het is ook een prima keuze als iemand in je groep een kortere, beschutte route verkiest boven een lange oversteek.',
+        },
+        {
+          heading: 'Waar bootcruises op Rhodos vertrekken',
+          body: 'De meeste georganiseerde cruises vertrekken vanuit de haven van Mandraki in Rhodos-stad, maar sommige vertrekken ook vanuit Faliraki, Kolymbia en Lindos, afhankelijk van route en bestemming. Verblijf je langs de oostkust, dan bespaart een dichterbij vertrekpunt een lange transfer aan het begin en eind van de dag. Laat je hotelgebied weten bij je aanvraag en we wijzen je de dichtstbijzijnde logische afvaart, in plaats van je naar de andere kant van het eiland te sturen. Het cruiseseizoen loopt van eind april tot oktober, met de kalmste zee en het warmste water van juni tot september.',
+        },
+        {
+          heading: 'Welke cruise past bij jou?',
+          body: 'Gedeelde all-inclusive cruises bieden de beste prijs en een gezellige sfeer op grotere boten. Semi-private cruises zoals de <a href="/tour-detail/golden-hour-yacht-experience-semi-private">Golden Hour-jachtervaring</a> beperken de aantallen voor meer ruimte en een rustiger tempo. Wil je de boot, route en tijden helemaal voor jezelf, dan passen een <a href="/service/rhodes-boat-trips">privé boottocht</a> of een <a href="/service/rhodes-charter">jachtcharter</a> beter, en een <a href="/service/rhodes-catamaran-tours">catamarantour</a> voegt extra stabiliteit en dekruimte toe. Niet zeker? Vertel ons je data en groep en we adviseren eerlijk, zonder druk.',
+        },
+      ],
+      closing: 'We koppelen bezoekers sinds 1998 aan de juiste bootcruises op Rhodos — all-inclusive, eerlijk aanbevolen, met directe boeking en zonder platformkosten. Blader hieronder door de dag- en zonsondergangcruises, vergelijk <a href="/service/rhodes-boat-tours">begeleide boottochten</a> of <a href="/service/rhodes-boat-trips">privé boottochten</a>, of <a href="/contact">geef ons je data door</a> en we stellen de beste cruise voor je groep voor.',
+    },
   },
   'rhodes-catamaran-tours': {
     introQuote:

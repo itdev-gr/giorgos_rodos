@@ -113,6 +113,45 @@ export const pl: Record<string, ServicePageContent> = {
     ctaTitle: 'Potrzebujesz pomocy w wyborze rejsu?',
     ctaText:
       'Podaj rejon hotelu i wielkość grupy — wskażemy właściwy port i trasę.',
+    routeGuide: {
+      title: 'Rejsy łodzią po Rodos: dzienne i o zachodzie słońca all inclusive',
+      intro: 'Rejs łodzią po Rodos to łatwy, all inclusive sposób na spędzenie dnia lub wieczoru na morzu — większe, zorganizowane łodzie ze stałymi trasami, postojami na kąpiel oraz jedzeniem i napojami na pokładzie. Większość rejsów wypływa z portu Mandraki w mieście Rodos i kursuje od wiosny do października. Poniżej wyjaśniamy, czym różnią się główne rejsy, co jest wliczone i jak wybrać odpowiedni dla Twojej grupy.',
+      routes: [
+        {
+          heading: 'Co jest wliczone w rejs łodzią all inclusive po Rodos',
+          body: 'Większość rejsów łodzią po Rodos jest w opcji all inclusive — właśnie dlatego są tak popularne: płacisz raz i wszystko jest załatwione. Typowy rejs dzienny obejmuje trasę, dwa lub trzy postoje na pływanie i snorkeling, gotowany obiad lub grecki bufet oraz nieograniczone napoje bezalkoholowe — wiele rejsów o zachodzie słońca dodaje wino, piwo i muzykę na żywo. Ceny zwykle wynoszą od około €30 do €80 za osobę w zależności od łodzi i czasu trwania, ze zniżkami dla dzieci i rodzin na większości rejsów. Bez ukrytych opłat: podajemy pełną cenę z góry, a Ty rezerwujesz bezpośrednio, bez prowizji platform. Ponieważ pracujemy w porcie Mandraki od 1998 roku, oferujemy tylko rejsy na dobrze prowadzonych łodziach z doświadczoną załogą. Podaj liczebność grupy i terminy, a dobierzemy odpowiedni rejs.',
+        },
+        {
+          heading: 'Dzienne rejsy all inclusive',
+          body: 'Rejsy całodniowe to klasyczny dzień na Rodos: spokojny rejs wzdłuż wybrzeża z kilkoma postojami na kąpiel, obiadem i napojami w cenie oraz czasem, aby po prostu cieszyć się morzem. <a href="/tour-detail/east-coast-of-rhodes-group-cruise">Rejs grupowy wzdłuż wschodniego wybrzeża Rodos</a> i swobodny rejs <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> to popularne opcje wspólne, odpowiednie dla rodzin, par i grup. Te rejsy zamieniają szybkość prywatnej wycieczki na towarzyską atmosferę all inclusive w najlepszej cenie za osobę. Jeśli wolisz mniejszą łódź, zapytaj o opcje półprywatne poniżej.',
+        },
+        {
+          heading: 'Rejsy o zachodzie słońca na Rodos',
+          body: 'Rejsy o zachodzie słońca to najbardziej romantyczny rejs łodzią po Rodos — płyniesz po spokojnych wieczornych wodach z napojami, greckim grillem lub bufetem i często muzyką na żywo, gdy niebo staje się złote. <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">Rejs o zachodzie słońca all inclusive A Sunset Remedy</a> na łodzi El Greco i <a href="/tour-detail/sunset-cruise-lindos-calypso">rejs o zachodzie słońca all inclusive Calypso z Lindos</a> to faworyci, a <a href="/tour-detail/golden-hour-yacht-experience-semi-private">półprywatne doświadczenie jachtowe Golden Hour</a> utrzymuje małą liczbę gości na bardziej kameralny wieczór. Zabierz lekką warstwę odzieży — na wodzie robi się chłodniej, gdy słońce zajdzie. Rejsy o zachodzie słońca szybko się zapełniają w lipcu i sierpniu, więc warto rezerwować z wyprzedzeniem.',
+        },
+        {
+          heading: 'Rejs dzienny na Symi',
+          body: 'Rejs dzienny na Symi to jeden z najczęściej rezerwowanych z Rodos. Łodzie wypływają z Mandraki rano, pokonują trasę w około 75–90 minut i dają kilka godzin w pastelowym porcie Gialos, zwykle z postojem na kąpiel po drodze. Symi słynie z neoklasycystycznych domów, klasztoru Panormitis i krystalicznie czystej wody — idealnej do zdjęć i spokojnego obiadu na lądzie. Wspólne rejsy all inclusive to najbardziej opłacalny sposób, aby ją zobaczyć; jeśli chcesz elastycznych godzin lub mniejszej grupy, zapytaj zamiast tego o <a href="/service/rhodes-boat-trips">prywatne wycieczki łodzią</a>.',
+        },
+        {
+          heading: 'Rejs dzienny do Lindos',
+          body: 'Rejs dzienny do Lindos łączy średniowieczne miasteczko i jego Akropol z kąpielą u podnóża klifów w zatoce St Paul. Podpłynięcie do Lindos od strony morza to najbardziej malowniczy sposób przybycia. <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise w Lindos</a> to spokojna opcja all inclusive z czasem w miasteczku i postojami na kąpiel wzdłuż wschodniego wybrzeża. Zabierz wygodne buty, jeśli planujesz wejść na Akropol, oraz kapelusz — w miasteczku w południe jest mało cienia.',
+        },
+        {
+          heading: 'Rejsy wzdłuż wschodniego wybrzeża — Anthony Quinn Bay i Kallithea',
+          body: 'Nie każdy rejs łodzią z Rodos przeprawia się na inną wyspę. Rejsy wzdłuż wschodniego wybrzeża trzymają się osłoniętej linii brzegowej, z postojami w Anthony Quinn Bay, u źródeł Kallithea, w Ladiko i przy grotach morskich Traganou — to klasyczne miejsca do snorkelingu i kąpieli w spokojnej, turkusowej wodzie. Pasują osobom odwiedzającym po raz pierwszy i rodzinom, które chcą pięknych zatok bez otwartego morza, z obiadem i napojami w cenie na pokładzie. To także świetny wybór, jeśli ktoś w grupie woli krótszą, osłoniętą trasę od długiej przeprawy.',
+        },
+        {
+          heading: 'Skąd wypływają rejsy łodzią po Rodos',
+          body: 'Większość zorganizowanych rejsów wypływa z portu Mandraki w mieście Rodos, ale niektóre wypływają też z Faliraki, Kolymbii i Lindos w zależności od trasy i celu. Jeśli mieszkasz wzdłuż wschodniego wybrzeża, wybór bliższego punktu wypłynięcia oszczędza długi transfer na początku i końcu dnia. Podaj region swojego hotelu przy zapytaniu, a wskażemy najbliższe sensowne wypłynięcie, zamiast wysyłać Cię na drugi koniec wyspy. Sezon rejsów trwa od końca kwietnia do października, z najspokojniejszym morzem i najcieplejszą wodą od czerwca do września.',
+        },
+        {
+          heading: 'Który rejs jest dla Ciebie?',
+          body: 'Wspólne rejsy all inclusive oferują najlepszą wartość i towarzyską atmosferę na większych łodziach. Rejsy półprywatne, jak <a href="/tour-detail/golden-hour-yacht-experience-semi-private">doświadczenie jachtowe Golden Hour</a>, ograniczają liczbę gości dla większej przestrzeni i spokojniejszego tempa. Jeśli chcesz łódź, trasę i godziny tylko dla siebie, lepiej pasują <a href="/service/rhodes-boat-trips">prywatna wycieczka łodzią</a> lub <a href="/service/rhodes-charter">czarter jachtu</a>, a <a href="/service/rhodes-catamaran-tours">wycieczka katamaranem</a> dodaje stabilności i miejsca na pokładzie. Nie jesteś pewien? Podaj terminy i grupę, a doradzimy uczciwie, bez nacisku.',
+        },
+      ],
+      closing: 'Dopasowujemy odwiedzających do właściwych rejsów łodzią po Rodos od 1998 roku — all inclusive, uczciwie polecane, z bezpośrednią rezerwacją i bez opłat platform. Przejrzyj poniżej rejsy dzienne i o zachodzie słońca, porównaj <a href="/service/rhodes-boat-tours">wycieczki łodzią z przewodnikiem</a> lub <a href="/service/rhodes-boat-trips">prywatne wycieczki łodzią</a>, albo <a href="/contact">podaj nam swoje terminy</a>, a zaproponujemy najlepszy rejs dla Twojej grupy.',
+    },
   },
   'rhodes-catamaran-tours': {
     introQuote:
