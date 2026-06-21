@@ -11,6 +11,11 @@ export function escapeXml(str: string): string {
 
 export function urlBlock(entry: SitemapEntry, primaryImageOnly = false): string {
   const parts = [`    <loc>${escapeXml(entry.loc)}</loc>`];
+  for (const alt of entry.alternates ?? []) {
+    parts.push(
+      `    <xhtml:link rel="alternate" hreflang="${escapeXml(alt.hreflang)}" href="${escapeXml(alt.href)}"/>`,
+    );
+  }
   if (entry.lastmod) parts.push(`    <lastmod>${entry.lastmod}</lastmod>`);
   const images = primaryImageOnly ? entry.images.slice(0, 1) : entry.images;
   for (const image of images) {
@@ -27,7 +32,8 @@ export function buildUrlsetXml(entries: SitemapEntry[], primaryImageOnly = false
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries.map((e) => urlBlock(e, primaryImageOnly)).join('\n')}
 </urlset>`;
 }
