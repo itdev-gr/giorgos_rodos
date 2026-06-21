@@ -63,7 +63,7 @@ export const en: SiteMessages = {
     home: {
       title: 'Rhodes Rent a Boat | Boat Trips, Tours & Cruises Since 1998',
       description:
-        'Rhodes Rent a Boat local sailing expert since 1998. Boat trips, tours, cruises & rentals personally selected by owner.',
+        'Rhodes Rent a Boat — boat rentals, trips, tours & sunset cruises in Rhodes, hand-picked by a local sailing owner since 1998. No licence needed. Book direct.',
     },
     about: {
       title: 'About Rhodes Rent a Boat | Local Sailors Since 1998',
