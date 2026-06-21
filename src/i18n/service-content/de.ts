@@ -37,6 +37,47 @@ export const de: Record<string, ServicePageContent> = {
     ctaTitle: 'Unsicher, welche Tour zu Ihrer Gruppe passt?',
     ctaText:
       'Nennen Sie uns Ihre Daten und wer mitreist - wir empfehlen Ihnen ehrlich und ohne Druck die beste Option.',
+    routeGuide: {
+      title: 'Bootstouren ab Rhodos: Routen, Ziele und was Sie erwartet',
+      intro:
+        'Eine Bootstour ist der einfachste Weg, die schönsten Badebuchten, Meereshöhlen und Nachbarinseln von Rhodos zu erreichen — ohne Mietwagen oder überfüllten Bus-Ausflug. Die meisten geführten Touren starten am Mandraki-Hafen in Rhodos-Stadt und fahren von Frühjahr bis Oktober. Im Folgenden vergleichen wir die wichtigsten Routen, was inbegriffen ist und wie Sie die passende Bootstour für Ihre Gruppe wählen.',
+      routes: [
+        {
+          heading: 'Was bei einer Bootstour ab Rhodos inbegriffen ist',
+          body: 'Die meisten geführten Bootstouren auf Rhodos sind All-inclusive, was den Tag unkompliziert macht. Eine typische Tour umfasst die Hin- und Rückfahrt, Badestopps in zwei bis drei Buchten, Schnorchelausrüstung, alkoholfreie Getränke und Wasser sowie bei Ganztagsfahrten ein warmes Mittagessen oder ein griechisches Buffet an Bord. Die Preise unserer ausgewählten Touren beginnen meist bei rund €75 pro Erwachsenem, mit Kinderpreisen und Familienrabatten bei den meisten Abfahrten. Was Sie nicht finden, sind versteckte Gebühren oder Verkaufsdruck — wir nennen den vollen Preis im Voraus. Da wir seit 1998 am Mandraki-Hafen arbeiten, listen wir nur Touren auf gut gewarteten Booten mit erfahrenen, englischsprachigen Crews. Wenn Sie besondere Wünsche haben — Schatten an Deck, ein ruhigeres Boot, leichter Zustieg für ältere Gäste oder ein stabiler Katamaran bei Seekrankheit — sagen Sie es uns, und wir finden das passende Boot statt einfach des erstbesten freien.',
+        },
+        {
+          heading: 'Bootstouren nach Symi',
+          body: 'Der Tagesausflug nach Symi ist die beliebteste Bootstour ab Rhodos. Die Boote verlassen Mandraki am Morgen, überqueren die Strecke in etwa 75–90 Minuten und geben Ihnen mehrere Stunden im pastellfarbenen Hafen von Gialos, mit einem Badestopp unterwegs. Symi ist berühmt für seine neoklassizistischen Häuser, das Panormitis-Kloster und das kristallklare Wasser — ideal für Fotos und ein entspanntes Mittagessen an Land. Unsere <a href="/tour-detail/all-inclusive-luxury-cruise-to-symi">All-inclusive-Luxuskreuzfahrt nach Symi</a> bietet Speisen und Getränke an Bord, sodass Sie die Überfahrt genießen können. Wenn Sie eine kleinere Gruppe oder flexible Zeiten bevorzugen, fragen Sie nach einem privaten Ausflug — wir organisieren ein schnelleres Speedboot für bis zu sechs Gäste.',
+        },
+        {
+          heading: 'Bootstouren nach Lindos',
+          body: 'Eine Bootstour nach Lindos verbindet das mittelalterliche Dorf und seine Akropolis mit dem Schwimmen unter den Klippen in der St-Paul’s-Bucht. Die Annäherung an Lindos vom Meer aus ist die schönste Art anzukommen, und viele Gäste bezeichnen sie als Höhepunkt ihrer Reise. Unsere <a href="/tour-detail/luxury-cruise-to-lindos-with-lunch-and-drinks">Luxuskreuzfahrt nach Lindos mit Mittagessen und Getränken</a> beinhaltet Zeit im Dorf sowie Badestopps entlang der Ostküste auf dem Hinweg. Bringen Sie bequeme Schuhe mit, wenn Sie zur Akropolis hinaufgehen möchten, und einen Hut — das Dorf hat um die Mittagszeit wenig Schatten. Für größere Gruppen oder besondere Anlässe lässt Sie eine private Lindos-Kreuzfahrt selbst entscheiden, wie lange Sie bleiben.',
+        },
+        {
+          heading: 'Badetouren an der Ostküste — Anthony Quinn Bay & Kallithea',
+          body: 'Nicht jede Bootstour ab Rhodos führt zu einer anderen Insel. Badetouren an der Ostküste bleiben entlang der geschützten Küste und halten an der Anthony Quinn Bay, den Kallithea-Quellen, Ladiko und den Traganou-Meereshöhlen — den klassischen Schnorchel- und Badeplätzen mit ruhigem, türkisfarbenem Wasser. Diese Touren eignen sich für Erstbesucher und Familien, die schöne Buchten ohne offene Seepassage suchen. Unser <a href="/tour-detail/semi-private-top-rated-swimming-trip-4-hours-all-inclusive">halbprivater 4-stündiger All-inclusive-Badeausflug</a> hält die Gruppen klein, sodass das Boot nie überfüllt ist, während die <a href="/tour-detail/yachting-4-hours-east-coast-cruise-with-greek-buffet">4-stündige Ostküsten-Yachtkreuzfahrt mit griechischem Buffet</a> ein entspanntes Segelgefühl und Essen an Deck bietet. Beide starten in Rhodos-Stadt und kehren am frühen Nachmittag zurück.',
+        },
+        {
+          heading: 'Sunset-Bootstouren auf Rhodos',
+          body: 'Sunset-Bootstouren sind die romantischste Art, einen Tag auf Rhodos ausklingen zu lassen. Sie starten am späten Nachmittag und segeln durch die ruhigen West- und Nordgewässer, während das Licht golden wird — meist mit Badestopp und Getränken an Bord. Unsere <a href="/tour-detail/sunset-cruise-shared-or-private">Sunset-Kreuzfahrt, gemeinsam oder privat</a>, passt gleichermaßen zu Paaren, Freunden und kleinen Gruppen. Gemeinsame Abfahrten bieten das beste Preis-Leistungs-Verhältnis, während eine private Sunset-Charter Ihnen das Deck ganz für sich allein gibt — für einen Heiratsantrag, Jahrestag oder Geburtstag. Bringen Sie eine leichte Jacke mit — auf dem Wasser kühlt es ab, sobald die Sonne untergeht.',
+        },
+        {
+          heading: 'Red-Sand-Beach-BBQ-Bootstour',
+          body: 'Für etwas Besonderes findet der <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">Red-Sand-Beach-BBQ-Ausflug jeden Sonntag</a> statt und verbindet eine Küstenfahrt mit einem Barbecue-Mittagessen an einem der eindrucksvollsten Strände der Insel. Es ist ein Ganztags-All-inclusive-Erlebnis rund um Schwimmen, Essen und entspannte Gruppenatmosphäre statt eines straffen Sightseeing-Programms. Da er nur einmal pro Woche stattfindet und im Juli und August schnell ausgebucht ist, lohnt sich eine frühzeitige Buchung. Nennen Sie uns früh Ihre Daten, und wir halten einen Platz frei, sofern verfügbar.',
+        },
+        {
+          heading: 'Gemeinsame, halbprivate oder private Bootstouren?',
+          body: 'Bootstouren auf Rhodos gibt es in drei Formaten. Gemeinsame Touren sind am günstigsten und bringen Sie mit anderen Reisenden auf einer festen Route und Zeit zusammen — ideal, wenn Sie einen ganzen Tag draußen sein möchten, ohne selbst etwas zu organisieren. Halbprivate Touren begrenzen die Gästezahl, sodass das Boot komfortabel bleibt und die Crew Zeit für alle hat. Vollständig private Touren geben Ihnen Boot, Route und Zeit für sich allein — ideal für Familien, Freundesgruppen und besondere Anlässe. Wenn Sie lieber selbst steuern, sehen Sie sich <a href="/service/rhodes-rent-a-boat">Boot mieten auf Rhodos</a> an (für kleinere Motoren kein Führerschein nötig), oder stöbern Sie in organisierten <a href="/service/rhodes-boat-cruises">Rhodos-Bootskreuzfahrten</a> für größere All-inclusive-Tagesboote.',
+        },
+        {
+          heading: 'Wo Bootstouren ab Rhodos starten',
+          body: 'Die meisten unserer Bootstouren ab Rhodos starten am Mandraki-Hafen in Rhodos-Stadt, nur wenige Gehminuten von der Altstadt und gut von den nahen Ferienorten erreichbar. Wenn Sie weiter an der Ostküste in Faliraki, Kolymbia oder Lindos wohnen, teilen Sie uns bei Ihrer Anfrage Ihre Hotelregion mit — wir nennen Ihnen die sinnvoll nächste Abfahrt, statt Sie über die ganze Insel zu schicken. Die Saison läuft etwa von Ende April bis Oktober, mit dem ruhigsten Meer und wärmsten Wasser von Juni bis September. Vormittage eignen sich am besten für Badetouren, Nachmittage für Sunset-Fahrten.',
+        },
+      ],
+      closing:
+        'Wir bringen Besucher seit 1998 mit den richtigen Bootstouren auf Rhodos zusammen — ehrlich, ohne Buchungsgebühren und ohne Druck. Stöbern Sie in den ausgewählten Touren unten, <a href="/service/rhodes-boat-cruises">vergleichen Sie Ganztags-Bootskreuzfahrten</a> oder <a href="/contact">nennen Sie uns Ihre Daten</a> — wir empfehlen Ihnen die beste Option für Ihre Gruppe.',
+    },
   },
   'rhodes-boat-cruises': {
     introQuote:

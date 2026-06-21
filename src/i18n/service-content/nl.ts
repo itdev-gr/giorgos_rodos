@@ -37,6 +37,47 @@ export const nl: Record<string, ServicePageContent> = {
     ctaTitle: 'Twijfel je welke tour bij je groep past?',
     ctaText:
       'Vertel ons je data en met wie je reist - we adviseren de beste optie, eerlijk en zonder druk.',
+    routeGuide: {
+      title: 'Boottochten vanaf Rhodos: routes, bestemmingen en wat je kunt verwachten',
+      intro:
+        'Een boottocht is de makkelijkste manier om de mooiste zwembaaien, zeegrotten en naburige eilanden van Rhodos te bereiken, zonder auto te huren of een drukke busexcursie te boeken. De meeste begeleide tochten vertrekken vanuit de haven van Mandraki in Rhodos-stad en varen van het voorjaar tot oktober. Hieronder lees je hoe de belangrijkste routes zich verhouden, wat is inbegrepen en hoe je de boottocht kiest die bij jouw groep past.',
+      routes: [
+        {
+          heading: 'Wat is inbegrepen bij een boottocht op Rhodos',
+          body: 'De meeste begeleide boottochten op Rhodos zijn all-inclusive, wat de dag eenvoudig maakt. Een typische tocht omvat de heen- en terugreis, zwemstops in twee of drie baaien, snorkeluitrusting, frisdrank en water, en bij dagtochten een warme lunch of Grieks buffet aan boord. De prijzen van onze geselecteerde tochten beginnen meestal rond €75 per volwassene, met kindertarieven en gezinskortingen bij de meeste afvaarten. Wat je niet vindt, zijn verborgen kosten of verkoopdruk: we noemen de volledige prijs vooraf. Omdat we sinds 1998 in de haven van Mandraki werken, bieden we alleen tochten aan op goed onderhouden boten met ervaren, Engelssprekende bemanningen. Heb je een specifieke wens — schaduw aan dek, een rustigere boot, makkelijke toegang voor oudere gasten of een stabiele catamaran tegen zeeziekte — laat het ons weten en we koppelen je aan de juiste boot, niet zomaar de eerste die vrij is.',
+        },
+        {
+          heading: 'Boottochten naar het eiland Symi',
+          body: 'De dagtocht naar Symi is de populairste boottocht vanaf Rhodos. De boten vertrekken ’s ochtends uit Mandraki, steken in ongeveer 75–90 minuten over en geven je enkele uren in de pastelkleurige haven van Gialos, met een zwemstop onderweg. Symi staat bekend om zijn neoklassieke huizen, het Panormitis-klooster en het kristalheldere water, ideaal voor foto’s en een ontspannen lunch aan wal. Onze <a href="/tour-detail/all-inclusive-luxury-cruise-to-symi">all-inclusive luxecruise naar Symi</a> voegt eten en drinken aan boord toe, zodat je van de overtocht kunt genieten. Wil je een kleinere groep of eigen tijden, vraag dan naar een privétocht en we regelen een snellere speedboot voor maximaal zes gasten.',
+        },
+        {
+          heading: 'Boottochten naar Lindos',
+          body: 'Een boottocht naar Lindos combineert het middeleeuwse dorp en zijn Akropolis met zwemmen onder de kliffen bij St Paul’s Bay. Lindos vanaf zee benaderen is de mooiste manier om aan te komen, en veel gasten noemen het het hoogtepunt van hun reis. Onze <a href="/tour-detail/luxury-cruise-to-lindos-with-lunch-and-drinks">luxecruise naar Lindos met lunch en drankjes</a> omvat tijd in het dorp en zwemstops langs de oostkust op de heenweg. Neem comfortabele schoenen mee als je naar de Akropolis wilt lopen, en een hoed: het dorp heeft rond het middaguur weinig schaduw. Voor grotere groepen of speciale gelegenheden laat een privécruise naar Lindos je zelf bepalen hoe lang je blijft.',
+        },
+        {
+          heading: 'Zwemtochten langs de oostkust — Anthony Quinn Bay & Kallithea',
+          body: 'Niet elke boottocht vanaf Rhodos steekt over naar een ander eiland. Zwemtochten langs de oostkust blijven langs de beschutte kustlijn en stoppen bij Anthony Quinn Bay, de bronnen van Kallithea, Ladiko en de zeegrotten van Traganou: de klassieke snorkel- en zwemplekken in kalm, turquoise water. Deze tochten zijn ideaal voor eerste bezoekers en gezinnen die mooie baaien willen zonder open zee. Onze <a href="/tour-detail/semi-private-top-rated-swimming-trip-4-hours-all-inclusive">semi-private zwemtocht van 4 uur all-inclusive</a> houdt de groepen klein zodat de boot nooit vol is, terwijl de <a href="/tour-detail/yachting-4-hours-east-coast-cruise-with-greek-buffet">4 uur durende oostkust-jachtcruise met Grieks buffet</a> een ontspannen zeilgevoel en eten aan dek toevoegt. Beide vertrekken uit Rhodos-stad en keren in de vroege middag terug.',
+        },
+        {
+          heading: 'Zonsondergang-boottochten op Rhodos',
+          body: 'Boottochten bij zonsondergang zijn de meest romantische manier om een dag op Rhodos af te sluiten. Ze vertrekken in de late namiddag en varen door de kalme wateren in het westen en noorden terwijl het licht goudkleurig wordt, meestal met een zwemstop en drankjes aan boord. Onze <a href="/tour-detail/sunset-cruise-shared-or-private">zonsondergangcruise, gedeeld of privé</a>, past even goed bij koppels, vrienden en kleine groepen. Gedeelde afvaarten bieden de beste prijs-kwaliteitverhouding, terwijl een privécharter bij zonsondergang je het dek helemaal voor jezelf geeft, voor een aanzoek, jubileum of verjaardag. Neem een lichte laag mee: op het water koelt het af zodra de zon ondergaat.',
+        },
+        {
+          heading: 'Red Sand Beach BBQ-boottocht',
+          body: 'Voor iets anders vindt de <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">Red Sand Beach BBQ-tocht elke zondag</a> plaats en combineert een kustcruise met een barbecuelunch aan wal op een van de meest indrukwekkende stranden van het eiland. Het is een all-inclusive dagervaring rond zwemmen, eten en een ontspannen groepssfeer in plaats van een strak bezichtigingsprogramma. Omdat hij maar één keer per week vaart en in juli en augustus snel volzit, loont het om vroeg te boeken. Geef ons je data op tijd door en we houden een plek vrij als die beschikbaar is.',
+        },
+        {
+          heading: 'Gedeelde, semi-private of privé boottochten?',
+          body: 'Boottochten op Rhodos zijn er in drie varianten. Gedeelde tochten zijn het voordeligst: je sluit aan bij andere reizigers op een vaste route en tijd, ideaal als je een dag op pad wilt zonder zelf iets te regelen. Semi-private tochten beperken het aantal gasten zodat de boot comfortabel blijft en de bemanning tijd voor iedereen heeft. Volledig private tochten geven je de boot, route en tijden helemaal voor jezelf, perfect voor gezinnen, vriendengroepen en speciale gelegenheden. Wil je liever zelf varen, bekijk dan <a href="/service/rhodes-rent-a-boat">een boot huren op Rhodos</a> (geen vaarbewijs nodig voor kleinere motoren), of blader door georganiseerde <a href="/service/rhodes-boat-cruises">boottochten op Rhodos</a> voor grotere all-inclusive dagboten.',
+        },
+        {
+          heading: 'Waar boottochten op Rhodos vertrekken',
+          body: 'De meeste van onze boottochten op Rhodos vertrekken vanuit de haven van Mandraki in Rhodos-stad, op loopafstand van de oude stad en goed bereikbaar vanaf nabijgelegen resorts. Verblijf je verder naar het zuiden langs de oostkust, in Faliraki, Kolymbia of Lindos, laat dan je hotelregio weten bij je aanvraag en we wijzen je de dichtstbijzijnde logische afvaart, in plaats van je naar de andere kant van het eiland te sturen. Het seizoen loopt ongeveer van eind april tot oktober, met de kalmste zee en het warmste water van juni tot september. Ochtenden zijn het beste voor zwemtochten, middagen voor zonsondergangvaarten.',
+        },
+      ],
+      closing:
+        'We koppelen bezoekers sinds 1998 aan de juiste boottochten op Rhodos, eerlijk, zonder boekingskosten en zonder druk. Blader door de geselecteerde tochten hieronder, <a href="/service/rhodes-boat-cruises">vergelijk dagcruises</a> of <a href="/contact">geef ons je data door</a> en we stellen de beste optie voor je groep voor.',
+    },
   },
   'rhodes-boat-cruises': {
     introQuote:

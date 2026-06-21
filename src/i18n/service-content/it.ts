@@ -37,6 +37,47 @@ export const it: Record<string, ServicePageContent> = {
     ctaTitle: 'Non sai quale tour sia giusto per il tuo gruppo?',
     ctaText:
       'Indicaci le date e chi viaggia con te - ti suggeriamo l\'opzione migliore in modo trasparente, senza pressioni.',
+    routeGuide: {
+      title: 'Tour in barca a Rodi: itinerari, destinazioni e cosa aspettarti',
+      intro:
+        'Un tour in barca è il modo più semplice per raggiungere le baie più belle, le grotte marine e le isole vicine di Rodi, senza noleggiare un’auto né unirti a un’escursione in pullman affollata. La maggior parte dei tour guidati parte dal porto di Mandraki, a Rodi città, e opera dalla primavera a ottobre. Di seguito trovi come si confrontano gli itinerari principali, cosa è incluso e come scegliere il tour in barca più adatto al tuo gruppo.',
+      routes: [
+        {
+          heading: 'Cosa è incluso in un tour in barca a Rodi',
+          body: 'La maggior parte dei tour in barca guidati a Rodi è all inclusive, il che rende la giornata semplice. Un tour tipico comprende il viaggio di andata e ritorno, soste per il bagno in due o tre baie, attrezzatura per lo snorkeling, bibite analcoliche e acqua e, nelle crociere di un’intera giornata, un pranzo cucinato o un buffet greco a bordo. I prezzi dei nostri tour selezionati partono di solito da circa €75 a persona adulta, con tariffe per bambini e sconti famiglia sulla maggior parte delle partenze. Quello che non troverai sono costi nascosti o vendite sotto pressione: indichiamo il prezzo completo in anticipo. Poiché lavoriamo al porto di Mandraki dal 1998, proponiamo solo tour su barche ben tenute con equipaggi esperti e di lingua inglese. Se hai esigenze particolari — ombra a bordo, una barca più tranquilla, un accesso facile per ospiti più anziani o un catamarano stabile per chi soffre il mal di mare — diccelo e ti abbineremo alla barca giusta, non semplicemente alla prima disponibile.',
+        },
+        {
+          heading: 'Tour in barca verso l’isola di Symi',
+          body: 'L’escursione giornaliera a Symi è il tour in barca più popolare da Rodi. Le barche lasciano Mandraki al mattino, attraversano in circa 75–90 minuti e ti regalano diverse ore nel porto color pastello di Gialos, con una sosta per il bagno lungo il tragitto. Symi è famosa per le case neoclassiche, il monastero di Panormitis e l’acqua cristallina, perfetta per le foto e un pranzo rilassato a terra. La nostra <a href="/tour-detail/all-inclusive-luxury-cruise-to-symi">crociera di lusso all inclusive a Symi</a> aggiunge cibo e bevande a bordo così puoi goderti la traversata. Se preferisci un gruppo più piccolo o orari tuoi, chiedi un tour privato e organizzeremo un motoscafo più veloce per un massimo di sei ospiti.',
+        },
+        {
+          heading: 'Tour in barca a Lindos',
+          body: 'Un tour in barca a Lindos unisce il borgo medievale e la sua Acropoli al bagno sotto le scogliere della baia di St Paul. Avvicinarsi a Lindos dal mare è il modo più scenografico per arrivare e molti ospiti lo considerano il momento clou del viaggio. La nostra <a href="/tour-detail/luxury-cruise-to-lindos-with-lunch-and-drinks">crociera di lusso a Lindos con pranzo e bevande</a> include tempo nel borgo e soste per il bagno lungo la costa orientale all’andata. Porta scarpe comode se vuoi salire all’Acropoli e un cappello: il borgo ha poca ombra a mezzogiorno. Per gruppi numerosi o occasioni speciali, una crociera privata a Lindos ti lascia decidere quanto fermarti.',
+        },
+        {
+          heading: 'Tour balneari sulla costa orientale — Anthony Quinn Bay e Kallithea',
+          body: 'Non tutti i tour in barca da Rodi attraversano verso un’altra isola. I tour balneari della costa orientale restano lungo il litorale riparato, con soste ad Anthony Quinn Bay, alle sorgenti di Kallithea, a Ladiko e alle grotte marine di Traganou: i classici punti di snorkeling e bagno in acqua calma e turchese. Sono perfetti per chi visita per la prima volta e per le famiglie che vogliono baie bellissime senza una traversata in mare aperto. Il nostro <a href="/tour-detail/semi-private-top-rated-swimming-trip-4-hours-all-inclusive">tour balneare semi-privato di 4 ore all inclusive</a> mantiene i gruppi piccoli così la barca non è mai affollata, mentre la <a href="/tour-detail/yachting-4-hours-east-coast-cruise-with-greek-buffet">crociera in yacht di 4 ore sulla costa orientale con buffet greco</a> aggiunge un’atmosfera di vela rilassata e cibo a bordo. Entrambi partono da Rodi città e rientrano nel primo pomeriggio.',
+        },
+        {
+          heading: 'Tour in barca al tramonto a Rodi',
+          body: 'I tour in barca al tramonto sono il modo più romantico per concludere una giornata a Rodi. Partendo nel tardo pomeriggio, navigano le acque calme a ovest e a nord mentre la luce si fa dorata, di solito con una sosta per il bagno e bevande a bordo. La nostra <a href="/tour-detail/sunset-cruise-shared-or-private">crociera al tramonto, condivisa o privata</a>, è adatta a coppie, amici e piccoli gruppi. Le partenze condivise offrono il miglior rapporto qualità-prezzo, mentre un noleggio privato al tramonto ti lascia il ponte tutto per te, per una proposta, un anniversario o un compleanno. Porta una giacca leggera: sull’acqua rinfresca appena il sole scende sotto l’orizzonte.',
+        },
+        {
+          heading: 'Tour in barca BBQ a Red Sand Beach',
+          body: 'Per qualcosa di diverso, la <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">gita BBQ a Red Sand Beach ogni domenica</a> unisce una crociera costiera a un pranzo barbecue a terra in una delle spiagge più suggestive dell’isola. È un’esperienza all inclusive di un’intera giornata incentrata su bagni, cibo e atmosfera di gruppo rilassata, più che su un programma di visite serrato. Poiché si svolge solo una volta a settimana e si riempie in fretta a luglio e agosto, conviene prenotare in anticipo. Indicaci le tue date per tempo e ti terremo un posto, se disponibile.',
+        },
+        {
+          heading: 'Tour condivisi, semi-privati o privati?',
+          body: 'I tour in barca a Rodi sono in tre formati. I tour condivisi sono i più economici e ti uniscono ad altri viaggiatori su un itinerario e un orario fissi, ideali se vuoi una giornata fuori senza organizzare nulla. I tour semi-privati limitano il numero di ospiti così la barca resta comoda e l’equipaggio ha tempo per tutti. I tour completamente privati ti danno barca, itinerario e orari tutti per te, perfetti per famiglie, gruppi di amici e occasioni speciali. Se preferisci guidare tu, vedi <a href="/service/rhodes-rent-a-boat">noleggia una barca a Rodi</a> (nessuna patente per i motori più piccoli), oppure sfoglia le <a href="/service/rhodes-boat-cruises">crociere in barca a Rodi</a> organizzate per barche giornaliere all inclusive più grandi.',
+        },
+        {
+          heading: 'Da dove partono i tour in barca a Rodi',
+          body: 'La maggior parte dei nostri tour in barca a Rodi parte dal porto di Mandraki, a Rodi città, a pochi passi dalla città vecchia e facile da raggiungere dai resort vicini. Se alloggi più a sud lungo la costa orientale, a Faliraki, Kolymbia o Lindos, indicaci la zona del tuo hotel quando ci scrivi e ti indicheremo la partenza più sensata e vicina, invece di mandarti dall’altra parte dell’isola. La stagione va all’incirca da fine aprile a ottobre, con il mare più calmo e l’acqua più calda da giugno a settembre. Le mattine sono ideali per i tour balneari, i pomeriggi per le navigazioni al tramonto.',
+        },
+      ],
+      closing:
+        'Abbiniamo i visitatori ai tour in barca giusti a Rodi dal 1998, con onestà, senza costi di prenotazione e senza pressioni. Sfoglia i tour selezionati qui sotto, <a href="/service/rhodes-boat-cruises">confronta le crociere in barca di un’intera giornata</a> oppure <a href="/contact">indicaci le tue date</a> e ti suggeriremo l’opzione migliore per il tuo gruppo.',
+    },
   },
   'rhodes-boat-cruises': {
     introQuote:

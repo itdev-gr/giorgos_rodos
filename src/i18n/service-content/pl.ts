@@ -37,6 +37,47 @@ export const pl: Record<string, ServicePageContent> = {
     ctaTitle: 'Nie wiesz, który rejs pasuje do Twojej grupy?',
     ctaText:
       'Podaj terminy i skład grupy — uczciwie wskażemy najlepszą opcję, bez nacisku.',
+    routeGuide: {
+      title: 'Wycieczki łodzią po Rodos: trasy, cele i czego się spodziewać',
+      intro:
+        'Wycieczka łodzią to najłatwiejszy sposób, aby dotrzeć do najpiękniejszych zatok do kąpieli, grot morskich i sąsiednich wysp Rodos, bez wynajmu samochodu i bez tłocznej wycieczki autokarowej. Większość wycieczek z przewodnikiem wypływa z portu Mandraki w mieście Rodos i kursuje od wiosny do października. Poniżej wyjaśniamy, czym różnią się główne trasy, co jest wliczone i jak wybrać wycieczkę łodzią odpowiednią dla Twojej grupy.',
+      routes: [
+        {
+          heading: 'Co jest wliczone w wycieczkę łodzią po Rodos',
+          body: 'Większość wycieczek łodzią z przewodnikiem na Rodos jest w opcji all inclusive, co upraszcza cały dzień. Typowa wycieczka obejmuje rejs w obie strony, postoje na kąpiel w dwóch lub trzech zatokach, sprzęt do snorkelingu, napoje bezalkoholowe i wodę, a przy całodniowych rejsach gorący obiad lub grecki bufet na pokładzie. Ceny naszych wybranych wycieczek zaczynają się zwykle od około €75 za osobę dorosłą, ze zniżkami dla dzieci i rodzin na większości rejsów. Czego nie znajdziesz, to ukrytych opłat ani nacisku na sprzedaż: podajemy pełną cenę z góry. Ponieważ pracujemy w porcie Mandraki od 1998 roku, oferujemy tylko wycieczki na dobrze utrzymanych łodziach z doświadczoną, anglojęzyczną załogą. Jeśli masz szczególne potrzeby — cień na pokładzie, spokojniejszą łódź, łatwy dostęp dla starszych gości lub stabilny katamaran przy chorobie morskiej — daj nam znać, a dobierzemy odpowiednią łódź, a nie po prostu pierwszą wolną.',
+        },
+        {
+          heading: 'Wycieczki łodzią na wyspę Symi',
+          body: 'Całodniowa wycieczka na Symi to najpopularniejszy rejs łodzią z Rodos. Łodzie wypływają z Mandraki rano, pokonują trasę w około 75–90 minut i dają kilka godzin w pastelowym porcie Gialos, z postojem na kąpiel po drodze. Symi słynie z neoklasycystycznych domów, klasztoru Panormitis i krystalicznie czystej wody, idealnej do zdjęć i spokojnego obiadu na lądzie. Nasz <a href="/tour-detail/all-inclusive-luxury-cruise-to-symi">luksusowy rejs all inclusive na Symi</a> dodaje jedzenie i napoje na pokładzie, abyś mógł cieszyć się przeprawą. Jeśli wolisz mniejszą grupę lub własne godziny, zapytaj o rejs prywatny, a zorganizujemy szybszą motorówkę dla maksymalnie sześciu osób.',
+        },
+        {
+          heading: 'Wycieczki łodzią do Lindos',
+          body: 'Wycieczka łodzią do Lindos łączy średniowieczne miasteczko i jego Akropol z kąpielą u podnóża klifów w zatoce St Paul. Podpłynięcie do Lindos od strony morza to najbardziej malowniczy sposób przybycia, a wielu gości uznaje go za punkt kulminacyjny podróży. Nasz <a href="/tour-detail/luxury-cruise-to-lindos-with-lunch-and-drinks">luksusowy rejs do Lindos z obiadem i napojami</a> obejmuje czas w miasteczku oraz postoje na kąpiel wzdłuż wschodniego wybrzeża w drodze tam. Zabierz wygodne buty, jeśli planujesz wejść na Akropol, oraz kapelusz: w miasteczku w południe jest mało cienia. Dla większych grup lub wyjątkowych okazji prywatny rejs do Lindos pozwala samodzielnie zdecydować, jak długo zostać.',
+        },
+        {
+          heading: 'Wycieczki kąpielowe wzdłuż wschodniego wybrzeża — Anthony Quinn Bay i Kallithea',
+          body: 'Nie każda wycieczka łodzią z Rodos przeprawia się na inną wyspę. Wycieczki kąpielowe wzdłuż wschodniego wybrzeża trzymają się osłoniętej linii brzegowej, z postojami w Anthony Quinn Bay, u źródeł Kallithea, w Ladiko i przy grotach morskich Traganou: to klasyczne miejsca do snorkelingu i kąpieli w spokojnej, turkusowej wodzie. Są idealne dla osób odwiedzających po raz pierwszy i rodzin, które chcą pięknych zatok bez przeprawy przez otwarte morze. Nasza <a href="/tour-detail/semi-private-top-rated-swimming-trip-4-hours-all-inclusive">półprywatna 4-godzinna wycieczka kąpielowa all inclusive</a> utrzymuje małe grupy, dzięki czemu łódź nigdy nie jest zatłoczona, a <a href="/tour-detail/yachting-4-hours-east-coast-cruise-with-greek-buffet">4-godzinny rejs jachtem wzdłuż wschodniego wybrzeża z greckim bufetem</a> dodaje swobodny żeglarski klimat i jedzenie na pokładzie. Oba wypływają z miasta Rodos i wracają wczesnym popołudniem.',
+        },
+        {
+          heading: 'Rejsy łodzią o zachodzie słońca na Rodos',
+          body: 'Rejsy łodzią o zachodzie słońca to najbardziej romantyczny sposób na zakończenie dnia na Rodos. Wypływając późnym popołudniem, płyną po spokojnych wodach na zachodzie i północy, gdy światło staje się złote, zwykle z postojem na kąpiel i napojami na pokładzie. Nasz <a href="/tour-detail/sunset-cruise-shared-or-private">rejs o zachodzie słońca, wspólny lub prywatny</a>, sprawdza się równie dobrze dla par, przyjaciół i małych grup. Wspólne wypłynięcia oferują najlepszy stosunek jakości do ceny, a prywatny czarter o zachodzie słońca daje pokład tylko dla Ciebie, na oświadczyny, rocznicę lub urodziny. Zabierz lekką warstwę odzieży: na wodzie robi się chłodniej, gdy słońce zajdzie za horyzont.',
+        },
+        {
+          heading: 'Wycieczka łodzią z grillem na Red Sand Beach',
+          body: 'Dla czegoś innego <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">wycieczka z grillem na Red Sand Beach odbywa się w każdą niedzielę</a> i łączy przybrzeżny rejs z lunchem z grilla na lądzie na jednej z najbardziej zachwycających plaż wyspy. To całodniowe doświadczenie all inclusive skupione na kąpieli, jedzeniu i swobodnej atmosferze grupowej, a nie na napiętym programie zwiedzania. Ponieważ odbywa się tylko raz w tygodniu i szybko się zapełnia w lipcu i sierpniu, warto rezerwować z wyprzedzeniem. Podaj nam swoje terminy wcześnie, a zarezerwujemy miejsce, jeśli będzie dostępne.',
+        },
+        {
+          heading: 'Wspólne, półprywatne czy prywatne wycieczki łodzią?',
+          body: 'Wycieczki łodzią po Rodos są w trzech formatach. Wycieczki wspólne są najtańsze: dołączasz do innych podróżnych na ustalonej trasie i o ustalonej godzinie, idealne, gdy chcesz spędzić dzień bez organizowania czegokolwiek. Wycieczki półprywatne ograniczają liczbę gości, dzięki czemu łódź pozostaje komfortowa, a załoga ma czas dla każdego. W pełni prywatne wycieczki dają Ci łódź, trasę i godziny tylko dla siebie, idealne dla rodzin, grup przyjaciół i wyjątkowych okazji. Jeśli wolisz sterować samodzielnie, zobacz <a href="/service/rhodes-rent-a-boat">wynajem łodzi na Rodos</a> (bez patentu dla mniejszych silników) lub przejrzyj zorganizowane <a href="/service/rhodes-boat-cruises">rejsy łodzią po Rodos</a> dla większych całodniowych łodzi all inclusive.',
+        },
+        {
+          heading: 'Skąd wypływają wycieczki łodzią po Rodos',
+          body: 'Większość naszych wycieczek łodzią po Rodos wypływa z portu Mandraki w mieście Rodos, w odległości spaceru od starego miasta i z łatwym dojazdem z pobliskich kurortów. Jeśli mieszkasz dalej na południe wzdłuż wschodniego wybrzeża, w Faliraki, Kolymbii lub Lindos, podaj region swojego hotelu przy zapytaniu, a wskażemy najbliższe sensowne wypłynięcie, zamiast wysyłać Cię na drugi koniec wyspy. Sezon trwa mniej więcej od końca kwietnia do października, z najspokojniejszym morzem i najcieplejszą wodą od czerwca do września. Poranki są najlepsze na wycieczki kąpielowe, a popołudnia na rejsy o zachodzie słońca.',
+        },
+      ],
+      closing:
+        'Dopasowujemy odwiedzających do właściwych wycieczek łodzią po Rodos od 1998 roku, uczciwie, bez opłat rezerwacyjnych i bez nacisku. Przejrzyj wybrane wycieczki poniżej, <a href="/service/rhodes-boat-cruises">porównaj całodniowe rejsy</a> lub <a href="/contact">podaj nam swoje terminy</a>, a zaproponujemy najlepszą opcję dla Twojej grupy.',
+    },
   },
   'rhodes-boat-cruises': {
     introQuote:
