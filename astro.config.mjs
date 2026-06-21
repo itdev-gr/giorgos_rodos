@@ -27,6 +27,11 @@ export default defineConfig({
     vercelLocaleRoutes(),
   ],
   redirects: {
+    // Ukrainian locale removed (June 2026): forward any previously-indexed /uk
+    // URLs to the homepage so they don't 404. (The Vercel adapter does not
+    // substitute rest-param destinations, so we send all /uk/* to /.)
+    '/uk': { status: 301, destination: '/' },
+    '/uk/[...slug]': { status: 301, destination: '/' },
     '/tag/rhodes-day-cruise': { status: 301, destination: '/service/rhodes-boat-cruises' },
     '/tag/[...slug]': { status: 301, destination: '/blog' },
     '/why-daily-cruises-are-a-must-do-in-rhodes': { status: 301, destination: '/service/rhodes-boat-cruises' },

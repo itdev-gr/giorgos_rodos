@@ -253,33 +253,6 @@ const CONTACT_FORM: Record<Locale, ContactFormLabels> = {
       other: 'Coś innego',
     },
   },
-  uk: {
-    title: 'Напишіть нам',
-    firstName: "Ім'я *",
-    lastName: 'Прізвище *',
-    phone: 'Телефон',
-    email: 'Email *',
-    message: 'Повідомлення *',
-    submit: 'Надіслати',
-    eyebrow: 'Контакти',
-    sideTitle: 'Зв’язатися з нами',
-    officeAddress: 'Адреса офісу',
-    boatPickup: 'Місце посадки на човен',
-    boatPickupText: 'Порт Мандраки та марини Родосу',
-    callUs: 'Зателефонувати',
-    emailUs: 'Написати email',
-    homeInfoIntro:
-      'Вкажіть дати та розмір групи. Ми відповімо з чіткими порадами, чесними цінами та човнами, які знаємо особисто.',
-    subjectLabel: 'Мене цікавить',
-    subjectPlaceholder: 'Оберіть варіант',
-    subjects: {
-      charter: 'Приватний яхтенний чартер',
-      tour: 'Морська екскурсія / круїз',
-      rental: 'Оренда човна',
-      event: 'Особлива подія',
-      other: 'Інше',
-    },
-  },
 };
 
 const THINGS_SEARCH: Record<Locale, ThingsToDoSearchLabels> = {
@@ -346,14 +319,6 @@ const THINGS_SEARCH: Record<Locale, ThingsToDoSearchLabels> = {
     foundMany: 'Znaleziono {count} doświadczeń',
     emptyTitle: 'Nie znaleziono doświadczeń',
     emptyHint: 'Spróbuj innego wyszukiwania lub filtra.',
-  },
-  uk: {
-    placeholder: 'Пошук турів, човнів, вражень...',
-    all: 'Усі',
-    foundOne: 'Знайдено: {count}',
-    foundMany: 'Знайдено: {count}',
-    emptyTitle: 'Нічого не знайдено',
-    emptyHint: 'Спробуйте інший запит або фільтр.',
   },
 };
 

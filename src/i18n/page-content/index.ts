@@ -7,7 +7,6 @@ import { it } from './it';
 import { nl } from './nl';
 import { pl } from './pl';
 import { ru } from './ru';
-import { uk } from './uk';
 
 const PAGE_CONTENT_CATALOG: Record<Locale, PageContent> = {
   en,
@@ -18,7 +17,6 @@ const PAGE_CONTENT_CATALOG: Record<Locale, PageContent> = {
   he,
   nl,
   pl,
-  uk,
 };
 
 export function getPageContent(locale: Locale | string | undefined): PageContent {
