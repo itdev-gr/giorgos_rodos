@@ -10,7 +10,6 @@ export const LOCALES = [
   'he',
   'nl',
   'pl',
-  'uk',
 ] as const;
 
 export type Locale = (typeof LOCALES)[number];
@@ -26,7 +25,6 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   he: 'HE',
   nl: 'NL',
   pl: 'PL',
-  uk: 'UK',
 };
 
 /** Open Graph locale tags (language_TERRITORY). */
@@ -39,7 +37,6 @@ export const OG_LOCALE: Record<Locale, string> = {
   he: 'he_IL',
   nl: 'nl_NL',
   pl: 'pl_PL',
-  uk: 'uk_UA',
 };
 
 /** Schema.org inLanguage values. */
@@ -52,7 +49,6 @@ export const SCHEMA_LANGUAGE: Record<Locale, string> = {
   he: 'he-IL',
   nl: 'nl-NL',
   pl: 'pl-PL',
-  uk: 'uk-UA',
 };
 
 export const RTL_LOCALES: readonly Locale[] = ['he'];

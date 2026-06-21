@@ -9,7 +9,6 @@ import { it } from './it';
 import { nl } from './nl';
 import { pl } from './pl';
 import { ru } from './ru';
-import { uk } from './uk';
 
 export type ServiceContentCatalog = Record<string, ServicePageContent>;
 
@@ -22,7 +21,6 @@ const CATALOG: Record<Locale, ServiceContentCatalog> = {
   he,
   nl,
   pl,
-  uk,
 };
 
 function normalizeSlug(slug: string): string {

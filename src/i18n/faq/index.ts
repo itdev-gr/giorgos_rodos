@@ -6,7 +6,6 @@ import it from './it.json';
 import nl from './nl.json';
 import pl from './pl.json';
 import ru from './ru.json';
-import uk from './uk.json';
 import { DEFAULT_LOCALE, type Locale } from '../locales';
 import { localizeHtmlLinks } from '../localize-links';
 
@@ -25,7 +24,6 @@ const CATALOG: Record<Locale, FaqData> = {
   he: he as FaqData,
   nl: nl as FaqData,
   pl: pl as FaqData,
-  uk: uk as FaqData,
 };
 
 function resolveLocale(locale: Locale | string | undefined): Locale {

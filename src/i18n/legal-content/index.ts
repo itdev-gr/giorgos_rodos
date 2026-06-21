@@ -7,7 +7,6 @@ import { it } from './it';
 import { nl } from './nl';
 import { pl } from './pl';
 import { ru } from './ru';
-import { uk } from './uk';
 
 const LEGAL_CONTENT_CATALOG: Record<Locale, LegalPageContent> = {
   en,
@@ -18,7 +17,6 @@ const LEGAL_CONTENT_CATALOG: Record<Locale, LegalPageContent> = {
   he,
   nl,
   pl,
-  uk,
 };
 
 export function getLegalContent(locale: Locale | string | undefined): LegalPageContent {

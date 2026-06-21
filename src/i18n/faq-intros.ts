@@ -158,24 +158,6 @@ const INTROS: Record<Locale, Record<FaqIntroKey, IntroFactory>> = {
     thingsToDo: ({ faq }) =>
       `Szybkie odpowiedzi dla pierwszych gości. O rezerwacji, pogodzie i licencji zob. <a href="${faq}">pełne FAQ</a>.`,
   },
-  uk: {
-    boatTrips: ({ faq }) =>
-      `Поширені запитання про морські поїздки на Родосі — групові круїзи та приватні дні зі шкіпером. Для бронювання див. <a href="${faq}">повний FAQ</a>.`,
-    boatTours: ({ faq }) =>
-      `Поширені запитання про екскурсії на човні на Родосі. Про бронювання та погоду див. <a href="${faq}">повний FAQ</a>.`,
-    boatCruises: ({ faq }) =>
-      `Поширені запитання про денні круїзи з Родосу. Для бронювання див. <a href="${faq}">повний FAQ</a>.`,
-    catamaran: ({ faq }) =>
-      `Поширені запитання про денні та закатні круїзи на катамарані. Докладніше в <a href="${faq}">повному FAQ</a>.`,
-    sailing: ({ faq, charter }) =>
-      `Поширені запитання про денні вітрильні поїздки. Для тижневого чартеру див. <a href="${charter}">оренду яхти</a> або <a href="${faq}">повний FAQ</a>.`,
-    charter: ({ faq }) =>
-      `Поширені запитання від чартерних клієнтів, які прямують до Додеканес. Докладніше в <a href="${faq}">повному FAQ</a>.`,
-    rentABoat: ({ faq }) =>
-      `Поширені запитання про оренду човна без ліцензії. Для бронювання див. <a href="${faq}">повний FAQ</a>.`,
-    thingsToDo: ({ faq }) =>
-      `Швидкі відповіді для першого візиту. Про бронювання, погоду та ліцензію див. <a href="${faq}">повний FAQ</a>.`,
-  },
 };
 
 export function getFaqIntro(key: FaqIntroKey, locale: Locale | string | undefined): string {
@@ -197,7 +179,6 @@ export const FAQ_SECTION_TITLES: Record<Locale, Record<'thingsToDo', string>> = 
   he: { thingsToDo: 'איך לבחור את חוויית הסירה המתאימה ברודוס' },
   nl: { thingsToDo: 'De juiste bootervaring op Rhodos kiezen' },
   pl: { thingsToDo: 'Jak wybrać odpowiednie doświadczenie łodzią na Rodos' },
-  uk: { thingsToDo: 'Як обрати правильний морський досвід на Родосі' },
 };
 
 export function getFaqSectionTitle(
