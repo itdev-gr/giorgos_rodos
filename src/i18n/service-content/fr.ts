@@ -37,6 +37,47 @@ export const fr: Record<string, ServicePageContent> = {
     ctaTitle: 'Vous ne savez pas quelle excursion convient a votre groupe ?',
     ctaText:
       'Indiquez vos dates et les participants : nous vous recommanderons la meilleure option, en toute honnetete et sans pression.',
+    routeGuide: {
+      title: 'Excursions en bateau à Rhodes : itinéraires, destinations et à quoi s’attendre',
+      intro:
+        'Une excursion en bateau est le moyen le plus simple de rejoindre les plus belles criques de baignade, les grottes marines et les îles voisines de Rhodes, sans louer de voiture ni rejoindre une excursion en bus bondée. La plupart des excursions guidées partent du port de Mandraki, à Rhodes-ville, et opèrent du printemps à octobre. Voici comment se comparent les principaux itinéraires, ce qui est inclus et comment choisir l’excursion en bateau adaptée à votre groupe.',
+      routes: [
+        {
+          heading: 'Ce qui est inclus dans une excursion en bateau à Rhodes',
+          body: 'La plupart des excursions en bateau guidées à Rhodes sont tout compris, ce qui simplifie la journée. Une excursion type comprend l’aller-retour, des arrêts baignade dans deux ou trois criques, le matériel de snorkeling, des boissons sans alcool et de l’eau, et lors des croisières d’une journée un déjeuner cuisiné ou un buffet grec à bord. Les prix de nos excursions sélectionnées commencent en général autour de €75 par adulte, avec des tarifs enfants et des réductions familles sur la plupart des départs. Ce que vous ne trouverez pas, ce sont des frais cachés ou de la vente sous pression : nous annonçons le prix complet à l’avance. Comme nous travaillons au port de Mandraki depuis 1998, nous ne proposons que des excursions sur des bateaux bien entretenus avec des équipages expérimentés et anglophones. Si vous avez un besoin particulier — de l’ombre sur le pont, un bateau plus calme, un accès facile pour des invités plus âgés ou un catamaran stable contre le mal de mer — dites-le-nous et nous vous orienterons vers le bon bateau, pas simplement le premier disponible.',
+        },
+        {
+          heading: 'Excursions en bateau vers l’île de Symi',
+          body: 'L’excursion d’une journée à Symi est l’excursion en bateau la plus populaire au départ de Rhodes. Les bateaux quittent Mandraki le matin, traversent en environ 75 à 90 minutes et vous laissent plusieurs heures dans le port aux teintes pastel de Gialos, avec un arrêt baignade en chemin. Symi est réputée pour ses maisons néoclassiques, le monastère de Panormitis et son eau cristalline, idéale pour les photos et un déjeuner tranquille à terre. Notre <a href="/tour-detail/all-inclusive-luxury-cruise-to-symi">croisière de luxe tout compris à Symi</a> ajoute repas et boissons à bord pour profiter de la traversée. Si vous préférez un petit groupe ou vos propres horaires, demandez une sortie privée et nous organiserons un bateau rapide pour jusqu’à six personnes.',
+        },
+        {
+          heading: 'Excursions en bateau à Lindos',
+          body: 'Une excursion en bateau à Lindos associe le village médiéval et son Acropole à la baignade au pied des falaises de la baie de St Paul. Approcher Lindos par la mer est la plus belle façon d’arriver, et de nombreux clients en font le temps fort de leur séjour. Notre <a href="/tour-detail/luxury-cruise-to-lindos-with-lunch-and-drinks">croisière de luxe à Lindos avec déjeuner et boissons</a> inclut du temps au village et des arrêts baignade le long de la côte est à l’aller. Prévoyez de bonnes chaussures si vous comptez monter à l’Acropole, et un chapeau : le village offre peu d’ombre à midi. Pour les grands groupes ou les occasions spéciales, une croisière privée à Lindos vous laisse décider du temps passé sur place.',
+        },
+        {
+          heading: 'Sorties baignade sur la côte est — Anthony Quinn Bay et Kallithea',
+          body: 'Toutes les excursions en bateau de Rhodes ne traversent pas vers une autre île. Les sorties baignade de la côte est restent le long du littoral abrité, avec des arrêts à Anthony Quinn Bay, aux sources de Kallithea, à Ladiko et aux grottes marines de Traganou : les spots classiques de snorkeling et de baignade en eau calme et turquoise. Elles conviennent aux primo-visiteurs et aux familles qui veulent de jolies criques sans traversée en mer ouverte. Notre <a href="/tour-detail/semi-private-top-rated-swimming-trip-4-hours-all-inclusive">sortie baignade semi-privée de 4 heures tout compris</a> garde de petits groupes pour que le bateau ne soit jamais bondé, tandis que la <a href="/tour-detail/yachting-4-hours-east-coast-cruise-with-greek-buffet">croisière en yacht de 4 heures sur la côte est avec buffet grec</a> ajoute une ambiance voile détendue et des repas sur le pont. Les deux partent de Rhodes-ville et reviennent en début d’après-midi.',
+        },
+        {
+          heading: 'Excursions en bateau au coucher du soleil à Rhodes',
+          body: 'Les excursions en bateau au coucher du soleil sont la façon la plus romantique de terminer une journée à Rhodes. Partant en fin d’après-midi, elles naviguent dans les eaux calmes de l’ouest et du nord tandis que la lumière devient dorée, généralement avec un arrêt baignade et des boissons à bord. Notre <a href="/tour-detail/sunset-cruise-shared-or-private">croisière au coucher du soleil, partagée ou privée</a>, convient autant aux couples qu’aux amis et aux petits groupes. Les départs partagés offrent le meilleur rapport qualité-prix, tandis qu’une location privée au coucher du soleil vous laisse le pont rien que pour vous, pour une demande en mariage, un anniversaire de mariage ou un anniversaire. Prévoyez une couche légère : il fait plus frais sur l’eau une fois le soleil couché.',
+        },
+        {
+          heading: 'Excursion en bateau BBQ à Red Sand Beach',
+          body: 'Pour quelque chose de différent, la <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">sortie BBQ à Red Sand Beach a lieu chaque dimanche</a> et associe une croisière côtière à un déjeuner barbecue à terre sur l’une des plages les plus spectaculaires de l’île. C’est une expérience tout compris d’une journée centrée sur la baignade, la nourriture et une ambiance de groupe détendue plutôt que sur un programme de visites serré. Comme elle n’a lieu qu’une fois par semaine et se remplit vite en juillet et août, mieux vaut réserver à l’avance. Donnez-nous vos dates tôt et nous vous garderons une place si elle est disponible.',
+        },
+        {
+          heading: 'Excursions partagées, semi-privées ou privées ?',
+          body: 'Les excursions en bateau à Rhodes existent en trois formats. Les sorties partagées sont les plus abordables : vous rejoignez d’autres voyageurs sur un itinéraire et un horaire fixes, idéal pour une journée dehors sans rien organiser. Les sorties semi-privées limitent le nombre d’invités afin que le bateau reste confortable et que l’équipage ait du temps pour chacun. Les sorties entièrement privées vous donnent le bateau, l’itinéraire et les horaires rien que pour vous, parfait pour les familles, les groupes d’amis et les occasions spéciales. Si vous préférez piloter vous-même, voyez <a href="/service/rhodes-rent-a-boat">louer un bateau à Rhodes</a> (pas de permis pour les petits moteurs), ou parcourez les <a href="/service/rhodes-boat-cruises">croisières en bateau à Rhodes</a> organisées pour de plus grands bateaux de journée tout compris.',
+        },
+        {
+          heading: 'D’où partent les excursions en bateau à Rhodes',
+          body: 'La plupart de nos excursions en bateau à Rhodes partent du port de Mandraki, à Rhodes-ville, à quelques minutes à pied de la vieille ville et facile d’accès depuis les stations proches. Si vous logez plus au sud le long de la côte est, à Faliraki, Kolymbia ou Lindos, indiquez-nous votre secteur d’hôtel lors de votre demande et nous vous orienterons vers le départ le plus proche et le plus logique, plutôt que de vous envoyer à l’autre bout de l’île. La saison s’étend environ de fin avril à octobre, avec la mer la plus calme et l’eau la plus chaude de juin à septembre. Les matinées sont idéales pour les sorties baignade, les après-midis pour les navigations au coucher du soleil.',
+        },
+      ],
+      closing:
+        'Nous orientons les visiteurs vers les bonnes excursions en bateau à Rhodes depuis 1998, honnêtement, sans frais de réservation et sans pression. Parcourez les excursions sélectionnées ci-dessous, <a href="/service/rhodes-boat-cruises">comparez les croisières d’une journée</a> ou <a href="/contact">indiquez-nous vos dates</a> et nous vous suggérerons la meilleure option pour votre groupe.',
+    },
   },
   'rhodes-boat-cruises': {
     introQuote:
