@@ -1,5 +1,10 @@
 ---
 import MobileMenu from '../../components/interactive/MobileMenu';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { buildNavItems } from '../../i18n/nav-links';
+import { localizedPath } from '../../i18n/routing';
 
 interface Props {
   /**
@@ -13,6 +18,11 @@ interface Props {
 }
 
 const { transparent = true } = Astro.props;
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
+const navItems = buildNavItems(messages.nav, locale);
+const homeHref = localizedPath('/', locale);
+const contactHref = localizedPath('/contact', locale);
 ---
 
 <header class:list={['th-header header-layout1', transparent && 'header-transparent']} id="header-one">
@@ -23,54 +33,57 @@ const { transparent = true } = Astro.props;
           <!-- Logo -->
           <div class="col-auto">
             <div class="header-logo">
-              <a href="/">
-                <img src="/assets/img/brand/logos/logo-traced.svg" alt="Rhodes Rent a Boat" width="200" height="60" decoding="async" />
+              <a href={homeHref}>
+                <img src="/assets/img/brand/logos/logo-traced.svg" alt={messages.brand} width="200" height="60" decoding="async" />
               </a>
             </div>
           </div>
           <!-- Nav, centered on desktop -->
           <div class="col d-none d-lg-flex justify-content-center">
-            <nav class="main-menu">
+            <nav class="main-menu" aria-label="Main navigation">
               <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li><a href="/about">About Us</a></li>
-                <li class="menu-item-has-children">
-                  <a href="/service">Service</a>
-                  <ul class="sub-menu">
-                    <li><a href="/service/rhodes-boat-tours">Rhodes Boat Tours</a></li>
-                    <li><a href="/service/rhodes-boat-trips">Rhodes Boat Trips</a></li>
-                    <li><a href="/service/rhodes-boat-cruises">Rhodes Boat Cruises</a></li>
-                    <li><a href="/service/rhodes-catamaran-tours">Rhodes Catamaran Tours</a></li>
-                    <li><a href="/service/rhodes-sailing-trips">Rhodes Sailing Trips</a></li>
-                    <li><a href="/service/rhodes-charter">Rhodes Yacht Charter</a></li>
-                    <li><a href="/service/rhodes-mice-events">MICE & Incentive</a></li>
-                    <li><a href="/service/rhodes-tender-boat">Rhodes Tender Boat</a></li>
-                    <li><a href="https://www.rhodestransfer24.com/" target="_blank" rel="noopener noreferrer">Rhodes Transfers</a></li>
-                    <li><a href="https://rhodessidecartours.com/" target="_blank" rel="noopener noreferrer">Rhodes Sidecar Tours</a></li>
-                    <li><a href="https://siech-rentacar.com/" target="_blank" rel="noopener noreferrer">Rhodes Rent a Car</a></li>
-                  </ul>
-                </li>
-                <li><a href="/things-to-do">All Experiences</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/faq">FAQ</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+                {navItems.map((item) => (
+                  item.children ? (
+                    <li class="menu-item-has-children">
+                      <a href={item.href}>{item.label}</a>
+                      <ul class="sub-menu">
+                        {item.children.map((child) => (
+                          <li>
+                            <a
+                              href={child.href}
+                              target={child.external ? '_blank' : undefined}
+                              rel={child.external ? 'noopener noreferrer' : undefined}
+                            >
+                              {child.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ) : (
+                    <li>
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  )
+                ))}
               </ul>
             </nav>
           </div>
-          <!-- CTA + mobile toggle -->
+          <!-- CTA + language + mobile toggle -->
           <div class="col-auto ms-auto">
-            <div class="d-none d-lg-block">
-              <a href="/contact" class="luxury-cta">Book Now</a>
+            <div class="header-actions d-flex align-items-center">
+              <LanguageSwitcher />
+              <div class="d-none d-lg-block">
+                <a href={contactHref} class="luxury-cta">{messages.nav.bookNow}</a>
+              </div>
+              <button type="button" class="th-menu-toggle d-block d-lg-none" id="mobile-menu-trigger" aria-label={messages.nav.openMenu}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+              </button>
             </div>
-            <button type="button" class="th-menu-toggle d-block d-lg-none" id="mobile-menu-trigger" aria-label="Open menu">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </button>
           </div>
         </div>
       </div>
@@ -79,10 +92,14 @@ const { transparent = true } = Astro.props;
 </header>
 
 <div id="mobile-menu-container">
-  <MobileMenu client:idle />
+  <MobileMenu client:idle menuItems={navItems} />
 </div>
 
 <style>
+  .header-actions {
+    gap: 18px;
+  }
+
   /* ===== Luxury Navbar Base ===== */
   #header-one {
     position: relative;
@@ -176,7 +193,6 @@ const { transparent = true } = Astro.props;
     transition: color 0.3s ease;
   }
 
-  /* Underline hover, slides in from left */
   #header-one .main-menu > ul > li > a::before {
     content: '';
     position: absolute;
@@ -197,14 +213,12 @@ const { transparent = true } = Astro.props;
     color: var(--theme-color, #1CA8CB);
   }
 
-  /* Dropdown arrow, smaller, matches text color */
   #header-one .main-menu ul li.menu-item-has-children > a:after {
     font-size: 0.7em;
     margin-left: 5px;
     transition: color 0.3s ease;
   }
 
-  /* ===== Sub-menu / Dropdown Refinement ===== */
   #header-one .main-menu ul.sub-menu {
     display: none !important;
     visibility: hidden !important;
@@ -236,7 +250,6 @@ const { transparent = true } = Astro.props;
     text-transform: none;
   }
 
-  /* ===== CTA Button, Solid State ===== */
   .luxury-cta {
     display: inline-block;
     padding: 10px 24px;
@@ -258,7 +271,6 @@ const { transparent = true } = Astro.props;
     color: #fff;
   }
 
-  /* ===== Mobile Toggle, Luxury ===== */
   #header-one .th-menu-toggle {
     width: auto;
     height: auto;
@@ -291,7 +303,6 @@ const { transparent = true } = Astro.props;
     opacity: 0.75;
   }
 
-  /* ===== Full-screen mobile drawer ===== */
   :global(.th-menu-wrapper) {
     background-color: #fff;
   }
@@ -368,7 +379,6 @@ const { transparent = true } = Astro.props;
     color: var(--title-color, #113D48);
   }
 
-  /* ===== Responsive ===== */
   @media (max-width: 991px) {
     a[href^="tel:"] {
       display: inline-flex;
@@ -379,7 +389,6 @@ const { transparent = true } = Astro.props;
     }
   }
 
-  /* Tighten nav at small-desktop / landscape-tablet so 7 items + CTA fit */
   @media (min-width: 992px) and (max-width: 1199px) {
     #header-one .main-menu > ul > li > a {
       font-size: 11.5px;
@@ -398,8 +407,6 @@ const { transparent = true } = Astro.props;
 </style>
 
 <script>
-  // Block desktop dropdown hover until the user actually moves the mouse.
-  // Fixes refresh flash when the cursor is already over "Service".
   function enableNavHover() {
     document.documentElement.classList.add('nav-hover-ready');
   }
@@ -412,7 +419,6 @@ const { transparent = true } = Astro.props;
     document.documentElement.classList.remove('nav-hover-ready');
   });
 
-  // Sticky header, triggers at 80px for quick transition
   const stickyWrapper = document.getElementById('sticky-wrapper');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {

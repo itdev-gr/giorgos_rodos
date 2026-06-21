@@ -2,8 +2,15 @@
 interface Props {
   title: string;
   bgImage?: string;
+  homeHref?: string;
+  homeLabel?: string;
 }
-const { title, bgImage = '/assets/img/ui/backgrounds/breadcumb-bg.jpg' } = Astro.props;
+const {
+  title,
+  bgImage = '/assets/img/ui/backgrounds/breadcumb-bg.jpg',
+  homeHref = '/',
+  homeLabel = 'Home',
+} = Astro.props;
 ---
 
 <div
@@ -14,7 +21,7 @@ const { title, bgImage = '/assets/img/ui/backgrounds/breadcumb-bg.jpg' } = Astro
     <div class="breadcumb-content">
       <h1 class="breadcumb-title">{title}</h1>
       <ul class="breadcumb-menu">
-        <li><a href="/">Home</a></li>
+        <li><a href={homeHref}>{homeLabel}</a></li>
         <li>{title}</li>
       </ul>
     </div>

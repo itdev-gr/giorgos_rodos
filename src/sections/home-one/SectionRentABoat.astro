@@ -1,5 +1,13 @@
 ---
 import { imgUrl, imgSrcset } from '../../lib/media';
+import { resolveLocale } from '../../i18n/context';
+import { getPageContent } from '../../i18n/page-content';
+import { localizedPath } from '../../i18n/routing';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const rent = getPageContent(locale).home.rentABoat;
+const contactHref = localizedPath('/contact', locale);
+const thingsHref = localizedPath('/things-to-do', locale);
 
 const heroImage = '/assets/img/home/sections/rhodes-customers.png';
 const heroSrc = imgUrl(heroImage, 800, { quality: 80 }) || heroImage;
@@ -15,7 +23,7 @@ const heroSrcset = imgSrcset(heroImage, [480, 640, 800, 1000]) || '';
             src={heroSrc}
             srcset={heroSrcset || undefined}
             sizes="(max-width: 991px) 100vw, 42vw"
-            alt="Guests enjoying a speedboat cruise in Rhodes"
+            alt={rent.imageAlt}
             loading="lazy"
             width="800"
             height="1000"
@@ -27,17 +35,16 @@ const heroSrcset = imgSrcset(heroImage, [480, 640, 800, 1000]) || '';
 
       <div class="rab-content">
         <article class="rab-card" data-ani="fadein">
-          <h2 class="rab-subheading">What Our Guests Love About Us</h2>
+          <h2 class="rab-subheading">{rent.heading}</h2>
 
           <div class="rab-copy">
-            <p>Thousands of happy guests explore Rhodes from the sea each year. A morning swim in a hidden bay, a slow cruise along the east coast, lunch at a beach taverna: that is what a great boat day looks like here.</p>
-
-            <p>Whether you want a license-free boat for two or a skippered trip for the whole family, we help you pick the right option with honest advice and no sales pressure. Real boats, local knowledge, and guests who leave smiling. That is what we care about.</p>
+            <p>{rent.paragraphs[0]}</p>
+            <p>{rent.paragraphs[1]}</p>
           </div>
 
           <div class="rab-actions">
-            <a href="/contact" class="rab-btn rab-btn--primary">Book Now</a>
-            <a href="/things-to-do" class="rab-btn rab-btn--outline">Explore Rentals</a>
+            <a href={contactHref} class="rab-btn rab-btn--primary">{rent.ctaPrimary}</a>
+            <a href={thingsHref} class="rab-btn rab-btn--outline">{rent.ctaSecondary}</a>
           </div>
         </article>
       </div>

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import ExperienceCard from '../experience/ExperienceCard';
+import type { ThingsToDoSearchLabels } from '../../i18n/ui-labels';
 
 interface Tour {
   id: string;
@@ -18,19 +19,11 @@ interface Tour {
 
 interface TourSearchGridProps {
   tours: Tour[];
+  labels: ThingsToDoSearchLabels;
+  categoryLabels: Record<string, string>;
 }
 
-const servicePageLabels: Record<string, string> = {
-  'rhodes-boat-tours': 'Boat Tours',
-  'rhodes-boat-trips': 'Boat Trips',
-  'rhodes-boat-cruises': 'Boat Cruises',
-  'rhodes-catamaran-tours': 'Catamaran Tours',
-  'rhodes-sailing-trips': 'Sailing Trips',
-  'rhodes-charter': 'Yacht Charter',
-  'rhodes-rent-a-boat': 'Rent a Boat',
-};
-
-export default function TourSearchGrid({ tours }: TourSearchGridProps) {
+export default function TourSearchGrid({ tours, labels, categoryLabels }: TourSearchGridProps) {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
 
@@ -50,6 +43,11 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
     });
   }, [tours, search, filter]);
 
+  const resultsText =
+    filtered.length === 1
+      ? labels.foundOne.replace('{count}', String(filtered.length))
+      : labels.foundMany.replace('{count}', String(filtered.length));
+
   return (
     <div>
       <div style={{
@@ -63,7 +61,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
           }} />
           <input
             type="text"
-            placeholder="Search tours, boats, experiences..."
+            placeholder={labels.placeholder}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{
@@ -88,7 +86,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
               boxShadow: filter === 'all' ? 'none' : '0 1px 3px rgba(0,0,0,0.06)',
             }}
           >
-            All ({tours.length})
+            {labels.all} ({tours.length})
           </button>
           {categories.map(cat => {
             const count = tours.filter(t => t.service_page === cat).length;
@@ -105,7 +103,7 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
                   boxShadow: filter === cat ? 'none' : '0 1px 3px rgba(0,0,0,0.06)',
                 }}
               >
-                {servicePageLabels[cat] || cat} ({count})
+                {categoryLabels[cat] || cat} ({count})
               </button>
             );
           })}
@@ -113,8 +111,8 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
       </div>
 
       <p style={{ fontSize: '0.82rem', color: '#94a3b8', marginBottom: 20 }}>
-        {filtered.length} experience{filtered.length !== 1 ? 's' : ''} found
-        {search && ` for "${search}"`}
+        {resultsText}
+        {search && ` "${search}"`}
       </p>
 
       {filtered.length > 0 ? (
@@ -141,8 +139,8 @@ export default function TourSearchGrid({ tours }: TourSearchGridProps) {
       ) : (
         <div style={{ padding: 60, textAlign: 'center', color: '#94a3b8', background: '#fff', borderRadius: 12 }}>
           <i className="fas fa-search" style={{ fontSize: '2rem', marginBottom: 16, opacity: 0.2 }} />
-          <p style={{ fontSize: '1rem', marginBottom: 4 }}>No experiences found</p>
-          <p style={{ fontSize: '0.85rem' }}>Try a different search or filter.</p>
+          <p style={{ fontSize: '1rem', marginBottom: 4 }}>{labels.emptyTitle}</p>
+          <p style={{ fontSize: '0.85rem' }}>{labels.emptyHint}</p>
         </div>
       )}
 

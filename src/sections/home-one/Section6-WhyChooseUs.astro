@@ -1,12 +1,14 @@
 ---
-const items = [
-  { icon: 'fas fa-map-marked-alt', title: 'Local Knowledge', text: 'We live and work in Rhodes. We know every bay, every route, and every captain personally.' },
-  { icon: 'fas fa-ship', title: 'Handpicked Boats', text: 'Every boat we recommend has been personally vetted by our team for quality, safety, and comfort.' },
-  { icon: 'fas fa-shield-alt', title: 'Safety First', text: 'All vessels are fully licensed and insured, with experienced crews trained for all conditions.' },
-  { icon: 'fas fa-headset', title: 'Personal Support', text: 'Real people answer your questions, before, during, and after your trip. No chatbots, no call centres.' },
-  { icon: 'fas fa-handshake', title: 'Direct Arrangements', text: 'We personally arrange every experience with captains and operators we know, no anonymous listings or call-centre handoffs.' },
-  { icon: 'fas fa-lightbulb', title: 'Real Advice', text: 'We will tell you honestly which boat, route, or experience is right for your group and budget.' },
-];
+import { resolveLocale } from '../../i18n/context';
+import { getPageContent } from '../../i18n/page-content';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const home = getPageContent(locale).home;
+const items = home.whyItems.map((item, i) => ({
+  icon: ['fas fa-map-marked-alt', 'fas fa-ship', 'fas fa-shield-alt', 'fas fa-headset', 'fas fa-handshake', 'fas fa-lightbulb'][i],
+  title: item.title,
+  text: item.text,
+}));
 
 const itemsA = items.slice(0, 3);
 const itemsB = items.slice(3, 6);
@@ -26,7 +28,7 @@ const textStyle = "font-size: 0.9rem; line-height: 1.65; color: #56646b; margin-
 <section style="padding: 80px 0; background: #E9F6F9; overflow: hidden;">
   <div class="container">
     <div class="title-area text-center" style="margin-bottom: 50px;">
-      <h2 class="sec-title" data-ani="slideinup">Why Guests Trust Us</h2>
+      <h2 class="sec-title" data-ani="slideinup">{home.whyTitle}</h2>
     </div>
 
     <!-- Desktop / tablet grid (≥992px) -->

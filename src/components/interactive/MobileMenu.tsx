@@ -1,9 +1,29 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
-export default function MobileMenu() {
+export interface MobileNavLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+export interface MobileNavItem extends MobileNavLink {
+  id?: number;
+  children?: MobileNavLink[];
+}
+
+interface Props {
+  menuItems: MobileNavItem[];
+}
+
+export default function MobileMenu({ menuItems }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
   const menuRefs = useRef<Record<number, HTMLUListElement | null>>({});
+
+  const items = useMemo(
+    () => menuItems.map((item, index) => ({ ...item, id: item.id ?? index + 1 })),
+    [menuItems],
+  );
 
   const closeMenu = useCallback(() => {
     setActiveMenu(null);
@@ -69,32 +89,6 @@ export default function MobileMenu() {
     };
   }, [openMenu, closeMenu]);
 
-  const menuItems = [
-    { id: 1, label: 'Home', href: '/' },
-    { id: 2, label: 'About Us', href: '/about' },
-    {
-      id: 3,
-      label: 'Service',
-      children: [
-        { label: 'Rhodes Boat Tours', href: '/service/rhodes-boat-tours' },
-        { label: 'Rhodes Boat Trips', href: '/service/rhodes-boat-trips' },
-        { label: 'Rhodes Boat Cruises', href: '/service/rhodes-boat-cruises' },
-        { label: 'Rhodes Catamaran Tours', href: '/service/rhodes-catamaran-tours' },
-        { label: 'Rhodes Sailing Trips', href: '/service/rhodes-sailing-trips' },
-        { label: 'Rhodes Yacht Charter', href: '/service/rhodes-charter' },
-        { label: 'MICE & Incentive', href: '/service/rhodes-mice-events' },
-        { label: 'Rhodes Tender Boat', href: '/service/rhodes-tender-boat' },
-        { label: 'Rhodes Transfers', href: 'https://www.rhodestransfer24.com/', external: true },
-        { label: 'Rhodes Sidecar Tours', href: 'https://rhodessidecartours.com/', external: true },
-        { label: 'Rhodes Rent a Car', href: 'https://siech-rentacar.com/', external: true },
-      ],
-    },
-    { id: 4, label: 'All Experiences', href: '/things-to-do' },
-    { id: 5, label: 'Blog', href: '/blog' },
-    { id: 6, label: 'FAQ', href: '/faq' },
-    { id: 7, label: 'Contact Us', href: '/contact' },
-  ];
-
   return (
     <div
       className={`th-menu-wrapper onepage-nav${menuOpen ? ' th-body-visible' : ''}`}
@@ -113,17 +107,17 @@ export default function MobileMenu() {
 
         <nav className="th-mobile-menu" aria-label="Mobile navigation">
           <ul>
-            {menuItems.map((item, idx) =>
+            {items.map((item) =>
               item.children ? (
                 <li
                   key={item.id}
                   className={`menu-item-has-children th-item-has-children${activeMenu === item.id ? ' th-active' : ''}`}
                 >
-                  <a href="#" onClick={(e) => { e.preventDefault(); toggleMenu(item.id); }}>
+                  <a href="#" onClick={(e) => { e.preventDefault(); toggleMenu(item.id!); }}>
                     {item.label}
                   </a>
                   <ul
-                    ref={(el) => { menuRefs.current[item.id] = el; }}
+                    ref={(el) => { menuRefs.current[item.id!] = el; }}
                     className="th-submenu"
                     style={{ height: '0px', overflow: 'hidden', transition: 'height 0.3s ease-in-out' }}
                   >

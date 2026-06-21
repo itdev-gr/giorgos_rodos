@@ -2,17 +2,29 @@
 import { createAdminClient, createPublicClient } from '../../lib/supabase';
 import ExperienceCard from '../../components/ExperienceCard.astro';
 import { normalizeServiceHref } from '../../lib/internal-links';
+import { resolveLocale } from '../../i18n/context';
+import { getPageContent } from '../../i18n/page-content';
+import { localizedPath } from '../../i18n/routing';
 
-const fallbackCategories = [
-  { title: 'Rhodes Boat Tours', description: 'Guided sailing tours along the stunning Rhodes coastline and nearby islands.', image: '/assets/img/cruises/greco_sunset3.jpg', href: '/service/rhodes-boat-tours' },
-  { title: 'Rhodes Boat Trips', description: 'Private sailing yacht trips with experienced crews across the Dodecanese.', image: '/assets/img/locations/private-sailing.jpg', href: '/service/rhodes-boat-trips' },
-  { title: 'Rhodes Boat Cruises', description: 'All-inclusive day and sunset cruises with swimming, dining, and music.', image: '/assets/img/cruises/greco_home1.jpg', href: '/service/rhodes-boat-cruises' },
-  { title: 'Rhodes Rent a Boat', description: 'Drive your own boat along the coast, no licence needed, full freedom.', image: '/assets/img/locations/tsambika-beach.jpg', href: '/service/rhodes-rent-a-boat' },
-  { title: 'Rhodes Catamaran Cruises', description: 'Spacious catamarans for group cruises, events, and island-hopping adventures.', image: '/assets/img/fleet/lagoon-42-aenaos.webp', href: '/service/rhodes-catamaran-tours' },
-  { title: 'Rhodes Yacht Charter', description: 'Over 80 sailing yachts and catamarans. Bareboat or crewed, the Dodecanese is yours.', image: '/assets/img/fleet/oceanis-461-nailah.jpg', href: '/service/rhodes-charter' },
-  { title: 'Rhodes Tender Boat Services', description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.', image: '/assets/img/operations/tender/tender-service.jpg', href: '/service/rhodes-tender-boat' },
-  { title: 'Rhodes MICE & Incentive Events', description: 'Corporate events, incentive trips, and team-building experiences on the water.', image: '/assets/img/gallery/yacht/yacht-luxury-1.jpg', href: '/service/rhodes-mice-events' },
-];
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const home = getPageContent(locale).home;
+const cardBySlug = Object.fromEntries(home.categoryCards.map((c) => [c.slug, c]));
+
+const fallbackCategories = home.categoryCards.map((c) => ({
+  title: c.title,
+  description: c.description,
+  image: {
+    'rhodes-boat-tours': '/assets/img/cruises/greco_sunset3.jpg',
+    'rhodes-boat-trips': '/assets/img/locations/private-sailing.jpg',
+    'rhodes-boat-cruises': '/assets/img/cruises/greco_home1.jpg',
+    'rhodes-rent-a-boat': '/assets/img/locations/tsambika-beach.jpg',
+    'rhodes-catamaran-tours': '/assets/img/fleet/lagoon-42-aenaos.webp',
+    'rhodes-charter': '/assets/img/fleet/oceanis-461-nailah.jpg',
+    'rhodes-tender-boat': '/assets/img/operations/tender/tender-service.jpg',
+    'rhodes-mice-events': '/assets/img/gallery/yacht/yacht-luxury-1.jpg',
+  }[c.slug] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
+  href: localizedPath(`/service/${c.slug}`, locale),
+}));
 
 let categories = fallbackCategories;
 try {
@@ -26,10 +38,17 @@ try {
         if (Array.isArray(data) && data.length > 0) {
           categories = data
             .sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0))
-            .map((cat: any) => ({
-              ...cat,
-              href: normalizeServiceHref(cat.href),
-            }));
+            .map((cat: any) => {
+              const href = localizedPath(normalizeServiceHref(cat.href), locale);
+              const slug = cat.href?.replace(/^\/service\//, '').replace(/^\//, '');
+              const localized = slug && cardBySlug[slug];
+              return {
+                ...cat,
+                href,
+                title: localized?.title ?? cat.title,
+                description: localized?.description ?? cat.description,
+              };
+            });
         }
       }
     }
@@ -42,7 +61,7 @@ try {
 <section class="services-categories">
   <div class="container">
     <div class="title-area text-center services-categories__header">
-      <h2 class="sec-title services-categories__title" data-ani="slideinup">Our Services</h2>
+      <h2 class="sec-title services-categories__title" data-ani="slideinup">{home.categoriesTitle}</h2>
     </div>
     <div class="exp-grid exp-grid--4 services-categories__grid">
       {categories.map((cat, i) => (
@@ -100,10 +119,6 @@ try {
       margin-bottom: 36px;
     }
 
-    .services-categories__grid {
-      width: 100%;
-    }
-
     .services-categories__cell {
       width: 100%;
       min-width: 0;
@@ -117,6 +132,28 @@ try {
   @media (max-width: 575px) {
     .services-categories .container {
       padding-inline: 16px;
+    }
+  }
+</style>
+
+<style is:global>
+  .services-categories .services-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 40px;
+  }
+
+  @media (max-width: 1199px) {
+    .services-categories .services-categories__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .services-categories .services-categories__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
   }
 </style>

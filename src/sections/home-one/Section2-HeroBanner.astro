@@ -1,9 +1,16 @@
 ---
 import { DEFAULT_HERO_MP4 } from '../../lib/hero-video';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
 
 const heroPoster = '/assets/img/heroes/hero-poster-padded.jpg';
 const heroPosterMobile = '/assets/img/heroes/hero-poster-mobile.jpg';
 const mp4Src = DEFAULT_HERO_MP4;
+const contactHref = localizedPath('/contact', locale);
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
@@ -40,12 +47,11 @@ const mp4Src = DEFAULT_HERO_MP4;
     <div class="container">
       <div class="hero-style1">
         <div class="hero-content">
-          <h1 class="hero-heading">Rhodes Rent a Boat</h1>
+          <h1 class="hero-heading">{messages.home.hero.h1}</h1>
           <p class="hero-lead">
-            Explore the east coast at your own pace. License-free options for couples and families,
-            plus skippered boats when you prefer to sit back and enjoy the day.
+            {messages.home.hero.lead}
           </p>
-          <a href="/contact" class="hero-cta-btn">Book Now</a>
+          <a href={contactHref} class="hero-cta-btn">{messages.home.hero.cta}</a>
         </div>
       </div>
     </div>

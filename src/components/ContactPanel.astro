@@ -1,4 +1,6 @@
 ---
+import type { ContactFormLabels } from '../../i18n/ui-labels';
+
 interface Props {
   id?: string;
   class?: string;
@@ -6,15 +8,17 @@ interface Props {
   infoIntro?: string;
   showSubject?: boolean;
   formIdPrefix?: string;
+  labels: ContactFormLabels;
 }
 
 const {
   id,
   class: className,
-  formIntro = 'For any question or info about our services, please fill out the form below and we\'ll get back to you as soon as possible.',
-  infoIntro = 'Our team is available every day, by phone, WhatsApp, or email. We answer personally with clear advice, fair prices, and boats we know well.',
+  formIntro,
+  infoIntro,
   showSubject = false,
   formIdPrefix = 'cp',
+  labels,
 } = Astro.props;
 
 const phone = '+30 695 166 6454';
@@ -25,45 +29,52 @@ const address = 'Ionos Dragoumi 39, Rhodes (85100) Greece';
 const contactDetails = [
   {
     icon: 'fas fa-map-marker-alt',
-    title: 'Office Address',
+    title: labels.officeAddress,
     text: address,
     href: 'https://maps.app.goo.gl/2KSkGvEyWXBu83SVA',
     external: true,
   },
   {
     icon: 'fas fa-anchor',
-    title: 'Boat Pickup Location',
-    text: 'Mandraki Harbour & Rhodes marinas',
+    title: labels.boatPickup,
+    text: labels.boatPickupText,
     href: 'https://maps.app.goo.gl/2KSkGvEyWXBu83SVA',
     external: true,
   },
   {
     icon: 'fas fa-phone',
-    title: 'Call Us',
+    title: labels.callUs,
     text: phone,
     href: phoneHref,
   },
   {
     icon: 'fas fa-envelope',
-    title: 'Email Us',
+    title: labels.emailUs,
     text: email,
     href: `mailto:${email}`,
   },
 ];
 
+const subjectOptions = [
+  { value: labels.subjects.charter, label: labels.subjects.charter },
+  { value: labels.subjects.tour, label: labels.subjects.tour },
+  { value: labels.subjects.rental, label: labels.subjects.rental },
+  { value: labels.subjects.event, label: labels.subjects.event },
+  { value: labels.subjects.other, label: labels.subjects.other },
+];
 ---
 
 <section class:list={['home-cta-contact', className]} id={id}>
   <div class="container">
     <div class="home-cta-contact__grid">
       <div class="home-cta-contact__form-box">
-        <h3>Send us a message</h3>
+        <h3>{labels.title}</h3>
         {formIntro && <p class="home-cta-contact__form-intro">{formIntro}</p>}
 
         <form class="ajax-contact home-cta-contact__form">
           <div class="home-cta-contact__row home-cta-contact__row--2">
             <div class="home-cta-contact__field">
-              <label for={`${formIdPrefix}-first`}>First Name *</label>
+              <label for={`${formIdPrefix}-first`}>{labels.firstName}</label>
               <input
                 id={`${formIdPrefix}-first`}
                 type="text"
@@ -73,7 +84,7 @@ const contactDetails = [
               />
             </div>
             <div class="home-cta-contact__field">
-              <label for={`${formIdPrefix}-last`}>Last Name *</label>
+              <label for={`${formIdPrefix}-last`}>{labels.lastName}</label>
               <input
                 id={`${formIdPrefix}-last`}
                 type="text"
@@ -85,7 +96,7 @@ const contactDetails = [
           </div>
 
           <div class="home-cta-contact__field">
-            <label for={`${formIdPrefix}-phone`}>Phone Number</label>
+            <label for={`${formIdPrefix}-phone`}>{labels.phone}</label>
             <input
               id={`${formIdPrefix}-phone`}
               type="tel"
@@ -95,7 +106,7 @@ const contactDetails = [
           </div>
 
           <div class="home-cta-contact__field">
-            <label for={`${formIdPrefix}-email`}>Email *</label>
+            <label for={`${formIdPrefix}-email`}>{labels.email}</label>
             <input
               id={`${formIdPrefix}-email`}
               type="email"
@@ -107,20 +118,18 @@ const contactDetails = [
 
           {showSubject && (
             <div class="home-cta-contact__field">
-              <label for={`${formIdPrefix}-subject`}>I'm interested in</label>
+              <label for={`${formIdPrefix}-subject`}>{labels.subjectLabel}</label>
               <select id={`${formIdPrefix}-subject`} name="subject">
-                <option value="" disabled selected>Select an option</option>
-                <option value="Private Yacht Charter">Private Yacht Charter</option>
-                <option value="Boat Tour / Cruise">Boat Tour / Cruise</option>
-                <option value="Boat Rental">Boat Rental</option>
-                <option value="Special Event">Special Event</option>
-                <option value="Something Else">Something Else</option>
+                <option value="" disabled selected>{labels.subjectPlaceholder}</option>
+                {subjectOptions.map((opt) => (
+                  <option value={opt.value}>{opt.label}</option>
+                ))}
               </select>
             </div>
           )}
 
           <div class="home-cta-contact__field">
-            <label for={`${formIdPrefix}-message`}>Write a message *</label>
+            <label for={`${formIdPrefix}-message`}>{labels.message}</label>
             <textarea
               id={`${formIdPrefix}-message`}
               name="message"
@@ -129,15 +138,15 @@ const contactDetails = [
           </div>
 
           <button type="submit" class="home-cta-contact__submit">
-            Send Message
+            {labels.submit}
             <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
           </button>
         </form>
       </div>
 
       <div class="home-cta-contact__info">
-        <span class="home-cta-contact__eyebrow">Contact Us</span>
-        <h2>Get In Touch</h2>
+        <span class="home-cta-contact__eyebrow">{labels.eyebrow}</span>
+        <h2>{labels.sideTitle}</h2>
         <p>{infoIntro}</p>
 
         <ul class="home-cta-contact__details">

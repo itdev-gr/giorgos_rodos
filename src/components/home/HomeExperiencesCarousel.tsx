@@ -6,8 +6,19 @@ import { mapTourToExperience, sortExperiencesByPriceAsc, type ExperienceCardData
 import ExperienceCard from '../experience/ExperienceCard';
 import 'swiper/css';
 
+interface CarouselLabels {
+  title: string;
+  navigationLabel: string;
+  previousLabel: string;
+  nextLabel: string;
+  browseCta: string;
+  fullCatalogCta: string;
+  thingsToDoHref: string;
+}
+
 interface Props {
   initialTours: ExperienceCardData[];
+  labels: CarouselLabels;
 }
 
 async function fetchToursClient(): Promise<ExperienceCardData[]> {
@@ -22,7 +33,7 @@ async function fetchToursClient(): Promise<ExperienceCardData[]> {
   return sortExperiencesByPriceAsc(data.map(mapTourToExperience));
 }
 
-export default function HomeExperiencesCarousel({ initialTours }: Props) {
+export default function HomeExperiencesCarousel({ initialTours, labels }: Props) {
   const [tours, setTours] = useState<ExperienceCardData[]>(initialTours);
   const [loading, setLoading] = useState(initialTours.length === 0);
   const prevRef = useRef<HTMLButtonElement>(null);
@@ -53,15 +64,15 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
     <section className="home-exp" aria-labelledby="home-exp-title">
       <div className="container home-exp__head">
         <h2 id="home-exp-title" className="home-exp__title">
-          Rhodes Boat Experiences
+          {labels.title}
         </h2>
         {count > 0 && (
-          <div className="home-exp__nav" aria-label="Carousel navigation">
+          <div className="home-exp__nav" aria-label={labels.navigationLabel}>
             <button
               ref={prevRef}
               type="button"
               className="home-exp__nav-btn home-exp__nav-btn--prev"
-              aria-label="Previous experiences"
+              aria-label={labels.previousLabel}
             >
               <i className="fa-regular fa-arrow-left" aria-hidden="true" />
             </button>
@@ -69,7 +80,7 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
               ref={nextRef}
               type="button"
               className="home-exp__nav-btn home-exp__nav-btn--next"
-              aria-label="Next experiences"
+              aria-label={labels.nextLabel}
             >
               <i className="fa-regular fa-arrow-right" aria-hidden="true" />
             </button>
@@ -107,15 +118,15 @@ export default function HomeExperiencesCarousel({ initialTours }: Props) {
         </div>
       ) : !loading ? (
         <div className="container home-exp__empty">
-          <a href="/things-to-do" className="home-exp__cta">
-            Browse all boat experiences in Rhodes →
+          <a href={labels.thingsToDoHref} className="home-exp__cta">
+            {labels.browseCta}
           </a>
         </div>
       ) : null}
 
       <div className="container home-exp__foot">
-        <a href="/things-to-do" className="home-exp__cta">
-          View full catalog with filters →
+        <a href={labels.thingsToDoHref} className="home-exp__cta">
+          {labels.fullCatalogCta}
         </a>
       </div>
     </section>

@@ -14,14 +14,20 @@ import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro'
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
 import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
-import { boatToursFaq } from '../../lib/faq';
-import { getServiceSeo } from '../../lib/service-seo';
-import { getServiceContent } from '../../lib/service-content';
+import { getBoatToursFaq } from '../../i18n/faq-pages';
+import { getFaqIntro } from '../../i18n/faq-intros';
+import { getLocalizedServiceSeo } from '../../i18n/service-seo';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+import { getLocalizedServiceContent } from '../../i18n/service-content';
 import { fetchServiceTours } from '../../lib/service-tours';
 
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
 const SLUG = 'rhodes-boat-tours';
-const seo = getServiceSeo(SLUG)!;
-const content = getServiceContent(SLUG)!;
+const seo = getLocalizedServiceSeo(SLUG, locale)!;
+const content = getLocalizedServiceContent(SLUG, locale)!;
 
 const heroImage = await getMediaSlot('service.boat-tours.hero.image', '/assets/img/tours/hero-rhodes-coast.jpg');
 const tours = await fetchServiceTours(SLUG);
@@ -39,9 +45,9 @@ const tours = await fetchServiceTours(SLUG);
     offerCount="6"
   />
   <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Services', url: '/service' },
-    { name: seo.name, url: `/service/${SLUG}` },
+    { name: messages.breadcrumbs.home, url: localizedPath('/', locale) },
+    { name: messages.breadcrumbs.services, url: localizedPath('/service', locale) },
+    { name: seo.name, url: localizedPath(`/service/${SLUG}`, locale) },
   ]} />
   <Header transparent={false} />
 
@@ -76,8 +82,8 @@ const tours = await fetchServiceTours(SLUG);
   )}
 
   <FAQSection
-    items={boatToursFaq}
-    intro="Common questions about guided boat tours in Rhodes. For booking and weather see the <a href='/faq'>full FAQ</a>."
+    items={getBoatToursFaq(locale)}
+    intro={getFaqIntro('boatTours', locale)}
     background="white"
   />
 

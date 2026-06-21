@@ -1,5 +1,7 @@
 import posts from '../data/data-post.json';
 import services from '../data/data-service.json';
+import { LOCALES } from '../i18n/locales';
+import { localizedPath, isLocalizableRoute } from '../i18n/routing';
 import {
   assertAllServicePagesInSitemap,
   SERVICE_PAGE_SLUGS,
@@ -63,11 +65,27 @@ function absImageUrl(img: string): string {
 
 /** Collect all sitemap entries with attached image metadata. */
 export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
-  const entries: SitemapEntry[] = STATIC_PATHS.map((path) => ({
+  const baseEntries: SitemapEntry[] = STATIC_PATHS.map((path) => ({
     loc: `${SITE}${path}`,
     lastmod: STATIC_LASTMOD[path],
     images: STATIC_PAGE_IMAGES[path] ? [...STATIC_PAGE_IMAGES[path]] : [],
   }));
+
+  const entries: SitemapEntry[] = [...baseEntries];
+
+  for (const path of STATIC_PATHS) {
+    if (!isLocalizableRoute(path)) continue;
+
+    for (const locale of LOCALES) {
+      if (locale === 'en') continue;
+      const localized = localizedPath(path, locale);
+      entries.push({
+        loc: `${SITE}${localized}`,
+        lastmod: STATIC_LASTMOD[path],
+        images: STATIC_PAGE_IMAGES[path] ? [...STATIC_PAGE_IMAGES[path]] : [],
+      });
+    }
+  }
 
   const serviceMap = new Map(services.map((s: any) => [s.slug, s]));
   for (const entry of entries) {

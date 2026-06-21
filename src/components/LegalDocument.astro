@@ -1,0 +1,94 @@
+---
+import type { LegalDocumentContent } from '../i18n/legal-content';
+
+interface Props {
+  document: LegalDocumentContent;
+}
+
+const { document } = Astro.props;
+---
+
+<section class="legal-hero">
+  <div class="container">
+    <h1 class="legal-hero__title">{document.h1}</h1>
+    <p class="legal-hero__meta">{document.lastUpdated}</p>
+  </div>
+</section>
+
+<section class="legal-body">
+  <div class="container">
+    <div class="legal-content">
+      {
+        document.sections.map((section) => (
+          <>
+            <h2>{section.heading}</h2>
+            {section.paragraphs?.map((paragraph) => (
+              <p set:html={paragraph} />
+            ))}
+            {section.list && (
+              <ul>
+                {section.list.map((item) => (
+                  <li set:html={item} />
+                ))}
+              </ul>
+            )}
+            {section.trailingParagraphs?.map((paragraph) => (
+              <p set:html={paragraph} />
+            ))}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .legal-hero {
+    padding: 100px 0 50px;
+    background: #f8fafb;
+    border-bottom: 1px solid #e5eaee;
+  }
+  .legal-hero__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #113d48;
+    margin: 0 0 8px;
+  }
+  .legal-hero__meta {
+    font-size: 0.9rem;
+    color: #737887;
+    margin: 0;
+  }
+  .legal-body {
+    padding: 60px 0 80px;
+  }
+  .legal-content {
+    max-width: 800px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4a5568;
+  }
+  .legal-content h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #113d48;
+    margin: 40px 0 14px;
+  }
+  .legal-content p {
+    margin-bottom: 16px;
+  }
+  .legal-content ul {
+    padding-inline-start: 22px;
+    margin-bottom: 16px;
+  }
+  .legal-content li {
+    margin-bottom: 8px;
+  }
+  .legal-content a {
+    color: #1ca8cb;
+    text-decoration: underline;
+  }
+  .legal-content strong {
+    color: #113d48;
+  }
+</style>

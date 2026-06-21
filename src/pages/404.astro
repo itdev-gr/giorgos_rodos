@@ -3,11 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
+import { resolveLocale } from '../i18n/context';
+import { getMessages } from '../i18n';
+import { localizedPath } from '../i18n/routing';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
+const homeHref = localizedPath('/', locale);
 ---
 
-<BaseLayout title="404 - Page Not Found - Rhodes Rent a Boat" description="The page you are looking for could not be found. Browse our boat tours, rentals and yacht charters in Rhodes." noindex={true}>
+<BaseLayout
+  title={messages.meta.notFound.title}
+  description={messages.meta.notFound.description}
+  noindex={true}
+>
   <Header />
-  <Breadcrumb title="Error Page" />
+  <Breadcrumb title={messages.notFound.breadcrumb} homeHref={homeHref} homeLabel={messages.breadcrumbs.home} />
   <section class="space bg-smoke">
     <div class="container">
       <div class="row flex-row-reverse align-items-center">
@@ -18,17 +29,12 @@ import FooterFour from '../sections/shared/FooterFour.astro';
         </div>
         <div class="col-lg-6">
           <div class="error-content">
-            <h2 class="error-title">Oops! Page Not Found</h2>
-            <h4 class="error-subtitle">
-              This page seems to have slipped through a time portal
-            </h4>
-            <p class="error-text">
-              We apologize for any disruption to the space-time continuum. Feel
-              free to journey back to our homepage.
-            </p>
-            <a href="/" class="th-btn style3">
+            <h2 class="error-title">{messages.notFound.title}</h2>
+            <h4 class="error-subtitle">{messages.notFound.subtitle}</h4>
+            <p class="error-text">{messages.notFound.text}</p>
+            <a href={homeHref} class="th-btn style3">
               <img src="/assets/img/ui/icons/right-arrow2.svg" alt="" aria-hidden="true" />
-              Go Back Home
+              {messages.notFound.cta}
             </a>
           </div>
         </div>

@@ -1,0 +1,135 @@
+---
+import { LOCALES, LOCALE_LABELS } from '../i18n/locales';
+import { localizedPath, isLocalizableRoute } from '../i18n/routing';
+import { resolveLocale, logicalPath } from '../i18n/context';
+
+interface Props {
+  currentPath?: string;
+}
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const logical = logicalPath(Astro.url.pathname);
+const showAllLocales = isLocalizableRoute(logical);
+
+const switcherLinks = (showAllLocales ? LOCALES : ['en' as const]).map((code) => ({
+  code,
+  label: LOCALE_LABELS[code],
+  href: localizedPath(logical, code),
+  active: code === locale,
+}));
+---
+
+<div class="lang-switcher-wrap">
+  <details class="lang-switcher">
+    <summary class="lang-switcher__toggle" aria-label="Language">
+      <span class="lang-switcher__current">{LOCALE_LABELS[locale]}</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </summary>
+    <ul class="lang-switcher__menu" role="list">
+      {switcherLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            hreflang={link.code}
+            lang={link.code}
+            class:list={['lang-switcher__link', link.active && 'is-active']}
+            aria-current={link.active ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </details>
+</div>
+
+<style>
+  .lang-switcher-wrap {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .lang-switcher {
+    position: relative;
+  }
+
+  .lang-switcher__toggle {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: inherit;
+  }
+
+  .lang-switcher__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .lang-switcher__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 72px;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    z-index: 200;
+  }
+
+  .lang-switcher__link {
+    display: block;
+    padding: 10px 16px;
+    color: #0e2f38;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .lang-switcher__link:hover,
+  .lang-switcher__link.is-active {
+    background: rgba(28, 168, 203, 0.08);
+    color: #1ca8cb;
+  }
+
+  :global(#header-one.header-transparent .sticky-wrapper:not(.sticky)) .lang-switcher__toggle {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+  }
+
+  :global(#header-one .sticky-wrapper.sticky) .lang-switcher__toggle,
+  :global(#header-one:not(.header-transparent)) .lang-switcher__toggle {
+    border-color: rgba(14, 47, 56, 0.15);
+    background: rgba(14, 47, 56, 0.04);
+    color: #0e2f38;
+  }
+
+  @media (max-width: 991px) {
+    .lang-switcher-wrap {
+      margin-right: 8px;
+    }
+
+    .lang-switcher__toggle {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.lang-switcher[open]').forEach((el) => {
+      if (!el.contains(e.target as Node)) el.removeAttribute('open');
+    });
+  });
+</script>

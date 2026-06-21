@@ -1,0 +1,349 @@
+import type { ServicePageContent } from '../../lib/service-content';
+
+export const it: Record<string, ServicePageContent> = {
+  'rhodes-boat-tours': {
+    introQuote:
+      'Non tutte le escursioni in barca sono uguali. Barca, equipaggio e atmosfera fanno davvero la differenza.',
+    features: [
+      {
+        icon: 'fas fa-water',
+        title: 'Escursioni guidate',
+        text: 'Tour in piccoli gruppi con skipper professionista - isole, costa e uscite al tramonto, non grandi navi da crociera all-inclusive.',
+      },
+      {
+        icon: 'fas fa-check-circle',
+        title: 'Tour selezionati con cura',
+        text: 'Tra tutte le escursioni disponibili a Rodi, abbiamo scelto solo quelle con barche di qualita, equipaggi esperti e prezzi corretti.',
+      },
+      {
+        icon: 'fas fa-map-marked-alt',
+        title: 'Consulenza locale',
+        text: 'Dicci numero di partecipanti e date - ti consigliamo il formato e la rotta piu adatti al tuo gruppo.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Esperti locali dal 1998',
+      title: 'Tour guidati consigliati con trasparenza',
+      lead: 'Conosciamo skipper, imbarcazioni e rotte.',
+      paragraphs: [
+        'I tour in barca a Rodi vanno da piccoli gruppi in barca a vela a uscite sightseeing piu veloci lungo la costa est. Ti aiutiamo a capire bene le differenze prima di prenotare - dimensione del gruppo, durata, servizi inclusi e se per te sia meglio un tour condiviso o un\'uscita privata.',
+        'Ogni tour in questa pagina e proposto da operatori che conosciamo personalmente. Nessun elenco anonimo, nessun posizionamento a pagamento - solo consigli onesti da chi lavora ogni giorno in porto.',
+      ],
+      imageKey: 'hero',
+      reversed: false,
+    },
+    catalogTitle: 'Tour in barca disponibili',
+    catalogSubtitle: 'Esperienze guidate selezionate con partenza da Rodi',
+    ctaTitle: 'Non sai quale tour sia giusto per il tuo gruppo?',
+    ctaText:
+      'Indicaci le date e chi viaggia con te - ti suggeriamo l\'opzione migliore in modo trasparente, senza pressioni.',
+  },
+  'rhodes-boat-cruises': {
+    introQuote:
+      'Le crociere in barca sono uno dei modi migliori per esplorare la costa, visitare baie famose e vivere un\'intera giornata in mare.',
+    features: [
+      {
+        icon: 'fas fa-anchor',
+        title: 'Crociere giornaliere all-inclusive',
+        text: 'Barche piu grandi con rotte fisse verso Symi, Lindos o costa est - soste bagno, pranzo e bevande inclusi.',
+      },
+      {
+        icon: 'fas fa-map-signs',
+        title: 'Piu porti di partenza',
+        text: 'Le crociere partono da Mandraki Harbour, Faliraki, Kolymbia e Lindos in base a rotta e destinazione.',
+      },
+      {
+        icon: 'fas fa-map-marked-alt',
+        title: 'Consulenza locale',
+        text: 'Ti aiutiamo a scegliere la crociera giusta in base alla zona hotel, al numero del gruppo e al tempo che vuoi trascorrere in mare.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Symi · Lindos · costa est',
+      title: 'Crociere giornaliere organizzate da Rodi',
+      paragraphs: [
+        'Le crociere giornaliere sono il modo piu richiesto per vedere Symi, Lindos e le baie della costa est in un solo itinerario - con pranzo, bevande e piu soste bagno gia incluse.',
+        'Collaboriamo con operatori locali affidabili e ti guidiamo nella scelta in base al porto di partenza, al tipo di barca e al livello di privacy desiderato.',
+      ],
+      imageKey: 'hero',
+    },
+    catalogTitle: 'Crociere giornaliere disponibili',
+    catalogSubtitle: 'Symi, Lindos, Anthony Quinn Bay e rotte lungo la costa est',
+    ctaTitle: 'Hai bisogno di aiuto per scegliere la crociera?',
+    ctaText:
+      'Condividi la zona del tuo hotel e il numero di persone - ti indicheremo partenza e rotta piu adatte.',
+  },
+  'rhodes-catamaran-tours': {
+    introQuote:
+      'I catamarani sono spaziosi, stabili e confortevoli - il modo piu rilassante per trascorrere una giornata in mare.',
+    features: [
+      {
+        icon: 'fas fa-sun',
+        title: 'Crociere giornaliere in catamarano',
+        text: 'Tour di un giorno con soste bagno, pranzo, bevande e tempo sulle reti di prua. Disponibili opzioni condivise o private.',
+      },
+      {
+        icon: 'fas fa-moon',
+        title: 'Tour al tramonto in catamarano',
+        text: 'Uscite serali con bevande e cena leggera mentre cala il sole - perfette per coppie e occasioni speciali.',
+      },
+      {
+        icon: 'fas fa-users',
+        title: 'Stabilita ideale per famiglie',
+        text: 'I due scafi riducono il rollio con mare leggermente mosso - il formato preferito da molti ospiti per giornate tra bagni e pranzo a bordo.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Stabile · spazioso · all-inclusive',
+      title: 'Crociere in catamarano a Rodi',
+      paragraphs: [
+        'Le crociere giornaliere in catamarano lungo la costa est di Rodi uniscono comfort e servizi inclusi - pranzo, bevande, attrezzatura snorkeling e diverse soste bagno su una piattaforma ampia e stabile.',
+        'Selezioniamo operatori con catamarani ben mantenuti ed equipaggi professionali, aiutandoti a scegliere tra uscita condivisa, tour al tramonto e charter privato.',
+      ],
+      imageKey: 'hero',
+    },
+    catalogTitle: 'Tour e crociere in catamarano',
+    catalogSubtitle: 'Uscite condivise diurne ed esperienze private in catamarano',
+    ctaTitle: 'Vuoi un catamarano riservato solo al tuo gruppo?',
+    ctaText:
+      'Sono disponibili charter privati in catamarano - scrivici con date e numero di partecipanti.',
+  },
+  'rhodes-sailing-trips': {
+    introQuote:
+      'La vela non e questione di velocita - e il viaggio che conta. E il vento a decidere la rotta.',
+    features: [
+      {
+        icon: 'fas fa-wind',
+        title: 'Navigazione a vela',
+        text: 'Monoscafi a vela - piu lenti, silenziosi e autentici rispetto alle crociere a motore.',
+      },
+      {
+        icon: 'fas fa-users',
+        title: 'Condiviso o privato',
+        text: 'Puoi unirti a un piccolo gruppo oppure noleggiare lo yacht solo per il tuo gruppo. Per vacanze settimanali vedi yacht charter.',
+      },
+      {
+        icon: 'fas fa-map-marked-alt',
+        title: 'Rotte sulla costa est',
+        text: 'Uscite di mezza giornata o giornata intera lungo la costa di Rodi con skipper professionista a ogni partenza.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Mezza giornata & giornata intera',
+      title: 'Autentiche giornate a vela da Rodi',
+      paragraphs: [
+        'Le uscite in barca a vela a Rodi sono esperienze giornaliere con skipper su monoscafi - itinerari costieri di mezza giornata o di un giorno intero quando il vento lo consente.',
+        'Non serve esperienza di vela: lo skipper gestisce l\'imbarcazione mentre tu ti rilassi tra bagni e sole. Se hai patente nautica e vuoi condurre in autonomia, organizziamo anche bareboat charter separatamente.',
+      ],
+      imageKey: 'hero',
+      reversed: true,
+    },
+    catalogTitle: 'Uscite in barca a vela disponibili',
+    catalogSubtitle: 'Escursioni giornaliere condivise e private con skipper professionisti',
+    ctaTitle: 'Ti incuriosisce la vela ma hai dei dubbi?',
+    ctaText:
+      'Raccontaci il tuo gruppo e il livello di comfort - ti consigliamo il formato vela piu adatto con massima trasparenza.',
+  },
+  'rhodes-boat-trips': {
+    introQuote:
+      'Un\'escursione privata in barca e uno dei modi piu personali per vivere Rodi - rotta, ritmo e tempi solo per il tuo gruppo.',
+    features: [
+      {
+        icon: 'fas fa-ship',
+        title: 'La tua barca privata',
+        text: 'Barca con skipper riservata al tuo gruppo - uscite flessibili da 2 a 8 ore, non tour condivisi o grandi navi da crociera.',
+      },
+      {
+        icon: 'fas fa-check-circle',
+        title: 'Imbarcazioni selezionate',
+        text: 'Motoscafi, RIB e piccoli catamarani da operatori che conosciamo personalmente - barche di qualita e skipper esperti.',
+      },
+      {
+        icon: 'fas fa-map-marked-alt',
+        title: 'Rotte flessibili',
+        text: 'Anthony Quinn Bay, Lindos, costa sud o soste bagno sulla costa est - scegli insieme allo skipper il giorno stesso.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Privato · con skipper · flessibile',
+      title: 'Escursioni private in barca per il tuo gruppo',
+      paragraphs: [
+        'Le escursioni private in barca a Rodi significano skipper dedicato, durata a scelta e rotta costruita sul tuo gruppo - coppie, famiglie e amici che vogliono la barca tutta per loro.',
+        'I prezzi partono in genere da circa €350 per mezza giornata. Comunicaci date e preferenze e ti metteremo in contatto con l\'imbarcazione e l\'equipaggio giusti.',
+      ],
+      imageKey: 'hero',
+    },
+    catalogTitle: 'Escursioni private in barca',
+    catalogSubtitle: 'Esperienze con skipper riservate al tuo gruppo',
+    routeGuide: {
+      title: 'Rotte piu richieste per escursioni in barca a Rodi',
+      intro:
+        'Le escursioni in barca a Rodi coprono tutto: da crociere condivise convenienti a charter privati in motoscafo. I visitatori chiedono soprattutto Symi, Lindos e le baie balneabili della costa est - ecco come confrontare le principali rotte e quando scegliere opzioni condivise o private.',
+      routes: [
+        {
+          heading: 'Escursione in barca da Rodi a Symi',
+          body: 'La giornata a Symi e la rotta in barca piu prenotata da Rodi. Le crociere condivise partono da Mandraki intorno alle 09:00, attraversano in circa 75-90 minuti e lasciano 4-5 ore nel porto pastello di Gialos prima del rientro verso le 18:00. Prezzi indicativi: €45-€70 a persona su barche giornaliere organizzate con sosta bagno durante la navigazione. Le uscite private in motoscafo verso Symi sono ideali per gruppi che vogliono traversata piu veloce, visita al Monastero di Panormitis o orari flessibili - tipicamente €1.000-€1.300 per barca fino a sei ospiti. Consulta le <a href="/service/rhodes-boat-cruises">crociere giornaliere per Symi</a> per partenze condivise oppure le opzioni private nel catalogo qui sotto.',
+        },
+        {
+          heading: 'Escursione in barca da Rodi a Lindos',
+          body: "Le escursioni in barca verso Lindos combinano bagno a St Paul's Bay con tempo libero nel villaggio sotto l'Acropoli. Le crociere condivise da Rodi Citta o Kolymbia costano spesso tra €39 e €100 a persona in base a durata e pranzo incluso. Le tratte express puntano su Lindos a terra; le crociere complete aggiungono soste bagno ad Anthony Quinn Bay o Kalithea Springs al ritorno. Le uscite private in motoscafo per Lindos partono da circa €460 per mezza giornata e da €700+ per una giornata intera con pranzo a bordo - perfette se vuoi decidere liberamente quanto restare nel villaggio. Scopri le <a href=\"/service/rhodes-boat-cruises\">crociere per Lindos e costa est</a> o richiedi una giornata privata a Lindos.",
+        },
+        {
+          heading: 'Uscite bagno costa est (Anthony Quinn, Kalithea, Ladiko)',
+          body: 'Non tutte le escursioni in barca da Rodi prevedono il passaggio verso un\'altra isola. Le rotte di mezza o intera giornata lungo la costa est restano in tratti riparati - Anthony Quinn Bay, Kalithea Springs, Ladiko e Traganou Caves sono le soste classiche per bagno e snorkeling. Le crociere condivise all-inclusive costano €45-€75 a persona con pranzo e bevande a bordo. Le uscite private di mezza giornata da €350 consentono al tuo gruppo di visitare due o tre baie al proprio ritmo, senza orari rigidi. Sono itinerari ideali per chi visita Rodi per la prima volta e desidera acque turchesi senza traversate in mare aperto.',
+        },
+        {
+          heading: 'Escursioni in barca da Kolymbia e Faliraki',
+          body: "Se soggiorni sulla costa est, partire da Kolymbia o Faliraki riduce i tempi di trasferimento verso Symi, Lindos e le baie locali. I motoscafi express per Symi da Kolymbia partono spesso piu tardi rispetto ai servizi da Mandraki e includono una sosta bagno a St George's Bay. I sea shuttle da Faliraki collegano la zona resort al porto di Rodi Citta per chi preferisce non guidare. Quando ci contatti, indica la zona hotel - ti proponiamo la partenza piu logica e vicina, evitando spostamenti inutili attraverso l'isola.",
+        },
+      ],
+      closing:
+        'Le crociere condivise diurne offrono il miglior valore per persona; le uscite private con skipper ti danno pieno controllo su barca, rotta e orari. Dal 1998 selezioniamo entrambe le soluzioni - <a href="/service/rhodes-boat-cruises">confronta le crociere condivise a Rodi</a>, scopri qui sotto le opzioni private oppure <a href="/contact">contattaci</a> per capire quale formato si adatta meglio alle tue date e al tuo gruppo.',
+    },
+    ctaTitle: 'Stai pianificando una giornata privata in mare?',
+    ctaText:
+      'Inviaci date, numero di partecipanti e idee - ti proporremo le migliori opzioni disponibili.',
+  },
+  'rhodes-rent-a-boat': {
+    introQuote:
+      'Guida la tua barca lungo la costa di Rodi - per imbarcazioni fino a 30 HP non e richiesta patente nautica.',
+    features: [
+      {
+        icon: 'fas fa-id-card',
+        title: 'Nessuna patente richiesta',
+        text: 'La normativa greca consente a chi ha piu di 18 anni di condurre imbarcazioni da diporto fino a 30 HP senza patente nautica formale.',
+      },
+      {
+        icon: 'fas fa-map',
+        title: 'Liberta lungo costa',
+        text: 'Esplora le baie della costa est al tuo ritmo - Anthony Quinn, Ladiko, Kalithea e zone riparate all\'interno dell\'area consentita.',
+      },
+      {
+        icon: 'fas fa-check-circle',
+        title: 'Operatori selezionati',
+        text: 'Collaboriamo con basi noleggio affidabili che conosciamo personalmente - briefing, carburante, mappa e dotazioni di sicurezza inclusi.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Self-drive · costa est',
+      title: 'Noleggio barche senza patente a Rodi',
+      paragraphs: [
+        'Noleggiare una barca in autonomia e il modo piu indipendente per vedere Rodi dal mare - fermati quando vuoi, fai il bagno dove preferisci e rientra quando sei pronto.',
+        'Prima della partenza riceverai briefing di sicurezza e carta nautica con area di navigazione consentita. Ti aiutiamo a scegliere la misura della barca e la durata migliore per il tuo gruppo.',
+      ],
+      imageKey: 'hero',
+    },
+    catalogTitle: 'Barche a noleggio disponibili',
+    catalogSubtitle: 'Barche self-drive senza patente lungo la costa di Rodi',
+    ctaTitle: 'Non sai quale noleggio sia adatto al tuo gruppo?',
+    ctaText:
+      'Dicci date e numero di persone - ti consigliamo barca e base di partenza piu adatte.',
+  },
+  'rhodes-charter': {
+    introQuote:
+      'Lo yacht charter e una vacanza in mare di livello diverso - navigazione di piu giorni, island hopping e liberta nell\'Egeo aperto.',
+    features: [
+      {
+        icon: 'fas fa-compass',
+        title: 'Bareboat charter',
+        text: 'Yacht a vela senza skipper - per velisti esperti con patente valida che vogliono pianificare in autonomia la rotta nel Dodecaneso.',
+      },
+      {
+        icon: 'fas fa-user-shield',
+        title: 'Charter con skipper',
+        text: 'Skipper professionista a bordo - non serve esperienza di vela, gestione di navigazione e ancoraggi inclusa.',
+      },
+      {
+        icon: 'fas fa-map-marked-alt',
+        title: 'Consulenza locale',
+        text: 'Ti mettiamo in contatto con il charter company e la classe di yacht piu adatti a equipaggio, date e itinerario.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Settimanale · Dodecaneso',
+      title: 'Yacht charter da Rhodes Marina',
+      paragraphs: [
+        'Un charter settimanale da Rodi apre le rotte del Dodecaneso - Symi, Halki, Kos, Nisyros e rade tranquille raggiungibili al meglio in barca a vela.',
+        'Scegli bareboat se possiedi una patente riconosciuta, oppure skipperato se preferisci una conduzione professionale. Ti consigliamo su stagione, tipologia yacht e rotta realistica per il tuo equipaggio.',
+      ],
+      imageKey: 'hero',
+      reversed: true,
+    },
+    catalogTitle: 'Yacht charter e opzioni disponibili',
+    catalogSubtitle: 'Vacanze settimanali a vela bareboat o con skipper',
+    ctaTitle: 'Stai organizzando una vacanza a vela nel Dodecaneso?',
+    ctaText:
+      'Indicaci date, livello di esperienza e gruppo - ti abbiniamo al partner charter giusto.',
+  },
+  'rhodes-mice-events': {
+    introQuote:
+      'Rodi unisce costa, storia, resort e marine - tutto cio che serve per programmi corporate e incentive completi.',
+    features: [
+      {
+        icon: 'fas fa-building',
+        title: 'Eventi corporate',
+        text: 'Viaggi incentive, team building, conferenze, lanci prodotto e celebrazioni VIP a Rodi.',
+      },
+      {
+        icon: 'fas fa-ship',
+        title: 'Esperienze in barca',
+        text: 'Fleet day, crociere in catamarano, yacht charter e uscite a vela organizzate per gruppi di qualsiasi dimensione.',
+      },
+      {
+        icon: 'fas fa-handshake',
+        title: 'Rete locale affidabile',
+        text: 'Mettiamo in contatto i planner con barche, venue, transfer e fornitori selezionati in tutta l\'isola.',
+      },
+    ],
+    panel: {
+      eyebrow: 'MICE · Incentive · Corporate',
+      title: 'Eventi e incentive sul mare',
+      paragraphs: [
+        'Rodi e una destinazione MICE naturale: resort, marine, centro storico medievale e un\'ampia gamma di esperienze marine facilmente accessibili.',
+        'Da regate fleet e giornate in catamarano a cene VIP su yacht e programmi combinati terra-mare - coordiniamo ogni fase con la nostra rete locale per garantire fluidita operativa.',
+      ],
+      imageKey: 'hero',
+    },
+    catalogTitle: 'Format MICE ed eventi disponibili',
+    catalogSubtitle: 'Programmi corporate e incentive sul mare a Rodi',
+    ctaTitle: 'Stai pianificando un evento corporate a Rodi?',
+    ctaText:
+      'Condividi dimensione gruppo, date e obiettivi - ti proponiamo opzioni realistiche sul mare.',
+  },
+  'rhodes-tender-boat': {
+    introQuote:
+      'Transfer professionali shore-to-ship nei porti e nelle baie di Rodi - affidabili, puntuali e operativi h24 in stagione.',
+    features: [
+      {
+        icon: 'fas fa-bolt',
+        title: 'Risposta rapida',
+        text: 'Transfer on-demand con tempi di intervento medi inferiori a 15 minuti nelle principali zone portuali.',
+      },
+      {
+        icon: 'fas fa-shield-alt',
+        title: 'Sicuri e autorizzati',
+        text: 'Tender ben mantenuti con operatori professionali formati per operare in tutte le condizioni.',
+      },
+      {
+        icon: 'fas fa-calendar-check',
+        title: 'Programmabili o su chiamata',
+        text: 'Organizza transfer ricorrenti in anticipo oppure richiedi invio immediato quando necessario.',
+      },
+    ],
+    panel: {
+      eyebrow: 'Marine transfers',
+      title: 'Servizio tender boat a Rodi',
+      paragraphs: [
+        'I tender colmano la distanza tra costa e nave - per passeggeri crociere, ospiti superyacht, transfer marina e tratte porto-yacht in tutta Rodi.',
+        'Collaboriamo con operatori locali autorizzati che conoscono ogni molo, ogni vincolo operativo e ogni condizione meteo a Mandraki, Rhodes Marina e negli ancoraggi della costa est.',
+      ],
+      imageKey: 'hero',
+      reversed: true,
+    },
+    catalogTitle: 'Servizi tender disponibili',
+    catalogSubtitle: 'Transfer shore-to-ship a Mandraki, Rhodes Marina e nelle baie della costa est',
+    ctaTitle: 'Ti serve un transfer tender a Rodi?',
+    ctaText:
+      'Indicaci porto, orario e numero passeggeri - ti metteremo in contatto con l\'operatore piu adatto.',
+  },
+};

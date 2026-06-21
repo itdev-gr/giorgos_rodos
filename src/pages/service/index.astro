@@ -6,8 +6,15 @@ import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSchema from '../../components/seo/FAQSchema.astro';
 import services from '../../data/data-service.json';
 import { SITE_URL } from '../../lib/seo';
-import { serviceHubFaq as faqItems } from '../../lib/faq';
-import { SERVICE_HUB, serviceCardAbsoluteUrl } from '../../lib/service-seo';
+import { getServiceHubFaq } from '../../i18n/faq-pages';
+import { serviceCardAbsoluteUrl } from '../../lib/service-seo';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
+const hub = messages.meta.serviceHub;
 
 const itemListJsonLd = {
   '@context': 'https://schema.org',
@@ -24,21 +31,21 @@ const itemListJsonLd = {
 ---
 
 <BaseLayout
-  title={SERVICE_HUB.metaTitle}
-  description={SERVICE_HUB.metaDescription}
+  title={hub.title}
+  description={hub.description}
 >
   <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Services', url: '/service' },
+    { name: messages.breadcrumbs.home, url: localizedPath('/', locale) },
+    { name: messages.breadcrumbs.services, url: localizedPath('/service', locale) },
   ]} />
   <script type="application/ld+json" set:html={JSON.stringify(itemListJsonLd)} is:inline />
-  <FAQSchema items={faqItems} />
+  <FAQSchema items={getServiceHubFaq(locale)} />
   <Header />
 
   <section class="svc-hero">
     <div class="container">
       <div class="svc-hero__content text-center">
-        <h1 class="svc-hero__title">{SERVICE_HUB.h1}</h1>
+        <h1 class="svc-hero__title">{hub.h1}</h1>
       </div>
     </div>
   </section>

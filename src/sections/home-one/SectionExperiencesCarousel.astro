@@ -1,11 +1,19 @@
 ---
 import HomeExperiencesCarousel from '../../components/home/HomeExperiencesCarousel';
 import { fetchAllApprovedExperiences } from '../../lib/service-tours';
+import { resolveLocale } from '../../i18n/context';
+import { getPageContent } from '../../i18n/page-content';
+import { localizedPath } from '../../i18n/routing';
 
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
 const experiences = await fetchAllApprovedExperiences();
+const labels = {
+  ...getPageContent(locale).home.experiences,
+  thingsToDoHref: localizedPath('/things-to-do', locale),
+};
 ---
 
-<HomeExperiencesCarousel initialTours={experiences} client:visible={{ rootMargin: '200px' }} />
+<HomeExperiencesCarousel initialTours={experiences} labels={labels} client:visible={{ rootMargin: '200px' }} />
 
 <style is:global>
   .home-exp {
@@ -97,7 +105,6 @@ const experiences = await fetchAllApprovedExperiences();
     cursor: not-allowed;
   }
 
-  /* Swiper default overlay controls — only use header nav buttons */
   .home-exp__swiper :global(.swiper-button-prev),
   .home-exp__swiper :global(.swiper-button-next),
   .home-exp__swiper :global(.swiper-pagination) {

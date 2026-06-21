@@ -9,18 +9,23 @@ import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astr
 import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
 import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
-import { getServiceSeo } from '../../lib/service-seo';
-import { getServiceContent } from '../../lib/service-content';
+import { getLocalizedServiceSeo } from '../../i18n/service-seo';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+import { getLocalizedServiceContent } from '../../i18n/service-content';
 
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
 const SLUG = 'rhodes-mice-events';
-const seo = getServiceSeo(SLUG)!;
-const content = getServiceContent(SLUG)!;
+const seo = getLocalizedServiceSeo(SLUG, locale)!;
+const content = getLocalizedServiceContent(SLUG, locale)!;
 const heroImage = await getMediaSlot('service.mice.hero.image', '/assets/img/gallery/yacht/yacht-luxury-1.jpg');
 ---
 
 <BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
   <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} priceRange="€€€" />
-  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <BreadcrumbSchema items={[{ name: messages.breadcrumbs.home, url: localizedPath('/', locale) }, { name: messages.breadcrumbs.services, url: localizedPath('/service', locale) }, { name: seo.name, url: localizedPath(`/service/${SLUG}`, locale) }]} />
   <Header transparent={false} />
 
   <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />

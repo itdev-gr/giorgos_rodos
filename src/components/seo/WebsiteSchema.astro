@@ -1,5 +1,15 @@
 ---
 import { SITE_URL, SITE_NAME, SITE_ALTERNATE_NAME, FOUNDING_YEAR } from '../../lib/seo';
+import { SCHEMA_LANGUAGE, type Locale } from '../../i18n/locales';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const messages = getMessages(locale);
 
 const data = {
   '@context': 'https://schema.org',
@@ -8,14 +18,14 @@ const data = {
   url: SITE_URL,
   name: SITE_NAME,
   alternateName: SITE_ALTERNATE_NAME,
-  description: `Boat tours, rentals and yacht charters in Rhodes, Greece. Local experts based on Ionos Dragoumi 39, Rhodes Town, since ${FOUNDING_YEAR}.`,
-  inLanguage: 'en-US',
+  description: messages.schema.websiteDescription,
+  inLanguage: SCHEMA_LANGUAGE[locale],
   publisher: { '@id': `${SITE_URL}#organization` },
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: `${SITE_URL}/things-to-do?q={search_term_string}`,
+      urlTemplate: `${SITE_URL}${localizedPath('/things-to-do', locale)}?q={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },

@@ -1,47 +1,41 @@
+---
+import { resolveLocale } from '../../i18n/context';
+import { getPageContent } from '../../i18n/page-content';
+import { localizeHtmlLinks } from '../../i18n/localize-links';
+import { localizedPath } from '../../i18n/routing';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const intro = getPageContent(locale).boatTripsIntro;
+const lede = localizeHtmlLinks(intro.ledeHtml, locale);
+const cruisesHref = localizedPath('/service/rhodes-boat-cruises', locale);
+---
+
 <section class="sp-boat-intro" aria-labelledby="sp-boat-intro-title">
   <div class="container">
     <div class="sp-boat-intro__inner">
-      <h2 id="sp-boat-intro-title" class="visually-hidden">Rhodes boat trips overview</h2>
-      <p class="sp-boat-intro__lede">
-        <strong>Rhodes boat trips</strong> cover Symi day cruises, Lindos express routes and east-coast swim days along Anthony Quinn Bay, Kalithea and Ladiko. We help you choose between <a href="/service/rhodes-boat-cruises">shared day cruises</a> (best per-person value) and <a href="#boat-trips-catalog">private skippered trips</a> (your route, your pace) — honestly, since 1998.
-      </p>
+      <h2 id="sp-boat-intro-title" class="visually-hidden">{intro.hiddenTitle}</h2>
+      <p class="sp-boat-intro__lede" set:html={lede} />
 
       <div class="sp-boat-intro__table-wrap">
         <table class="sp-boat-intro__table">
-          <caption>Compare Rhodes boat trip formats</caption>
+          <caption>{intro.table.caption}</caption>
           <thead>
             <tr>
-              <th scope="col">Trip type</th>
-              <th scope="col">Best for</th>
-              <th scope="col">Typical price</th>
-              <th scope="col">Where to book</th>
+              <th scope="col">{intro.table.columns.type}</th>
+              <th scope="col">{intro.table.columns.bestFor}</th>
+              <th scope="col">{intro.table.columns.price}</th>
+              <th scope="col">{intro.table.columns.book}</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Shared Symi day cruise</td>
-              <td>Budget, first-timers</td>
-              <td>€45–70 / person</td>
-              <td><a href="/service/rhodes-boat-cruises">Boat cruises</a></td>
-            </tr>
-            <tr>
-              <td>Private Symi speedboat</td>
-              <td>Groups of 4–6, flexible timing</td>
-              <td>€1,000–1,300 / boat</td>
-              <td><a href="#boat-trips-catalog">Private catalog</a></td>
-            </tr>
-            <tr>
-              <td>Lindos express cruise</td>
-              <td>Short ashore time at Lindos</td>
-              <td>€39–100 / person</td>
-              <td><a href="/service/rhodes-boat-cruises">Boat cruises</a></td>
-            </tr>
-            <tr>
-              <td>Private east-coast day</td>
-              <td>Families, own pace</td>
-              <td>from €350 / boat</td>
-              <td><a href="#boat-trips-catalog">Private catalog</a></td>
-            </tr>
+            {intro.table.rows.map((row) => (
+              <tr>
+                <td>{row.type}</td>
+                <td>{row.bestFor}</td>
+                <td>{row.price}</td>
+                <td set:html={localizeHtmlLinks(row.bookHtml.replace('/service/rhodes-boat-cruises', cruisesHref), locale)} />
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

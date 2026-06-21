@@ -1,5 +1,6 @@
 ---
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildCanonical, buildPageTitle } from '../../lib/seo';
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildPageTitle } from '../../lib/seo';
+import { LOCALES, OG_LOCALE, type Locale } from '../../i18n/locales';
 
 interface Props {
   title: string;
@@ -8,6 +9,7 @@ interface Props {
   ogImage?: string;
   ogImageAlt?: string;
   ogType?: 'website' | 'article' | 'product';
+  locale?: Locale;
   articleAuthor?: string;
   articlePublishedTime?: string;
   articleModifiedTime?: string;
@@ -27,6 +29,7 @@ const {
   ogImage = DEFAULT_OG_IMAGE,
   ogImageAlt,
   ogType = 'website',
+  locale = 'en',
   articleAuthor,
   articlePublishedTime,
   articleModifiedTime,
@@ -38,10 +41,12 @@ const {
   addBrandSuffix = true,
 } = Astro.props;
 
-const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
+const finalCanonical = canonical ?? `${SITE_URL}${Astro.url.pathname === '/' ? '' : Astro.url.pathname.replace(/\/$/, '')}`;
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 const finalOgImageAlt = ogImageAlt || description;
 const finalTitle = buildPageTitle(title, { addBrand: addBrandSuffix });
+const ogLocale = OG_LOCALE[locale];
+const ogLocaleAlternates = LOCALES.filter((l) => l !== locale).map((l) => OG_LOCALE[l]);
 ---
 <title>{finalTitle}</title>
 <meta name="description" content={description} />
@@ -68,7 +73,10 @@ const finalTitle = buildPageTitle(title, { addBrand: addBrandSuffix });
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={finalOgImageAlt} />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content={ogLocale} />
+{ogLocaleAlternates.map((alt) => (
+  <meta property="og:locale:alternate" content={alt} />
+))}
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={finalTitle} />

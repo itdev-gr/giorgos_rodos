@@ -1,4 +1,10 @@
 import { defineMiddleware } from 'astro:middleware';
+import { DEFAULT_LOCALE } from './i18n/locales';
+import {
+  isExcludedFromLocalization,
+  isLocalizableRoute,
+  parseLocaleFromPathname,
+} from './i18n/routing';
 
 const PUBLIC_HTML_CACHE =
   'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400';
@@ -9,6 +15,29 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // www → apex (301 permanent for link equity)
   if (hostname === 'www.rhodesrentaboat.com') {
     return context.redirect(`https://rhodesrentaboat.com${pathname}${search}`, 301);
+  }
+
+  const parsed = parseLocaleFromPathname(pathname);
+  const hasLocalePrefix = pathname.match(/^\/([a-z]{2})(?=\/|$)/)?.[1] === parsed.locale && parsed.locale !== DEFAULT_LOCALE;
+
+  // /en/* → unprefixed English URLs
+  if (pathname === '/en' || pathname.startsWith('/en/')) {
+    const target = parsed.pathname === '/' && pathname === '/en' ? '/' : parsed.pathname;
+    return context.redirect(`${target}${search}`, 301);
+  }
+
+  if (hasLocalePrefix) {
+    if (isExcludedFromLocalization(parsed.pathname) || !isLocalizableRoute(parsed.pathname)) {
+      return context.redirect(`${parsed.pathname}${search}`, 301);
+    }
+
+    context.locals.locale = parsed.locale;
+    const rewriteUrl = new URL(`${parsed.pathname}${search}`, context.url);
+    return context.rewrite(rewriteUrl);
+  }
+
+  if (!context.locals.locale) {
+    context.locals.locale = DEFAULT_LOCALE;
   }
 
   const isProtected =

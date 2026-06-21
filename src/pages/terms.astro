@@ -3,125 +3,45 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../sections/home-one/Section1-Header.astro';
 import FooterFour from '../sections/shared/FooterFour.astro';
 import BreadcrumbSchema from '../components/seo/BreadcrumbSchema.astro';
+import LegalDocument from '../components/LegalDocument.astro';
 import { SITE_URL } from '../lib/seo';
+import { resolveLocale } from '../i18n/context';
+import { getMessages } from '../i18n';
+import { localizedPath } from '../i18n/routing';
+import { SCHEMA_LANGUAGE } from '../i18n/locales';
+import { getLegalContent } from '../i18n/legal-content';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
+const { terms } = getLegalContent(locale);
+const pagePath = localizedPath('/terms', locale);
+
+const termsPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_URL}${pagePath}#webpage`,
+  url: `${SITE_URL}${pagePath}`,
+  name: messages.meta.terms.title,
+  description: messages.meta.terms.description,
+  inLanguage: SCHEMA_LANGUAGE[locale],
+  isPartOf: { '@id': `${SITE_URL}#website` },
+};
 ---
 
 <BaseLayout
-  title="Terms & Conditions: Rhodes Rent a Boat"
-  description="Terms and conditions for booking boat tours, rentals and yacht charters with Rhodes Rent a Boat. Read before booking."
-  canonical={`${SITE_URL}/terms`}
+  title={messages.meta.terms.title}
+  description={messages.meta.terms.description}
+  canonical={`${SITE_URL}${pagePath}`}
   noindexFollow={true}
 >
   <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Terms & Conditions', url: '/terms' },
+    { name: messages.breadcrumbs.home, url: localizedPath('/', locale) },
+    { name: messages.footer.terms, url: pagePath },
   ]} />
+  <script type="application/ld+json" set:html={JSON.stringify(termsPageJsonLd)} />
   <Header />
 
-  <section class="legal-hero">
-    <div class="container">
-      <h1 class="legal-hero__title">Terms &amp; Conditions</h1>
-      <p class="legal-hero__meta">Last updated: 1 May 2026</p>
-    </div>
-  </section>
-
-  <section class="legal-body">
-    <div class="container">
-      <div class="legal-content">
-
-        <h2>1. Parties</h2>
-        <p>These terms and conditions govern the relationship between <strong>Rhodes Rent a Boat</strong> (the "Company", "we", "us"), operating from Ionos Dragoumi 39, Rhodes 85100, Greece, and any person who enquires about or books services through our website rhodesrentaboat.com or directly with our team (the "Client", "you").</p>
-
-        <h2>2. Services</h2>
-        <p>We provide boat tour consultancy, booking facilitation, licence-free boat rentals, guided boat trips, sailing trips, catamaran tours, yacht charter arrangements, and ancillary services. Specific terms for each service type (e.g. rental agreements, charter contracts) are provided separately at the time of booking.</p>
-
-        <h2>3. Bookings and Payment</h2>
-        <p>3.1 All bookings are subject to availability. A booking is confirmed only upon receipt of a written confirmation from us and payment of the required deposit or full amount.</p>
-        <p>3.2 Deposit requirements vary by service. Charter bookings typically require 50% deposit on confirmation with the balance due 60 days before departure. Day tours and rentals may require full payment or a smaller deposit, this will be specified in your booking confirmation.</p>
-        <p>3.3 Prices are quoted in Euros (EUR) and are subject to change until a booking is confirmed. All prices include Greek VAT where applicable.</p>
-
-        <h2>4. Cancellations and Refunds</h2>
-        <p>4.1 <strong>Cancellations by the Client:</strong></p>
-        <ul>
-          <li>More than 14 days before the service date: full refund of any amount paid, minus a €25 administrative fee</li>
-          <li>7–14 days before the service date: 50% refund</li>
-          <li>Less than 7 days before the service date: no refund</li>
-        </ul>
-        <p>4.2 <strong>Cancellations due to weather:</strong> If we judge conditions to be unsafe on the day of your booking, we will offer a full rescheduling or a full refund at your option. Wind forecasts above Force 5 (Beaufort scale) for the planned route constitute grounds for weather cancellation.</p>
-        <p>4.3 <strong>Cancellations by the Company:</strong> In the event of unforeseen circumstances (mechanical failure, medical emergency, force majeure) we will offer a full refund or rescheduling.</p>
-
-        <h2>5. Safety and Conduct</h2>
-        <p>5.1 All clients must follow the instructions of the skipper or rental operator at all times. Failure to comply may result in the trip being terminated without refund.</p>
-        <p>5.2 The skipper reserves the right to refuse service or terminate a trip early if a client is intoxicated, violent, or otherwise poses a risk to themselves or others.</p>
-        <p>5.3 Life jackets must be worn when instructed by the skipper. Children under 12 must wear a life jacket at all times on deck.</p>
-        <p>5.4 Licence-free boat rentals are restricted to the designated area confirmed at the time of hire. Operating outside this area is the sole responsibility of the client.</p>
-
-        <h2>6. Liability</h2>
-        <p>6.1 Rhodes Rent a Boat acts as an agent and consultant in arranging some services provided by third-party operators. Our liability in such cases is limited to the standard set out in applicable Greek law.</p>
-        <p>6.2 We are not liable for personal injury, loss or damage caused by acts of God, adverse weather conditions, or circumstances beyond our reasonable control.</p>
-        <p>6.3 All vessels operated by or referred through Rhodes Rent a Boat carry the minimum third-party liability insurance required by Greek maritime law. Clients are strongly advised to take out personal travel insurance including medical and cancellation cover.</p>
-
-        <h2>7. Client Responsibilities</h2>
-        <p>7.1 Clients are responsible for ensuring all members of their party are medically fit for the activity booked.</p>
-        <p>7.2 For licence-free rentals, clients must be at least 18 years of age. Children are welcome on all tours when accompanied by a responsible adult.</p>
-        <p>7.3 Clients are responsible for any damage caused to a vessel through negligence or misuse. A damage deposit may be required at the time of rental.</p>
-
-        <h2>8. Intellectual Property</h2>
-        <p>All content on rhodesrentaboat.com, including text, photographs, logos and design, is the property of Rhodes Rent a Boat or is used with permission. Reproduction or commercial use without written consent is prohibited.</p>
-
-        <h2>9. Governing Law</h2>
-        <p>These terms and conditions are governed by the laws of Greece. Any disputes shall be subject to the exclusive jurisdiction of the courts of Rhodes, Greece.</p>
-
-        <h2>10. Contact</h2>
-        <p>For questions about these terms, contact us at:</p>
-        <p>
-          Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />
-          Phone: +30 695 166 6454<br />
-          Address: Ionos Dragoumi 39, Rhodes 85100, Greece
-        </p>
-
-      </div>
-    </div>
-  </section>
+  <LegalDocument document={terms} />
 
   <FooterFour />
 </BaseLayout>
-
-<style>
-  .legal-hero {
-    padding: 100px 0 50px;
-    background: #f8fafb;
-    border-bottom: 1px solid #e5eaee;
-  }
-  .legal-hero__title {font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    color: #113D48;
-    margin: 0 0 8px;
-  }
-  .legal-hero__meta {
-    font-size: 0.9rem;
-    color: #737887;
-    margin: 0;
-  }
-  .legal-body {
-    padding: 60px 0 80px;
-  }
-  .legal-content {
-    max-width: 800px;font-size: 1rem;
-    line-height: 1.8;
-    color: #4a5568;
-  }
-  .legal-content h2 {font-size: 1.25rem;
-    font-weight: 700;
-    color: #113D48;
-    margin: 40px 0 14px;
-  }
-  .legal-content p { margin-bottom: 16px; }
-  .legal-content ul {
-    padding-left: 22px;
-    margin-bottom: 16px;
-  }
-  .legal-content li { margin-bottom: 8px; }
-  .legal-content a { color: #1CA8CB; text-decoration: underline; }
-  .legal-content strong { color: #113D48; }
-</style>

@@ -1,5 +1,16 @@
 ---
 import { SITE_URL, SITE_NAME, FOUNDING_YEAR } from '../../lib/seo';
+import { LOCALES, SCHEMA_LANGUAGE, type Locale } from '../../i18n/locales';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const messages = getMessages(locale);
+const schemaLang = SCHEMA_LANGUAGE[locale];
 
 const data = {
   '@context': 'https://schema.org',
@@ -7,6 +18,7 @@ const data = {
   '@id': `${SITE_URL}#organization`,
   name: SITE_NAME,
   url: SITE_URL,
+  inLanguage: schemaLang,
   logo: {
     '@type': 'ImageObject',
     url: `${SITE_URL}/assets/img/brand/logos/logo2.svg`,
@@ -14,7 +26,7 @@ const data = {
     height: 60,
   },
   image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg`,
-  description: `Local-led boat tours, license-free rentals, sailing trips and yacht charters in Rhodes, Greece. Operating from our office on Ionos Dragoumi 39, Rhodes Town, since ${FOUNDING_YEAR}.`,
+  description: messages.schema.organizationDescription,
   telephone: '+306951666454',
   email: 'info@rhodesrentaboat.com',
   priceRange: '€€',
@@ -71,26 +83,26 @@ const data = {
     'https://www.google.com/maps/place/Rhodes+Rent+a+Boat/@36.4497769,28.2197904,17z',
   ],
   foundingDate: FOUNDING_YEAR,
-  knowsLanguage: ['en', 'el', 'de', 'it', 'fr'],
+  knowsLanguage: [...LOCALES],
   contactPoint: [
     {
       '@type': 'ContactPoint',
       telephone: '+306951666454',
       contactType: 'customer service',
       areaServed: 'GR',
-      availableLanguage: ['English', 'Greek', 'German', 'Italian', 'French'],
+      availableLanguage: ['English', 'German', 'Italian', 'French', 'Russian', 'Hebrew', 'Dutch', 'Polish', 'Ukrainian'],
     },
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Boat Experiences in Rhodes',
+    name: messages.schema.offerCatalogName,
     itemListElement: [
-      { '@type': 'Offer', url: `${SITE_URL}/service/rhodes-boat-tours`, itemOffered: { '@type': 'TouristTrip', name: 'Rhodes Boat Tours', description: 'Guided sailing tours along the Rhodes coastline', url: `${SITE_URL}/service/rhodes-boat-tours`, image: `${SITE_URL}/assets/img/tours/hero-rhodes-coast.jpg` }},
-      { '@type': 'Offer', url: `${SITE_URL}/service/rhodes-boat-trips`, itemOffered: { '@type': 'TouristTrip', name: 'Rhodes Private Boat Trips', description: 'Private skippered boat trips with flexible routes', url: `${SITE_URL}/service/rhodes-boat-trips`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
-      { '@type': 'Offer', url: `${SITE_URL}/service/rhodes-charter`, itemOffered: { '@type': 'TouristTrip', name: 'Rhodes Yacht Charter', description: 'Bareboat and crewed yacht charters in the Dodecanese', url: `${SITE_URL}/service/rhodes-charter`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
-      { '@type': 'Offer', url: `${SITE_URL}/#rent-a-boat`, itemOffered: { '@type': 'TouristTrip', name: 'Rhodes Rent a Boat', description: 'License-free boat rentals along the Rhodes coast', url: `${SITE_URL}/#rent-a-boat`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
-      { '@type': 'Offer', url: `${SITE_URL}/service/rhodes-catamaran-tours`, itemOffered: { '@type': 'TouristTrip', name: 'Rhodes Catamaran Tours', description: 'Day and sunset catamaran experiences', url: `${SITE_URL}/service/rhodes-catamaran-tours`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
-      { '@type': 'Offer', url: `${SITE_URL}/service/rhodes-sailing-trips`, itemOffered: { '@type': 'TouristTrip', name: 'Rhodes Sailing Trips', description: 'Shared and private sailing experiences', url: `${SITE_URL}/service/rhodes-sailing-trips`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
+      { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/service/rhodes-boat-tours', locale)}`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-boat-tours']?.name ?? 'Rhodes Boat Tours', description: messages.services['rhodes-boat-tours']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/service/rhodes-boat-tours', locale)}`, image: `${SITE_URL}/assets/img/tours/hero-rhodes-coast.jpg` }},
+      { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/service/rhodes-boat-trips', locale)}`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-boat-trips']?.name ?? 'Rhodes Boat Trips', description: messages.services['rhodes-boat-trips']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/service/rhodes-boat-trips', locale)}`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
+      { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/service/rhodes-charter', locale)}`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-charter']?.name ?? 'Rhodes Yacht Charter', description: messages.services['rhodes-charter']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/service/rhodes-charter', locale)}`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
+      { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/', locale)}#rent-a-boat`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-rent-a-boat']?.name ?? 'Rhodes Rent a Boat', description: messages.services['rhodes-rent-a-boat']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/', locale)}#rent-a-boat`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
+      { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/service/rhodes-catamaran-tours', locale)}`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-catamaran-tours']?.name ?? 'Rhodes Catamaran Tours', description: messages.services['rhodes-catamaran-tours']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/service/rhodes-catamaran-tours', locale)}`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
+      { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/service/rhodes-sailing-trips', locale)}`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-sailing-trips']?.name ?? 'Rhodes Sailing Trips', description: messages.services['rhodes-sailing-trips']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/service/rhodes-sailing-trips', locale)}`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
     ],
   },
   review: [

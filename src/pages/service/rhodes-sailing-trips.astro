@@ -14,21 +14,27 @@ import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro'
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
 import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
-import { sailingFaq } from '../../lib/faq';
-import { getServiceSeo } from '../../lib/service-seo';
-import { getServiceContent } from '../../lib/service-content';
+import { getSailingFaq } from '../../i18n/faq-pages';
+import { getFaqIntro } from '../../i18n/faq-intros';
+import { getLocalizedServiceSeo } from '../../i18n/service-seo';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+import { getLocalizedServiceContent } from '../../i18n/service-content';
 import { fetchServiceTours } from '../../lib/service-tours';
 
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
 const SLUG = 'rhodes-sailing-trips';
-const seo = getServiceSeo(SLUG)!;
-const content = getServiceContent(SLUG)!;
+const seo = getLocalizedServiceSeo(SLUG, locale)!;
+const content = getLocalizedServiceContent(SLUG, locale)!;
 const heroImage = await getMediaSlot('service.sailing.hero.image', '/assets/img/gallery/yacht/sailing-sunset-1.jpg');
 const trips = await fetchServiceTours(SLUG);
 ---
 
 <BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
   <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="260" highPrice="720" offerCount="4" />
-  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <BreadcrumbSchema items={[{ name: messages.breadcrumbs.home, url: localizedPath('/', locale) }, { name: messages.breadcrumbs.services, url: localizedPath('/service', locale) }, { name: seo.name, url: localizedPath(`/service/${SLUG}`, locale) }]} />
   <Header transparent={false} />
 
   <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
@@ -45,7 +51,7 @@ const trips = await fetchServiceTours(SLUG);
     </div>
   </ServiceCatalog>
 
-  <FAQSection items={sailingFaq} intro="Common questions about sailing day trips. For weekly charter see <a href='/service/rhodes-charter'>yacht charter</a> or the <a href='/faq'>full FAQ</a>." background="white" />
+  <FAQSection items={getSailingFaq(locale)} intro={getFaqIntro('sailing', locale)} background="white" />
   <ServiceBottomCTA title={content.ctaTitle!} text={content.ctaText!} />
   <FooterFour />
 </BaseLayout>

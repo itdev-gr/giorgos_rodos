@@ -3,6 +3,10 @@ import Seo from '../components/seo/Seo.astro';
 import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
 import WebsiteSchema from '../components/seo/WebsiteSchema.astro';
 import { buildCanonical, SITE_URL } from '../lib/seo';
+import { resolveLocale, logicalPath, isPageLocalizable } from '../i18n/context';
+import { getHreflangAlternates } from '../i18n/routing';
+import { isRtlLocale } from '../i18n/locales';
+import { getMessages } from '../i18n';
 
 interface Props {
   title?: string;
@@ -22,9 +26,13 @@ interface Props {
   loadMagnific?: boolean;
 }
 
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const logical = logicalPath(Astro.url.pathname);
+const messages = getMessages(locale);
+
 const {
-  title = 'Rhodes Rent a Boat | Boat Trips, Tours & Cruises Since 1998',
-  description = 'Rhodes Rent a Boat local sailing expert since 1998. Boat trips, tours, cruises & rentals personally selected by owner.',
+  title = messages.meta.home.title,
+  description = messages.meta.home.description,
   canonical,
   ogImage,
   ogImageAlt,
@@ -37,20 +45,24 @@ const {
   noindex,
   noindexFollow,
   keywords,
-  loadMagnific = Astro.url.pathname !== '/',
+  loadMagnific = logical !== '/',
 } = Astro.props;
 
 const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
+const hreflangAlternates = isPageLocalizable(Astro.url.pathname)
+  ? getHreflangAlternates(logical)
+  : [{ hreflang: 'en', href: finalCanonical }, { hreflang: 'x-default', href: finalCanonical }];
 const isServiceDetail =
-  Astro.url.pathname.startsWith('/service/') && Astro.url.pathname !== '/service/';
+  logical.startsWith('/service/') && logical !== '/service/';
 const isServiceRoute =
-  Astro.url.pathname === '/service' || Astro.url.pathname.startsWith('/service/');
+  logical === '/service' || logical.startsWith('/service/');
 const ogType = ogTypeProp ?? (isServiceDetail ? 'product' : 'website');
-const isHome = Astro.url.pathname === '/';
+const isHome = logical === '/';
+const htmlDir = isRtlLocale(locale) ? 'rtl' : 'ltr';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale} dir={htmlDir}>
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
@@ -63,15 +75,17 @@ const isHome = Astro.url.pathname === '/';
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="alternate" hreflang="en" href={finalCanonical} />
-    <link rel="alternate" hreflang="x-default" href={finalCanonical} />
+    {hreflangAlternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
     <Seo
       title={title}
       description={description}
-      canonical={canonical}
+      canonical={finalCanonical}
       ogImage={ogImage}
       ogImageAlt={ogImageAlt}
       ogType={ogType}
+      locale={locale}
       articleAuthor={articleAuthor}
       articlePublishedTime={articlePublishedTime}
       articleModifiedTime={articleModifiedTime}
@@ -82,8 +96,8 @@ const isHome = Astro.url.pathname === '/';
       keywords={keywords}
       addBrandSuffix={!isServiceRoute}
     />
-    <OrganizationSchema />
-    <WebsiteSchema />
+    <OrganizationSchema locale={locale} />
+    <WebsiteSchema locale={locale} />
 
     <!-- GA4 stub, script loads after page is interactive (see body) -->
     <script is:inline>

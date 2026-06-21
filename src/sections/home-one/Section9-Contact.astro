@@ -1,10 +1,19 @@
 ---
 import ContactPanel from '../../components/ContactPanel.astro';
+import { resolveLocale } from '../../i18n/context';
+import { getPageContent } from '../../i18n/page-content';
+import { getContactFormLabels } from '../../i18n/ui-labels';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const contact = getPageContent(locale).contact;
+const formLabels = getContactFormLabels(locale);
 ---
 
 <ContactPanel
   id="home-contact"
   formIdPrefix="hc"
   showSubject={true}
-  infoIntro="Tell us your dates and group size. We reply with clear advice, fair prices, and boats we know personally."
+  formIntro={contact.formIntro}
+  infoIntro={formLabels.homeInfoIntro}
+  labels={formLabels}
 />

@@ -8,12 +8,27 @@ import TourSearchGrid from '../../components/dashboard/TourSearchGrid';
 import BreadcrumbSchema from '../../components/seo/BreadcrumbSchema.astro';
 import FAQSection from '../../components/FAQSection.astro';
 import { createPublicClient } from '../../lib/supabase';
-import { SITE_URL } from '../../lib/seo';
-import { thingsToDoFaq } from '../../lib/faq';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { getPageContent } from '../../i18n/page-content';
+import { getThingsToDoFaq } from '../../i18n/faq-pages';
+import { getFaqIntro, getFaqSectionTitle } from '../../i18n/faq-intros';
+import { getThingsToDoSearchLabels, SERVICE_PAGE_LABEL_KEYS } from '../../i18n/ui-labels';
+import { absoluteUrl, localizedPath } from '../../i18n/routing';
+import { SCHEMA_LANGUAGE } from '../../i18n/locales';
+
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
+const pc = getPageContent(locale).thingsToDo;
+const faqs = getThingsToDoFaq(locale);
+const thingsPath = localizedPath('/things-to-do', locale);
+const searchLabels = getThingsToDoSearchLabels(locale);
+const categoryLabels = Object.fromEntries(
+  Object.entries(SERVICE_PAGE_LABEL_KEYS).map(([slug, key]) => [slug, messages.nav.services[key]]),
+);
 
 const ogImage = '/assets/img/gallery/yacht/greek-island-1.jpg';
 
-// Fetch ALL approved tours from Supabase
 let tours: any[] = [];
 try {
   const supabase = createPublicClient();
@@ -32,54 +47,52 @@ try {
 }
 ---
 
-<BaseLayout title="All Boat Experiences in Rhodes: Browse & Filter | Rhodes Rent a Boat" description="Browse all approved boat experiences in Rhodes, sailing trips, day cruises, private boats, catamaran tours and self-drive rentals. Compare and choose." ogImage={ogImage}>
+<BaseLayout title={messages.meta.thingsToDo.title} description={messages.meta.thingsToDo.description} ogImage={ogImage}>
   <BreadcrumbSchema items={[
-    { name: 'Home', url: '/' },
-    { name: 'Things to Do', url: '/things-to-do' },
+    { name: messages.breadcrumbs.home, url: localizedPath('/', locale) },
+    { name: messages.breadcrumbs.experiences, url: thingsPath },
   ]} />
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    '@id': `${SITE_URL}/things-to-do#collection`,
-    url: `${SITE_URL}/things-to-do`,
-    name: 'All Boat Experiences in Rhodes: Browse & Filter',
-    description: 'Browse all approved boat experiences in Rhodes, sailing trips, day cruises, private boats, catamaran tours and self-drive rentals. Compare and choose.',
-    inLanguage: 'en-US',
-    isPartOf: { '@id': `${SITE_URL}#website` },
+    '@id': `${absoluteUrl(thingsPath)}#collection`,
+    url: absoluteUrl(thingsPath),
+    name: pc.schemaName,
+    description: pc.schemaDescription,
+    inLanguage: SCHEMA_LANGUAGE[locale],
+    isPartOf: { '@id': `${absoluteUrl('/')}#website` },
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: tours.length,
       itemListElement: tours.slice(0, 50).map((t: any, i: number) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `${SITE_URL}/tour-detail/${t.slug || t.id}`,
+        url: `${absoluteUrl('/tour-detail')}/${t.slug || t.id}`,
         name: t.title,
       })),
     },
   })} is:inline />
   <Header />
 
-  <!-- 1. Hero -->
   <section class="things-hero">
     <div class="container">
       <div class="things-hero__content text-center">
-        <h1 class="things-hero__title">All Boat Experiences in Rhodes</h1>
+        <h1 class="things-hero__title">{pc.h1}</h1>
       </div>
     </div>
   </section>
 
-  <!-- 2. Tours Grid with Search -->
   <section aria-labelledby="all-tours-heading" style="padding: 40px 0 80px; background: #f8fafb;">
     <div class="container">
-      <h2 id="all-tours-heading" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">All Approved Boat Experiences in Rhodes</h2>
+      <h2 id="all-tours-heading" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">{pc.hiddenH2}</h2>
       {tours.length > 0 ? (
-        <TourSearchGrid tours={tours} client:load />
+        <TourSearchGrid tours={tours} labels={searchLabels} categoryLabels={categoryLabels} client:load />
       ) : (
         <div style="text-align: center; padding: 80px 20px;">
           <i class="fas fa-ship" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 20px;"></i>
-          <h2 style="font-size: 1.3rem; font-weight: 700; color: #113D48; margin-bottom: 12px;">No Tours Available Yet</h2>
+          <h2 style="font-size: 1.3rem; font-weight: 700; color: #113D48; margin-bottom: 12px;">{pc.emptyTitle}</h2>
           <p style="font-size: 0.95rem; color: #64748b; max-width: 500px; margin: 0 auto;">
-            We are currently adding new boat experiences to this page. Check back soon or contact us for personal recommendations.
+            {pc.emptyText}
           </p>
         </div>
       )}
@@ -87,9 +100,9 @@ try {
   </section>
 
   <FAQSection
-    items={thingsToDoFaq}
-    title="Choosing the Right Boat Experience in Rhodes"
-    intro="Quick answers for first-time visitors. For booking, weather and licence questions see the <a href='/faq'>full FAQ</a>."
+    items={faqs}
+    title={getFaqSectionTitle('thingsToDo', locale)}
+    intro={getFaqIntro('thingsToDo', locale)}
   />
 
   <FooterFour />

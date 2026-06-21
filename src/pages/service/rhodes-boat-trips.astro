@@ -1,5 +1,6 @@
 ---
-export const prerender = true;
+// SSR required for locale-prefixed rewrites (/de/service/...).
+export const prerender = false;
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../sections/home-one/Section1-Header.astro';
@@ -15,21 +16,27 @@ import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro'
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
 import ServiceRouteGuide from '../../components/service/ServiceRouteGuide.astro';
 import { getMediaSlot } from '../../lib/media';
-import { boatTripsFaq } from '../../lib/faq';
-import { getServiceSeo } from '../../lib/service-seo';
-import { getServiceContent } from '../../lib/service-content';
+import { getBoatTripsFaq } from '../../i18n/faq-pages';
+import { getFaqIntro } from '../../i18n/faq-intros';
+import { getLocalizedServiceSeo } from '../../i18n/service-seo';
+import { resolveLocale } from '../../i18n/context';
+import { getMessages } from '../../i18n';
+import { localizedPath } from '../../i18n/routing';
+import { getLocalizedServiceContent } from '../../i18n/service-content';
 import { fetchServiceTours } from '../../lib/service-tours';
 
+const locale = resolveLocale(Astro.locals, Astro.url.pathname);
+const messages = getMessages(locale);
 const SLUG = 'rhodes-boat-trips';
-const seo = getServiceSeo(SLUG)!;
-const content = getServiceContent(SLUG)!;
+const seo = getLocalizedServiceSeo(SLUG, locale)!;
+const content = getLocalizedServiceContent(SLUG, locale)!;
 const heroImage = await getMediaSlot('service.boat-trips.hero.image', '/assets/img/gallery/yacht/crystal-water-1.jpg');
 const trips = await fetchServiceTours(SLUG);
 ---
 
 <BaseLayout title={seo.metaTitle} description={seo.metaDescription} ogImage={heroImage}>
   <ServiceSchema name={seo.name} description={seo.schemaDescription} serviceType={seo.serviceType} image={heroImage} url={`/service/${SLUG}`} lowPrice="39" highPrice="1500" offerCount="8" />
-  <BreadcrumbSchema items={[{ name: 'Home', url: '/' }, { name: 'Services', url: '/service' }, { name: seo.name, url: `/service/${SLUG}` }]} />
+  <BreadcrumbSchema items={[{ name: messages.breadcrumbs.home, url: localizedPath('/', locale) }, { name: messages.breadcrumbs.services, url: localizedPath('/service', locale) }, { name: seo.name, url: localizedPath(`/service/${SLUG}`, locale) }]} />
   <Header transparent={false} />
 
   <ServiceGradientHero title={seo.name} subtitle={seo.heroSubtitle} backgroundImage={heroImage} />
@@ -48,6 +55,6 @@ const trips = await fetchServiceTours(SLUG);
     </div>
   </ServiceCatalog>
 
-  <FAQSection items={boatTripsFaq} intro="Common questions about Rhodes boat trips — shared cruises and private skippered days. For booking see the <a href='/faq'>full FAQ</a>." background="white" />
+  <FAQSection items={getBoatTripsFaq(locale)} intro={getFaqIntro('boatTrips', locale)} background="white" />
   <FooterFour />
 </BaseLayout>
