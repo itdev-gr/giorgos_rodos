@@ -330,6 +330,45 @@ export const nl: Record<string, ServicePageContent> = {
     ctaTitle: 'Niet zeker welke huurboot bij je groep past?',
     ctaText:
       'Vertel ons je data en met hoeveel personen je bent - wij adviseren de juiste boot en basis.',
+    routeGuide: {
+      title: 'Boot huren op Rhodos: self-drive boten zonder vaarbewijs',
+      intro: 'Een self-drive boot huren is de meest flexibele manier om de kust van Rhodos te verkennen — je eigen boot, je eigen tijd en geen vaste route. Er is geen vaarbewijs nodig, brandstof en uitrusting zijn inbegrepen, en je boekt direct zonder platformkosten. Hieronder lees je alles wat belangrijk is: prijzen, wat is inbegrepen, waar je naartoe kunt en hoe je de juiste huur voor je groep kiest.',
+      routes: [
+        {
+          heading: 'Heb je een vaarbewijs nodig om een boot te huren op Rhodos?',
+          body: 'Nee — onze huurboten zijn zonder vaarbewijs. Volgens de Griekse wet mag je een boot met een motor tot een bepaald vermogen besturen zonder vaarbewijs, en dat geldt voor elke self-drive boot in onze vloot. Je hoeft alleen ouder dan 18 te zijn en je op het water op je gemak te voelen; we geven elke huurder een volledige veiligheidsbriefing, tonen de bediening en markeren de beste routes op een kaart voordat je vertrekt. Geen eerdere vaarervaring nodig, en de boten zijn makkelijk te besturen in de kalme ochtendzee. Heeft iemand in je groep al een vaarbewijs, dan komen grotere en snellere boten in beeld — vraag het ons en we stemmen de boot af op je ervaring.',
+        },
+        {
+          heading: 'Huurprijzen en duur',
+          body: 'Self-drive huur wordt per duur geprijsd, dus je betaalt alleen voor de tijd die je nodig hebt. Kies een huur van 2 uur (€140), 4 uur (€230), 6 uur (€330) of een hele dag van 8 uur (€380). Halve-dag opties passen bij een snelle zwempartij en een paar nabije baaien, terwijl de hele dag je verder langs de kust brengt in een ontspannen tempo. Prijzen zijn per boot, niet per persoon — voor een gezin of vriendengroep daalt de prijs per persoon snel. Geen platformkosten: je boekt direct bij ons en betaalt de genoemde prijs. Vertel ons je groepsgrootte en data en we adviseren de juiste duur.',
+        },
+        {
+          heading: 'Wat is inbegrepen bij je huurboot',
+          body: 'Elke self-drive huur is klaar voor vertrek. Brandstof is inbegrepen — de boten hebben een tank van 25 liter plus een reserve van 10 liter, genoeg voor een hele dag langs de baaien. Je krijgt ook een mini-koelkast met ijs, water en frisdrank aan boord, veiligheidsuitrusting en reddingsvesten voor iedereen, en schaduw waar aanwezig. De boten halen tot 28 mph, dus je kunt afstand afleggen wanneer je wilt en langzaam varen wanneer je een rustige baai vindt. We geven een schone, goed onderhouden boot mee, een routekaart en een contactnummer voor het geval je iets nodig hebt op het water.',
+        },
+        {
+          heading: 'Waar je naartoe kunt met een self-drive boot',
+          body: 'Vanaf onze basis bereik je de beste zwem- en snorkelplekken langs de oostkust in je eigen tempo. Populaire stops zijn de bronnen van Kallithea, Anthony Quinn Bay, Ladiko en de zeegrotten van Traganou — kalm, beschut water dat ideaal is voor self-drive. Met een halve-dag huur bezoeken de meesten twee of drie baaien; een hele dag laat je verder gaan en langer blijven. We markeren de aanbevolen route en het veilige bereik van de dag afhankelijk van de wind, zodat je altijd weet waar je naartoe moet en wanneer je terugkeert. Wil je liever niet zelf varen, bekijk dan onze <a href="/service/rhodes-boat-trips">privé boottochten</a> met schipper.',
+        },
+        {
+          heading: 'Self-drive huur of een tocht met schipper?',
+          body: 'Een self-drive huur geeft je totale vrijheid en is de beste prijs-kwaliteitverhouding voor een gezin of groep die zelfstandig wil verkennen. Wil je liever ontspannen en de boot aan iemand anders overlaten, dan past een optie met schipper beter: bekijk onze begeleide <a href="/service/rhodes-boat-tours">boottochten</a>, all-inclusive <a href="/service/rhodes-boat-cruises">dagcruises</a> of een volledig privé <a href="/service/rhodes-charter">jachtcharter</a> voor een langere reis. Niet zeker? Vertel ons je groep en wat je van de dag wilt en we adviseren eerlijk, zonder druk.',
+        },
+        {
+          heading: 'Beste tijd om te huren en weersveiligheid',
+          body: 'Het huurseizoen loopt van eind april tot oktober, met de kalmste zee en het warmste water van juni tot september. ’s Ochtends is de wind meestal het zwakst, dus we raden een vroege start aan voor de rustigste vaart en het helderste water. De oostkustbaaien zijn beschut en goed geschikt voor self-drive, zelfs op winderigere middagen. We checken de dagelijkse weersverwachting en zeggen eerlijk of de omstandigheden niet geschikt zijn — met een alternatief in plaats van je uit te sturen bij een sterke meltemi. Je veiligheidsbriefing behandelt wat je moet doen als het weer verandert terwijl je op zee bent.',
+        },
+        {
+          heading: 'Voor wie self-drive huur is',
+          body: 'Een self-drive boot huren op Rhodos past bij koppels die een privédag op het water willen, gezinnen die een betaalbaar groepsuitje zoeken, en eerste bezoekers die de kust willen zien zonder vast tourschema. Omdat er geen vaarbewijs nodig is en de boten makkelijk te besturen zijn, heb je geen vaarachtergrond nodig — alleen een beetje avontuurlijkheid. Vriendengroepen vinden een huurboot vaak de leukste en voordeligste manier om een dag door te brengen, waarbij ze elkaar afwisselen aan het roer tussen de baaien. Heb je kinderen, vertel ons hun leeftijd en we zorgen dat boot en route comfortabel zijn.',
+        },
+        {
+          heading: 'Hoe je je bootverhuur op Rhodos boekt',
+          body: 'Boeken is eenvoudig en direct — geen externe platforms en geen verborgen kosten. Stuur ons je data, groepsgrootte en gewenste duur en we bevestigen beschikbaarheid en de beste boot voor jou. We zijn gevestigd in Mandraki, in Rhodos-stad, op loopafstand van de oude stad en een korte rit van de nabije resorts. In juli en augustus zijn de boten snel volgeboekt, dus reserveer op tijd. <a href="/contact">Neem contact op</a> met je data en wij regelen de rest.',
+        },
+      ],
+      closing: 'We verhuren sinds 1998 boten aan bezoekers op Rhodos — zonder vaarbewijs, eerlijk geprijsd en direct geboekt zonder platformkosten. Blader hieronder door de beschikbare huurboten, vergelijk een <a href="/service/rhodes-boat-trips">privétocht met schipper</a> of een begeleide <a href="/service/rhodes-boat-tours">boottocht</a>, of <a href="/contact">geef ons je data door</a> en we adviseren de juiste boot en basis voor je groep.',
+    },
   },
   'rhodes-charter': {
     introQuote:

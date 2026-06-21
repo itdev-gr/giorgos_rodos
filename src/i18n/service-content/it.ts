@@ -330,6 +330,45 @@ export const it: Record<string, ServicePageContent> = {
     ctaTitle: 'Non sai quale noleggio sia adatto al tuo gruppo?',
     ctaText:
       'Dicci date e numero di persone - ti consigliamo barca e base di partenza piu adatte.',
+    routeGuide: {
+      title: 'Noleggio barche a Rodi: barche self-drive senza patente',
+      intro: 'Noleggiare una barca self-drive è il modo più flessibile per esplorare la costa di Rodi — la tua barca, i tuoi orari e nessuna rotta fissa. Non serve la patente nautica, carburante e attrezzatura sono inclusi e prenoti direttamente senza commissioni di piattaforma. Di seguito trovi tutto l’essenziale: prezzi, cosa è incluso, dove puoi andare e come scegliere il noleggio giusto per il tuo gruppo.',
+      routes: [
+        {
+          heading: 'Serve la patente per noleggiare una barca a Rodi?',
+          body: 'No — le nostre barche a noleggio sono senza patente. Secondo la legge greca puoi guidare una barca con un motore fino a un certo limite di potenza senza patente nautica, e questo copre ogni barca self-drive della nostra flotta. Basta avere più di 18 anni ed essere a tuo agio in acqua; diamo a ogni cliente un briefing di sicurezza completo, ti mostriamo i comandi e segniamo le rotte migliori su una mappa prima di partire. Non serve alcuna esperienza nautica e le barche sono facili da manovrare nel mare calmo del mattino. Se qualcuno nel tuo gruppo ha già la patente, si aprono barche più grandi e veloci — chiedi e abbineremo la barca alla tua esperienza.',
+        },
+        {
+          heading: 'Prezzi e durate del noleggio',
+          body: 'I noleggi self-drive hanno un prezzo a durata, così paghi solo per il tempo che ti serve. Scegli tra noleggio di 2 ore (€140), 4 ore (€230), 6 ore (€330) o un’intera giornata di 8 ore (€380). Le opzioni di mezza giornata vanno bene per un bagno veloce e un paio di baie vicine, mentre la giornata intera ti porta più lontano lungo la costa con calma. I prezzi sono a barca, non a persona — quindi per una famiglia o un gruppo di amici il costo a testa scende in fretta. Niente commissioni di piattaforma: prenoti direttamente con noi e paghi il prezzo indicato. Dicci numero di persone e date e ti consigliamo la durata adatta.',
+        },
+        {
+          heading: 'Cosa è incluso nella barca a noleggio',
+          body: 'Ogni noleggio self-drive è pronto a partire. Il carburante è incluso — le barche hanno un serbatoio da 25 litri più una riserva da 10 litri, sufficiente per un’intera giornata tra le baie. Hai anche un mini frigorifero con ghiaccio, acqua e bibite a bordo, attrezzatura di sicurezza e giubbotti salvagente per tutti, e ombra dove disponibile. Le barche raggiungono fino a 28 mph, così puoi coprire distanza quando vuoi e procedere lento quando trovi una cala tranquilla. Ti consegniamo una barca pulita e ben mantenuta, una mappa delle rotte e un numero di contatto nel caso ti serva qualcosa mentre sei in mare.',
+        },
+        {
+          heading: 'Dove puoi andare con una barca self-drive',
+          body: 'Dalla nostra base raggiungi i migliori punti per nuoto e snorkeling lungo la costa orientale al tuo ritmo. Le soste più amate includono le sorgenti di Kallithea, Anthony Quinn Bay, Ladiko e le grotte marine di Traganou — acqua calma e riparata, ideale per il self-drive. Con un noleggio di mezza giornata la maggior parte visita due o tre baie; una giornata intera ti fa andare più lontano e fermarti più a lungo. Segniamo la rotta consigliata e il raggio sicuro del giorno in base al vento, così sai sempre dove andare e quando rientrare. Se preferisci non guidare, vedi le nostre <a href="/service/rhodes-boat-trips">gite in barca private</a> con skipper.',
+        },
+        {
+          heading: 'Noleggio self-drive o uscita con skipper?',
+          body: 'Un noleggio self-drive ti dà totale libertà ed è il miglior rapporto qualità-prezzo per una famiglia o un gruppo che vuole esplorare in autonomia. Se preferisci rilassarti e lasciare la barca a qualcun altro, un’opzione con skipper è più adatta: sfoglia i nostri <a href="/service/rhodes-boat-tours">tour in barca</a> guidati, le <a href="/service/rhodes-boat-cruises">crociere giornaliere</a> all inclusive o un <a href="/service/rhodes-charter">noleggio di yacht</a> completamente privato per un viaggio più lungo. Non sai quale scegliere? Dicci il tuo gruppo e cosa vuoi dalla giornata e ti consiglieremo con onestà, senza pressioni.',
+        },
+        {
+          heading: 'Periodo migliore per noleggiare e sicurezza meteo',
+          body: 'La stagione dei noleggi va da fine aprile a ottobre, con il mare più calmo e l’acqua più calda da giugno a settembre. Al mattino il vento è di solito più debole, perciò consigliamo una partenza presto per la navigazione più tranquilla e l’acqua più limpida. Le baie della costa orientale sono riparate e adatte al self-drive anche nei pomeriggi più ventosi. Controlliamo le previsioni del giorno e ti diciamo onestamente se le condizioni non sono adatte — suggerendo un’alternativa invece di mandarti fuori con un forte meltemi. Il briefing di sicurezza copre cosa fare se il tempo cambia mentre sei in mare.',
+        },
+        {
+          heading: 'A chi sono adatti i noleggi self-drive',
+          body: 'Noleggiare una barca self-drive a Rodi è adatto alle coppie che vogliono una giornata privata in acqua, alle famiglie che cercano un’uscita di gruppo conveniente e a chi visita per la prima volta e vuole vedere la costa senza un programma fisso. Poiché non serve patente e le barche sono facili da manovrare, non ti serve alcun background nautico — solo un po’ di spirito d’avventura. I gruppi di amici trovano spesso il noleggio il modo più divertente e conveniente per passare la giornata, alternandosi alla guida tra una baia e l’altra. Se hai bambini, dicci le loro età e ci assicureremo che barca e rotta siano comode.',
+        },
+        {
+          heading: 'Come prenotare il tuo noleggio barca a Rodi',
+          body: 'Prenotare è semplice e diretto — niente piattaforme di terzi e niente costi nascosti. Inviaci date, numero di persone e durata preferita e confermeremo disponibilità e la barca migliore per te. Siamo alla base di Mandraki, a Rodi città, a pochi passi dalla città vecchia e a breve distanza dai resort vicini. A luglio e agosto le barche si esauriscono in fretta, quindi conviene prenotare in anticipo. <a href="/contact">Contattaci</a> con le tue date e pensiamo a tutto il resto.',
+        },
+      ],
+      closing: 'Noleggiamo barche ai visitatori a Rodi dal 1998 — senza patente, a prezzi onesti e prenotate direttamente senza commissioni di piattaforma. Sfoglia le barche a noleggio disponibili qui sotto, confronta una <a href="/service/rhodes-boat-trips">gita privata con skipper</a> o un <a href="/service/rhodes-boat-tours">tour in barca</a> guidato, oppure <a href="/contact">indicaci le tue date</a> e ti consiglieremo la barca e la base giuste per il tuo gruppo.',
+    },
   },
   'rhodes-charter': {
     introQuote:

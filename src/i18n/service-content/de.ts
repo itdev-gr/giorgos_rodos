@@ -330,6 +330,45 @@ export const de: Record<string, ServicePageContent> = {
     ctaTitle: 'Unsicher, welches Mietboot zu Ihrer Gruppe passt?',
     ctaText:
       'Nennen Sie uns Ihre Daten und Personenzahl - wir empfehlen das passende Boot und die richtige Basis.',
+    routeGuide: {
+      title: 'Boot mieten auf Rhodos: Selbstfahrer-Boote ohne Führerschein',
+      intro: 'Ein Selbstfahrer-Boot zu mieten ist die flexibelste Art, die Küste von Rhodos zu erkunden — Ihr eigenes Boot, Ihre eigene Zeit und keine feste Route. Es ist kein Bootsführerschein nötig, Treibstoff und Ausrüstung sind inbegriffen, und Sie buchen direkt ohne Plattformgebühren. Hier finden Sie alles Wichtige: Preise, Inklusivleistungen, wohin Sie fahren können und wie Sie das richtige Boot für Ihre Gruppe wählen.',
+      routes: [
+        {
+          heading: 'Braucht man auf Rhodos einen Führerschein, um ein Boot zu mieten?',
+          body: 'Nein — unsere Mietboote sind führerscheinfrei. Nach griechischem Recht dürfen Sie ein Boot mit einer Motorleistung bis zu einer bestimmten Grenze ohne Bootsführerschein steuern, was jedes Selbstfahrer-Boot unserer Flotte abdeckt. Sie müssen nur über 18 und auf dem Wasser sicher sein; wir geben jedem Mieter eine vollständige Sicherheitseinweisung, zeigen die Bedienung und markieren die besten Routen auf einer Karte, bevor Sie ablegen. Keine Bootserfahrung erforderlich, und die Boote sind in der ruhigen Morgensee leicht zu steuern. Wenn jemand in Ihrer Gruppe bereits einen Führerschein hat, kommen größere und schnellere Boote infrage — fragen Sie uns, und wir passen das Boot an Ihre Erfahrung an.',
+        },
+        {
+          heading: 'Mietpreise und Dauer',
+          body: 'Selbstfahrer-Mieten werden nach Dauer berechnet, sodass Sie nur für die benötigte Zeit zahlen. Wählen Sie eine 2-Stunden-Miete (€140), 4 Stunden (€230), 6 Stunden (€330) oder einen ganzen Tag mit 8 Stunden (€380). Halbtagsoptionen eignen sich für ein schnelles Bad und ein paar nahe Buchten, während der ganze Tag Sie entspannt weiter entlang der Küste bringt. Die Preise gelten pro Boot, nicht pro Person — für eine Familie oder Freundesgruppe sinkt der Preis pro Kopf schnell. Es gibt keine Plattformgebühren: Sie buchen direkt bei uns und zahlen den genannten Preis. Sagen Sie uns Gruppengröße und Daten, und wir empfehlen die passende Dauer.',
+        },
+        {
+          heading: 'Was bei Ihrem Mietboot inbegriffen ist',
+          body: 'Jede Selbstfahrer-Miete ist startklar. Treibstoff ist inbegriffen — die Boote haben einen 25-Liter-Tank plus 10-Liter-Reserve, genug für einen ganzen Tag in den Buchten. Dazu gibt es einen Mini-Kühlschrank mit Eis, Wasser und alkoholfreie Getränke an Bord, Sicherheitsausrüstung und Rettungswesten für alle sowie Schatten, wo vorhanden. Die Boote erreichen bis zu 28 mph, sodass Sie Strecke machen können, wenn Sie wollen, und langsam tuckern, wenn Sie eine ruhige Bucht finden. Wir übergeben ein sauberes, gepflegtes Boot, eine Routenkarte und eine Kontaktnummer, falls Sie unterwegs etwas brauchen.',
+        },
+        {
+          heading: 'Wohin Sie mit einem Selbstfahrer-Boot fahren können',
+          body: 'Von unserer Basis erreichen Sie die besten Bade- und Schnorchelplätze an der Ostküste in Ihrem eigenen Tempo. Beliebte Stopps sind die Kallithea-Quellen, die Anthony Quinn Bay, Ladiko und die Traganou-Meereshöhlen — ruhiges, geschütztes Wasser, ideal für Selbstfahrer. Mit einer Halbtagsmiete besuchen die meisten zwei bis drei Buchten; ein ganzer Tag lässt Sie weiter fahren und länger bleiben. Wir markieren die empfohlene Route und den sicheren Radius des Tages je nach Wind, damit Sie immer wissen, wohin und wann Sie umkehren. Wenn Sie lieber nicht selbst fahren, sehen Sie unsere <a href="/service/rhodes-boat-trips">privaten Bootsausflüge</a> mit Skipper.',
+        },
+        {
+          heading: 'Selbstfahrer-Miete oder Ausflug mit Skipper?',
+          body: 'Eine Selbstfahrer-Miete gibt Ihnen volle Freiheit und ist das beste Preis-Leistungs-Verhältnis für eine Familie oder Gruppe, die unabhängig erkunden möchte. Wenn Sie lieber entspannen und das Boot jemand anderem überlassen, passt eine Skipper-Option besser: Sehen Sie unsere geführten <a href="/service/rhodes-boat-tours">Bootstouren</a>, All-inclusive-<a href="/service/rhodes-boat-cruises">Tageskreuzfahrten</a> oder einen voll privaten <a href="/service/rhodes-charter">Yachtcharter</a> für eine längere Fahrt. Unsicher? Sagen Sie uns Ihre Gruppe und was Sie sich vom Tag wünschen, und wir empfehlen ehrlich, ohne Druck.',
+        },
+        {
+          heading: 'Beste Zeit zum Mieten und Wettersicherheit',
+          body: 'Die Mietsaison läuft von Ende April bis Oktober, mit dem ruhigsten Meer und wärmsten Wasser von Juni bis September. Morgens ist der Wind meist am schwächsten, daher empfehlen wir einen frühen Start für die ruhigste Fahrt und das klarste Wasser. Die Ostküstenbuchten sind geschützt und auch an windigeren Nachmittagen gut für Selbstfahrer geeignet. Wir prüfen die Tagesvorhersage und sagen Ihnen ehrlich, wenn die Bedingungen nicht passen — und schlagen eine Alternative vor, statt Sie bei starkem Meltemi hinauszuschicken. Ihre Sicherheitseinweisung deckt ab, was zu tun ist, wenn sich das Wetter unterwegs ändert.',
+        },
+        {
+          heading: 'Für wen Selbstfahrer-Mieten geeignet sind',
+          body: 'Ein Selbstfahrer-Boot auf Rhodos zu mieten eignet sich für Paare, die einen privaten Tag auf dem Wasser möchten, für Familien, die einen erschwinglichen Gruppenausflug suchen, und für Erstbesucher, die die Küste ohne festen Tourplan sehen wollen. Da kein Führerschein nötig ist und die Boote leicht zu steuern sind, brauchen Sie keine Bootserfahrung — nur ein wenig Abenteuerlust. Freundesgruppen finden eine Miete oft die schönste und preiswerteste Art, einen Tag zu verbringen, und wechseln sich zwischen den Buchten am Steuer ab. Wenn Sie Kinder haben, nennen Sie uns ihr Alter, und wir sorgen für ein passendes Boot und eine passende Route.',
+        },
+        {
+          heading: 'So buchen Sie Ihr Mietboot auf Rhodos',
+          body: 'Die Buchung ist einfach und direkt — keine Drittplattformen, keine versteckten Gebühren. Senden Sie uns Ihre Daten, Gruppengröße und Wunschdauer, und wir bestätigen Verfügbarkeit und das beste Boot für Sie. Wir sind am Mandraki-Hafen in Rhodos-Stadt, nur wenige Gehminuten von der Altstadt und kurze Fahrt von den nahen Ferienorten. Im Juli und August sind die Boote schnell ausgebucht, buchen Sie also frühzeitig. <a href="/contact">Kontaktieren Sie uns</a> mit Ihren Daten, und wir kümmern uns um den Rest.',
+        },
+      ],
+      closing: 'Wir vermieten Besuchern auf Rhodos seit 1998 Boote — führerscheinfrei, fair bepreist und direkt gebucht ohne Plattformgebühren. Stöbern Sie unten in den verfügbaren Mietbooten, vergleichen Sie einen <a href="/service/rhodes-boat-trips">privaten Ausflug mit Skipper</a> oder eine geführte <a href="/service/rhodes-boat-tours">Bootstour</a>, oder <a href="/contact">nennen Sie uns Ihre Daten</a>, und wir empfehlen das richtige Boot und die richtige Basis für Ihre Gruppe.',
+    },
   },
   'rhodes-charter': {
     introQuote:
