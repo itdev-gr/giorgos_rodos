@@ -12,11 +12,29 @@ export const SITE = 'https://rhodesrentaboat.com';
 
 export type SitemapImage = { loc: string; title?: string; caption?: string };
 
+export type SitemapAlternate = { hreflang: string; href: string };
+
 export type SitemapEntry = {
   loc: string;
   lastmod?: string;
   images: SitemapImage[];
+  alternates?: SitemapAlternate[];
 };
+
+/**
+ * Build the full hreflang alternate set for a localizable path (all LOCALES +
+ * x-default). Attached to every language version of the page so the XML sitemap
+ * carries reciprocal hreflang annotations alongside the <head> tags.
+ */
+function buildAlternates(path: string): SitemapAlternate[] | undefined {
+  if (!isLocalizableRoute(path)) return undefined;
+  const alternates: SitemapAlternate[] = LOCALES.map((locale) => ({
+    hreflang: locale,
+    href: `${SITE}${localizedPath(path, locale)}`,
+  }));
+  alternates.push({ hreflang: 'x-default', href: `${SITE}${localizedPath(path, 'en')}` });
+  return alternates;
+}
 
 const CORE_STATIC_PATHS = [
   '/',
@@ -71,6 +89,7 @@ export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
     loc: `${SITE}${path}`,
     lastmod: STATIC_LASTMOD[path],
     images: STATIC_PAGE_IMAGES[path] ? [...STATIC_PAGE_IMAGES[path]] : [],
+    alternates: buildAlternates(path),
   }));
 
   const entries: SitemapEntry[] = [...baseEntries];
@@ -78,6 +97,7 @@ export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
   for (const path of STATIC_PATHS) {
     if (!isLocalizableRoute(path)) continue;
 
+    const alternates = buildAlternates(path);
     for (const locale of LOCALES) {
       if (locale === 'en') continue;
       const localized = localizedPath(path, locale);
@@ -85,6 +105,7 @@ export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
         loc: `${SITE}${localized}`,
         lastmod: STATIC_LASTMOD[path],
         images: STATIC_PAGE_IMAGES[path] ? [...STATIC_PAGE_IMAGES[path]] : [],
+        alternates,
       });
     }
   }
