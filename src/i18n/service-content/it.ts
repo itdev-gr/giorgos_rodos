@@ -113,6 +113,45 @@ export const it: Record<string, ServicePageContent> = {
     ctaTitle: 'Hai bisogno di aiuto per scegliere la crociera?',
     ctaText:
       'Condividi la zona del tuo hotel e il numero di persone - ti indicheremo partenza e rotta piu adatte.',
+    routeGuide: {
+      title: 'Crociere in barca a Rodi: crociere giornaliere e al tramonto all inclusive',
+      intro: 'Una crociera in barca a Rodi è il modo facile e all inclusive per trascorrere una giornata o una serata in mare — barche organizzate più grandi con rotte fisse, soste per il bagno e cibo e bevande a bordo. La maggior parte delle crociere parte dal porto di Mandraki, a Rodi città, e opera dalla primavera a ottobre. Di seguito trovi come si confrontano le crociere principali, cosa è incluso e come scegliere quella giusta per il tuo gruppo.',
+      routes: [
+        {
+          heading: 'Cosa è incluso in una crociera in barca all inclusive a Rodi',
+          body: 'La maggior parte delle crociere in barca a Rodi è all inclusive, ed è proprio per questo che sono così popolari: paghi una volta e pensiamo a tutto. Una tipica crociera giornaliera comprende la rotta, due o tre soste per nuoto e snorkeling, un pranzo cucinato o un buffet greco e bibite analcoliche illimitate — molte crociere al tramonto aggiungono vino, birra e musica dal vivo. I prezzi vanno di solito da circa €30–€80 a persona a seconda della barca e della durata, con tariffe per bambini e sconti famiglia sulla maggior parte delle partenze. Niente costi nascosti: indichiamo il prezzo completo in anticipo e prenoti direttamente, senza ricarico delle piattaforme. Poiché lavoriamo al porto di Mandraki dal 1998, proponiamo solo crociere su barche ben gestite con equipaggi esperti. Indicaci numero di persone e date e ti abbineremo alla crociera giusta.',
+        },
+        {
+          heading: 'Crociere giornaliere all inclusive',
+          body: 'Le crociere di un’intera giornata sono la classica giornata a Rodi: una rilassante navigazione lungo la costa con diverse soste per il bagno, pranzo e bevande inclusi e tempo per non fare altro che godersi il mare. La <a href="/tour-detail/east-coast-of-rhodes-group-cruise">crociera di gruppo sulla costa orientale di Rodi</a> e la spensierata crociera <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> sono opzioni condivise popolari, adatte a famiglie, coppie e gruppi. Queste crociere scambiano la velocità di un’uscita privata con un’atmosfera socievole all inclusive al miglior prezzo a persona. Se preferisci una barca più piccola, chiedi delle alternative semi-private qui sotto.',
+        },
+        {
+          heading: 'Crociere al tramonto a Rodi',
+          body: 'Le crociere al tramonto sono la crociera in barca più romantica a Rodi — navighi nelle acque calme della sera con bevande, un BBQ greco o buffet e spesso musica dal vivo mentre il cielo si tinge d’oro. La <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">crociera al tramonto all inclusive “A Sunset Remedy”</a> sull’El Greco e la <a href="/tour-detail/sunset-cruise-lindos-calypso">crociera al tramonto all inclusive Calypso da Lindos</a> sono tra le preferite, mentre l’<a href="/tour-detail/golden-hour-yacht-experience-semi-private">esperienza in yacht semi-privata Golden Hour</a> mantiene piccoli i numeri per una serata più intima. Porta uno strato leggero: sull’acqua rinfresca quando il sole scende. Le crociere al tramonto si riempiono in fretta a luglio e agosto, quindi conviene prenotare in anticipo.',
+        },
+        {
+          heading: 'Crociera giornaliera a Symi',
+          body: 'La crociera giornaliera a Symi è tra le più prenotate da Rodi. Le barche lasciano Mandraki al mattino, attraversano in circa 75–90 minuti e ti regalano diverse ore nel porto color pastello di Gialos, di solito con una sosta per il bagno lungo il tragitto. Symi è famosa per le case neoclassiche, il monastero di Panormitis e l’acqua cristallina — perfetta per le foto e un pranzo rilassato a terra. Le crociere condivise all inclusive sono il modo più conveniente per vederla; se vuoi orari flessibili o un gruppo più piccolo, chiedi invece delle <a href="/service/rhodes-boat-trips">gite in barca private</a>.',
+        },
+        {
+          heading: 'Crociera giornaliera a Lindos',
+          body: 'Una crociera giornaliera a Lindos unisce il borgo medievale e la sua Acropoli al bagno sotto le scogliere della baia di St Paul. Avvicinarsi a Lindos dal mare è il modo più scenografico per arrivare. La <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise a Lindos</a> è un’opzione rilassata all inclusive con tempo nel borgo e soste per il bagno lungo la costa orientale. Porta scarpe comode se vuoi salire all’Acropoli e un cappello — il borgo ha poca ombra a mezzogiorno.',
+        },
+        {
+          heading: 'Crociere sulla costa orientale — Anthony Quinn Bay e Kallithea',
+          body: 'Non tutte le crociere in barca da Rodi attraversano verso un’altra isola. Le crociere della costa orientale restano lungo il litorale riparato, con soste ad Anthony Quinn Bay, alle sorgenti di Kallithea, a Ladiko e alle grotte marine di Traganou — i classici punti di snorkeling e bagno in acqua calma e turchese. Sono adatte a chi visita per la prima volta e alle famiglie che vogliono baie bellissime senza una traversata in mare aperto, con pranzo e bevande inclusi a bordo. Sono anche un’ottima scelta se qualcuno nel gruppo preferisce una rotta più breve e riparata a una lunga traversata.',
+        },
+        {
+          heading: 'Da dove partono le crociere in barca a Rodi',
+          body: 'La maggior parte delle crociere organizzate parte dal porto di Mandraki, a Rodi città, ma alcune partono anche da Faliraki, Kolymbia e Lindos a seconda della rotta e della destinazione. Se alloggi lungo la costa orientale, scegliere un punto di partenza più vicino ti fa risparmiare un lungo trasferimento a inizio e fine giornata. Indicaci la zona del tuo hotel quando ci scrivi e ti indicheremo la partenza più sensata e vicina, invece di mandarti dall’altra parte dell’isola. La stagione delle crociere va da fine aprile a ottobre, con il mare più calmo e l’acqua più calda da giugno a settembre.',
+        },
+        {
+          heading: 'Quale crociera fa per te?',
+          body: 'Le crociere condivise all inclusive offrono il miglior rapporto qualità-prezzo e un’atmosfera socievole su barche più grandi. Le crociere semi-private come l’<a href="/tour-detail/golden-hour-yacht-experience-semi-private">esperienza in yacht Golden Hour</a> limitano i numeri per più spazio e un ritmo più tranquillo. Se vuoi barca, rotta e orari tutti per te, una <a href="/service/rhodes-boat-trips">gita in barca privata</a> o un <a href="/service/rhodes-charter">noleggio di yacht</a> sono la scelta migliore, e un <a href="/service/rhodes-catamaran-tours">tour in catamarano</a> aggiunge stabilità e spazio in coperta. Non sai quale scegliere? Indicaci date e gruppo e ti consiglieremo con onestà, senza pressioni.',
+        },
+      ],
+      closing: 'Abbiniamo i visitatori alle crociere in barca giuste a Rodi dal 1998 — all inclusive, consigliate con onestà, con prenotazione diretta e senza commissioni di piattaforma. Sfoglia qui sotto le crociere diurne e al tramonto, confronta i <a href="/service/rhodes-boat-tours">tour in barca guidati</a> o le <a href="/service/rhodes-boat-trips">gite in barca private</a>, oppure <a href="/contact">indicaci le tue date</a> e ti suggeriremo la crociera migliore per il tuo gruppo.',
+    },
   },
   'rhodes-catamaran-tours': {
     introQuote:

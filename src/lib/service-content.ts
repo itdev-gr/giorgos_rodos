@@ -126,6 +126,45 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     catalogSubtitle: 'Symi, Lindos, Anthony Quinn Bay and east-coast routes',
     ctaTitle: 'Need help choosing a cruise?',
     ctaText: 'Share your hotel area and group size — we will point you to the right departure and route.',
+    routeGuide: {
+      title: 'Rhodes Boat Cruises: All-Inclusive Day & Sunset Cruises Explained',
+      intro: 'A Rhodes boat cruise is the easy, all-inclusive way to spend a day or an evening at sea — larger organised boats with fixed routes, swimming stops and food and drinks on board. Most cruises depart from Mandraki Harbour in Rhodes Town and run from spring through October. Below is how the main cruises compare, what is included, and how to pick the right one for your group.',
+      routes: [
+        {
+          heading: 'What is included on an all-inclusive Rhodes boat cruise',
+          body: 'Most Rhodes boat cruises are all-inclusive, which is exactly why they are so popular: you pay once and everything is sorted. A typical day cruise includes the route, two or three swimming and snorkelling stops, a cooked lunch or Greek buffet, and unlimited soft drinks — many sunset cruises add wine, beer and live music. Prices usually run from about €30–€80 per person depending on the boat and duration, with children\'s rates and family discounts on most departures. There are no hidden fees: we quote the full price up front and you book direct, with no booking-platform mark-up. Because we have worked Mandraki Harbour since 1998, we only list cruises on well-run boats with experienced crews. Tell us your group size and dates and we will match you to the right cruise.',
+        },
+        {
+          heading: 'All-inclusive day cruises',
+          body: 'Full-day cruises are the classic Rhodes day out: a relaxed boat ride along the coast with several swimming stops, lunch and drinks included, and time to do nothing but enjoy the sea. The <a href="/tour-detail/east-coast-of-rhodes-group-cruise">East Coast of Rhodes group cruise</a> and the easy-going <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> cruise are popular shared options that suit families, couples and groups alike. These cruises trade the speed of a private trip for a sociable, all-inclusive atmosphere at the lowest price per person. If you would rather a smaller boat, ask about the semi-private alternatives below.',
+        },
+        {
+          heading: 'Sunset cruises in Rhodes',
+          body: 'Sunset cruises are the most romantic Rhodes boat cruise — sailing the calm evening waters with drinks, a Greek BBQ or buffet and often live music as the sky turns gold. The <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">A Sunset Remedy all-inclusive sunset cruise</a> on the El Greco and the <a href="/tour-detail/sunset-cruise-lindos-calypso">Calypso all-inclusive sunset cruise from Lindos</a> are favourites, while the <a href="/tour-detail/golden-hour-yacht-experience-semi-private">Golden Hour semi-private yacht experience</a> keeps numbers small for a more intimate evening. Bring a light layer — it cools on the water once the sun drops. Sunset cruises fill quickly in July and August, so it is worth booking ahead.',
+        },
+        {
+          heading: 'Day cruise to Symi',
+          body: 'The day cruise to Symi is one of the most booked from Rhodes. Boats leave Mandraki in the morning, cross in around 75–90 minutes and give you several hours in the pastel harbour of Gialos, usually with a swim stop on the way. Symi is famous for its neoclassical houses, the Panormitis Monastery and crystal-clear water — ideal for photos and a relaxed lunch ashore. Shared all-inclusive cruises are the best-value way to see it; if you want flexible timing or a smaller group, ask about <a href="/service/rhodes-boat-trips">private boat trips</a> instead.',
+        },
+        {
+          heading: 'Day cruise to Lindos',
+          body: 'A day cruise to Lindos pairs the medieval village and its Acropolis with swimming below the cliffs at St Paul\'s Bay. Approaching Lindos from the sea is the most scenic way to arrive. The <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise in Lindos</a> is a relaxed, all-inclusive option with time ashore in the village and swim stops along the east coast. Bring comfortable shoes if you plan to walk up to the Acropolis, and a hat — the village has little shade at midday.',
+        },
+        {
+          heading: 'East coast cruises — Anthony Quinn Bay & Kallithea',
+          body: 'Not every Rhodes boat cruise crosses to another island. East-coast cruises stay along the sheltered shoreline, stopping at Anthony Quinn Bay, Kallithea Springs, Ladiko and the Traganou sea caves — the classic snorkel-and-swim spots in calm, turquoise water. These cruises suit first-time visitors and families who want beautiful bays without an open-sea crossing, with lunch and drinks included on board. They are also a great choice if anyone in your group prefers a shorter, sheltered route over a long crossing.',
+        },
+        {
+          heading: 'Where Rhodes boat cruises depart from',
+          body: 'Most organised cruises depart from Mandraki Harbour in Rhodes Town, but several also leave from Faliraki, Kolymbia and Lindos depending on the route and destination. If you are staying down the east coast, choosing a closer departure point saves a long transfer at the start and end of the day. Tell us your hotel area when you enquire and we will point you to the nearest sensible departure rather than sending you across the island. The cruise season runs from late April to October, with the calmest seas and warmest water from June to September.',
+        },
+        {
+          heading: 'Which cruise is right for you?',
+          body: 'Shared all-inclusive cruises offer the best value and a sociable atmosphere on larger boats. Semi-private cruises like the <a href="/tour-detail/golden-hour-yacht-experience-semi-private">Golden Hour yacht experience</a> cap the numbers for more space and a calmer pace. If you want the boat, route and timing entirely to yourselves, a <a href="/service/rhodes-boat-trips">private boat trip</a> or <a href="/service/rhodes-charter">yacht charter</a> is the better fit, and a <a href="/service/rhodes-catamaran-tours">catamaran tour</a> adds extra stability and deck space. Not sure which to pick? Tell us your dates and group and we will recommend honestly, without pressure.',
+        },
+      ],
+      closing: 'We have matched visitors to the right Rhodes boat cruises since 1998 — all-inclusive, honestly recommended, with direct booking and no platform fees. Browse the day and sunset cruises below, compare <a href="/service/rhodes-boat-tours">guided boat tours</a> or <a href="/service/rhodes-boat-trips">private boat trips</a>, or <a href="/contact">tell us your dates</a> and we will suggest the best cruise for your group.',
+    },
   },
   'rhodes-catamaran-tours': {
     introQuote: 'Catamarans are spacious, stable and comfortable — the most relaxing way to spend a day on the sea.',

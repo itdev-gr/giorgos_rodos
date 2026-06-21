@@ -113,6 +113,45 @@ export const de: Record<string, ServicePageContent> = {
     ctaTitle: 'Brauchen Sie Hilfe bei der Kreuzfahrtwahl?',
     ctaText:
       'Teilen Sie uns Ihre Hotelregion und Gruppengröße mit - wir zeigen Ihnen die passende Abfahrt und Route.',
+    routeGuide: {
+      title: 'Rhodos-Bootskreuzfahrten: All-inclusive Tages- und Sunset-Kreuzfahrten erklärt',
+      intro: 'Eine Rhodos-Bootskreuzfahrt ist die einfache, all-inclusive Art, einen Tag oder Abend auf dem Meer zu verbringen — größere organisierte Boote mit festen Routen, Badestopps sowie Speisen und Getränken an Bord. Die meisten Kreuzfahrten starten am Mandraki-Hafen in Rhodos-Stadt und fahren von Frühjahr bis Oktober. Im Folgenden vergleichen wir die wichtigsten Kreuzfahrten, was inbegriffen ist und wie Sie die passende für Ihre Gruppe wählen.',
+      routes: [
+        {
+          heading: 'Was bei einer All-inclusive-Bootskreuzfahrt auf Rhodos inbegriffen ist',
+          body: 'Die meisten Rhodos-Bootskreuzfahrten sind all-inclusive — genau deshalb sind sie so beliebt: einmal zahlen, alles ist geregelt. Eine typische Tageskreuzfahrt umfasst die Route, zwei bis drei Schwimm- und Schnorchelstopps, ein warmes Mittagessen oder ein griechisches Buffet und unbegrenzt alkoholfreie Getränke — viele Sunset-Kreuzfahrten ergänzen Wein, Bier und Live-Musik. Die Preise liegen meist bei €30–€80 pro Person, je nach Boot und Dauer, mit Kinderpreisen und Familienrabatten bei den meisten Abfahrten. Es gibt keine versteckten Gebühren: Wir nennen den vollen Preis im Voraus, und Sie buchen direkt, ohne Plattform-Aufschlag. Da wir seit 1998 am Mandraki-Hafen arbeiten, listen wir nur Kreuzfahrten auf gut geführten Booten mit erfahrenen Crews. Sagen Sie uns Gruppengröße und Daten, und wir finden die passende Kreuzfahrt.',
+        },
+        {
+          heading: 'All-inclusive-Tageskreuzfahrten',
+          body: 'Ganztageskreuzfahrten sind der klassische Rhodos-Tag: eine entspannte Bootsfahrt entlang der Küste mit mehreren Badestopps, Mittagessen und Getränken inklusive und Zeit, einfach das Meer zu genießen. Die <a href="/tour-detail/east-coast-of-rhodes-group-cruise">East-Coast-Gruppenkreuzfahrt</a> und die unkomplizierte <a href="/tour-detail/fun-in-the-sun">Fun-in-the-Sun</a>-Kreuzfahrt sind beliebte gemeinsame Optionen für Familien, Paare und Gruppen. Diese Kreuzfahrten tauschen die Geschwindigkeit eines privaten Ausflugs gegen eine gesellige All-inclusive-Atmosphäre zum besten Preis pro Person. Wenn Sie ein kleineres Boot bevorzugen, fragen Sie nach den halbprivaten Alternativen unten.',
+        },
+        {
+          heading: 'Sunset-Kreuzfahrten auf Rhodos',
+          body: 'Sunset-Kreuzfahrten sind die romantischste Rhodos-Bootskreuzfahrt — Sie segeln durch die ruhigen Abendgewässer mit Getränken, einem griechischen BBQ oder Buffet und oft Live-Musik, während der Himmel golden wird. Die <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">All-inclusive-Sunset-Kreuzfahrt „A Sunset Remedy“</a> auf der El Greco und die <a href="/tour-detail/sunset-cruise-lindos-calypso">All-inclusive-Sunset-Kreuzfahrt Calypso ab Lindos</a> sind Favoriten, während die <a href="/tour-detail/golden-hour-yacht-experience-semi-private">halbprivate Golden-Hour-Yachterfahrung</a> die Gästezahl für einen intimeren Abend klein hält. Bringen Sie eine leichte Jacke mit — auf dem Wasser kühlt es ab, sobald die Sonne untergeht. Sunset-Kreuzfahrten sind im Juli und August schnell ausgebucht, buchen Sie also frühzeitig.',
+        },
+        {
+          heading: 'Tageskreuzfahrt nach Symi',
+          body: 'Die Tageskreuzfahrt nach Symi gehört zu den meistgebuchten ab Rhodos. Die Boote verlassen Mandraki am Morgen, überqueren die Strecke in etwa 75–90 Minuten und geben Ihnen mehrere Stunden im pastellfarbenen Hafen von Gialos, meist mit einem Badestopp unterwegs. Symi ist berühmt für seine neoklassizistischen Häuser, das Panormitis-Kloster und das kristallklare Wasser — ideal für Fotos und ein entspanntes Mittagessen an Land. Gemeinsame All-inclusive-Kreuzfahrten sind die preiswerteste Art, Symi zu sehen; wenn Sie flexible Zeiten oder eine kleinere Gruppe möchten, fragen Sie stattdessen nach <a href="/service/rhodes-boat-trips">privaten Bootsausflügen</a>.',
+        },
+        {
+          heading: 'Tageskreuzfahrt nach Lindos',
+          body: 'Eine Tageskreuzfahrt nach Lindos verbindet das mittelalterliche Dorf und seine Akropolis mit dem Schwimmen unter den Klippen in der St-Paul’s-Bucht. Die Annäherung an Lindos vom Meer aus ist die schönste Art anzukommen. Die <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy-Day-Kreuzfahrt in Lindos</a> ist eine entspannte All-inclusive-Option mit Zeit im Dorf und Badestopps entlang der Ostküste. Bringen Sie bequeme Schuhe mit, wenn Sie zur Akropolis hinaufgehen möchten, und einen Hut — das Dorf hat um die Mittagszeit wenig Schatten.',
+        },
+        {
+          heading: 'Ostküsten-Kreuzfahrten — Anthony Quinn Bay & Kallithea',
+          body: 'Nicht jede Rhodos-Bootskreuzfahrt führt zu einer anderen Insel. Ostküsten-Kreuzfahrten bleiben entlang der geschützten Küste und halten an der Anthony Quinn Bay, den Kallithea-Quellen, Ladiko und den Traganou-Meereshöhlen — den klassischen Schnorchel- und Badeplätzen mit ruhigem, türkisfarbenem Wasser. Diese Kreuzfahrten eignen sich für Erstbesucher und Familien, die schöne Buchten ohne offene Seepassage suchen, mit Mittagessen und Getränken an Bord. Sie sind auch eine gute Wahl, wenn jemand in Ihrer Gruppe eine kürzere, geschützte Route einer langen Überfahrt vorzieht.',
+        },
+        {
+          heading: 'Wo Rhodos-Bootskreuzfahrten starten',
+          body: 'Die meisten organisierten Kreuzfahrten starten am Mandraki-Hafen in Rhodos-Stadt, einige fahren aber auch ab Faliraki, Kolymbia und Lindos, je nach Route und Ziel. Wenn Sie an der Ostküste wohnen, spart ein näher gelegener Abfahrtsort einen langen Transfer am Anfang und Ende des Tages. Teilen Sie uns bei Ihrer Anfrage Ihre Hotelregion mit, und wir nennen Ihnen die sinnvoll nächste Abfahrt, statt Sie über die Insel zu schicken. Die Kreuzfahrtsaison läuft von Ende April bis Oktober, mit dem ruhigsten Meer und wärmsten Wasser von Juni bis September.',
+        },
+        {
+          heading: 'Welche Kreuzfahrt passt zu Ihnen?',
+          body: 'Gemeinsame All-inclusive-Kreuzfahrten bieten das beste Preis-Leistungs-Verhältnis und eine gesellige Atmosphäre auf größeren Booten. Halbprivate Kreuzfahrten wie die <a href="/tour-detail/golden-hour-yacht-experience-semi-private">Golden-Hour-Yachterfahrung</a> begrenzen die Gästezahl für mehr Platz und ein ruhigeres Tempo. Wenn Sie Boot, Route und Zeit ganz für sich möchten, sind ein <a href="/service/rhodes-boat-trips">privater Bootsausflug</a> oder ein <a href="/service/rhodes-charter">Yachtcharter</a> die bessere Wahl, und eine <a href="/service/rhodes-catamaran-tours">Katamaran-Tour</a> bietet zusätzliche Stabilität und Deckfläche. Unsicher? Sagen Sie uns Ihre Daten und Gruppe, und wir empfehlen ehrlich, ohne Druck.',
+        },
+      ],
+      closing: 'Wir bringen Besucher seit 1998 mit den richtigen Rhodos-Bootskreuzfahrten zusammen — all-inclusive, ehrlich empfohlen, mit Direktbuchung und ohne Plattformgebühren. Stöbern Sie unten in den Tages- und Sunset-Kreuzfahrten, vergleichen Sie <a href="/service/rhodes-boat-tours">geführte Bootstouren</a> oder <a href="/service/rhodes-boat-trips">private Bootsausflüge</a> oder <a href="/contact">nennen Sie uns Ihre Daten</a> — wir empfehlen die beste Kreuzfahrt für Ihre Gruppe.',
+    },
   },
   'rhodes-catamaran-tours': {
     introQuote:
