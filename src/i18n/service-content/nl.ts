@@ -237,6 +237,18 @@ export const nl: Record<string, ServicePageContent> = {
           heading: 'Boottrips vanuit Kolymbia en Faliraki',
           body: 'Als je aan de oostkust verblijft, verkorten vertrekken vanuit Kolymbia of Faliraki de transfertijd naar Symi, Lindos en lokale zwembaaien. Expressboten naar Symi vanuit Kolymbia vertrekken vaak later dan diensten vanuit Mandraki en bevatten een zwemstop bij St George\'s Bay. De zee-shuttles van Faliraki verbinden de resortstrip met de haven van Rhodes Town voor gasten die liever niet rijden. Vermeld bij je aanvraag je hotelgebied - wij matchen je met het meest logische vertrekpunt, zonder onnodig over het eiland te reizen.',
         },
+        {
+          heading: 'Wat is inbegrepen en typische prijzen van boottochten',
+          body: 'De prijs hangt ervan af of je een gedeelde boottocht doet of een privétocht boekt. Gedeelde dagcruises beginnen vanaf ongeveer €39 per persoon en omvatten meestal de route, zwemstops, snorkeluitrusting en bij dagtochten lunch en drankjes aan boord. Privétochten met schipper beginnen rond €350 voor een halve dag en €700+ voor een hele dag, geprijsd per boot in plaats van per persoon — hoe meer jullie zijn, hoe beter de prijs. Privétarieven omvatten doorgaans brandstof, de schipper, zwem- en snorkelstops en flexibele tijden. Geen verborgen kosten: we noemen de volledige prijs vóór het boeken. Vertel ons je groepsgrootte en data en we geven een eerlijke vergelijking tussen gedeelde en privé-opties.',
+        },
+        {
+          heading: 'Speedboot, RIB of zeilcatamaran — welke boottocht?',
+          body: 'Het type boot bepaalt de hele dag. Speedboten en power-RIB’s zijn snel en wendbaar — ideaal om Symi of meerdere oostkustbaaien in een halve dag te bereiken zonder tijdverlies. Zeilcatamarans ruilen snelheid in voor ruimte en stabiliteit: meer dek, schaduw en een ontspannen tempo, perfect voor gezinnen of bij zeeziekte. Grotere georganiseerde boten passen bij wie een vaste all-inclusive dag voor de laagste prijs wil. Twijfel je, vertel ons dan met hoeveel jullie zijn en wat het belangrijkst is — snelheid, comfort of budget — en we wijzen je de juiste romp. Je kunt ook <a href="/service/rhodes-rent-a-boat">zelf een boot huren</a> of <a href="/service/rhodes-boat-cruises">dagcruises</a> voor grotere groepen bekijken.',
+        },
+        {
+          heading: 'Wanneer gaan en wat meenemen',
+          body: 'Het seizoen voor boottochten op Rhodos loopt van eind april tot oktober, met de kalmste zee en het warmste water van juni tot september. ’s Ochtends is de wind meestal het zwakst, wat belangrijk is voor de open oversteek naar Symi; ’s middags kan het winderiger zijn op de blootgestelde routes. Neem zwemkleding, een handdoek, rifvriendelijke zonnebrand, een hoed en een lichte laag voor de terugweg mee, plus een waterdicht telefoonhoesje op een speedboot of RIB. De meeste boten leveren water en snorkeluitrusting, maar controleer dit vooraf. Is iemand gevoelig voor beweging, kies dan een catamaran of een beschutte oostkustroute. Niet zeker welke tocht past? <a href="/contact">Stuur ons je data</a> en we adviseren de juiste route en boot.',
+        },
       ],
       closing:
         'Gedeelde dagcruises bieden de beste prijs per persoon; privé trips met schipper geven je de boot, route en timing helemaal voor jezelf. We selecteren beide formats sinds 1998 - <a href="/service/rhodes-boat-cruises">vergelijk gedeelde bootcruises op Rhodos</a>, bekijk de privé-trips hieronder of <a href="/contact">vraag ons</a> welk format past bij je data en groep.',

@@ -208,6 +208,18 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
           heading: 'Boat trips from Kolymbia and Faliraki',
           body: 'If you stay on the east coast, departures from Kolymbia or Faliraki shorten transfer time to Symi, Lindos and local swim bays. Express boats to Symi from Kolymbia often leave later than Mandraki services and include a swim stop at St George\'s Bay. Faliraki sea shuttles connect the resort strip with Rhodes Town harbour for guests who prefer not to drive. When you enquire, tell us your hotel area — we match you to the nearest sensible departure rather than sending you across the island unnecessarily.',
         },
+        {
+          heading: 'What is included and typical boat trip prices',
+          body: 'Pricing depends on whether you join a shared boat trip or book a private one. Shared day cruises start from about €39 per person and usually cover the route, swim stops, snorkelling gear and, on full-day cruises, lunch and drinks on board. Private skippered trips start from around €350 for a half-day and €700+ for a full day, priced per boat rather than per person — so the more of you there are, the better the value. Private rates typically include fuel, the skipper, swimming and snorkelling stops, and flexible timing. What you will not see are hidden extras: we quote the full price before you book. Tell us your group size and dates and we will give you an honest like-for-like comparison between shared and private options, rather than pushing the most expensive boat.',
+        },
+        {
+          heading: 'Speedboat, RIB or sailing catamaran — which boat trip?',
+          body: 'The type of boat shapes the whole day. Speedboats and power RIBs are fast and agile — ideal for reaching Symi or several east-coast bays in a half-day without losing time in transit. Sailing catamarans trade speed for space and stability: more deck, shade and a relaxed pace, perfect for families or anyone prone to seasickness. Larger organised boats suit those who want a fixed all-inclusive day out at the lowest price. If you are unsure, tell us how many you are and what matters most — speed, comfort or budget — and we will point you to the right hull. You can also <a href="/service/rhodes-rent-a-boat">rent a self-drive boat</a> if you would rather skipper yourself, or browse organised <a href="/service/rhodes-boat-cruises">day cruises</a> for larger groups.',
+        },
+        {
+          heading: 'When to go and what to bring',
+          body: 'The Rhodes boat trip season runs from late April to October, with the calmest seas and warmest water between June and September. Mornings usually have the lightest wind, which matters for open-sea crossings to Symi; afternoons can be breezier on the exposed routes. Bring swimwear, a towel, reef-safe sunscreen, a hat and a light layer for the return leg, plus a waterproof phone case if you are on a speedboat or RIB. Most boats provide water and snorkelling gear, but it is worth checking before you go. If anyone in your group is sensitive to motion, choose a catamaran or a sheltered east-coast route over an open crossing. Not sure which trip fits? <a href="/contact">Send us your dates</a> and we will recommend the right route and boat.',
+        },
       ],
       closing: 'Shared day cruises offer the best per-person value; private skippered trips give you the boat, route and timing to yourselves. We have curated both since 1998 — <a href="/service/rhodes-boat-cruises">compare shared Rhodes boat cruises</a>, browse the private trips below, or <a href="/contact">ask us</a> which format fits your dates and group.',
     },
