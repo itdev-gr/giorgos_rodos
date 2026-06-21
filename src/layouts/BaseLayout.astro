@@ -4,7 +4,7 @@ import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
 import WebsiteSchema from '../components/seo/WebsiteSchema.astro';
 import { buildCanonical, SITE_URL } from '../lib/seo';
 import { resolveLocale, logicalPath, isPageLocalizable } from '../i18n/context';
-import { getHreflangAlternates } from '../i18n/routing';
+import { getHreflangAlternates, localizedPath } from '../i18n/routing';
 import { isRtlLocale } from '../i18n/locales';
 import { getMessages } from '../i18n';
 
@@ -48,7 +48,7 @@ const {
   loadMagnific = logical !== '/',
 } = Astro.props;
 
-const finalCanonical = canonical ?? buildCanonical(Astro.url.pathname);
+const finalCanonical = canonical ?? buildCanonical(localizedPath(logical, locale));
 const hreflangAlternates = isPageLocalizable(Astro.url.pathname)
   ? getHreflangAlternates(logical)
   : [{ hreflang: 'en', href: finalCanonical }, { hreflang: 'x-default', href: finalCanonical }];

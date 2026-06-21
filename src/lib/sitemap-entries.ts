@@ -27,6 +27,7 @@ const CORE_STATIC_PATHS = [
   '/service',
   '/privacy',
   '/terms',
+  '/things-to-do',
 ];
 
 const SERVICE_PATHS = SERVICE_PAGE_SLUGS.map((slug) => `/service/${slug}`);
@@ -51,6 +52,7 @@ const STATIC_LASTMOD: Record<string, string> = {
   '/service/rhodes-tender-boat': '2026-03-15',
   '/privacy': '2026-05-01',
   '/terms': '2026-05-01',
+  '/things-to-do': '2026-04-15',
 };
 
 const STATIC_PAGE_IMAGES: Record<string, SitemapImage[]> = {

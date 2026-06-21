@@ -15,6 +15,11 @@ import { localizedPath } from '../../i18n/routing';
 const locale = resolveLocale(Astro.locals, Astro.url.pathname);
 const messages = getMessages(locale);
 const hub = messages.meta.serviceHub;
+const faqItems = getServiceHubFaq(locale);
+const faqHref = localizedPath('/faq', locale);
+const contactHref = localizedPath('/contact', locale);
+
+export const prerender = false;
 
 const itemListJsonLd = {
   '@context': 'https://schema.org',
@@ -59,7 +64,7 @@ const itemListJsonLd = {
       <div class="svc-grid">
         {services.map((data: any, i: number) => (
           <a
-            href={data.externalUrl ?? data.href ?? `/service/${data.slug}`}
+            href={data.externalUrl ?? (data.href ? localizedPath(data.href, locale) : localizedPath(`/service/${data.slug}`, locale))}
             target={data.externalUrl ? '_blank' : undefined}
             rel={data.externalUrl ? 'noopener noreferrer' : undefined}
             class="svc-card"
@@ -88,7 +93,7 @@ const itemListJsonLd = {
       <div class="svc-faq__layout">
         <div class="svc-faq__head text-center">
           <h2 class="svc-faq__title">Frequently Asked Questions</h2>
-          <p class="svc-faq__intro">Common questions about choosing between our services. For booking, weather and licence details, see the <a href="/faq">full FAQ</a>.</p>
+          <p class="svc-faq__intro">Common questions about choosing between our services. For booking, weather and licence details, see the <a href={faqHref}>full FAQ</a>.</p>
         </div>
         <div class="svc-faq__list">
           {faqItems.map((item, index) => (
@@ -111,7 +116,7 @@ const itemListJsonLd = {
       <div class="svc-cta__inner text-center">
         <h2 class="svc-cta__title">Not Sure Which Experience Is Right for You?</h2>
         <p class="svc-cta__text">Send us a message and tell us what you have in mind. We will suggest the best option for your group, honestly and without pressure.</p>
-        <a href="/contact" class="svc-cta__btn">Get in Touch</a>
+        <a href={contactHref} class="svc-cta__btn">Get in Touch</a>
       </div>
     </div>
   </section>

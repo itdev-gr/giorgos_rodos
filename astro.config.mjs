@@ -6,6 +6,7 @@ import vercel from '@astrojs/vercel';
 import { assertSitemapServices } from './integrations/assert-sitemap-services.ts';
 import { assertImgAlt } from './integrations/assert-img-alt.ts';
 import { vercelWwwRedirect } from './integrations/vercel-www-redirect.ts';
+import { vercelLocaleRoutes } from './integrations/vercel-locale-routes.ts';
 
 export default defineConfig({
   output: 'server',
@@ -23,6 +24,7 @@ export default defineConfig({
     assertImgAlt(),
     assertSitemapServices(),
     vercelWwwRedirect(),
+    vercelLocaleRoutes(),
   ],
   redirects: {
     '/tag/rhodes-day-cruise': { status: 301, destination: '/service/rhodes-boat-cruises' },

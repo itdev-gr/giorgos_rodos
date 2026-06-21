@@ -33,7 +33,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
     context.locals.locale = parsed.locale;
     const rewriteUrl = new URL(`${parsed.pathname}${search}`, context.url);
-    return context.rewrite(rewriteUrl);
+    const response = await context.rewrite(rewriteUrl);
+
+    if (
+      context.request.method === 'GET' &&
+      !parsed.pathname.startsWith('/api/') &&
+      parsed.pathname !== '/login'
+    ) {
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('text/html')) {
+        response.headers.set('Cache-Control', PUBLIC_HTML_CACHE);
+      }
+    }
+
+    return response;
   }
 
   if (!context.locals.locale) {
