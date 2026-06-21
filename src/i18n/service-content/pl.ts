@@ -330,6 +330,45 @@ export const pl: Record<string, ServicePageContent> = {
     ctaTitle: 'Nie wiesz, który wynajem pasuje do Twojej grupy?',
     ctaText:
       'Podaj terminy i liczbę osób — polecimy właściwą łódź i bazę.',
+    routeGuide: {
+      title: 'Wynajem łodzi na Rodos: łodzie self-drive bez patentu',
+      intro: 'Wynajem łodzi self-drive to najbardziej elastyczny sposób, aby zwiedzić wybrzeże Rodos — Twoja łódź, Twój czas i żadnej stałej trasy. Nie jest potrzebny patent, paliwo i sprzęt są wliczone, a rezerwujesz bezpośrednio bez prowizji platform. Poniżej wszystko, co najważniejsze: ceny, co jest wliczone, dokąd możesz popłynąć i jak wybrać odpowiedni wynajem dla Twojej grupy.',
+      routes: [
+        {
+          heading: 'Czy potrzebujesz patentu, aby wynająć łódź na Rodos?',
+          body: 'Nie — nasze łodzie do wynajęcia są bez patentu. Zgodnie z prawem greckim możesz prowadzić łódź z silnikiem do określonej mocy bez patentu żeglarskiego, co obejmuje każdą łódź self-drive w naszej flocie. Musisz mieć tylko ukończone 18 lat i czuć się pewnie na wodzie; każdemu wynajmującemu dajemy pełny instruktaż bezpieczeństwa, pokazujemy sterowanie i zaznaczamy najlepsze trasy na mapie przed wypłynięciem. Nie jest potrzebne wcześniejsze doświadczenie żeglarskie, a łodzie są łatwe w obsłudze na spokojnym porannym morzu. Jeśli ktoś w grupie ma już patent, otwierają się większe i szybsze łodzie — zapytaj, a dobierzemy łódź do Twojego doświadczenia.',
+        },
+        {
+          heading: 'Ceny i czas wynajmu',
+          body: 'Wynajem self-drive jest wyceniany według czasu, więc płacisz tylko za potrzebny czas. Wybierz wynajem na 2 godziny (€140), 4 godziny (€230), 6 godzin (€330) lub cały dzień 8 godzin (€380). Opcje na pół dnia pasują do szybkiej kąpieli i kilku pobliskich zatok, a cały dzień zabierze Cię dalej wzdłuż wybrzeża w spokojnym tempie. Ceny są za łódź, nie za osobę — więc dla rodziny lub grupy przyjaciół koszt na osobę szybko spada. Bez prowizji platform: rezerwujesz bezpośrednio u nas i płacisz podaną cenę. Podaj liczebność grupy i terminy, a polecimy odpowiedni czas.',
+        },
+        {
+          heading: 'Co jest wliczone w wynajętą łódź',
+          body: 'Każdy wynajem self-drive jest gotowy do wypłynięcia. Paliwo jest wliczone — łodzie mają zbiornik 25 litrów plus rezerwę 10 litrów, wystarczająco na cały dzień wśród zatok. Masz też mini lodówkę z lodem, wodę i napoje bezalkoholowe na pokładzie, sprzęt bezpieczeństwa i kamizelki ratunkowe dla wszystkich oraz cień tam, gdzie jest. Łodzie osiągają do 28 mph, więc możesz pokonywać dystans, gdy chcesz, i płynąć wolno, gdy znajdziesz spokojną zatoczkę. Przekazujemy czystą, dobrze utrzymaną łódź, mapę tras i numer kontaktowy na wypadek, gdybyś czegoś potrzebował na wodzie.',
+        },
+        {
+          heading: 'Dokąd możesz popłynąć łodzią self-drive',
+          body: 'Z naszej bazy dotrzesz do najlepszych miejsc do pływania i snorkelingu wzdłuż wschodniego wybrzeża we własnym tempie. Popularne przystanki to źródła Kallithea, Anthony Quinn Bay, Ladiko i groty morskie Traganou — spokojna, osłonięta woda, idealna do self-drive. Przy wynajmie na pół dnia większość odwiedza dwie lub trzy zatoki; cały dzień pozwala popłynąć dalej i zostać dłużej. Zaznaczamy zalecaną trasę i bezpieczny zasięg na dany dzień w zależności od wiatru, abyś zawsze wiedział, dokąd płynąć i kiedy zawrócić. Jeśli wolisz nie sterować, zobacz nasze <a href="/service/rhodes-boat-trips">prywatne wycieczki łodzią</a> ze skipperem.',
+        },
+        {
+          heading: 'Wynajem self-drive czy rejs ze skipperem?',
+          body: 'Wynajem self-drive daje pełną swobodę i najlepszy stosunek jakości do ceny dla rodziny lub grupy, która chce zwiedzać samodzielnie. Jeśli wolisz się zrelaksować i zostawić łódź komuś innemu, opcja ze skipperem pasuje lepiej: przejrzyj nasze <a href="/service/rhodes-boat-tours">wycieczki łodzią</a> z przewodnikiem, <a href="/service/rhodes-boat-cruises">rejsy dzienne</a> all inclusive lub w pełni prywatny <a href="/service/rhodes-charter">czarter jachtu</a> na dłuższą wyprawę. Nie jesteś pewien? Podaj swoją grupę i czego oczekujesz od dnia, a doradzimy uczciwie, bez nacisku.',
+        },
+        {
+          heading: 'Najlepszy czas na wynajem i bezpieczeństwo pogodowe',
+          body: 'Sezon wynajmu trwa od końca kwietnia do października, z najspokojniejszym morzem i najcieplejszą wodą od czerwca do września. Rano wiatr jest zwykle najsłabszy, dlatego zalecamy wczesny start dla najspokojniejszej żeglugi i najczystszej wody. Zatoki wschodniego wybrzeża są osłonięte i dobrze nadają się do self-drive nawet w bardziej wietrzne popołudnia. Sprawdzamy dzienną prognozę i uczciwie powiemy, jeśli warunki nie są odpowiednie — proponując alternatywę, zamiast wysyłać Cię przy silnym meltemi. Twój instruktaż bezpieczeństwa obejmuje, co robić, jeśli pogoda zmieni się, gdy jesteś na wodzie.',
+        },
+        {
+          heading: 'Dla kogo jest wynajem self-drive',
+          body: 'Wynajem łodzi self-drive na Rodos pasuje parom chcącym prywatnego dnia na wodzie, rodzinom szukającym przystępnej wyprawy grupowej i osobom odwiedzającym po raz pierwszy, które chcą zobaczyć wybrzeże bez sztywnego planu wycieczki. Ponieważ nie jest potrzebny patent, a łodzie są łatwe w obsłudze, nie potrzebujesz żeglarskiego zaplecza — tylko odrobiny ducha przygody. Grupy przyjaciół często uznają wynajem za najfajniejszy i najbardziej opłacalny sposób na spędzenie dnia, zmieniając się za sterem między zatokami. Jeśli masz dzieci, podaj ich wiek, a zadbamy o to, by łódź i trasa były komfortowe.',
+        },
+        {
+          heading: 'Jak zarezerwować wynajem łodzi na Rodos',
+          body: 'Rezerwacja jest prosta i bezpośrednia — żadnych platform zewnętrznych i ukrytych opłat. Wyślij nam terminy, liczebność grupy i preferowany czas, a potwierdzimy dostępność i najlepszą łódź dla Ciebie. Mamy bazę w Mandraki, w mieście Rodos, w odległości spaceru od starego miasta i krótkiego dojazdu od pobliskich kurortów. W lipcu i sierpniu łodzie szybko się zapełniają, więc warto rezerwować z wyprzedzeniem. <a href="/contact">Skontaktuj się</a> z nami, podając terminy, a my zajmiemy się resztą.',
+        },
+      ],
+      closing: 'Wynajmujemy łodzie odwiedzającym Rodos od 1998 roku — bez patentu, w uczciwych cenach i z bezpośrednią rezerwacją bez prowizji platform. Przejrzyj dostępne łodzie do wynajęcia poniżej, porównaj <a href="/service/rhodes-boat-trips">prywatną wycieczkę ze skipperem</a> lub <a href="/service/rhodes-boat-tours">wycieczkę łodzią</a> z przewodnikiem, albo <a href="/contact">podaj nam swoje terminy</a>, a polecimy odpowiednią łódź i bazę dla Twojej grupy.',
+    },
   },
   'rhodes-charter': {
     introQuote:

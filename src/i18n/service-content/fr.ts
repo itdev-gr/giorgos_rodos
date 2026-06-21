@@ -330,6 +330,45 @@ export const fr: Record<string, ServicePageContent> = {
     ctaTitle: 'Vous hésitez sur la location adaptee a votre groupe ?',
     ctaText:
       'Indiquez vos dates et le nombre de personnes : nous vous recommanderons le bateau et la base les plus adaptes.',
+    routeGuide: {
+      title: 'Location de bateau à Rhodes : bateaux self-drive sans permis',
+      intro: 'Louer un bateau self-drive est la façon la plus flexible d’explorer la côte de Rhodes — votre bateau, vos horaires et aucun itinéraire fixe. Aucun permis bateau n’est nécessaire, le carburant et l’équipement sont inclus, et vous réservez en direct sans frais de plateforme. Voici l’essentiel : prix, ce qui est inclus, où vous pouvez aller et comment choisir la location adaptée à votre groupe.',
+      routes: [
+        {
+          heading: 'Faut-il un permis pour louer un bateau à Rhodes ?',
+          body: 'Non — nos bateaux de location sont sans permis. Selon la loi grecque, vous pouvez piloter un bateau avec un moteur jusqu’à une certaine puissance sans permis bateau, ce qui couvre chaque bateau self-drive de notre flotte. Il suffit d’avoir plus de 18 ans et d’être à l’aise sur l’eau ; nous donnons à chaque client un briefing de sécurité complet, vous montrons les commandes et marquons les meilleurs itinéraires sur une carte avant le départ. Aucune expérience nautique n’est requise et les bateaux sont faciles à manœuvrer dans la mer calme du matin. Si quelqu’un de votre groupe possède déjà un permis, des bateaux plus grands et plus rapides deviennent possibles — demandez-nous et nous adapterons le bateau à votre expérience.',
+        },
+        {
+          heading: 'Prix et durées de location',
+          body: 'Les locations self-drive sont facturées à la durée, vous ne payez donc que le temps dont vous avez besoin. Choisissez une location de 2 heures (€140), 4 heures (€230), 6 heures (€330) ou une journée complète de 8 heures (€380). Les options demi-journée conviennent pour une baignade rapide et quelques criques proches, tandis que la journée entière vous emmène plus loin le long de la côte à un rythme détendu. Les prix sont par bateau, pas par personne — pour une famille ou un groupe d’amis, le coût par tête baisse vite. Pas de frais de plateforme : vous réservez en direct avec nous et payez le prix annoncé. Indiquez-nous le nombre de personnes et vos dates et nous recommanderons la durée adaptée.',
+        },
+        {
+          heading: 'Ce qui est inclus avec votre bateau de location',
+          body: 'Chaque location self-drive est prête à partir. Le carburant est inclus — les bateaux ont un réservoir de 25 litres plus une réserve de 10 litres, suffisant pour une journée entière dans les criques. Vous avez aussi un mini réfrigérateur avec glace, de l’eau et des boissons à bord, l’équipement de sécurité et des gilets de sauvetage pour tous, et de l’ombre là où c’est prévu. Les bateaux atteignent jusqu’à 28 mph, vous pouvez donc parcourir de la distance quand vous le voulez et avancer lentement quand vous trouvez une crique tranquille. Nous remettons un bateau propre et bien entretenu, une carte des itinéraires et un numéro de contact au cas où vous auriez besoin de quelque chose en mer.',
+        },
+        {
+          heading: 'Où vous pouvez aller avec un bateau self-drive',
+          body: 'Depuis notre base, vous rejoignez les meilleurs spots de baignade et de snorkeling de la côte est à votre rythme. Les arrêts populaires incluent les sources de Kallithea, Anthony Quinn Bay, Ladiko et les grottes marines de Traganou — une eau calme et abritée, idéale pour le self-drive. Avec une location demi-journée, la plupart visitent deux ou trois criques ; une journée entière vous permet d’aller plus loin et de rester plus longtemps. Nous marquons l’itinéraire conseillé et le rayon sûr du jour selon le vent, pour que vous sachiez toujours où aller et quand faire demi-tour. Si vous préférez ne pas piloter, voyez nos <a href="/service/rhodes-boat-trips">excursions en bateau privées</a> avec skipper.',
+        },
+        {
+          heading: 'Location self-drive ou sortie avec skipper ?',
+          body: 'Une location self-drive vous donne une liberté totale et offre le meilleur rapport qualité-prix pour une famille ou un groupe qui veut explorer en autonomie. Si vous préférez vous détendre et laisser quelqu’un d’autre piloter, une option avec skipper convient mieux : parcourez nos <a href="/service/rhodes-boat-tours">excursions en bateau</a> guidées, les <a href="/service/rhodes-boat-cruises">croisières à la journée</a> tout compris, ou un <a href="/service/rhodes-charter">affrètement de yacht</a> entièrement privé pour un voyage plus long. Vous hésitez ? Indiquez-nous votre groupe et ce que vous attendez de la journée et nous vous conseillerons honnêtement, sans pression.',
+        },
+        {
+          heading: 'Meilleure période pour louer et sécurité météo',
+          body: 'La saison de location va de fin avril à octobre, avec la mer la plus calme et l’eau la plus chaude de juin à septembre. Le matin, le vent est généralement le plus faible, nous recommandons donc un départ tôt pour la navigation la plus douce et l’eau la plus claire. Les criques de la côte est sont abritées et bien adaptées au self-drive même les après-midis plus venteux. Nous vérifions les prévisions du jour et vous dirons honnêtement si les conditions ne conviennent pas — en proposant une alternative plutôt que de vous envoyer par fort meltemi. Votre briefing de sécurité couvre quoi faire si le temps change pendant que vous êtes en mer.',
+        },
+        {
+          heading: 'À qui s’adressent les locations self-drive',
+          body: 'La location de bateau self-drive à Rhodes convient aux couples qui veulent une journée privée sur l’eau, aux familles cherchant une sortie de groupe abordable, et aux primo-visiteurs qui veulent voir la côte sans programme fixe. Comme aucun permis n’est nécessaire et que les bateaux sont faciles à manœuvrer, vous n’avez besoin d’aucune expérience nautique — juste un peu d’esprit d’aventure. Les groupes d’amis trouvent souvent la location la façon la plus amusante et la plus économique de passer la journée, en se relayant à la barre entre les criques. Si vous avez des enfants, indiquez-nous leur âge et nous veillerons à ce que le bateau et l’itinéraire soient confortables.',
+        },
+        {
+          heading: 'Comment réserver votre location de bateau à Rhodes',
+          body: 'Réserver est simple et direct — pas de plateformes tierces ni de frais cachés. Envoyez-nous vos dates, le nombre de personnes et la durée souhaitée et nous confirmerons la disponibilité et le meilleur bateau pour vous. Nous sommes basés à Mandraki, à Rhodes-ville, à quelques minutes à pied de la vieille ville et à courte distance des stations proches. En juillet et août les bateaux se réservent vite, mieux vaut donc réserver à l’avance. <a href="/contact">Contactez-nous</a> avec vos dates et nous nous occupons du reste.',
+        },
+      ],
+      closing: 'Nous louons des bateaux aux visiteurs à Rhodes depuis 1998 — sans permis, à prix justes et réservés en direct sans frais de plateforme. Parcourez les bateaux de location disponibles ci-dessous, comparez une <a href="/service/rhodes-boat-trips">sortie privée avec skipper</a> ou une <a href="/service/rhodes-boat-tours">excursion en bateau</a> guidée, ou <a href="/contact">indiquez-nous vos dates</a> et nous vous recommanderons le bon bateau et la bonne base pour votre groupe.',
+    },
   },
   'rhodes-charter': {
     introQuote:

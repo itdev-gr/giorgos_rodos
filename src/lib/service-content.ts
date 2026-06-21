@@ -285,6 +285,45 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     catalogSubtitle: 'License-free self-drive boats along the Rhodes coast',
     ctaTitle: 'Not sure which rental fits your group?',
     ctaText: 'Tell us your dates and how many people — we will recommend the right boat and base.',
+    routeGuide: {
+      title: 'Rhodes Rent a Boat: Self-Drive Rentals Without a Licence',
+      intro: 'Renting a self-drive boat is the most flexible way to explore the Rhodes coast — your own boat, your own timing and no fixed route. No boating licence is needed, fuel and equipment are included, and you book direct with no platform fees. Below is everything you need to know: prices, what is included, where you can go, and how to choose the right rental for your group.',
+      routes: [
+        {
+          heading: 'Do you need a licence to rent a boat in Rhodes?',
+          body: 'No — our rental boats are licence-free. Under Greek law you can skipper a boat with an engine up to a set power limit without a boating licence, which covers every self-drive boat in our fleet. You just need to be over 18 and comfortable on the water; we give every renter a full safety briefing, show you the controls and mark the best routes on a map before you set off. No previous boating experience is required, and the boats are easy to handle in the calm morning sea. If anyone in your group already holds a licence, larger and faster boats open up — ask us and we will match the boat to your experience.',
+        },
+        {
+          heading: 'Rental prices and durations',
+          body: 'Self-drive rentals are priced by duration, so you only pay for the time you need. Choose from a 2-hour rental (€140), 4-hour (€230), 6-hour (€330) or a full-day 8-hour rental (€380). Half-day options suit a quick swim and a couple of nearby bays, while the full day lets you reach further along the coast at a relaxed pace. Prices are per boat, not per person — so for a family or group of friends the cost per head drops quickly. There are no booking-platform fees: you book direct with us and pay the price we quote. Tell us your group size and dates and we will recommend the duration that fits your plans.',
+        },
+        {
+          heading: 'What is included with your rental boat',
+          body: 'Every self-drive rental comes ready to go. Fuel is included — the boats carry a 25-litre tank plus a 10-litre reserve, enough for a full day of cruising the bays. You also get a mini refrigerator with ice, water and soft drinks on board, plus safety equipment and life jackets for everyone, and shade where fitted. The boats reach up to 28 mph, so you can cover distance when you want to and idle slowly when you find a quiet cove. We hand over a clean, well-maintained boat, a route map and a contact number in case you need anything while you are out.',
+        },
+        {
+          heading: 'Where you can go on a self-drive boat',
+          body: 'From our base you can reach the best swim and snorkel spots along the east coast at your own pace. Popular stops include Kallithea Springs, Anthony Quinn Bay, Ladiko and the Traganou sea caves — calm, sheltered water that is ideal for self-drive. With a half-day rental most people visit two or three bays; a full day lets you go further and linger longer. We mark the recommended route and the safe range for the day depending on wind, so you always know where to head and when to turn back. If you would rather not drive, see our skippered <a href="/service/rhodes-boat-trips">private boat trips</a> instead.',
+        },
+        {
+          heading: 'Self-drive rental or a skippered trip?',
+          body: 'A self-drive rental gives you total freedom and is the best value for a family or group who want to explore independently. If you would prefer to relax and let someone else handle the boat, a skippered option fits better: browse our guided <a href="/service/rhodes-boat-tours">boat tours</a>, all-inclusive <a href="/service/rhodes-boat-cruises">day cruises</a>, or a fully private <a href="/service/rhodes-charter">yacht charter</a> for a longer trip. Not sure which suits you? Tell us your group and what you want from the day and we will recommend honestly, without pressure.',
+        },
+        {
+          heading: 'Best time to rent and weather safety',
+          body: 'The rental season runs from late April to October, with the calmest seas and warmest water from June to September. Mornings usually have the lightest wind, so we recommend an early start for the smoothest ride and the clearest water. The east-coast bays are sheltered and well suited to self-drive even on breezier afternoons. We check the daily forecast and will tell you honestly if conditions are not right for a self-drive boat — and suggest an alternative rather than send you out in a strong meltemi wind. Your safety briefing covers what to do if the weather changes while you are out.',
+        },
+        {
+          heading: 'Who self-drive rentals are for',
+          body: 'Self-drive boat rental in Rhodes suits couples wanting a private day on the water, families looking for an affordable group outing, and first-time visitors who want to see the coast without a fixed tour schedule. Because no licence is needed and the boats are easy to handle, you do not need any boating background — just a sense of adventure. Groups of friends often find a rental the most fun and best-value way to spend a day, swapping who drives between bays. If you have children, tell us their ages and we will make sure the boat and route are a comfortable fit.',
+        },
+        {
+          heading: 'How to book your Rhodes boat rental',
+          body: 'Booking is simple and direct — no third-party platforms and no hidden fees. Send us your dates, group size and preferred duration and we will confirm availability and the best boat for you. We are based at Mandraki, in Rhodes Town, an easy walk from the old town and a short drive from the nearby resorts. In July and August the boats book up fast, so it is worth reserving ahead. <a href="/contact">Get in touch</a> with your dates and we will sort the rest.',
+        },
+      ],
+      closing: 'We have rented boats to visitors in Rhodes since 1998 — licence-free, fairly priced and booked direct with no platform fees. Browse the available rental boats below, compare a <a href="/service/rhodes-boat-trips">private skippered trip</a> or a guided <a href="/service/rhodes-boat-tours">boat tour</a>, or <a href="/contact">tell us your dates</a> and we will recommend the right boat and base for your group.',
+    },
   },
   'rhodes-charter': {
     introQuote: 'Yacht charter is a different kind of sea holiday — multi-day sailing, island hopping and the freedom of the open Aegean.',
