@@ -66,6 +66,45 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
     catalogSubtitle: 'Handpicked guided experiences departing from Rhodes',
     ctaTitle: 'Not sure which tour fits your group?',
     ctaText: 'Tell us your dates and who is travelling — we will suggest the best option honestly, without pressure.',
+    routeGuide: {
+      title: 'Rhodes Boat Tours: Routes, Destinations and What to Expect',
+      intro: 'A Rhodes boat tour is the easiest way to reach the island\'s best swimming bays, sea caves and neighbouring islands without renting a car or joining a crowded coach excursion. Most guided tours depart from Mandraki Harbour in Rhodes Town and run from spring through October. Below is how the main routes compare, what is included, and how to choose the boat tour that fits your group.',
+      routes: [
+        {
+          heading: 'What is included on a Rhodes boat tour',
+          body: 'Most guided Rhodes boat tours are all-inclusive, which keeps the day simple. A typical tour includes the round trip, swimming stops at two or three bays, snorkelling gear, soft drinks and water, and on full-day cruises a cooked lunch or Greek buffet on board. Prices for our handpicked tours usually start from around €75 per adult, with children\'s rates and family discounts on most departures. What you will not find is hidden fees or pressure selling — we quote the full price up front. Because we have worked Mandraki Harbour since 1998, we only list tours run on well-maintained boats with experienced, English-speaking crews. If you have a specific need — shade on deck, a quieter boat, easy access for older guests, or a stable catamaran for anyone prone to seasickness — tell us and we will match you to the right vessel rather than the first one with space.',
+        },
+        {
+          heading: 'Rhodes boat tours to Symi island',
+          body: 'The day tour to Symi is the most popular boat tour from Rhodes. Boats leave Mandraki in the morning, cross in around 75–90 minutes and give you several hours in the pastel harbour of Gialos, with a swim stop on the way. Symi is famous for its neoclassical houses, the Panormitis Monastery and crystal-clear water, which makes it ideal for photography and a relaxed lunch ashore. Our <a href="/tour-detail/all-inclusive-luxury-cruise-to-symi">all-inclusive luxury cruise to Symi</a> adds food and drinks on board so you can settle in for the crossing. If you prefer a smaller group or your own timing, ask about a private trip and we will arrange a faster speedboat for up to six guests.',
+        },
+        {
+          heading: 'Boat tours to Lindos',
+          body: 'A boat tour to Lindos pairs the medieval village and its Acropolis with swimming below the cliffs at St Paul\'s Bay. Approaching Lindos from the sea is the most scenic way to arrive, and many guests rate it the highlight of their trip. Our <a href="/tour-detail/luxury-cruise-to-lindos-with-lunch-and-drinks">luxury cruise to Lindos with lunch and drinks</a> includes time ashore in the village plus swim stops along the east coast on the way. Bring comfortable shoes if you plan to walk up to the Acropolis, and a hat — the village has little shade at midday. For larger groups or special occasions, a private Lindos cruise lets you decide how long to linger.',
+        },
+        {
+          heading: 'East coast swimming tours — Anthony Quinn Bay & Kallithea',
+          body: 'Not every Rhodes boat tour crosses to another island. East-coast swimming tours stay along the sheltered shoreline, stopping at Anthony Quinn Bay, Kallithea Springs, Ladiko and the Traganou sea caves — the classic snorkel-and-swim spots in calm, turquoise water. These tours suit first-time visitors and families who want beautiful bays without an open-sea crossing. Our <a href="/tour-detail/semi-private-top-rated-swimming-trip-4-hours-all-inclusive">semi-private 4-hour all-inclusive swimming trip</a> keeps groups small so the boat is never crowded, while the <a href="/tour-detail/yachting-4-hours-east-coast-cruise-with-greek-buffet">4-hour east-coast yachting cruise with Greek buffet</a> adds a relaxed sailing feel and food on deck. Both leave from Rhodes Town and return by mid-afternoon.',
+        },
+        {
+          heading: 'Sunset boat tours in Rhodes',
+          body: 'Sunset boat tours are the most romantic way to end a day in Rhodes. Departing in the late afternoon, they sail the calm western and northern waters as the light turns gold, usually with a swim stop and drinks on board. Our <a href="/tour-detail/sunset-cruise-shared-or-private">sunset cruise, shared or private</a> works equally well for couples, friends and small groups. Shared departures are the better value, while a private sunset charter gives you the deck to yourselves for a proposal, anniversary or birthday. Bring a light layer — it cools down on the water once the sun drops below the horizon.',
+        },
+        {
+          heading: 'Red Sand Beach BBQ boat tour',
+          body: 'For something different, the <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">Red Sand Beach BBQ trip runs every Sunday</a> and combines a coastal cruise with a barbecue lunch ashore at one of the island\'s most striking beaches. It is a full-day, all-inclusive experience built around swimming, food and a relaxed group atmosphere rather than a tight sightseeing schedule. Because it only runs once a week and fills up quickly in July and August, it is worth booking ahead. Tell us your dates early and we will hold a place if there is still space.',
+        },
+        {
+          heading: 'Shared, semi-private or private boat tours?',
+          body: 'Rhodes boat tours come in three formats. Shared tours are the most affordable, joining other travellers on a set route and timetable — ideal if you want a full day out without organising anything yourself. Semi-private tours cap the number of guests so the boat stays comfortable and the crew has time for everyone. Fully private tours give you the boat, route and timing to yourselves, which suits families, groups of friends and special occasions. If you would rather skipper yourself, see <a href="/service/rhodes-rent-a-boat">rent a boat in Rhodes</a> (no licence needed for smaller engines), or browse organised <a href="/service/rhodes-boat-cruises">Rhodes boat cruises</a> for larger all-inclusive day boats.',
+        },
+        {
+          heading: 'Where Rhodes boat tours depart from',
+          body: 'Most of our Rhodes boat tours depart from Mandraki Harbour in Rhodes Town, a short walk from the old town and easy to reach from nearby resorts. If you are staying further down the east coast in Faliraki, Kolymbia or Lindos, let us know your hotel area when you enquire and we will point you to the nearest sensible departure rather than sending you across the island. The season runs roughly from late April to October, with the calmest seas and warmest water from June to September. Mornings are best for swimming tours, while afternoons suit sunset sailings.',
+        },
+      ],
+      closing: 'We have been matching visitors to the right Rhodes boat tours since 1998 — honestly, with no booking fees and no pressure. Browse the handpicked tours below, <a href="/service/rhodes-boat-cruises">compare full-day boat cruises</a>, or <a href="/contact">tell us your dates</a> and we will suggest the best option for your group.',
+    },
   },
   'rhodes-boat-cruises': {
     introQuote: 'Boat cruises are one of the best ways to explore the coastline, visit famous bays and spend a full day on the sea.',

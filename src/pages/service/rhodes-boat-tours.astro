@@ -12,6 +12,7 @@ import ServiceGradientHero from '../../components/service/ServiceGradientHero.as
 import ServiceFeatureGrid from '../../components/service/ServiceFeatureGrid.astro';
 import ServiceIntroPanel from '../../components/service/ServiceIntroPanel.astro';
 import ServiceCatalog from '../../components/service/ServiceCatalog.astro';
+import ServiceRouteGuide from '../../components/service/ServiceRouteGuide.astro';
 import ServiceBottomCTA from '../../components/service/ServiceBottomCTA.astro';
 import { getMediaSlot } from '../../lib/media';
 import { getBoatToursFaq } from '../../i18n/faq-pages';
@@ -80,6 +81,8 @@ const tours = await fetchServiceTours(SLUG);
       </div>
     </ServiceCatalog>
   )}
+
+  {content.routeGuide && <ServiceRouteGuide {...content.routeGuide} />}
 
   <FAQSection
     items={getBoatToursFaq(locale)}
