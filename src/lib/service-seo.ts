@@ -76,7 +76,7 @@ export const SERVICE_SEO: Record<string, ServiceSeo> = {
     name: 'Rhodes Boat Trips',
     metaTitle: 'Rhodes Boat Trips | Symi, Lindos & Private Skippered',
     metaDescription:
-      'Rhodes boat trips to Symi, Lindos and the east coast — shared day cruises from €39 or private skippered trips from €350. Handpicked by a local sailor since 1998.',
+      'Rhodes boat trips to Symi, Lindos & the east coast — shared day cruises from €39 or private skippered trips from €350. Handpicked by a local sailor since 1998.',
     schemaDescription:
       'Rhodes boat trips to Symi, Lindos and east-coast bays — shared day cruises and private skippered speedboat trips handpicked by a local sailor since 1998.',
     heroSubtitle: 'Shared day cruises from €39 · Private skippered trips from €350',

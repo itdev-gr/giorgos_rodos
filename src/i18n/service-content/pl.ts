@@ -237,6 +237,18 @@ export const pl: Record<string, ServicePageContent> = {
           heading: 'Wycieczki łodzią z Kolymbii i Faliraki',
           body: 'Jeśli nocujesz na wschodnim wybrzeżu, wypłynięcia z Kolymbii lub Faliraki skracają dojazd na Symi, do Lindos i do lokalnych zatok kąpielowych. Ekspresowe łodzie na Symi z Kolymbii często wypływają później niż z Mandraki i obejmują postój kąpielowy w St George\'s Bay. Morskie shuttle z Faliraki łączą strefę kurortową z portem w mieście Rodos dla gości, którzy wolą nie prowadzić auta. W zapytaniu podaj rejon hotelu — dopasujemy najbliższy sensowny port wypłynięcia, zamiast niepotrzebnie wozić Cię przez całą wyspę.',
         },
+        {
+          heading: 'Co jest wliczone i typowe ceny wycieczek łodzią',
+          body: 'Cena zależy od tego, czy dołączasz do wycieczki wspólnej, czy rezerwujesz prywatną. Wspólne rejsy dzienne zaczynają się od około €39 za osobę i zwykle obejmują trasę, postoje na kąpiel, sprzęt do snorkelingu, a przy całodniowych rejsach obiad i napoje na pokładzie. Prywatne rejsy ze skipperem zaczynają się od około €350 za pół dnia i €700+ za cały dzień, w cenie za łódź, a nie za osobę — im więcej osób, tym lepsza wartość. Stawki prywatne zwykle obejmują paliwo, skippera, postoje na pływanie i snorkeling oraz elastyczne godziny. Bez ukrytych opłat: podajemy pełną cenę przed rezerwacją. Podaj liczebność grupy i terminy, a damy uczciwe porównanie opcji wspólnych i prywatnych.',
+        },
+        {
+          heading: 'Motorówka, RIB czy katamaran żaglowy — która wycieczka łodzią?',
+          body: 'Rodzaj łodzi kształtuje cały dzień. Motorówki i mocne łodzie RIB są szybkie i zwrotne — idealne, aby dotrzeć na Symi lub do kilku zatok wschodniego wybrzeża w pół dnia bez straty czasu. Katamarany żaglowe zamieniają prędkość na przestrzeń i stabilność: więcej pokładu, cień i spokojne tempo, idealne dla rodzin lub przy chorobie morskiej. Większe zorganizowane łodzie pasują tym, którzy chcą stałego dnia all inclusive w najniższej cenie. Jeśli nie jesteś pewien, powiedz nam, ile Was jest i co liczy się najbardziej — prędkość, komfort czy budżet — a wskażemy odpowiedni kadłub. Możesz też <a href="/service/rhodes-rent-a-boat">wynająć łódź bez patentu</a> lub przejrzeć <a href="/service/rhodes-boat-cruises">rejsy dzienne</a> dla większych grup.',
+        },
+        {
+          heading: 'Kiedy płynąć i co zabrać',
+          body: 'Sezon wycieczek łodzią po Rodos trwa od końca kwietnia do października, z najspokojniejszym morzem i najcieplejszą wodą od czerwca do września. Rano wiatr jest zwykle najsłabszy, co ma znaczenie przy otwartej przeprawie na Symi; po południu na odsłoniętych trasach może być bardziej wietrznie. Zabierz strój kąpielowy, ręcznik, krem z filtrem przyjazny rafom, kapelusz i lekką warstwę odzieży na drogę powrotną, a także wodoodporne etui na telefon na motorówce lub RIB. Większość łodzi zapewnia wodę i sprzęt do snorkelingu, ale warto sprawdzić wcześniej. Jeśli ktoś źle znosi ruch, wybierz katamaran lub osłoniętą trasę wzdłuż wschodniego wybrzeża. Nie wiesz, co wybrać? <a href="/contact">Wyślij nam swoje terminy</a>, a polecimy odpowiednią trasę i łódź.',
+        },
       ],
       closing:
         'Wspólne rejsy dzienne dają najlepszy koszt na osobę; prywatne rejsy ze skipperem dają łódź, trasę i czas tylko dla Was. Oba formaty selekcjonujemy od 1998 roku — <a href="/service/rhodes-boat-cruises">porównaj wspólne rejsy na Rodos</a>, sprawdź prywatne opcje poniżej lub <a href="/contact">napisz do nas</a>, jaki format pasuje do Twoich terminów i grupy.',
