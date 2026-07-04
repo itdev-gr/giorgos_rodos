@@ -177,6 +177,13 @@ const contactHref = localizedPath('/contact', locale);
     background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 100%);
   }
 
+  /* Lighter top darkening on mobile so the hero video stays bright */
+  @media (max-width: 991px) {
+    #header-one.header-transparent .sticky-wrapper:not(.sticky) {
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 100%);
+    }
+  }
+
   #header-one.header-transparent .sticky-wrapper:not(.sticky) .header-logo img {
     filter: brightness(0) invert(1);
   }
