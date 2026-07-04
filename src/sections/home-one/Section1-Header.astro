@@ -29,61 +29,55 @@ const contactHref = localizedPath('/contact', locale);
   <div class="sticky-wrapper" id="sticky-wrapper">
     <div class="menu-area">
       <div class="container th-container">
-        <div class="row align-items-center">
-          <!-- Logo -->
-          <div class="col-auto">
-            <div class="header-logo">
-              <a href={homeHref}>
-                <img src="/assets/img/brand/logos/logo-traced.svg" alt={messages.brand} width="200" height="60" decoding="async" />
-              </a>
-            </div>
+        <div class="header-grid">
+          <!-- Nav, left on desktop -->
+          <nav class="main-menu header-nav-left d-none d-lg-flex" aria-label="Main navigation">
+            <ul>
+              {navItems.map((item) => (
+                item.children ? (
+                  <li class="menu-item-has-children">
+                    <a href={item.href}>{item.label}</a>
+                    <ul class="sub-menu">
+                      {item.children.map((child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            target={child.external ? '_blank' : undefined}
+                            rel={child.external ? 'noopener noreferrer' : undefined}
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ) : (
+                  <li>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                )
+              ))}
+            </ul>
+          </nav>
+          <!-- Logo, centered on desktop -->
+          <div class="header-logo">
+            <a href={homeHref}>
+              <img src="/assets/img/brand/logos/logo-traced.svg" alt={messages.brand} width="200" height="60" decoding="async" />
+            </a>
           </div>
-          <!-- Nav, centered on desktop -->
-          <div class="col d-none d-lg-flex justify-content-center">
-            <nav class="main-menu" aria-label="Main navigation">
-              <ul>
-                {navItems.map((item) => (
-                  item.children ? (
-                    <li class="menu-item-has-children">
-                      <a href={item.href}>{item.label}</a>
-                      <ul class="sub-menu">
-                        {item.children.map((child) => (
-                          <li>
-                            <a
-                              href={child.href}
-                              target={child.external ? '_blank' : undefined}
-                              rel={child.external ? 'noopener noreferrer' : undefined}
-                            >
-                              {child.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ) : (
-                    <li>
-                      <a href={item.href}>{item.label}</a>
-                    </li>
-                  )
-                ))}
-              </ul>
-            </nav>
-          </div>
-          <!-- CTA + language + mobile toggle -->
-          <div class="col-auto ms-auto">
-            <div class="header-actions d-flex align-items-center">
-              <LanguageSwitcher />
-              <div class="d-none d-lg-block">
-                <a href={contactHref} class="luxury-cta">{messages.nav.bookNow}</a>
-              </div>
-              <button type="button" class="th-menu-toggle d-block d-lg-none" id="mobile-menu-trigger" aria-label={messages.nav.openMenu}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-              </button>
+          <!-- CTA + language + mobile toggle, right -->
+          <div class="header-actions d-flex align-items-center">
+            <LanguageSwitcher />
+            <div class="d-none d-lg-block">
+              <a href={contactHref} class="luxury-cta">{messages.nav.bookNow}</a>
             </div>
+            <button type="button" class="th-menu-toggle d-block d-lg-none" id="mobile-menu-trigger" aria-label={messages.nav.openMenu}>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -98,6 +92,34 @@ const contactHref = localizedPath('/contact', locale);
 <style>
   .header-actions {
     gap: 18px;
+  }
+
+  /* ===== Header layout: logo centered, nav left, actions right (desktop) ===== */
+  .header-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 992px) {
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      column-gap: 24px;
+    }
+
+    .header-nav-left {
+      justify-self: start;
+    }
+
+    .header-grid .header-logo {
+      justify-self: center;
+    }
+
+    .header-grid .header-actions {
+      justify-self: end;
+    }
   }
 
   /* ===== Luxury Navbar Base ===== */
