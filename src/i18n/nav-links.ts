@@ -40,7 +40,6 @@ export function buildNavItems(nav: NavMessages, locale: Locale): NavItem[] {
       ],
     },
     { label: nav.experiences, href: p('/things-to-do') },
-    { label: nav.blog, href: '/blog' },
     { label: nav.faq, href: p('/faq') },
     { label: nav.contact, href: p('/contact') },
   ];

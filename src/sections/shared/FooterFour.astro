@@ -22,6 +22,9 @@ const links = buildFooterLinks(messages.nav, messages.footer, locale);
           <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.whatsapp.com/" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
+        <a href="https://rhodesthingstodo.com" class="ft-badge" target="_blank" rel="noopener noreferrer">
+          <img src="https://rhodesthingstodo.com/badge.svg" alt="Featured on Rhodes Things To Do" width="210" height="54" loading="lazy" style="border:0" />
+        </a>
       </div>
 
       <!-- Links -->
@@ -98,6 +101,16 @@ const links = buildFooterLinks(messages.nav, messages.footer, locale);
   .ft-social {
     display: flex;
     gap: 12px;
+  }
+
+  .ft-badge {
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .ft-badge img {
+    display: block;
+    height: auto;
   }
 
   .ft-social a {
