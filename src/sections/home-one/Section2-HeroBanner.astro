@@ -2,7 +2,6 @@
 import { DEFAULT_HERO_MP4 } from '../../lib/hero-video';
 import { resolveLocale } from '../../i18n/context';
 import { getMessages } from '../../i18n';
-import { localizedPath } from '../../i18n/routing';
 
 const locale = resolveLocale(Astro.locals, Astro.url.pathname);
 const messages = getMessages(locale);
@@ -10,7 +9,6 @@ const messages = getMessages(locale);
 const heroPoster = '/assets/img/heroes/hero-poster-padded.jpg';
 const heroPosterMobile = '/assets/img/heroes/hero-poster-mobile.jpg';
 const mp4Src = DEFAULT_HERO_MP4;
-const contactHref = localizedPath('/contact', locale);
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
@@ -51,7 +49,6 @@ const contactHref = localizedPath('/contact', locale);
           <p class="hero-lead">
             {messages.home.hero.lead}
           </p>
-          <a href={contactHref} class="hero-cta-btn">{messages.home.hero.cta}</a>
         </div>
       </div>
     </div>

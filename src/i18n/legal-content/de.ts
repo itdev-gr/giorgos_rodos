@@ -9,7 +9,7 @@ export const de: LegalPageContent = {
         heading: '1. Verantwortlicher',
         paragraphs: [
           'Verantwortlicher für die Verarbeitung Ihrer personenbezogenen Daten ist:',
-          '<strong>Rhodes Rent a Boat</strong><br />Ionos Dragoumi 39, Rhodes 85100, Greece<br />Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />Phone: +30 695 166 6454',
+          '<strong>Rhodes Rent a Boat</strong><br />Ionos Dragoumi 39, Rhodes 85100, Greece<br />Email: <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a><br />Phone: +30 695 166 6454',
         ],
       },
       {
@@ -85,7 +85,7 @@ export const de: LegalPageContent = {
           '<strong>Recht auf Widerruf der Einwilligung:</strong> Wenn die Verarbeitung auf Einwilligung beruht, jederzeit widerrufen',
         ],
         trailingParagraphs: [
-          'Zur Ausübung dieser Rechte kontaktieren Sie uns unter <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a>. Wir antworten innerhalb von 30 Tagen.',
+          'Zur Ausübung dieser Rechte kontaktieren Sie uns unter <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a>. Wir antworten innerhalb von 30 Tagen.',
           'Wenn Sie der Meinung sind, dass wir Ihre Daten nicht korrekt behandelt haben, haben Sie das Recht, eine Beschwerde bei der <strong>Hellenischen Datenschutzbehörde (HDPA)</strong> unter <a href="https://www.dpa.gr" target="_blank" rel="noopener">www.dpa.gr</a> einzureichen.',
         ],
       },
@@ -111,7 +111,7 @@ export const de: LegalPageContent = {
         heading: '12. Kontakt',
         paragraphs: [
           'Bei Fragen zu dieser Datenschutzerklärung oder unseren Datenpraktiken kontaktieren Sie uns unter:',
-          'Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
+          'Email: <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
         ],
       },
     ],
@@ -194,7 +194,7 @@ export const de: LegalPageContent = {
         heading: '10. Kontakt',
         paragraphs: [
           'Bei Fragen zu diesen Bedingungen kontaktieren Sie uns unter:',
-          'Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
+          'Email: <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
         ],
       },
     ],

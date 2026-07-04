@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { createAdminClient, createPublicClient } from '../../lib/supabase';
+import { sendWeb3FormsEmail } from '../../lib/web3forms';
 
 
 export const POST: APIRoute = async ({ request }) => {
@@ -24,5 +25,21 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+
+  // Notify the owner by email (best-effort — the booking is already persisted).
+  await sendWeb3FormsEmail({
+    subject: 'New booking request',
+    from_name: customer_name,
+    replyto: customer_email,
+    fields: {
+      Tour: String(tour_id),
+      Name: customer_name,
+      Email: customer_email,
+      Phone: customer_phone || '—',
+      Date: booking_date,
+      Guests: String(parseInt(guests) || 1),
+    },
+  });
+
   return new Response(JSON.stringify({ success: true }), { status: 201 });
 };

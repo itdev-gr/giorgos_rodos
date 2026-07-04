@@ -9,7 +9,7 @@ export const he: LegalPageContent = {
         heading: '1. בעל השליטה בנתונים',
         paragraphs: [
           'בעל השליטה האחראי על הנתונים האישיים שלך הוא:',
-          '<strong>Rhodes Rent a Boat</strong><br />Ionos Dragoumi 39, Rhodes 85100, Greece<br />Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />Phone: +30 695 166 6454',
+          '<strong>Rhodes Rent a Boat</strong><br />Ionos Dragoumi 39, Rhodes 85100, Greece<br />Email: <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a><br />Phone: +30 695 166 6454',
         ],
       },
       {
@@ -85,7 +85,7 @@ export const he: LegalPageContent = {
           '<strong>זכות לחזור בך מהסכמה:</strong> כאשר העיבוד מבוסס על הסכמה, לחזור בך בכל עת',
         ],
         trailingParagraphs: [
-          'למימוש כל אחת מהזכויות הללו, פנה אלינו בכתובת <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a>. נשיב תוך 30 יום.',
+          'למימוש כל אחת מהזכויות הללו, פנה אלינו בכתובת <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a>. נשיב תוך 30 יום.',
           'אם אתה סבור שהנתונים שלך לא טופלו כראוי, יש לך זכות להגיש תלונה ל<strong>רשות הגנת הפרטיות היוונית (HDPA)</strong> בכתובת <a href="https://www.dpa.gr" target="_blank" rel="noopener">www.dpa.gr</a>.',
         ],
       },
@@ -111,7 +111,7 @@ export const he: LegalPageContent = {
         heading: '12. יצירת קשר',
         paragraphs: [
           'לכל שאלה בנוגע למדיניות פרטיות זו או לשיטות העבודה שלנו בנוגע לנתונים, פנה אלינו ב:',
-          'Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
+          'Email: <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
         ],
       },
     ],
@@ -194,7 +194,7 @@ export const he: LegalPageContent = {
         heading: '10. יצירת קשר',
         paragraphs: [
           'לשאלות בנוגע לתנאים אלה, פנה אלינו ב:',
-          'Email: <a href="mailto:info@rhodesrentaboat.com">info@rhodesrentaboat.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
+          'Email: <a href="mailto:rhodessailingtours2023@gmail.com">rhodessailingtours2023@gmail.com</a><br />Phone: +30 695 166 6454<br />Address: Ionos Dragoumi 39, Rhodes 85100, Greece',
         ],
       },
     ],
