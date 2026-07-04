@@ -9,6 +9,7 @@ const messages = getMessages(locale);
 const heroPoster = '/assets/img/heroes/hero-poster-padded.jpg';
 const heroPosterMobile = '/assets/img/heroes/hero-poster-mobile.jpg';
 const mp4Src = DEFAULT_HERO_MP4;
+const webmSrc = '/assets/img/heroes/hero-video.webm';
 ---
 <div class="th-hero-wrapper hero-1 hero-fullscreen" id="hero">
   <div class="hero-inner">
@@ -38,6 +39,7 @@ const mp4Src = DEFAULT_HERO_MP4;
         height="1080"
         aria-hidden="true"
       >
+        <source src={webmSrc} type="video/webm" />
         <source src={mp4Src} type="video/mp4" />
       </video>
       <div class="hero-overlay"></div>
