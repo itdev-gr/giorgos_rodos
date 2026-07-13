@@ -92,7 +92,7 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Red Sand Beach BBQ boat tour',
-          body: 'For something different, the <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">Red Sand Beach BBQ trip runs every Sunday</a> and combines a coastal cruise with a barbecue lunch ashore at one of the island\'s most striking beaches. It is a full-day, all-inclusive experience built around swimming, food and a relaxed group atmosphere rather than a tight sightseeing schedule. Because it only runs once a week and fills up quickly in July and August, it is worth booking ahead. Tell us your dates early and we will hold a place if there is still space.',
+          body: 'For something different, the <a href="/service/rhodes-boat-cruises">Red Sand Beach BBQ trip runs every Sunday</a> and combines a coastal cruise with a barbecue lunch ashore at one of the island\'s most striking beaches. It is a full-day, all-inclusive experience built around swimming, food and a relaxed group atmosphere rather than a tight sightseeing schedule. Because it only runs once a week and fills up quickly in July and August, it is worth booking ahead. Tell us your dates early and we will hold a place if there is still space.',
         },
         {
           heading: 'Shared, semi-private or private boat tours?',
@@ -136,11 +136,11 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
         },
         {
           heading: 'All-inclusive day cruises',
-          body: 'Full-day cruises are the classic Rhodes day out: a relaxed boat ride along the coast with several swimming stops, lunch and drinks included, and time to do nothing but enjoy the sea. The <a href="/tour-detail/east-coast-of-rhodes-group-cruise">East Coast of Rhodes group cruise</a> and the easy-going <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> cruise are popular shared options that suit families, couples and groups alike. These cruises trade the speed of a private trip for a sociable, all-inclusive atmosphere at the lowest price per person. If you would rather a smaller boat, ask about the semi-private alternatives below.',
+          body: 'Full-day cruises are the classic Rhodes day out: a relaxed boat ride along the coast with several swimming stops, lunch and drinks included, and time to do nothing but enjoy the sea. The <a href="/things-to-do">East Coast of Rhodes group cruise</a> and the easy-going <a href="/things-to-do">Fun in the Sun</a> cruise are popular shared options that suit families, couples and groups alike. These cruises trade the speed of a private trip for a sociable, all-inclusive atmosphere at the lowest price per person. If you would rather a smaller boat, ask about the semi-private alternatives below.',
         },
         {
           heading: 'Sunset cruises in Rhodes',
-          body: 'Sunset cruises are the most romantic Rhodes boat cruise — sailing the calm evening waters with drinks, a Greek BBQ or buffet and often live music as the sky turns gold. The <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">A Sunset Remedy all-inclusive sunset cruise</a> on the El Greco and the <a href="/tour-detail/sunset-cruise-lindos-calypso">Calypso all-inclusive sunset cruise from Lindos</a> are favourites, while the <a href="/tour-detail/golden-hour-yacht-experience-semi-private">Golden Hour semi-private yacht experience</a> keeps numbers small for a more intimate evening. Bring a light layer — it cools on the water once the sun drops. Sunset cruises fill quickly in July and August, so it is worth booking ahead.',
+          body: 'Sunset cruises are the most romantic Rhodes boat cruise — sailing the calm evening waters with drinks, a Greek BBQ or buffet and often live music as the sky turns gold. The <a href="/things-to-do">A Sunset Remedy all-inclusive sunset cruise</a> on the El Greco and the <a href="/things-to-do">Calypso all-inclusive sunset cruise from Lindos</a> are favourites, while the <a href="/tour-detail/golden-hour-yacht-experience-semi-private">Golden Hour semi-private yacht experience</a> keeps numbers small for a more intimate evening. Bring a light layer — it cools on the water once the sun drops. Sunset cruises fill quickly in July and August, so it is worth booking ahead.',
         },
         {
           heading: 'Day cruise to Symi',
@@ -148,7 +148,7 @@ export const SERVICE_CONTENT: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Day cruise to Lindos',
-          body: 'A day cruise to Lindos pairs the medieval village and its Acropolis with swimming below the cliffs at St Paul\'s Bay. Approaching Lindos from the sea is the most scenic way to arrive. The <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise in Lindos</a> is a relaxed, all-inclusive option with time ashore in the village and swim stops along the east coast. Bring comfortable shoes if you plan to walk up to the Acropolis, and a hat — the village has little shade at midday.',
+          body: 'A day cruise to Lindos pairs the medieval village and its Acropolis with swimming below the cliffs at St Paul\'s Bay. Approaching Lindos from the sea is the most scenic way to arrive. The <a href="/things-to-do">Lazy Day cruise in Lindos</a> is a relaxed, all-inclusive option with time ashore in the village and swim stops along the east coast. Bring comfortable shoes if you plan to walk up to the Acropolis, and a hat — the village has little shade at midday.',
         },
         {
           heading: 'East coast cruises — Anthony Quinn Bay & Kallithea',

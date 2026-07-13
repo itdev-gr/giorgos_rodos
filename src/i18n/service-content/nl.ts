@@ -64,7 +64,7 @@ export const nl: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Red Sand Beach BBQ-boottocht',
-          body: 'Voor iets anders vindt de <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">Red Sand Beach BBQ-tocht elke zondag</a> plaats en combineert een kustcruise met een barbecuelunch aan wal op een van de meest indrukwekkende stranden van het eiland. Het is een all-inclusive dagervaring rond zwemmen, eten en een ontspannen groepssfeer in plaats van een strak bezichtigingsprogramma. Omdat hij maar één keer per week vaart en in juli en augustus snel volzit, loont het om vroeg te boeken. Geef ons je data op tijd door en we houden een plek vrij als die beschikbaar is.',
+          body: 'Voor iets anders vindt de <a href="/service/rhodes-boat-cruises">Red Sand Beach BBQ-tocht elke zondag</a> plaats en combineert een kustcruise met een barbecuelunch aan wal op een van de meest indrukwekkende stranden van het eiland. Het is een all-inclusive dagervaring rond zwemmen, eten en een ontspannen groepssfeer in plaats van een strak bezichtigingsprogramma. Omdat hij maar één keer per week vaart en in juli en augustus snel volzit, loont het om vroeg te boeken. Geef ons je data op tijd door en we houden een plek vrij als die beschikbaar is.',
         },
         {
           heading: 'Gedeelde, semi-private of privé boottochten?',
@@ -123,11 +123,11 @@ export const nl: Record<string, ServicePageContent> = {
         },
         {
           heading: 'All-inclusive dagcruises',
-          body: 'Dagcruises zijn het klassieke dagje uit op Rhodos: een ontspannen boottocht langs de kust met meerdere zwemstops, lunch en drankjes inbegrepen, en tijd om gewoon van de zee te genieten. De <a href="/tour-detail/east-coast-of-rhodes-group-cruise">groepscruise langs de oostkust van Rhodos</a> en de luchtige <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a>-cruise zijn populaire gedeelde opties, geschikt voor gezinnen, koppels en groepen. Deze cruises ruilen de snelheid van een privétocht in voor een gezellige all-inclusive sfeer tegen de beste prijs per persoon. Wil je liever een kleinere boot, vraag dan naar de semi-private alternatieven hieronder.',
+          body: 'Dagcruises zijn het klassieke dagje uit op Rhodos: een ontspannen boottocht langs de kust met meerdere zwemstops, lunch en drankjes inbegrepen, en tijd om gewoon van de zee te genieten. De <a href="/things-to-do">groepscruise langs de oostkust van Rhodos</a> en de luchtige <a href="/things-to-do">Fun in the Sun</a>-cruise zijn populaire gedeelde opties, geschikt voor gezinnen, koppels en groepen. Deze cruises ruilen de snelheid van een privétocht in voor een gezellige all-inclusive sfeer tegen de beste prijs per persoon. Wil je liever een kleinere boot, vraag dan naar de semi-private alternatieven hieronder.',
         },
         {
           heading: 'Zonsondergangcruises op Rhodos',
-          body: 'Zonsondergangcruises zijn de meest romantische bootcruise op Rhodos — je vaart door de kalme avondwateren met drankjes, een Griekse BBQ of buffet en vaak livemuziek terwijl de lucht goudkleurig wordt. De <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">all-inclusive zonsondergangcruise A Sunset Remedy</a> op de El Greco en de <a href="/tour-detail/sunset-cruise-lindos-calypso">all-inclusive zonsondergangcruise Calypso vanuit Lindos</a> zijn favorieten, terwijl de <a href="/tour-detail/golden-hour-yacht-experience-semi-private">semi-private Golden Hour-jachtervaring</a> de aantallen klein houdt voor een intiemere avond. Neem een lichte laag mee — op het water koelt het af zodra de zon ondergaat. Zonsondergangcruises zitten in juli en augustus snel vol, dus boek op tijd.',
+          body: 'Zonsondergangcruises zijn de meest romantische bootcruise op Rhodos — je vaart door de kalme avondwateren met drankjes, een Griekse BBQ of buffet en vaak livemuziek terwijl de lucht goudkleurig wordt. De <a href="/things-to-do">all-inclusive zonsondergangcruise A Sunset Remedy</a> op de El Greco en de <a href="/things-to-do">all-inclusive zonsondergangcruise Calypso vanuit Lindos</a> zijn favorieten, terwijl de <a href="/tour-detail/golden-hour-yacht-experience-semi-private">semi-private Golden Hour-jachtervaring</a> de aantallen klein houdt voor een intiemere avond. Neem een lichte laag mee — op het water koelt het af zodra de zon ondergaat. Zonsondergangcruises zitten in juli en augustus snel vol, dus boek op tijd.',
         },
         {
           heading: 'Dagcruise naar Symi',
@@ -135,7 +135,7 @@ export const nl: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Dagcruise naar Lindos',
-          body: 'Een dagcruise naar Lindos combineert het middeleeuwse dorp en zijn Akropolis met zwemmen onder de kliffen bij St Paul’s Bay. Lindos vanaf zee benaderen is de mooiste manier om aan te komen. De <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise in Lindos</a> is een ontspannen all-inclusive optie met tijd in het dorp en zwemstops langs de oostkust. Neem comfortabele schoenen mee als je naar de Akropolis wilt lopen, en een hoed — het dorp heeft rond het middaguur weinig schaduw.',
+          body: 'Een dagcruise naar Lindos combineert het middeleeuwse dorp en zijn Akropolis met zwemmen onder de kliffen bij St Paul’s Bay. Lindos vanaf zee benaderen is de mooiste manier om aan te komen. De <a href="/things-to-do">Lazy Day cruise in Lindos</a> is een ontspannen all-inclusive optie met tijd in het dorp en zwemstops langs de oostkust. Neem comfortabele schoenen mee als je naar de Akropolis wilt lopen, en een hoed — het dorp heeft rond het middaguur weinig schaduw.',
         },
         {
           heading: 'Oostkustcruises — Anthony Quinn Bay & Kallithea',

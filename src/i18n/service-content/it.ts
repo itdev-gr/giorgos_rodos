@@ -64,7 +64,7 @@ export const it: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Tour in barca BBQ a Red Sand Beach',
-          body: 'Per qualcosa di diverso, la <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">gita BBQ a Red Sand Beach ogni domenica</a> unisce una crociera costiera a un pranzo barbecue a terra in una delle spiagge più suggestive dell’isola. È un’esperienza all inclusive di un’intera giornata incentrata su bagni, cibo e atmosfera di gruppo rilassata, più che su un programma di visite serrato. Poiché si svolge solo una volta a settimana e si riempie in fretta a luglio e agosto, conviene prenotare in anticipo. Indicaci le tue date per tempo e ti terremo un posto, se disponibile.',
+          body: 'Per qualcosa di diverso, la <a href="/service/rhodes-boat-cruises">gita BBQ a Red Sand Beach ogni domenica</a> unisce una crociera costiera a un pranzo barbecue a terra in una delle spiagge più suggestive dell’isola. È un’esperienza all inclusive di un’intera giornata incentrata su bagni, cibo e atmosfera di gruppo rilassata, più che su un programma di visite serrato. Poiché si svolge solo una volta a settimana e si riempie in fretta a luglio e agosto, conviene prenotare in anticipo. Indicaci le tue date per tempo e ti terremo un posto, se disponibile.',
         },
         {
           heading: 'Tour condivisi, semi-privati o privati?',
@@ -123,11 +123,11 @@ export const it: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Crociere giornaliere all inclusive',
-          body: 'Le crociere di un’intera giornata sono la classica giornata a Rodi: una rilassante navigazione lungo la costa con diverse soste per il bagno, pranzo e bevande inclusi e tempo per non fare altro che godersi il mare. La <a href="/tour-detail/east-coast-of-rhodes-group-cruise">crociera di gruppo sulla costa orientale di Rodi</a> e la spensierata crociera <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> sono opzioni condivise popolari, adatte a famiglie, coppie e gruppi. Queste crociere scambiano la velocità di un’uscita privata con un’atmosfera socievole all inclusive al miglior prezzo a persona. Se preferisci una barca più piccola, chiedi delle alternative semi-private qui sotto.',
+          body: 'Le crociere di un’intera giornata sono la classica giornata a Rodi: una rilassante navigazione lungo la costa con diverse soste per il bagno, pranzo e bevande inclusi e tempo per non fare altro che godersi il mare. La <a href="/things-to-do">crociera di gruppo sulla costa orientale di Rodi</a> e la spensierata crociera <a href="/things-to-do">Fun in the Sun</a> sono opzioni condivise popolari, adatte a famiglie, coppie e gruppi. Queste crociere scambiano la velocità di un’uscita privata con un’atmosfera socievole all inclusive al miglior prezzo a persona. Se preferisci una barca più piccola, chiedi delle alternative semi-private qui sotto.',
         },
         {
           heading: 'Crociere al tramonto a Rodi',
-          body: 'Le crociere al tramonto sono la crociera in barca più romantica a Rodi — navighi nelle acque calme della sera con bevande, un BBQ greco o buffet e spesso musica dal vivo mentre il cielo si tinge d’oro. La <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">crociera al tramonto all inclusive “A Sunset Remedy”</a> sull’El Greco e la <a href="/tour-detail/sunset-cruise-lindos-calypso">crociera al tramonto all inclusive Calypso da Lindos</a> sono tra le preferite, mentre l’<a href="/tour-detail/golden-hour-yacht-experience-semi-private">esperienza in yacht semi-privata Golden Hour</a> mantiene piccoli i numeri per una serata più intima. Porta uno strato leggero: sull’acqua rinfresca quando il sole scende. Le crociere al tramonto si riempiono in fretta a luglio e agosto, quindi conviene prenotare in anticipo.',
+          body: 'Le crociere al tramonto sono la crociera in barca più romantica a Rodi — navighi nelle acque calme della sera con bevande, un BBQ greco o buffet e spesso musica dal vivo mentre il cielo si tinge d’oro. La <a href="/things-to-do">crociera al tramonto all inclusive “A Sunset Remedy”</a> sull’El Greco e la <a href="/things-to-do">crociera al tramonto all inclusive Calypso da Lindos</a> sono tra le preferite, mentre l’<a href="/tour-detail/golden-hour-yacht-experience-semi-private">esperienza in yacht semi-privata Golden Hour</a> mantiene piccoli i numeri per una serata più intima. Porta uno strato leggero: sull’acqua rinfresca quando il sole scende. Le crociere al tramonto si riempiono in fretta a luglio e agosto, quindi conviene prenotare in anticipo.',
         },
         {
           heading: 'Crociera giornaliera a Symi',
@@ -135,7 +135,7 @@ export const it: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Crociera giornaliera a Lindos',
-          body: 'Una crociera giornaliera a Lindos unisce il borgo medievale e la sua Acropoli al bagno sotto le scogliere della baia di St Paul. Avvicinarsi a Lindos dal mare è il modo più scenografico per arrivare. La <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise a Lindos</a> è un’opzione rilassata all inclusive con tempo nel borgo e soste per il bagno lungo la costa orientale. Porta scarpe comode se vuoi salire all’Acropoli e un cappello — il borgo ha poca ombra a mezzogiorno.',
+          body: 'Una crociera giornaliera a Lindos unisce il borgo medievale e la sua Acropoli al bagno sotto le scogliere della baia di St Paul. Avvicinarsi a Lindos dal mare è il modo più scenografico per arrivare. La <a href="/things-to-do">Lazy Day cruise a Lindos</a> è un’opzione rilassata all inclusive con tempo nel borgo e soste per il bagno lungo la costa orientale. Porta scarpe comode se vuoi salire all’Acropoli e un cappello — il borgo ha poca ombra a mezzogiorno.',
         },
         {
           heading: 'Crociere sulla costa orientale — Anthony Quinn Bay e Kallithea',

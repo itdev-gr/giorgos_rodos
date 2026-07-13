@@ -64,7 +64,7 @@ export const de: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Red-Sand-Beach-BBQ-Bootstour',
-          body: 'Für etwas Besonderes findet der <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">Red-Sand-Beach-BBQ-Ausflug jeden Sonntag</a> statt und verbindet eine Küstenfahrt mit einem Barbecue-Mittagessen an einem der eindrucksvollsten Strände der Insel. Es ist ein Ganztags-All-inclusive-Erlebnis rund um Schwimmen, Essen und entspannte Gruppenatmosphäre statt eines straffen Sightseeing-Programms. Da er nur einmal pro Woche stattfindet und im Juli und August schnell ausgebucht ist, lohnt sich eine frühzeitige Buchung. Nennen Sie uns früh Ihre Daten, und wir halten einen Platz frei, sofern verfügbar.',
+          body: 'Für etwas Besonderes findet der <a href="/service/rhodes-boat-cruises">Red-Sand-Beach-BBQ-Ausflug jeden Sonntag</a> statt und verbindet eine Küstenfahrt mit einem Barbecue-Mittagessen an einem der eindrucksvollsten Strände der Insel. Es ist ein Ganztags-All-inclusive-Erlebnis rund um Schwimmen, Essen und entspannte Gruppenatmosphäre statt eines straffen Sightseeing-Programms. Da er nur einmal pro Woche stattfindet und im Juli und August schnell ausgebucht ist, lohnt sich eine frühzeitige Buchung. Nennen Sie uns früh Ihre Daten, und wir halten einen Platz frei, sofern verfügbar.',
         },
         {
           heading: 'Gemeinsame, halbprivate oder private Bootstouren?',
@@ -123,11 +123,11 @@ export const de: Record<string, ServicePageContent> = {
         },
         {
           heading: 'All-inclusive-Tageskreuzfahrten',
-          body: 'Ganztageskreuzfahrten sind der klassische Rhodos-Tag: eine entspannte Bootsfahrt entlang der Küste mit mehreren Badestopps, Mittagessen und Getränken inklusive und Zeit, einfach das Meer zu genießen. Die <a href="/tour-detail/east-coast-of-rhodes-group-cruise">East-Coast-Gruppenkreuzfahrt</a> und die unkomplizierte <a href="/tour-detail/fun-in-the-sun">Fun-in-the-Sun</a>-Kreuzfahrt sind beliebte gemeinsame Optionen für Familien, Paare und Gruppen. Diese Kreuzfahrten tauschen die Geschwindigkeit eines privaten Ausflugs gegen eine gesellige All-inclusive-Atmosphäre zum besten Preis pro Person. Wenn Sie ein kleineres Boot bevorzugen, fragen Sie nach den halbprivaten Alternativen unten.',
+          body: 'Ganztageskreuzfahrten sind der klassische Rhodos-Tag: eine entspannte Bootsfahrt entlang der Küste mit mehreren Badestopps, Mittagessen und Getränken inklusive und Zeit, einfach das Meer zu genießen. Die <a href="/things-to-do">East-Coast-Gruppenkreuzfahrt</a> und die unkomplizierte <a href="/things-to-do">Fun-in-the-Sun</a>-Kreuzfahrt sind beliebte gemeinsame Optionen für Familien, Paare und Gruppen. Diese Kreuzfahrten tauschen die Geschwindigkeit eines privaten Ausflugs gegen eine gesellige All-inclusive-Atmosphäre zum besten Preis pro Person. Wenn Sie ein kleineres Boot bevorzugen, fragen Sie nach den halbprivaten Alternativen unten.',
         },
         {
           heading: 'Sunset-Kreuzfahrten auf Rhodos',
-          body: 'Sunset-Kreuzfahrten sind die romantischste Rhodos-Bootskreuzfahrt — Sie segeln durch die ruhigen Abendgewässer mit Getränken, einem griechischen BBQ oder Buffet und oft Live-Musik, während der Himmel golden wird. Die <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">All-inclusive-Sunset-Kreuzfahrt „A Sunset Remedy“</a> auf der El Greco und die <a href="/tour-detail/sunset-cruise-lindos-calypso">All-inclusive-Sunset-Kreuzfahrt Calypso ab Lindos</a> sind Favoriten, während die <a href="/tour-detail/golden-hour-yacht-experience-semi-private">halbprivate Golden-Hour-Yachterfahrung</a> die Gästezahl für einen intimeren Abend klein hält. Bringen Sie eine leichte Jacke mit — auf dem Wasser kühlt es ab, sobald die Sonne untergeht. Sunset-Kreuzfahrten sind im Juli und August schnell ausgebucht, buchen Sie also frühzeitig.',
+          body: 'Sunset-Kreuzfahrten sind die romantischste Rhodos-Bootskreuzfahrt — Sie segeln durch die ruhigen Abendgewässer mit Getränken, einem griechischen BBQ oder Buffet und oft Live-Musik, während der Himmel golden wird. Die <a href="/things-to-do">All-inclusive-Sunset-Kreuzfahrt „A Sunset Remedy“</a> auf der El Greco und die <a href="/things-to-do">All-inclusive-Sunset-Kreuzfahrt Calypso ab Lindos</a> sind Favoriten, während die <a href="/tour-detail/golden-hour-yacht-experience-semi-private">halbprivate Golden-Hour-Yachterfahrung</a> die Gästezahl für einen intimeren Abend klein hält. Bringen Sie eine leichte Jacke mit — auf dem Wasser kühlt es ab, sobald die Sonne untergeht. Sunset-Kreuzfahrten sind im Juli und August schnell ausgebucht, buchen Sie also frühzeitig.',
         },
         {
           heading: 'Tageskreuzfahrt nach Symi',
@@ -135,7 +135,7 @@ export const de: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Tageskreuzfahrt nach Lindos',
-          body: 'Eine Tageskreuzfahrt nach Lindos verbindet das mittelalterliche Dorf und seine Akropolis mit dem Schwimmen unter den Klippen in der St-Paul’s-Bucht. Die Annäherung an Lindos vom Meer aus ist die schönste Art anzukommen. Die <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy-Day-Kreuzfahrt in Lindos</a> ist eine entspannte All-inclusive-Option mit Zeit im Dorf und Badestopps entlang der Ostküste. Bringen Sie bequeme Schuhe mit, wenn Sie zur Akropolis hinaufgehen möchten, und einen Hut — das Dorf hat um die Mittagszeit wenig Schatten.',
+          body: 'Eine Tageskreuzfahrt nach Lindos verbindet das mittelalterliche Dorf und seine Akropolis mit dem Schwimmen unter den Klippen in der St-Paul’s-Bucht. Die Annäherung an Lindos vom Meer aus ist die schönste Art anzukommen. Die <a href="/things-to-do">Lazy-Day-Kreuzfahrt in Lindos</a> ist eine entspannte All-inclusive-Option mit Zeit im Dorf und Badestopps entlang der Ostküste. Bringen Sie bequeme Schuhe mit, wenn Sie zur Akropolis hinaufgehen möchten, und einen Hut — das Dorf hat um die Mittagszeit wenig Schatten.',
         },
         {
           heading: 'Ostküsten-Kreuzfahrten — Anthony Quinn Bay & Kallithea',

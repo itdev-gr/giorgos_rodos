@@ -64,7 +64,7 @@ export const pl: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Wycieczka łodzią z grillem na Red Sand Beach',
-          body: 'Dla czegoś innego <a href="/tour-detail/red-sand-beach-bbq-trip-every-sunday">wycieczka z grillem na Red Sand Beach odbywa się w każdą niedzielę</a> i łączy przybrzeżny rejs z lunchem z grilla na lądzie na jednej z najbardziej zachwycających plaż wyspy. To całodniowe doświadczenie all inclusive skupione na kąpieli, jedzeniu i swobodnej atmosferze grupowej, a nie na napiętym programie zwiedzania. Ponieważ odbywa się tylko raz w tygodniu i szybko się zapełnia w lipcu i sierpniu, warto rezerwować z wyprzedzeniem. Podaj nam swoje terminy wcześnie, a zarezerwujemy miejsce, jeśli będzie dostępne.',
+          body: 'Dla czegoś innego <a href="/service/rhodes-boat-cruises">wycieczka z grillem na Red Sand Beach odbywa się w każdą niedzielę</a> i łączy przybrzeżny rejs z lunchem z grilla na lądzie na jednej z najbardziej zachwycających plaż wyspy. To całodniowe doświadczenie all inclusive skupione na kąpieli, jedzeniu i swobodnej atmosferze grupowej, a nie na napiętym programie zwiedzania. Ponieważ odbywa się tylko raz w tygodniu i szybko się zapełnia w lipcu i sierpniu, warto rezerwować z wyprzedzeniem. Podaj nam swoje terminy wcześnie, a zarezerwujemy miejsce, jeśli będzie dostępne.',
         },
         {
           heading: 'Wspólne, półprywatne czy prywatne wycieczki łodzią?',
@@ -123,11 +123,11 @@ export const pl: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Dzienne rejsy all inclusive',
-          body: 'Rejsy całodniowe to klasyczny dzień na Rodos: spokojny rejs wzdłuż wybrzeża z kilkoma postojami na kąpiel, obiadem i napojami w cenie oraz czasem, aby po prostu cieszyć się morzem. <a href="/tour-detail/east-coast-of-rhodes-group-cruise">Rejs grupowy wzdłuż wschodniego wybrzeża Rodos</a> i swobodny rejs <a href="/tour-detail/fun-in-the-sun">Fun in the Sun</a> to popularne opcje wspólne, odpowiednie dla rodzin, par i grup. Te rejsy zamieniają szybkość prywatnej wycieczki na towarzyską atmosferę all inclusive w najlepszej cenie za osobę. Jeśli wolisz mniejszą łódź, zapytaj o opcje półprywatne poniżej.',
+          body: 'Rejsy całodniowe to klasyczny dzień na Rodos: spokojny rejs wzdłuż wybrzeża z kilkoma postojami na kąpiel, obiadem i napojami w cenie oraz czasem, aby po prostu cieszyć się morzem. <a href="/things-to-do">Rejs grupowy wzdłuż wschodniego wybrzeża Rodos</a> i swobodny rejs <a href="/things-to-do">Fun in the Sun</a> to popularne opcje wspólne, odpowiednie dla rodzin, par i grup. Te rejsy zamieniają szybkość prywatnej wycieczki na towarzyską atmosferę all inclusive w najlepszej cenie za osobę. Jeśli wolisz mniejszą łódź, zapytaj o opcje półprywatne poniżej.',
         },
         {
           heading: 'Rejsy o zachodzie słońca na Rodos',
-          body: 'Rejsy o zachodzie słońca to najbardziej romantyczny rejs łodzią po Rodos — płyniesz po spokojnych wieczornych wodach z napojami, greckim grillem lub bufetem i często muzyką na żywo, gdy niebo staje się złote. <a href="/tour-detail/a-sunset-remedy-all-inclusive-sunset-cruise">Rejs o zachodzie słońca all inclusive A Sunset Remedy</a> na łodzi El Greco i <a href="/tour-detail/sunset-cruise-lindos-calypso">rejs o zachodzie słońca all inclusive Calypso z Lindos</a> to faworyci, a <a href="/tour-detail/golden-hour-yacht-experience-semi-private">półprywatne doświadczenie jachtowe Golden Hour</a> utrzymuje małą liczbę gości na bardziej kameralny wieczór. Zabierz lekką warstwę odzieży — na wodzie robi się chłodniej, gdy słońce zajdzie. Rejsy o zachodzie słońca szybko się zapełniają w lipcu i sierpniu, więc warto rezerwować z wyprzedzeniem.',
+          body: 'Rejsy o zachodzie słońca to najbardziej romantyczny rejs łodzią po Rodos — płyniesz po spokojnych wieczornych wodach z napojami, greckim grillem lub bufetem i często muzyką na żywo, gdy niebo staje się złote. <a href="/things-to-do">Rejs o zachodzie słońca all inclusive A Sunset Remedy</a> na łodzi El Greco i <a href="/things-to-do">rejs o zachodzie słońca all inclusive Calypso z Lindos</a> to faworyci, a <a href="/tour-detail/golden-hour-yacht-experience-semi-private">półprywatne doświadczenie jachtowe Golden Hour</a> utrzymuje małą liczbę gości na bardziej kameralny wieczór. Zabierz lekką warstwę odzieży — na wodzie robi się chłodniej, gdy słońce zajdzie. Rejsy o zachodzie słońca szybko się zapełniają w lipcu i sierpniu, więc warto rezerwować z wyprzedzeniem.',
         },
         {
           heading: 'Rejs dzienny na Symi',
@@ -135,7 +135,7 @@ export const pl: Record<string, ServicePageContent> = {
         },
         {
           heading: 'Rejs dzienny do Lindos',
-          body: 'Rejs dzienny do Lindos łączy średniowieczne miasteczko i jego Akropol z kąpielą u podnóża klifów w zatoce St Paul. Podpłynięcie do Lindos od strony morza to najbardziej malowniczy sposób przybycia. <a href="/tour-detail/lazy-day-cruise-in-lindos">Lazy Day cruise w Lindos</a> to spokojna opcja all inclusive z czasem w miasteczku i postojami na kąpiel wzdłuż wschodniego wybrzeża. Zabierz wygodne buty, jeśli planujesz wejść na Akropol, oraz kapelusz — w miasteczku w południe jest mało cienia.',
+          body: 'Rejs dzienny do Lindos łączy średniowieczne miasteczko i jego Akropol z kąpielą u podnóża klifów w zatoce St Paul. Podpłynięcie do Lindos od strony morza to najbardziej malowniczy sposób przybycia. <a href="/things-to-do">Lazy Day cruise w Lindos</a> to spokojna opcja all inclusive z czasem w miasteczku i postojami na kąpiel wzdłuż wschodniego wybrzeża. Zabierz wygodne buty, jeśli planujesz wejść na Akropol, oraz kapelusz — w miasteczku w południe jest mało cienia.',
         },
         {
           heading: 'Rejsy wzdłuż wschodniego wybrzeża — Anthony Quinn Bay i Kallithea',
