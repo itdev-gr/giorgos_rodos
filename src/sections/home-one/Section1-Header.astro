@@ -431,9 +431,16 @@ const contactHref = localizedPath('/contact', locale);
   :global(.th-menu-wrapper .th-mobile-menu) {
     margin-top: 0;
     padding-top: 72px;
+    /* Use the DYNAMIC viewport height so the scroll area matches what's actually
+       visible on mobile. With plain 100vh (the tall URL-bar-retracted height),
+       expanding a category makes the menu taller than the screen and the bottom
+       items end up behind the browser chrome, unreachable. 100vh is kept as a
+       fallback for browsers without dvh support. */
     max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
     padding-bottom: 40px;
     overflow-y: auto;
+    overscroll-behavior: contain;
     text-align: left;
   }
 
