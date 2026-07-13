@@ -86,7 +86,7 @@ const contactHref = localizedPath('/contact', locale);
 </header>
 
 <div id="mobile-menu-container">
-  <MobileMenu client:idle menuItems={navItems} />
+  <MobileMenu client:load menuItems={navItems} />
 </div>
 
 <style>
@@ -461,6 +461,55 @@ const contactHref = localizedPath('/contact', locale);
     margin-top: 4px;
     font-size: 14px;
     color: var(--title-color, #113D48);
+  }
+
+  /* Expandable category ("Service"): the theme's icon-font chevron renders no
+     glyph, so hide it and use the explicit SVG caret in the component instead. */
+  :global(.th-menu-wrapper .th-mobile-menu .menu-item-has-children > .th-submenu-toggle:after) {
+    display: none;
+  }
+
+  :global(.th-menu-wrapper .th-submenu-toggle) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  :global(.th-menu-wrapper .th-submenu-caret) {
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
+  }
+
+  :global(.th-menu-wrapper .th-item-has-children.th-active .th-submenu-caret) {
+    transform: rotate(180deg);
+  }
+
+  /* Pure-CSS accordion expand via grid-template-rows 0fr -> 1fr. Replaces the
+     old imperative animation (a useEffect measuring scrollHeight and setting an
+     inline pixel height), which was fragile: the fixed height didn't adapt when
+     content wrapped, and it forced a synchronous reflow on every toggle. This
+     version needs no JS beyond the active-class toggle and adapts to content. */
+  :global(.th-menu-wrapper .th-submenu-wrap) {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+  }
+
+  :global(.th-menu-wrapper .th-item-has-children.th-active .th-submenu-wrap) {
+    grid-template-rows: 1fr;
+  }
+
+  :global(.th-menu-wrapper .th-submenu-wrap > .th-submenu) {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.th-menu-wrapper .th-submenu-wrap),
+    :global(.th-menu-wrapper .th-submenu-caret) {
+      transition: none;
+    }
   }
 
   @media (max-width: 991px) {

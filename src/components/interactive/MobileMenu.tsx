@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 export interface MobileNavLink {
   label: string;
@@ -18,7 +18,6 @@ interface Props {
 export default function MobileMenu({ menuItems }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<number | null>(null);
-  const menuRefs = useRef<Record<number, HTMLUListElement | null>>({});
 
   const items = useMemo(
     () => menuItems.map((item, index) => ({ ...item, id: item.id ?? index + 1 })),
@@ -37,15 +36,6 @@ export default function MobileMenu({ menuItems }: Props) {
   const toggleMenu = (index: number) => {
     setActiveMenu(activeMenu === index ? null : index);
   };
-
-  useEffect(() => {
-    Object.keys(menuRefs.current).forEach((key) => {
-      const submenu = menuRefs.current[Number(key)];
-      if (submenu) {
-        submenu.style.height = activeMenu === Number(key) ? `${submenu.scrollHeight}px` : '0px';
-      }
-    });
-  }, [activeMenu]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -113,27 +103,50 @@ export default function MobileMenu({ menuItems }: Props) {
                   key={item.id}
                   className={`menu-item-has-children th-item-has-children${activeMenu === item.id ? ' th-active' : ''}`}
                 >
-                  <a href="#" onClick={(e) => { e.preventDefault(); toggleMenu(item.id!); }}>
-                    {item.label}
-                  </a>
-                  <ul
-                    ref={(el) => { menuRefs.current[item.id!] = el; }}
-                    className="th-submenu"
-                    style={{ height: '0px', overflow: 'hidden', transition: 'height 0.3s ease-in-out' }}
+                  {/* A real href to the section hub so a tap before hydration
+                      still navigates somewhere sensible; once hydrated the click
+                      is intercepted to toggle the submenu instead. */}
+                  <a
+                    href={item.href}
+                    className="th-submenu-toggle"
+                    aria-expanded={activeMenu === item.id}
+                    onClick={(e) => { e.preventDefault(); toggleMenu(item.id!); }}
                   >
-                    {item.children.map((child, cidx) => (
-                      <li key={cidx}>
-                        <a
-                          href={child.href}
-                          target={child.external ? '_blank' : undefined}
-                          rel={child.external ? 'noopener noreferrer' : undefined}
-                          onClick={closeMenu}
-                        >
-                          {child.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                    <span>{item.label}</span>
+                    <svg
+                      className="th-submenu-caret"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </a>
+                  {/* Pure-CSS accordion: the wrapper animates grid-template-rows
+                      0fr -> 1fr. No imperative height/scrollHeight measurement,
+                      so it adapts to content and needs no per-toggle reflow. */}
+                  <div className="th-submenu-wrap">
+                    <ul className="th-submenu">
+                      {item.children.map((child, cidx) => (
+                        <li key={cidx}>
+                          <a
+                            href={child.href}
+                            target={child.external ? '_blank' : undefined}
+                            rel={child.external ? 'noopener noreferrer' : undefined}
+                            onClick={closeMenu}
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </li>
               ) : (
                 <li key={item.id}>
