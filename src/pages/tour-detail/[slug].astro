@@ -303,6 +303,7 @@ const metaDescription =
                 <input id="booking-phone" type="tel" name="customer_phone" placeholder="+30 ..." style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
               </div>
               <input type="hidden" name="tour_id" value={tour.id} />
+              <input type="hidden" name="tour_name" value={tour.title} />
               <button type="submit" id="book-btn" style="width: 100%; padding: 14px; background: #1CA8CB; color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer;transition: background 0.2s;">
                 Book Now
               </button>
@@ -371,6 +372,8 @@ const metaDescription =
 </BaseLayout>
 
 <script>
+  import { submitToWeb3Forms } from '../../lib/web3forms-client';
+
   // Booking form
   const form = document.getElementById('booking-form') as HTMLFormElement;
   const msg = document.getElementById('booking-msg') as HTMLElement;
@@ -383,23 +386,38 @@ const metaDescription =
     msg.style.display = 'none';
 
     const fd = new FormData(form);
-    const data = Object.fromEntries(fd);
+    const data = Object.fromEntries(fd) as Record<string, string>;
 
     try {
-      const res = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      // Email is sent client-side via Web3Forms (server-side submits are
+      // blocked on their free plan); the API call persists the booking to
+      // Supabase. Success if either channel works.
+      const [emailOk, dbOk] = await Promise.all([
+        submitToWeb3Forms({
+          subject: 'New booking request',
+          from_name: data.customer_name || 'Website visitor',
+          replyto: data.customer_email || '',
+          Tour: data.tour_name || data.tour_id || '—',
+          Name: data.customer_name || '—',
+          Email: data.customer_email || '—',
+          Phone: data.customer_phone || '—',
+          Date: data.booking_date || '—',
+          Guests: data.guests || '1',
+        }),
+        fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        }).then((r) => r.ok).catch(() => false),
+      ]);
 
-      if (res.ok) {
+      if (emailOk || dbOk) {
         msg.textContent = 'Booking request sent! We will contact you shortly.';
         msg.style.color = '#166534';
         msg.style.display = 'block';
         form.reset();
       } else {
-        const d = await res.json();
-        msg.textContent = d.error || 'Something went wrong. Please try again.';
+        msg.textContent = 'Something went wrong. Please try again.';
         msg.style.color = '#991b1b';
         msg.style.display = 'block';
       }

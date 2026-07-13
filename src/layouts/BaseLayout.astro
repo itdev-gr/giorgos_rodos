@@ -716,6 +716,8 @@ const htmlDir = isRtlLocale(locale) ? 'rtl' : 'ltr';
 
     <!-- GSAP, lazy-loaded only when the page uses scroll animations or hero parallax -->
     <script>
+      import { submitToWeb3Forms } from '../lib/web3forms-client';
+
       let gsapBootPromise: Promise<void> | null = null;
 
       function needsGsap() {
@@ -796,12 +798,28 @@ const htmlDir = isRtlLocale(locale) ? 'rtl' : 'ltr';
               delete data.lastName;
             }
             try {
-              const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-              });
-              if (res.ok) {
+              // Email is delivered client-side (Web3Forms free plan blocks
+              // server-side submits); the API call only records the lead in
+              // Supabase. Success if either channel works, so a lead is never
+              // silently lost.
+              const [emailOk, dbOk] = await Promise.all([
+                submitToWeb3Forms({
+                  subject: data.subject ? `Contact form: ${data.subject}` : 'New contact form submission',
+                  from_name: data.name || 'Website visitor',
+                  replyto: data.email || '',
+                  Name: data.name || '—',
+                  Email: data.email || '—',
+                  Phone: data.phone || '—',
+                  Subject: data.subject || '—',
+                  Message: data.message || '—',
+                }),
+                fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data),
+                }).then((r) => r.ok).catch(() => false),
+              ]);
+              if (emailOk || dbOk) {
                 btn.textContent = 'Message Sent!';
                 btn.style.background = '#10B981';
                 (form as HTMLFormElement).reset();
