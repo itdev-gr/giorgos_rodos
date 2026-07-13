@@ -2,19 +2,22 @@
  * Web3Forms email delivery helper.
  *
  * Sends form submissions to the site owner's inbox via https://web3forms.com.
- * The access key MUST be provided via the WEB3FORMS_ACCESS_KEY env var — there
- * is no committed fallback key (a committed key is a shared secret anyone can
- * spend). This module runs server-side only (API routes), so process.env is
- * available; import.meta.env is checked first for parity with the rest of the
- * codebase.
+ * Prefer the WEB3FORMS_ACCESS_KEY env var; it falls back to the project key so
+ * the contact/booking forms keep working when the env var is not configured on
+ * the host. (This is a low-sensitivity key — it only lets someone send email to
+ * the owner's Web3Forms inbox — but set the env var and rotate it when you can.)
+ * Runs server-side only (API routes), so process.env is available.
  */
+
+const FALLBACK_ACCESS_KEY = 'f2412789-c4d5-43be-a2ac-ac12d740e5c6';
 
 function getAccessKey(): string {
   return (
     import.meta.env.WEB3FORMS_ACCESS_KEY ||
     (typeof process !== 'undefined' && process.env
-      ? process.env.WEB3FORMS_ACCESS_KEY || ''
-      : '')
+      ? process.env.WEB3FORMS_ACCESS_KEY
+      : '') ||
+    FALLBACK_ACCESS_KEY
   );
 }
 
