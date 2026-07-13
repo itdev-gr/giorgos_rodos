@@ -2,12 +2,10 @@
 import { resolveLocale } from '../../i18n/context';
 import { getPageContent } from '../../i18n/page-content';
 import { localizeHtmlLinks } from '../../i18n/localize-links';
-import { localizedPath } from '../../i18n/routing';
 
 const locale = resolveLocale(Astro.locals, Astro.url.pathname);
 const intro = getPageContent(locale).boatTripsIntro;
 const lede = localizeHtmlLinks(intro.ledeHtml, locale);
-const cruisesHref = localizedPath('/service/rhodes-boat-cruises', locale);
 ---
 
 <section class="sp-boat-intro" aria-labelledby="sp-boat-intro-title">
@@ -33,7 +31,7 @@ const cruisesHref = localizedPath('/service/rhodes-boat-cruises', locale);
                 <td>{row.type}</td>
                 <td>{row.bestFor}</td>
                 <td>{row.price}</td>
-                <td set:html={localizeHtmlLinks(row.bookHtml.replace('/service/rhodes-boat-cruises', cruisesHref), locale)} />
+                <td set:html={localizeHtmlLinks(row.bookHtml, locale)} />
               </tr>
             ))}
           </tbody>

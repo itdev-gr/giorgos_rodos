@@ -70,13 +70,6 @@ const data = {
       validThrough: '--04-30',
     },
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '6',
-    bestRating: '5',
-    worstRating: '1',
-  },
   sameAs: [
     'https://www.facebook.com/RhodosYachts',
     'https://www.instagram.com/rhodos_yachts/',
@@ -105,56 +98,10 @@ const data = {
       { '@type': 'Offer', url: `${SITE_URL}${localizedPath('/service/rhodes-sailing-trips', locale)}`, itemOffered: { '@type': 'TouristTrip', name: messages.services['rhodes-sailing-trips']?.name ?? 'Rhodes Sailing Trips', description: messages.services['rhodes-sailing-trips']?.schemaDescription ?? '', url: `${SITE_URL}${localizedPath('/service/rhodes-sailing-trips', locale)}`, image: `${SITE_URL}/assets/img/heroes/hero_bg_1_1.jpg` }},
     ],
   },
-  review: [
-    {
-      '@type': 'Review',
-      itemReviewed: { '@id': `${SITE_URL}#organization` },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Sarah & Tom W.' },
-      reviewBody: 'We contacted Rhodes Rent a Boat before our trip and they helped us pick the perfect boat tour for our family. The advice was honest, the captain was fantastic, and the hidden bays we visited were absolutely stunning. Best day of our holiday.',
-      datePublished: '2025-09-12',
-    },
-    {
-      '@type': 'Review',
-      itemReviewed: { '@id': `${SITE_URL}#organization` },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Marco & Giulia B.' },
-      reviewBody: 'We chartered a sailing yacht for a week around the Dodecanese. The team arranged everything, from provisioning to the route. Symi, Halki, Tilos, every island was a new discovery. Truly a local team that knows these waters.',
-      datePublished: '2025-08-05',
-    },
-    {
-      '@type': 'Review',
-      itemReviewed: { '@id': `${SITE_URL}#organization` },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'The Peterson Family' },
-      reviewBody: 'Travelling with three kids, we were not sure which cruise to choose. The team recommended the all-inclusive day cruise and it was perfect. The children loved swimming in Anthony Quinn Bay and the food onboard was delicious.',
-      datePublished: '2025-07-18',
-    },
-    {
-      '@type': 'Review',
-      itemReviewed: { '@id': `${SITE_URL}#organization` },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Anna & David K.' },
-      reviewBody: 'The speedboat trip with skipper was the highlight of our Rhodes holiday. We visited beaches that are impossible to reach by car. The skipper knew every hidden spot along the coastline. Cannot recommend this enough.',
-      datePublished: '2025-06-24',
-    },
-    {
-      '@type': 'Review',
-      itemReviewed: { '@id': `${SITE_URL}#organization` },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Christine L.' },
-      reviewBody: 'Renting a license-free boat was so easy. The team explained everything clearly and gave us a map with the best spots. We spent the whole day exploring the southeast coast on our own. Pure freedom.',
-      datePublished: '2025-08-30',
-    },
-    {
-      '@type': 'Review',
-      itemReviewed: { '@id': `${SITE_URL}#organization` },
-      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-      author: { '@type': 'Person', name: 'Michael & Petra S.' },
-      reviewBody: 'The sunset cruise was magical. Watching the sun go down from the water with a glass of wine, surrounded by the Rhodes coastline, it was one of those moments you never forget. Thank you for making it so special.',
-      datePublished: '2025-06-08',
-    },
-  ],
+  // NOTE: No aggregateRating/review here. Google prohibits self-serving review
+  // markup (reviews about the entity that hosts them) and can issue a manual
+  // action for it. If real, verifiable reviews are collected, mark them up on
+  // the specific product/tour being reviewed — not on the Organization itself.
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />
