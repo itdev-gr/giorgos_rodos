@@ -2,29 +2,40 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { createAdminClient, createPublicClient } from '../../../../lib/supabase';
-
+import { requireUser, readJsonBody } from '../../../../lib/api-auth';
 
 export const GET: APIRoute = async ({ locals }) => {
+  const denied = requireUser(locals);
+  if (denied) return denied;
+
   const supabase = createAdminClient() || createPublicClient();
-  const userId = locals.user?.id;
+  if (!supabase) return new Response(JSON.stringify({ error: 'Service unavailable' }), { status: 503 });
 
   const { data, error } = await supabase
     .from('tours')
     .select('*')
-    .eq('owner_id', userId)
+    .eq('owner_id', locals.user!.id)
     .order('created_at', { ascending: false });
 
-  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 400 });
+  if (error) {
+    console.error('user tours GET failed:', error.message);
+    return new Response(JSON.stringify({ error: 'Could not load tours' }), { status: 400 });
+  }
   return new Response(JSON.stringify(data), { status: 200 });
 };
 
 export const POST: APIRoute = async ({ request, locals }) => {
-  const body = await request.json();
-  const userId = locals.user?.id;
+  const denied = requireUser(locals);
+  if (denied) return denied;
+
+  const body = await readJsonBody(request);
+  if (!body) return new Response(JSON.stringify({ error: 'Invalid request body' }), { status: 400 });
+
   const supabase = createAdminClient() || createPublicClient();
+  if (!supabase) return new Response(JSON.stringify({ error: 'Service unavailable' }), { status: 503 });
 
   const { error } = await supabase.from('tours').insert({
-    owner_id: userId,
+    owner_id: locals.user!.id,
     title: body.title,
     description: body.description,
     service_page: body.service_page,
@@ -45,6 +56,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     status: body.status || 'draft',
   });
 
-  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 400 });
+  if (error) {
+    console.error('user tours POST failed:', error.message);
+    return new Response(JSON.stringify({ error: 'Could not create tour' }), { status: 400 });
+  }
   return new Response(JSON.stringify({ success: true }), { status: 201 });
 };

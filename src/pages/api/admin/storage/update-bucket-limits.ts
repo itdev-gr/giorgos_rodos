@@ -2,13 +2,17 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { createAdminClient } from '../../../../lib/supabase';
+import { requireAdmin } from '../../../../lib/api-auth';
 
 const TARGETS = [
   { name: 'site-media', fileSizeLimit: 500 * 1024 * 1024 },
   { name: 'tour-images', fileSizeLimit: 50 * 1024 * 1024 },
 ];
 
-export const POST: APIRoute = async () => {
+export const POST: APIRoute = async ({ locals }) => {
+  const denied = requireAdmin(locals);
+  if (denied) return denied;
+
   const supabase = createAdminClient();
   if (!supabase) {
     return new Response(JSON.stringify({ error: 'Admin client unavailable (SUPABASE_SERVICE_ROLE_KEY missing).' }), { status: 500 });

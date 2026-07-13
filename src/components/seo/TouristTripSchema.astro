@@ -34,14 +34,35 @@ const tourCanonical = `${SITE_URL}/tour-detail/${tourPathSegment}`;
 const priceValidUntil = `${new Date().getFullYear() + 1}-12-31`;
 const highlights = tour.highlights || [];
 
-const toISO8601Duration = (raw: string | number): string => {
-  if (typeof raw === 'string' && raw.startsWith('PT')) return raw;
-  const numStr = String(raw).replace(/[^\d.]/g, '');
-  const hours = parseFloat(numStr);
-  if (isNaN(hours)) return String(raw);
-  const h = Math.floor(hours);
-  const m = Math.round((hours - h) * 60);
-  return `PT${h}H${m > 0 ? `${m}M` : ''}`;
+// Convert a free-text duration to a valid ISO 8601 period, detecting the unit.
+// Returns undefined when it can't be parsed, so we omit `duration` rather than
+// emit an invalid value (e.g. "Full day") or the wrong unit (7 days as PT7H).
+const toISO8601Duration = (raw: string | number): string | undefined => {
+  const s = String(raw).trim();
+  if (/^P/i.test(s)) return s; // already an ISO 8601 period (PT4H, P7D, ...)
+  const lower = s.toLowerCase();
+  const num = parseFloat(lower.replace(/[^\d.]/g, ''));
+  const hoursToISO = (hrs: number) => {
+    const h = Math.floor(hrs);
+    const m = Math.round((hrs - h) * 60);
+    return `PT${h}H${m > 0 ? `${m}M` : ''}`;
+  };
+  if (/day/.test(lower)) return isNaN(num) ? undefined : `P${Math.round(num)}D`;
+  if (/hour|hr|\bh\b/.test(lower)) return isNaN(num) ? undefined : hoursToISO(num);
+  if (/min/.test(lower)) return isNaN(num) ? undefined : `PT${Math.round(num)}M`;
+  // Bare number with no unit → assume hours; anything else can't be parsed.
+  if (!isNaN(num) && lower === String(num)) return hoursToISO(num);
+  return undefined;
+};
+
+// Extract a single clean numeric price. Takes the FIRST number in the string
+// (so ranges like "€1,500 - €3,000" don't concatenate into "15003000") and
+// strips thousands separators — prices here are whole euros.
+const parsePrice = (raw: string): string | undefined => {
+  const token = String(raw).match(/\d[\d.,]*/)?.[0];
+  if (!token) return undefined;
+  const digits = token.replace(/[.,]/g, '');
+  return digits || undefined;
 };
 
 const data: Record<string, unknown> = {
@@ -70,7 +91,8 @@ if (highlights.length) {
 }
 
 if (tour.duration) {
-  data.duration = toISO8601Duration(tour.duration);
+  const iso = toISO8601Duration(tour.duration);
+  if (iso) data.duration = iso;
 }
 
 if (tour.meeting_point) {
@@ -95,7 +117,7 @@ if (tour.guests) {
 }
 
 if (tour.price) {
-  const numericPrice = String(tour.price).replace(/[^\d.]/g, '');
+  const numericPrice = parsePrice(tour.price);
   data.offers = [{
     '@type': 'Offer',
     price: numericPrice || undefined,

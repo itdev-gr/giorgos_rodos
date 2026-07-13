@@ -26,13 +26,20 @@ export type SitemapEntry = {
  * x-default). Attached to every language version of the page so the XML sitemap
  * carries reciprocal hreflang annotations alongside the <head> tags.
  */
+// Absolute URL with no trailing slash on the homepage — must match
+// buildCanonical() in lib/seo.ts, otherwise the sitemap advertises
+// `${SITE}/` while the page's own canonical is `${SITE}` (inconsistent x-default).
+function absUrl(path: string): string {
+  return `${SITE}${path === '/' ? '' : path.replace(/\/$/, '')}`;
+}
+
 function buildAlternates(path: string): SitemapAlternate[] | undefined {
   if (!isLocalizableRoute(path)) return undefined;
   const alternates: SitemapAlternate[] = LOCALES.map((locale) => ({
     hreflang: locale,
-    href: `${SITE}${localizedPath(path, locale)}`,
+    href: absUrl(localizedPath(path, locale)),
   }));
-  alternates.push({ hreflang: 'x-default', href: `${SITE}${localizedPath(path, 'en')}` });
+  alternates.push({ hreflang: 'x-default', href: absUrl(localizedPath(path, 'en')) });
   return alternates;
 }
 
@@ -86,7 +93,7 @@ function absImageUrl(img: string): string {
 /** Collect all sitemap entries with attached image metadata. */
 export async function collectSitemapEntries(): Promise<SitemapEntry[]> {
   const baseEntries: SitemapEntry[] = STATIC_PATHS.map((path) => ({
-    loc: `${SITE}${path}`,
+    loc: absUrl(path),
     lastmod: STATIC_LASTMOD[path],
     images: STATIC_PAGE_IMAGES[path] ? [...STATIC_PAGE_IMAGES[path]] : [],
     alternates: buildAlternates(path),

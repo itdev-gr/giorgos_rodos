@@ -63,7 +63,7 @@ try {
     isPartOf: { '@id': `${absoluteUrl('/')}#website` },
     mainEntity: {
       '@type': 'ItemList',
-      numberOfItems: tours.length,
+      numberOfItems: Math.min(tours.length, 50),
       itemListElement: tours.slice(0, 50).map((t: any, i: number) => ({
         '@type': 'ListItem',
         position: i + 1,

@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { createAdminClient, createPublicClient } from '../../../../lib/supabase';
+import { requireAdmin, readJsonBody } from '../../../../lib/api-auth';
 
 const BUCKET = 'site-config';
 const FILE = 'service-categories.json';
@@ -22,14 +23,18 @@ export const GET: APIRoute = async () => {
 };
 
 // PUT — update a single category's image (by slug)
-export const PUT: APIRoute = async ({ request }) => {
+export const PUT: APIRoute = async ({ request, locals }) => {
+  const denied = requireAdmin(locals);
+  if (denied) return denied;
+
   const supabase = createAdminClient();
   if (!supabase) {
     return new Response(JSON.stringify({ error: 'Admin client unavailable' }), { status: 500 });
   }
 
-  const body = await request.json();
-  const { slug, image } = body;
+  const body = await readJsonBody(request);
+  const slug = body?.slug;
+  const image = body?.image;
 
   if (!slug || !image) {
     return new Response(JSON.stringify({ error: 'slug and image are required' }), { status: 400 });
@@ -60,7 +65,8 @@ export const PUT: APIRoute = async ({ request }) => {
     .upload(FILE, json, { contentType: 'application/json', upsert: true });
 
   if (error) {
-    return new Response(JSON.stringify({ error: 'Failed to save: ' + error.message }), { status: 500 });
+    console.error('admin categories PUT failed:', error.message);
+    return new Response(JSON.stringify({ error: 'Failed to save' }), { status: 500 });
   }
 
   return new Response(JSON.stringify({ success: true, category: categories[index] }), { status: 200 });

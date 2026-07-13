@@ -23,7 +23,7 @@ const toursHref = localizedPath('/service/rhodes-boat-tours', locale);
 const aboutPageJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
-  '@id': `${SITE_URL}/about#aboutpage`,
+  '@id': `${SITE_URL}${localizedPath('/about', locale)}#aboutpage`,
   url: `${SITE_URL}${localizedPath('/about', locale)}`,
   name: messages.meta.about.title,
   description: messages.meta.about.description,

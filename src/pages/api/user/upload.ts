@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return await doUpload(supabase, file, userId);
   } catch (err: any) {
     console.error('Upload handler error:', err);
-    return new Response(JSON.stringify({ error: 'Server error: ' + (err?.message || String(err)) }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Server error while processing the upload.' }), { status: 500 });
   }
 };
 

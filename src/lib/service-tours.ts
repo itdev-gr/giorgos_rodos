@@ -33,9 +33,12 @@ export function mapTourToExperience(t: any): ExperienceCardData {
 /** Extract the first numeric price from strings like "€55/person" or "From €400". */
 export function parseExperiencePrice(price: string | null | undefined): number {
   if (!price?.trim()) return Number.POSITIVE_INFINITY;
-  const match = price.replace(/\s/g, '').match(/(\d+(?:[.,]\d+)?)/);
-  if (!match) return Number.POSITIVE_INFINITY;
-  return parseFloat(match[1].replace(',', '.'));
+  // Take the first number; strip thousands separators (prices are whole euros).
+  // Previously a comma was read as a decimal, so "€1,200" sorted as €1.20.
+  const token = price.match(/\d[\d.,]*/)?.[0];
+  if (!token) return Number.POSITIVE_INFINITY;
+  const n = parseInt(token.replace(/[.,]/g, ''), 10);
+  return Number.isNaN(n) ? Number.POSITIVE_INFINITY : n;
 }
 
 export function sortExperiencesByPriceAsc(tours: ExperienceCardData[]): ExperienceCardData[] {

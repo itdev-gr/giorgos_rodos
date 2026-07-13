@@ -29,10 +29,11 @@ export default function Sidebar({ role, currentPath, userName }: SidebarProps) {
   const links = role === 'admin' ? adminLinks : userLinks;
 
   const isActive = (href: string) => {
-    if (href === '/dashboard/admin' || href === '/dashboard/user') {
-      return currentPath === href;
-    }
-    return currentPath.startsWith(href);
+    const matches = (h: string) => currentPath === h || currentPath.startsWith(h + '/');
+    if (!matches(href)) return false;
+    // Only the most specific matching link is active, so /tours doesn't also
+    // light up on /tours/new (and /dashboard/admin doesn't light up everywhere).
+    return !links.some((l) => l.href !== href && l.href.length > href.length && matches(l.href));
   };
 
   return (

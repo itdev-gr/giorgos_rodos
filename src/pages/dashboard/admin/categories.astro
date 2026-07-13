@@ -15,6 +15,7 @@ try {
     if (res.ok) categories = await res.json();
   }
 } catch {}
+if (!Array.isArray(categories)) categories = [];
 categories.sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0));
 ---
 
@@ -116,9 +117,11 @@ categories.sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0));
       } catch (err: any) {
         alert('Error: ' + (err?.message || 'Network error'));
         loading.style.display = 'none';
+      } finally {
+        // Always clear the input so re-selecting the same file after a failure
+        // still fires a change event (early returns above used to skip this).
+        el.value = '';
       }
-
-      el.value = '';
     });
   });
 </script>

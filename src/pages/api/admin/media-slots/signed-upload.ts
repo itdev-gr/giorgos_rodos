@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { createAdminClient } from '../../../../lib/supabase';
+import { requireAdmin } from '../../../../lib/api-auth';
 
 const BUCKET = 'site-media';
 const ALLOWED = new Set(['video/mp4', 'video/webm', 'video/quicktime']);
@@ -10,8 +11,8 @@ const ALLOWED = new Set(['video/mp4', 'video/webm', 'video/quicktime']);
 // Body: { key: string, filename: string, contentType: string }
 // Returns: { uploadUrl: string, path: string, publicUrl: string, token: string }
 export const POST: APIRoute = async ({ request, locals }) => {
-  const userId = (locals as any).user?.id;
-  if (!userId) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+  const denied = requireAdmin(locals);
+  if (denied) return denied;
 
   const supabase = createAdminClient();
   if (!supabase) return new Response(JSON.stringify({ error: 'Admin client unavailable' }), { status: 500 });
@@ -44,7 +45,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const { data, error } = await supabase.storage.from(BUCKET).createSignedUploadUrl(path);
   if (error || !data) {
-    return new Response(JSON.stringify({ error: 'Failed to create upload URL: ' + (error?.message || 'unknown') }), { status: 500 });
+    console.error('signed-upload createSignedUploadUrl failed:', error?.message);
+    return new Response(JSON.stringify({ error: 'Failed to create upload URL' }), { status: 500 });
   }
 
   const { data: pub } = supabase.storage.from(BUCKET).getPublicUrl(path);

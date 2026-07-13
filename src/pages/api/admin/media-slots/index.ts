@@ -3,6 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { createAdminClient, createPublicClient } from '../../../../lib/supabase';
 import { invalidateMediaCache } from '../../../../lib/media';
+import { requireAdmin } from '../../../../lib/api-auth';
 
 const BUCKET = 'site-config';
 const FILE = 'media-slots.json';
@@ -41,7 +42,10 @@ export const GET: APIRoute = async () => {
 };
 
 // PUT — update one slot's url by key  { key, url }
-export const PUT: APIRoute = async ({ request }) => {
+export const PUT: APIRoute = async ({ request, locals }) => {
+  const denied = requireAdmin(locals);
+  if (denied) return denied;
+
   const supabase = createAdminClient();
   if (!supabase) return new Response(JSON.stringify({ error: 'Admin client unavailable' }), { status: 500 });
 
@@ -60,14 +64,18 @@ export const PUT: APIRoute = async ({ request }) => {
     await saveSlots(supabase, slots);
     invalidateMediaCache();
   } catch (e: any) {
-    return new Response(JSON.stringify({ error: 'Save failed: ' + e.message }), { status: 500 });
+    console.error('media-slots PUT save failed:', e?.message);
+    return new Response(JSON.stringify({ error: 'Save failed' }), { status: 500 });
   }
 
   return new Response(JSON.stringify({ success: true, slot: slots[idx] }), { status: 200 });
 };
 
 // POST — reset one slot to its default { action: 'reset', key }
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  const denied = requireAdmin(locals);
+  if (denied) return denied;
+
   const supabase = createAdminClient();
   if (!supabase) return new Response(JSON.stringify({ error: 'Admin client unavailable' }), { status: 500 });
 
@@ -86,7 +94,8 @@ export const POST: APIRoute = async ({ request }) => {
     await saveSlots(supabase, slots);
     invalidateMediaCache();
   } catch (e: any) {
-    return new Response(JSON.stringify({ error: 'Save failed: ' + e.message }), { status: 500 });
+    console.error('media-slots POST save failed:', e?.message);
+    return new Response(JSON.stringify({ error: 'Save failed' }), { status: 500 });
   }
 
   return new Response(JSON.stringify({ success: true, slot: slots[idx] }), { status: 200 });
