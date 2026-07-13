@@ -243,8 +243,8 @@ const videoSources = heroVideo ? heroVideoSources(heroVideo) : null;
       tick();
     });
 
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => { void boot().then(() => runParallax(bg)); }, { timeout: 3000 });
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(() => { void boot().then(() => runParallax(bg)); }, { timeout: 3000 });
     } else {
       window.addEventListener('load', () => { void boot().then(() => runParallax(bg)); }, { once: true });
     }

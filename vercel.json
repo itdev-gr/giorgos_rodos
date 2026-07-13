@@ -109,11 +109,6 @@
       "permanent": true
     },
     {
-      "source": "/blog/rhodes-rent-a-boat",
-      "destination": "/blog/rent-a-boat-rhodes-first-timers-guide",
-      "permanent": true
-    },
-    {
       "source": "/things-to-do/rhodes-sidecar-tours",
       "destination": "https://rhodessidecartours.com/",
       "permanent": true

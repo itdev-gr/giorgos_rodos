@@ -66,7 +66,10 @@ export async function fetchAllApprovedExperiences(): Promise<ExperienceCardData[
   }
 }
 
-export async function fetchServiceTours(servicePage: string, mapExtra?: (t: any) => Record<string, unknown>) {
+export async function fetchServiceTours(
+  servicePage: string,
+  mapExtra?: (t: any) => Record<string, unknown>,
+): Promise<Array<ExperienceCardData & Record<string, unknown>>> {
   try {
     const supabase = createReadClient();
     if (!supabase) return [];

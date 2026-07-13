@@ -1,28 +1,39 @@
 import { createClient } from '@supabase/supabase-js';
 
+// `process` is undefined in the browser bundle. Referencing it directly (even
+// behind `||`) throws a ReferenceError before the fallback can run, so read it
+// through this guard which returns '' client-side.
+function fromProcessEnv(name: string): string {
+  return typeof process !== 'undefined' && process.env ? process.env[name] || '' : '';
+}
+
 function getUrl() {
-  return import.meta.env.PUBLIC_SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL || '';
+  return import.meta.env.PUBLIC_SUPABASE_URL || fromProcessEnv('PUBLIC_SUPABASE_URL');
 }
 
 function getAnonKey() {
-  return import.meta.env.PUBLIC_SUPABASE_ANON_KEY || process.env.PUBLIC_SUPABASE_ANON_KEY || '';
+  return import.meta.env.PUBLIC_SUPABASE_ANON_KEY || fromProcessEnv('PUBLIC_SUPABASE_ANON_KEY');
 }
 
 function getServiceKey() {
   // Non-PUBLIC env vars: use process.env on server (Vercel SSR)
   // Supabase Vercel integration uses SUPABASE_SERVICE_ROLE (no _KEY suffix)
   return import.meta.env.SUPABASE_SERVICE_ROLE_KEY
-    || process.env.SUPABASE_SERVICE_ROLE_KEY
+    || fromProcessEnv('SUPABASE_SERVICE_ROLE_KEY')
     || import.meta.env.SUPABASE_SERVICE_ROLE
-    || process.env.SUPABASE_SERVICE_ROLE
-    || '';
+    || fromProcessEnv('SUPABASE_SERVICE_ROLE');
 }
 
-// Browser client (used in React components), lazy singleton
+// Browser client (used in React components), lazy singleton.
+// Returns null when env vars are absent so callers degrade gracefully instead
+// of createClient() throwing "supabaseUrl is required".
 let _supabase: ReturnType<typeof createClient> | null = null;
 export function getSupabase() {
   if (!_supabase) {
-    _supabase = createClient(getUrl(), getAnonKey());
+    const url = getUrl();
+    const key = getAnonKey();
+    if (!url || !key) return null;
+    _supabase = createClient(url, key);
   }
   return _supabase;
 }

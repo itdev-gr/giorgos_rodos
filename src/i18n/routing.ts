@@ -82,7 +82,7 @@ export function getHreflangAlternates(pathname: string): { hreflang: string; hre
     return [{ hreflang: 'en', href: absoluteUrl(normalized) }];
   }
 
-  const alternates = LOCALES.map((locale) => ({
+  const alternates: { hreflang: string; href: string }[] = LOCALES.map((locale) => ({
     hreflang: locale,
     href: absoluteUrl(localizedPath(normalized, locale)),
   }));

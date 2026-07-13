@@ -98,8 +98,9 @@ const webmSrc = '/assets/img/heroes/hero-video.webm';
 
 <style>
   .hero-fullscreen {
-    height: 100vh;
-    min-height: 600px;
+    /* Two-thirds of the viewport height (was full-screen 100vh). */
+    height: calc(100vh * 2 / 3);
+    min-height: 480px;
   }
 
   .hero-fullscreen .hero-inner {
@@ -187,8 +188,8 @@ const webmSrc = '/assets/img/heroes/hero-video.webm';
       background: none;
     }
     .hero-fullscreen {
-      height: 75vh;
-      min-height: 380px;
+      height: calc(100vh * 2 / 3);
+      min-height: 360px;
     }
 
     .hero-lead {
@@ -319,8 +320,8 @@ const webmSrc = '/assets/img/heroes/hero-video.webm';
 
   @media (max-width: 767px) {
     .hero-fullscreen {
-      height: 100svh;
-      min-height: 480px;
+      height: calc(100svh * 2 / 3);
+      min-height: 360px;
     }
 
     .hero-fullscreen .hero-style1 {

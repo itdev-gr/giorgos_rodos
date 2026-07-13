@@ -69,7 +69,7 @@ const {
 <script>
   function initDiscoveryParallax() {
     if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') return;
-    const bg = document.querySelector('.discovery-cta-bg');
+    const bg = document.querySelector<HTMLElement>('.discovery-cta-bg');
     if (!bg || bg.dataset.parallaxInit) return;
     bg.dataset.parallaxInit = 'true';
     window.gsap.to(bg, {

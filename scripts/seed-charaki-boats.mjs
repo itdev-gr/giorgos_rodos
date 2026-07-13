@@ -21,7 +21,12 @@ const supabase = createClient(
 );
 
 const EMAIL = 'info@charakirentalboatsrhodes.com';
-const PASSWORD = '123456789';
+const PASSWORD = env.SEED_USER_PASSWORD || process.env.SEED_USER_PASSWORD;
+if (!PASSWORD) {
+  throw new Error(
+    "SEED_USER_PASSWORD is required. Set a strong value in .env before seeding — refusing to create accounts with a default password."
+  );
+}
 
 async function ensureUser() {
   let page = 1;

@@ -56,6 +56,8 @@ export default function LoginForm() {
           <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#113D48', marginBottom: 6 }}>Email</label>
           <input
             type="email"
+            name="email"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -68,6 +70,8 @@ export default function LoginForm() {
           <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#113D48', marginBottom: 6 }}>Password</label>
           <input
             type="password"
+            name="password"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

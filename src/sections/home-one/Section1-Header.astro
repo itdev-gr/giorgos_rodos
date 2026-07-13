@@ -130,17 +130,28 @@ const contactHref = localizedPath('/contact', locale);
 
     /* Pages sit flush-left with even spacing; empty space is left before the
        centered logo so they never crowd it (Archon-style). Fluid font + gap
-       keep all seven links on one line inside the left third at any width. */
+       keep all links on one line inside the left third at any width. */
     #header-one .header-nav-left > ul {
       width: 100%;
       justify-content: flex-start;
       flex-wrap: nowrap;
-      gap: clamp(6px, 0.65vw, 14px);
+      gap: clamp(4px, 0.5vw, 14px);
     }
 
-    #header-one .header-nav-left > ul > li > a {
+    /* The theme sets `margin: 0 14px` on every nav <li>, which stacks ~28px
+       per item on top of the intended `gap` and pushes the last links under
+       the centered logo. Zero it so `gap` is the sole spacer. */
+    #header-one .header-nav-left > ul > li {
+      margin: 0;
+    }
+
+    /* Two classes (.main-menu.header-nav-left) so this out-specifies the base
+       `#header-one .main-menu > ul > li > a` rule below (and the duplicate in
+       BaseLayout), both of which otherwise force a fixed 13px/1.5px that
+       overflows the left grid track. */
+    #header-one .main-menu.header-nav-left > ul > li > a {
       font-size: clamp(10.5px, 0.62vw, 12.5px);
-      letter-spacing: clamp(0.3px, 0.08vw, 1.2px);
+      letter-spacing: clamp(0.2px, 0.05vw, 1.2px);
     }
 
     /* Compact, Archon-style centered logo */

@@ -9,8 +9,8 @@ interface Props {
 
 const { title } = Astro.props;
 const profile = Astro.locals.profile;
-const role = profile?.role || 'user';
-const userName = profile?.full_name || Astro.locals.user?.email || 'User';
+const role = (profile?.role as 'admin' | 'user') || 'user';
+const userName = (profile?.full_name as string) || Astro.locals.user?.email || 'User';
 const currentPath = Astro.url.pathname;
 ---
 
