@@ -307,12 +307,6 @@ const htmlDir = isRtlLocale(locale) ? 'rtl' : 'ltr';
           transform: scaleY(1);
         }
       }
-      .th-menu-wrapper:not(.th-body-visible) {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
-      }
-
       /* Hero, full structure reserved before style.css loads */
       .th-hero-wrapper {
         position: relative;
@@ -401,6 +395,21 @@ const htmlDir = isRtlLocale(locale) ? 'rtl' : 'ltr';
         margin: 0 6px !important;
         padding: 6px;
         background-clip: content-box !important;
+      }
+    </style>
+
+    <!-- Global on purpose: the mobile menu is a React island, so Astro-scoped
+         selectors never match its markup. This hides the closed menu and keeps
+         it out of the layout flow until the async style.css arrives. -->
+    <style is:global>
+      .th-menu-wrapper {
+        position: fixed;
+        inset: 0;
+      }
+      .th-menu-wrapper:not(.th-body-visible) {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
       }
     </style>
 
