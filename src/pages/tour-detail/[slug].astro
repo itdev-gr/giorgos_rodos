@@ -103,6 +103,9 @@ const tourPathSegment = tour.slug || tour.id;
 const tourCanonical = `${SITE_URL}/tour-detail/${tourPathSegment}`;
 const heroOgImage = images[0]?.startsWith('http') ? images[0] : `${SITE_URL}${images[0] || ''}`;
 
+const bookingWaText = `Hi! I'd like to book: ${tour.title}. Please send me availability and price.`;
+const bookingWhatsappHref = `https://wa.me/306951666454?text=${encodeURIComponent(bookingWaText)}`;
+
 const metaDescription =
   displayDescription?.trim() ||
   `${tour.title} in Rhodes, ${tour.duration ? `${tour.duration}, ` : ''}${tour.price ? `from ${tour.price}. ` : ''}Enquire with local experts at Rhodes Rent a Boat.`;
@@ -276,46 +279,19 @@ const metaDescription =
               </div>
             )}
 
-            <!-- Booking Form -->
-            <form id="booking-form">
-              <div style="margin-bottom: 14px;">
-                <label for="booking-date" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Preferred Date</label>
-                <input id="booking-date" type="date" name="booking_date" required style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
-              </div>
-              <div style="margin-bottom: 14px;">
-                <label for="booking-guests" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Number of Guests</label>
-                <select id="booking-guests" name="guests" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box; background: #fff; cursor: pointer;">
-                  {[1,2,3,4,5,6,7,8,9,10,11,12,15,20,25,30].map(n => (
-                    <option value={n}>{n} guest{n !== 1 ? 's' : ''}</option>
-                  ))}
-                </select>
-              </div>
-              <div style="margin-bottom: 14px;">
-                <label for="booking-name" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Your Name</label>
-                <input id="booking-name" type="text" name="customer_name" required placeholder="Full name" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
-              </div>
-              <div style="margin-bottom: 14px;">
-                <label for="booking-email" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Email</label>
-                <input id="booking-email" type="email" name="customer_email" required placeholder="you@email.com" style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
-              </div>
-              <div style="margin-bottom: 18px;">
-                <label for="booking-phone" style="display: block; font-size: 0.78rem; font-weight: 600; color: #475569; margin-bottom: 5px;">Phone (optional)</label>
-                <input id="booking-phone" type="tel" name="customer_phone" placeholder="+30 ..." style="width: 100%; padding: 11px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem;outline: none; box-sizing: border-box;" />
-              </div>
-              <input type="hidden" name="tour_id" value={tour.id} />
-              <input type="hidden" name="tour_name" value={tour.title} />
-              <button type="submit" id="book-btn" style="width: 100%; padding: 14px; background: #1CA8CB; color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer;transition: background 0.2s;">
-                Book Now
-              </button>
-              <div id="booking-msg" style="margin-top: 12px; text-align: center; font-size: 0.85rem; display: none;"></div>
-            </form>
-
-            <!-- WhatsApp -->
-            <div style="margin-top: 14px; text-align: center;">
-              <a href="https://wa.me/302241012345" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #64748b; text-decoration: none;">
-                <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1rem;"></i> Or ask via WhatsApp
-              </a>
-            </div>
+            <!-- Book via WhatsApp -->
+            <a
+              href={bookingWhatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; background: #25D366; color: #fff; border-radius: 10px; font-size: 0.98rem; font-weight: 700; cursor: pointer; text-decoration: none; box-sizing: border-box; transition: background 0.2s;"
+            >
+              <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i>
+              Book on WhatsApp
+            </a>
+            <p style="margin-top: 12px; text-align: center; font-size: 0.8rem; color: #94a3b8;">
+              Send us your dates and we'll confirm availability &amp; price — fast reply.
+            </p>
 
           </div>
         </div>
@@ -371,68 +347,6 @@ const metaDescription =
   <FooterFour />
 </BaseLayout>
 
-<script>
-  import { submitToWeb3Forms } from '../../lib/web3forms-client';
-
-  // Booking form
-  const form = document.getElementById('booking-form') as HTMLFormElement;
-  const msg = document.getElementById('booking-msg') as HTMLElement;
-  const btn = document.getElementById('book-btn') as HTMLButtonElement;
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    msg.style.display = 'none';
-
-    const fd = new FormData(form);
-    const data = Object.fromEntries(fd) as Record<string, string>;
-
-    try {
-      // Email is sent client-side via Web3Forms (server-side submits are
-      // blocked on their free plan); the API call persists the booking to
-      // Supabase. Success if either channel works.
-      const [emailOk, dbOk] = await Promise.all([
-        submitToWeb3Forms({
-          subject: 'New booking request',
-          from_name: data.customer_name || 'Website visitor',
-          replyto: data.customer_email || '',
-          Tour: data.tour_name || data.tour_id || '—',
-          Name: data.customer_name || '—',
-          Email: data.customer_email || '—',
-          Phone: data.customer_phone || '—',
-          Date: data.booking_date || '—',
-          Guests: data.guests || '1',
-        }),
-        fetch('/api/bookings', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        }).then((r) => r.ok).catch(() => false),
-      ]);
-
-      if (emailOk || dbOk) {
-        msg.textContent = 'Booking request sent! We will contact you shortly.';
-        msg.style.color = '#166534';
-        msg.style.display = 'block';
-        form.reset();
-      } else {
-        msg.textContent = 'Something went wrong. Please try again.';
-        msg.style.color = '#991b1b';
-        msg.style.display = 'block';
-      }
-    } catch {
-      msg.textContent = 'Network error. Please try again.';
-      msg.style.color = '#991b1b';
-      msg.style.display = 'block';
-    }
-
-    btn.disabled = false;
-    btn.textContent = 'Book Now';
-  });
-
-  // Transparent header
-</script>
 
 <style is:global>
   .td-page__title {
@@ -446,11 +360,6 @@ const metaDescription =
   }
   .td-gallery img { transition: transform 0.3s; }
   .td-thumb:hover { opacity: 1 !important; }
-  #booking-form input:focus, #booking-form select:focus {
-    border-color: #1CA8CB !important;
-    box-shadow: 0 0 0 3px rgba(28,168,203,0.1);
-  }
-  #book-btn:hover:not(:disabled) { background: #178da8 !important; }
 
   .td-itinerary {
     list-style: none;

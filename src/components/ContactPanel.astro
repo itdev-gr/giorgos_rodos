@@ -8,6 +8,7 @@ interface Props {
   infoIntro?: string;
   showSubject?: boolean;
   formIdPrefix?: string;
+  mode?: 'form' | 'whatsapp';
   labels: ContactFormLabels;
 }
 
@@ -18,8 +19,12 @@ const {
   infoIntro,
   showSubject = false,
   formIdPrefix = 'cp',
+  mode = 'form',
   labels,
 } = Astro.props;
+
+const whatsappText = "Hi! I'd like to ask about your boat tours in Rhodes.";
+const whatsappHref = `https://wa.me/306951666454?text=${encodeURIComponent(whatsappText)}`;
 
 const phone = '+30 695 166 6454';
 const phoneHref = 'tel:+306951666454';
@@ -71,6 +76,19 @@ const subjectOptions = [
         <h3>{labels.title}</h3>
         {formIntro && <p class="home-cta-contact__form-intro">{formIntro}</p>}
 
+        {mode === 'whatsapp' ? (
+          <div class="home-cta-contact__whatsapp-box">
+            <a
+              class="home-cta-contact__whatsapp"
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              Chat on WhatsApp
+            </a>
+          </div>
+        ) : (
         <form class="ajax-contact home-cta-contact__form">
           <div class="home-cta-contact__row home-cta-contact__row--2">
             <div class="home-cta-contact__field">
@@ -142,6 +160,7 @@ const subjectOptions = [
             <i class="fa-regular fa-arrow-right" aria-hidden="true"></i>
           </button>
         </form>
+        )}
       </div>
 
       <div class="home-cta-contact__info">
@@ -172,3 +191,32 @@ const subjectOptions = [
     </div>
   </div>
 </section>
+
+<style>
+  .home-cta-contact__whatsapp-box {
+    padding: 8px 0 4px;
+  }
+  .home-cta-contact__whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 24px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .home-cta-contact__whatsapp:hover {
+    background: #1ebe5a;
+    transform: translateY(-2px);
+  }
+  .home-cta-contact__whatsapp i {
+    font-size: 1.35rem;
+  }
+</style>
