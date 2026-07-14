@@ -20,11 +20,18 @@ const fallbackCategories = home.categoryCards.map((c) => ({
     'rhodes-rent-a-boat': '/assets/img/locations/tsambika-beach.jpg',
     'rhodes-catamaran-tours': '/assets/img/fleet/lagoon-42-aenaos.webp',
     'rhodes-charter': '/assets/img/fleet/oceanis-461-nailah.jpg',
-    'rhodes-tender-boat': '/assets/img/operations/tender/tender-service.jpg',
+    'rhodes-sailing-trips': '/assets/img/tours/sailing-rhodes.jpg',
     'rhodes-mice-events': '/assets/img/gallery/yacht/yacht-luxury-1.jpg',
   }[c.slug] || '/assets/img/gallery/yacht/crystal-water-1.jpg',
   href: localizedPath(`/service/${c.slug}`, locale),
 }));
+
+// The stored site-config JSON still carries the retired tender-boat card and
+// the admin dashboard can only swap card images, not rename them — remap that
+// entry to the sailing-trips service so every locale gets the right card.
+const CATEGORY_REMAP: Record<string, { slug: string; image: string }> = {
+  'rhodes-tender-boat': { slug: 'rhodes-sailing-trips', image: '/assets/img/tours/sailing-rhodes.jpg' },
+};
 
 let categories = fallbackCategories;
 try {
@@ -39,12 +46,15 @@ try {
           categories = data
             .sort((a: any, b: any) => (a.sort_order || 0) - (b.sort_order || 0))
             .map((cat: any) => {
-              const href = localizedPath(normalizeServiceHref(cat.href), locale);
-              const slug = cat.href?.replace(/^\/service\//, '').replace(/^\//, '');
-              const localized = slug && cardBySlug[slug];
+              const normalizedHref = normalizeServiceHref(cat.href);
+              let slug = normalizedHref.startsWith('/service/') ? normalizedHref.slice('/service/'.length) : '';
+              const remap = slug ? CATEGORY_REMAP[slug] : undefined;
+              if (remap) slug = remap.slug;
+              const localized = slug ? cardBySlug[slug] : undefined;
               return {
                 ...cat,
-                href,
+                image: remap?.image ?? cat.image,
+                href: localizedPath(slug ? `/service/${slug}` : normalizedHref, locale),
                 title: localized?.title ?? cat.title,
                 description: localized?.description ?? cat.description,
               };

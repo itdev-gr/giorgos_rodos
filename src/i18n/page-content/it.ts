@@ -25,7 +25,7 @@ export const it: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'Noleggio barca a Rodi', description: 'Guida la tua barca lungo la costa, senza patente, in totale libertà.' },
       { slug: 'rhodes-catamaran-tours', title: 'Crociere in catamarano a Rodi', description: 'Catamarani spaziosi per gruppi, eventi e avventure tra le isole.' },
       { slug: 'rhodes-charter', title: 'Charter yacht a Rodi', description: 'Oltre 80 yacht a vela e catamarani. Bareboat o con equipaggio, il Dodecaneso è tuo.' },
-      { slug: 'rhodes-tender-boat', title: 'Servizi tender a Rodi', description: 'Trasferimenti rapidi e affidabili da costa a nave nei porti e nelle baie di Rodi.' },
+      { slug: 'rhodes-sailing-trips', title: 'Escursioni a vela a Rodi', description: 'Uscite di un giorno in barca a vela con skipper professionista lungo la costa orientale di Rodi.' },
       { slug: 'rhodes-mice-events', title: 'Eventi MICE & incentive a Rodi', description: 'Eventi aziendali, viaggi incentive e team building in mare.' },
     ],
     whyTitle: 'Perché gli ospiti si fidano di noi',

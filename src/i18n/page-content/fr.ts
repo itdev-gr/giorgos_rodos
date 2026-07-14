@@ -25,7 +25,7 @@ export const fr: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'Location de bateau à Rhodes', description: 'Pilotez votre propre bateau le long de la côte, sans permis, en toute liberté.' },
       { slug: 'rhodes-catamaran-tours', title: 'Croisières en catamaran à Rhodes', description: 'Catamarans spacieux pour sorties en groupe, événements et aventures d’île en île.' },
       { slug: 'rhodes-charter', title: 'Location de yacht à Rhodes', description: 'Plus de 80 voiliers et catamarans. Bareboat ou avec équipage, le Dodécanèse est à vous.' },
-      { slug: 'rhodes-tender-boat', title: 'Services de bateau-tender à Rhodes', description: 'Transferts rapides et fiables entre le rivage et les navires dans les ports et baies de Rhodes.' },
+      { slug: 'rhodes-sailing-trips', title: 'Sorties à la voile à Rhodes', description: 'Sorties à la journée en voilier avec skipper professionnel le long de la côte est de Rhodes.' },
       { slug: 'rhodes-mice-events', title: 'Événements MICE & incentive à Rhodes', description: 'Événements d’entreprise, voyages incentive et team building en mer.' },
     ],
     whyTitle: 'Pourquoi nos clients nous font confiance',

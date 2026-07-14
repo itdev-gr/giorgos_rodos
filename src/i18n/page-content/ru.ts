@@ -25,7 +25,7 @@ export const ru: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'Аренда лодки на Родосе', description: 'Управляйте лодкой сами вдоль побережья, без лицензии, с полной свободой.' },
       { slug: 'rhodes-catamaran-tours', title: 'Круизы на катамаране на Родосе', description: 'Просторные катамараны для групповых поездок, мероприятий и island-hopping.' },
       { slug: 'rhodes-charter', title: 'Чартер яхт на Родосе', description: 'Более 80 парусных яхт и катамаранов. Bareboat или с экипажем — Додеканес ваш.' },
-      { slug: 'rhodes-tender-boat', title: 'Тендер-сервис на Родосе', description: 'Быстрые и надежные трансферы берег-корабль в портах и бухтах Родоса.' },
+      { slug: 'rhodes-sailing-trips', title: 'Парусные прогулки на Родосе', description: 'Дневные прогулки на парусных яхтах с профессиональным шкипером вдоль восточного побережья Родоса.' },
       { slug: 'rhodes-mice-events', title: 'MICE и incentive-мероприятия на Родосе', description: 'Корпоративные события, incentive-поездки и тимбилдинг на воде.' },
     ],
     whyTitle: 'Почему гости нам доверяют',

@@ -188,9 +188,9 @@ export const en: PageContent = {
         description: 'Over 80 sailing yachts and catamarans. Bareboat or crewed, the Dodecanese is yours.',
       },
       {
-        slug: 'rhodes-tender-boat',
-        title: 'Rhodes Tender Boat Services',
-        description: 'Fast and reliable shore-to-ship transfers across Rhodes harbours and bays.',
+        slug: 'rhodes-sailing-trips',
+        title: 'Rhodes Sailing Trips',
+        description: 'Day sails on monohull yachts with a professional skipper along the east coast.',
       },
       {
         slug: 'rhodes-mice-events',

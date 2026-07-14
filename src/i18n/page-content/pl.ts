@@ -25,7 +25,7 @@ export const pl: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'Wynajem łodzi na Rodos', description: 'Prowadź łódź samodzielnie wzdłuż wybrzeża, bez patentu, z pełną swobodą.' },
       { slug: 'rhodes-catamaran-tours', title: 'Rejsy katamaranem na Rodos', description: 'Przestronne katamarany na rejsy grupowe, wydarzenia i wyprawy między wyspami.' },
       { slug: 'rhodes-charter', title: 'Czarter jachtów na Rodos', description: 'Ponad 80 jachtów żaglowych i katamaranów. Bareboat lub z załogą — Dodekanez należy do Ciebie.' },
-      { slug: 'rhodes-tender-boat', title: 'Usługi tender boat na Rodos', description: 'Szybkie i niezawodne transfery brzeg-statek po portach i zatokach Rodos.' },
+      { slug: 'rhodes-sailing-trips', title: 'Rejsy żeglarskie na Rodos', description: 'Całodniowe rejsy jachtami żaglowymi z profesjonalnym skiperem wzdłuż wschodniego wybrzeża Rodos.' },
       { slug: 'rhodes-mice-events', title: 'Wydarzenia MICE i incentive na Rodos', description: 'Wydarzenia firmowe, wyjazdy motywacyjne i team building na wodzie.' },
     ],
     whyTitle: 'Dlaczego goście nam ufają',

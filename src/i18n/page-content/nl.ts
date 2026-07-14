@@ -25,7 +25,7 @@ export const nl: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'Rhodos bootverhuur', description: 'Vaar zelf langs de kust, geen vaarbewijs nodig, volledige vrijheid.' },
       { slug: 'rhodes-catamaran-tours', title: 'Rhodos catamarancruises', description: 'Ruime catamarans voor groepscruises, events en island-hopping avonturen.' },
       { slug: 'rhodes-charter', title: 'Rhodos jachtcharter', description: 'Meer dan 80 zeiljachten en catamarans. Bareboat of met crew, de Dodekanesos is van jou.' },
-      { slug: 'rhodes-tender-boat', title: 'Rhodos tenderbootservices', description: 'Snelle en betrouwbare transfers van wal naar schip in havens en baaien van Rhodos.' },
+      { slug: 'rhodes-sailing-trips', title: 'Zeiltochten Rhodos', description: 'Dagtochten op zeiljachten met professionele schipper langs de oostkust van Rhodos.' },
       { slug: 'rhodes-mice-events', title: 'Rhodos MICE & incentive events', description: 'Zakelijke events, incentive trips en team-building op het water.' },
     ],
     whyTitle: 'Waarom gasten ons vertrouwen',

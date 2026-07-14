@@ -50,7 +50,7 @@ export const de: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'Rhodos Boot mieten', description: 'Steuere dein eigenes Boot entlang der Küste, ohne Führerschein, mit voller Freiheit.' },
       { slug: 'rhodes-catamaran-tours', title: 'Rhodos Katamaran-Kreuzfahrten', description: 'Geräumige Katamarane für Gruppenfahrten, Events und Inselhopping-Abenteuer.' },
       { slug: 'rhodes-charter', title: 'Rhodos Yachtcharter', description: 'Über 80 Segelyachten und Katamarane. Bareboat oder mit Crew, der Dodekanes gehört dir.' },
-      { slug: 'rhodes-tender-boat', title: 'Rhodos Tenderboot-Services', description: 'Schnelle und zuverlässige Transfers zwischen Küste und Schiff in den Häfen und Buchten von Rhodos.' },
+      { slug: 'rhodes-sailing-trips', title: 'Segeltörns Rhodos', description: 'Tagestörns auf Segelyachten mit professionellem Skipper entlang der Ostküste von Rhodos.' },
       { slug: 'rhodes-mice-events', title: 'Rhodos MICE- & Incentive-Events', description: 'Firmenevents, Incentive-Reisen und Teambuilding-Erlebnisse auf dem Wasser.' },
     ],
     whyTitle: 'Warum Gäste uns vertrauen',

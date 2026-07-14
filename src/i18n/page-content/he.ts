@@ -25,7 +25,7 @@ export const he: PageContent = {
       { slug: 'rhodes-rent-a-boat', title: 'השכרת סירה ברודוס', description: 'לנהוג בעצמכם לאורך החוף, ללא רישיון, עם חופש מלא.' },
       { slug: 'rhodes-catamaran-tours', title: 'הפלגות קטמרן ברודוס', description: 'קטמרנים מרווחים להפלגות קבוצתיות, אירועים והרפתקאות בין איים.' },
       { slug: 'rhodes-charter', title: 'צ׳רטר יאכטות ברודוס', description: 'מעל 80 יאכטות מפרש וקטמרנים. Bareboat או עם צוות, הדודקאנס שלכם.' },
-      { slug: 'rhodes-tender-boat', title: 'שירותי טנדר בוט ברודוס', description: 'העברות מהירות ואמינות מחוף לספינה בנמלים ובמפרצים של רודוס.' },
+      { slug: 'rhodes-sailing-trips', title: 'שייט מפרש ברודוס', description: 'הפלגות יום על יאכטות מפרש עם סקיפר מקצועי לאורך החוף המזרחי של רודוס.' },
       { slug: 'rhodes-mice-events', title: 'אירועי MICE ותמריצים ברודוס', description: 'אירועים עסקיים, טיולי תמריץ וחוויות גיבוש על המים.' },
     ],
     whyTitle: 'למה האורחים סומכים עלינו',
