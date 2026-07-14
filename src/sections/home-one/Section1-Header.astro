@@ -22,7 +22,8 @@ const locale = resolveLocale(Astro.locals, Astro.url.pathname);
 const messages = getMessages(locale);
 const navItems = buildNavItems(messages.nav, locale);
 const homeHref = localizedPath('/', locale);
-const contactHref = localizedPath('/contact', locale);
+const bookNowWaText = "Hi! I'd like to book a boat tour in Rhodes. Please send me availability and prices.";
+const bookNowHref = `https://wa.me/306951666454?text=${encodeURIComponent(bookNowWaText)}`;
 ---
 
 <header class:list={['th-header header-layout1', transparent && 'header-transparent']} id="header-one">
@@ -69,7 +70,7 @@ const contactHref = localizedPath('/contact', locale);
           <div class="header-actions d-flex align-items-center">
             <LanguageSwitcher />
             <div class="d-none d-lg-block">
-              <a href={contactHref} class="luxury-cta">{messages.nav.bookNow}</a>
+              <a href={bookNowHref} target="_blank" rel="noopener noreferrer" class="luxury-cta">{messages.nav.bookNow}</a>
             </div>
             <button type="button" class="th-menu-toggle d-block d-lg-none" id="mobile-menu-trigger" aria-label={messages.nav.openMenu}>
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
