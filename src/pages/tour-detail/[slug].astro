@@ -240,12 +240,20 @@ const metaDescription =
             <h2 style="font-size: 1.2rem; font-weight: 700; color: #113D48; margin: 0 0 14px;">Route & Itinerary</h2>
             <p style="font-size: 0.95rem; line-height: 1.8; color: #475569; margin: 0 0 18px;">{itineraryIntro}</p>
             <ol class="td-itinerary">
-              {itinerarySteps.map((step) => (
+              {itinerarySteps.map((step, i) => (
                 <li class="td-itinerary__item">
-                  {step.time && <span class="td-itinerary__time">{step.time}</span>}
-                  <div>
+                  <span class="td-itinerary__dot" aria-hidden="true">{i + 1}</span>
+                  <div class="td-itinerary__card">
+                    {step.time && (
+                      <span class="td-itinerary__time">
+                        <i class="far fa-clock" aria-hidden="true"></i>
+                        {step.time}
+                      </span>
+                    )}
                     <strong class="td-itinerary__title">{step.title}</strong>
-                    <p class="td-itinerary__detail">{step.detail}</p>
+                    {step.detail && step.detail !== step.title && (
+                      <p class="td-itinerary__detail">{step.detail}</p>
+                    )}
                   </div>
                 </li>
               ))}
@@ -365,36 +373,85 @@ const metaDescription =
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
   }
   .td-itinerary__item {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    gap: 14px;
-    padding: 16px 18px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 14px;
   }
-  .td-itinerary__time {font-size: 0.78rem;
+  .td-itinerary__item:last-child { padding-bottom: 0; }
+  /* connector line between step markers */
+  .td-itinerary__item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 42px;
+    bottom: 2px;
+    width: 2px;
+    border-radius: 1px;
+    background: linear-gradient(180deg, rgba(28, 168, 203, 0.35), rgba(28, 168, 203, 0.1));
+  }
+  .td-itinerary__dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    margin-top: 8px;
+    border-radius: 50%;
+    background: #113D48;
+    color: #fff;
+    font-size: 0.82rem;
     font-weight: 700;
-    color: #1CA8CB;
-    line-height: 1.3;
+    box-shadow: 0 0 0 4px rgba(28, 168, 203, 0.14);
   }
+  .td-itinerary__card {
+    flex: 1;
+    min-width: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .td-itinerary__item:hover .td-itinerary__card {
+    border-color: rgba(28, 168, 203, 0.45);
+    box-shadow: 0 4px 14px rgba(17, 61, 72, 0.07);
+  }
+  .td-itinerary__time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #0c6478;
+    background: rgba(28, 168, 203, 0.12);
+    padding: 3px 11px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .td-itinerary__time i { font-size: 0.7rem; }
   .td-itinerary__title {
-    display: block;font-size: 0.95rem;
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.55;
     color: #113D48;
-    margin-bottom: 6px;
   }
-  .td-itinerary__detail {font-size: 0.88rem;
+  .td-itinerary__detail {
+    font-size: 0.88rem;
     line-height: 1.65;
     color: #475569;
-    margin: 0;
+    margin: 6px 0 0;
   }
   @media (max-width: 575px) {
-    .td-itinerary__item { grid-template-columns: 1fr; gap: 6px; }
+    .td-itinerary__item { gap: 12px; }
+    .td-itinerary__dot { width: 30px; height: 30px; font-size: 0.78rem; }
+    .td-itinerary__item:not(:last-child)::before { left: 14px; top: 40px; }
+    .td-itinerary__card { padding: 12px 14px; }
   }
 
   /* Related tours */

@@ -256,34 +256,81 @@ function defaultItinerary(kind: TourKind, tour: TourLike): { intro: string; step
   }
 }
 
-function parseItinerarySteps(raw: string): TourItineraryStep[] | null {
+function capitalizeFirst(s: string): string {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
+// Derive a bold title and optional supporting detail from one itinerary
+// sentence. Never returns detail identical to the title.
+function splitTitleDetail(text: string): { title: string; detail: string } {
+  const t = text.trim().replace(/\s+/g, ' ').replace(/[.\s]+$/, '');
+
+  // "A → B → C" chains: first leg is the title, the rest of the route the detail
+  const arrowParts = t.split(/\s*→\s*/);
+  if (arrowParts.length > 2) {
+    return { title: capitalizeFirst(arrowParts[0]), detail: capitalizeFirst(arrowParts.slice(1).join(' → ')) };
+  }
+
+  // Trailing parenthetical reads best as supporting detail
+  const paren = t.match(/^(.{8,}?)\s*\(([^()]{3,})\)$/);
+  if (paren) {
+    return { title: capitalizeFirst(paren[1].trim()), detail: capitalizeFirst(paren[2].trim()) };
+  }
+
+  // Em/en dash (or a spaced hyphen, so "Self-drive" stays intact) splits title from detail
+  const dash = t.match(/\s+-\s+|\s*[—–]\s*/);
+  if (dash && dash.index && dash.index >= 8) {
+    const detail = t.slice(dash.index + dash[0].length).trim();
+    if (detail.length >= 8) {
+      return { title: capitalizeFirst(t.slice(0, dash.index).trim()), detail: capitalizeFirst(detail) };
+    }
+  }
+
+  return { title: capitalizeFirst(t), detail: '' };
+}
+
+// One step from one sentence: pull a leading "18:00" / "Day 2" / "Morning:" /
+// "2hr:" marker into the time slot, the rest becomes title + detail.
+function parseStepSentence(sentence: string): TourItineraryStep {
+  const s = sentence.trim().replace(/\s+/g, ' ');
+
+  const timeMatch = s.match(/^(\d{1,2}:\d{2}|Day\s+\d+)\s*[—–:-]?\s+/i);
+  if (timeMatch) {
+    return { time: timeMatch[1], ...splitTitleDetail(s.slice(timeMatch[0].length)) };
+  }
+
+  const labelMatch = s.match(/^([A-Za-z0-9][A-Za-z0-9 ]{0,18}?):\s+(.+)$/);
+  if (labelMatch) {
+    return { time: labelMatch[1].trim(), ...splitTitleDetail(labelMatch[2]) };
+  }
+
+  return splitTitleDetail(s);
+}
+
+// Sentence boundary: a period followed by a capitalised word or digit, but not
+// after common abbreviations ("approx. 1 hour", "St. Paul").
+const SENTENCE_SPLIT = /(?<!\bapprox)(?<!\bSt)(?<!\bDr)(?<!\bMt)(?<!\betc)(?<!\bvs)\.\s+(?=[A-Z0-9])/;
+
+export function parseItinerarySteps(raw: string): TourItineraryStep[] | null {
   const trimmed = raw.trim();
   if (!trimmed) return null;
 
-  const stopParts = trimmed.split(/(?=Stop\s+\d+)/i).filter(Boolean);
+  // "Stop 1 — ... Stop 2 — ..." format: one step per stop, plus any
+  // plain sentences before the first stop / after the last one.
+  const stopParts = trimmed.split(/(?=Stop\s+\d+\s*[—–-])/i).map((p) => p.trim()).filter(Boolean);
   if (stopParts.length > 1) {
-    return stopParts.map((part) => {
-      const m = part.match(/^(Stop\s+\d+\s*[—–-]\s*[^.(]+)[.(]?\s*(.*)$/is);
-      if (m) {
-        return { title: m[1].trim(), detail: m[2].trim().replace(/\)\.\s*$/, '') };
-      }
-      return { title: part.split(/[.—]/)[0].trim(), detail: part.trim() };
+    return stopParts.flatMap((part) => {
+      const m = part.match(/^Stop\s+\d+\s*[—–-]\s*(.*)$/is);
+      if (!m) return part.split(SENTENCE_SPLIT).filter((s) => s.trim().length > 2).map(parseStepSentence);
+      // A stop segment may carry trailing sentences ("... snorkeling). Return to port.")
+      const sentences = m[1].split(SENTENCE_SPLIT).filter((s) => s.trim().length > 2);
+      return sentences.map(parseStepSentence);
     });
   }
 
-  const sentences = trimmed.split(/\.\s+(?=[A-Z0-9])/).filter((s) => s.length > 20);
+  const sentences = trimmed.split(SENTENCE_SPLIT).filter((s) => s.trim().length > 2);
   if (sentences.length >= 2) {
-    return sentences.map((s) => {
-      const timeMatch = s.match(/^(\d{1,2}:\d{2}|Day\s+\d+)\s+[—–-]\s*/i);
-      if (timeMatch) {
-        const rest = s.slice(timeMatch[0].length);
-        const dot = rest.indexOf('.');
-        const title = dot > -1 ? rest.slice(0, dot) : rest.split(',')[0];
-        const detail = dot > -1 ? rest.slice(dot + 1).trim() : rest;
-        return { time: timeMatch[1], title: title.trim(), detail: detail.trim() || rest.trim() };
-      }
-      return { title: s.split(/[—–-]/)[0].trim(), detail: s.trim() };
-    });
+    return sentences.map(parseStepSentence);
   }
 
   return [{ title: 'Route overview', detail: trimmed }];
